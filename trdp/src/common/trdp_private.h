@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: trdp_private.h 3 2012-06-04 12:52:54Z 97025 $
  *
  */
 
@@ -197,6 +197,7 @@ typedef struct TRDP_SESSION
     PD_ELE_T                *pSndQueue; /**< pointer to first element of send queue		*/
     PD_ELE_T                *pRcvQueue; /**< pointer to first element of rcv queue		*/
     MD_ELE_T                *pMDQueue;  /**< pointer to first element of MD session		*/
+    TRDP_STATISTICS_T		stats;      /**< statistics of this session                 */
 } TRDP_SESSION_T, *TRDP_SESSION_PT;
 
 /** Process data statistics */
