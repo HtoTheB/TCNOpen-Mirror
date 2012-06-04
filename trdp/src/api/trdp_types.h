@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: trdp_types.h 4 2012-06-04 13:33:07Z 97025 $
  *
  */
 
@@ -144,11 +144,11 @@ typedef VOS_TIME_T TRDP_TIME_T;
 /**	File descriptor set compatible with fd_set / select.
  */
 /*typedef struct
-{
+   {
     UINT32  fd_count;
     INT32   fds_bits[VOS_MAX_SOCKET_CNT];
-} TRDP_FDS_T;
-*/
+   } TRDP_FDS_T;
+ */
 typedef struct fd_set TRDP_FDS_T;
 /*#define TRDP_FDS_T	fd_set */
 

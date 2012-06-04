@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 3 2012-06-04 12:52:54Z 97025 $
+ * $Id: trdp_stats.c 4 2012-06-04 13:33:07Z 97025 $
  *
  */
 
@@ -44,8 +44,8 @@
  */
 
 /*
-TRDP_STATISTICS_T	gStats;
-*/
+   TRDP_STATISTICS_T	gStats;
+ */
 
 /******************************************************************************
  *   Globals
@@ -215,7 +215,7 @@ EXT_DECL TRDP_ERR_T tlc_resetStatistics (
         return TRDP_NOINIT_ERR;
     }
 
-	memset(&appHandle->stats, 0, sizeof(appHandle->stats));
-    
+    memset(&appHandle->stats, 0, sizeof(appHandle->stats));
+
     return TRDP_NO_ERR;
 }

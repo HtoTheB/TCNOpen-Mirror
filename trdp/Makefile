@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 2 2012-06-04 11:25:16Z 97025 $
+#// $Id: Makefile 4 2012-06-04 13:33:07Z 97025 $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -48,9 +48,9 @@ CP = cp
 
 
 ifeq ($(MD_SUPPORT),1)
-CFLAGS += -D__USE_BSD -D_XOPEN_SOURCE=500 -pthread -D$(TARGET_FLAG)  -fPIC -Wall -DMD_SUPPORT=1
+CFLAGS += -D__USE_BSD -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE=500 -pthread -D$(TARGET_FLAG)  -fPIC -Wall -DMD_SUPPORT=1
 else
-CFLAGS += -D__USE_BSD -D_XOPEN_SOURCE=500 -pthread -D$(TARGET_FLAG)  -fPIC -Wall -DMD_SUPPORT=0
+CFLAGS += -D__USE_BSD -D_DARWIN_C_SOURCE -D_XOPEN_SOURCE=500 -pthread -D$(TARGET_FLAG)  -fPIC -Wall -DMD_SUPPORT=0
 endif
 
 ifeq ($(DEBUG),1)

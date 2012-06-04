@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: trdp_utils.h 4 2012-06-04 13:33:07Z 97025 $
  *
  */
 
@@ -64,7 +64,7 @@
  * GLOBAL FUNCTIONS
  */
 
-extern int am_big_endian ();
+extern int          am_big_endian ();
 extern TRDP_LOG_T   gDebugLevel;
 
 PD_ELE_T            *trdp_util_getnext (
@@ -94,12 +94,12 @@ TRDP_ERR_T          trdp_requestSocket(TRDP_SOCKETS_T iface[],
                                        TRDP_SOCK_TYPE_T usage,
                                        TRDP_OPTION_T options,
                                        INT32 * pIndex);
-TRDP_ERR_T trdp_releaseSocket(TRDP_SOCKETS_T iface[], INT32 index);
+TRDP_ERR_T  trdp_releaseSocket(TRDP_SOCKETS_T iface[], INT32 index);
 
 /*  Compute actual packet size from datasize    */
-UINT32 trdp_packetSizePD (
+UINT32      trdp_packetSizePD (
     UINT32 dataSize);
-void trdp_print (
+void        trdp_print (
     TRDP_MSG_T  level,
     const char  *str);
 

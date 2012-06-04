@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.h 3 2012-06-04 12:52:54Z 97025 $
+ * $Id: trdp_if.h 4 2012-06-04 13:33:07Z 97025 $
  *
  */
 
@@ -54,14 +54,16 @@ extern "C" {
  *	@retval			TRUE		is valid
  *	@retval			FALSE		is invalid
  */
-BOOL    trdp_isValidSession (TRDP_APP_SESSION_T pSessionHandle);
+BOOL trdp_isValidSession (
+    TRDP_APP_SESSION_T pSessionHandle);
 
 /******************************************************************************/
 /** Get the session queue head pointer
  *
  *	@retval			&sSession
  */
-TRDP_APP_SESSION_T    *trdp_sessionQueue (void);
+TRDP_APP_SESSION_T *trdp_sessionQueue (
+    void);
 
 #ifdef __cplusplus
 }
