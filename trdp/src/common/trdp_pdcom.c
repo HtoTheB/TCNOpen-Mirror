@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: trdp_pdcom.c 6 2012-06-06 13:47:09Z 97025 $
  *
  */
 
@@ -267,7 +267,7 @@ TRDP_ERR_T  trdp_pdReceive (
         pNewElement = pExistingElement;
 
         /*  If a callback was provided, call it now */
-        if (appHandle->pdDefault.pCbFunction != NULL)
+        if (appHandle->pdDefault.pfCbFunction != NULL)
         {
             TRDP_PD_INFO_T theMessage;
             theMessage.comId        = pExistingElement->addr.comId;
@@ -291,7 +291,7 @@ TRDP_ERR_T  trdp_pdReceive (
             theMessage.pUserRef     = pExistingElement->userRef;      /* TBD: User reference given with the local subscribe?   */
             theMessage.resultCode   = TRDP_NO_ERR;
 
-            appHandle->pdDefault.pCbFunction(
+            appHandle->pdDefault.pfCbFunction(
                 appHandle->pdDefault.pRefCon,
                 &theMessage,
                 pExistingElement->data,
