@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 6 2012-06-06 13:47:09Z 97025 $
+ * $Id: trdp_pdcom.c 7 2012-06-06 16:18:10Z 97025 $
  *
  */
 
@@ -210,7 +210,7 @@ TRDP_ERR_T  trdp_pdReceive (
     subHandle.comId = vos_ntohl(pNewElement->frameHead.comId);
 
     /*	Examine netbuffer, are we interested in this PD?	*/
-    pExistingElement = trdp_queue_find_addr(appHandle->pRcvQueue, &subHandle);
+    pExistingElement = trdp_queueFindAddr(appHandle->pRcvQueue, &subHandle);
 
     if (pExistingElement == NULL)
     {
@@ -259,8 +259,8 @@ TRDP_ERR_T  trdp_pdReceive (
         pNewElement->userRef    = pExistingElement->userRef;
 
         /*  remove the old one, insert the new one  */
-        trdp_queue_del_element(&appHandle->pRcvQueue, pExistingElement);
-        trdp_queue_ins_first(&appHandle->pRcvQueue, pNewElement);
+        trdp_queueDelElement(&appHandle->pRcvQueue, pExistingElement);
+        trdp_queueInsFirst(&appHandle->pRcvQueue, pNewElement);
 
         /*  One block is always kept    */
         memset(pExistingElement, 0, sizeof(PD_ELE_T));
