@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: vos_types.h 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
@@ -27,10 +27,11 @@
  */
 
 #include <stddef.h>
-#include <stdint.h>
 
 #ifdef WIN32
 #include <windows.h>
+#else
+#include <stdint.h>
 #endif
 
 #ifdef __cplusplus
@@ -40,6 +41,17 @@ extern "C" {
 /***********************************************************************************************************************
  * DEFINES
  */
+
+#ifdef WIN32
+#define UINT8   unsigned char
+#define UINT16  unsigned short
+#define UINT32  unsigned int
+#define INT8    char
+#define INT16   signed short
+#define INT32   signed int
+#define BOOL    int
+#define CHAR8   char
+#endif
 
 #ifndef UINT8
     #define UINT8  uint8_t
@@ -81,6 +93,18 @@ extern "C" {
     #define EXT_DECL
 
 #endif
+
+#undef GNU_PACKED
+#define GNU_PACKED
+
+#if defined (__GNUC__)
+   #if (__GNUC__ > 2 || (__GNUC__ == 2 && __GNUC_MINOR__ > 6))
+      #undef GNU_PACKED
+/* Assert Minimum alignment (packed) for structure elements for GNU Compiler. */
+      #define GNU_PACKED  __attribute__ ((__packed__))
+   #endif
+#endif
+
 
 /***********************************************************************************************************************
  * TYPEDEFS

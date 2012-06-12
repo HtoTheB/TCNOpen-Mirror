@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: vos_sock.h 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
@@ -27,6 +27,12 @@
  */
 
 #include "vos_types.h"
+
+#ifdef WIN32
+#include <Winsock2.h>
+#else
+#include <sys/select.h>
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -107,7 +113,7 @@ EXT_DECL UINT32 vos_ntohl (
  *  @retval             FALSE		address is not a multicast address
  */
 
-EXT_DECL BOOL vos_IsMulticast (
+EXT_DECL BOOL vos_isMulticast (
     UINT32 ipAddress);
 
 

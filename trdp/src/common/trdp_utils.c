@@ -15,18 +15,13 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 7 2012-06-06 16:18:10Z 97025 $
+ * $Id: trdp_utils.c 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
 /*******************************************************************************
  * INCLUDES
  */
-
-#include <stdio.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <stdlib.h>
 
 #include "vos_sock.h"
 #include "trdp_private.h"
@@ -57,40 +52,10 @@ static INT32 sCurrentMaxSocketCnt = 0;
  */
 int am_big_endian ()
 {
-    int32_t one = 1;
+    int one = 1;
     return !(*((char *)(&one)));
 }
 
-
-/******************************************************************************/
-/** Find the packet which has to be send next
- *
- *  @param[in]      pHead           pointer to first queue element
- *  @param[in]      pNow			Current time
- *  @param[out]     ppNextElement	pointer to pointer to PD element
- *  @retval         != NULL         pointer to PD packet
- *  @retval         NULL            No PD packet found
- */
-PD_ELE_T *trdp_utilGetNext (
-    PD_ELE_T                *pHead,
-    const struct timeval    *pNow,
-    PD_ELE_T                * *ppNextElement)
-{
-    PD_ELE_T *pQueueIter = pHead;
-
-    /*	Find the packet which has to be sent/received next:	*/
-    while (pQueueIter)
-    {
-        if (timercmp(&pQueueIter->timeToGo, pNow, <=))
-        {
-            *ppNextElement = pQueueIter;
-            return pQueueIter;
-        }
-
-        pQueueIter = pQueueIter->pNext;
-    }
-    return NULL;
-}
 
 /******************************************************************************/
 /** Get the packet size from the raw data size
@@ -123,7 +88,7 @@ UINT32 trdp_packetSizePD (
  */
 PD_ELE_T *trdp_queueFindComId (
     PD_ELE_T    * *ppHead,
-    uint32_t    comId)
+    UINT32      comId)
 {
     PD_ELE_T *iterPD;
 

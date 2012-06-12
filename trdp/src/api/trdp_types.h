@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 6 2012-06-06 13:47:09Z 97025 $
+ * $Id: trdp_types.h 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
@@ -26,17 +26,9 @@
  * INCLUDES
  */
 
-#include <stddef.h>
-#include <stdint.h>
-#include <unistd.h>
-#include <sys/types.h>
 #include "vos_types.h"
 #include "vos_mem.h"
 #include "vos_sock.h"
-
-#ifdef WIN32
-#include <windows.h>
-#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -144,11 +136,11 @@ typedef VOS_TIME_T TRDP_TIME_T;
 /**	File descriptor set compatible with fd_set / select.
  */
 /*typedef struct
-{
+   {
     UINT32  fd_count;
     INT32   fds_bits[VOS_MAX_SOCKET_CNT];
-} TRDP_FDS_T;
-*/
+   } TRDP_FDS_T;
+ */
 typedef struct fd_set TRDP_FDS_T;
 /*#define TRDP_FDS_T	fd_set */
 

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: trdp_mdcom.c 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
@@ -80,8 +80,8 @@ TRDP_ERR_T  trdp_sendMD (
 TRDP_ERR_T  trdp_rcvMD (
     int         mdSock,
     MD_HEADER_T * *ppPacket,
-    ssize_t     *pSize,
-    uint32_t    *pIPAddr)
+    INT32       *pSize,
+    UINT32      *pIPAddr)
 {
     TRDP_ERR_T err = TRDP_UNKNOWN_ERR;
 

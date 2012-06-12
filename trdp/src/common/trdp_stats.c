@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: trdp_stats.c 9 2012-06-12 15:30:12Z 97025 $
  *
  */
 
@@ -24,7 +24,6 @@
  */
 
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 
 #include "trdp_stats.h"
