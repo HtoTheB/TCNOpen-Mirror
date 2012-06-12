@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: vos_sock.c 10 2012-06-12 15:34:26Z 97025 $
  *
  */
 
@@ -103,7 +103,7 @@ EXT_DECL UINT32 vos_ntohl (
  *  @retval             FALSE		address is not a multicast address
  */
 
-EXT_DECL BOOL vos_IsMulticast (
+EXT_DECL BOOL vos_isMulticast (
     UINT32 ipAddress)
 {
     return IN_MULTICAST(ipAddress);
