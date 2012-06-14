@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.h 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: trdp_if.h 15 2012-06-14 12:52:06Z 97025 $
  *
  */
 
@@ -26,7 +26,6 @@
  * INCLUDES
  */
 
-#include "trdp_types.h"
 #include "trdp_if_light.h"
 
 #ifdef __cplusplus

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: vos_utils.h 15 2012-06-14 12:52:06Z 97025 $
  *
  */
 
@@ -46,10 +46,19 @@ extern void *gRefCon;
                                                     (level),            \
                                                     vos_getTimeStamp(), \
                                                     (__FILE__),         \
-                                                    (__LINE__),         \
+                                                    (UINT16)(__LINE__), \
                                                     (string)); }}
 
 /** Debug output macro with formatting options	*/
+#ifdef WIN32
+#define vos_printf(level, format, ...)                \
+    {if (gPDebugFunction != NULL)                     \
+     {   char str[256];                               \
+         _snprintf_s(str, sizeof(str), _TRUNCATE, format, __VA_ARGS__); \
+         vos_print(level, str);                       \
+     }                                                \
+    }
+#else
 #define vos_printf(level, format, args ...)           \
     {if (gPDebugFunction != NULL)                     \
      {   char str[256];                               \
@@ -57,6 +66,7 @@ extern void *gRefCon;
          vos_print(level, str);                       \
      }                                                \
     }
+#endif
 
 /***********************************************************************************************************************
  * TYPEDEFS

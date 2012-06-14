@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 9 2012-06-12 15:30:12Z 97025 $
+ * $Id: trdp_utils.c 15 2012-06-14 12:52:06Z 97025 $
  *
  */
 
@@ -23,8 +23,6 @@
  * INCLUDES
  */
 
-#include "vos_sock.h"
-#include "trdp_private.h"
 #include "trdp_utils.h"
 
 /*******************************************************************************

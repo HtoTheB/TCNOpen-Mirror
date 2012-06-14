@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: vos_thread.h 15 2012-06-14 12:52:06Z 97025 $
  *
  */
 
@@ -39,6 +39,9 @@ extern "C" {
 #define __cdecl
 #endif
 
+#ifdef WIN32
+#include <winsock2.h>
+#else
 #ifndef timerisset
 # define timerisset(tvp)  ((tvp)->tv_sec || (tvp)->tv_usec)
 #endif
@@ -73,6 +76,7 @@ extern "C" {
             (result)->tv_usec += 1000000;                  \
         }                                                  \
     } while (0)
+#endif
 #endif
 
 

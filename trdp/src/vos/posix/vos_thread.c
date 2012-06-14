@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 4 2012-06-04 13:33:07Z 97025 $
+ * $Id: vos_thread.c 15 2012-06-14 12:52:06Z 97025 $
  *
  */
 
@@ -41,6 +41,7 @@
 #include "vos_thread.h"
 #include "vos_mem.h"
 #include "vos_utils.h"
+
 
 /***********************************************************************************************************************
  * DEFINITIONS
