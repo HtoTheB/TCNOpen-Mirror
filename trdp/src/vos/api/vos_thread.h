@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 15 2012-06-14 12:52:06Z 97025 $
+ * $Id: vos_thread.h 22 2012-07-12 17:21:42Z 97025 $
  *
  */
 
@@ -152,7 +152,6 @@ EXT_DECL VOS_ERR_T vos_threadInit (
  *  @retval         VOS_INIT_ERR	module not initialised
  *  @retval         VOS_NOINIT_ERR	invalid handle
  *  @retval         VOS_PARAM_ERR	parameter out of range/invalid
- *  @retval         VOS_INIT_ERR	no threads available
  */
 
 EXT_DECL VOS_ERR_T vos_threadCreate (
@@ -297,7 +296,7 @@ EXT_DECL INT32 vos_cmpTime (
  *
  *  @param[out]     pUuID			Pointer to a universal unique identifier
  *  @retval         VOS_NO_ERR		no error
- *  @retval         VOS_INIT_ERR	module not initialised
+ *  @retval         VOS_UNKNOWN_ERR	Could not create UUID
  */
 
 EXT_DECL VOS_ERR_T vos_getUuid (

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 15 2012-06-14 12:52:06Z 97025 $
+ * $Id: vos_sock.h 22 2012-07-12 17:21:42Z 97025 $
  *
  */
 
@@ -29,7 +29,7 @@
 #include "vos_types.h"
 
 #ifdef WIN32
-//#include <winsock2.h>
+/* #include <winsock2.h> */
 #else
 #include <sys/select.h>
 #endif
@@ -129,6 +129,18 @@ EXT_DECL BOOL vos_isMulticast (
 
 EXT_DECL VOS_ERR_T vos_sockInit (
     void);
+
+/**********************************************************************************************************************/
+/** Return the MAC address of the default adapter.
+ *
+ *  @param[out]     pMAC            return MAC address.
+ *  @retval         VOS_NO_ERR		no error
+ *  @retval         VOS_PARAM_ERR	pMAC == NULL
+ *  @retval         VOS_SOCK_ERR	socket not available or option not supported
+ */
+
+EXT_DECL VOS_ERR_T vos_sockGetMAC(
+    UINT8 pMAC[6]);
 
 /**********************************************************************************************************************/
 /** Create an UDP socket.
