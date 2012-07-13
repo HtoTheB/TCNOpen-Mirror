@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 22 2012-07-12 17:21:42Z 97025 $
+ * $Id: vos_sock.c 23 2012-07-13 09:36:14Z 97031 $
  *
  */
 
@@ -57,6 +57,7 @@
  *  LOCALS
  */
 
+BOOL            vosSockInitialised = FALSE;
 uint32_t        gNumberOfOpenSockets = 0;
 struct ifreq    gIfr;
 
@@ -122,6 +123,8 @@ EXT_DECL BOOL vos_isMulticast (
 EXT_DECL VOS_ERR_T vos_sockInit (void)
 {
     memset(&gIfr, 0, sizeof(gIfr));
+    vosSockInitialised = TRUE;
+
     return VOS_NO_ERR;
 }
 
@@ -140,6 +143,11 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
 #ifdef IFHWADDRLEN
     int sock;
     int i;
+
+    if (!vosSockInitialised)
+    {
+        return VOS_INIT_ERR;
+    }
 
     if (pMAC == NULL)
     {
@@ -204,6 +212,11 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
 {
     int sock;
 
+    if (!vosSockInitialised)
+    {
+        return VOS_INIT_ERR;
+    }
+
     if (pSock == NULL)
     {
         vos_printf(VOS_LOG_ERROR, "Parameter error");
@@ -244,6 +257,11 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
     const VOS_SOCK_OPT_T    *pOptions)
 {
     int sock;
+
+    if (!vosSockInitialised)
+    {
+        return VOS_INIT_ERR;
+    }
 
     if (pSock == NULL)
     {

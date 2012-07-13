@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 22 2012-07-12 17:21:42Z 97025 $
+ * $Id: vos_sock.h 23 2012-07-13 09:36:14Z 97031 $
  *
  */
 
@@ -44,8 +44,10 @@ extern "C" {
 
 /** The maximum number of concurrent usable sockets  */
 #define VOS_MAX_SOCKET_CNT  80
+
 /**	The maximum hops a multicast packet can go	*/
 #define VOS_TTL_MULTICAST   64
+
 
 /***********************************************************************************************************************
  * TYPEDEFS

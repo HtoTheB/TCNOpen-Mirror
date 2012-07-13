@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 22 2012-07-12 17:21:42Z 97025 $
+ * $Id: vos_thread.h 23 2012-07-13 09:36:14Z 97031 $
  *
  */
 
@@ -38,6 +38,9 @@ extern "C" {
 #ifndef __cdecl
 #define __cdecl
 #endif
+
+/** The maximum number of concurrent usable threads  */
+#define VOS_MAX_THREAD_CNT 100
 
 #ifdef WIN32
 #include <winsock2.h>
