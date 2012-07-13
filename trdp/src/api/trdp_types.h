@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 9 2012-06-12 15:30:12Z 97025 $
+ * $Id: trdp_types.h 25 2012-07-13 12:30:28Z 97025 $
  *
  */
 
@@ -56,11 +56,6 @@ extern "C" {
 
 #ifndef USE_HEAP
     #define USE_HEAP  0                 /**< If this is set, we can allocate dynamically memory	*/
-#endif
-
-#ifndef TRUE
-    #define TRUE    (1)
-    #define FALSE   (0)
 #endif
 
 /*	Special handling for Windows DLLs	*/

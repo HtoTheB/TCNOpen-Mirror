@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 15 2012-06-14 12:52:06Z 97025 $
+ * $Id: vos_types.h 25 2012-07-13 12:30:28Z 97025 $
  *
  */
 
@@ -77,6 +77,11 @@ typedef char     CHAR8;
 
     #define EXT_DECL
 
+#endif
+
+#ifndef TRUE
+    #define TRUE    (1)
+    #define FALSE   (0)
 #endif
 
 /*	Compiler dependent alignment options	*/
