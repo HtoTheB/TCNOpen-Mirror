@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 15 2012-06-14 12:52:06Z 97025 $
+ * $Id: trdp_if.c 24 2012-07-13 11:50:21Z 97025 $
  *
  */
 
@@ -28,6 +28,7 @@
 #include "trdp_if_light.h"
 #include "trdp_utils.h"
 #include "trdp_pdcom.h"
+#include "vos_sock.h"
 
 //#include "winsock2.h"
 
@@ -762,10 +763,10 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 appHandle->option & TRDP_OPTION_BLOCK)
             {
                 if (!FD_ISSET(appHandle->iface[iterPD->socketIdx].sock,
-                              (struct fd_set *)pFileDesc))
+                              (fd_set *)pFileDesc))
                 {
                     FD_SET(appHandle->iface[iterPD->socketIdx].sock,
-                           (struct fd_set *)pFileDesc);
+                           (fd_set *)pFileDesc);
                 }
             }
         }
@@ -927,7 +928,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
         {
             if (iterPD->socketIdx != -1 &&
                 FD_ISSET(appHandle->iface[iterPD->socketIdx].sock,
-                         (struct fd_set *) pRfds))                                                 /*	PD frame received?	*/
+                         (fd_set *) pRfds))                                                 /*	PD frame received?	*/
             {
                 /*	Compare the received data to the data in our receive queue
                     Call user's callback if data changed	*/
@@ -943,7 +944,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
                 }
                 (*pCount)--;
                 FD_CLR(appHandle->iface[iterPD->socketIdx].sock,
-                       (struct fd_set *)pRfds);
+                       (fd_set *)pRfds);
             }
         }
     }
