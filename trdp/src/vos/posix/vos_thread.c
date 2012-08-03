@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 25 2012-07-13 12:30:28Z 97025 $
+ * $Id: vos_thread.c 28 2012-08-03 14:24:20Z 97025 $
  *
  */
 
@@ -463,6 +463,9 @@ EXT_DECL VOS_ERR_T vos_clearTime (
     {
         return VOS_PARAM_ERR;
     }
+
+    timerclear(pTime);
+
     return VOS_NO_ERR;
 }
 
