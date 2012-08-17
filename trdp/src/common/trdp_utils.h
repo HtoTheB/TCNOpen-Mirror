@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 29 2012-08-03 14:37:29Z 97025 $
+ * $Id: trdp_utils.h 37 2012-08-17 15:44:00Z 97025 $
  *
  */
 
@@ -93,13 +93,15 @@ TRDP_ERR_T trdp_releaseSocket(
 UINT32  trdp_packetSizePD (
     UINT32 dataSize);
 
-void    trdp_print (
-    TRDP_MSG_T  level,
-    const char  *str);
-
 /*  Get initial Sequence No	*/
-UINT32 trdp_getSeqCnt (
+UINT32  trdp_getSeqCnt (
     UINT32          comID,
+    TRDP_MSG_T      msgType,
+    TRDP_IP_ADDR_T  srcIP);
+
+BOOL trdp_isRcvSeqCnt (
+    UINT32          seqCnt,
+    UINT32          comId,
     TRDP_MSG_T      msgType,
     TRDP_IP_ADDR_T  srcIP);
 
