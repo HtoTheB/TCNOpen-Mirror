@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: echoSelect.c 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: echoSelect.c 43 2012-10-10 16:30:15Z 97025 $
  *
  */
 
@@ -147,12 +147,19 @@ int main (int argc, char * *argv)
 
 
     /*	Init the library for callback operation	(PD only) */
-    if (tlc_init(&appHandle,
+    if (tlc_init(dbgOut,                            /* actually printf	*/
+                 &dynamicConfig                    /* Use application supplied memory	*/
+                ) != TRDP_NO_ERR)
+    {
+        printf("Initialization error\n");
+        return 1;
+    }
+    
+    /*	Open a session for callback operation	(PD only) */
+    if (tlc_openSession(&appHandle,
                  0, 0,                              /* use default IP addresses */
-                 dbgOut,                            /* actually printf	*/
                  NULL,                              /* no Marshalling	*/
                  &pdConfiguration, NULL,            /* system defaults for PD and MD	*/
-                 &dynamicConfig,                    /* Use application supplied memory	*/
                  TRDP_OPTION_BLOCK) != TRDP_NO_ERR)
     {
         printf("Initialization error\n");
@@ -178,7 +185,7 @@ int main (int argc, char * *argv)
     if (err != TRDP_NO_ERR)
     {
         printf("prep pd receive error\n");
-        tlc_terminate(appHandle);
+        tlc_terminate();
         return 1;
     }
 
@@ -203,7 +210,7 @@ int main (int argc, char * *argv)
     if (err != TRDP_NO_ERR)
     {
         printf("prep pd publish error\n");
-        tlc_terminate(appHandle);
+        tlc_terminate();
         return 1;
     }
 
@@ -283,7 +290,7 @@ int main (int argc, char * *argv)
     tlp_unpublish(appHandle, pubHandle);
     tlp_unsubscribe(appHandle, subHandle);
 
-    tlc_terminate(appHandle);
+    tlc_terminate();
 
     return rv;
 }
