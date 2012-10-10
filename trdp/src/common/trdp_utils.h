@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 37 2012-08-17 15:44:00Z 97025 $
+ * $Id: trdp_utils.h 44 2012-10-10 16:34:21Z 97025 $
  *
  */
 
@@ -55,7 +55,7 @@ extern int          am_big_endian ();
 extern TRDP_LOG_T   gDebugLevel;
 
 PD_ELE_T            *trdp_queueFindComId (
-    PD_ELE_T    * *pHead,
+    PD_ELE_T    *pHead,
     UINT32      comId);
 
 PD_ELE_T            *trdp_queueFindAddr (

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: trdp_pdcom.h 44 2012-10-10 16:34:21Z 97025 $
  *
  */
 
@@ -42,7 +42,7 @@
  * GLOBAL FUNCTIONS
  */
 
-void        trdp_pdInit(PD_ELE_T *, TRDP_MSG_T, UINT32 topCount);
+void        trdp_pdInit(PD_ELE_T *, TRDP_MSG_T, UINT32 topCount,UINT16 subs, UINT16      offsetAddress, UINT32 replyComId, UINT32 replyIpAddress);
 void        trdp_pdUpdate (
     PD_ELE_T *);
 TRDP_ERR_T  trdp_pdPut (
@@ -56,13 +56,15 @@ TRDP_ERR_T  trdp_pdCheck (
     INT32       packetSize);
 TRDP_ERR_T  trdp_pdSend (
     INT32   sock,
-    const   PD_ELE_T *);
+    PD_ELE_T *);
 TRDP_ERR_T  trdp_pdGet (
     PD_ELE_T            *pPacket,
     TRDP_UNMARSHALL_T   unmarshall,
     void                *refCon,
     const UINT8         *pData,
     UINT32              dataSize);
+TRDP_ERR_T trdp_pdSendQueued (
+    TRDP_SESSION_PT appHandle);
 TRDP_ERR_T trdp_pdReceive (
     TRDP_SESSION_PT pSessionHandle,
     INT32           sock);

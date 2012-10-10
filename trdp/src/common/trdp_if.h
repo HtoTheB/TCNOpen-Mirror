@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.h 31 2012-08-10 15:38:14Z 97025 $
+ * $Id: trdp_if.h 44 2012-10-10 16:34:21Z 97025 $
  *
  */
 
@@ -49,9 +49,9 @@ extern "C" {
 /** Check if the session handle is valid
  *
  *
- *  @param[in]      pSessionHandle		pointer to packet data (dataset)
- *	@retval			TRUE		is valid
- *	@retval			FALSE		is invalid
+ *  @param[in]      pSessionHandle    pointer to packet data (dataset)
+ *  @retval         TRUE              is valid
+ *  @retval         FALSE             is invalid
  */
 BOOL trdp_isValidSession (
     TRDP_APP_SESSION_T pSessionHandle);
@@ -59,7 +59,7 @@ BOOL trdp_isValidSession (
 /**********************************************************************************************************************/
 /** Get the session queue head pointer
  *
- *	@retval			&sSession
+ *  @retval	        &sSession
  */
 TRDP_APP_SESSION_T *trdp_sessionQueue (
     void);
