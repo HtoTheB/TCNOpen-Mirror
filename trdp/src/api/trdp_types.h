@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 44 2012-10-10 16:34:21Z 97025 $
+ * $Id: trdp_types.h 46 2012-10-11 15:05:42Z 97025 $
  *
  */
 
@@ -197,9 +197,8 @@ typedef enum
 /** How invalid PD shall be handled    */
 typedef enum
 {
-    TRDP_TO_SET_TO_ZERO     = 0x1,      /**< If set, data will be reset to zero on time out         */
-    /* TRDP_TO_KEEP_LAST_VALUE */       /**< If not set, last received values will be returned      */
-    TRDP_TO_PULL            = 0x2       /**< Identify telegram as subscribed/requested via PULL     */
+    TRDP_TO_SET_TO_ZERO     = 1,      /**< If set, data will be reset to zero on time out         */
+    TRDP_TO_KEEP_LAST_VALUE = 2       /**< If not set, last received values will be returned      */
 } TRDP_TO_BEHAVIOR_T;
 
 /**	Process data info from received telegram; allows the application to generate responses.

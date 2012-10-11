@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 44 2012-10-10 16:34:21Z 97025 $
+ * $Id: trdp_if.c 46 2012-10-11 15:05:42Z 97025 $
  *
  */
 
@@ -1502,7 +1502,7 @@ EXT_DECL TRDP_ERR_T tlp_get (
         if (timercmp(&pElement->timeToGo, &now, >))
         {
             /*    Packet is late    */
-            if (appHandle->pdDefault.toBehavior & TRDP_TO_SET_TO_ZERO)
+            if (appHandle->pdDefault.toBehavior == TRDP_TO_SET_TO_ZERO)
             {
                 memset(pData, 0, *pDataSize);
             }
