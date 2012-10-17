@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 46 2012-10-11 15:05:42Z 97025 $
+ * $Id: trdp_types.h 53 2012-10-17 17:40:43Z 97025 $
  *
  */
 
@@ -28,7 +28,7 @@
 
 #include "vos_types.h"
 #include "vos_mem.h"
-#include "vos_sock.h"
+//#include "vos_sock.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 27 2012-07-25 12:37:48Z 97025 $
+ * $Id: vos_sock.c 53 2012-10-17 17:40:43Z 97025 $
  *
  */
 
@@ -113,6 +113,34 @@ EXT_DECL BOOL vos_isMulticast (
     UINT32 ipAddress)
 {
     return IN_MULTICAST(ipAddress);
+}
+
+/**********************************************************************************************************************/
+/** Convert IP address.
+ *
+ *  @param[in]          ipAddress   IP address as dotted decimal.
+ *  @retval             address in UINT32 in host endianess
+ */
+EXT_DECL UINT32 vos_dottedIP (
+    const CHAR8 *pDottedIP)
+{
+    return vos_ntohl(inet_addr(pDottedIP));
+}
+
+/**********************************************************************************************************************/
+/** Convert IP address to dotted dec.
+ *
+ *  @param[in]          ipAddress   IP address as dotted decimal.
+ *  @retval             address in UINT32 in host endianess
+ */
+
+EXT_DECL const CHAR8 *vos_ipDotted (
+    UINT32 IPaddress)
+{
+    static CHAR8   dotted[16];
+    sprintf(dotted, "%u.%u.%u.%u", IPaddress >> 24, (IPaddress >> 16) & 0xFF ,
+                                  (IPaddress >> 8) & 0xFF, IPaddress & 0xFF);
+    return dotted;
 }
 
 /*	Sockets	*/

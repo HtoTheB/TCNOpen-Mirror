@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.h 3 2012-06-04 12:52:54Z 97025 $
+ * $Id: trdp_stats.h 53 2012-10-17 17:40:43Z 97025 $
  *
  */
 
@@ -27,6 +27,7 @@
  * INCLUDES
  */
 
+#include "trdp_if_light.h"
 #include "trdp_private.h"
 #include "vos_utils.h"
 
@@ -39,9 +40,13 @@
  * TYPEDEFS
  */
 
+
 /*******************************************************************************
  * GLOBAL FUNCTIONS
  */
+
+void    trdp_initStats(TRDP_APP_SESSION_T appHandle);
+void    trdp_pdPrepareStats (TRDP_APP_SESSION_T appHandle, PD_ELE_T *pPacket);
 
 
 #endif

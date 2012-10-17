@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: sendHello.c 43 2012-10-10 16:30:15Z 97025 $
+ * $Id: sendHello.c 53 2012-10-17 17:40:43Z 97025 $
  *
  */
 
@@ -24,7 +24,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-/* #include <sys/time.h> */
 #include <sys/select.h>
 
 #include "trdp_if_light.h"
