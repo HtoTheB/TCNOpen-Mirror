@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: vos_mem.c 61 2012-10-18 15:55:31Z 97025 $
  *
  */
 
@@ -94,9 +94,9 @@ typedef struct
     UINT32  queuReadErrCnt;      /* No of queue read errors */
 } VOS_STATISTIC;
 
-struct VOS_QUEUE_T
+struct VOS_QUEUE
 {
-    struct VOS_QUEUE_T  *pNext;
+    struct VOS_QUEUE    *pNext;
     void                *pData;
     size_t              size;
 };

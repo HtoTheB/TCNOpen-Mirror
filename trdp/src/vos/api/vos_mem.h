@@ -20,7 +20,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.h 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: vos_mem.h 61 2012-10-18 15:55:31Z 97025 $
  *
  */
 
@@ -61,8 +61,8 @@ extern "C" {
  */
 
 /** Opaque queue define	*/
-typedef struct VOS_QUEUE_T *VOS_QUEUE_T;
-typedef struct VOS_SHRD_T *VOS_SHRD_T;
+typedef struct VOS_QUEUE *VOS_QUEUE_T;
+typedef struct VOS_SHRD *VOS_SHRD_T;
 
 /** enumeration for memory block sizes */
 typedef enum

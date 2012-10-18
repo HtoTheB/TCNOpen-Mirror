@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 28 2012-08-03 14:24:20Z 97025 $
+ * $Id: vos_thread.c 61 2012-10-18 15:55:31Z 97025 $
  *
  */
 
@@ -57,7 +57,7 @@ const uint32_t  cMutextMagic        = 0x1234FEDC;
 
 BOOL            vosThreadInitialised = FALSE;
 
-struct VOS_MUTEX_T
+struct VOS_MUTEX
 {
     UINT32          magicNo;
     pthread_mutex_t mutexId;
@@ -622,7 +622,7 @@ EXT_DECL VOS_ERR_T vos_mutexCreate (
         return VOS_PARAM_ERR;
     }
 
-    *pMutex = (VOS_MUTEX_T) vos_memAlloc(sizeof (struct VOS_MUTEX_T));
+    *pMutex = (VOS_MUTEX_T) vos_memAlloc(sizeof (struct VOS_MUTEX));
 
     if (*pMutex == NULL)
     {
