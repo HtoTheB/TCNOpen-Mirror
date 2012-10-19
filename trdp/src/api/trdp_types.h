@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 62 2012-10-19 12:22:19Z 97031 $
+ * $Id: trdp_types.h 65 2012-10-19 12:44:47Z 97031 $
  *
  */
 
@@ -603,6 +603,17 @@ typedef enum
                                              Set: Read calls will block, use select()	*/
     TRDP_OPTION_TRAFFIC_SHAPING = 0x02  /**< Use traffic shaping - distribute packet sending    */
 } TRDP_OPTION_T;
+
+/**********************************************************************************************************************/
+/** Various flags/general TRDP options for library initialization
+ */
+{
+    TRDP_LABEL_T  hostName;         /**< Host name  */
+    TRDP_LABEL_T  hostName;         /**< Leader name dependant on redundancy concept   */
+    UINT32        cycleTime;        /**< TRDP main process cycle time in us  */
+    UINT32        priority;         /**< TRDP main process cycle time (0-255, 0=default, 255=highest)   */
+    TRDP_OPTION_T options;          /**< TRDP options */
+}
 
 
 #ifdef __cplusplus
