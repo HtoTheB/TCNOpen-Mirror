@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_marshall.c 38 2012-09-07 18:50:21Z 97025 $
+ * $Id: trdp_marshall.c 66 2012-10-19 12:50:19Z 97025 $
  *
  */
 
@@ -314,13 +314,6 @@ EXT_DECL TRDP_ERR_T marshall (
                     }
                     break;
                 }
-                case TRDP_STRING:
-                {
-                    strncpy((char *)pDst, (char *)pSrc, 16);
-                    pDst    += 16;
-                    pSrc    += 16;
-                    break;
-                }
                 case TRDP_UTF16:
                 case TRDP_INT16:
                 case TRDP_UINT16:
@@ -446,13 +439,6 @@ EXT_DECL TRDP_ERR_T unmarshall (
                     {
                         *pDst++ = *pSrc++;
                     }
-                    break;
-                }
-                case TRDP_STRING:
-                {
-                    strncpy((char *)pDst, (char *)pSrc, 16);
-                    pDst    += 16;
-                    pSrc    += 16;
                     break;
                 }
                 case TRDP_UTF16:
