@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 54 2012-10-17 17:48:19Z 97025 $
+ * $Id: trdp_if.c 63 2012-10-19 12:31:13Z 97031 $
  *
  */
 
@@ -183,7 +183,9 @@ EXT_DECL TRDP_ERR_T tlc_init (
  *  @param[in]      pMarshall           Pointer to marshalling configuration
  *  @param[in]      pPdDefault          Pointer to default PD configuration
  *  @param[in]      pMdDefault          Pointer to default MD configuration
- *  @param[in]      option              options for library behavior
+ *  @param[in]      pProcessConfig      Pointer to process configuration
+ *                                      only option parameter is used here to define session behavior
+ *                                      all other parameters are only used to feed statistics 
  *
  *  @retval         TRDP_NO_ERR            no error
  *  @retval         TRDP_INIT_ERR          not yet inited
@@ -197,7 +199,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     const TRDP_MARSHALL_CONFIG_T    *pMarshall,
     const TRDP_PD_CONFIG_T          *pPdDefault,
     const TRDP_MD_CONFIG_T          *pMdDefault,
-    TRDP_OPTION_T                   option)
+    const TRDP_PROCESS_CONFIG       *pProcessConfig)
 {
     TRDP_ERR_T      ret         = TRDP_NO_ERR;
     TRDP_SESSION_PT pSession    = NULL;
