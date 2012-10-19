@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 66 2012-10-19 12:50:19Z 97025 $
+ * $Id: trdp_if.c 70 2012-10-19 16:40:23Z 97025 $
  *
  */
 
@@ -229,6 +229,12 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
 
     pSession->realIP    = ownIpAddr;
     pSession->virtualIP = leaderIpAddr;
+    
+    if (pProcessConfig != NULL)
+    {
+    	pSession->option = pProcessConfig->options;
+        
+    }
 
     if (pMarshall != NULL)
     {
