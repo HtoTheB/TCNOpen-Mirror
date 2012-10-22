@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 33 2012-08-10 15:40:34Z 97025 $
+ * $Id: vos_types.h 73 2012-10-22 09:33:10Z 97031 $
  *
  */
 
@@ -40,7 +40,7 @@ typedef unsigned char UINT8;
 typedef unsigned short UINT16;
 typedef unsigned int UINT32;
 typedef unsigned long long UINT64;
-typedef char INT8;
+//typedef char INT8; is already defined
 typedef signed short INT16;
 typedef signed int INT32;
 typedef signed long long INT64;
