@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 66 2012-10-19 12:50:19Z 97025 $
+ * $Id: trdp_types.h 77 2012-10-23 16:44:45Z 97025 $
  *
  */
 
@@ -301,6 +301,13 @@ typedef struct
     UINT16                  numElement;   /**< Number of elements */
     TRDP_DATASET_ELEMENT_T  pElement[];   /**< Pointer to a dataset element, used as array */
 } TRDP_DATASET_T;
+
+/**	Dataset element definition	*/
+typedef struct
+{
+    UINT32  comId;              /**< comId */
+    UINT32  datasetId;          /**< corresponding dataset Id */
+} TRDP_COMID_DSID_MAP_T;
 
 
 

@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_marshall.h 38 2012-09-07 18:50:21Z 97025 $
+ * $Id: tau_marshall.h 77 2012-10-23 16:44:45Z 97025 $
  *
  */
 
@@ -75,9 +75,11 @@ extern "C" {
  */
 
 EXT_DECL TRDP_ERR_T tau_initMarshall(
-    void * *ppRefCon,
-    UINT32 numDataSet,
-    TRDP_DATASET_T pDataset[]);
+    void                    **ppRefCon,
+    UINT32                  numComId,
+    TRDP_COMID_DSID_MAP_T   *pComIdDsIdMap,        
+    UINT32                  numDataSet,
+    TRDP_DATASET_T          pDataset[]);
 
 /**********************************************************************************************************************/
 /**	marshall function.
