@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: sendHello.c 70 2012-10-19 16:40:23Z 97025 $
+ * $Id: sendHello.c 76 2012-10-23 14:57:29Z 97025 $
  *
  */
 
@@ -82,7 +82,7 @@ int main (int argc, char *argv[])
     /*	Generate some data, that we want to send, when nothing was specified. */
     UINT8               *outputBuffer;
     UINT8               exampleData[DATA_MAX]   = "Hello World";
-    int                 outputBufferSize    = strlen("Hello World");
+    int                 outputBufferSize    = 32;
 
     UINT8               data[DATA_MAX];
     int                 ch;
@@ -266,12 +266,12 @@ int main (int argc, char *argv[])
         }
         else
         {
-            printf("looping...\n");
+            //printf("looping...\n");
         }
 
-        sprintf((char *)outputBuffer, "Just a Counter: %d", hugeCounter++);
+        sprintf((char *)outputBuffer, "Just a Counter: %08d", hugeCounter++);
 
-        err = tlp_put(appHandle, pubHandle, outputBuffer, strlen((char *)outputBuffer));
+        err = tlp_put(appHandle, pubHandle, outputBuffer, outputBufferSize);
         if (err != TRDP_NO_ERR)
         {
             printf("put pd error\n");
