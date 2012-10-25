@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 73 2012-10-22 09:33:10Z 97031 $
+ * $Id: vos_types.h 78 2012-10-25 08:23:28Z 97031 $
  *
  */
 
@@ -148,6 +148,23 @@ typedef struct
     UINT32  tv_sec;         /**< full seconds                                   */
     UINT32  tv_usec;        /**< Micro seconds (max. value 999999)				*/
 } VOS_TIME_T;
+
+
+#ifndef TIMEDATE32
+#define TIMEDATE32 UINT32
+#endif
+
+#ifndef TIMEDATE48
+typedef struct
+{
+    UINT32  sec;         /**< full seconds                                   */
+    UINT16  ticks;        /**< Micro seconds (max. value 999999)				*/
+} TIMEDATE48;
+#endif
+
+#ifndef TIMEDATE64
+#define TIMEDATE64 VOS_TIME_T
+#endif
 
 /***********************************************************************************************************************
  * PROTOTYPES
