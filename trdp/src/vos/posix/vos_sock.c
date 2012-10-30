@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 58 2012-10-18 15:12:24Z 97025 $
+ * $Id: vos_sock.c 89 2012-10-30 16:12:45Z 97036 $
  *
  */
 
@@ -39,12 +39,13 @@
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
+
+#ifdef __linux
+#include <linux/if.h>
+#include <linux/in.h>
+#else
 #include <netinet/in.h>
 #include <arpa/inet.h>
-
-#ifdef __linux 
-#include <linux/if.h>
-#else
 #include <net/if.h>
 #endif
 
@@ -617,6 +618,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
                        &sockLen);
 
     *pIPAddr = (uint32_t) vos_ntohl(srcAddr.sin_addr.s_addr);
+    vos_printf(VOS_LOG_INFO, "recvfrom found %d bytes for IP address %x\n", rcvSize, *pIPAddr);
 
     if (rcvSize == -1 && errno == EAGAIN)
     {
