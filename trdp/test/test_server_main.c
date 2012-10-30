@@ -115,15 +115,12 @@ int main (int argc, char * *argv)
     TRDP_APP_SESSION_T      appHandle;      /*  The session instance */
     TRDP_SUB_T              subHandle;      /*  Our identifier to the subscription */
     TRDP_PUB_T              pubHandleUC;    /*  Our identifier to the unicast publication */
-    TRDP_PUB_T              pubHandleMC;    /*  Our identifier to the multicast publication */
-    TRDP_PUB_T              pubHandlePull;  /*  Our identifier to the PULL only publication */
     TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0},
                                                TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 20548};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     int rv = 0;
-
 
     /*	Init the library for callback operation */
     if (tlc_init(dbgOut, &dynamicConfig) != TRDP_NO_ERR)
@@ -149,14 +146,14 @@ int main (int argc, char * *argv)
     err = tlp_subscribe( appHandle,                /*   our application identifier          */
                          &subHandle,               /*   our subscription identifier         */
                          NULL,
-                         PD_TEST3_UNI_COMID,       /*   ComID                               */
+                         PD_TEST_GEN_UNI_COMID,       /*   ComID                               */
                          0,                        /*   topocount: local consist only       */
-                         PD_TEST3_UNI_SRC_IP,      /*   Source IP filter                    */
+                         0 /* noo filtering PD_TEST_GEN_UNI_SRC_IP*/,      /*   Source IP filter                    */
                          0,
                          0,                        /*   Default destination	(or MC Group)   */
-                         PD_TEST3_UNI_TIMEOUT,     /*   Time out in us                      */
+                         PD_TEST_GEN_UNI_TIMEOUT,     /*   Time out in us                      */
                          TRDP_TO_SET_TO_ZERO,      /*   delete invalid data	on timeout      */
-                         sizeof(gMyDataSet20003)); /*   net data size                       */
+                         sizeof(gMyDataSet999)); /*   net data size                       */
 
     if (err != TRDP_NO_ERR)
     {
@@ -190,71 +187,22 @@ int main (int argc, char * *argv)
         return 1;
     }
 
-    /*	Publish Multicast PD  */
-
-    err = tlp_publish(appHandle,                    /*    our application identifier  */
-                      &pubHandleMC,                 /*    our pulication identifier   */
-                      PD_TEST2_MC_COMID,            /*    ComID to send               */
-                      0,                            /*    local consist only          */
-                      0,                            /*    default source IP           */
-                      PD_TEST2_MC_DST_IP,           /*    where to send to            */
-                      PD_TEST2_MC_CYCLE,            /*    Cycle time in ms            */
-                      0,                            /*    not redundant               */
-                      TRDP_FLAGS_CALLBACK,          /*    Use callback for errors     */
-                      NULL,                         /*    default qos and ttl         */
-                      (UINT8 *)&gMyDataSet20002,    /*    initial data                */
-                      sizeof(gMyDataSet20002),      /*    data size                   */
-                      FALSE,                        /*    no ladder                   */
-                      0);                           /*    no ladder                   */
-
-
-    if (err != TRDP_NO_ERR)
-    {
-        printf("prep pd publish error\n");
-        tlc_terminate();
-        return 1;
-    }
-
-    /*	Publish PULL only PD  */
-
-    err = tlp_publish(appHandle,                    /*    our application identifier        */
-                      &pubHandlePull,               /*    our pulication identifier         */
-                      PD_TEST3_UNI_COMID,           /*    ComID to send                     */
-                      0,                            /*    local consist only                */
-                      0,                            /*    default source IP                 */
-                      PD_TEST3_UNI_DST_IP,          /*    where to send to                  */
-                      0,                            /*    Cycle time is zero for PULL only  */
-                      0,                            /*    not redundant                     */
-                      TRDP_FLAGS_CALLBACK,          /*    Use callback for errors           */
-                      NULL,                         /*    default qos and ttl               */
-                      (UINT8 *)&gMyDataSet20003,    /*    initial data                      */
-                      sizeof(gMyDataSet20003),      /*    data size                         */
-                      FALSE,                        /*    no ladder                         */
-                      0);                           /*    no ladder                         */
-
-
-    if (err != TRDP_NO_ERR)
-    {
-        printf("prep pd publish error\n");
-        tlc_terminate();
-        return 1;
-    }
-
     /*
      Enter the main processing loop.
      */
     while (gKeepOnRunning)
     {
-        fd_set  rfds;
         INT32   noOfDesc;
         struct timeval  tv;
         struct timeval  max_tv = {0, 100000};
-
+    	fd_set  rfds;
+	
         /*
          Prepare the file descriptor set for the select call.
          Additional descriptors can be added here.
          */
         FD_ZERO(&rfds);
+
         /*
          Compute the min. timeout value for select and return descriptors to wait for.
          This way we can guarantee that PDs are sent in time...
@@ -280,10 +228,9 @@ int main (int argc, char * *argv)
          Select() will wait for ready descriptors or timeout,
          what ever comes first.
          */
-
         rv = select((int)noOfDesc, &rfds, NULL, NULL, &tv);
-
-        /*
+        
+	/*
          Check for overdue PDs (sending and receiving)
          Send any PDs if it's time...
          Detect missing PDs...
@@ -308,8 +255,8 @@ int main (int argc, char * *argv)
         }
 
         /*  Advance counter */
-        gMyDataSet20003.counter++;
-        tlp_put(appHandle, pubHandlePull, (const UINT8 *) &gMyDataSet20003, sizeof(gMyDataSet20003));
+	gMyDataSet20001.uint16_1++;
+        tlp_put(appHandle, pubHandleUC, (const UINT8 *) &gMyDataSet20001, sizeof(gMyDataSet20001));
 
     }   /*	Bottom of while-loop */
 
@@ -317,8 +264,6 @@ int main (int argc, char * *argv)
      *	We always clean up behind us!
      */
     tlp_unpublish(appHandle, pubHandleUC);
-    tlp_unpublish(appHandle, pubHandleMC);
-    tlp_unpublish(appHandle, pubHandlePull);
     tlp_unsubscribe(appHandle, subHandle);
 
     tlc_closeSession(appHandle);
