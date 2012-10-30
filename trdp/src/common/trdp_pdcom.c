@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: trdp_pdcom.c 82 2012-10-30 13:03:18Z 97025 $
  *
  */
 
@@ -556,8 +556,8 @@ TRDP_ERR_T trdp_pdCheck (
     }
 
     /*	Check type	*/
-    else if (vos_ntohs(pPacket->msgType) != TRDP_MSG_PD ||
-             vos_ntohs(pPacket->msgType) != TRDP_MSG_PR ||
+    else if (vos_ntohs(pPacket->msgType) != TRDP_MSG_PD &&
+             vos_ntohs(pPacket->msgType) != TRDP_MSG_PR &&
              vos_ntohs(pPacket->msgType) != TRDP_MSG_PE)
     {
         vos_printf(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
