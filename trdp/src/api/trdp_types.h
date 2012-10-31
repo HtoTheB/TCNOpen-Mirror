@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 77 2012-10-23 16:44:45Z 97025 $
+ * $Id: trdp_types.h 94 2012-10-31 13:51:06Z 97025 $
  *
  */
 
@@ -283,7 +283,8 @@ typedef enum
     TRDP_REAL64     = 13,  /**< Floating point real, 64 bit  */
     TRDP_TIMEDATE32 = 14,  /**< 32 bit UNIX time  */
     TRDP_TIMEDATE48 = 15,  /**< 48 bit TCN time (32 bit UNIX time and 16 bit ticks)  */
-    TRDP_TIMEDATE64 = 16   /**< 32 bit UNIX time + 32 bit microseconds (== struct timeval) */
+    TRDP_TIMEDATE64 = 16,  /**< 32 bit UNIX time + 32 bit microseconds (== struct timeval) */
+    TRDP_TYPE_MAX   = 99   /**< Values greater are considered nested datasets */
 } TRDP_DATA_TYPE_T;
 
 /**	Dataset element definition	*/
