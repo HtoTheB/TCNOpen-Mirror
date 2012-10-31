@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 83 2012-10-30 13:05:39Z 97036 $
+ * $Id: trdp_utils.c 98 2012-10-31 15:48:16Z 97025 $
  *
  */
 
@@ -129,9 +129,9 @@ PD_ELE_T *trdp_queueFindAddr (
     {
         /*  We match if src/dst/mc address is zero or matches */
         if (iterPD->addr.comId == addr->comId &&
-            (addr->srcIpAddr == 0 || iterPD->addr.srcIpAddr == addr->srcIpAddr) &&
-            (addr->destIpAddr == 0 || iterPD->addr.destIpAddr == addr->destIpAddr) &&
-            (addr->mcGroup == 0 || iterPD->addr.mcGroup == addr->mcGroup)
+            (iterPD->addr.srcIpAddr == 0 || iterPD->addr.srcIpAddr == addr->srcIpAddr) &&
+            (iterPD->addr.destIpAddr == 0 || iterPD->addr.destIpAddr == addr->destIpAddr) &&
+            (iterPD->addr.mcGroup == 0 || iterPD->addr.mcGroup == addr->mcGroup)
            )
         {
             return iterPD;
