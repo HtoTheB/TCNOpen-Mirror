@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 94 2012-10-31 13:51:06Z 97025 $
+ * $Id: trdp_types.h 103 2012-11-01 07:10:46Z 97031 $
  *
  */
 
@@ -382,9 +382,9 @@ typedef struct
 typedef struct
 {
     UINT32                  version;      /**< TRDP version  */
-    TRDP_TIME_T             timeStamp;    /**< actual time stamp */
-    UINT32                  upTime;       /**< time in sec since last initialisation */
-    UINT32                  statisticTime; /**< time in sec since last reset of statistics */
+    TIMEDATE64              timeStamp;    /**< actual time stamp */
+    TIMEDATE32              upTime;       /**< time in sec since last initialisation */
+    TIMEDATE32              statisticTime; /**< time in sec since last reset of statistics */
     TRDP_LABEL_T            hostName;     /**< host name */
     TRDP_LABEL_T            leaderName;   /**< leader host name */
     TRDP_IP_ADDR_T          ownIpAddr;    /**< own IP address */
