@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: trdp_private.h 104 2012-11-02 14:11:53Z 97025 $
  *
  */
 
@@ -35,7 +35,7 @@
  * DEFINES
  */
 
-#define LIB_VERSION  "0.0.0.6"
+#define LIB_VERSION  "0.0.0.7"
 
 #ifndef IP_PD_UDP_PORT
 #define IP_PD_UDP_PORT  20548                   /**< process data UDP port      */
@@ -181,6 +181,13 @@ typedef struct
     UINT32  frameCheckSum;                  /**< CRC32 of header                                */
 } GNU_PACKED MD_HEADER_T;
 
+/** TRDP PD packet    */
+typedef struct
+{
+    PD_HEADER_T         frameHead;                  /**< Packet    header in network byte order         */
+    UINT8               data[MAX_PD_PACKET_SIZE];   /**< data ready to be sent or received (with CRCs)  */
+} GNU_PACKED PD_PACKET_T;
+
 #ifdef WIN32
 #pragma pack(pop)
 #endif
@@ -205,9 +212,7 @@ typedef struct PD_ELE
     UINT32              grossSize;              /**< complete packet size (header, data, padding, FCS)  */
     INT32               socketIdx;              /**< index into the socket list                         */
     const void          *userRef;               /**< from subscribe()                                   */
-    PD_HEADER_T         frameHead;              /**< Packet    header in network byte order             */
-    UINT8               data[MAX_PD_PACKET_SIZE]; /**< data ready to be sent or received (with CRCs)    */
-    /*    ... data + FCS... */
+    PD_PACKET_T         *pFrame;                /*    header ... data + FCS...                          */
 } PD_ELE_T;
 
 /** Queue element for MD packets to send or receive or acknowledge    */

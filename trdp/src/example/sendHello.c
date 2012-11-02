@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: sendHello.c 76 2012-10-23 14:57:29Z 97025 $
+ * $Id: sendHello.c 104 2012-11-02 14:11:53Z 97025 $
  *
  */
 
@@ -266,7 +266,8 @@ int main (int argc, char *argv[])
         }
         else
         {
-            //printf("looping...\n");
+            printf(".");
+			fflush(stdout);
         }
 
         sprintf((char *)outputBuffer, "Just a Counter: %08d", hugeCounter++);

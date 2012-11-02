@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: echoSelect.c 101 2012-10-31 17:11:20Z 97025 $
+ * $Id: echoSelect.c 104 2012-11-02 14:11:53Z 97025 $
  *
  */
 
@@ -35,16 +35,16 @@
 /* Some sample comId definitions	*/
 
 /* Expect receiving:	*/
-#define PD_COMID1               1000
-#define PD_COMID1_CYCLE         100000
-#define PD_COMID1_TIMEOUT       1200000
+#define PD_COMID1               2001
+#define PD_COMID1_CYCLE         5000000
+#define PD_COMID1_TIMEOUT       15000000
 #define PD_COMID1_DATA_SIZE     32
 #define PD_COMID1_SRC_IP        0x0       /*	Sender's IP: 10.0.0.100		*/
 
 /* Send as echo:	*/
 #define PD_COMID2               2001
-#define PD_COMID2_CYCLE         100000
-#define PD_COMID2_TIMEOUT       1200000
+#define PD_COMID2_CYCLE         5000000
+#define PD_COMID2_TIMEOUT       15000000
 #define PD_COMID2_DATA_SIZE     32
 #define PD_COMID2_DST_IP        PD_COMID1_SRC_IP
 
@@ -173,7 +173,7 @@ int main (int argc, char * *argv)
                          NULL,
                          PD_COMID1,                 /*	ComID								*/
                          0,                         /*	topocount: local consist only		*/
-                         PD_COMID1_SRC_IP,          /*	Source IP filter					*/
+                         0,          				/*	Source IP filter					*/
                          0,
                          0,                         /*	Default destination	(or MC Group)   */
                          PD_COMID1_TIMEOUT,         /*	Time out in us						*/
