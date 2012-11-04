@@ -44,7 +44,7 @@
 #define PD_COMID1_TIMEOUT       5000000
 #define PD_COMID1_DATA_SIZE     sizeof(TRDP_STATISTICS_T)
 //#define PD_COMID1_SRC_IP        vos_dottedIP("192.168.2.4")     /*	Sender's IP		*/
-#define PD_COMID1_SRC_IP        vos_dottedIP("10.64.8.3")     /*	Sender's IP		*/
+#define PD_COMID1_SRC_IP        vos_dottedIP("10.64.8.203")     /*	Sender's IP		*/
 
 /* Send as request:	*/
 #define PD_COMID2               11
