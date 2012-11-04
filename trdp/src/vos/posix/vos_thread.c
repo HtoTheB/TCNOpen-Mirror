@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 61 2012-10-18 15:55:31Z 97025 $
+ * $Id: vos_thread.c 105 2012-11-04 17:20:25Z 97025 $
  *
  */
 
@@ -37,7 +37,7 @@
 #include <sched.h>
 
 #ifdef __APPLE__
-#include <uuid/uuid.h>
+//#include <uuid/uuid.h>
 #else
 #include "vos_sock.h"
 #endif

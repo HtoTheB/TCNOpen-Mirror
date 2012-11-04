@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 78 2012-10-25 08:23:28Z 97031 $
+ * $Id: vos_types.h 105 2012-11-04 17:20:25Z 97025 $
  *
  */
 
@@ -60,7 +60,7 @@ typedef int8_t INT8;
 typedef int16_t INT16;
 typedef int32_t INT32;
 typedef int64_t INT64;
-typedef int BOOL;
+typedef signed char BOOL;
 typedef char CHAR8;
 
 #else

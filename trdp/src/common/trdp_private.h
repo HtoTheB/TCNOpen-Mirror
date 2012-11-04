@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 104 2012-11-02 14:11:53Z 97025 $
+ * $Id: trdp_private.h 105 2012-11-04 17:20:25Z 97025 $
  *
  */
 
@@ -140,6 +140,7 @@ typedef struct TRDP_SOCKETS
     TRDP_IP_ADDR_T      bindAddr;           /**< Defines the interface to use                           */
     TRDP_SEND_PARAM_T   sendParam;          /**< Send parameters                                        */
     TRDP_SOCK_TYPE_T    type;               /**< Usage of this socket                                   */
+    BOOL				rcvOnly;			/**< Used for receiving										*/
     UINT16              usage;              /**< No. of current users of this socket                    */
 } TRDP_SOCKETS_T;
 

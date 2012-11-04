@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 61 2012-10-18 15:55:31Z 97025 $
+ * $Id: vos_mem.c 105 2012-11-04 17:20:25Z 97025 $
  *
  */
 
@@ -240,6 +240,7 @@ EXT_DECL UINT8 *vos_memAlloc (
         if (p != NULL)
         {
             memset(p, 0, size);
+            vos_printf(VOS_LOG_DBG, "vos_memAlloc %p Requested size = 0x%x\n", p, size);
         }
         return p;
     }
@@ -383,6 +384,7 @@ EXT_DECL VOS_ERR_T vos_memFree (
     /*    Use standard heap memory    */
     if (gMemorySize == 0 && gMemoryArea == NULL)
     {
+        vos_printf(VOS_LOG_DBG, "vos_memFree %p\n", pMemBlock);
         free(pMemBlock);
         return VOS_NO_ERR;
     }
