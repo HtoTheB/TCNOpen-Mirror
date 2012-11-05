@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 105 2012-11-04 17:20:25Z 97025 $
+ * $Id: trdp_utils.c 110 2012-11-05 18:18:02Z 97025 $
  *
  */
 
@@ -114,7 +114,7 @@ PD_ELE_T *trdp_queueFindComId (
  *  @retval         != NULL         pointer to PD element
  *  @retval         NULL            No PD element found
  */
-PD_ELE_T *trdp_queueFindAddr (
+PD_ELE_T *trdp_queueFindPubAddr (
     PD_ELE_T        *pHead,
     TRDP_ADDRESSES  *addr)
 {
@@ -132,6 +132,38 @@ PD_ELE_T *trdp_queueFindAddr (
             (iterPD->addr.srcIpAddr == 0 || iterPD->addr.srcIpAddr == addr->srcIpAddr) &&
             (iterPD->addr.destIpAddr == 0 || iterPD->addr.destIpAddr == addr->destIpAddr) &&
             (iterPD->addr.mcGroup == 0 || iterPD->addr.mcGroup == addr->mcGroup)
+            )
+        {
+            return iterPD;
+        }
+    }
+    return NULL;
+}
+
+/******************************************************************************/
+/** Return the element with same comId and IP addresses
+ *
+ *  @param[in]      pHead           pointer to head of queue
+ *  @param[in]      addr            Pub/Sub handle (Address, ComID, srcIP & dest IP) to search for
+ *  @retval         != NULL         pointer to PD element
+ *  @retval         NULL            No PD element found
+ */
+PD_ELE_T *trdp_queueFindSubAddr (
+    PD_ELE_T        *pHead,
+    TRDP_ADDRESSES  *addr)
+{
+    PD_ELE_T *iterPD;
+    
+    if (pHead == NULL || addr == NULL)
+    {
+        return NULL;
+    }
+    
+    for (iterPD = pHead; iterPD != NULL; iterPD = iterPD->pNext)
+    {
+        /*  We match if src/dst/mc address is zero or matches */
+        if (iterPD->addr.comId == addr->comId &&
+            (iterPD->addr.srcIpAddr == 0 || iterPD->addr.srcIpAddr == addr->srcIpAddr)
             )
         {
             return iterPD;

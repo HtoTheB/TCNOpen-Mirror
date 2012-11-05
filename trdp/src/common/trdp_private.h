@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 105 2012-11-04 17:20:25Z 97025 $
+ * $Id: trdp_private.h 110 2012-11-05 18:18:02Z 97025 $
  *
  */
 
@@ -35,7 +35,7 @@
  * DEFINES
  */
 
-#define LIB_VERSION  "0.0.0.7"
+#define LIB_VERSION  "0.0.0.8"
 
 #ifndef IP_PD_UDP_PORT
 #define IP_PD_UDP_PORT  20548                   /**< process data UDP port      */
