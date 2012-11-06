@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 99 2012-10-31 16:18:38Z 97036 $
+#// $Id: Makefile 122 2012-11-06 18:19:34Z 97025 $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -167,7 +167,7 @@ help:
 	@echo "Edit the paths in the top part of this Makefile to suit your environment." >&2
 	@echo "Then call 'make' or 'make all' to build everything." >&2
 	@echo "To build debug binaries, append 'DEBUG=TRUE' to the make command " >&2
-	@echo "To include message data support, append 'MD_SUPPORT=TRUE' to the make command " >&2
+	@echo "To include message data support, append 'MD_SUPPORT=1' to the make command " >&2
 	@echo " " >&2
 	@echo "Other builds:" >&2
 	@echo "  * make demo      - build the sample applications" >&2
