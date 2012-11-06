@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 115 2012-11-06 10:25:13Z 97031 $
+ * $Id: trdp_types.h 120 2012-11-06 17:32:14Z 97025 $
  *
  */
 
@@ -119,7 +119,8 @@ typedef enum
     TRDP_WIRE_ERR           = -19,  /**<                                    */
     TRDP_TOPO_ERR           = -20,  /**< Invalid topo count                 */
     TRDP_COMID_ERR          = -21,  /**< Unknown ComId                      */
-    TRDP_STATE_ERR          = -22,  /**< Call in wrong state				*/
+    TRDP_STATE_ERR          = -22,  /**< Call in wrong state		*/
+    TRDP_APPTIMEOUT_ERR     = -23,  /**< Application Timeout            */
     TRDP_UNKNOWN_ERR        = -99   /**< Unspecified error                  */
 } TRDP_ERR_T;
 
