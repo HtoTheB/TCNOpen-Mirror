@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 124 2012-11-07 12:20:04Z 97025 $
+ * $Id: trdp_private.h 131 2012-11-07 14:03:09Z 97025 $
  *
  */
 
@@ -51,11 +51,6 @@
 #define IP_PD_PROTO_VER             0x0100      /**< Protocol version           */
 #define IP_MD_PROTO_VER             0x0100
 
-#define ECHO_COMID                  10          /**< MD comid used for echo                                         */
-#define GSTAT_REQUEST_COMID         11          /**< PD pull/MD request telegram to retrieve TRDP global statistics */
-#define GSTAT_REPLY_COMID           12          /**< PD pull/MD reply telegram with TRDP global statistics          */
-#define DSTAT_REQUEST_COMID         13          /**< MD request telegram to retrieve TRDP detailed statistics       */
-#define DSTAT_REPLY_COMID           14          /**< MD reply telegram with TRDP detailed statistics                */
 
 /* more reserved comIds:
 

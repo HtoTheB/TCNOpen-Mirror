@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if_light.h 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_if_light.h 131 2012-11-07 14:03:09Z 97025 $
  *
  */
 
@@ -527,7 +527,6 @@ EXT_DECL TRDP_ERR_T tlm_request (
     TRDP_FLAGS_T            pktFlags,
     UINT32                  noOfRepliers,
     UINT32                  replyTimeout,
-    UINT32                  noOfRetries,
     const TRDP_SEND_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,

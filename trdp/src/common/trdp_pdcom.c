@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 109 2012-11-05 18:15:53Z 97025 $
+ * $Id: trdp_pdcom.c 131 2012-11-07 14:03:09Z 97025 $
  *
  */
 
@@ -343,12 +343,12 @@ TRDP_ERR_T  trdp_pdReceive (
     if (vos_ntohs(pNewFrame->frameHead.msgType) == TRDP_MSG_PR)
     {
         /*  Handle statistics request  */
-        if (vos_ntohl(pNewFrame->frameHead.comId) == GSTAT_REQUEST_COMID)
+        if (vos_ntohl(pNewFrame->frameHead.comId) == TRDP_STATISTICS_REQUEST_COMID)
         {
-            pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, GSTAT_REPLY_COMID);
+            pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, TRDP_GLOBAL_STATISTICS_COMID);
             if ( pPulledElement != NULL)
             {
-                pPulledElement->addr.comId         = GSTAT_REPLY_COMID;
+                pPulledElement->addr.comId         = TRDP_GLOBAL_STATISTICS_COMID;
                 pPulledElement->addr.destIpAddr    = vos_ntohl(pNewFrame->frameHead.replyIpAddress);
                 
                 trdp_pdInit(pPulledElement, TRDP_MSG_PD, appHandle->topoCount, 0, 0, 0, 0);
