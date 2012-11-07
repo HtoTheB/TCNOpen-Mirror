@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_private.h 124 2012-11-07 12:20:04Z 97025 $
  *
  */
 
@@ -93,6 +93,7 @@
 
 #define MD_DEFAULT_QOS              0
 #define MD_DEFAULT_TTL              64
+#define MD_DEFAULT_RETRIES          2
 
 #define MIN_PD_HEADER_SIZE          sizeof(PD_HEADER_T)     /**< PD header size with FCS */
 #define MAX_PD_DATA_SIZE            1436

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_stats.c 124 2012-11-07 12:20:04Z 97025 $
  *
  */
 
@@ -445,6 +445,19 @@ void    trdp_pdPrepareStats (
     pData->udpMd.numConfirmTimeout = vos_htonl(appHandle->stats.udpMd.numConfirmTimeout);
     pData->udpMd.numSend           = vos_htonl(appHandle->stats.udpMd.numSend);
 
+    pData->tcpMd.defQos            = vos_htonl(appHandle->stats.tcpMd.defQos);
+    pData->tcpMd.defTtl            = vos_htonl(appHandle->stats.tcpMd.defTtl);
+    pData->tcpMd.defReplyTimeout   = vos_htonl(appHandle->stats.tcpMd.defReplyTimeout);
+    pData->tcpMd.defConfirmTimeout = vos_htonl(appHandle->stats.tcpMd.defConfirmTimeout);
+    pData->tcpMd.numList           = vos_htonl(appHandle->stats.tcpMd.numList);
+    pData->tcpMd.numRcv            = vos_htonl(appHandle->stats.tcpMd.numRcv);
+    pData->tcpMd.numCrcErr         = vos_htonl(appHandle->stats.tcpMd.numCrcErr);
+    pData->tcpMd.numProtErr        = vos_htonl(appHandle->stats.tcpMd.numProtErr);
+    pData->tcpMd.numTopoErr        = vos_htonl(appHandle->stats.tcpMd.numTopoErr);
+    pData->tcpMd.numNoListener     = vos_htonl(appHandle->stats.tcpMd.numNoListener);
+    pData->tcpMd.numReplyTimeout   = vos_htonl(appHandle->stats.tcpMd.numReplyTimeout);
+    pData->tcpMd.numConfirmTimeout = vos_htonl(appHandle->stats.tcpMd.numConfirmTimeout);
+    pData->tcpMd.numSend           = vos_htonl(appHandle->stats.tcpMd.numSend);
     pPacket->dataSize = sizeof(TRDP_STATISTICS_T);
 
     /*  Compute the CRC */

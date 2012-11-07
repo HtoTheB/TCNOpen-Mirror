@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_types.h 124 2012-11-07 12:20:04Z 97025 $
  *
  */
 
@@ -53,7 +53,6 @@ extern "C" {
 #define TRDP_MAX_FILE_NAME_LEN  128                             /**< path and file name length incl. terminating '0' */
 
 #define TDRP_VAR_SIZE           0                               /**< Variable size dataset	*/
-
 
 #ifndef USE_HEAP
     #define USE_HEAP  0                 /**< If this is set, we can allocate dynamically memory	*/
@@ -259,6 +258,7 @@ typedef struct
 {
     UINT8   qos;
     UINT8   ttl;
+    UINT8   retries;
 } TRDP_SEND_PARAM_T;
 
 
