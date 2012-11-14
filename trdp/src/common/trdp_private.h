@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 138 2012-11-14 11:34:11Z 97031 $
+ * $Id: trdp_private.h 139 2012-11-14 15:15:56Z goiarbide $
  *
  */
 
@@ -264,6 +264,7 @@ typedef struct MD_ELE
 			TRDP_URI_USER_T       destURI;                /**< filter on incoming MD by destination URI           */
 		} listener; /**< Listener arguments */
 	} u;
+	BOOL				connectDone;
     MD_HEADER_T         frameHead;              /**< Packet	header in network byte order                */
     UINT8               data[0];                /**< data ready to be sent (with CRCs)                  */
     /*    ... data + FCS ... */
