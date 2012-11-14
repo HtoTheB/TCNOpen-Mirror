@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_utils.h 138 2012-11-14 11:34:11Z 97031 $
  *
  */
 
@@ -59,16 +59,16 @@ PD_ELE_T    *trdp_queueFindComId (
     UINT32      comId);
 
 PD_ELE_T    *trdp_queueFindSubAddr (
-    PD_ELE_T        *pHead,
-    TRDP_ADDRESSES  *pAddr);
+    PD_ELE_T          *pHead,
+    TRDP_ADDRESSES_T  *pAddr);
 
 MD_ELE_T *trdp_MDqueueFindAddr (
-    MD_ELE_T        *pHead,
-    TRDP_ADDRESSES  *addr);
+    MD_ELE_T          *pHead,
+    TRDP_ADDRESSES_T  *addr);
 
 PD_ELE_T    *trdp_queueFindPubAddr (
-    PD_ELE_T        *pHead,
-    TRDP_ADDRESSES  *addr);
+    PD_ELE_T          *pHead,
+    TRDP_ADDRESSES_T  *addr);
 
 void    trdp_queueDelElement (
     PD_ELE_T    * *pHead,

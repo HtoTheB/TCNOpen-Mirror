@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 131 2012-11-07 14:03:09Z 97025 $
+ * $Id: trdp_pdcom.c 138 2012-11-14 11:34:11Z 97031 $
  *
  */
 
@@ -271,7 +271,7 @@ TRDP_ERR_T  trdp_pdReceive (
     TRDP_ERR_T      resultCode  = TRDP_NO_ERR;
     INT32 recSize;
     BOOL informUser = FALSE;
-    TRDP_ADDRESSES  subHandle = { 0, 0, 0, 0};
+    TRDP_ADDRESSES_T  subHandle = { 0, 0, 0, 0};
 
 
     /*  Get a buffer    */
