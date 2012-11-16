@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 140 2012-11-16 18:06:46Z bloehr $
+ * $Id: vos_private.h 141 2012-11-16 18:30:30Z bloehr $
  *
  */
 
@@ -45,7 +45,8 @@ struct VOS_MUTEX
     pthread_mutex_t mutexId;
 };
 
-EXT_DECL VOS_ERR_T vos_localMutexCreate (struct VOS_MUTEX *pMutex);
+VOS_ERR_T vos_localMutexCreate (struct VOS_MUTEX *pMutex);
+VOS_ERR_T vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
 
 #ifdef __cplusplus
 }
