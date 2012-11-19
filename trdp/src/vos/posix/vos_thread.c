@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 147 2012-11-19 12:25:40Z bloehr $
+ * $Id: vos_thread.c 155 2012-11-19 16:50:50Z fweispfenning $
  *
  */
 
@@ -661,7 +661,7 @@ EXT_DECL VOS_ERR_T vos_mutexCreate (
  *  @retval         VOS_MUTEX_ERR   no mutex available
  */
 
-EXT_DECL VOS_ERR_T vos_localMutexCreate (
+EXT_DECL VOS_ERR_T vos_mutexLocalCreate (
     struct VOS_MUTEX *pMutex)
 {
     int err = 0;
