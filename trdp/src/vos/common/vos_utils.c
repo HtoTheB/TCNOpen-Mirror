@@ -4,7 +4,7 @@
  *
  * @brief           Common functions for VOS
  *
- * @details			Common functions of the abstraction layer. Mainly debugging support.
+ * @details         Common functions of the abstraction layer. Mainly debugging support.
  *
  * @note            Project: TCNOpen TRDP prototype stack
  *
@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.c 147 2012-11-19 12:25:40Z bloehr $
+ * $Id: vos_utils.c 150 2012-11-19 12:53:43Z bloehr $
  *
  */
 

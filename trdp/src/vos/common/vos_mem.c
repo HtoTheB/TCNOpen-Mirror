@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 147 2012-11-19 12:25:40Z bloehr $
+ * $Id: vos_mem.c 150 2012-11-19 12:53:43Z bloehr $
  *
  */
 
@@ -170,7 +170,7 @@ EXT_DECL VOS_ERR_T vos_memInit (
         p[i] = NULL;
     }
 
-    /*	Check if we should prealloc some memory	*/
+    /*  Check if we should prealloc some memory */
     if (fragMem != NULL)
     {
         for (i = 0; i < VOS_MEM_NBLOCKSIZES; i++)
