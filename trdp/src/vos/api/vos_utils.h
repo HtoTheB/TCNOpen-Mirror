@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 148 2012-11-19 12:46:34Z bloehr $
+ * $Id: vos_utils.h 149 2012-11-19 12:51:57Z bloehr $
  *
  */
 
@@ -74,7 +74,7 @@ extern void *gRefCon;
     }
 #endif
 
-/** Alignment macros	*/
+/** Alignment macros  */
 #if defined(alignof)
 #define ALIGNOF(type)   alignof(type)
 #elif defined(__alignof__)
