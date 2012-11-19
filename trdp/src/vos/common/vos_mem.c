@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 143 2012-11-16 18:35:08Z 97025 $
+ * $Id: vos_mem.c 146 2012-11-19 11:26:02Z 97031 $
  *
  */
 
@@ -28,7 +28,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <unistd.h>
+
 #include <errno.h>
 #include <string.h>
 #include <fcntl.h>
@@ -158,7 +158,7 @@ EXT_DECL VOS_ERR_T vos_memInit (
     gMem.memCnt.freeErrCnt = 0;
 
     /*  Create the memory mutex   */
-    if (vos_localMutexCreate(&gMem.mutex) != VOS_NO_ERR)
+    if (vos_mutexLocalCreate(&gMem.mutex) != VOS_NO_ERR)
     {
         vos_printf(VOS_LOG_ERROR, "vos_memInit Mutex creation failed\n");
         return VOS_MUTEX_ERR;
