@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: trdp_pdcom.h 160 2012-11-20 16:54:21Z bloehr $
  *
  */
 
@@ -78,5 +78,7 @@ TRDP_ERR_T trdp_pdReceive (
     TRDP_SESSION_PT pSessionHandle,
     INT32           sock);
 
+TRDP_ERR_T trdp_pdDistribute (
+	PD_ELE_T    *pSndQueue);
 
 #endif
