@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            vos_sock.c
+ * @file            posix/vos_sock.c
  *
  * @brief           Socket functions
  *
@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 147 2012-11-19 12:25:40Z bloehr $
+ * $Id: vos_sock.c 159 2012-11-20 16:51:12Z bloehr $
  *
  */
 

@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            vos_private.h
+ * @file            posix/vos_private.h
  *
  * @brief           Private definitions for the OS abstraction layer
  *
@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 147 2012-11-19 12:25:40Z bloehr $
+ * $Id: vos_private.h 159 2012-11-20 16:51:12Z bloehr $
  *
  */
 

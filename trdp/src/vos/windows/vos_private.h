@@ -1,10 +1,10 @@
 /**********************************************************************************************************************/
 /**
- * @file            vos_private.h
+ * @file            windows/vos_private.h
  *
  * @brief           Private definitions for the OS abstraction layer
  *
- * @details			
+ * @details
  *
  * @note            Project: TCNOpen TRDP prototype stack
  *
@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 154 2012-11-19 14:52:24Z 97025 $
+ * $Id: vos_private.h 159 2012-11-20 16:51:12Z bloehr $
  *
  */
 
@@ -34,19 +34,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 /***********************************************************************************************************************
  * DEFINES
  */
-    
+
 struct VOS_MUTEX
 {
     UINT32          magicNo;
     pthread_mutex_t mutexId;
 };
 
-VOS_ERR_T vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
-VOS_ERR_T vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
+VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
+VOS_ERR_T   vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
 
 #ifdef __cplusplus
 }
