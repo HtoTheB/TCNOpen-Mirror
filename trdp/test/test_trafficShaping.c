@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: test_trafficShaping.c 159 2012-11-20 16:51:12Z bloehr $
+ * $Id: test_trafficShaping.c 166 2012-11-20 17:46:34Z 97025 $
  *
  */
 
@@ -28,7 +28,6 @@
 
 #include "trdp_if_light.h"
 #include "vos_thread.h"
-#include "test_trafficShaping.h"
 
 /***********************************************************************************************************************
  * DEFINITIONS
