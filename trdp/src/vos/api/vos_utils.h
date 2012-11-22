@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 149 2012-11-19 12:51:57Z bloehr $
+ * $Id: vos_utils.h 170 2012-11-22 16:51:54Z bloehr $
  *
  */
 
@@ -75,9 +75,9 @@ extern void *gRefCon;
 #endif
 
 /** Alignment macros  */
-#if defined(alignof)
-#define ALIGNOF(type)   alignof(type)
-#elif defined(__alignof__)
+#ifdef WIN32
+#define ALIGNOF(type)   __alignof(type)
+#elif defined(__GNUC__)
 #define ALIGNOF(type)   __alignof__(type)
 #else
 #define ALIGNOF(type)   offsetof(struct { char c; type member; }, member)
