@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 167 2012-11-20 17:48:53Z bloehr $
+#// $Id: Makefile 168 2012-11-22 13:03:55Z spachera $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -278,7 +278,7 @@ help:
 
 
 clean:
-	$(RM) -r $(OUTDIR)/*
+	$(RM) -r bld/*
 	$(RM) -r doc/latex/*
 
 
