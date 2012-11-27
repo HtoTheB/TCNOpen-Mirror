@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if_light.h 165 2012-11-20 17:40:41Z bloehr $
+ * $Id: trdp_if_light.h 176 2012-11-27 15:53:45Z aweiss $
  *
  */
 
@@ -294,7 +294,7 @@ EXT_DECL TRDP_ERR_T tlp_put (
 
 
 /**********************************************************************************************************************/
-/** Do not send non-redundant PDs when we are follower.
+/** Do not send redundant PD's when we are follower.
  *
  *  @param[in]      appHandle           the handle returned by tlc_init
  *  @param[in]      redId               will be set for all ComID's with the given redId, 0 to change for all redId
