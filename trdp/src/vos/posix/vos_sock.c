@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 159 2012-11-20 16:51:12Z bloehr $
+ * $Id: vos_sock.c 172 2012-11-27 13:29:03Z aweiss $
  *
  */
 
@@ -174,7 +174,6 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
 EXT_DECL VOS_ERR_T vos_sockGetMAC (
     UINT8 pMAC[6])
 {
-#ifdef IFHWADDRLEN
     int sock;
     int i;
 
@@ -190,11 +189,10 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
     }
 
     /* Not every system supports this! */
-
+#ifndef __APPLE__
 
     /* Has it been determined before? */
-
-    for(i = 0; i < IFHWADDRLEN && gIfr.ifr_hwaddr.sa_data[i] != 0; i++)
+    for(i = 0; i < 6 && gIfr.ifr_hwaddr.sa_data[i] != 0; i++)
     {
         ;
     }
@@ -217,7 +215,7 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
         close(sock);
     }
 
-    for( i = 0; i < IFHWADDRLEN; i++ )
+    for( i = 0; i < 6; i++ )
     {
         pMAC[i] = (UINT8) gIfr.ifr_hwaddr.sa_data[i];
     }
