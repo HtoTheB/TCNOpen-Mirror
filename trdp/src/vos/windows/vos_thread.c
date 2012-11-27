@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 159 2012-11-20 16:51:12Z bloehr $
+ * $Id: vos_thread.c 173 2012-11-27 13:30:30Z aweiss $
  *
  */
 
