@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 168 2012-11-22 13:03:55Z spachera $
+#// $Id: Makefile 178 2012-11-28 09:56:41Z spachera $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -91,7 +91,7 @@ test:		outdir $(OUTDIR)/getstats		$(OUTDIR)/test_server \
 											$(OUTDIR)/test_client20 \
 											$(OUTDIR)/test_client_main_Monday
 
-mdtest:		outdir $(OUTDIR)/mdTest0001
+mdtest:		outdir $(OUTDIR)/mdTest0001		$(OUTDIR)/mdTest0002
 
 doc:		doc/latex/refman.pdf
 
@@ -242,6 +242,16 @@ $(OUTDIR)/mdTest0001: mdTest0001.c  $(OUTDIR)/libtrdp.a
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
 			$(STRIP) $@
+
+$(OUTDIR)/mdTest0002: mdTest0002.c  $(OUTDIR)/libtrdp.a 
+			@$(ECHO) ' ### Building UDPMDCom test application $(@F)'
+			$(CC) test/udpmdcom/mdTest0002.c \
+			    -ltrdp \
+			    -luuid -lrt \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
+			
 outdir:
 		$(MD) $(OUTDIR)
 

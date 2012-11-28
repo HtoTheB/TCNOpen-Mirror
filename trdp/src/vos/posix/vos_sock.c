@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 172 2012-11-27 13:29:03Z aweiss $
+ * $Id: vos_sock.c 178 2012-11-28 09:56:41Z spachera $
  *
  */
 
@@ -457,6 +457,18 @@ EXT_DECL VOS_ERR_T vos_sockJoinMC (
         else
         {
             err = VOS_NO_ERR;
+        }
+		
+		// Disable multicast loop back
+		UINT32 enMcLb = 0;
+		if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_LOOP, &enMcLb, sizeof(enMcLb)) == -1)
+		{
+			vos_printf(VOS_LOG_WARNING, "setsockopt IP_MULTICAST_TTL failed\n");
+            err = VOS_SOCK_ERR;
+        }
+        else
+        {
+            err = (err == VOS_SOCK_ERR) ? VOS_SOCK_ERR : VOS_NO_ERR;
         }
     }
     else

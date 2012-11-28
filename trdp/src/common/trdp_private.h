@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 175 2012-11-27 15:20:38Z aweiss $
+ * $Id: trdp_private.h 178 2012-11-28 09:56:41Z spachera $
  *
  */
 
@@ -217,6 +217,10 @@ typedef struct MD_ELE
     INT32               socketIdx;              /**< index into the socket list							*/
     TRDP_MD_ELE_ST_T    stateEle;               /**< internal status                                    */
     UINT8               sessionID[16];          /**< UUID as a byte stream                              */
+	UINT32				noOfRepliers;        	/**< number of expected repliers, 0 if unknown			*/
+    UINT32              numReplies;   			/**< actual number of replies for the request   		*/
+	UINT32              numRetriesMax; 			/**< maximun number of retries for request to a know dev*/
+	UINT32              numRetries;   			/**< actual number of retries for request to a know dev */
     union
     {
         struct
