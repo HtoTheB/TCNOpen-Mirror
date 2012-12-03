@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 180 2012-11-30 13:42:11Z goiarbide $
+ * $Id: trdp_utils.c 183 2012-12-03 14:03:27Z bloehr $
  *
  */
 
@@ -290,6 +290,10 @@ void    trdp_queueAppLast (
     {
         return;
     }
+
+    /* Ensure this element is last! */    
+    pNew->pNext = NULL;
+
     if (*ppHead == NULL)
     {
         *ppHead = pNew;
@@ -320,6 +324,10 @@ void    trdp_MDqueueAppLast (
     {
         return;
     }
+
+    /* Ensure this element is last! */    
+    pNew->pNext = NULL;
+    
     if (*ppHead == NULL)
     {
         *ppHead = pNew;
