@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 150 2012-11-19 12:53:43Z bloehr $
+ * $Id: vos_mem.c 181 2012-12-03 13:53:14Z bloehr $
  *
  */
 
@@ -420,6 +420,9 @@ EXT_DECL UINT8 *vos_memAlloc (
             gMem.memCnt.minFreeSize = gMem.memCnt.freeSize;
         }
         gMem.memCnt.allocCnt++;
+
+        /* Clear returned memory area to be compliant with malloc'ed version */
+        memset((UINT8 *) pBlock + sizeof(MEM_BLOCK_T), 0, blockSize);
 
         /* Return pointer to data area, not the memory block itself */
         return (UINT8 *) pBlock + sizeof(MEM_BLOCK_T);
