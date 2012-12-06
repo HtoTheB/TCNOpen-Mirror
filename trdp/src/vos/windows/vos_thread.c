@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 173 2012-11-27 13:30:30Z aweiss $
+ * $Id: vos_thread.c 186 2012-12-06 16:24:43Z fweispfenning $
  *
  */
 
@@ -421,7 +421,7 @@ EXT_DECL VOS_ERR_T vos_getTime (
     _ftime32_s( &curTime );
 
     pTime->tv_sec   = curTime.time;
-    pTime->tv_usec  = curTime.millitm * 10;
+    pTime->tv_usec  = curTime.millitm * 1000;
 
     return VOS_NO_ERR;
 }
