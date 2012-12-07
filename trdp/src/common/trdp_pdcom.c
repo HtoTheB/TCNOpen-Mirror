@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 175 2012-11-27 15:20:38Z aweiss $
+ * $Id: trdp_pdcom.c 190 2012-12-07 13:46:31Z fweispfenning $
  *
  */
 
@@ -201,8 +201,8 @@ TRDP_ERR_T  trdp_pdSendQueued (
          due to sent?
          or is it a PD Request or a requested packet (PULL) ?
          */
-        if ((timerisset(&iterPD->interval) &&
-             timercmp(&iterPD->timeToGo, &now, <=)) ||
+		if ((timerisset(&iterPD->interval) &&
+             !timercmp(&iterPD->timeToGo, &now, >)) ||
             iterPD->privFlags & TRDP_REQ_2B_SENT)       /*  Request for immediate sending   */
         {
             /*  Update the sequence counter and re-compute CRC    */
