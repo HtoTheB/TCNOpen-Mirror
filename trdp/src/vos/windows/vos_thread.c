@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 187 2012-12-06 17:23:21Z fweispfenning $
+ * $Id: vos_thread.c 193 2012-12-07 13:50:50Z fweispfenning $
  *
  */
 
@@ -477,6 +477,9 @@ EXT_DECL VOS_ERR_T vos_clearTime (
     {
         return VOS_PARAM_ERR;
     }
+
+	timerclear(pTime);
+
     return VOS_NO_ERR;
 }
 
