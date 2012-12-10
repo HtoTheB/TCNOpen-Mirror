@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 180 2012-11-30 13:42:11Z goiarbide $
+ * $Id: trdp_private.h 195 2012-12-10 09:14:40Z spachera $
  *
  */
 
@@ -232,6 +232,10 @@ typedef struct MD_ELE
     UINT32              numReplies;   			/**< actual number of replies for the request   		*/
 	UINT32              numRetriesMax; 			/**< maximun number of retries for request to a know dev*/
 	UINT32              numRetries;   			/**< actual number of retries for request to a know dev */
+	UINT8				disableReplyRx;			/**< disable reply reception, for multicast use			*/
+	UINT32              numRepliesQuery;		/**< number of ReplyQuery received, used to count nuomber of expected Confirm sent */
+	UINT32              numConfirmSent;			/**< number of Confirm sent								*/
+	UINT32				numConfirmTimeout; 		/**< number of Confirm Timeouts (incremented by listeners */
     union
     {
         struct
