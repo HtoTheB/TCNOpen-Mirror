@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 195 2012-12-10 09:14:40Z spachera $
+ * $Id: trdp_mdcom.c 196 2012-12-10 11:07:30Z spachera $
  *
  */
 
@@ -236,10 +236,6 @@ void    trdp_mdUpdate (
     /* Get header and packet check sum values */
     UINT32  *hFCS   = &pPacket->frameHead.frameCheckSum;
     UINT32  *pFCS   = (UINT32 *)((UINT8 *)&pPacket->frameHead + pPacket->grossSize - 4);
-
-    /* increment counter with each telegram */
-    pPacket->frameHead.sequenceCounter =
-        vos_htonl(vos_ntohl(pPacket->frameHead.sequenceCounter) + 1);
 
     /* Calculate CRC for message head */
     myCRC = vos_crc32(myCRC,
