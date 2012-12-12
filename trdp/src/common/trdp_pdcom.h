@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 160 2012-11-20 16:54:21Z bloehr $
+ * $Id: trdp_pdcom.h 201 2012-12-12 12:18:24Z aweiss $
  *
  */
 
@@ -69,7 +69,7 @@ TRDP_ERR_T  trdp_pdGet (
     TRDP_UNMARSHALL_T   unmarshall,
     void                *refCon,
     const UINT8         *pData,
-    UINT32              dataSize);
+    UINT32              *pDataSize);
 
 TRDP_ERR_T trdp_pdSendQueued (
     TRDP_SESSION_PT appHandle);
