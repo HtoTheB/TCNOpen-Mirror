@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 201 2012-12-12 12:18:24Z aweiss $
+ * $Id: trdp_pdcom.h 203 2012-12-12 12:49:47Z aweiss $
  *
  */
 
@@ -61,8 +61,9 @@ TRDP_ERR_T  trdp_pdCheck (
     INT32       packetSize);
 
 TRDP_ERR_T  trdp_pdSend (
-    INT32   sock,
-    PD_ELE_T *);
+    INT32    pdSock,
+    PD_ELE_T *pPacket,
+    UINT16   port);
 
 TRDP_ERR_T  trdp_pdGet (
     PD_ELE_T            *pPacket,
