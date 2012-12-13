@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 201 2012-12-12 12:18:24Z aweiss $
+ * $Id: trdp_if.c 207 2012-12-13 12:38:47Z aweiss $
  *
  */
 
@@ -781,8 +781,10 @@ EXT_DECL TRDP_ERR_T tlp_publish (
              */
             if (dataSize == 0)
             {
-                /* dataSize = MAX_PD_DATA_SIZE; */
+                /* mark data as invalid, data will be set valid with tlp_put */
+                pNewElement->privFlags |= TRDP_INVALID_DATA;
             }
+
             pNewElement->dataSize   = dataSize;
             pNewElement->grossSize  = trdp_packetSizePD(dataSize);
 
