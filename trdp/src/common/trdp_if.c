@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 224 2012-12-17 12:58:54Z aweiss $
+ * $Id: trdp_if.c 226 2012-12-17 16:08:36Z spachera $
  *
  */
 
@@ -1944,6 +1944,9 @@ EXT_DECL TRDP_ERR_T tlc_process (
 							
                             /* Callback execution require to indicate this event */
 							sndReplyTimeout = 1;
+							
+							/* Statistics */
+							appHandle->stats.udpMd.numReplyTimeout++;
                         }
                     }
 					
@@ -2171,6 +2174,9 @@ EXT_DECL TRDP_ERR_T tlc_process (
 						
                         /* Remove element from queue */
                         trdp_MDqueueDelElement(&appHandle->pMDSndQueue, iterMD);
+
+						/* Statistics */
+						appHandle->stats.udpMd.numConfirmTimeout++;
 
                         /* free element */
                         vos_memFree(iterMD);
@@ -3593,6 +3599,9 @@ TRDP_ERR_T tlm_addListener (
                     /* Insert into list */
                     pNewElement->pNext      = appHandle->pMDRcvQueue;
                     appHandle->pMDRcvQueue  = pNewElement;
+					
+					/* Statistics */
+					appHandle->stats.udpMd.numList++;
                 }
             }
         }
@@ -3711,6 +3720,9 @@ TRDP_ERR_T tlm_delListener (
             }
         }
     }
+	
+	/* Statistics */
+	appHandle->stats.udpMd.numList++;
 
     /* Release mutex */
     vos_mutexUnlock(appHandle->mutex);
