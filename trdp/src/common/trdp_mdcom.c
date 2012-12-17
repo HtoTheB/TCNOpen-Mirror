@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 211 2012-12-14 12:19:41Z goiarbide $
+ * $Id: trdp_mdcom.c 221 2012-12-17 10:52:33Z aweiss $
  *
  */
 
@@ -285,7 +285,7 @@ TRDP_ERR_T  trdp_mdSend (
 
     if (err != VOS_NO_ERR)
     {
-        vos_printf(VOS_LOG_ERROR, "trdp_mdSend failed\n");
+        vos_printf(VOS_LOG_ERROR, "vos_sockSendUDP failed (Err: %d)\n", err);
         return TRDP_IO_ERR;
     }
     /*
