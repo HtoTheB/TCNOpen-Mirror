@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 226 2012-12-17 16:08:36Z spachera $
+ * $Id: trdp_if.c 227 2012-12-17 16:30:40Z fweispfenning $
  *
  */
 
@@ -1082,11 +1082,10 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
     {
         vos_subTime(&appHandle->interval, &now);
         *pInterval = appHandle->interval;
-        /*
-           vos_printf(VOS_LOG_INFO, "interval sec = %lu, usec = %u\n",
-                           sSession.interval.tv_sec,
-                                 sSession.interval.tv_usec);
-         */
+        
+       /*    vos_printf(VOS_LOG_INFO, "interval sec = %lu, usec = %u\n",
+                           appHandle->interval.tv_sec,
+                                 appHandle->interval.tv_usec); */
     }
     else    /*    Default minimum time is 10ms    */
     {

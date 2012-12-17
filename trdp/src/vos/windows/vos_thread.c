@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 217 2012-12-14 14:50:52Z fweispfenning $
+ * $Id: vos_thread.c 227 2012-12-17 16:30:40Z fweispfenning $
  *
  */
 
@@ -528,21 +528,23 @@ EXT_DECL VOS_ERR_T vos_subTime (
     VOS_TIME_T          *pTime,
     const VOS_TIME_T    *pSub)
 {
-    VOS_TIME_T lTime;
 
     if (pTime == NULL || pSub == NULL)
     {
         return VOS_PARAM_ERR;
     }
-
-    lTime.tv_usec   = pTime->tv_usec + pSub->tv_usec;
-    lTime.tv_sec    = pTime->tv_sec + pSub->tv_sec;
+    
+    /* handle carry over:
+     * when the usec are too large at pSub, move one second from tv_sec to tv_usec */
     if (pSub->tv_usec > pTime->tv_usec)
     {
-        lTime.tv_sec--;
+        pTime->tv_sec--;
+        pTime->tv_usec += 1000000;
     }
 
-    *pTime = lTime;
+    pTime->tv_usec   = pTime->tv_usec - pSub->tv_usec;
+    pTime->tv_sec    = pTime->tv_sec - pSub->tv_sec;
+
 
     return VOS_NO_ERR;
 }
