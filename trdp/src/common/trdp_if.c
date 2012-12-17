@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 219 2012-12-17 10:51:01Z aweiss $
+ * $Id: trdp_if.c 223 2012-12-17 11:01:03Z goiarbide $
  *
  */
 
@@ -2247,7 +2247,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
 					vos_sockClose(appHandle->iface[index].sock);
 
 					/* Delete the socket from the iface */
-					vos_printf(VOS_LOG_INFO, "Deleting socket (NÂº = %d) from the iface\n", appHandle->iface[index].sock);
+					vos_printf(VOS_LOG_INFO, "Deleting socket (Num = %d) from the iface\n", appHandle->iface[index].sock);
 					vos_printf(VOS_LOG_INFO, "Close socket iface index=%d\n", index);
 					appHandle->iface[index].sock=-1;
 					appHandle->iface[index].sendParam.qos = 0;
