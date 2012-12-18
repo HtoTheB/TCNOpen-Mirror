@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 225 2012-12-17 14:44:52Z aweiss $
+ * $Id: vos_sock.h 229 2012-12-18 08:32:47Z aweiss $
  *
  */
 
@@ -226,20 +226,6 @@ EXT_DECL VOS_ERR_T vos_sockClose (
 EXT_DECL VOS_ERR_T vos_sockSetOptions (
     INT32                   sock,
     const VOS_SOCK_OPT_T    *pOptions);
-
-
-/**********************************************************************************************************************/
-/** Get socket options.
- *
- *  @param[in]      sock            socket descriptor
- *  @param[out]     pOptions        return value
- *  @retval         VOS_NO_ERR      no error
- *  @retval         VOS_PARAM_ERR   sock descriptor unknown
- */
-
-EXT_DECL VOS_ERR_T vos_sockGetOptions (
-    INT32              sock,
-    VOS_SOCK_OPT_T    *pOptions);
 
 /**********************************************************************************************************************/
 /** Join a multicast group.
