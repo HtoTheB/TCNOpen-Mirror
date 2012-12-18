@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 228 2012-12-18 08:19:10Z aweiss $
+ * $Id: vos_sock.c 232 2012-12-18 16:37:22Z aweiss $
  *
  */
 
@@ -637,7 +637,7 @@ EXT_DECL VOS_ERR_T vos_sockSendUDP (
 EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     INT32   sock,
     UINT8   *pBuffer,
-    INT32   *pSize,
+    UINT32   *pSize,
     UINT32  *pIPAddr)
 {
     struct sockaddr_in srcAddr;
@@ -940,7 +940,7 @@ EXT_DECL VOS_ERR_T vos_sockSendTCP (
 EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
     INT32   sock,
     UINT8   *pBuffer,
-    INT32   *pSize)
+    UINT32  *pSize)
 {
     int             rcvSize    = 0;
     int             bufferSize = (size_t) *pSize;
