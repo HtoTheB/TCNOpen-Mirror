@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 159 2012-11-20 16:51:12Z bloehr $
+ * $Id: vos_thread.h 240 2012-12-19 15:34:36Z aweiss $
  *
  */
 
@@ -219,9 +219,10 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
 /** Return the current time in sec and us
  *
  *
- *  @param[out]     pTime             Pointer to time value
- *  @retval         VOS_NO_ERR        no error
- *  @retval         VOS_INIT_ERR      module not initialised
+ *  @param[out]     pTime            Pointer to time value
+ *  @retval         VOS_NO_ERR       no error
+ *  @retval         VOS_PARAM_ERR    parameter out of range/invalid
+ *  @retval         VOS_UNKNOWN_ERR  can't retrieve time
  */
 
 EXT_DECL VOS_ERR_T vos_getTime (

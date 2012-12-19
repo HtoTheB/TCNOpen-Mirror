@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.h 53 2012-10-17 17:40:43Z 97025 $
+ * $Id: trdp_if.h 240 2012-12-19 15:34:36Z aweiss $
  *
  */
 
@@ -52,7 +52,8 @@ extern "C" {
  *
  *  @retval      topoCount            Current topoCount value
  */
-UINT32 trdp_getTopoCount (void);
+UINT32 trdp_getTopoCount (
+    TRDP_APP_SESSION_T pSessionHandle);
     
 /**********************************************************************************************************************/
 /** Check if the session handle is valid

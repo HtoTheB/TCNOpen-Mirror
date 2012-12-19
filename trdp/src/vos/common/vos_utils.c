@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.c 150 2012-11-19 12:53:43Z bloehr $
+ * $Id: vos_utils.c 240 2012-12-19 15:34:36Z aweiss $
  *
  */
 
@@ -132,9 +132,7 @@ VOS_ERR_T vos_init (
     gPDebugFunction = pDebugOutput;
     gRefCon         = pRefCon;
 
-    vos_sockInit();
-
-    return VOS_NO_ERR;
+    return vos_sockInit();
 }
 
 /**********************************************************************************************************************/
