@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 233 2012-12-18 16:38:27Z aweiss $
+ * $Id: vos_utils.h 238 2012-12-19 09:21:26Z aweiss $
  *
  */
 
@@ -57,7 +57,6 @@ extern void *gRefCon;
 
 /** Debug output macro with formatting options */
 #ifdef WIN32
-/*lint --emacro({*}, vos_printf) */
 #define vos_printf(level, format, ...)                                  \
     {if (gPDebugFunction != NULL)                                       \
      {   char str[VOS_MAX_PRNT_STR_SIZE];                               \
