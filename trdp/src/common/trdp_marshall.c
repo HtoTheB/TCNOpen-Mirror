@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_marshall.c 240 2012-12-19 15:34:36Z aweiss $
+ * $Id: trdp_marshall.c 244 2012-12-21 00:31:12Z 97029 $
  *
  */
 
@@ -136,7 +136,9 @@ static INLINE void unpackedCopy64 (
     *ppDst = (UINT8 *) pDst8;
 }
 #else
-	#error "Endianess not defined"
+{
+/*	#error "Endianess not defined" */
+}
 #endif
 
 /**********************************************************************************************************************/

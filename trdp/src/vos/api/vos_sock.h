@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 232 2012-12-18 16:37:22Z aweiss $
+ * $Id: vos_sock.h 244 2012-12-21 00:31:12Z 97029 $
  *
  */
 
@@ -33,6 +33,10 @@
 #else
 #include <sys/select.h>
 #endif
+
+#ifdef TRDP_OPTION_LADDER
+#include <ifaddrs.h>
+#endif /* TRDP_OPTION_LADDER */
 
 #ifdef __cplusplus
 extern "C" {
@@ -439,6 +443,45 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
     UINT8   *pBuffer,
     UINT32  *pSize
     );
+
+#ifdef TRDP_OPTION_LADDER
+/**********************************************************************************************************************/
+/** Get interface addrress
+ *
+ *  @param[in,out]  pIfa_list		pointer to the I/F all list
+ *  @retval         VOS_NO_ERR		no error
+ *  @retval         VOS_PARAM_ERR	sock descriptor unknown, parameter error
+ *  @retval         VOS_IO_ERR		data could not be read
+  */
+
+EXT_DECL VOS_ERR_T vos_getIfAddrs (
+		struct ifaddrs * *ppIfa_list);
+
+/**********************************************************************************************************************/
+/** Clear interface address memory area
+ *
+ *  @param[in,out]  pIfa_list		pointer to the I/F all list
+ *  @retval         VOS_NO_ERR		no error
+ *  @retval         VOS_PARAM_ERR	sock descriptor unknown, parameter error
+  */
+
+EXT_DECL VOS_ERR_T vos_freeIfAddrs (
+		struct ifaddrs *pIfa_list);
+
+/**********************************************************************************************************************/
+/** Set Using Multicast I/F
+ *
+ *  @param[in]      sock							socket descriptor
+ *  @param[in]      usingMulticastIfAddress	using Multicast I/F Address
+ *  @retval         VOS_NO_ERR					no error
+ *  @retval         VOS_PARAM_ERR				sock descriptor unknown, parameter error
+ *  @retval         VOS_SOCK_ERR				option not supported
+ */
+EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
+		INT32   sock,
+		UINT32  usingMulticastIfAddress);
+
+#endif /* TRDP_OPTION_LADDER */
 
 #ifdef __cplusplus
 }

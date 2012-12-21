@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 180 2012-11-30 13:42:11Z goiarbide $
+ * $Id: trdp_utils.h 244 2012-12-21 00:31:12Z 97029 $
  *
  */
 
@@ -126,5 +126,11 @@ BOOL trdp_isRcvSeqCnt (
     UINT32          comId,
     TRDP_MSG_T      msgType,
     TRDP_IP_ADDR_T  srcIP);
+
+#ifdef TRDP_OPTION_LADDER
+/* Initial TRDP Ladder Setting (Create Traffic Store semaphore, Traffic Store, PDComLadderThread) */
+TRDP_ERR_T trdp_ladder_init (
+	void);
+#endif /* TRDP_OPTION_LADDER */
 
 #endif
