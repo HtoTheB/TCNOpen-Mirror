@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 246 2012-12-21 08:00:21Z aweiss $
+ * $Id: trdp_if.c 247 2012-12-21 09:37:42Z 97030 $
  *
  */
 
@@ -2863,7 +2863,8 @@ EXT_DECL TRDP_ERR_T tlp_get (
             vos_getTime(&now);
 
             /*    Check time out    */
-            if (timercmp(&pElement->timeToGo, &now, <))
+            if (timerisset(&pElement->interval) &&
+                timercmp(&pElement->timeToGo, &now, <))
             {
                 /*    Packet is late    */
                 if (appHandle->pdDefault.toBehavior == TRDP_TO_SET_TO_ZERO)
