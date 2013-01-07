@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.h 244 2012-12-21 00:31:12Z 97029 $
+ * $Id: vos_mem.h 252 2013-01-07 12:26:52Z aweiss $
  *
  */
 
@@ -155,12 +155,9 @@ EXT_DECL UINT8 *vos_memAlloc (
 /** Deallocate a block of memory (from memory area above).
  *
  *  @param[in]      pMemBlock       Pointer to memory block to be freed
- *  @retval         VOS_NO_ERR      no error
- *  @retval         VOS_INIT_ERR    module not initialised
- *  @retval         VOS_PARAM_ERR   parameter out of range/invalid
  */
 
-EXT_DECL VOS_ERR_T vos_memFree (
+EXT_DECL void vos_memFree (
     void *pMemBlock);
 
 /**********************************************************************************************************************/
