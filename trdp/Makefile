@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 213 2012-12-14 13:11:26Z fweispfenning $
+#// $Id: Makefile 251 2013-01-07 12:20:22Z goiarbide $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -80,7 +80,7 @@ endif
 all:		outdir libtrdp demo
 
 libtrdp:	outdir $(OUTDIR)/libtrdp.a
-demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello
+demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/mdManagerTCP
 example:	outdir $(OUTDIR)/mdManager
 test:		outdir $(OUTDIR)/getstats
 
@@ -129,6 +129,7 @@ $(OUTDIR)/receivePolling:  echoPolling.c  $(OUTDIR)/libtrdp.a
 			    
 			$(STRIP) $@
 
+
 $(OUTDIR)/sendHello:   sendHello.c  $(OUTDIR)/libtrdp.a 
 			@$(ECHO) ' ### Building application $(@F)'
 			$(CC) $(SUBDIRS)/example/sendHello.c \
@@ -171,6 +172,16 @@ $(OUTDIR)/mdTest0002: mdTest0002.c  $(OUTDIR)/libtrdp.a
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
 			$(STRIP) $@
+
+$(OUTDIR)/mdManagerTCP: mdManagerTCP.c  $(OUTDIR)/libtrdp.a 
+			@$(ECHO) ' ### Building TCPMDCom test application $(@F)'
+			$(CC) $(SUBDIRS)/example/mdManagerTCP.c \
+			    -ltrdp \
+			    -luuid -lrt \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
+
 			
 outdir:
 		$(MD) $(OUTDIR)
