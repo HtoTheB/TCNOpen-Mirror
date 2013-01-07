@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 253 2013-01-07 13:48:40Z aweiss $
+ * $Id: vos_mem.c 254 2013-01-07 13:58:01Z aweiss $
  *
  */
 
@@ -444,7 +444,6 @@ EXT_DECL UINT8 *vos_memAlloc (
 
 EXT_DECL void vos_memFree (void *pMemBlock)
 {
-    VOS_ERR_T   ret = VOS_NO_ERR;
     UINT32      i;
     UINT32      blockSize;
     MEM_BLOCK_T *pBlock;

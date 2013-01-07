@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 253 2013-01-07 13:48:40Z aweiss $
+ * $Id: trdp_pdcom.c 254 2013-01-07 13:58:01Z aweiss $
  *
  */
 
@@ -115,7 +115,7 @@ TRDP_ERR_T trdp_pdPut (
     if (TRDP_NO_ERR == ret)
     {
         /* set data valid */
-        pPacket->privFlags &= ~TRDP_INVALID_DATA;
+        pPacket->privFlags ^= TRDP_INVALID_DATA;
 
         /* Update PD buffer */
         trdp_pdDataUpdate(pPacket);
@@ -464,10 +464,10 @@ TRDP_ERR_T  trdp_pdReceive (
         /*  Update some statistics  */
         pExistingElement->numRxTx++;
         pExistingElement->lastErr    = TRDP_NO_ERR;
-        pExistingElement->privFlags &= ~TRDP_TIMED_OUT;
+        pExistingElement->privFlags ^= TRDP_TIMED_OUT;
 
         /* set the data valid */
-        pExistingElement->privFlags &= ~TRDP_INVALID_DATA;
+        pExistingElement->privFlags ^= TRDP_INVALID_DATA;
 
         if (informUser)
         {
