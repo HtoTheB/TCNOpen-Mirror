@@ -15,8 +15,10 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 250 2013-01-07 10:36:49Z aweiss $
+ * $Id: trdp_if.c 256 2013-01-07 17:14:28Z bloehr $
  *
+ *      BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
+ *                     ID 2: "uninitialized PD_ELE_T newPD->pNext in tlp_subscribe()"
  */
 
 /***********************************************************************************************************************
