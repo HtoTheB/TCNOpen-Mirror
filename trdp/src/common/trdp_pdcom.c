@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 250 2013-01-07 10:36:49Z aweiss $
+ * $Id: trdp_pdcom.c 253 2013-01-07 13:48:40Z aweiss $
  *
  */
 
@@ -220,7 +220,7 @@ TRDP_ERR_T  trdp_pdSendQueued (
     for (iterPD = appHandle->pSndQueue; iterPD != NULL; iterPD = iterPD->pNext)
     {
         /*    Get the current time    */
-        err = (TRDP_ERR_T) vos_getTime(&now);
+        vos_getTime(&now);
 
         if( err != TRDP_NO_ERR)
         {
