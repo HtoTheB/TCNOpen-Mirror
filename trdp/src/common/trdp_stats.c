@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 240 2012-12-19 15:34:36Z aweiss $
+ * $Id: trdp_stats.c 250 2013-01-07 10:36:49Z aweiss $
  *
  */
 
@@ -343,7 +343,7 @@ void    trdp_UpdateStats (
     UINT16      index;
 
     /*  Get a new time stamp    */
-    vos_getTime(&appHandle->stats.timeStamp); /*lint !e534 ignore return value */
+    vos_getTime(&appHandle->stats.timeStamp);
 
     /*  Update memory statsp    */
     vos_memCount(&appHandle->stats.mem.total,
