@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 256 2013-01-07 17:14:28Z bloehr $
+ * $Id: vos_sock.c 264 2013-01-08 15:31:35Z bloehr $
  *
  */
 
@@ -1021,6 +1021,8 @@ EXT_DECL VOS_ERR_T vos_freeIfAddrs (
 	return VOS_NO_ERR;
 }
 
+#endif /* TRDP_OPTION_LADDER */
+
 /**********************************************************************************************************************/
 /** Set Using Multicast I/F
  *
@@ -1064,4 +1066,3 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
 	}
     return err;
 }
-#endif /* TRDP_OPTION_LADDER */

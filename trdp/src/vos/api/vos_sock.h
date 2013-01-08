@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 244 2012-12-21 00:31:12Z 97029 $
+ * $Id: vos_sock.h 264 2013-01-08 15:31:35Z bloehr $
  *
  */
 
@@ -468,6 +468,8 @@ EXT_DECL VOS_ERR_T vos_getIfAddrs (
 EXT_DECL VOS_ERR_T vos_freeIfAddrs (
 		struct ifaddrs *pIfa_list);
 
+#endif /* TRDP_OPTION_LADDER */
+
 /**********************************************************************************************************************/
 /** Set Using Multicast I/F
  *
@@ -481,7 +483,6 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
 		INT32   sock,
 		UINT32  usingMulticastIfAddress);
 
-#endif /* TRDP_OPTION_LADDER */
 
 #ifdef __cplusplus
 }
