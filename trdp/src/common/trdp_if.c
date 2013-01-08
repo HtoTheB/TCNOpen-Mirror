@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 259 2013-01-08 10:44:04Z bloehr $
+ * $Id: trdp_if.c 261 2013-01-08 14:07:30Z aweiss $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -1529,7 +1529,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
                         }
                         else
                         {
-                            vos_printf(result, "TRDP vos_sockListen failed\n");
+                            vos_printf(VOS_LOG_ERROR, "TRDP vos_sockAccept() failed (Err: %d)\n", result);
 
                             /* Callback the error to the application  */
                             if (appHandle->mdDefault.pfCbFunction != NULL)
