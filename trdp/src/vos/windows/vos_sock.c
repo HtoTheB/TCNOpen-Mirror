@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 258 2013-01-08 07:49:30Z aweiss $
+ * $Id: vos_sock.c 265 2013-01-08 16:16:37Z aweiss $
  *
  */
 
@@ -998,4 +998,40 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
     {
         return VOS_NO_ERR;
     }
+}
+
+
+/**********************************************************************************************************************/
+/** Set Using Multicast I/F
+ *
+ *  @param[in]      sock                socket descriptor
+ *  @param[in]      mcIfAddress	        using Multicast I/F Address
+ *  @retval         VOS_NO_ERR          no error
+ *  @retval         VOS_PARAM_ERR       sock descriptor unknown, parameter error
+ *  @retval         VOS_SOCK_ERR        option not supported
+ */
+EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
+		INT32   sock,
+		UINT32  mcIfAddress)
+{
+    DWORD       optValue = (DWORD) mcIfAddress;
+    VOS_ERR_T   err = VOS_NO_ERR;
+
+    if (sock == (INT32) INVALID_SOCKET)
+    {
+        err = VOS_PARAM_ERR;
+    }
+    else
+    {
+        if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_IF, (const char *) &optValue, sizeof(optValue)) == SOCKET_ERROR)
+        {
+            vos_print(VOS_LOG_WARNING, "setsockopt IP_MULTICAST_IF failed\n");
+            err = VOS_SOCK_ERR;
+        }
+		else
+        {
+            err = VOS_NO_ERR;
+        }
+    }
+    return err;
 }
