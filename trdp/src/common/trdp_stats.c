@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 250 2013-01-07 10:36:49Z aweiss $
+ * $Id: trdp_stats.c 273 2013-01-09 15:38:11Z aweiss $
  *
  */
 
@@ -341,12 +341,13 @@ void    trdp_UpdateStats (
 {
     PD_ELE_T    *iter;
     UINT16      index;
+    VOS_ERR_T  ret;
 
     /*  Get a new time stamp    */
     vos_getTime(&appHandle->stats.timeStamp);
 
     /*  Update memory statsp    */
-    vos_memCount(&appHandle->stats.mem.total,
+    ret = vos_memCount(&appHandle->stats.mem.total,
                  &appHandle->stats.mem.free,
                  &appHandle->stats.mem.minFree,
                  &appHandle->stats.mem.numAllocBlocks,
@@ -354,6 +355,10 @@ void    trdp_UpdateStats (
                  &appHandle->stats.mem.numFreeErr,
                  appHandle->stats.mem.preAllocBlockSize,
                  appHandle->stats.mem.usedBlockSize);
+    if (ret != VOS_NO_ERR)
+    {
+        vos_printf(VOS_LOG_ERROR, "vos_memCount() failed (Err: %d)\n", ret);
+    }
 
     /*  Count our subscriptions */
     for (index = 0, iter = appHandle->pRcvQueue; iter != NULL; index++, iter = iter->pNext) {;}

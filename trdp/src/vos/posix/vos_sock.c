@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 270 2013-01-09 13:12:54Z bloehr $
+ * $Id: vos_sock.c 273 2013-01-09 15:38:11Z aweiss $
  *
  */
 
@@ -202,7 +202,8 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
 
         if ((sock = socket(PF_INET, SOCK_DGRAM, 0)) == -1)
         {
-            vos_printf(VOS_LOG_ERROR, "socket call failed\n");
+            memset(pMAC, 0, sizeof(mac));
+            vos_printf(VOS_LOG_ERROR, "socket() failed\n");
             return VOS_SOCK_ERR;
         }
 
