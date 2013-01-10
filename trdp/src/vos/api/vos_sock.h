@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 274 2013-01-10 11:00:43Z aweiss $
+ * $Id: vos_sock.h 278 2013-01-10 15:35:13Z aweiss $
  *
  */
 
@@ -29,7 +29,7 @@
 #include "vos_types.h"
 
 #ifdef WIN32
-/* #include <winsock2.h> */
+#include <winsock2.h>
 #else
 #include <sys/select.h>
 #endif
