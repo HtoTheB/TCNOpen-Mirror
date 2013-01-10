@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.h 120 2012-11-06 17:32:14Z 97025 $
+ * $Id: trdp_mdcom.h 275 2013-01-10 11:43:57Z goiarbide $
  *
  */
 
@@ -42,15 +42,26 @@
  * GLOBAL FUNCTIONS
  */
 
-TRDP_ERR_T  trdp_mdSend (
+TRDP_ERR_T  trdp_mdSendPacket (
     INT32           pdSock,
     const MD_ELE_T  *pPacket);
 
-void    trdp_mdUpdate (
+void    trdp_mdUpdatePacket (
     MD_ELE_T *pPacket);
 
-TRDP_ERR_T  trdp_mdReceive (
+TRDP_ERR_T  trdp_mdRecv (
     TRDP_SESSION_PT appHandle,
-                            INT32           sock);
+    INT32           sock);
+
+TRDP_ERR_T  trdp_mdSend (
+    TRDP_SESSION_PT appHandle);
+
+TRDP_ERR_T  trdp_mdCheckListenSocks (
+    TRDP_SESSION_PT appHandle,
+    TRDP_FDS_T          *pRfds,
+    INT32               *pCount);
+
+TRDP_ERR_T  trdp_mdCheckTimeouts (
+    TRDP_SESSION_PT appHandle);
 
 #endif
