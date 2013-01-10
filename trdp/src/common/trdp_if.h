@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.h 240 2012-12-19 15:34:36Z aweiss $
+ * $Id: trdp_if.h 274 2013-01-10 11:00:43Z aweiss $
  *
  */
 
@@ -69,7 +69,7 @@ BOOL trdp_isValidSession (
 /**********************************************************************************************************************/
 /** Get the session queue head pointer
  *
- *  @retval	        &sSession
+ *  @retval            &sSession
  */
 TRDP_APP_SESSION_T *trdp_sessionQueue (
     void);
@@ -78,4 +78,4 @@ TRDP_APP_SESSION_T *trdp_sessionQueue (
 }
 #endif
 
-#endif  /* TRDP_IF_LIGHT_H	*/
+#endif  /* TRDP_IF_LIGHT_H    */

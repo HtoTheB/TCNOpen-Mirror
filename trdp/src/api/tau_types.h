@@ -4,10 +4,10 @@
  *
  * @brief           TRDP utility interface definitions
  *
- * @details			This module provides the interface to the following utilities
- *					- marshalling/unmarshalling
- *					- xml configuration interpreter
- *					- IP - URI address translation
+ * @details            This module provides the interface to the following utilities
+ *                    - marshalling/unmarshalling
+ *                    - xml configuration interpreter
+ *                    - IP - URI address translation
  *
  *
  * @note            Project: TCNOpen TRDP prototype stack
@@ -19,7 +19,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_types.h 2 2012-06-04 11:25:16Z 97025 $
+ * $Id: tau_types.h 274 2013-01-10 11:00:43Z aweiss $
  *
  */
 

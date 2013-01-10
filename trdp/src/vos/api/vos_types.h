@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 260 2013-01-08 11:24:25Z aweiss $
+ * $Id: vos_types.h 274 2013-01-10 11:00:43Z aweiss $
  *
  */
 
@@ -74,7 +74,7 @@ typedef double REAL64;
 #error "Standard types must be defined for each target!"
 #endif
 
-/*	Special handling for Windows DLLs	*/
+/*    Special handling for Windows DLLs    */
 #ifdef WIN32
     #ifdef DLL_EXPORT
         #define EXT_DECL    __declspec(dllexport)

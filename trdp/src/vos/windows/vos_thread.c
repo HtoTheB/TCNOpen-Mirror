@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 273 2013-01-09 15:38:11Z aweiss $
+ * $Id: vos_thread.c 274 2013-01-10 11:00:43Z aweiss $
  *
  */
 
@@ -101,7 +101,7 @@ void cyclicThread (
  */
 
 EXT_DECL VOS_ERR_T vos_threadInit (
-	void)
+    void)
 {
     memset(threadHandle, 0, sizeof(threadHandle));
     vosTreadInitialised = TRUE;
@@ -683,7 +683,7 @@ EXT_DECL void vos_getUuid (
 
 
 /**********************************************************************************************************************/
-/*	Mutex & Semaphores                                                                                                */
+/*    Mutex & Semaphores                                                                                                */
 /**********************************************************************************************************************/
 
 /**********************************************************************************************************************/
@@ -968,7 +968,7 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
     VOS_SEMA_T          *pSema,
     VOS_SEMA_STATE_T    initialState)
 {
-	/*TODO generated method stub */
+    /*TODO generated method stub */
     return VOS_NO_ERR;
 }
 
@@ -983,7 +983,7 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
 EXT_DECL void vos_semaDelete (
     VOS_SEMA_T sema)
 {
-	/*TODO generated method stub */
+    /*TODO generated method stub */
     ;
 }
 
@@ -1005,7 +1005,7 @@ EXT_DECL VOS_ERR_T vos_semaTake (
     VOS_SEMA_T  sema,
     UINT32      timeout)
 {
-	/*TODO generated method stub */
+    /*TODO generated method stub */
     return VOS_NO_ERR;
 }
 
@@ -1021,6 +1021,6 @@ EXT_DECL VOS_ERR_T vos_semaTake (
 EXT_DECL void vos_semaGive (
     VOS_SEMA_T sema)
 {
-	/*TODO generated method stub */
+    /*TODO generated method stub */
     ;
 }

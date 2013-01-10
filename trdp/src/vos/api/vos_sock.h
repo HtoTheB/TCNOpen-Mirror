@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 270 2013-01-09 13:12:54Z bloehr $
+ * $Id: vos_sock.h 274 2013-01-10 11:00:43Z aweiss $
  *
  */
 
@@ -443,10 +443,10 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
 /**********************************************************************************************************************/
 /** Get interface addrress
  *
- *  @param[in,out]  pIfa_list		pointer to the I/F all list
- *  @retval         VOS_NO_ERR		no error
- *  @retval         VOS_PARAM_ERR	sock descriptor unknown, parameter error
- *  @retval         VOS_IO_ERR		data could not be read
+ *  @param[in,out]  pIfa_list        pointer to the I/F all list
+ *  @retval         VOS_NO_ERR        no error
+ *  @retval         VOS_PARAM_ERR    sock descriptor unknown, parameter error
+ *  @retval         VOS_IO_ERR        data could not be read
   */
 
 EXT_DECL VOS_ERR_T vos_getIfAddrs (
@@ -455,9 +455,9 @@ EXT_DECL VOS_ERR_T vos_getIfAddrs (
 /**********************************************************************************************************************/
 /** Clear interface address memory area
  *
- *  @param[in,out]  pIfa_list		pointer to the I/F all list
- *  @retval         VOS_NO_ERR		no error
- *  @retval         VOS_PARAM_ERR	sock descriptor unknown, parameter error
+ *  @param[in,out]  pIfa_list        pointer to the I/F all list
+ *  @retval         VOS_NO_ERR        no error
+ *  @retval         VOS_PARAM_ERR    sock descriptor unknown, parameter error
   */
 
 EXT_DECL VOS_ERR_T vos_freeIfAddrs (
@@ -468,11 +468,11 @@ EXT_DECL VOS_ERR_T vos_freeIfAddrs (
 /**********************************************************************************************************************/
 /** Set Using Multicast I/F
  *
- *  @param[in]      sock							socket descriptor
- *  @param[in]      usingMulticastIfAddress	using Multicast I/F Address
- *  @retval         VOS_NO_ERR					no error
- *  @retval         VOS_PARAM_ERR				sock descriptor unknown, parameter error
- *  @retval         VOS_SOCK_ERR				option not supported
+ *  @param[in]      sock                            socket descriptor
+ *  @param[in]      usingMulticastIfAddress    using Multicast I/F Address
+ *  @retval         VOS_NO_ERR                    no error
+ *  @retval         VOS_PARAM_ERR                sock descriptor unknown, parameter error
+ *  @retval         VOS_SOCK_ERR                option not supported
  */
 EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
     INT32   sock,
