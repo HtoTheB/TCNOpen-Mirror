@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: echoSelect.c 105 2012-11-04 17:20:25Z 97025 $
+ * $Id: echoSelect.c 294 2013-01-11 17:44:09Z bloehr $
  *
  */
 
@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <sys/time.h>
 #include <sys/select.h>
 
 #include "trdp_if_light.h"
@@ -49,7 +48,7 @@
 #define PD_COMID2_DST_IP        PD_COMID1_SRC_IP
 
 /* We use dynamic memory	*/
-#define RESERVED_MEMORY  10000
+#define RESERVED_MEMORY  100000
 
 CHAR8 gBuffer[32] = "Hello World";
 
