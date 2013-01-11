@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 282 2013-01-11 07:08:44Z 97029 $
+ * $Id: vos_mem.c 283 2013-01-11 13:59:49Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -413,7 +413,10 @@ EXT_DECL UINT8 *vos_memAlloc (
         }
 
         /* Release semaphore */
-        vos_mutexUnlock(&gMem.mutex);
+        if (vos_mutexUnlock(&gMem.mutex) != VOS_NO_ERR)
+        {
+            vos_printf(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
+        }
 
         if (pBlock != NULL)
         {
@@ -520,7 +523,10 @@ EXT_DECL void vos_memFree (void *pMemBlock)
         }
 
         /* Release semaphore */
-        vos_mutexUnlock(&gMem.mutex);
+        if (vos_mutexUnlock(&gMem.mutex) != VOS_NO_ERR)
+        {
+            vos_printf(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
+        }
     }
 }
 

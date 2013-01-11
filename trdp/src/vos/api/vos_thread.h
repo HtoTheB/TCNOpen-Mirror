@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 276 2013-01-10 14:04:55Z fweispfenning $
+ * $Id: vos_thread.h 283 2013-01-11 13:59:49Z aweiss $
  *
  */
 
@@ -84,7 +84,7 @@ extern "C" {
 #ifndef timersub
 # define timersub(a, b, result)                            \
     do {                                                   \
-    	INT32 usec;                                        \
+        INT32 usec;                                        \
         (result)->tv_sec    = (a)->tv_sec - (b)->tv_sec;   \
         usec   = (a)->tv_usec - (b)->tv_usec;              \
         if (usec < 0) {                                    \
@@ -417,7 +417,7 @@ EXT_DECL VOS_ERR_T vos_mutexTryLock (
  *  @param[in]      pMutex            mutex handle
  */
 
-EXT_DECL void vos_mutexUnlock (
+EXT_DECL VOS_ERR_T vos_mutexUnlock (
     VOS_MUTEX_T pMutex);
 
 /**********************************************************************************************************************/
@@ -473,7 +473,7 @@ EXT_DECL VOS_ERR_T vos_semaTake (
  *  @param[in]      sema            semaphore handle
  */
 
-EXT_DECL void vos_semaGive (
+EXT_DECL VOS_ERR_T vos_semaGive (
     VOS_SEMA_T sema);
 
 
