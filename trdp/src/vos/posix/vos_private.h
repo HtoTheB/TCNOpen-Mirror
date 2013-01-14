@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 282 2013-01-11 07:08:44Z 97029 $
+ * $Id: vos_private.h 301 2013-01-14 10:57:59Z bloehr $
  *
  */
 
@@ -45,13 +45,11 @@ struct VOS_MUTEX
     pthread_mutex_t mutexId;
 };
 
-#ifdef TRDP_OPTION_LADDER
 struct VOS_SHRD
 {
-	INT32 fd;			/* File descriptor */
-	CHAR8 *sharedMemoryName;	/* shared memory Name */
+    INT32   fd;                     /* File descriptor */
+    CHAR8   *sharedMemoryName;      /* shared memory Name */
 };
-#endif /* TRDP_OPTION_LADDER */
 
 VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
 void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
