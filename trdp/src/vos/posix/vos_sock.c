@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 291 2013-01-11 17:40:56Z bloehr $
+ * $Id: vos_sock.c 299 2013-01-14 07:58:16Z aweiss $
  *
  */
 
@@ -634,12 +634,6 @@ EXT_DECL VOS_ERR_T vos_sockSendUDP (
             pBuffer     += sendSize;
         } 
         
-        if (sendSize >= 0)
-        {
-            bufferSize  -= sendSize;
-            pBuffer     += sendSize;
-        }
-
         if(sendSize == -1 && errno == EWOULDBLOCK)
         {
             return VOS_BLOCK_ERR;
