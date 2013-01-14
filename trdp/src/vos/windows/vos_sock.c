@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 305 2013-01-14 15:34:15Z aweiss $
+ * $Id: vos_sock.c 307 2013-01-14 16:37:21Z aweiss $
  *
  */
 
@@ -1122,7 +1122,7 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
         INT32   sock,
         UINT32  mcIfAddress)
 {
-    DWORD       optValue = (DWORD) mcIfAddress;
+    DWORD       optValue =  vos_htonl(mcIfAddress);
     VOS_ERR_T   err = VOS_NO_ERR;
 
     if (sock == (INT32) INVALID_SOCKET)
