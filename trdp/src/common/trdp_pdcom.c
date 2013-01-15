@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 313 2013-01-15 16:08:54Z aweiss $
+ * $Id: trdp_pdcom.c 315 2013-01-15 16:16:58Z bloehr $
  *
  */
 
@@ -258,7 +258,7 @@ TRDP_ERR_T  trdp_pdSendQueued (
             /* Reset "immediate" flag for request or requested packet */
             if (iterPD->privFlags & TRDP_REQ_2B_SENT)            
             {
-                iterPD->privFlags ^= TRDP_REQ_2B_SENT;          
+                iterPD->privFlags &= ~ TRDP_REQ_2B_SENT;          
             }
 
             /*  Set timer if interval was set.
