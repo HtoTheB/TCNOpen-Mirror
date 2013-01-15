@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 302 2013-01-14 10:58:40Z bloehr $
+ * $Id: trdp_if.c 313 2013-01-15 16:08:54Z aweiss $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -1885,8 +1885,8 @@ EXT_DECL TRDP_ERR_T tlp_get (
             /*    Call the receive function if we are in non blocking mode    */
             if (!(appHandle->option & TRDP_OPTION_BLOCK))
             {
-                /* return value is not interesting, will be overwritten later anyway */
-                ret = trdp_pdReceive(appHandle, appHandle->iface[pElement->socketIdx].sock);
+                 /* read all you can get, return value is not interesting */
+                do {} while (trdp_pdReceive(appHandle, appHandle->iface[pElement->socketIdx].sock) != TRDP_BLOCK_ERR);
             }
 
             /*    Get the current time    */
