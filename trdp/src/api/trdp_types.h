@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 286 2013-01-11 14:37:28Z 97030 $
+ * $Id: trdp_types.h 320 2013-01-16 08:52:53Z aweiss $
  *
  */
 
@@ -226,7 +226,8 @@ typedef struct fd_set TRDP_FDS_T;
 /** Message Types    */
 typedef enum
 {
-    TRDP_MSG_PD = 0x5064,     /**< 'Pd' PD Data (Reply)                            */
+    TRDP_MSG_PD = 0x5064,     /**< 'Pd' PD Data                                    */
+    TRDP_MSG_PP = 0x5070,     /**< 'Pp' PD Data (Pull Reply)                       */
     TRDP_MSG_PR = 0x5072,     /**< 'Pr' PD Request                                 */
     TRDP_MSG_PE = 0x5065,     /**< 'Pe' PD Error                                   */
     TRDP_MSG_MN = 0x4D6E,     /**< 'Mn' MD Notification (Request without reply)    */
