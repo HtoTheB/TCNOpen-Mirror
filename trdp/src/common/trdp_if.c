@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 319 2013-01-16 08:31:02Z aweiss $
+ * $Id: trdp_if.c 321 2013-01-16 08:54:20Z aweiss $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -1530,7 +1530,7 @@ EXT_DECL TRDP_ERR_T tlp_request (
                     curSeqCnt holds the last sent sequence counter, therefore set the value initially to -1,
                     it will be incremented when sending...                                                          */
                 pReqElement->curSeqCnt = trdp_getSeqCnt(pReqElement->addr.comId,
-                                                        TRDP_MSG_PD, pReqElement->addr.srcIpAddr) - 1;
+                                                        TRDP_MSG_PR, pReqElement->addr.srcIpAddr) - 1;
 
                 /*    Compute the header fields */
                 trdp_pdInit(pReqElement, TRDP_MSG_PR, topoCount, subs, offsetAddr, replyComId, replyIpAddr);
