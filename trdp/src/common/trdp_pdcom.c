@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 322 2013-01-16 09:48:07Z aweiss $
+ * $Id: trdp_pdcom.c 323 2013-01-16 10:32:15Z aweiss $
  *
  */
 
@@ -103,7 +103,7 @@ TRDP_ERR_T trdp_pdPut (
         return TRDP_PARAM_ERR;
     }
 
-    if (   (pPacket->pktFlags & TRDP_FLAGS_MARSHALL)
+    if (  !(pPacket->pktFlags & TRDP_FLAGS_MARSHALL)
         || (marshall == NULL))
     {
         memcpy(pPacket->pFrame->data, pData, dataSize);
