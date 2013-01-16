@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 313 2013-01-15 16:08:54Z aweiss $
+ * $Id: trdp_if.c 318 2013-01-16 07:42:12Z aweiss $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -1886,7 +1886,7 @@ EXT_DECL TRDP_ERR_T tlp_get (
             if (!(appHandle->option & TRDP_OPTION_BLOCK))
             {
                  /* read all you can get, return value is not interesting */
-                do {} while (trdp_pdReceive(appHandle, appHandle->iface[pElement->socketIdx].sock) != TRDP_BLOCK_ERR);
+                do {} while (trdp_pdReceive(appHandle, appHandle->iface[pElement->socketIdx].sock) == TRDP_NO_ERR);
             }
 
             /*    Get the current time    */
