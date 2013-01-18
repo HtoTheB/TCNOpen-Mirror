@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 332 2013-01-17 18:31:29Z bloehr $
+ * $Id: vos_sock.c 337 2013-01-18 12:15:12Z aweiss $
  *
  */
 
@@ -814,7 +814,7 @@ EXT_DECL VOS_ERR_T vos_sockListen (
         char buff[VOS_MAX_ERR_STR_SIZE];
         strerror_r(errno, buff, VOS_MAX_ERR_STR_SIZE);
         vos_printf(VOS_LOG_ERROR, "listen() failed (Err: %s)\n", buff);
-        return VOS_SOCK_ERR;
+        return VOS_IO_ERR;
     }
     return VOS_NO_ERR;
 }
