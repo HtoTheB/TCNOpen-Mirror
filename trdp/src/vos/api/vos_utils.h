@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 240 2012-12-19 15:34:36Z aweiss $
+ * $Id: vos_utils.h 353 2013-01-21 15:41:05Z bloehr $
  *
  */
 
@@ -77,8 +77,10 @@ extern void *gRefCon;
 /** Alignment macros  */
 #ifdef WIN32
 #define ALIGNOF(type)   __alignof(type)
+/* __alignof__() is broken in GCC since 3.3! It returns 8 for the alignement of long long instaed of 4!
 #elif defined(__GNUC__)
 #define ALIGNOF(type)   __alignof__(type)
+*/
 #else
 #define ALIGNOF(type)   offsetof(struct { char c; type member; }, member)
 #endif
