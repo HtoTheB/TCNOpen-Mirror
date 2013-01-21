@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 333 2013-01-17 18:35:35Z bloehr $
+ * $Id: trdp_pdcom.c 358 2013-01-21 16:08:26Z bloehr $
  *
  */
 
@@ -197,7 +197,7 @@ TRDP_ERR_T trdp_pdGet (
     }
     else
     {
-        return unmarshall(refCon, pPacket->addr.comId, (UINT8 *)pData, pPacket->pFrame->data, pDataSize, &pPacket->pCachedDS);
+        return unmarshall(refCon, pPacket->addr.comId, pPacket->pFrame->data, (UINT8 *)pData, pDataSize, &pPacket->pCachedDS);
     }
 }
 
