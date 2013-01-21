@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 347 2013-01-18 16:36:59Z 97030 $
+ * $Id: trdp_types.h 352 2013-01-21 14:29:20Z 97030 $
  *
  */
 
@@ -405,10 +405,8 @@ typedef struct
 
 /**     Array of pointers to dataset  */
 typedef TRDP_DATASET_T    * pTRDP_DATASET_T;
-typedef pTRDP_DATASET_T     apTRDP_DATASET_T[];
+typedef pTRDP_DATASET_T   * apTRDP_DATASET_T;
 typedef apTRDP_DATASET_T  * papTRDP_DATASET_T;
-typedef papTRDP_DATASET_T * ppapTRDP_DATASET_T;
-
 
 /**********************************************************************************************************************/
 /**                          TRDP statistics type definitions.                                                        */
