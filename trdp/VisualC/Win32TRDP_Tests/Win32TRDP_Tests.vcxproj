@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8238C177-25D0-42E3-AD8E-3A4E61CFA079}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>WIN32TRDP_Tests</RootNamespace>
+    <RootNamespace>Win32TRDP_Tests</RootNamespace>
     <ProjectName>WIN32TRDP_Tests</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
