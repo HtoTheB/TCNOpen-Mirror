@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 385 2013-01-24 09:56:36Z aweiss $
+ * $Id: trdp_if.c 386 2013-01-24 10:00:46Z aweiss $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -327,7 +327,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     {
         pSession->pdDefault = *pPdDefault;
 
-        /* check whether default values neded or not */
+        /* check whether default values needed or not */
         if (pSession->pdDefault.flags == TRDP_FLAGS_DEFAULT)
         {
             pSession->pdDefault.flags = TRDP_FLAGS_NONE;
@@ -375,7 +375,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     {
         pSession->mdDefault = *pMdDefault;
 
-        /* check whether default values neded or not */
+        /* check whether default values needed or not */
         if (pSession->mdDefault.tcpPort == 0)
         {
             pSession->mdDefault.tcpPort = TRDP_MD_TCP_PORT;
