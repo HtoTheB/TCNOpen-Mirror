@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 372 2013-01-23 12:46:04Z bloehr $
+ * $Id: trdp_pdcom.c 402 2013-01-25 14:30:18Z bloehr $
  *
+ *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
 
 /*******************************************************************************
@@ -258,7 +259,7 @@ TRDP_ERR_T  trdp_pdSendQueued (
                 /*    Send the packet if it is not redundant    */
                 if (iterPD->socketIdx != -1 &&
                     (!appHandle->beQuiet ||
-                     (iterPD->pktFlags & TRDP_FLAGS_REDUNDANT)))
+                     (iterPD->privFlags & TRDP_REDUNDANT)))
                 {
                     /* We pass the error to the application, but we keep on going    */
                     err = trdp_pdSend(appHandle->iface[iterPD->socketIdx].sock, iterPD, appHandle->pdDefault.port);

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 398 2013-01-25 13:08:34Z goiarbide $
+ * $Id: trdp_mdcom.c 402 2013-01-25 14:30:18Z bloehr $
  *
  */
 
@@ -986,7 +986,7 @@ TRDP_ERR_T  trdp_mdSend (
         if (dotx)
         {
             /*    Send the packet if it is not redundant    */
-            if (iterMD->socketIdx != -1 && (!appHandle->beQuiet || (iterMD->pktFlags & TRDP_FLAGS_REDUNDANT)))
+            if (iterMD->socketIdx != -1 && (!appHandle->beQuiet || (iterMD->privFlags & TRDP_REDUNDANT)))
             {
                 trdp_mdUpdatePacket(iterMD);
 
