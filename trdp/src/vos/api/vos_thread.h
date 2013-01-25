@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 316 2013-01-16 00:52:43Z 97029 $
+ * $Id: vos_thread.h 407 2013-01-25 16:28:56Z bloehr $
  *
  */
 
@@ -298,12 +298,12 @@ EXT_DECL INT32 vos_cmpTime (
  *
  *
  *  @param[in, out]     pTime           Pointer to time value
- *  @param[in]          div             Divisor
+ *  @param[in]          divisor         Divisor
  */
 
 EXT_DECL void vos_divTime (
     VOS_TIME_T  *pTime,
-    UINT32      div);
+    UINT32      divisor);
 
 /**********************************************************************************************************************/
 /** Multiply the first time by the second, return product in first

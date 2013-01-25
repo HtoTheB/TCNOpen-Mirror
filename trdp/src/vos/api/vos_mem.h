@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.h 390 2013-01-24 16:42:33Z aweiss $
+ * $Id: vos_mem.h 407 2013-01-25 16:28:56Z bloehr $
  *
  */
 
@@ -215,7 +215,7 @@ EXT_DECL void *vos_bsearch (
 /** Case insensitive string compare.
  *
  *  @param[in]      pStr1         Null terminated string to compare
- *  @param[in]      pStr1         Null terminated string to compare
+ *  @param[in]      pStr2         Null terminated string to compare
  *  @param[in]      count         Maximum number of characters to compare 
  *
  *  @retval         0  - equal 
