@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 402 2013-01-25 14:30:18Z bloehr $
+ * $Id: trdp_pdcom.c 406 2013-01-25 16:28:16Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
@@ -648,6 +648,7 @@ TRDP_ERR_T trdp_pdCheck (
  *
  *  @param[in]      pdSock          socket descriptor
  *  @param[in]      pPacket         pointer to packet to be sent
+ *  @param[in]      port            port on which to send
  *
  *  @retval         TRDP_NO_ERR
  *  @retval         TRDP_IO_ERR

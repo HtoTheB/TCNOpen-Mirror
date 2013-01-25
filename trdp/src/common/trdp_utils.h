@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 399 2013-01-25 13:23:15Z aweiss $
+ * $Id: trdp_utils.h 406 2013-01-25 16:28:16Z bloehr $
  *
  */
 
@@ -116,6 +116,7 @@ void    trdp_initSockets(
  *  @param[in]      options         blocking/nonblocking
  *  @param[in]      rcvOnly         only used for receiving
  *  @param[out]     pIndex          returned index of socket pool
+ *  @param[in]      cornerIp        only used for receiving
  *
  *  @retval         TRDP_NO_ERR
  *  @retval         TRDP_PARAM_ERR

@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            trdp_marshall.c
+ * @file            tau_marshall.c
  *
  * @brief           Marshalling functions for TRDP
  *
@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_marshall.c 379 2013-01-24 07:28:00Z aweiss $
+ * $Id: tau_marshall.c 406 2013-01-25 16:28:16Z bloehr $
  *
  */
 

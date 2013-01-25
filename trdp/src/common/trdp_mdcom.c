@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 402 2013-01-25 14:30:18Z bloehr $
+ * $Id: trdp_mdcom.c 406 2013-01-25 16:28:16Z bloehr $
  *
  */
 
@@ -218,6 +218,7 @@ void    trdp_mdUpdatePacket (
 /** Send MD packet
  *
  *  @param[in]      pdSock          socket descriptor
+ *  @param[in]      port            port on which to send
  *  @param[in]      pPacket         pointer to packet to be sent
  *  @retval         != NULL         error
  */
