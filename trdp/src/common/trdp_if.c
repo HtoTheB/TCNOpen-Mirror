@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 402 2013-01-25 14:30:18Z bloehr $
+ * $Id: trdp_if.c 404 2013-01-25 14:53:15Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -1035,6 +1035,18 @@ EXT_DECL TRDP_ERR_T tlp_publish (
             pNewElement->curSeqCnt = trdp_getSeqCnt(pNewElement->addr.comId, TRDP_MSG_PD,
                                                     pNewElement->addr.srcIpAddr) - 1;
 
+            /*    Check if the redundancy group is already set as follower; if set, we need to mark this one also!
+                  This will only happen, if publish() is called while we are in redundant mode */
+            if (0 != redId)
+            {
+                BOOL isLeader = TRUE;
+                ret = tlp_getRedundant(appHandle, redId, &isLeader);
+                if (ret == TRDP_NO_ERR && FALSE == isLeader)
+                {
+                    pNewElement->privFlags |= TRDP_REDUNDANT;
+                }
+            }
+
             /*    Compute the header fields */
             trdp_pdInit(pNewElement, TRDP_MSG_PD, topoCount, subs, offsetAddress, 0, 0);
 
@@ -1048,8 +1060,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
                 ret = tlp_put(appHandle, *pPubHandle, pData, dataSize);
             }
 
-            if ((ret == TRDP_NO_ERR)
-                && (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING))
+            if ((ret == TRDP_NO_ERR) && (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING))
             {
                 ret = trdp_pdDistribute(appHandle->pSndQueue);
             }
