@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 391 2013-01-24 16:44:41Z aweiss $
+ * $Id: trdp_if.c 398 2013-01-25 13:08:34Z goiarbide $
  *
  *      BL 2013-01-08: LADDER: Removed/Changed some ladder specific code in tlp_subscribe()
  *
@@ -2235,7 +2235,14 @@ static TRDP_ERR_T tlm_common_send (
             TRDP_TIME_T nextTime;
             TRDP_TIME_T tv_interval;
 
-            UINT32      grossSize = sizeof(MD_HEADER_T) + dataSize + 4; /* telegram header + payload + CRC */
+            UINT32 grossSize = sizeof(MD_HEADER_T);
+
+            if(dataSize > 0)
+            {
+                grossSize = grossSize + dataSize + 4; /* telegram header + payload + CRC */
+
+            }
+
             grossSize += (4 - (grossSize & 3)) & 3; /* round to 4 bytes size */
 
             /* evaluate start time and timeout. For notify I use replyTimeout as sendTimeout */

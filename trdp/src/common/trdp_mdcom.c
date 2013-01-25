@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 380 2013-01-24 07:32:13Z aweiss $
+ * $Id: trdp_mdcom.c 398 2013-01-25 13:08:34Z goiarbide $
  *
  */
 
@@ -310,7 +310,6 @@ TRDP_ERR_T  trdp_mdRecvPacket (
                 &pPacket->addr.srcIpAddr);
     }
 
-    //pPacket->dataSize = size;
     pPacket->grossSize = size;
     pPacket->dataSize = size - sizeof(MD_HEADER_T);
 
@@ -322,8 +321,12 @@ TRDP_ERR_T  trdp_mdRecvPacket (
 
     if (err != TRDP_NO_ERR)
     {
-        vos_printf(VOS_LOG_ERROR, "trdp_mdRecvPacket failed = %d\n", err);
-        return TRDP_IO_ERR;
+        if(((pPacket->pktFlags & TRDP_FLAGS_TCP) == 0)//UDP
+                || ((err != TRDP_BLOCK_ERR) && ((pPacket->pktFlags & TRDP_FLAGS_TCP) != 0)))
+        {
+            vos_printf(VOS_LOG_ERROR, "trdp_mdRecvPacket failed = %d\n", err);
+            return TRDP_IO_ERR;
+        }
     }
 
     /* received data */
