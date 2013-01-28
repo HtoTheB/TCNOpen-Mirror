@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 421 2013-01-28 13:22:35Z bloehr $
+ * $Id: trdp_private.h 427 2013-01-28 17:27:11Z bloehr $
  *
  */
 
@@ -219,6 +219,7 @@ typedef struct PD_ELE
     TRDP_IP_ADDR_T      pullIpAddress;          /**< In case of pulling a PD this is the requested Ip       */
     UINT32              redId;                  /**< Redundancy group ID or zero                            */
     UINT32              curSeqCnt;              /**< the last sent or received sequence counter             */
+    UINT32              curSeqCnt4Pull;         /**< the last sent sequence counter for PULL                */
     UINT32              numRxTx;                /**< Counter for received packets (statistics)              */
     UINT32              updPkts;                /**< Counter for updated packets (statistics)               */
     UINT32              getPkts;                /**< Counter for read packets (statistics)                  */
