@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 417 2013-01-28 10:41:00Z fweispfenning $
+ * $Id: trdp_pdcom.c 424 2013-01-28 13:50:24Z fweispfenning $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
@@ -108,8 +108,6 @@ TRDP_ERR_T trdp_pdPut (
           || (marshall == NULL))
     {
         memcpy(pPacket->pFrame->data, pData, dataSize);
-        // clean the rest of the package, when shorter data is sent (set data to zero)
-        memset(pPacket->pFrame->data+dataSize, 0, pPacket->dataSize - dataSize);
     }
     else
     {
