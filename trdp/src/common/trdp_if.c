@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 405 2013-01-25 15:26:57Z bloehr $
+ * $Id: trdp_if.c 416 2013-01-28 10:31:11Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -52,8 +52,7 @@
 
 static TRDP_APP_SESSION_T   sSession        = NULL;
 static VOS_MUTEX_T          sSessionMutex   = NULL;
-static UINT32   sTopoCount  = 0;
-static BOOL     sInited     = FALSE;
+static BOOL                 sInited         = FALSE;
 
 
 /******************************************************************************
@@ -838,8 +837,6 @@ EXT_DECL TRDP_ERR_T tlc_setTopoCount (
         ret = (TRDP_ERR_T) vos_mutexLock(appHandle->mutex);
         if (ret == TRDP_NO_ERR)
         {
-            sTopoCount = topoCount;
-
             /*  Set the topoCount for each session  */
             appHandle->topoCount = topoCount;
 
@@ -855,19 +852,6 @@ EXT_DECL TRDP_ERR_T tlc_setTopoCount (
     }
 
     return ret;
-}
-
-/**********************************************************************************************************************/
-/** Get current topocount
- *
- *    This value is used for validating outgoing and incoming packets only!
- *
- *  @retval      topoCount           Current topoCount value
- */
-UINT32 trdp_getTopoCount (
-    TRDP_APP_SESSION_T appHandle)
-{
-    return sTopoCount;
 }
 
 /**********************************************************************************************************************/
