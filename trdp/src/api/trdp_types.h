@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 402 2013-01-25 14:30:18Z bloehr $
+ * $Id: trdp_types.h 411 2013-01-28 07:51:25Z aweiss $
  *
  */
 
@@ -259,12 +259,12 @@ typedef enum
 /** Various flags for PD and MD packets    */
 typedef enum
 {
-    TRDP_FLAGS_DEFAULT  = 0,        /**< Default value defined in tlc_openDession will be taken     */
-    TRDP_FLAGS_NONE     = 0x1,      /**< No flags set                                               */
-    TRDP_FLAGS_RESERVED = 0x2,      /**< (was Redundant, moved to private flags)                    */
-    TRDP_FLAGS_MARSHALL = 0x4,      /**< Optional marshalling/unmarshalling in TRDP stack           */
-    TRDP_FLAGS_CALLBACK = 0x8,      /**< Use of callback function                                   */
-    TRDP_FLAGS_TCP      = 0x10      /**< Use TCP for message data                                   */
+    TRDP_FLAGS_DEFAULT   = 0,       /**< Default value defined in tlc_openDession will be taken     */
+    TRDP_FLAGS_NONE      = 0x1,     /**< No flags set                                               */
+    TRDP_FLAGS_REDUNDANT = 0x2,     /**< Redundant sources                                          */
+    TRDP_FLAGS_MARSHALL  = 0x4,     /**< Optional marshalling/unmarshalling in TRDP stack           */
+    TRDP_FLAGS_CALLBACK  = 0x8,     /**< Use of callback function                                   */
+    TRDP_FLAGS_TCP       = 0x10     /**< Use TCP for message data                                   */
 } TRDP_FLAGS_T;
 
 
