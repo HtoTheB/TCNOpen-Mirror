@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 416 2013-01-28 10:31:11Z bloehr $
+ * $Id: trdp_if.c 417 2013-01-28 10:41:00Z fweispfenning $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -1136,7 +1136,7 @@ TRDP_ERR_T  tlp_unpublish (
  *  @param[in,out]  dataSize           size of data
  *
  *  @retval         TRDP_NO_ERR        no error
- *  @retval         TRDP_PARAM_ERR     parameter error
+ *  @retval         TRDP_PARAM_ERR     parameter error on uninitialized parameter or changed dataSize compared to published one
  *  @retval         TRDP_NOPUB_ERR     not published
  *  @retval         TRDP_NOINIT_ERR    handle invalid
  *  @retval         TRDP_COMID_ERR     ComID not found when marshalling
