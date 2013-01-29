@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 430 2013-01-29 08:59:48Z aweiss $
+ * $Id: trdp_types.h 431 2013-01-29 09:22:26Z aweiss $
  *
  */
 
@@ -332,7 +332,7 @@ typedef struct
     UINT32              replyTimeout;       /**< reply timeout in us given with the request */
     TRDP_URI_USER_T     destURI;            /**< destination URI user part from MD header   */
     TRDP_URI_USER_T     srcURI;             /**< source URI user part from MD header        */
-    UINT32              noOfRepliers;       /**< number of expected repliers, 0 if unknown  */
+    UINT32              numExpReplies;      /**< number of expected replies, 0 if unknown   */
     UINT32              numReplies;         /**< actual number of replies for the request   */
     const void          *pUserRef;          /**< User reference given with the local call   */
     TRDP_ERR_T          resultCode;         /**< error code                                 */
