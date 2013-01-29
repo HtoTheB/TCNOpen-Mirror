@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 430 2013-01-29 08:59:48Z aweiss $
+ * $Id: trdp_if.c 433 2013-01-29 11:06:34Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -485,7 +485,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                           sizeof(TRDP_STATISTICS_T)); 
 
         vos_printf(VOS_LOG_INFO,
-                   "TRDP Stack Version %s: successfully initiated\n",
+                   "TRDP Stack Version %s: session opened successfully\n",
                    LIB_VERSION);
 
         if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
