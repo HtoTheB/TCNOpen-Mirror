@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 406 2013-01-25 16:28:16Z bloehr $
+ * $Id: vos_mem.c 441 2013-01-29 16:00:54Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -674,8 +674,10 @@ EXT_DECL void vos_strncpy (
     UINT32       count )
 {
 #ifdef WIN32
+    /*lint -e(534) ignore return value */
     strncpy_s((char *)pStrDst, (size_t) count, (const char *)pStrSrc, (size_t) count);
 #else
+    /*lint -e(534) ignore return value */
     strncpy((char *)pStrDst, (const char *)pStrSrc, (size_t) count);
 #endif
 }
