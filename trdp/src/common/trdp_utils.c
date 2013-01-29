@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.c 406 2013-01-25 16:28:16Z bloehr $
+ * $Id: trdp_utils.c 432 2013-01-29 09:58:46Z bloehr $
  *
  */
 
@@ -630,6 +630,7 @@ UINT32  trdp_getSeqCnt (
 
     /*    For process data look at the PD send queue only    */
     if (TRDP_MSG_PD == msgType ||
+        TRDP_MSG_PP == msgType ||
         TRDP_MSG_PR == msgType ||
         TRDP_MSG_PE == msgType)
     {
@@ -690,6 +691,7 @@ BOOL  trdp_isRcvSeqCnt (
 
     /*    For process data look at the PD recv queue only    */
     if (TRDP_MSG_PD == msgType ||
+        TRDP_MSG_PP == msgType ||
         TRDP_MSG_PR == msgType ||
         TRDP_MSG_PE == msgType)
     {
