@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 274 2013-01-10 11:00:43Z aweiss $
+ * $Id: trdp_pdcom.h 430 2013-01-29 08:59:48Z aweiss $
  *
  */
 
@@ -42,7 +42,7 @@
  * GLOBAL FUNCTIONS
  */
 
-void        trdp_pdInit(PD_ELE_T *, TRDP_MSG_T, UINT32 topCount,UINT16 subs, UINT16      offsetAddress, UINT32 replyComId, UINT32 replyIpAddress);
+void        trdp_pdInit(PD_ELE_T *, TRDP_MSG_T, UINT32 topCount, UINT32 replyComId, UINT32 replyIpAddress);
 void        trdp_pdUpdate (
     PD_ELE_T *);
 

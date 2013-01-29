@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 375 2013-01-23 15:14:24Z aweiss $
+ * $Id: vos_types.h 430 2013-01-29 08:59:48Z aweiss $
  *
  */
 
@@ -36,8 +36,6 @@ extern "C" {
 
 #if defined(WIN32)
 
-#include <wchar.h>
-
 typedef unsigned char UINT8;
 typedef unsigned short UINT16;
 typedef unsigned int UINT32;
@@ -48,7 +46,7 @@ typedef signed int INT32;
 typedef signed long long INT64;
 typedef int BOOL;
 typedef char CHAR8;
-typedef wchar_t UTF16;
+typedef short UTF16;
 typedef float REAL32;
 typedef double REAL64;
 

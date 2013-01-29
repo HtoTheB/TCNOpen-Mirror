@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: test_trafficShaping.c 374 2013-01-23 14:16:22Z aweiss $
+ * $Id: test_trafficShaping.c 430 2013-01-29 08:59:48Z aweiss $
  *
  */
 
@@ -254,9 +254,7 @@ int main (int argc, char *argv[])
                           TRDP_FLAGS_NONE,            /*    Use callback for errors        */
                           NULL,                       /*    default qos and ttl            */
                           (UINT8 *)outputBuffer,      /*    initial data                */
-                          gPD[i].size,                /*    data size                    */
-                          FALSE,                      /*    no ladder                    */
-                          0);                         /*    no ladder                    */
+                          gPD[i].size);               /*    no ladder                    */
         
         
         if (err != TRDP_NO_ERR)
