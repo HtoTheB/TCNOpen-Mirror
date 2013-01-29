@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 337 2013-01-18 12:15:12Z aweiss $
+ * $Id: vos_sock.c 443 2013-01-29 16:43:05Z bloehr $
  *
  */
 
@@ -491,7 +491,8 @@ EXT_DECL VOS_ERR_T vos_sockJoinMC (
         }
 
         errno = 0;
-        if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) == -1)
+        if (setsockopt(sock, IPPROTO_IP, IP_ADD_MEMBERSHIP, &mreq, sizeof(mreq)) == -1 &&
+        	errno != EADDRINUSE)
         {
             strerror_r(errno, buff, VOS_MAX_ERR_STR_SIZE);
             vos_printf(VOS_LOG_ERROR, "setsockopt() IP_ADD_MEMBERSHIP failed (Err: %s)\n", buff);
