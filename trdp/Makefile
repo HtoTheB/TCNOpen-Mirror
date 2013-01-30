@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 408 2013-01-25 16:30:28Z bloehr $
+#// $Id: Makefile 451 2013-01-30 09:49:29Z fweispfenning $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -85,6 +85,7 @@ demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receiveP
 example:	outdir $(OUTDIR)/mdManager
 test:		outdir $(OUTDIR)/getstats
 
+pdtest:		outdir $(OUTDIR)/trdp-pd-test
 mdtest:		outdir $(OUTDIR)/mdTest0001		$(OUTDIR)/mdTest0002
 
 doc:		doc/latex/refman.pdf
@@ -194,6 +195,13 @@ $(OUTDIR)/mdManagerTCP: mdManagerTCP.c  $(OUTDIR)/libtrdp.a
 			    -o $@
 			$(STRIP) $@
 
+$(OUTDIR)/trdp-pd-test: $(OUTDIR)/libtrdp.a 
+			@$(ECHO) ' ### Building PD test application $(@F)'
+			$(CC) test/pdpatterns/trdp-pd-test.cpp \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
 			
 outdir:
 		$(MD) $(OUTDIR)

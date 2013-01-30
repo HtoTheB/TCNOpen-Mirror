@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 431 2013-01-29 09:22:26Z aweiss $
+ * $Id: trdp_types.h 451 2013-01-30 09:49:29Z fweispfenning $
  *
  */
 
@@ -216,7 +216,12 @@ typedef VOS_TIME_T TRDP_TIME_T;
     INT32   fds_bits[VOS_MAX_SOCKET_CNT];
    } TRDP_FDS_T;
  */
+#ifdef WIN32
 typedef struct fd_set TRDP_FDS_T;
+#else
+typedef fd_set TRDP_FDS_T;
+#endif
+
 /*#define TRDP_FDS_T    fd_set */
 
 /**********************************************************************************************************************/
