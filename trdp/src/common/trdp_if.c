@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 445 2013-01-29 16:47:13Z bloehr $
+ * $Id: trdp_if.c 450 2013-01-30 09:47:39Z aweiss $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -1759,7 +1759,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
     else
     {
         /*    Find a (new) socket    */
-
+#ifdef POSIX
         /* Multicast : use I/F destIp */
         if (vos_isMulticast(destIpAddr))
         {
@@ -1774,6 +1774,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
                                      0);
         }
         else
+#endif
         {
 
             ret = trdp_requestSocket(appHandle->iface,
