@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 444 2013-01-29 16:44:47Z bloehr $
+ * $Id: trdp_private.h 458 2013-01-31 09:29:41Z goiarbide $
  *
  */
 
@@ -266,7 +266,8 @@ typedef struct MD_ELE
     {
         struct
         {
-            UINT32 comId;                       /**< filter on incoming MD by comId                         */
+            UINT32          comId;              /**< filter on incoming MD by comId                         */
+            const void      *pUserRef;          /**< user reference for call_back from tlm_request()        */
         } caller;
         struct
         {

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 450 2013-01-30 09:47:39Z aweiss $
+ * $Id: trdp_if.c 458 2013-01-31 09:29:41Z goiarbide $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  *
@@ -2462,6 +2462,17 @@ static TRDP_ERR_T tlm_common_send (
 
             /* save com ID */
             pNewElement->u.caller.comId = comId;
+
+            /* Add the pUserRef */
+            switch(msgType)
+            {
+                case TRDP_MSG_MR:
+                case TRDP_MSG_MC:
+                    pNewElement->u.caller.pUserRef = pUserRef;
+                    break;
+                default:
+                    break;
+            }
 
             /* Prepare header */
             pNewElement->frameHead.sequenceCounter = vos_htonl(0);
