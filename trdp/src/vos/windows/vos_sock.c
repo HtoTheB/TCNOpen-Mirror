@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 443 2013-01-29 16:43:05Z bloehr $
+ * $Id: vos_sock.c 464 2013-01-31 16:23:24Z bloehr $
  *
  */
 
@@ -782,6 +782,10 @@ EXT_DECL VOS_ERR_T vos_sockBind (
         return VOS_PARAM_ERR;
     }
 
+	if (vos_isMulticast(ipAddress))
+    {
+        ipAddress = INADDR_ANY;
+    }
     /*    Allow the socket to be bound to an address and port
         that is already in use    */
 
