@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: sendHello.c 446 2013-01-29 16:47:58Z bloehr $
+ * $Id: sendHello.c 470 2013-02-01 15:15:03Z bloehr $
  *
  */
 
@@ -42,15 +42,45 @@
 /* We use dynamic memory    */
 #define RESERVED_MEMORY  100000
 
+/**********************************************************************************************************************/
+/** callback routine for TRDP logging/error output
+ *
+ *  @param[in]      pRefCon            user supplied context pointer
+ *  @param[in]        category        Log category (Error, Warning, Info etc.)
+ *  @param[in]        pTime            pointer to NULL-terminated string of time stamp
+ *  @param[in]        pFile            pointer to NULL-terminated string of source module
+ *  @param[in]        LineNumber        line
+ *  @param[in]        pMsgStr         pointer to NULL-terminated string
+ *  @retval         none
+ */
+void dbgOut (
+    void        *pRefCon,
+    TRDP_LOG_T  category,
+    const CHAR8 *pTime,
+    const CHAR8 *pFile,
+    UINT16      LineNumber,
+    const CHAR8 *pMsgStr)
+{
+    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
+    printf("%s %s %s:%d %s",
+           pTime,
+           catStr[category],
+           pFile,
+           LineNumber,
+           pMsgStr);
+}
+
 /* Print a sensible usage message */
 void usage (const char *appName)
 {
     printf("Usage of %s\n", appName);
     printf("This tool sends PD messages to an ED.\n"
            "Arguments are:\n"
-           "-t target IP address\n"
-           "-c comId (default 1000)\n"
-           "-d custom string to send (default: 'Hello World')\n"
+           "-o <own IP address> (default INADDR_ANY)\n"
+           "-t <target IP address>\n"
+           "-c <comId> (default 1000)\n"
+           "-e send empty request\n"
+           "-d <custom string to send> (default: 'Hello World')\n"
            "-v print version and quit\n"
            );
 }
@@ -96,7 +126,7 @@ int main (int argc, char *argv[])
         return 1;
     }
 
-    while ((ch = getopt(argc, argv, "t:o:d:h?vc:")) != -1)
+    while ((ch = getopt(argc, argv, "t:o:d:h?vec:")) != -1)
     {
         switch (ch)
         {
@@ -132,6 +162,12 @@ int main (int argc, char *argv[])
                 destIP = (ip[3] << 24) | (ip[2] << 16) | (ip[1] << 8) | ip[0];
                 break;
             }
+            case 'e':
+            {
+                outputBuffer        = NULL;
+                outputBufferSize    = 0;
+            }
+            break;
             case 'd':
             {   /*  data    */
                 char    c;
@@ -174,7 +210,7 @@ int main (int argc, char *argv[])
     }
 
     /*    Init the library  */
-    if (tlc_init(NULL,                              /* no logging    */
+    if (tlc_init(&dbgOut,                              /* no logging    */
                  &dynamicConfig) != TRDP_NO_ERR)    /* Use application supplied memory    */
     {
         printf("Initialization error\n");
@@ -206,7 +242,7 @@ int main (int argc, char *argv[])
                         NULL,                       /*    default qos and ttl           */
                         (UINT8 *)outputBuffer,      /*    initial data                  */
                         outputBufferSize            /*    data size                     */
-                        ); 
+                        );
 
 
     if (err != TRDP_NO_ERR)
@@ -279,7 +315,10 @@ int main (int argc, char *argv[])
             fflush(stdout);
         }
 
-        sprintf((char *)outputBuffer, "Just a Counter: %08d", hugeCounter++);
+        if (outputBuffer != NULL)
+        {
+            sprintf((char *)outputBuffer, "Just a Counter: %08d", hugeCounter++);
+        }
 
         err = tlp_put(appHandle, pubHandle, outputBuffer, outputBufferSize);
         if (err != TRDP_NO_ERR)

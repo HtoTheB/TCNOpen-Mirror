@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 468 2013-02-01 10:58:22Z aweiss $
+ * $Id: trdp_utils.c 470 2013-02-01 15:15:03Z bloehr $
  *
  */
 
@@ -149,6 +149,11 @@ UINT32 trdp_packetSizePD (
 {
     UINT32 packetSize = sizeof(PD_HEADER_T) + dataSize + sizeof(UINT32);
 
+	if (0 == dataSize)
+    {
+    	/* Packet consists of header only  */
+        return sizeof(PD_HEADER_T);
+    }
     /*  padding to 4 */
     if ((dataSize & 0x3) > 0)
     {
