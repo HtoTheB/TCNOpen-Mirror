@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 451 2013-01-30 09:49:29Z fweispfenning $
+#// $Id: Makefile 483 2013-02-07 12:36:14Z fweispfenning $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -171,6 +171,13 @@ $(OUTDIR)/mdTest0002: mdTest0002.c  $(OUTDIR)/libtrdp.a
 			$(CC) test/udpmdcom/mdTest0002.c \
 			    -ltrdp \
 			    -luuid -lrt \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
+			
+$(OUTDIR)/test_mdSingle: $(OUTDIR)/libtrdp.a 
+			$(CC) test/test_mdSingle.c \
+			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
 			$(STRIP) $@

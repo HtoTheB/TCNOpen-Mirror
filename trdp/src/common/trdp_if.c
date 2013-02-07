@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 470 2013-02-01 15:15:03Z bloehr $
+ * $Id: trdp_if.c 483 2013-02-07 12:36:14Z fweispfenning $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -2770,7 +2770,11 @@ TRDP_ERR_T tlm_addListener (
                 pNewElement->u.listener.destIpAddr  = destIpAddr;
                 pNewElement->u.listener.pktFlags    = pktFlags;
                 pNewElement->pCachedDS = NULL;
-                memcpy(pNewElement->u.listener.destURI, destURI, TRDP_MAX_URI_USER_LEN);
+                if ( destURI > 0 )
+                {
+                    memcpy(pNewElement->u.listener.destURI, destURI, TRDP_MAX_URI_USER_LEN);
+                } /* set the URI only, if it is given. Otherwise this attribute stays zero */
+
                 if (vos_isMulticast(destIpAddr))
                 {
                     pNewElement->addr.mcGroup   = destIpAddr;   /* Set multicast group address */
