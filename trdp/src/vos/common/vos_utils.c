@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.c 487 2013-02-08 09:13:38Z fweispfenning $
+ * $Id: vos_utils.c 503 2013-02-08 14:30:33Z aweiss $
  *
  */
 
@@ -155,10 +155,12 @@ VOS_ERR_T vos_initRuntimeConsts (void)
         INT32		dword1;
         INT8		byte3;
         INT16		word;
+        INT64       filler1;
         INT8		byte4;
         REAL64		longLong2;
         INT8		byte5;
         REAL32		dword2;
+        INT32       filler2;
         INT8		byte6;
         TIMEDATE48	dword3;
         INT8		byte7;
