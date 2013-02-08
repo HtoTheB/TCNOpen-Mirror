@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 443 2013-01-29 16:43:05Z bloehr $
+ * $Id: vos_sock.c 495 2013-02-08 12:42:06Z bloehr $
  *
  */
 
@@ -671,6 +671,7 @@ EXT_DECL VOS_ERR_T vos_sockSendUDP (
  *  @param[out]     pBuffer         pointer to applications data buffer
  *  @param[in,out]  pSize           pointer to the received data size
  *  @param[out]     pIPAddr         source IP
+ *  @param[out]     pIPPort         source port
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
@@ -683,7 +684,8 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     INT32   sock,
     UINT8   *pBuffer,
     UINT32  *pSize,
-    UINT32  *pIPAddr)
+    UINT32  *pIPAddr,
+    UINT16	*pIPPort)
 {
     struct sockaddr_in  srcAddr;
     socklen_t           sockLen     = sizeof(srcAddr);
@@ -706,7 +708,11 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
                            &sockLen);
 
         *pIPAddr = (uint32_t) vos_ntohl(srcAddr.sin_addr.s_addr);
-        
+        if (pIPPort)
+        {
+        	*pIPPort = (UINT16) vos_ntohs(srcAddr.sin_port);
+        }
+
 #if 0
         if (rcvSize > 0)
         {
