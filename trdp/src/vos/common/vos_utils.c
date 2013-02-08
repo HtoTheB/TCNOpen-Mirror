@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.c 485 2013-02-07 18:10:40Z bloehr $
+ * $Id: vos_utils.c 487 2013-02-08 09:13:38Z fweispfenning $
  *
  */
 
@@ -298,7 +298,7 @@ UINT32 vos_crc32 (
  *
  *  @retval             TRUE if big endian
  */
-inline BOOL vos_isBigEndian(void)
+INLINE BOOL vos_isBigEndian(void)
 {
     return sIsBigEndian;
 }
