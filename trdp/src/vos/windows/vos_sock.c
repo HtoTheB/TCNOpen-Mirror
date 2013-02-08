@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 465 2013-01-31 16:27:16Z bloehr $
+ * $Id: vos_sock.c 498 2013-02-08 12:51:36Z bloehr $
  *
  */
 
@@ -704,7 +704,8 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     INT32   sock,
     UINT8   *pBuffer,
     UINT32  *pSize,
-    UINT32  *pIPAddr)
+    UINT32  *pIPAddr,
+    UINT16  *pIPPort)
 {
     struct sockaddr_in srcAddr;
     int sockLen = sizeof(srcAddr);
@@ -729,6 +730,10 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
         err = WSAGetLastError();
 
         *pIPAddr = (UINT32) vos_ntohl(srcAddr.sin_addr.s_addr);
+        if (NULL != pIPPort)
+        {
+            *pIPPort = (UINT32) vos_ntohs(srcAddr.sin_port);
+        }
         /* vos_printf(VOS_LOG_INFO, "recvfrom found %d bytes for IP address %x\n", rcvSize, *pIPAddr); */
 
         if(rcvSize == SOCKET_ERROR && err == WSAEWOULDBLOCK)
