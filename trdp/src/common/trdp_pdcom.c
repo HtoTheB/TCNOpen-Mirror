@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 473 2013-02-04 09:16:17Z aweiss $
+ * $Id: trdp_pdcom.c 492 2013-02-08 12:40:15Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
@@ -345,7 +345,7 @@ TRDP_ERR_T  trdp_pdReceive (
     recSize = TRDP_MAX_PD_PACKET_SIZE;
 
     /*  Get the packet from the wire:  */
-    err = (TRDP_ERR_T) vos_sockReceiveUDP(sock, (UINT8 *) &pNewFrame->frameHead, &recSize, &subHandle.srcIpAddr);
+    err = (TRDP_ERR_T) vos_sockReceiveUDP(sock, (UINT8 *) &pNewFrame->frameHead, &recSize, &subHandle.srcIpAddr, NULL);
     if ( err != TRDP_NO_ERR)
     {
         return err;
