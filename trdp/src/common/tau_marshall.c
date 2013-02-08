@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_marshall.c 439 2013-01-29 14:00:48Z bloehr $
+ * $Id: tau_marshall.c 497 2013-02-08 12:46:37Z bloehr $
  *
  */
 
@@ -108,7 +108,7 @@ static INLINE void unpackedCopy64 (
     UINT8   * *ppDst,
     UINT32  noOfItems)
 
-#if __BIG_ENDIAN__
+#if __BIG_ENDIAN__ || __ARMEB__ || __AARCH64EB__ || __MIPSEB__
 {
     UINT32  size    = noOfItems * sizeof(UINT64);
     UINT8   *pDst8  = alignePtr(*ppDst, ALIGNOF(UINT64));
@@ -116,7 +116,7 @@ static INLINE void unpackedCopy64 (
     *ppSrc  = (UINT8 *) *ppSrc + size;
     *ppDst  = (UINT8 *) pDst8 + size;
 }
-#elif __LITTLE_ENDIAN__
+#else
 {
     UINT8   *pDst8  = (UINT8 *) alignePtr(*ppDst, ALIGNOF(UINT64));
     UINT8   *pSrc8  = *ppSrc;
@@ -134,10 +134,6 @@ static INLINE void unpackedCopy64 (
     }
     *ppSrc  = (UINT8 *) pSrc8;
     *ppDst  = (UINT8 *) pDst8;
-}
-#else
-{
-/*    #error "Endianess not defined" */
 }
 #endif
 
