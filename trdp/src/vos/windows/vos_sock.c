@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 498 2013-02-08 12:51:36Z bloehr $
+ * $Id: vos_sock.c 506 2013-02-08 16:53:31Z bloehr $
  *
  */
 
@@ -692,6 +692,7 @@ EXT_DECL VOS_ERR_T vos_sockSendUDP (
  *  @param[out]     pBuffer         pointer to applications data buffer
  *  @param[in,out]  pSize           pointer to the received data size
  *  @param[out]     pIPAddr         source IP
+ *  @param[out]     pIPPort         source port
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error

@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 483 2013-02-07 12:36:14Z fweispfenning $
+#// $Id: Makefile 506 2013-02-08 16:53:31Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -86,7 +86,7 @@ example:	outdir $(OUTDIR)/mdManager
 test:		outdir $(OUTDIR)/getstats
 
 pdtest:		outdir $(OUTDIR)/trdp-pd-test
-mdtest:		outdir $(OUTDIR)/mdTest0001		$(OUTDIR)/mdTest0002
+mdtest:		outdir $(OUTDIR)/mdTest0001		$(OUTDIR)/mdTest0002	$(OUTDIR)/test_mdSingle
 
 doc:		doc/latex/refman.pdf
 
