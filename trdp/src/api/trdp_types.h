@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 453 2013-01-30 13:05:12Z fweispfenning $
+ * $Id: trdp_types.h 496 2013-02-08 12:45:41Z bloehr $
  *
  */
 
@@ -183,6 +183,7 @@ typedef enum
     TRDP_MUTEX_ERR          = -12,  /**< Mutex not available                            */
     TRDP_THREAD_ERR         = -13,  /**< Thread error                                   */
     TRDP_BLOCK_ERR          = -14,  /**< System call would have blocked in blocking mode */
+    TRDP_INTEGRATION_ERR    = -15,  /**< System call would have blocked in blocking mode */
     TRDP_NOSESSION_ERR      = -30,  /**< No such session                                */
     TRDP_SESSION_ABORT_ERR  = -31,  /**< Session aborted                                */
     TRDP_NOSUB_ERR          = -32,  /**< No subscriber                                  */
