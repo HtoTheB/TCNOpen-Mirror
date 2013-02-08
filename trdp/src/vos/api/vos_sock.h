@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 495 2013-02-08 12:42:06Z bloehr $
+ * $Id: vos_sock.h 499 2013-02-08 12:54:23Z bloehr $
  *
  */
 
@@ -324,7 +324,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     UINT8   *pBuffer,
     UINT32  *pSize,
     UINT32  *pIPAddr,
-    UINT16	*pIPPort);
+    UINT16  *pIPPort);
 
 /**********************************************************************************************************************/
 /** Bind a socket to an address and port.
