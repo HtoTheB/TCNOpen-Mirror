@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: echoSelect.c 446 2013-01-29 16:47:58Z bloehr $
+ * $Id: echoSelect.c 509 2013-02-11 10:38:19Z bloehr $
  *
  */
 
@@ -254,7 +254,7 @@ int main (int argc, char * *argv)
             what ever comes first.
          */
 
-        rv = select((int)noOfDesc, &rfds, NULL, NULL, &tv);
+        rv = select((int)noOfDesc + 1, &rfds, NULL, NULL, &tv);
 
         /*
             Check for overdue PDs (sending and receiving)
