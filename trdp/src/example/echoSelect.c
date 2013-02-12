@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: echoSelect.c 509 2013-02-11 10:38:19Z bloehr $
+ * $Id: echoSelect.c 511 2013-02-12 10:14:29Z bloehr $
  *
  */
 
@@ -93,6 +93,7 @@ void dbgOut (
  */
 void myPDcallBack (
     void                    *pRefCon,
+    TRDP_APP_SESSION_T      appHandle,
     const TRDP_PD_INFO_T    *pMsg,
     UINT8                   *pData,
     UINT32                  dataSize)

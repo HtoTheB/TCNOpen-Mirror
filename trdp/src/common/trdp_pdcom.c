@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 492 2013-02-08 12:40:15Z bloehr $
+ * $Id: trdp_pdcom.c 511 2013-02-12 10:14:29Z bloehr $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
@@ -537,6 +537,7 @@ TRDP_ERR_T  trdp_pdReceive (
             theMessage.resultCode   = resultCode;
 
             appHandle->pdDefault.pfCbFunction(appHandle->pdDefault.pRefCon,
+                                              appHandle,
                                               &theMessage,
                                               pExistingElement->pFrame->data,
                                               vos_ntohl(pExistingElement->pFrame->frameHead.datasetLength));

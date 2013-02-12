@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 510 2013-02-12 07:58:55Z aweiss $
+ * $Id: trdp_if.c 511 2013-02-12 10:14:29Z bloehr $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -1437,7 +1437,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
                     theMessage.pUserRef     = iterPD->userRef;
                     theMessage.resultCode   = TRDP_TIMEOUT_ERR;
 
-                    appHandle->pdDefault.pfCbFunction(appHandle->pdDefault.pRefCon, &theMessage, NULL, 0);
+                    appHandle->pdDefault.pfCbFunction(appHandle->pdDefault.pRefCon, appHandle, &theMessage, NULL, 0);
                 }
 
                 /*    Prevent repeated time out events    */

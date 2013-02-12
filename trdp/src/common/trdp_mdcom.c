@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 506 2013-02-08 16:53:31Z bloehr $
+ * $Id: trdp_mdcom.c 511 2013-02-12 10:14:29Z bloehr $
  *
  */
 
@@ -639,6 +639,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                 {
                                     appHandle->mdDefault.pfCbFunction(
                                         appHandle->mdDefault.pRefCon,
+                                        appHandle,
                                         &theMessage,
                                         (UINT8 *)&(appHandle->pMDRcvEle->data[0]), lF);
                                 }
@@ -646,6 +647,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                 {
                                     appHandle->mdDefault.pfCbFunction(
                                         appHandle->mdDefault.pRefCon,
+                                        appHandle,
                                         &theMessage,
                                         (UINT8 *)pH, lF);
                                 }
@@ -829,6 +831,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                             {
                                                 appHandle->mdDefault.pfCbFunction(
                                                     appHandle->mdDefault.pRefCon,
+                                                    appHandle,
                                                     &theMessage,
                                                     (UINT8 *)&(appHandle->pMDRcvEle->data[0]), lF);
                                             }
@@ -836,6 +839,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                             {
                                                 appHandle->mdDefault.pfCbFunction(
                                                     appHandle->mdDefault.pRefCon,
+                                                    appHandle,
                                                     &theMessage,
                                                     (UINT8 *)pH, lF);
                                             }
@@ -959,6 +963,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                             {
                                                 appHandle->mdDefault.pfCbFunction(
                                                     appHandle->mdDefault.pRefCon,
+                                                    appHandle,
                                                     &theMessage,
                                                     (UINT8 *)&(appHandle->pMDRcvEle->data[0]), lF);
                                             }
@@ -966,6 +971,7 @@ TRDP_ERR_T  trdp_mdRecv (
                                             {
                                                 appHandle->mdDefault.pfCbFunction(
                                                     appHandle->mdDefault.pRefCon,
+                                                    appHandle,
                                                     &theMessage,
                                                     (UINT8 *)pH, lF);
                                             }
@@ -1295,7 +1301,7 @@ void  trdp_mdCheckListenSocks (
                                     theMessage.topoCount    = appHandle->topoCount;
                                     theMessage.resultCode   = TRDP_SOCK_ERR;
                                     theMessage.srcIpAddr    = newIp;
-                                    appHandle->mdDefault.pfCbFunction(appHandle->mdDefault.pRefCon,
+                                    appHandle->mdDefault.pfCbFunction(appHandle->mdDefault.pRefCon, appHandle,
                                                                       &theMessage, NULL, 0);
                                 }
                             }
@@ -1762,6 +1768,7 @@ void  trdp_mdCheckTimeouts (
 
                         appHandle->mdDefault.pfCbFunction(
                             appHandle->mdDefault.pRefCon,
+                            appHandle,
                             &theMessage,
                             (UINT8 *)0, 0);
                     }
@@ -1975,6 +1982,7 @@ void  trdp_mdCheckTimeouts (
 
                             appHandle->mdDefault.pfCbFunction(
                                 appHandle->mdDefault.pRefCon,
+                                appHandle,
                                 &theMessage,
                                 (UINT8 *)&iterMD->frameHead, iterMD->grossSize);
                         }
@@ -1986,6 +1994,7 @@ void  trdp_mdCheckTimeouts (
 
                             appHandle->mdDefault.pfCbFunction(
                                 appHandle->mdDefault.pRefCon,
+                                appHandle,
                                 &theMessage,
                                 (UINT8 *)&iterMD->frameHead, iterMD->grossSize);
                         }
@@ -2097,6 +2106,7 @@ void  trdp_mdCheckTimeouts (
 
                         appHandle->mdDefault.pfCbFunction(
                             appHandle->mdDefault.pRefCon,
+                            appHandle,
                             &theMessage,
                             (UINT8 *)&iterMD->frameHead, iterMD->grossSize);
                     }
@@ -2212,6 +2222,7 @@ void  trdp_mdCheckTimeouts (
 
                         appHandle->mdDefault.pfCbFunction(
                             appHandle->mdDefault.pRefCon,
+                            appHandle,
                             &theMessage, NULL, 0);
                     }
 
