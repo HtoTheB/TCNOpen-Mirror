@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 499 2013-02-08 12:54:23Z bloehr $
+ * $Id: vos_utils.h 518 2013-02-12 14:20:34Z aweiss $
  *
  */
 
@@ -60,7 +60,7 @@ extern void *gRefCon;
     #define vos_printf(level, format, ...)                              \
     {if (gPDebugFunction != NULL)                                       \
      {   char str[VOS_MAX_PRNT_STR_SIZE];                               \
-         _snprintf_s(str, sizeof(str), _TRUNCATE, format, __VA_ARGS__); \
+         (void) _snprintf_s(str, sizeof(str), _TRUNCATE, format, __VA_ARGS__); \
          vos_print(level, str);                                         \
      }                                                                  \
     }
@@ -68,7 +68,7 @@ extern void *gRefCon;
     #define vos_printf(level, format, args ...)       \
     {if (gPDebugFunction != NULL)                     \
      {   char str[VOS_MAX_PRNT_STR_SIZE];             \
-         snprintf(str, sizeof(str), format, ## args); \
+         (void) snprintf(str, sizeof(str), format, ## args); \
          vos_print(level, str);                       \
      }                                                \
     }
