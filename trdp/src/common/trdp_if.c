@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 511 2013-02-12 10:14:29Z bloehr $
+ * $Id: trdp_if.c 516 2013-02-12 14:17:36Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -1312,8 +1312,8 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                     for (iterMD = appHandle->pMDSndQueue; iterMD != NULL; iterMD = iterMD->pNext)
                     {
                         /*    There can be several sockets depending on TRDP_PD_CONFIG_T    */
-                        if (iterPD->socketIdx != -1 &&
-                            appHandle->iface[iterPD->socketIdx].sock != -1 /*&&
+                        if (iterMD->socketIdx != -1 &&
+                            appHandle->iface[iterMD->socketIdx].sock != -1 /*&&
                                                                             appHandle->option & TRDP_OPTION_BLOCK*/)
                         {
                             if (!FD_ISSET(appHandle->iface[iterMD->socketIdx].sock, (fd_set *)pFileDesc))
