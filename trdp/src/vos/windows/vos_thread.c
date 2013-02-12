@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 283 2013-01-11 13:59:49Z aweiss $
+ * $Id: vos_thread.c 515 2013-02-12 14:16:29Z aweiss $
  *
  */
 
@@ -74,7 +74,7 @@ void cyclicThread (
 {
     for(;; )
     {
-        vos_threadDelay(interval); /*lint !e534 ignore return value */
+        (void) vos_threadDelay(interval);
         pFunction(pArguments);
         pthread_testcancel();
     }
@@ -451,8 +451,7 @@ EXT_DECL const CHAR8 *vos_getTimeStamp (void)
     {
         if (_localtime32_s(&curTimeTM, &curTime.time) == 0)
         {
-            /*lint -e(534) ignore return value */
-            sprintf_s(timeString, 
+            (void) sprintf_s(timeString, 
                 sizeof(timeString),
                 "%04d%02d%02d-%02d:%02d:%02d.%03hd ",
                 1900 + curTimeTM.tm_year /* offset in years from 1900 */,
@@ -723,7 +722,7 @@ EXT_DECL VOS_ERR_T vos_mutexCreate (
         {
             err = pthread_mutex_init(&(*pMutex)->mutexId, &attr);
         }
-        pthread_mutexattr_destroy(&attr); /*lint !e534 ignore return value */
+        (void) pthread_mutexattr_destroy(&attr);
     }
 
     if (err == 0)
@@ -771,7 +770,7 @@ EXT_DECL VOS_ERR_T vos_mutexLocalCreate (
         {
             err = pthread_mutex_init(&pMutex->mutexId, &attr);
         }
-        pthread_mutexattr_destroy(&attr); /*lint !e534 ignore return value */
+        (void) pthread_mutexattr_destroy(&attr);
     }
 
     if (err == 0)
