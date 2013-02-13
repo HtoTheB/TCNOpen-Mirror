@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 524 2013-02-13 07:23:58Z aweiss $
+ * $Id: trdp_private.h 527 2013-02-13 09:58:10Z aweiss $
  *
  */
 
@@ -60,6 +60,7 @@
 #define TRDP_MD_DEFAULT_TTL                 64
 #define TRDP_MD_DEFAULT_RETRIES             2
 #define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES}
+#define TRDP_MD_MAX_NUM_SESSIONS            1000
 
 /*  Default PD communication parameters   */
 #define TRDP_PD_DEFAULT_QOS                 5

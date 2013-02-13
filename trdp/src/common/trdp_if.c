@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 524 2013-02-13 07:23:58Z aweiss $
+ * $Id: trdp_if.c 527 2013-02-13 09:58:10Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -412,6 +412,11 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
         if (pSession->mdDefault.sendParam.qos == 0)
         {
             pSession->mdDefault.sendParam.qos = TRDP_MD_DEFAULT_QOS;
+        }
+
+        if (pSession->mdDefault.maxNumSessions == 0)
+        {
+            pSession->mdDefault.maxNumSessions = TRDP_MD_MAX_NUM_SESSIONS;
         }
     }
     else
