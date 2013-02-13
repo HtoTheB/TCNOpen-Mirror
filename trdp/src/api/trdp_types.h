@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 511 2013-02-12 10:14:29Z bloehr $
+ * $Id: trdp_types.h 524 2013-02-13 07:23:58Z aweiss $
  *
  */
 
@@ -643,7 +643,7 @@ typedef struct
  */
 typedef void (*TRDP_PD_CALLBACK_T)(
     void                    *pRefCon,
-	TRDP_APP_SESSION_T      appHandle,
+    TRDP_APP_SESSION_T      appHandle,
     const TRDP_PD_INFO_T    *pMsg,
     UINT8                   *pData,
     UINT32                  dataSize);
