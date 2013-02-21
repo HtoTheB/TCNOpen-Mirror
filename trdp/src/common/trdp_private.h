@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 527 2013-02-13 09:58:10Z aweiss $
+ * $Id: trdp_private.h 539 2013-02-21 10:04:46Z goiarbide $
  *
  */
 
@@ -322,6 +322,7 @@ typedef struct TRDP_SESSION
     TRDP_MEM_CONFIG_T       memConfig;
     TRDP_OPTION_T           option;
     TRDP_SOCKETS_T          iface[VOS_MAX_SOCKET_CNT];  /**< Collection of sockets to use                   */
+    TRDP_TCP_FD_T           tcpFd;              /**< TCP file descriptor parameters   */
     PD_ELE_T                *pSndQueue;         /**< pointer to first element of send queue                 */
     PD_ELE_T                *pRcvQueue;         /**< pointer to first element of rcv queue                  */
     MD_LIS_ELE_T            *pMDListenQueue;    /**< pointer to first element of listeners queue            */
