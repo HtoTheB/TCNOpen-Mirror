@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 515 2013-02-12 14:16:29Z aweiss $
+ * $Id: vos_sock.c 540 2013-02-22 15:15:33Z fweispfenning $
  *
  */
 
@@ -209,7 +209,7 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
         ;
     }
 
-    if (i >= 6) /*    needs to be determined    */
+    if (i < 6) /*    needs to be determined    */
     {
         /* for NetBIOS */
         DWORD   dwEntriesRead;
