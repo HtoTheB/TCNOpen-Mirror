@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: $
+ * $Id: LibraryTests.cpp 542 2013-02-22 15:21:50Z fweispfenning $
  *
  */
 
