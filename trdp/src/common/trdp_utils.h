@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 463 2013-01-31 16:07:20Z bloehr $
+ * $Id: trdp_utils.h 544 2013-02-27 19:06:06Z bloehr $
  *
  */
 
@@ -162,6 +162,17 @@ TRDP_ERR_T trdp_releaseSocket(
 UINT32 trdp_packetSizePD (
     UINT32 dataSize);
 
+/*********************************************************************************************************************/
+/** Get the packet size from the raw data size
+ *
+ *  @param[in]      dataSize            net data size (without padding or FCS)
+ *
+ *  @retval         packet size         the size of the complete packet to
+ *                                      be sent or received
+ */
+
+UINT32 trdp_packetSizeMD (
+    UINT32 dataSize);
 
 /*********************************************************************************************************************/
 /** Get the initial sequence counter for the comID/message type and subnet (source IP).

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 539 2013-02-21 10:04:46Z goiarbide $
+ * $Id: trdp_types.h 544 2013-02-27 19:06:06Z bloehr $
  *
  */
 
@@ -324,7 +324,7 @@ typedef struct
     UINT32              topoCount;          /**< received topocount                         */
     UINT8               numRetries;         /**< actual number of retries                   */
     UINT8               numRetriesMax;      /**< maximun number of retries for request to a know dev*/
-    BOOL                disableReplyRx;     /**< disable reply reception, for multicast use    */
+    BOOL                aboutToDie;         /**< session is about to die                    */
     UINT32              numRepliesQuery;    /**< number of ReplyQuery received              */
     UINT32              numConfirmSent;     /**< number of Confirm sent                     */
     UINT32              numConfirmTimeout;  /**< number of Confirm Timeouts (incremented by listeners */
