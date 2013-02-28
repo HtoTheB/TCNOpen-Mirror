@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 544 2013-02-27 19:06:06Z bloehr $
+ * $Id: trdp_private.h 548 2013-02-28 13:52:47Z aweiss $
  *
  */
 
@@ -295,6 +295,14 @@ typedef struct MD_ELE
     MD_PACKET_T         *pPacket;               /**< Packet    header in network byte order                 */
                                                 /**< data ready to be sent (with CRCs)                      */
 } MD_ELE_T;
+
+/**    TCP file descriptor parameters   */
+typedef struct
+{
+    INT32   listen_sd;          /**< TCP general socket listening connection requests   */
+    INT32   max_sd;             /**< Maximum socket number in the file descriptor   */
+    fd_set  master_set;         /**< Local file descriptor   */
+} TRDP_TCP_FD_T;
 
 /** Session/application variables store */
 typedef struct TRDP_SESSION
