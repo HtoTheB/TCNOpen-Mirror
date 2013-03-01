@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 544 2013-02-27 19:06:06Z bloehr $
+ * $Id: trdp_if.c 550 2013-03-01 10:11:16Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -2515,9 +2515,14 @@ TRDP_ERR_T tlm_delListener (
         
         if (TRUE == dequeued)
         {
+            TRDP_ERR_T err;
+
             /* cleanup instance */
-            trdp_releaseSocket(appHandle->iface, pDelete->socketIdx);
-            
+            err = trdp_releaseSocket(appHandle->iface, pDelete->socketIdx);
+            if (err != TRDP_NO_ERR)
+            {
+                vos_printf(VOS_LOG_ERROR, "trdp_releaseSocket() failed (Err:%d)\n", err);
+            }            
             /* free memory space for element */
             vos_memFree(pDelete);
         }
