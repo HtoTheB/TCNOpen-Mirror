@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.c 549 2013-03-01 09:37:29Z aweiss $
+ * $Id: vos_utils.c 553 2013-03-01 14:16:41Z bloehr $
  *
  */
 
@@ -24,6 +24,7 @@
  * INCLUDES
  */
 
+#include <string.h>
 
 #include "vos_utils.h"
 #include "vos_sock.h"
