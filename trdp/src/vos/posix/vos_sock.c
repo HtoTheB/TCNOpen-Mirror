@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 540 2013-02-22 15:15:33Z fweispfenning $
+ * $Id: vos_sock.c 561 2013-03-04 13:15:26Z bloehr $
  *
  */
 
@@ -179,9 +179,10 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
 EXT_DECL VOS_ERR_T vos_sockGetMAC (
     UINT8 pMAC[6])
 {
+#ifndef __APPLE__
     int sock;
     int i;
-
+#endif
     if (!vosSockInitialised)
     {
         return VOS_INIT_ERR;
