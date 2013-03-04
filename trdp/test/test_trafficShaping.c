@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: test_trafficShaping.c 430 2013-01-29 08:59:48Z aweiss $
+ * $Id: test_trafficShaping.c 562 2013-03-04 13:48:36Z bloehr $
  *
  */
 
@@ -304,7 +304,7 @@ int main (int argc, char *argv[])
          Select() will wait for ready descriptors or time out,
          what ever comes first.
          */
-        rv = select((int)noDesc, &rfds, NULL, NULL, &tv);
+        rv = select((int)noDesc + 1, &rfds, NULL, NULL, &tv);
         
         /*
          Check for overdue PDs (sending and receiving)
