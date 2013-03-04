@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 274 2013-01-10 11:00:43Z aweiss $
+ * $Id: trdp_stats.c 560 2013-03-04 13:15:12Z bloehr $
  *
  */
 
@@ -139,7 +139,7 @@ EXT_DECL TRDP_ERR_T tlc_getSubsStatistics (
         pStatistics[index].comId        = iter->addr.comId;     /* Subscribed ComId                                   */
         pStatistics[index].joinedAddr   = iter->addr.mcGroup;   /* Joined IP address                                  */
         pStatistics[index].filterAddr   = iter->addr.srcIpAddr; /* Filter IP address                                  */
-        pStatistics[index].callBack     = (UINT32)iter->userRef; /* Reference for call back function if used
+        pStatistics[index].callBack     = (void*) iter->userRef; /* Reference for call back function if used
                                                                              */
         pStatistics[index].timeout      = iter->interval.tv_usec + iter->interval.tv_sec * 1000000;
         /* Time-out value in us. 0 = No time-out supervision  */
