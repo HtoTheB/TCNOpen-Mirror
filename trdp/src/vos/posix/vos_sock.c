@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 561 2013-03-04 13:15:26Z bloehr $
+ * $Id: vos_sock.c 563 2013-03-04 15:45:11Z aweiss $
  *
  */
 
@@ -944,7 +944,13 @@ EXT_DECL VOS_ERR_T vos_sockConnect (
     if (connect(sock, (const struct sockaddr *) &dstAddress,
                 sizeof(dstAddress)) == -1)
     {
-        if (errno != EINPROGRESS)
+        if (    (err == EINPROGRESS)
+             || (err == EWOULDBLOCK)
+             || (err == EALREADY))
+        {
+            return VOS_BLOCK_ERR;
+        }
+        else if (err != EISCONN)
         {
             char buff[VOS_MAX_ERR_STR_SIZE];
             strerror_r(errno, buff, VOS_MAX_ERR_STR_SIZE);

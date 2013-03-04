@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 549 2013-03-01 09:37:29Z aweiss $
+ * $Id: vos_sock.c 563 2013-03-04 15:45:11Z aweiss $
  *
  */
 
@@ -968,7 +968,13 @@ EXT_DECL VOS_ERR_T vos_sockConnect (
     {
         int err = WSAGetLastError();
 
-        if (err != WSAEINPROGRESS)
+        if (    (err == WSAEINPROGRESS)
+             || (err == WSAEWOULDBLOCK)
+             || (err == WSAEALREADY))
+        {
+            return VOS_BLOCK_ERR;
+        }
+        else if (err != WSAEISCONN)
         {
             vos_printf(VOS_LOG_WARNING, "connect() failed (Err: %d)\n", err);
             return VOS_IO_ERR;
