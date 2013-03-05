@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 565 2013-03-05 10:27:31Z bloehr $
+ * $Id: vos_sock.h 571 2013-03-05 17:09:51Z bloehr $
  *
  */
 
@@ -64,6 +64,8 @@ typedef struct
     BOOL    reuseAddrPort;  /**< allow reuse of address and port                   */
     BOOL    nonBlocking;    /**< use non blocking calls                            */
 } VOS_SOCK_OPT_T;
+
+typedef fd_set VOS_FDS_T;
 
 /***********************************************************************************************************************
  * PROTOTYPES
@@ -172,6 +174,27 @@ EXT_DECL VOS_ERR_T vos_sockInit (
 
 EXT_DECL VOS_ERR_T vos_sockGetMAC(
     UINT8 pMAC[6]);
+
+/**********************************************************************************************************************/
+/** select function.
+ *  Set the ready sockets in the supplied sets.
+ *    Note: Some target systems might define this function as NOP.
+ *
+ *  @param[in]      highDesc          max. socket descriptor + 1
+ *  @param[in,out]  pReadableFD       pointer to readable socket set
+ *  @param[in,out]  pWriteableFD      pointer to writeable socket set
+ *  @param[in,out]  pErrorFD          pointer to error socket set
+ *  @param[in]      pTimeOut          pointer to time out value
+ *
+ *  @retval         number of ready file descriptors
+ */
+
+EXT_DECL INT32 vos_select (
+	INT32			highDesc,
+    VOS_FDS_T		*pReadableFD,
+	VOS_FDS_T		*pWriteableFD,
+	VOS_FDS_T		*pErrorFD,
+    VOS_TIME_T		*pTimeOut);
 
 /**********************************************************************************************************************/
 /** Create an UDP socket.

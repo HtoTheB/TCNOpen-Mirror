@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 565 2013-03-05 10:27:31Z bloehr $
+ * $Id: vos_sock.c 571 2013-03-05 17:09:51Z bloehr $
  *
  */
 
@@ -146,6 +146,31 @@ EXT_DECL const CHAR8 *vos_ipDotted (
     sprintf(dotted, "%u.%u.%u.%u", ipAddress >> 24, (ipAddress >> 16) & 0xFF,
             (ipAddress >> 8) & 0xFF, ipAddress & 0xFF);
     return dotted;
+}
+
+/**********************************************************************************************************************/
+/** select function.
+ *  Set the ready sockets in the supplied sets.
+ *    Note: Some target systems might define this function as NOP.
+ *
+ *  @param[in]      highDesc          max. socket descriptor + 1
+ *  @param[in,out]  pReadableFD       pointer to readable socket set
+ *  @param[in,out]  pWriteableFD      pointer to writeable socket set
+ *  @param[in,out]  pErrorFD          pointer to error socket set
+ *  @param[in]      pTimeOut          pointer to time out value
+ *
+ *  @retval         number of ready file descriptors
+ */
+
+EXT_DECL INT32 vos_select (
+                           INT32			highDesc,
+                           VOS_FDS_T		*pReadableFD,
+                           VOS_FDS_T		*pWriteableFD,
+                           VOS_FDS_T		*pErrorFD,
+                           VOS_TIME_T		*pTimeOut)
+{
+    return select(highDesc, (fd_set *) pReadableFD, (fd_set *) pWriteableFD,
+                  (fd_set *) pErrorFD, (struct timeval *) pTimeOut);
 }
 
 /*    Sockets    */
