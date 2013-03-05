@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 544 2013-02-27 19:06:06Z bloehr $
+ * $Id: trdp_pdcom.c 567 2013-03-05 11:06:58Z aweiss $
  *
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
  */
@@ -684,17 +684,26 @@ TRDP_ERR_T  trdp_pdSend (
 #if 0
     pPacket->frameHead.frameCheckSum = 0x12345678;
 #endif
+    pPacket->sendSize = pPacket->grossSize;
+
     err = vos_sockSendUDP(pdSock,
                           (UINT8 *)&pPacket->pFrame->frameHead,
-                          pPacket->grossSize,
+                          &pPacket->sendSize,  
                           destIp,
                           port);
-
+    
     if (err != VOS_NO_ERR)
     {
         vos_printf(VOS_LOG_ERROR, "trdp_pdSend failed\n");
         return TRDP_IO_ERR;
     }
+
+    if (pPacket->sendSize != pPacket->grossSize)
+    {
+        vos_printf(VOS_LOG_ERROR, "trdp_pdSend incomplete\n");
+        return TRDP_IO_ERR;
+    }
+
     return TRDP_NO_ERR;
 }
 

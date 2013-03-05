@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.h 544 2013-02-27 19:06:06Z bloehr $
+ * $Id: trdp_mdcom.h 567 2013-03-05 11:06:58Z aweiss $
  *
  */
 
@@ -48,7 +48,7 @@ void trdp_closeMDSessions(
 TRDP_ERR_T  trdp_mdSendPacket (
     INT32           pdSock,
     UINT32          port,
-    const MD_ELE_T  *pPacket);
+    MD_ELE_T        *pPacket);
 
 void trdp_mdUpdatePacket (
     MD_ELE_T *pPacket);
