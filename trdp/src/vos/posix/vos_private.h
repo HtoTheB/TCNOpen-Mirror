@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 301 2013-01-14 10:57:59Z bloehr $
+ * $Id: vos_private.h 572 2013-03-06 06:07:44Z 97029 $
  *
  */
 
@@ -27,6 +27,7 @@
  */
 
 #include <pthread.h>
+#include <sys/types.h>
 
 #include "vos_types.h"
 #include "vos_thread.h"
