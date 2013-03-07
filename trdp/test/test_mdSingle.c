@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: test_mdSingle.c 569 2013-03-05 14:49:48Z aweiss $
+ * $Id: test_mdSingle.c 573 2013-03-07 10:03:28Z bloehr $
  *
  */
 
@@ -35,7 +35,7 @@
 /***********************************************************************************************************************
  * DEFINITIONS
  */
-#define APP_VERSION         "0.2"
+#define APP_VERSION         "0.3"
 
 #define DATA_MAX            1000
 
@@ -297,6 +297,7 @@ int main (int argc, char *argv[])
                 if (strcmp(optarg,"TCP") == 0)
                 {
                     flags |= TRDP_FLAGS_TCP;
+                    mdConfiguration.flags |= TRDP_FLAGS_TCP;
                 }
                 else if (strcmp(optarg,"UDP") == 0)
                 {
