@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 575 2013-03-07 15:11:34Z aweiss $
+ * $Id: trdp_mdcom.c 581 2013-03-08 13:00:43Z aweiss $
  *
  */
 
@@ -2295,8 +2295,8 @@ TRDP_ERR_T trdp_mdCommonSend (
                                           appHandle->iface,
                                           appHandle->mdDefault.tcpPort,
                                           (pSendParam != NULL) ? pSendParam : (&appHandle->mdDefault.sendParam),
-                                          srcIpAddr,
-                                          0,
+                                          vos_isMulticast(destIpAddr)?destIpAddr:0,
+                                          destIpAddr,
                                           TRDP_SOCK_MD_TCP,
                                           TRDP_OPTION_NONE,
                                           FALSE,
@@ -2334,7 +2334,7 @@ TRDP_ERR_T trdp_mdCommonSend (
                                           appHandle->mdDefault.udpPort,
                                           (pSendParam != NULL) ? pSendParam : (&appHandle->mdDefault.sendParam),
                                           srcIpAddr,
-                                          0,
+                                          vos_isMulticast(destIpAddr)?destIpAddr:0,
                                           TRDP_SOCK_MD_UDP,
                                           appHandle->option,
                                           FALSE,                                             /*  Receive only    */

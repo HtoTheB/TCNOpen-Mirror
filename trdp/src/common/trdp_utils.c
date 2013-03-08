@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 572 2013-03-06 06:07:44Z 97029 $
+ * $Id: trdp_utils.c 581 2013-03-08 13:00:43Z aweiss $
  *
  */
 
@@ -610,10 +610,13 @@ TRDP_ERR_T  trdp_requestSocket (
             }
 
 /* add_start TOSHIBA 0306 */
-            err = (TRDP_ERR_T) vos_sockSetMulticastIf(iface[index].sock, iface[index].bindAddr);
-            if (err != TRDP_NO_ERR)
+            if (iface[index].bindAddr != 0)
             {
-                vos_printf(VOS_LOG_ERROR, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err);
+                err = (TRDP_ERR_T) vos_sockSetMulticastIf(iface[index].sock, iface[index].bindAddr);
+                if (err != TRDP_NO_ERR)
+                {
+                    vos_printf(VOS_LOG_ERROR, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err);
+                }
             }
 /* add_end TOSHIBA */
 
@@ -724,7 +727,9 @@ TRDP_ERR_T  trdp_requestSocket (
                             }
                         }
                     }
-                    else if (0 != mcGroup)      /*    Multicast sender shall be bound to an interface    */
+                    
+                    /*    Multicast sender shall be bound to an interface    */
+                    if (iface[index].bindAddr != 0)
                     {
                         err = (TRDP_ERR_T) vos_sockSetMulticastIf(iface[index].sock, iface[index].bindAddr);
                         if (err != TRDP_NO_ERR)
