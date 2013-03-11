@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 570 2013-03-05 17:09:21Z bloehr $
+ * $Id: trdp_types.h 592 2013-03-11 14:28:17Z bloehr $
  *
  */
 
@@ -84,7 +84,7 @@ extern "C" {
 /**********************************************************************************************************************/
 
 /* for example: IP-Addr 10.0.8.35 translated to (10 * << 24) + (0 * << 16) + (8 << 8) + 35 */
-typedef UINT32 TRDP_IP_ADDR_T;
+typedef VOS_IP4_ADDR_T TRDP_IP_ADDR_T;
 
 typedef CHAR8 TRDP_LABEL_T[TRDP_MAX_LABEL_LEN];
 typedef CHAR8 TRDP_URI_T[TRDP_MAX_URI_LEN];
