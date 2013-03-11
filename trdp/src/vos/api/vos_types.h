@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 592 2013-03-11 14:28:17Z bloehr $
+ * $Id: vos_types.h 594 2013-03-11 15:14:07Z bloehr $
  *
  */
 
@@ -186,8 +186,8 @@ typedef struct
 #endif
 
 typedef UINT32 VOS_IP4_ADDR_T;
-typedef UINT8  VOS_IP6_ADDR_T[16];
-    
+typedef UINT8 VOS_IP6_ADDR_T[16];
+
 /***********************************************************************************************************************
  * PROTOTYPES
  */
