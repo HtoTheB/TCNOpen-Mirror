@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 581 2013-03-08 13:00:43Z aweiss $
+ * $Id: trdp_mdcom.c 587 2013-03-11 10:36:05Z aweiss $
  *
  */
 
@@ -643,6 +643,7 @@ TRDP_ERR_T  trdp_mdRecv (
                 {
                     /* We found a listener, set some values for this new session  */
                     iterMD = appHandle->pMDRcvEle;
+                    iterMD->pUserRef = iterListener->pUserRef;
                     iterMD->stateEle = state;
                     trdp_MDqueueInsFirst (&appHandle->pMDRcvQueue, iterMD);
                     appHandle->pMDRcvEle = NULL;
