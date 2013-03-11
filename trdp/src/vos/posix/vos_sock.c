@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 571 2013-03-05 17:09:51Z bloehr $
+ * $Id: vos_sock.c 586 2013-03-11 09:39:02Z aweiss $
  *
  */
 
@@ -42,12 +42,12 @@
 
 #ifdef __linux
 #include <linux/if.h>
-#include <linux/in.h>
 #else
-#include <netinet/in.h>
-#include <arpa/inet.h>
 #include <net/if.h>
 #endif
+
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #include "vos_utils.h"
 #include "vos_sock.h"
