@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 571 2013-03-05 17:09:51Z bloehr $
+ * $Id: vos_sock.c 585 2013-03-11 09:30:12Z bloehr $
  *
  */
 
@@ -931,7 +931,7 @@ EXT_DECL VOS_ERR_T vos_sockAccept (
     for (;; )
     {
         int sockLen = sizeof(srcAddress);
-        connFd = accept(*pSock, (struct sockaddr *) &srcAddress, &sockLen);
+        connFd = accept(sock, (struct sockaddr *) &srcAddress, &sockLen);
         if (connFd < 0)
         {
             int err = WSAGetLastError();
