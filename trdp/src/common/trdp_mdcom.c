@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 589 2013-03-11 12:25:53Z bloehr $
+ * $Id: trdp_mdcom.c 600 2013-03-13 11:06:28Z aweiss $
  *
  */
 
@@ -2113,6 +2113,12 @@ TRDP_ERR_T trdp_mdCommonSend (
         return TRDP_MUTEX_ERR;
     }
 
+    /* set correct source IP address */
+    if (srcIpAddr == 0)
+    {
+        srcIpAddr = appHandle->realIP;
+    }
+
     /* mutex protected */
     do
     {
@@ -2309,8 +2315,8 @@ TRDP_ERR_T trdp_mdCommonSend (
                         appHandle->iface,
                         appHandle->mdDefault.tcpPort,
                         (pSendParam != NULL) ? pSendParam : (&appHandle->mdDefault.sendParam),
-                        vos_isMulticast(destIpAddr) ? destIpAddr : 0,
-                        destIpAddr,
+                        srcIpAddr,
+                        0,                 /* no TCP multicast possible */
                         TRDP_SOCK_MD_TCP,
                         TRDP_OPTION_NONE,
                         FALSE,
