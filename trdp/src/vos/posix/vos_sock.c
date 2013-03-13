@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 594 2013-03-11 15:14:07Z bloehr $
+ * $Id: vos_sock.c 602 2013-03-13 18:11:41Z bloehr $
  *
  */
 
@@ -178,6 +178,7 @@ EXT_DECL UINT32 vos_getInterfaces (
             if (cursor->ifa_addr != NULL && cursor->ifa_addr->sa_family == AF_INET)
             {
                 ifAddrs[count].ipAddr = ntohl(*(UINT32 *)&cursor->ifa_addr->sa_data[2]);
+                ifAddrs[count].netMask = ntohl(*(UINT32 *)&cursor->ifa_netmask->sa_data[2]);
                 if (cursor->ifa_name != NULL)
                 {
                     strncpy((char *) ifAddrs[count].name, cursor->ifa_name, VOS_MAX_IF_NAME_SIZE);

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 594 2013-03-11 15:14:07Z bloehr $
+ * $Id: vos_sock.h 602 2013-03-13 18:11:41Z bloehr $
  *
  */
 
@@ -73,6 +73,7 @@ typedef struct
 {
     CHAR8           name[VOS_MAX_IF_NAME_SIZE];
     VOS_IP4_ADDR_T  ipAddr;
+    VOS_IP4_ADDR_T  netMask;
 } VOS_IF_REC_T;
 
 /***********************************************************************************************************************

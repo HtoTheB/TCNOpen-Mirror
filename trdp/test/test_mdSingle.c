@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: test_mdSingle.c 581 2013-03-08 13:00:43Z aweiss $
+ * $Id: test_mdSingle.c 602 2013-03-13 18:11:41Z bloehr $
  *
  */
 
@@ -81,7 +81,7 @@ void usage (const char *appName)
            "-o <own IP address> in dotted decimal\n"
            "-t <target IP address> in dotted decimal\n"
            "-p <TCP|UDP> protocol to communicate with\n"
-           "-d <n> delay in µs between notification/requests\n"
+           "-d <n> delay in us between notification/requests\n"
            "-e <n> expected replies\n"
            "-r    be responder\n"
            "-c    respond with confirmation\n"
