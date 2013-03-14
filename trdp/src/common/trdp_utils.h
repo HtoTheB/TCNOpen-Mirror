@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 602 2013-03-13 18:11:41Z bloehr $
+ * $Id: trdp_utils.h 605 2013-03-14 18:33:53Z bloehr $
  *
  */
 
@@ -143,11 +143,9 @@ TRDP_ERR_T trdp_requestSocket(
  *  @param[in,out]  iface           socket pool
  *  @param[in]      index           index of socket to release
  *
- *  @retval         TRDP_NO_ERR
- *  @retval         TRDP_PARAM_ERR
  */
 
-TRDP_ERR_T trdp_releaseSocket(
+void trdp_releaseSocket(
     TRDP_SOCKETS_T iface[],
     INT32 index);
 
