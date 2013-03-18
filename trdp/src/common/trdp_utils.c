@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 605 2013-03-14 18:33:53Z bloehr $
+ * $Id: trdp_utils.c 613 2013-03-18 14:13:18Z bloehr $
  *
  */
 
@@ -821,7 +821,7 @@ void  trdp_releaseSocket (
                 /* Close that socket, nobody uses it anymore */
                 err = (TRDP_ERR_T) vos_sockClose(iface[index].sock);
                 iface[index].sock = -1;
-                if (err != VOS_NO_ERR)
+                if (err != TRDP_NO_ERR)
                 {
                     vos_printf(VOS_LOG_DBG, "Trying to close socket again?\n");
                 }
