@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 613 2013-03-18 14:13:18Z bloehr $
+ * $Id: vos_mem.c 619 2013-03-18 16:41:58Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -114,7 +114,7 @@ struct VOS_QUEUE
 static MEM_CONTROL_T gMem =
 {
     {0, PTHREAD_MUTEX_INITIALIZER}, NULL, NULL, 0L, 0L, 0L, FALSE,
-	{
+    {
         {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL},
         {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}, {0L, NULL}
     },

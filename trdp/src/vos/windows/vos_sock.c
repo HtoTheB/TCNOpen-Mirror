@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 596 2013-03-12 09:04:00Z fweispfenning $
+ * $Id: vos_sock.c 619 2013-03-18 16:41:58Z aweiss $
  *
  */
 
@@ -193,11 +193,11 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
  */
 
 EXT_DECL INT32 vos_select (
-    INT32			highDesc,
-    VOS_FDS_T		*pReadableFD,
-    VOS_FDS_T		*pWriteableFD,
-    VOS_FDS_T		*pErrorFD,
-    VOS_TIME_T		*pTimeOut)
+    INT32            highDesc,
+    VOS_FDS_T        *pReadableFD,
+    VOS_FDS_T        *pWriteableFD,
+    VOS_FDS_T        *pErrorFD,
+    VOS_TIME_T        *pTimeOut)
 {
     return select(highDesc, (fd_set *) pReadableFD, (fd_set *) pWriteableFD,
                   (fd_set *) pErrorFD, (struct timeval *) pTimeOut);

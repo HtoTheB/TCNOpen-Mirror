@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 612 2013-03-18 13:45:21Z bloehr $
+ * $Id: trdp_mdcom.c 619 2013-03-18 16:41:58Z aweiss $
  *
  */
 
@@ -582,8 +582,8 @@ TRDP_ERR_T  trdp_mdRecv (
     MD_ELE_T            *iterMD         = NULL;
     MD_LIS_ELE_T        *iterListener   = NULL;
     TRDP_MD_ELE_ST_T    state;
-    BOOL    isTCP = FALSE;
-    INT32   numOfReceivers = 0;
+    BOOL                isTCP           = FALSE;
+    UINT32              numOfReceivers  = 0;
 
     if (appHandle == NULL)
     {
