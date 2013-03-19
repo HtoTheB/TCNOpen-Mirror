@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 613 2013-03-18 14:13:18Z bloehr $
+ * $Id: trdp_utils.c 621 2013-03-19 13:47:43Z goiarbide $
  *
  */
 
@@ -518,6 +518,22 @@ void trdp_initSockets (TRDP_SOCKETS_T iface[])
     for (index = 0; index < VOS_MAX_SOCKET_CNT; index++)
     {
         iface[index].sock = -1;
+    }
+}
+
+
+/**********************************************************************************************************************/
+/** Initialize the UncompletedTCP pointers to null
+ *
+ *  @param[in]      appHandle           the handle returned by tlc_openSession
+ */
+void trdp_initUncompletedTCP (TRDP_APP_SESSION_T appHandle)
+{
+    int index;
+    /* Initialize the pointers to Null */
+    for (index = 0; index < VOS_MAX_SOCKET_CNT; index++)
+    {
+        appHandle->uncompletedTCP[index] = NULL;
     }
 }
 

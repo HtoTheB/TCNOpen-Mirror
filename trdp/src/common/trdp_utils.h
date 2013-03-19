@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 605 2013-03-14 18:33:53Z bloehr $
+ * $Id: trdp_utils.h 621 2013-03-19 13:47:43Z goiarbide $
  *
  */
 
@@ -103,6 +103,16 @@ void    trdp_queueInsFirst (
 
 void trdp_initSockets(
     TRDP_SOCKETS_T iface[]);
+
+
+/**********************************************************************************************************************/
+/** Handle the socket pool: Initialize it
+ *
+ *  @param[in]      iface          pointer to the socket pool
+ */
+
+void trdp_initUncompletedTCP (
+    TRDP_APP_SESSION_T appHandle);
 
 
 /*********************************************************************************************************************/
