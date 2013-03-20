@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 621 2013-03-19 13:47:43Z goiarbide $
+ * $Id: trdp_private.h 631 2013-03-20 17:31:24Z aweiss $
  *
  */
 
@@ -288,7 +288,7 @@ typedef struct MD_ELE
     TRDP_TIME_T         interval;               /**< time out value for received packets or
                                                      interval for packets to send (set from ms)             */
     TRDP_TIME_T         timeToGo;               /**< next time this packet must be sent/rcv                 */
-    INT32               dataSize;               /**< net data size                                          */
+    UINT32              dataSize;               /**< net data size                                          */
     UINT32              grossSize;              /**< complete packet size (header, data, padding, FCS)      */
     UINT32              sendSize;               /**< data size sent out                                     */
     TRDP_DATASET_T      *pCachedDS;             /**< Pointer to dataset element if known                    */
