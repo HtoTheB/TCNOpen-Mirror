@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 619 2013-03-18 16:41:58Z aweiss $
+ * $Id: trdp_types.h 633 2013-03-22 08:04:14Z goiarbide $
  *
  */
 
@@ -691,6 +691,7 @@ typedef struct
     UINT32              replyTimeout;           /**< Default reply timeout in us                */
     UINT32              confirmTimeout;         /**< Default confirmation timeout in us         */
     UINT32              connectTimeout;         /**< Default connection timeout in us           */
+    UINT32              sendingTimeout;         /**< Default sending timeout in us              */
     UINT16              udpPort;                /**< Port to be used for UDP MD communication   */
     UINT16              tcpPort;                /**< Port to be used for TCP MD communication   */
     UINT32              maxNumSessions;         /**< Maximal number of replier sessions         */

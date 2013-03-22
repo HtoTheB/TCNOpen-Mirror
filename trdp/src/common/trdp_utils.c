@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 621 2013-03-19 13:47:43Z goiarbide $
+ * $Id: trdp_utils.c 633 2013-03-22 08:04:14Z goiarbide $
  *
  */
 
@@ -691,6 +691,17 @@ TRDP_ERR_T  trdp_requestSocket (
         iface[index].tcpParams.connectionTimeout.tv_sec     = 0;
         iface[index].tcpParams.connectionTimeout.tv_usec    = 0;
         iface[index].tcpParams.cornerIp = cornerIp;
+        iface[index].tcpParams.sendNotOk = FALSE;
+
+        /* Add to the file desc only if it's an accepted socket */
+        if(rcvMostly == TRUE)
+        {
+            iface[index].tcpParams.addFileDesc = TRUE;
+        }else
+        {
+            iface[index].tcpParams.addFileDesc = FALSE;
+        }
+
         memset(iface[index].mcGroups, 0, sizeof(iface[index].mcGroups));
 
         /* if a socket descriptor was supplied, take that one (for the TCP connection)   */

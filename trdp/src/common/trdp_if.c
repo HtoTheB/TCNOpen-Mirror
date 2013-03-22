@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 621 2013-03-19 13:47:43Z goiarbide $
+ * $Id: trdp_if.c 633 2013-03-22 08:04:14Z goiarbide $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -337,6 +337,11 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
         if (pSession->mdDefault.connectTimeout == 0)
         {
             pSession->mdDefault.connectTimeout = TRDP_MD_DEFAULT_CONNECTION_TIMEOUT;
+        }
+
+        if (pSession->mdDefault.sendingTimeout == 0)
+        {
+            pSession->mdDefault.sendingTimeout = TRDP_MD_DEFAULT_SENDING_TIMEOUT;
         }
 
         if (pSession->mdDefault.replyTimeout == 0)
@@ -1256,7 +1261,8 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                     for (index = 0; index < VOS_MAX_SOCKET_CNT; index++)
                     {
                         if((appHandle->iface[index].sock != -1)
-                           && (appHandle->iface[index].type == TRDP_SOCK_MD_TCP))
+                           && (appHandle->iface[index].type == TRDP_SOCK_MD_TCP)
+                           && (appHandle->iface[index].tcpParams.addFileDesc == TRUE))
                         {
                             /* Copy the master_set to the pFileDesc */
                             //if(FD_ISSET(appHandle->iface[index].sock, &appHandle->tcpFd.master_set))
@@ -1282,7 +1288,9 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                         /*    There can be several sockets depending on TRDP_PD_CONFIG_T    */
                         if (iterListener->socketIdx != -1 &&
                             (appHandle->iface[iterListener->socketIdx].sock != -1)
-                            /*&& (appHandle->iface[iterListener->socketIdx].type != TRDP_SOCK_MD_TCP)*/)
+                            && ((appHandle->iface[iterListener->socketIdx].type != TRDP_SOCK_MD_TCP)
+                            || ((appHandle->iface[iterListener->socketIdx].type == TRDP_SOCK_MD_TCP)
+                            && (appHandle->iface[iterListener->socketIdx].tcpParams.addFileDesc == TRUE))))
                         {
                             if (!FD_ISSET(appHandle->iface[iterListener->socketIdx].sock, (fd_set *)pFileDesc))
                             {
@@ -1299,9 +1307,10 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                     {
                         /*    There can be several sockets depending on TRDP_PD_CONFIG_T    */
                         if (iterMD->socketIdx != -1 &&
-                            (appHandle->iface[iterMD->socketIdx].sock != -1 /*&&
-                                                                            appHandle->option & TRDP_OPTION_BLOCK)
-                            && (appHandle->iface[iterMD->socketIdx].type != TRDP_SOCK_MD_TCP*/))
+                            (appHandle->iface[iterMD->socketIdx].sock != -1)
+                            && ((appHandle->iface[iterMD->socketIdx].type != TRDP_SOCK_MD_TCP)
+                            || ((appHandle->iface[iterMD->socketIdx].type == TRDP_SOCK_MD_TCP)
+                            && (appHandle->iface[iterMD->socketIdx].tcpParams.addFileDesc == TRUE))))
                         {
                             if (!FD_ISSET(appHandle->iface[iterMD->socketIdx].sock, (fd_set *)pFileDesc))
                             {
@@ -1318,9 +1327,10 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                     {
                         /*    There can be several sockets depending on TRDP_PD_CONFIG_T    */
                         if (iterMD->socketIdx != -1 &&
-                            (appHandle->iface[iterMD->socketIdx].sock != -1 /*&&
-                                                                            appHandle->option & TRDP_OPTION_BLOCK)
-                            && (appHandle->iface[iterMD->socketIdx].type != TRDP_SOCK_MD_TCP*/))
+                            (appHandle->iface[iterMD->socketIdx].sock != -1)
+                            && ((appHandle->iface[iterMD->socketIdx].type != TRDP_SOCK_MD_TCP)
+                            || ((appHandle->iface[iterMD->socketIdx].type == TRDP_SOCK_MD_TCP)
+                            && (appHandle->iface[iterMD->socketIdx].tcpParams.addFileDesc == TRUE))))
                         {
                             if (!FD_ISSET(appHandle->iface[iterMD->socketIdx].sock, (fd_set *)pFileDesc))
                             {
