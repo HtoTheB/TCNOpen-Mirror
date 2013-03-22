@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 633 2013-03-22 08:04:14Z goiarbide $
+ * $Id: trdp_if.c 634 2013-03-22 10:14:13Z goiarbide $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -1245,7 +1245,7 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 }
 
 #if MD_SUPPORT
-                /*    Copy the master_set socket states to the pFileDesc    */
+                /*    Add the socket to the pFileDesc    */
                 {
                     int          index;
                     MD_ELE_T     *iterMD;
@@ -1264,23 +1264,13 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                            && (appHandle->iface[index].type == TRDP_SOCK_MD_TCP)
                            && (appHandle->iface[index].tcpParams.addFileDesc == TRUE))
                         {
-                            /* Copy the master_set to the pFileDesc */
-                            //if(FD_ISSET(appHandle->iface[index].sock, &appHandle->tcpFd.master_set))
+                            FD_SET(appHandle->iface[index].sock, (fd_set *)pFileDesc);
+                            if (appHandle->iface[index].sock > *pNoDesc)
                             {
-                                FD_SET(appHandle->iface[index].sock, (fd_set *)pFileDesc);
-                                if (appHandle->iface[index].sock > *pNoDesc)
-                                {
-                                    *pNoDesc = appHandle->iface[index].sock;
-                                }
+                                *pNoDesc = appHandle->iface[index].sock;
                             }
-                            /*else
-                            {
-                                FD_CLR(appHandle->iface[index].sock, (fd_set *)pFileDesc);
-                            }*/
                         }
                     }
-
-                    /* *pNoDesc = appHandle->mdDefault.tcpFd.max_sd; */
 
                     /*  Include MD UDP listener sockets sockets  */
                     for (iterListener = appHandle->pMDListenQueue; iterListener != NULL; iterListener = iterListener->pNext)
