@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 633 2013-03-22 08:04:14Z goiarbide $
+ * $Id: trdp_utils.c 640 2013-03-25 17:13:20Z fweispfenning $
  *
  */
 
@@ -635,10 +635,6 @@ TRDP_ERR_T  trdp_requestSocket (
                         continue;   /* No, socket cannot join more MC groups */
                     }
                 }
-            }
-            else if (iface[index].bindAddr != 0)
-            {
-                (void) vos_sockBind(iface[index].sock, iface[index].bindAddr, 0);
             }
 
 /* add_start TOSHIBA 0306 */
