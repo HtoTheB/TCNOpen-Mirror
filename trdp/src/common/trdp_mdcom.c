@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 634 2013-03-22 10:14:13Z goiarbide $
+ * $Id: trdp_mdcom.c 636 2013-03-25 10:29:19Z 97028 $
  *
  */
 
@@ -327,11 +327,12 @@ TRDP_ERR_T trdp_mdCheck (
     /* check topocounter */
     if (TRDP_NO_ERR == err)
     {
-        if (pPacket->topoCount != 0 && pPacket->topoCount != appHandle->topoCount)
+		uint32_t l_tc = vos_ntohl(pPacket->topoCount);
+        if (l_tc != 0 && l_tc != appHandle->topoCount)
         {
             appHandle->stats.udpMd.numTopoErr++;
             vos_printf(VOS_LOG_ERROR, "MDframe topocount error %u, expected %u\n",
-                       pPacket->topoCount,
+                       l_tc,
                        appHandle->topoCount);
             err = TRDP_TOPO_ERR;
         }
