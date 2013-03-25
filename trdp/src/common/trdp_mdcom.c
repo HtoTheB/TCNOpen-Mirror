@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 636 2013-03-25 10:29:19Z 97028 $
+ * $Id: trdp_mdcom.c 637 2013-03-25 14:52:35Z fweispfenning $
  *
  */
 
@@ -327,7 +327,7 @@ TRDP_ERR_T trdp_mdCheck (
     /* check topocounter */
     if (TRDP_NO_ERR == err)
     {
-		uint32_t l_tc = vos_ntohl(pPacket->topoCount);
+		UINT32 l_tc = vos_ntohl(pPacket->topoCount);
         if (l_tc != 0 && l_tc != appHandle->topoCount)
         {
             appHandle->stats.udpMd.numTopoErr++;
