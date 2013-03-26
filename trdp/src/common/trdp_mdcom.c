@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 645 2013-03-26 14:36:47Z 97028 $
+ * $Id: trdp_mdcom.c 646 2013-03-26 17:16:05Z 97028 $
  *
  */
 
@@ -2076,11 +2076,21 @@ void  trdp_mdCheckTimeouts (
                     iterMD->morituri = TRUE;
                     break;
                 case TRDP_ST_TX_REPLY_RECEIVED:
-                    /* kill session if number of repliers have been received  */
-                    if (iterMD->noOfRepliers == iterMD->numReplies)
-                    {
+					/* kill session if # of repliers is undefined (ie multicast) */
+					if (iterMD->noOfRepliers == 0)
+					{
+                        resultCode       = TRDP_REPLYTO_ERR;
+						timeOut          = TRUE;
                         iterMD->morituri = TRUE;
-                    }
+					}
+					else
+					{
+						/* kill session if number of repliers have been received  */
+						if (iterMD->noOfRepliers == iterMD->numReplies)
+						{
+							iterMD->morituri = TRUE;
+						}
+					}
                     break;
                 default:
                     break;
