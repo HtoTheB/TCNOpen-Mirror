@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 647 2013-03-27 12:51:54Z goiarbide $
+ * $Id: trdp_mdcom.c 648 2013-03-27 13:00:22Z goiarbide $
  *
  */
 
@@ -1545,6 +1545,14 @@ void  trdp_mdCheckListenSocks (
                             && (appHandle->iface[socketIndex].rcvMostly == TRUE))
                         {
                             vos_printf(VOS_LOG_INFO, "New socket accepted from the same device (Ip = %u)\n", newIp);
+
+                            if(appHandle->iface[socketIndex].usage > 0)
+                            {
+                                vos_printf(VOS_LOG_INFO, "The new socket accepted from the same device (Ip = %u), won't be removed, because it is still using\n", newIp);
+                                socketFound = TRUE;
+                                break;
+                            }
+
 
                             /* Delete the items from SndQueue that are using the old socket */
                             for (iterMD = appHandle->pMDSndQueue; iterMD != NULL; iterMD = iterMD->pNext)
