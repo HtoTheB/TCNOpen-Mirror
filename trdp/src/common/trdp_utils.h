@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 621 2013-03-19 13:47:43Z goiarbide $
+ * $Id: trdp_utils.h 647 2013-03-27 12:51:54Z goiarbide $
  *
  */
 
@@ -157,7 +157,8 @@ TRDP_ERR_T trdp_requestSocket(
 
 void trdp_releaseSocket(
     TRDP_SOCKETS_T iface[],
-    INT32 index);
+    INT32 index,
+    UINT32 connectTimeout);
 
 
 /*********************************************************************************************************************/
