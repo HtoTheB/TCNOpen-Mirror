@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.h 407 2013-01-25 16:28:56Z bloehr $
+ * $Id: vos_thread.h 651 2013-03-28 12:41:45Z cschneider $
  *
  */
 
@@ -453,7 +453,7 @@ EXT_DECL VOS_ERR_T vos_semaTake (
  *  @param[in]      sema            semaphore handle
  */
 
-EXT_DECL VOS_ERR_T vos_semaGive (
+EXT_DECL void vos_semaGive (
     VOS_SEMA_T sema);
 
 

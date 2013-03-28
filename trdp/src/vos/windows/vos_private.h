@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 253 2013-01-07 13:48:40Z aweiss $
+ * $Id: vos_private.h 651 2013-03-28 12:41:45Z cschneider $
  *
  */
 
@@ -43,6 +43,11 @@ struct VOS_MUTEX
 {
     UINT32          magicNo;
     pthread_mutex_t mutexId;
+};
+
+struct VOS_SEMA
+{
+    struct sem_t_ *semaphore;
 };
 
 VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
