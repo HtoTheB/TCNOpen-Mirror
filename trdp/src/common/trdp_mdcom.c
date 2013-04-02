@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 648 2013-03-27 13:00:22Z goiarbide $
+ * $Id: trdp_mdcom.c 655 2013-04-02 13:50:55Z 97028 $
  *
  */
 
@@ -874,6 +874,11 @@ TRDP_ERR_T  trdp_mdRecv (
                 {
                     continue;
                 }
+				if (iterListener->addr.mcGroup == 0 && iterListener->addr.destIpAddr != 0 && iterListener->addr.destIpAddr != appHandle->pMDRcvEle->addr.srcIpAddr)
+				{
+					/* no IP match for unicast addressing */
+					continue;
+				}
                 if ((iterListener->destURI[0] == 0 &&                               /* ComId listener ?    */
                      vos_ntohl(pH->comId) == iterListener->addr.comId) ||
                     (iterListener->destURI[0] != 0 &&                               /* URI listener   */
