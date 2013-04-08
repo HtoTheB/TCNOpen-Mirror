@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 655 2013-04-02 13:50:55Z 97028 $
+ * $Id: trdp_mdcom.c 659 2013-04-08 09:46:09Z 97028 $
  *
  */
 
@@ -560,6 +560,10 @@ TRDP_ERR_T  trdp_mdRecvPacket (
                 &size,
                 &pElement->addr.srcIpAddr,
                 &pElement->replyPort);
+				
+		/* my ip address is destination address */
+		/* also in case of multicast ! */
+		pElement->addr.destIpAddr = appHandle->realIP;
     }
 
     pElement->grossSize = size;
