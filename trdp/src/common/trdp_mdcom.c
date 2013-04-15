@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_mdcom.c 662 2013-04-12 08:46:11Z goiarbide $
+ * $Id: trdp_mdcom.c 663 2013-04-15 14:12:15Z goiarbide $
  *
  */
 
@@ -1785,6 +1785,9 @@ void  trdp_mdCheckTimeouts (
         INT32       sndReplyTimeout     = 0;
         INT32       sndConfirmTimeout   = 0;
 
+        /* Update the current time always inside loop in case of application delays  */
+        vos_getTime(&now);
+
         /*  Switch to receive queue */
         if (NULL == iterMD && TRUE == firstLoop)
         {
@@ -1797,9 +1800,6 @@ void  trdp_mdCheckTimeouts (
         {
             break;
         }
-
-        /* Update the current time always inside loop in case of application delays  */
-        vos_getTime(&now);
 
         /* timeToGo is timeout value! */
 
