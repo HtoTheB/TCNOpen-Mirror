@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 647 2013-03-27 12:51:54Z goiarbide $
+ * $Id: trdp_utils.c 668 2013-04-16 07:32:50Z goiarbide $
  *
  */
 
@@ -856,10 +856,12 @@ void  trdp_releaseSocket (
 
         }else
         {
-            vos_printf(VOS_LOG_DBG, "Decrement the socket %d usage = %d\n", iface[index].sock, iface[index].usage);
-            if (iface[index].sock > -1)
+            if ((iface[index].sock > -1) && (iface[index].rcvMostly == FALSE))
             {
-                if ((--iface[index].usage == 0) && (iface[index].rcvMostly == FALSE))
+                vos_printf(VOS_LOG_DBG, "Decrement the socket %d usage = %d\n", iface[index].sock, iface[index].usage);
+                iface[index].usage--;
+
+                if (iface[index].usage == 0)
                 {
                     /* Start the socket connection timeout */
                     TRDP_TIME_T tmpt_interval, tmpt_now;
