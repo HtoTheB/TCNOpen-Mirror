@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if_light.h 601 2013-03-13 12:53:29Z aweiss $
+ * $Id: trdp_if_light.h 669 2013-04-16 14:57:40Z bloehr $
  *
  */
 
@@ -596,7 +596,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
  *  @param[in]      pUserRef            user supplied value returned with reply
  *  @param[in]      comId               comId to be observed
  *  @param[in]      topoCount           topocount to use
- *  @param[in]      destIpAddr          destination IP address
+ *  @param[in]      mcDestIpAddr        multicast group to listen on
  *  @param[in]      pktFlags            OPTION: TRDP_FLAGS_DEFAULT, TRDP_FLAGS_MARSHALL, TRDP_PLAGS_TCP
  *  @param[in]      destURI             only functional group of destination URI
  *
@@ -609,9 +609,9 @@ EXT_DECL TRDP_ERR_T tlm_addListener (
     TRDP_APP_SESSION_T      appHandle,
     TRDP_LIS_T              *pListenHandle,
     const void              *pUserRef,
-    UINT32                  comId,      /* muliple ComID handled in layer above  */
+    UINT32                  comId,        /* muliple ComID handled in layer above  */
     UINT32                  topoCount,
-    TRDP_IP_ADDR_T          destIpAddr, /* muliple destId handled in layer above */
+    TRDP_IP_ADDR_T          mcDestIpAddr, /* multiple destId handled in layer above */
     TRDP_FLAGS_T            pktFlags,
     const TRDP_URI_USER_T   destURI);
 
