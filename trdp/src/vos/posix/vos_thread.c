@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 652 2013-03-28 13:13:13Z fweispfenning $
+ * $Id: vos_thread.c 674 2013-04-18 14:32:42Z bloehr $
  *
  */
 
@@ -989,5 +989,5 @@ EXT_DECL VOS_ERR_T vos_semaTake (
 EXT_DECL void vos_semaGive (
     VOS_SEMA_T sema)
 {
-    return VOS_SEMA_ERR;
+    /*return VOS_SEMA_ERR;*/
 }
