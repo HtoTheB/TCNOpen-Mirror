@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_marshall.c 497 2013-02-08 12:46:37Z bloehr $
+ * $Id: tau_marshall.c 676 2013-04-18 15:27:42Z bloehr $
  *
  */
 
@@ -1335,7 +1335,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSize (
  *  @param[in]      pRefCon         Pointer to user context
  *  @param[in]      comId           ComId id to identify the structure out of a configuration
  *  @param[in]      pSrc            Pointer to received original message
- *  @param[out]     pSize           Pointer to the size of the data set
+ *  @param[out]     pDestSize       Pointer to the size of the data set
  *  @param[in,out]  ppDSPointer     pointer to pointer to cached dataset,
  *                                  set NULL if not used, set content NULL if unknown
  *

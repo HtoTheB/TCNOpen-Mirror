@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 668 2013-04-16 07:32:50Z goiarbide $
+ * $Id: trdp_utils.c 676 2013-04-18 15:27:42Z bloehr $
  *
  */
 
@@ -826,6 +826,7 @@ TRDP_ERR_T  trdp_requestSocket (
  *  In Udp, Release a socket from our socket pool
  *  @param[in,out]  iface           socket pool
  *  @param[in]      index           index of socket to release
+ *  @param[in]      connectTimeout  time out
  *
  */
 void  trdp_releaseSocket (
