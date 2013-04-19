@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 672 2013-04-18 14:09:35Z bloehr $
+ * $Id: vos_sock.c 679 2013-04-19 13:59:02Z aweiss $
  *
  */
 
@@ -37,6 +37,7 @@
 #include <fcntl.h>
 #include <winsock2.h>
 #include <Ws2tcpip.h>
+#include <mswsock.h>
 #include <lm.h>
 
 #include "vos_utils.h"
