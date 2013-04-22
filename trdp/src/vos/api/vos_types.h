@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 594 2013-03-11 15:14:07Z bloehr $
+ * $Id: vos_types.h 702 2013-04-22 17:06:11Z cschneider $
  *
  */
 
@@ -28,6 +28,9 @@
 
 #ifdef __cplusplus
 extern "C" {
+#endif
+#ifdef VXWORKS
+#include <types/vxTypesOld.h>
 #endif
 
 /***********************************************************************************************************************
