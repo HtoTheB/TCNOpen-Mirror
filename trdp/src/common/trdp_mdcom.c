@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 692 2013-04-22 15:07:26Z bloehr $
+ * $Id: trdp_mdcom.c 693 2013-04-22 15:20:10Z bloehr $
  *
  */
 
@@ -584,7 +584,7 @@ TRDP_ERR_T  trdp_mdRecvPacket (
                 (UINT8 *)&pElement->pPacket->frameHead,
                 &size,
                 &pElement->addr.srcIpAddr,
-                &pElement->replyPort, pElement->addr.destIpAddr);
+                &pElement->replyPort, &pElement->addr.destIpAddr);
 
         /* only if there is no destIP available, we use our own IP as destination!
            destIpAddr can be multicast group address as well!  */
