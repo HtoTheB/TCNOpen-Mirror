@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 702 2013-04-22 17:06:11Z cschneider $
+ * $Id: vos_types.h 703 2013-04-22 17:10:11Z cschneider $
  *
  */
 
@@ -70,6 +70,13 @@ typedef int64_t INT64;
 typedef signed char BOOL;
 typedef char CHAR8;
 typedef wchar_t UTF16;
+typedef float REAL32;
+typedef double REAL64;
+
+#elif defined(VXWORKS)
+
+typedef char CHAR8;
+typedef short UTF16;
 typedef float REAL32;
 typedef double REAL64;
 
