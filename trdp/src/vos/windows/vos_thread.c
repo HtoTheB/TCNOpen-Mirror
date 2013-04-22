@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 651 2013-03-28 12:41:45Z cschneider $
+ * $Id: vos_thread.c 697 2013-04-22 16:18:05Z cschneider $
  *
  */
 
@@ -977,7 +977,6 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
 {
     VOS_ERR_T retVal = VOS_SEMA_ERR;
     INT32 ret = (INT32) NULL;
-    DWORD err = 0;
  
     /*Check parameters*/
     if (pSema == NULL)
@@ -993,7 +992,7 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
     else
         /*Parameters are OK*/
     {
-        *pSema = (VOS_SEMA_T) vos_memAlloc(sizeof (struct VOS_SEMA));
+        *pSema = (VOS_SEMA_T) vos_memAlloc(sizeof (VOS_SEMA_T));
 
         if (*pSema == NULL)
         {
