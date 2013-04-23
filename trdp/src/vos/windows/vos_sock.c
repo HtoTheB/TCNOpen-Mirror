@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 705 2013-04-23 08:17:41Z aweiss $
+ * $Id: vos_sock.c 706 2013-04-23 08:36:32Z aweiss $
  *
  */
 
@@ -220,6 +220,60 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
 
     return VOS_NO_ERR;
 }
+
+/**********************************************************************************************************************/
+/** Get a list of interface addresses
+ *  The caller has to provide an array of interface records to be filled.
+ *
+ *  @param[in]      maxAddrCnt        array size of interface record
+ *  @param[in,out]  ifAddrs           array of interface records
+ *
+ *  @retval         number of filled in entries
+ */
+EXT_DECL UINT32 vos_getInterfaces (
+    UINT32          maxAddrCnt,
+    VOS_IF_REC_T    ifAddrs[])
+{
+/*  
+TO BE ADAPTED TO WIN32
+    int success;
+    struct ifaddrs *addrs;
+    struct ifaddrs *cursor;
+    int count = 0;
+
+
+    success = getifaddrs(&addrs) == 0;
+    if (success)
+    {
+        cursor = addrs;
+        while (cursor != 0 && count < maxAddrCnt)
+        {
+            if (cursor->ifa_addr != NULL && cursor->ifa_addr->sa_family == AF_INET)
+            {
+                ifAddrs[count].ipAddr   = ntohl(*(UINT32 *)&cursor->ifa_addr->sa_data[2]);
+                ifAddrs[count].netMask  = ntohl(*(UINT32 *)&cursor->ifa_netmask->sa_data[2]);
+                if (cursor->ifa_name != NULL)
+                {
+                    strncpy((char *) ifAddrs[count].name, cursor->ifa_name, VOS_MAX_IF_NAME_SIZE);
+                    ifAddrs[count].name[VOS_MAX_IF_NAME_SIZE - 1] = 0;
+                }
+                vos_printf(VOS_LOG_INFO, "IP-Addr for '%s': %u.%u.%u.%u\n",
+                           ifAddrs[count].name,
+                           (ifAddrs[count].ipAddr >> 24) & 0xFF,
+                           (ifAddrs[count].ipAddr >> 16) & 0xFF,
+                           (ifAddrs[count].ipAddr >> 8)  & 0xFF,
+                           ifAddrs[count].ipAddr        & 0xFF);
+                count++;
+            }
+            cursor = cursor->ifa_next;
+        }
+
+        freeifaddrs(addrs);
+    }
+    return count;
+    */
+    return 0;
+} 
 
 /**********************************************************************************************************************/
 /** select function.
