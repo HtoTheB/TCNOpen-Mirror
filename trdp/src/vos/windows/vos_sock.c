@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 686 2013-04-22 14:37:08Z bloehr $
+ * $Id: vos_sock.c 705 2013-04-23 08:17:41Z aweiss $
  *
  */
 
@@ -304,8 +304,8 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
         else
         {
             pwkti = (WKSTA_TRANSPORT_INFO_0 *)pbBuffer;
-
-
+            pwkti = pwkti;    /* to make lint happy */
+            
             /* skip all MAC addresses like 00000000 and search the first suitable one */
             for (i = 0; i < dwEntriesRead; i++)
             {
@@ -829,8 +829,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     UINT32  *pDstIPAddr)
 {
     struct sockaddr_in  srcAddr;
-    int                 sockLen = sizeof(srcAddr);
-    DWORD               rcvSize = 0;
+    INT32               rcvSize = 0;
     int                 err     = 0;
     int                 retVal = 0;
 
