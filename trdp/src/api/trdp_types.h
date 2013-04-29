@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 633 2013-03-22 08:04:14Z goiarbide $
+ * $Id: trdp_types.h 720 2013-04-29 14:54:31Z bloehr $
  *
  */
 
@@ -430,8 +430,8 @@ typedef struct
     UINT32  numAllocBlocks;                             /**< allocated memory blocks */
     UINT32  numAllocErr;                                /**< allocation errors */
     UINT32  numFreeErr;                                 /**< free errors */
-    UINT32  preAllocBlockSize[TRDP_MEM_BLK_524288 + 1]; /**< preallocated memory blocks */
-    UINT32  usedBlockSize[TRDP_MEM_BLK_524288 + 1];     /**< used memory blocks */
+    UINT32  preAllocBlockSize[VOS_MEM_NBLOCKSIZES];     /**< preallocated memory blocks */
+    UINT32  usedBlockSize[VOS_MEM_NBLOCKSIZES];         /**< used memory blocks */
 } TRDP_MEM_STATISTICS_T;
 
 
