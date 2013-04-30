@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 726 2013-04-30 12:59:44Z bloehr $
+ * $Id: trdp_types.h 728 2013-04-30 14:34:23Z bloehr $
  *
  */
 
@@ -59,6 +59,12 @@ extern "C" {
     #define EXT_DECL
 
 #endif
+
+/*  Default SDT values  */
+#define TRDP_SDT_DEFAULT_SMI2       0                                   /**< Default SDT safe message identifier    */
+#define TRDP_SDT_DEFAULT_NRXSAFE    3                                   /**< Default SDT timeout cycles             */
+#define TRDP_SDT_DEFAULT_NGUARD     100                                 /**< Default SDT initial timeout cycles     */
+#define TRDP_SDT_DEFAULT_CMTHR      10                                  /**< Default SDT chan. monitoring threshold */
 
 /***********************************************************************************************************************
  * TYPEDEFS
