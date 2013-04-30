@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 729 2013-04-30 15:19:14Z aweiss $
+ * $Id: vos_sock.c 732 2013-04-30 16:13:18Z bloehr $
  *
  */
 
@@ -205,7 +205,7 @@ EXT_DECL BOOL vos_isMulticast (
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   pMAC == NULL
  */
-EXT_DECL VOS_ERR_T vos_sockGetInterfaces (
+EXT_DECL VOS_ERR_T vos_getInterfaces (
     UINT32         *pAddrCnt,
     VOS_IF_REC_T    ifAddrs[])
 {
