@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 737 2013-05-02 09:39:10Z aweiss $
+ * $Id: vos_sock.c 743 2013-05-02 14:41:58Z aweiss $
  *
  */
 
@@ -60,7 +60,9 @@
  * DEFINITIONS
  */
 
+#ifndef VOS_DEFAULT_IFACE 
 #define VOS_DEFAULT_IFACE  "eth0"
+#endif
 
 /***********************************************************************************************************************
  *  LOCALS
