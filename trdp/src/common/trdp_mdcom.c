@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 736 2013-05-02 09:11:12Z goiarbide $
+ * $Id: trdp_mdcom.c 738 2013-05-02 10:49:14Z goiarbide $
  *
  */
 
@@ -690,7 +690,7 @@ TRDP_ERR_T  trdp_mdRecvPacket (
                 return TRDP_PARAM_ERR;
             }
 
-            return TRDP_IO_ERR;
+            return TRDP_PACKET_ERR;
 
         }
         else
@@ -1717,7 +1717,7 @@ void  trdp_mdCheckListenSocks (
             err = trdp_mdRecv(appHandle, index);
 
             /* The receive message is incomplete */
-            if (err == TRDP_IO_ERR && appHandle->iface[index].type == TRDP_SOCK_MD_TCP)
+            if (err == TRDP_PACKET_ERR && appHandle->iface[index].type == TRDP_SOCK_MD_TCP)
             {
                 vos_printf(VOS_LOG_INFO, "Incomplete message received \n");
             }
