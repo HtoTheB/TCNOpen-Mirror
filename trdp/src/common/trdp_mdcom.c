@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 707 2013-04-23 09:37:48Z goiarbide $
+ * $Id: trdp_mdcom.c 734 2013-05-02 07:46:25Z aweiss $
  *
  */
 
@@ -844,7 +844,7 @@ TRDP_ERR_T  trdp_mdRecv (
     }
     else
     {
-        appHandle->pMDRcvEle->pktFlags &= ~TRDP_FLAGS_TCP;
+        appHandle->pMDRcvEle->pktFlags = (TRDP_FLAGS_T) (appHandle->pMDRcvEle->pktFlags & ~TRDP_FLAGS_TCP);
         isTCP = FALSE;
     }
 

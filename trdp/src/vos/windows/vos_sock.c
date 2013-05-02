@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 732 2013-04-30 16:13:18Z bloehr $
+ * $Id: vos_sock.c 734 2013-05-02 07:46:25Z aweiss $
  *
  */
 
@@ -268,7 +268,7 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                 /* store interface attributes */
                 ifAddrs[addrCnt].ipAddr = ntohl(p->sin_addr.s_addr);
                 ifAddrs[addrCnt].netMask = 0;
-                strncpy_s(ifAddrs[addrCnt].name, sizeof(ifAddrs[addrCnt].name), pAdapter->AdapterName, _TRUNCATE);
+                (void) strncpy_s(ifAddrs[addrCnt].name, sizeof(ifAddrs[addrCnt].name), pAdapter->AdapterName, _TRUNCATE);
         
                 if (pAdapter->PhysicalAddressLength != sizeof(ifAddrs[addrCnt].mac))
                 {
