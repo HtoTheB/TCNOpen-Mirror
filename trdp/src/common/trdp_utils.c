@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 718 2013-04-29 14:47:16Z bloehr $
+ * $Id: trdp_utils.c 736 2013-05-02 09:11:12Z goiarbide $
  *
  */
 
@@ -651,7 +651,7 @@ TRDP_ERR_T  trdp_requestSocket (
             /* Use that socket */
             *pIndex = index;
 
-            if (((usage != TRDP_SOCK_MD_TCP)) || ((usage == TRDP_SOCK_MD_TCP) && (iface[index].usage > 0)))
+            if(((usage != TRDP_SOCK_MD_TCP)) || ((usage == TRDP_SOCK_MD_TCP) && (iface[index].usage > -1)))
             {
                 iface[index].usage++;
             }
@@ -797,7 +797,7 @@ TRDP_ERR_T  trdp_requestSocket (
                 }
                 else
                 {
-                    iface[index].usage = 1;
+                    iface[index].usage = 0;
                     *pIndex = index;
                 }
 
