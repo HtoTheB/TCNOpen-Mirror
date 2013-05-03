@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 736 2013-05-02 09:11:12Z goiarbide $
+ * $Id: trdp_utils.c 760 2013-05-03 15:03:47Z bloehr $
  *
  */
 
@@ -25,8 +25,8 @@
 
 #include <string.h>
 
-#include "trdp_utils.h"
 #include "trdp_if.h"
+#include "trdp_utils.h"
 
 /***********************************************************************************************************************
  * DEFINES
