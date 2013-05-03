@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 750 2013-05-03 09:42:22Z bloehr $
+ * $Id: vos_sock.c 759 2013-05-03 15:03:11Z bloehr $
  *
  */
 
@@ -136,7 +136,9 @@ BOOL vos_getMacAddress (
 
     if (getifaddrs(&pIfList) == 0)
     {
-        for (struct ifaddrs *cur = pIfList; cur; cur = cur->ifa_next)
+    	struct ifaddrs *cur;
+
+        for (cur = pIfList; cur; cur = cur->ifa_next)
         {
             if ((cur->ifa_addr->sa_family == AF_LINK) &&
                 (strcmp(cur->ifa_name, pName) == 0) &&
