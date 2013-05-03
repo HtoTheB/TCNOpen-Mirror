@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 701 2013-04-22 16:55:30Z cschneider $
+ * $Id: vos_mem.c 755 2013-05-03 14:31:38Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -108,6 +108,10 @@ struct VOS_QUEUE
     void                *pData;
     size_t              size;
 };
+
+/* Forward declaration, Mutex size is target dependant! */
+VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
+void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
 
 /***********************************************************************************************************************
  *  LOCALS
@@ -281,7 +285,7 @@ EXT_DECL VOS_ERR_T vos_memInit (
  */
 
 EXT_DECL void vos_memDelete (
-    UINT8 * pMemoryArea)
+    UINT8 *pMemoryArea)
 {
     if (NULL == gMem.pArea || (pMemoryArea != NULL && pMemoryArea != gMem.pArea))
     {

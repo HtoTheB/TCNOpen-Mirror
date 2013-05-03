@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 674 2013-04-18 14:32:42Z bloehr $
+ * $Id: vos_thread.c 755 2013-05-03 14:31:38Z bloehr $
  *
  */
 
@@ -48,6 +48,7 @@
 #include "vos_utils.h"
 #include "vos_private.h"
 
+/*
 #ifdef TRDP_OPTION_LADDER
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -56,7 +57,7 @@
 #include <sys/times.h>
 
 
-#endif /* TRDP_OPTION_LADDER */
+#endif *//* TRDP_OPTION_LADDER */
 
 /***********************************************************************************************************************
  * DEFINITIONS
@@ -86,7 +87,7 @@ void cyclicThread (
     VOS_THREAD_FUNC_T   pFunction,
     void                *pArguments)
 {
-    for(;; )
+    for (;; )
     {
         vos_threadDelay(interval);
         pFunction(pArguments);
@@ -953,8 +954,7 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
 
 EXT_DECL void vos_semaDelete (
     VOS_SEMA_T sema)
-{
-}
+{}
 
 
 /**********************************************************************************************************************/
