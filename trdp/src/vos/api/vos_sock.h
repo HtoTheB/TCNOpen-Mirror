@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 743 2013-05-02 14:41:58Z aweiss $
+ * $Id: vos_sock.h 744 2013-05-03 06:36:04Z aweiss $
  *
  */
 
@@ -95,10 +95,10 @@ typedef fd_set VOS_FDS_T;
 
 typedef struct
 {
-    CHAR8           name[VOS_MAX_IF_NAME_SIZE];
-    VOS_IP4_ADDR_T  ipAddr;
-    VOS_IP4_ADDR_T  netMask;
-    UINT8           mac[VOS_MAC_SIZE]; 
+    CHAR8           name[VOS_MAX_IF_NAME_SIZE]; /**< interface adapter name        */
+    VOS_IP4_ADDR_T  ipAddr;                     /**< IP address                    */
+    VOS_IP4_ADDR_T  netMask;                    /**< subnet mask                   */
+    UINT8           mac[VOS_MAC_SIZE];          /**< interface adapter MAC address */
 } VOS_IF_REC_T;
 
 /***********************************************************************************************************************
