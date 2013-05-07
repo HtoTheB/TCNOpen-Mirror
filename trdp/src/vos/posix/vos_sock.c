@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 759 2013-05-03 15:03:11Z bloehr $
+ * $Id: vos_sock.c 781 2013-05-07 13:17:53Z 97028 $
  *
  */
 
@@ -443,6 +443,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
 
     *pSock = (INT32) sock;
     gNumberOfOpenSockets++;
+	vos_printf(VOS_LOG_INFO, "vos_sockOpenUDP: socket()=%d success\n", sock);
     return VOS_NO_ERR;
 }
 
@@ -491,6 +492,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
     }
     *pSock = (INT32) sock;
     gNumberOfOpenSockets++;
+	vos_printf(VOS_LOG_INFO, "vos_sockOpenTCP: socket()=%d success\n", sock);
     return VOS_NO_ERR;
 }
 
@@ -509,9 +511,14 @@ EXT_DECL VOS_ERR_T vos_sockClose (
     if (close(sock) == -1)
     {
         vos_printf(VOS_LOG_ERROR,
-                   "vos_sockClose called with unknown descriptor\n");
+                   "vos_sockClose(%d) called with unknown descriptor\n",sock);
         return VOS_PARAM_ERR;
     }
+	else
+	{
+        vos_printf(VOS_LOG_INFO,
+                   "vos_sockClose(%d) okay\n",sock);
+	}
     gNumberOfOpenSockets--;
     return VOS_NO_ERR;
 }
