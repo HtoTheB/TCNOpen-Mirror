@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 695 2013-04-22 16:01:51Z bloehr $
+ * $Id: trdp_pdcom.c 785 2013-05-07 14:23:11Z aweiss $
  *
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
@@ -561,7 +561,7 @@ TRDP_ERR_T  trdp_pdReceive (
  *  @param[in]      appHandle         application handle
  */
 void trdp_pdHandleTimeOuts(
-	TRDP_SESSION_PT appHandle)
+    TRDP_SESSION_PT appHandle)
 {
     PD_ELE_T    *iterPD = NULL;
     TRDP_TIME_T now;

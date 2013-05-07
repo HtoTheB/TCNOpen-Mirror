@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 778 2013-05-07 08:18:53Z cschneider $
+ * $Id: vos_sock.c 785 2013-05-07 14:23:11Z aweiss $
  *
  */
 
@@ -635,7 +635,7 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         }
     }
     /*   This seems to be unsupported on XP (but IP_RECVDSTADDR is defined!)   */
-	/*  Include struct in_pktinfo in the message "ancilliary" control data.
+    /*  Include struct in_pktinfo in the message "ancilliary" control data.
         This way we can get the destination IP address for received UDP packets */
     {
         DWORD optValue = TRUE;

@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 776 2013-05-07 08:09:08Z 97028 $
+ * $Id: vos_thread.c 785 2013-05-07 14:23:11Z aweiss $
  *
  */
 
@@ -1120,10 +1120,10 @@ EXT_DECL VOS_ERR_T vos_semaTake (
            This call will fail under QNX, because it depends on CLOCK_REALTIME (opposed to CLOCK_MONOTONIC)!
         */
         #ifdef __QNXNTO__
-			rc = sem_timedwait_monotonic((sem_t *)sema, &waitTimeSpec);
+            rc = sem_timedwait_monotonic((sem_t *)sema, &waitTimeSpec);
         #else
-			rc = sem_timedwait((sem_t *)sema, &waitTimeSpec);
-		#endif
+            rc = sem_timedwait((sem_t *)sema, &waitTimeSpec);
+        #endif
     }
     else
     {

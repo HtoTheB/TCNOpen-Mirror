@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 742 2013-05-02 14:41:20Z aweiss $
+ * $Id: trdp_types.h 785 2013-05-07 14:23:11Z aweiss $
  *
  */
 
@@ -115,7 +115,7 @@ typedef enum
     TRDP_REPLYTO_ERR        = -43,  /**< Protocol Reply Timeout                         */
     TRDP_CONFIRMTO_ERR      = -44,  /**< Protocol Confirm Timeout                       */
     TRDP_REQCONFIRMTO_ERR   = -45,  /**< Protocol Confirm Timeout (Request sender)      */
-    TRDP_PACKET_ERR			= -46,  /**< Incomplete message data packet                 */
+    TRDP_PACKET_ERR            = -46,  /**< Incomplete message data packet                 */
     TRDP_UNKNOWN_ERR        = -99   /**< Unspecified error                              */
 } TRDP_ERR_T;
 
