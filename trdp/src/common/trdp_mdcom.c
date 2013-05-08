@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 748 2013-05-03 08:44:03Z goiarbide $
+ * $Id: trdp_mdcom.c 790 2013-05-08 08:55:17Z goiarbide $
  *
  */
 
@@ -2093,21 +2093,6 @@ void  trdp_mdCheckTimeouts (
                     TRDP_ERR_T err;
 
                     vos_printf(VOS_LOG_INFO, "The socket (Num = %d) TIMEOUT\n", appHandle->iface[index].sock);
-
-                    /* Execute callback */
-                    if (appHandle->mdDefault.pfCbFunction != NULL)
-                    {
-                        TRDP_MD_INFO_T theMessage = trdp_md_info_default;
-
-                        theMessage.destIpAddr   = appHandle->iface[index].tcpParams.cornerIp;
-                        theMessage.resultCode   = TRDP_TIMEOUT_ERR;
-                        memset(theMessage.sessionId, 0, TRDP_SESS_ID_SIZE);
-
-                        appHandle->mdDefault.pfCbFunction(
-                            appHandle->mdDefault.pRefCon,
-                            appHandle,
-                            &theMessage, NULL, 0);
-                    }
 
                     err = (TRDP_ERR_T) vos_sockClose(appHandle->iface[index].sock);
                     if (err != TRDP_NO_ERR)
