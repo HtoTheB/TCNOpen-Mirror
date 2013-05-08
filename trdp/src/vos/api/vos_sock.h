@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 750 2013-05-03 09:42:22Z bloehr $
+ * $Id: vos_sock.h 791 2013-05-08 16:02:08Z bloehr $
  *
  */
 
@@ -384,6 +384,7 @@ EXT_DECL VOS_ERR_T vos_sockSendUDP (
  *  @param[out]     pSrcIPAddr      pointer to source IP
  *  @param[out]     pSrcIPPort      pointer to source port
  *  @param[out]     pDstIPAddr      pointer to dest IP
+ *  @param[in]      peek            if true, leave data in queue
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
@@ -398,7 +399,8 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     UINT32  *pSize,
     UINT32  *pSrcIPAddr,
     UINT16  *pSrcIPPort,
-    UINT32  *pDstIPAddr);
+    UINT32  *pDstIPAddr,
+    BOOL    peek);
 
 /**********************************************************************************************************************/
 /** Bind a socket to an address and port.
