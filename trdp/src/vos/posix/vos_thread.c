@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 785 2013-05-07 14:23:11Z aweiss $
+ * $Id: vos_thread.c 792 2013-05-09 05:31:19Z 97029 $
  *
  */
 
@@ -51,17 +51,6 @@
 #include "vos_mem.h"
 #include "vos_utils.h"
 #include "vos_private.h"
-
-/*
-#ifdef TRDP_OPTION_LADDER
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <sys/times.h>
-
-
-#endif *//* TRDP_OPTION_LADDER */
 
 /***********************************************************************************************************************
  * DEFINITIONS
