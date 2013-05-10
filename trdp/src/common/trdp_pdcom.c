@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 791 2013-05-08 16:02:08Z bloehr $
+ * $Id: trdp_pdcom.c 799 2013-05-10 12:16:58Z bloehr $
  *
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
@@ -554,6 +554,59 @@ TRDP_ERR_T  trdp_pdReceive (
         }
     }
     return TRDP_NO_ERR;
+}
+
+/******************************************************************************/
+/** Check for pending packets, set FD if non blocking
+ *
+ *  @param[in]      appHandle           session pointer
+ *  @param[in,out]  pFileDesc           pointer to set of ready descriptors
+ *  @param[in,out]  pNoDesc             pointer to number of ready descriptors
+ */
+void trdp_pdCheckPending (
+    TRDP_APP_SESSION_T  appHandle,
+    TRDP_FDS_T          *pFileDesc,
+    INT32               *pNoDesc)
+{
+    PD_ELE_T *iterPD;
+
+    /*    Walk over the registered PDs, find pending packets */
+    /*    Find the packet which has to be received next:    */
+    for (iterPD = appHandle->pRcvQueue; iterPD != NULL; iterPD = iterPD->pNext)
+    {
+        if (timerisset(&iterPD->interval) &&            /* not PD PULL?    */
+            (!timerisset(&appHandle->interval) ||
+             !timercmp(&iterPD->timeToGo, &appHandle->interval, >)))
+        {
+            appHandle->interval = iterPD->timeToGo;
+
+            /*    There can be several sockets depending on TRDP_PD_CONFIG_T    */
+            if (iterPD->socketIdx != -1 &&
+                appHandle->iface[iterPD->socketIdx].sock != -1 &&
+                appHandle->option & TRDP_OPTION_BLOCK)
+            {
+                if (!FD_ISSET(appHandle->iface[iterPD->socketIdx].sock, (fd_set *)pFileDesc))
+                {
+                    FD_SET(appHandle->iface[iterPD->socketIdx].sock, (fd_set *)pFileDesc);
+                    if (appHandle->iface[iterPD->socketIdx].sock > *pNoDesc)
+                    {
+                        *pNoDesc = appHandle->iface[iterPD->socketIdx].sock;
+                    }
+                }
+            }
+        }
+    }
+
+    /*    Find the packet which has to be sent even earlier:    */
+    for (iterPD = appHandle->pSndQueue; iterPD != NULL; iterPD = iterPD->pNext)
+    {
+        if (timerisset(&iterPD->interval) &&            /* not PD PULL?    */
+            (!timerisset(&appHandle->interval) ||
+             !timercmp(&iterPD->timeToGo, &appHandle->interval, >)))
+        {
+            appHandle->interval = iterPD->timeToGo;
+        }
+    }
 }
 
 /******************************************************************************/
