@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 792 2013-05-09 05:31:19Z 97029 $
+ * $Id: vos_thread.c 800 2013-05-10 12:17:42Z bloehr $
  *
  */
 
@@ -1074,7 +1074,7 @@ EXT_DECL VOS_ERR_T vos_semaTake (
     if (sema == NULL)
     {
         vos_printf(VOS_LOG_ERROR, "vos_semaTake() ERROR invalid parameter 'sema' == NULL\n");
-        retVal = VOS_PARAM_ERR;
+        /* retVal = VOS_PARAM_ERR;  BL: will never be used! */
     }
     else if (timeout != 0)
     {
