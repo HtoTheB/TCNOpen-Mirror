@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_proto.h 725 2013-04-30 12:56:34Z bloehr $
+ * $Id: trdp_proto.h 795 2013-05-10 10:12:58Z bloehr $
  *
  */
 
@@ -43,9 +43,10 @@
 #define TRDP_MD_TCP_PORT  20550                                         /**< message data TCP port                  */
 #endif
 
-#define TRDP_PROTO_VER      0x0100                                      /**< Protocol version                       */
-#define TRDP_SESS_ID_SIZE   16                                          /**< Session ID (UUID) size in MD header    */
-#define TRDP_DEST_URI_SIZE  32                                          /**< max. Dest URI size in MD header        */
+#define TRDP_PROTO_VER                      0x0100                      /**< Protocol version                       */
+#define TRDP_PROTOCOL_VERSION_CHECK_MASK    0xFF00                      /**< Version check, two digits are relevant */
+#define TRDP_SESS_ID_SIZE                   16                          /**< Session ID (UUID) size in MD header    */
+#define TRDP_DEST_URI_SIZE                  32                          /**< max. Dest URI size in MD header        */
 
 
 /*  Default MD communication parameters   */
