@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if_light.h 676 2013-04-18 15:27:42Z bloehr $
+ * $Id: trdp_if_light.h 810 2013-05-14 13:10:09Z aweiss $
  *
  */
 
@@ -767,9 +767,16 @@ EXT_DECL TRDP_ERR_T tlm_replyErr (
  *
  *  @retval            const string
  */
-EXT_DECL const CHAR8 *tlc_getVersion (
+EXT_DECL const CHAR8 *tlc_getVersionString (
     void);
 
+/**********************************************************************************************************************/
+/** Return version.
+ *    Return pointer to version structure
+ *
+ *  @retval            const TRDP_VERSION_T
+ */
+EXT_DECL const TRDP_VERSION_T *tlc_getVersion (void);
 
 /**********************************************************************************************************************/
 /** Return statistics.

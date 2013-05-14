@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 806 2013-05-14 07:50:08Z aweiss $
+ * $Id: trdp_if.c 810 2013-05-14 13:10:09Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -52,6 +52,7 @@
  * LOCALS
  */
 
+const  TRDP_VERSION_T       trdpVersion     = {TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION};
 static TRDP_APP_SESSION_T   sSession        = NULL;
 static VOS_MUTEX_T          sSessionMutex   = NULL;
 static BOOL sInited = FALSE;
@@ -682,13 +683,30 @@ EXT_DECL TRDP_ERR_T tlc_reinitSession (
     return ret;
 }
 
-const char *tlc_getVersion (void)
+/**********************************************************************************************************************/
+/** Return a human readable version representation.
+ *    Return string in the form 'v.r.u.b'
+ *
+ *  @retval            const string
+ */
+const char *tlc_getVersionString (void)
 {
     static CHAR8  version[16];
 
     vos_snprintf(version, sizeof(version), "%d.%d.%d.%d", TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION);
 
     return version;
+}
+
+/**********************************************************************************************************************/
+/** Return version.
+ *    Return pointer to version structure
+ *
+ *  @retval            TRDP_VERSION_T
+ */
+EXT_DECL const TRDP_VERSION_T *tlc_getVersion (void)
+{
+    return &trdpVersion;
 }
 
 /**********************************************************************************************************************/

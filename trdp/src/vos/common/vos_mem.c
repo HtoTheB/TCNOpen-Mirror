@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 808 2013-05-14 09:17:27Z aweiss $
+ * $Id: vos_mem.c 810 2013-05-14 13:10:09Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -712,7 +712,7 @@ EXT_DECL VOS_ERR_T vos_queueCreate (
     UINT32              maxNoOfMsg,
     VOS_QUEUE_T        *pQueueHandle )
 {
-   return VOS_UNKNOWN_ERR;; 
+   return VOS_UNKNOWN_ERR; 
 }
 
 /**********************************************************************************************************************/
