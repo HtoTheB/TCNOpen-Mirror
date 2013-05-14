@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 764 2013-05-06 08:43:19Z cschneider $
+ * $Id: vos_thread.c 811 2013-05-14 13:13:49Z aweiss $
  *
  */
 
@@ -752,7 +752,7 @@ EXT_DECL VOS_ERR_T vos_mutexCreate (
  *  @retval         VOS_MUTEX_ERR   no mutex available
  */
 
-EXT_DECL VOS_ERR_T vos_mutexLocalCreate (
+VOS_ERR_T vos_mutexLocalCreate (
     struct VOS_MUTEX *pMutex)
 {
     int err = 0;
@@ -828,7 +828,7 @@ EXT_DECL void vos_mutexDelete (
  *  @param[in]      pMutex          Pointer to mutex struct
  */
 
-EXT_DECL void vos_mutexLocalDelete (
+void vos_mutexLocalDelete (
     struct VOS_MUTEX *pMutex)
 {
     if (pMutex == NULL || pMutex->magicNo != cMutextMagic)
