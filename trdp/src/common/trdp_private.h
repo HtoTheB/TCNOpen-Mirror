@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 725 2013-04-30 12:56:34Z bloehr $
+ * $Id: trdp_private.h 806 2013-05-14 07:50:08Z aweiss $
  *
  */
 
@@ -36,7 +36,10 @@
  * DEFINES
  */
 
-#define LIB_VERSION             "0.0.3.0"
+#define TRDP_VERSION            1
+#define TRDP_RELEASE            0
+#define TRDP_UPDATE             0
+#define TRDP_EVOLUTION          0
 
 #define TRDP_TIMER_GRANULARITY  10000                                   /**< granularity in us                      */
 #define TRDP_TIMER_FOREVER      0xffffffff                              /**< granularity in us                      */
