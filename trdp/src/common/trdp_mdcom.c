@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 803 2013-05-13 08:52:25Z bloehr $
+ * $Id: trdp_mdcom.c 813 2013-05-15 09:33:04Z 97025 $
  *
  */
 
@@ -599,13 +599,10 @@ TRDP_ERR_T  trdp_mdRecvPacket (
             if (size == sizeof(MD_HEADER_T) &&
                 trdp_mdCheck(appHandle, &pElement->pPacket->frameHead, size, CHECK_HEADER_ONLY) == TRDP_NO_ERR)
             {
-                pElement->dataSize = vos_ntohl(pElement->pPacket->frameHead.datasetLength);
+                pElement->dataSize  = vos_ntohl(pElement->pPacket->frameHead.datasetLength);
+                pElement->grossSize = trdp_packetSizeMD(pElement->dataSize);
 
-                if (trdp_packetSizeMD(pElement->dataSize) <= cMinimumMDSize)
-                {
-                    pElement->grossSize = size;
-                }
-                else
+                if (trdp_packetSizeMD(pElement->dataSize) > cMinimumMDSize)
                 {
                     /* we have to allocate a bigger buffer */
                     MD_PACKET_T *pBigData = (MD_PACKET_T *) vos_memAlloc(trdp_packetSizeMD(pElement->dataSize));
@@ -620,17 +617,14 @@ TRDP_ERR_T  trdp_mdRecvPacket (
                 }
 
                 /*  get the complete packet */
-                /* if (pElement->dataSize > 0) */
-                {
-                    size    = pElement->grossSize;
-                    err     = (TRDP_ERR_T) vos_sockReceiveUDP(mdSock,
-                                                              (UINT8 *)pElement->pPacket,
-                                                              &size,
-                                                              &pElement->addr.srcIpAddr,
-                                                              &pElement->replyPort,
-                                                              &pElement->addr.destIpAddr,
-                                                              FALSE);
-                }
+                size    = pElement->grossSize;
+                err     = (TRDP_ERR_T) vos_sockReceiveUDP(mdSock,
+                                                          (UINT8 *)pElement->pPacket,
+                                                          &size,
+                                                          &pElement->addr.srcIpAddr,
+                                                          &pElement->replyPort,
+                                                          &pElement->addr.destIpAddr,
+                                                          FALSE);
             }
             else
             {
