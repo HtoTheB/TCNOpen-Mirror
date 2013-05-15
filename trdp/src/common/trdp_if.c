@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 812 2013-05-14 16:14:03Z 97028 $
+ * $Id: trdp_if.c 814 2013-05-15 09:37:29Z 97025 $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -52,7 +52,7 @@
  * LOCALS
  */
 
-const  TRDP_VERSION_T       trdpVersion     = {TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION};
+const TRDP_VERSION_T        trdpVersion = {TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION};
 static TRDP_APP_SESSION_T   sSession        = NULL;
 static VOS_MUTEX_T          sSessionMutex   = NULL;
 static BOOL sInited = FALSE;
@@ -691,7 +691,7 @@ EXT_DECL TRDP_ERR_T tlc_reinitSession (
  */
 const char *tlc_getVersionString (void)
 {
-    static CHAR8  version[16];
+    static CHAR8 version[16];
 
     vos_snprintf(version, sizeof(version), "%d.%d.%d.%d", TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION);
 
@@ -1236,9 +1236,9 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 trdp_pdCheckPending(appHandle, pFileDesc, pNoDesc);
 
 #if MD_SUPPORT
-
-
+                trdp_mdCheckPending(appHandle, pFileDesc, pNoDesc);
 #endif
+
                 /*    if lowest time is not zero   */
                 if (timerisset(&appHandle->interval) &&
                     !timercmp(&now, &appHandle->interval, >))
