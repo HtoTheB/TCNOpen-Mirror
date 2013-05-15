@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_dllmain.c 818 2013-05-15 15:11:16Z aweiss $
+ * $Id: trdp_dllmain.c 819 2013-05-15 15:13:11Z aweiss $
  *
  */
 
@@ -28,9 +28,6 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <windows.h>
-#include "trdp_if.h"
-#include "trdp_private.h"
-#include "vos_utils.h"
 
 
 /***********************************************************************************************************************
