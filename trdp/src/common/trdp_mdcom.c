@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 822 2013-05-16 09:08:39Z goiarbide $
+ * $Id: trdp_mdcom.c 823 2013-05-16 09:33:31Z goiarbide $
  *
  */
 
@@ -561,7 +561,7 @@ TRDP_ERR_T  trdp_mdRecvPacket (
 
 
             /* If all the Header is read, check if more memory is needed */
-            if(size == sizeof(MD_HEADER_T))
+            if(size >= sizeof(MD_HEADER_T))
             {
 
                 if(trdp_packetSizeMD(pElement->dataSize) > cMinimumMDSize)
