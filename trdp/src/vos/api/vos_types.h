@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_types.h 703 2013-04-22 17:10:11Z cschneider $
+ * $Id: vos_types.h 825 2013-05-16 17:35:39Z bloehr $
  *
  */
 
@@ -175,7 +175,7 @@ typedef UINT8 VOS_UUID_T[16];   /**< universal unique identifier according to RF
 typedef struct
 {
     UINT32  tv_sec;         /**< full seconds                                     */
-    UINT32  tv_usec;        /**< Micro seconds (max. value 999999)                */
+    INT32   tv_usec;        /**< Micro seconds (max. value 999999)                */
 } VOS_TIME_T;
 
 

@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 816 2013-05-15 14:13:14Z bloehr $
+ * $Id: vos_mem.c 825 2013-05-16 17:35:39Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -38,10 +38,13 @@
 
 #include <errno.h>
 #include <string.h>
+
 #ifdef POSIX
 #include <strings.h>
 #include <unistd.h>
+#include <pthread.h>
 #endif
+
 #include <fcntl.h>
 
 #include "vos_types.h"
@@ -688,7 +691,8 @@ EXT_DECL void vos_strncpy (
 }
 
 /**********************************************************************************************************************/
-/*    Queues                                                                                                              */
+/*    Queues
+                                                                                                               */
 /**********************************************************************************************************************/
 
 /**********************************************************************************************************************/
@@ -710,9 +714,9 @@ EXT_DECL void vos_strncpy (
 EXT_DECL VOS_ERR_T vos_queueCreate (
     VOS_QUEUE_POLICY_T  queueType,
     UINT32              maxNoOfMsg,
-    VOS_QUEUE_T        *pQueueHandle )
+    VOS_QUEUE_T         *pQueueHandle )
 {
-   return VOS_UNKNOWN_ERR; 
+    return VOS_UNKNOWN_ERR;
 }
 
 /**********************************************************************************************************************/
@@ -731,9 +735,9 @@ EXT_DECL VOS_ERR_T vos_queueCreate (
  */
 
 EXT_DECL VOS_ERR_T vos_queueSend (
-    VOS_QUEUE_T     queueHandle,
-    UINT8           *pData,
-    UINT32          size)
+    VOS_QUEUE_T queueHandle,
+    UINT8       *pData,
+    UINT32      size)
 {
     return VOS_UNKNOWN_ERR;
 }
@@ -754,10 +758,10 @@ EXT_DECL VOS_ERR_T vos_queueSend (
  */
 
 EXT_DECL VOS_ERR_T vos_queueReceive (
-    VOS_QUEUE_T     queueHandle,
-    UINT8           **ppData,
-    UINT32          *pSize,
-    UINT32          usTimeout )
+    VOS_QUEUE_T queueHandle,
+    UINT8       * *ppData,
+    UINT32      *pSize,
+    UINT32      usTimeout )
 {
     return VOS_UNKNOWN_ERR;
 }
@@ -775,7 +779,7 @@ EXT_DECL VOS_ERR_T vos_queueReceive (
  */
 
 EXT_DECL VOS_ERR_T vos_queueDestroy (
-    VOS_QUEUE_T     queueHandle)
+    VOS_QUEUE_T queueHandle)
 {
     return VOS_UNKNOWN_ERR;
 }

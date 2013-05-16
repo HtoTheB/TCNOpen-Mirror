@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 814 2013-05-15 09:37:29Z 97025 $
+ * $Id: trdp_if.c 825 2013-05-16 17:35:39Z bloehr $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -42,6 +42,10 @@
 
 #if MD_SUPPORT
 #include "trdp_mdcom.h"
+#endif
+
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 /***********************************************************************************************************************
@@ -1576,7 +1580,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
     TRDP_TIME_T         now;
     TRDP_ERR_T          ret = TRDP_NO_ERR;
     TRDP_ADDRESSES_T    subHandle;
-    INT32 index;
+    INT32 lIndex;
 
     /*    Check params    */
     if (comId == 0 || pSubHandle == NULL)
@@ -1644,7 +1648,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
                                  appHandle->option,
                                  TRUE,
                                  -1,
-                                 &index,
+                                 &lIndex,
                                  0);
 
         if (ret == TRDP_NO_ERR)
@@ -1691,7 +1695,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
                         (toBehavior == TRDP_TO_DEFAULT) ? appHandle->pdDefault.toBehavior : toBehavior;
                     newPD->grossSize    = TRDP_MAX_PD_PACKET_SIZE;
                     newPD->userRef      = pUserRef;
-                    newPD->socketIdx    = index;
+                    newPD->socketIdx    = lIndex;
                     newPD->privFlags    |= TRDP_INVALID_DATA;
                     newPD->pktFlags     = (pktFlags == TRDP_FLAGS_DEFAULT) ? appHandle->pdDefault.flags : pktFlags;
                     newPD->pCachedDS    = NULL;
@@ -2576,4 +2580,8 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
     return err;
 }
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif
