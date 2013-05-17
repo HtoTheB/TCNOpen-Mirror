@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 826 2013-05-17 06:35:12Z goiarbide $
+ * $Id: trdp_mdcom.c 827 2013-05-17 07:20:58Z 97030 $
  *
  */
 
@@ -418,6 +418,8 @@ TRDP_ERR_T  trdp_mdSendPacket (
     }
     else
     {
+        pElement->sendSize = pElement->grossSize;
+
         err = vos_sockSendUDP(pdSock,
                               (UINT8 *)&pElement->pPacket->frameHead,
                               &pElement->sendSize,
@@ -469,12 +471,12 @@ TRDP_ERR_T  trdp_mdRecvPacket (
 
     if ((pElement->pktFlags & TRDP_FLAGS_TCP) != 0)
     {
+        /* Initialize to 0 the stored header size*/
+        UINT32 storedHeader = 0;
+
         /* Initialize to 0 the pElement->dataSize
          * Once it is known, the message complete data size will be saved*/
         pElement->dataSize = 0;
-
-        /* Initialize to 0 the stored header size*/
-        UINT32 storedHeader = 0;
 
         /* Find the socket index */
         for (socketIndex = 0; socketIndex < VOS_MAX_SOCKET_CNT; socketIndex++)
