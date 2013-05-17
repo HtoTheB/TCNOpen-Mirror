@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.h 799 2013-05-10 12:16:58Z bloehr $
+ * $Id: trdp_pdcom.h 840 2013-05-17 14:05:00Z bloehr $
  *
  */
 
@@ -84,10 +84,10 @@ void        trdp_pdCheckPending (
     TRDP_FDS_T          *pFileDesc,
     INT32               *pNoDesc);
 
-void trdp_pdHandleTimeOuts (
+void        trdp_pdHandleTimeOuts (
     TRDP_SESSION_PT appHandle);
 
-TRDP_ERR_T trdp_pdCheckListenSocks (
+TRDP_ERR_T  trdp_pdCheckListenSocks (
     TRDP_SESSION_PT appHandle,
     TRDP_FDS_T      *pRfds,
     INT32           *pCount);

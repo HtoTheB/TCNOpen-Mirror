@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 825 2013-05-16 17:35:39Z bloehr $
+ * $Id: vos_mem.c 840 2013-05-17 14:05:00Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -623,8 +623,8 @@ EXT_DECL void vos_qsort (
  *  @param[in]      num             number of elements
  *  @param[in]      size            size of one element
  *  @param[in]      compare         Pointer to compare function
- *                                      return -n if arg1 < arg2
- *                                      return 0  if arg1 == arg2
+ *                                      return -n if arg1 < arg2,
+ *                                      return 0  if arg1 == arg2,
  *                                      return +n if arg1 > arg2
  *                                  where n is an integer != 0
  *  @retval         Pointer to found element or NULL
