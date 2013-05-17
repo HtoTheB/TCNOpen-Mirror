@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 804 2013-05-13 11:39:53Z cschneider $
+ * $Id: vos_sock.c 837 2013-05-17 12:19:40Z 97030 $
  *
  */
 
@@ -108,7 +108,9 @@ INT32 recvmsg (int sock_id, struct msghdr *message, int flags)
     res = WSARecvMsg(sock_id, message, &number_of_bytes, NULL, NULL);
     if (0 != res)
     {
-        return -1;
+        DWORD err = WSAGetLastError();
+        if (err != WSAEMSGSIZE)
+            return -1;
     }
     return number_of_bytes;
 }
