@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 825 2013-05-16 17:35:39Z bloehr $
+ * $Id: trdp_mdcom.c 826 2013-05-17 06:35:12Z goiarbide $
  *
  */
 
@@ -412,17 +412,8 @@ TRDP_ERR_T  trdp_mdSendPacket (
 
         pElement->sendSize = pElement->grossSize - tmpSndSize;
 
-        if ((tmpSndSize >= 0) && (pElement->sendSize >= 0))   /* TBD Lint error ###: Relational operator '>=' always
-                                                                evaluates to 'true' */
-        {
-            err = vos_sockSendTCP(pdSock, ((UINT8 *)&pElement->pPacket->frameHead) + tmpSndSize, &pElement->sendSize);
-            pElement->sendSize = tmpSndSize + pElement->sendSize;
-
-        }
-        else
-        {
-            return TRDP_NODATA_ERR;
-        }
+        err = vos_sockSendTCP(pdSock, ((UINT8 *)&pElement->pPacket->frameHead) + tmpSndSize, &pElement->sendSize);
+        pElement->sendSize = tmpSndSize + pElement->sendSize;
 
     }
     else
