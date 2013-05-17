@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 811 2013-05-14 13:13:49Z aweiss $
+ * $Id: vos_thread.c 831 2013-05-17 08:49:59Z aweiss $
  *
  */
 
@@ -578,7 +578,7 @@ EXT_DECL void vos_divTime (
         {
             pTime->tv_usec += temp * 1000000;
         }
-        pTime->tv_usec /= divisor;
+        pTime->tv_usec /= divisor;  /*lint !e573 mix of signed and unsigned */
     }
 }
 

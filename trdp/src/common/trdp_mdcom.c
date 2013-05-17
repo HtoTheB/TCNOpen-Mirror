@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 828 2013-05-17 07:56:08Z 97030 $
+ * $Id: trdp_mdcom.c 831 2013-05-17 08:49:59Z aweiss $
  *
  */
 
@@ -496,10 +496,7 @@ TRDP_ERR_T  trdp_mdRecvPacket (
         /* Read Header */
         if ((appHandle->uncompletedTCP[socketIndex] == NULL)
             || ((appHandle->uncompletedTCP[socketIndex] != NULL)
-                && (appHandle->uncompletedTCP[socketIndex]->grossSize < sizeof(MD_HEADER_T))))  /* TBD Lint error ###:
-                                                                                                  Relational operator
-                                                                                                  '>=' always evaluates
-                                                                                                  to 'true' */
+                && (appHandle->uncompletedTCP[socketIndex]->grossSize < sizeof(MD_HEADER_T))))
         {
 
             if (appHandle->uncompletedTCP[socketIndex] == NULL)
