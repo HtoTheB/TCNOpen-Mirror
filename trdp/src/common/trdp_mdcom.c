@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 827 2013-05-17 07:20:58Z 97030 $
+ * $Id: trdp_mdcom.c 828 2013-05-17 07:56:08Z 97030 $
  *
  */
 
@@ -2627,6 +2627,7 @@ TRDP_ERR_T trdp_mdCommonSend (
             pSenderElement->interval        = tv_interval;
             pSenderElement->dataSize        = dataSize;
             pSenderElement->grossSize       = trdp_packetSizeMD(dataSize);
+            pSenderElement->sendSize        = 0;
             pSenderElement->numReplies      = 0;
             pSenderElement->numRetries      = 0;
             pSenderElement->pCachedDS       = NULL;
