@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: $
+ * $Id: tau_xml.c 849 2013-05-22 12:54:19Z aweiss $
  *
  */
 
