@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 825 2013-05-16 17:35:39Z bloehr $
+ * $Id: vos_sock.c 850 2013-05-22 13:04:30Z aweiss $
  *
  */
 
@@ -227,10 +227,7 @@ EXT_DECL const CHAR8 *vos_ipDotted (
 
     (void)snprintf(dotted, sizeof(dotted), "%u.%u.%u.%u", (ipAddress >> 24), ((ipAddress >> 16) & 0xFF),
                    ((ipAddress >> 8) & 0xFF), (ipAddress & 0xFF));
-    /*
-       vos_snprintf(dotted, sizeof(dotted), "%u.%u.%u.%u", (ipAddress >> 24), ((ipAddress >> 16) & 0xFF),
-              ((ipAddress >> 8) & 0xFF), (ipAddress & 0xFF));
-     */
+
     return dotted;
 }
 

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 825 2013-05-16 17:35:39Z bloehr $
+ * $Id: trdp_if.c 850 2013-05-22 13:04:30Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -697,7 +697,7 @@ const char *tlc_getVersionString (void)
 {
     static CHAR8 version[16];
 
-    vos_snprintf(version, sizeof(version), "%d.%d.%d.%d", TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION);
+    (void) vos_snprintf(version, sizeof(version), "%d.%d.%d.%d", TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION);
 
     return version;
 }

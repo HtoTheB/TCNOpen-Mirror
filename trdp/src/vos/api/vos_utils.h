@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_utils.h 834 2013-05-17 09:31:15Z bloehr $
+ * $Id: vos_utils.h 850 2013-05-22 13:04:30Z aweiss $
  *
  */
 
@@ -49,10 +49,10 @@ extern void *gRefCon;
 /** Safe printf function */
 #ifdef WIN32
     #define vos_snprintf(str, size, format, ...)              \
-        (void)_snprintf_s(str, size, _TRUNCATE, format, __VA_ARGS__)
+        _snprintf_s(str, size, _TRUNCATE, format, __VA_ARGS__)
 #else
     #define vos_snprintf(str, size, format, args ...)  \
-        (void)snprintf(str, size, format, ## args)
+        snprintf(str, size, format, ## args)
 #endif
 
 /** Debug output macro without formatting options */
