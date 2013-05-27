@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 825 2013-05-16 17:35:39Z bloehr $
+ * $Id: trdp_stats.c 854 2013-05-27 09:35:36Z aweiss $
  *
  */
 
@@ -369,7 +369,7 @@ void    trdp_UpdateStats (
                        appHandle->stats.mem.usedBlockSize);
     if (ret != VOS_NO_ERR)
     {
-        vos_printf(VOS_LOG_ERROR, "vos_memCount() failed (Err: %d)\n", ret);
+        vos_printLog(VOS_LOG_ERROR, "vos_memCount() failed (Err: %d)\n", ret);
     }
 
     /*  Count our subscriptions */

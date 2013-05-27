@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 805 2013-05-14 05:20:19Z cschneider $
+ * $Id: vos_sock.h 854 2013-05-27 09:35:36Z aweiss $
  *
  */
 
@@ -490,6 +490,7 @@ EXT_DECL VOS_ERR_T vos_sockConnect (
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
  *  @retval         VOS_IO_ERR      data could not be sent
+ *  @retval         VOS_NOCONN_ERR  no TCP connection
  *  @retval         VOS_BLOCK_ERR   call would have blocked in blocking mode, data partially sent
  */
 
