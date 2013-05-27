@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 572 2013-03-06 06:07:44Z 97029 $
+ * $Id: vos_private.h 861 2013-05-27 15:29:20Z bloehr $
  *
  */
 
@@ -54,6 +54,19 @@ struct VOS_SHRD
 
 VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
 void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
+
+#if (((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE) || __APPLE__)
+#   define STRING_ERR(pStrBuf)  (void)strerror_r(errno, pStrBuf, VOS_MAX_ERR_STR_SIZE);
+#else
+#   define STRING_ERR(pStrBuf)                                         \
+    {                                                                  \
+        char *pStr = strerror_r(errno, pStrBuf, VOS_MAX_ERR_STR_SIZE); \
+        if (pStr != NULL)                                              \
+        {                                                              \
+            strncpy(pStrBuf, pStr, VOS_MAX_ERR_STR_SIZE);              \
+        }                                                              \
+    }
+#endif
 
 #ifdef __cplusplus
 }
