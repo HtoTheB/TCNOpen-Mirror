@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 854 2013-05-27 09:35:36Z aweiss $
+ * $Id: trdp_if.c 863 2013-05-28 06:08:14Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -371,11 +371,11 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     }
     else
     {
-        pSession->mdDefault.pfCbFunction    = NULL;
-        pSession->mdDefault.pRefCon         = NULL;
-        pSession->mdDefault.confirmTimeout  = TRDP_MD_DEFAULT_CONFIRM_TIMEOUT;
-        pSession->mdDefault.connectTimeout  = TRDP_MD_DEFAULT_CONNECTION_TIMEOUT;
-        pSession->mdDefault.replyTimeout    = TRDP_MD_DEFAULT_REPLY_TIMEOUT;
+        pSession->mdDefault.pfCbFunction        = NULL;
+        pSession->mdDefault.pRefCon             = NULL;
+        pSession->mdDefault.confirmTimeout      = TRDP_MD_DEFAULT_CONFIRM_TIMEOUT;
+        pSession->mdDefault.connectTimeout      = TRDP_MD_DEFAULT_CONNECTION_TIMEOUT;
+        pSession->mdDefault.replyTimeout        = TRDP_MD_DEFAULT_REPLY_TIMEOUT;
         pSession->mdDefault.flags               = TRDP_FLAGS_NONE;
         pSession->mdDefault.udpPort             = TRDP_MD_UDP_PORT;
         pSession->mdDefault.tcpPort             = TRDP_MD_TCP_PORT;
