@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 861 2013-05-27 15:29:20Z bloehr $
+ * $Id: vos_sock.c 865 2013-05-28 07:18:08Z goiarbide $
  *
  */
 
@@ -1275,7 +1275,8 @@ EXT_DECL VOS_ERR_T vos_sockSendTCP (
         vos_printLog(VOS_LOG_WARNING, "send() failed (Err: %s)\n", buff);
 
         if ((errno == ENOTCONN)
-            || (errno == ECONNREFUSED))
+            || (errno == ECONNREFUSED)
+            || (errno == EHOSTUNREACH))
         {
             return VOS_NOCONN_ERR;
         }
