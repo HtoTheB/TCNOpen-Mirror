@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.c 872 2013-05-30 09:45:05Z aweiss $
+ * $Id: trdp_mdcom.c 873 2013-05-30 10:06:59Z aweiss $
  *
  */
 
@@ -2677,6 +2677,12 @@ TRDP_ERR_T trdp_mdCommonSend (
                 {
                     pSenderElement->numExpReplies = 1;
                 }
+
+                tmo = replyTimeout ? replyTimeout : appHandle->mdDefault.replyTimeout;     /* min time for delivery */
+                pSenderElement->interval.tv_sec     = tmo / 1000000;
+                pSenderElement->interval.tv_usec    = tmo % 1000000;
+                trdp_mdSetSessionTimeout(pSenderElement, tmo);
+                break;
             case TRDP_MSG_ME:     /* reply error */
                 tmo = replyTimeout ? replyTimeout : appHandle->mdDefault.replyTimeout;     /* min time for delivery */
                 pSenderElement->interval.tv_sec     = tmo / 1000000;

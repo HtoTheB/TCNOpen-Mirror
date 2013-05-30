@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 854 2013-05-27 09:35:36Z aweiss $
+ * $Id: vos_sock.c 873 2013-05-30 10:06:59Z aweiss $
  *
  */
 
@@ -80,8 +80,6 @@
 
 #define CMSG_FIRSTHDR   WSA_CMSG_FIRSTHDR
 #define CMSGSize        64       /* size of buffer for destination address */
-
-#define cmsghdr         WSACMSGHDR
 
 /***********************************************************************************************************************
  *  LOCALS
