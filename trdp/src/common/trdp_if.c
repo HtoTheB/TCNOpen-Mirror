@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 863 2013-05-28 06:08:14Z aweiss $
+ * $Id: trdp_if.c 872 2013-05-30 09:45:05Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -1964,7 +1964,7 @@ TRDP_ERR_T tlm_notify (
  *  @param[in]      destIpAddr          where to send the packet to
  *  @param[in]      pktFlags            OPTION:
  *                                      TRDP_FLAGS_DEFAULT, TRDP_FLAGS_NONE, TRDP_FLAGS_MARSHALL
- *  @param[in]      noOfRepliers        number of expected repliers, 0 if unknown
+ *  @param[in]      numReplies          number of expected replies, 0 if unknown
  *  @param[in]      replyTimeout        timeout for reply
  *  @param[in]      pSendParam          Pointer to send parameters, NULL to use default send parameters
  *  @param[in]      pData               pointer to packet data / dataset
@@ -1986,7 +1986,7 @@ TRDP_ERR_T tlm_request (
     TRDP_IP_ADDR_T          srcIpAddr,
     TRDP_IP_ADDR_T          destIpAddr,
     TRDP_FLAGS_T            pktFlags,
-    UINT32                  noOfRepliers,
+    UINT32                  numReplies,
     UINT32                  replyTimeout,
     const TRDP_SEND_PARAM_T *pSendParam,
     const UINT8             *pData,
@@ -2006,7 +2006,7 @@ TRDP_ERR_T tlm_request (
                pktFlags,
                0,                                      /* no user status */
                0,                                      /* confirm timeout */
-               noOfRepliers,
+               numReplies,
                replyTimeout,
                TRDP_REPLY_OK,                          /* reply state */
                pSendParam,
