@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 872 2013-05-30 09:45:05Z aweiss $
+ * $Id: trdp_if.c 887 2013-06-04 13:31:43Z bloehr $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -180,23 +180,20 @@ EXT_DECL TRDP_ERR_T tlc_init (
             }
         }
 
-#if MD_SUPPORT
-        /* Init MD  here... */
-#endif
-
         if (ret == TRDP_NO_ERR)
         {
             sInited = TRUE;
             vos_printLog(VOS_LOG_INFO, "TRDP Stack Version %s: successfully initiated\n", tlc_getVersionString());
         }
-        return ret;
     }
     else
     {
         vos_printLog(VOS_LOG_ERROR, "TRDP already initalised\n");
 
-        return TRDP_INIT_ERR;
+        ret = TRDP_INIT_ERR;
     }
+
+    return ret;
 }
 
 /**********************************************************************************************************************/
@@ -439,10 +436,10 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                           NULL,                         /*    initial data                  */
                           sizeof(TRDP_STATISTICS_T));
 
-        vos_printLog(VOS_LOG_INFO,
-                   "TRDP Stack Version %s: session opened successfully\n",
-                   tlc_getVersionString());
-
+        if (ret == TRDP_NO_ERR)
+        {
+        	vos_printLog(VOS_LOG_INFO, "TRDP session opened successfully\n");
+		}
         if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
         {
             vos_printLog(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
