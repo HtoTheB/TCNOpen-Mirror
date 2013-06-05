@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 862 2013-05-27 16:06:10Z bloehr $
+#// $Id: Makefile 901 2013-06-05 15:25:50Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -140,9 +140,9 @@ $(OUTDIR)/sendHello:   sendHello.c  $(OUTDIR)/libtrdp.a
 			    -o $@
 			$(STRIP) $@
 
-$(OUTDIR)/getStats:   marshalling/getStats.c  $(OUTDIR)/libtrdp.a
+$(OUTDIR)/getStats:   diverse/getStats.c  $(OUTDIR)/libtrdp.a
 			@echo ' ### Building statistics commandline tool $(@F)'
-			$(CC) test/marshalling/getStats.c \
+			$(CC) test/diverse/getStats.c \
 			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
