@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if_light.h 890 2013-06-05 09:43:32Z bloehr $
+ * $Id: trdp_if_light.h 897 2013-06-05 15:03:51Z bloehr $
  *
  */
 
@@ -903,8 +903,6 @@ EXT_DECL TRDP_ERR_T tlc_getJoinStatistics (
  */
 EXT_DECL TRDP_ERR_T tlc_resetStatistics (
     TRDP_APP_SESSION_T appHandle);
-
-/* tbd */
 
 #ifdef __cplusplus
 }
