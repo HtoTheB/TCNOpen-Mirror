@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_private.h 897 2013-06-05 15:03:51Z bloehr $
+ * $Id: trdp_private.h 906 2013-06-06 09:49:23Z goiarbide $
  *
  */
 
@@ -139,6 +139,7 @@ typedef struct TRDP_SOCKET_TCP
     BOOL            sendNotOk;                          /**< The sending timeout will be start            */
     TRDP_TIME_T     sendingTimeout;                     /**< The timeout sending the message              */
     BOOL            addFileDesc;                        /**< Ready to add the socket in the fd            */
+    BOOL            morituri;                           /**< about to die                                 */
 }TRDP_SOCKET_TCP_T;
 
 

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_mdcom.h 799 2013-05-10 12:16:58Z bloehr $
+ * $Id: trdp_mdcom.h 906 2013-06-06 09:49:23Z goiarbide $
  *
  */
 
@@ -46,7 +46,10 @@ TRDP_ERR_T  trdp_getTCPSocket (
     TRDP_SESSION_PT pSession);
 
 void        trdp_closeMDSessions (
-    TRDP_SESSION_PT appHandle);
+    TRDP_SESSION_PT appHandle,
+    INT32 socketIndex,
+    INT32 newSocket,
+    BOOL checkAllSockets);
 
 void        trdp_mdFreeSession (
     MD_ELE_T *pMDSession);
