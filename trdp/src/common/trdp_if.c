@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 906 2013-06-06 09:49:23Z goiarbide $
+ * $Id: trdp_if.c 920 2013-06-10 15:40:33Z aweiss $
  *
  *      BL 2013-02-01: ID 53: Zero datset size fixed for PD
  *
@@ -316,7 +316,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
         pSession->pdDefault.port                = TRDP_PD_UDP_PORT;
         pSession->pdDefault.sendParam.qos       = TRDP_PD_DEFAULT_QOS;
         pSession->pdDefault.sendParam.ttl       = TRDP_PD_DEFAULT_TTL;
-        pSession->pdDefault.sendParam.retries   = 0;
+ //       pSession->pdDefault.sendParam.retries   = 0;
     }
 
 #if MD_SUPPORT
@@ -383,7 +383,9 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
         pSession->mdDefault.tcpPort             = TRDP_MD_TCP_PORT;
         pSession->mdDefault.sendParam.qos       = TRDP_MD_DEFAULT_QOS;
         pSession->mdDefault.sendParam.ttl       = TRDP_MD_DEFAULT_TTL;
+#ifdef TRDP_RETRIES
         pSession->mdDefault.sendParam.retries   = TRDP_MD_DEFAULT_RETRIES;
+#endif
     }
 
     /* zero is a valid file/socket descriptor! */

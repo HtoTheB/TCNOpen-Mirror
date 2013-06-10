@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 913 2013-06-10 14:47:16Z aweiss $
+ * $Id: trdp_types.h 920 2013-06-10 15:40:33Z aweiss $
  *
  */
 
@@ -255,7 +255,6 @@ typedef struct
 {
     UINT8   qos;       /**< Quality of service (default should be 5 for PD and 3 for MD)  */
     UINT8   ttl;       /**< Time to live (default should be 64)  */
-    UINT8   retries;   /**< Maximum number of retries for UDP MD if one reply is expected, default should be 2   */
 } TRDP_SEND_PARAM_T;
 
 
