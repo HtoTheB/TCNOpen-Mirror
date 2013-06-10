@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_types.h 854 2013-05-27 09:35:36Z aweiss $
+ * $Id: trdp_types.h 913 2013-06-10 14:47:16Z aweiss $
  *
  */
 
@@ -233,8 +233,6 @@ typedef struct
     TRDP_MSG_T          msgType;            /**< Protocol ('PD', 'MD', ...)                 */
     UINT32              comId;              /**< ComID                                      */
     UINT32              topoCount;          /**< received topocount                         */
-    UINT8               numRetries;         /**< actual number of retries                   */
-    UINT8               numRetriesMax;      /**< maximun number of retries for request to a know dev*/
     BOOL                aboutToDie;         /**< session is about to die                    */
     UINT32              numRepliesQuery;    /**< number of ReplyQuery received              */
     UINT32              numConfirmSent;     /**< number of Confirm sent                     */
