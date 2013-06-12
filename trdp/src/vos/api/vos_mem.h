@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.h 876 2013-05-31 15:05:59Z aweiss $
+ * $Id: vos_mem.h 928 2013-06-12 11:26:08Z cschneider $
  *
  */
 
@@ -88,6 +88,7 @@ typedef enum
 
 /** Opaque queue define  */
 typedef struct VOS_QUEUE *VOS_QUEUE_T;
+typedef struct VOS_QUEUE_ELEM *VOS_QUEUE_ELEM_T;
 
 /***********************************************************************************************************************
  * PROTOTYPES
