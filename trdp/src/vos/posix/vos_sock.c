@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 927 2013-06-12 09:35:43Z aweiss $
+ * $Id: vos_sock.c 929 2013-06-12 14:21:40Z aweiss $
  *
  */
 
@@ -968,6 +968,8 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     msg.msg_control     = &control_un.cm;
     msg.msg_controllen  = sizeof(control_un);
 
+    *pSize = 0;
+
     do
     {
         rcvSize = recvmsg(sock, &msg, (peek != 0) ? MSG_PEEK : 0);
@@ -1015,8 +1017,6 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
         }
     }
     while (rcvSize == -1 && errno == EINTR);
-
-    *pSize = 0;
 
     if (rcvSize == -1)
     {
