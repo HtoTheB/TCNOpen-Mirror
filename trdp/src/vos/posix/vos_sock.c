@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 865 2013-05-28 07:18:08Z goiarbide $
+ * $Id: vos_sock.c 927 2013-06-12 09:35:43Z aweiss $
  *
  */
 
@@ -512,6 +512,31 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
         close(sock);
         return VOS_SOCK_ERR;
     }
+
+    /* enlarge send and receive buffers for TCP to 64k */
+    {
+        int         optval      = 64 * 1024;
+        socklen_t   option_len  = sizeof(optval);
+        if (setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (int *)&optval, option_len) == -1)
+        {
+            (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (int *)&optval, &option_len);
+            vos_printLog(VOS_LOG_WARNING, "vos_sockOpenTCP: TCP send message size out of limit (max: %u)\n", optval);
+            return VOS_SOCK_ERR;
+        }
+
+        optval = 64 * 1024;
+        if (setsockopt(sock, SOL_SOCKET, SO_RCVBUF, (int *)&optval, option_len) == -1)
+        {
+            (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (int *)&optval, &option_len);
+            vos_printLog(VOS_LOG_WARNING, "vos_sockOpenTCP: TCP recv message size out of limit (max: %u)\n", optval);
+            return VOS_SOCK_ERR;
+        }
+        (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (int *)&optval, &option_len);
+        vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: TCP send message limit = %u\n", optval);
+        (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (int *)&optval, &option_len);
+        vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: TCP recv message limit = %u\n", optval);
+    }
+
     *pSock = (INT32) sock;
 
     vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: socket()=%d success\n", sock);
