@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 929 2013-06-12 14:21:40Z aweiss $
+ * $Id: vos_sock.c 941 2013-06-13 08:31:14Z aweiss $
  *
  */
 
@@ -1020,10 +1020,18 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
 
     if (rcvSize == -1)
     {
-        char buff[VOS_MAX_ERR_STR_SIZE];
-        STRING_ERR(buff);
-        vos_printLog(VOS_LOG_ERROR, "recvmsg() failed (Err: %s)\n", buff);
-        return VOS_IO_ERR;
+        if (err == ECONNRESET)
+        {
+            /* ICMP port unreachable received (result of previous send), treat this as no error */
+            return VOS_NO_ERR;
+        }
+        else
+        {
+            char buff[VOS_MAX_ERR_STR_SIZE];
+            STRING_ERR(buff);
+            vos_printLog(VOS_LOG_ERROR, "recvmsg() failed (Err: %s)\n", buff);
+            return VOS_IO_ERR;
+        }
     }
     else if (rcvSize == 0)
     {
