@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 928 2013-06-12 11:26:08Z cschneider $
+ * $Id: vos_mem.c 937 2013-06-13 06:09:56Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -732,8 +732,6 @@ EXT_DECL VOS_ERR_T vos_queueCreate (
     VOS_QUEUE_T         *pQueueHandle )
 {
     VOS_ERR_T retVal = VOS_UNKNOWN_ERR;
-    VOS_QUEUE_T queueHandle = NULL;
-    UINT32 cnt = (UINT32) NULL;
 
     /* Check parameters */
     if ((queueType < VOS_QUEUE_POLICY_OTHER)
@@ -840,8 +838,8 @@ EXT_DECL VOS_ERR_T vos_queueSend (
     BOOL giveSemaphore = FALSE;
 
     if ((queueHandle == (VOS_QUEUE_T) NULL)
-        || (pData == (UINT32) NULL)
-        || (size == (UINT32) NULL)
+        || (pData == NULL)
+        || (size == 0)
         || (queueHandle->magicNumber != cQueueMagic))
     {
         vos_printLog(VOS_LOG_ERROR, "vos_queueSend() ERROR invalid parameter\n");
