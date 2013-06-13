@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 938 2013-06-13 06:27:27Z aweiss $
+ * $Id: trdp_utils.c 950 2013-06-13 13:51:41Z 97025 $
  *
  */
 

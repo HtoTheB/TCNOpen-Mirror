@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 949 2013-06-13 12:24:53Z bloehr $
+ * $Id: trdp_pdcom.c 950 2013-06-13 13:51:41Z 97025 $
  *
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
