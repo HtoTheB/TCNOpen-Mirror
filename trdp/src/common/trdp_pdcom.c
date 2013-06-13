@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 893 2013-06-05 09:49:39Z bloehr $
+ * $Id: trdp_pdcom.c 949 2013-06-13 12:24:53Z bloehr $
  *
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
  *      BL 2013-01-25: ID 20: Redundancy handling fixed
@@ -630,9 +630,10 @@ void trdp_pdHandleTimeOuts (
     for (iterPD = appHandle->pRcvQueue; iterPD != NULL; iterPD = iterPD->pNext)
     {
         if (timerisset(&iterPD->interval) &&
-            timerisset(&iterPD->timeToGo) &&                    /*  Prevent timing out of PULLed data too early */
-            !timercmp(&iterPD->timeToGo, &now, >) &&            /*  late?   */
-            !(iterPD->privFlags & TRDP_TIMED_OUT))              /*  and not already flagged ?   */
+            timerisset(&iterPD->timeToGo) &&                        /*  Prevent timing out of PULLed data too early */
+            !timercmp(&iterPD->timeToGo, &now, >) &&                /*  late?   */
+            !(iterPD->privFlags & TRDP_TIMED_OUT) &&                /*  and not already flagged ?   */
+            !(iterPD->addr.comId == TRDP_STATISTICS_REQUEST_COMID)) /*  Do not bother user with statistics timeout */
         {
             /*  Update some statistics  */
             appHandle->stats.pd.numTimeout++;
