@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 941 2013-06-13 08:31:14Z aweiss $
+ * $Id: vos_sock.c 951 2013-06-13 13:56:42Z 97025 $
  *
  */
 
