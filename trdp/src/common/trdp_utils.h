@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 906 2013-06-06 09:49:23Z goiarbide $
+ * $Id: trdp_utils.h 936 2013-06-13 06:09:00Z aweiss $
  *
  */
 
@@ -42,6 +42,8 @@
                                  ((0x0000FF00 & (UINT32)val) << 8)  | \
                                  ((0x000000FF & (UINT32)val) << 24))
 #define MAKE_LE(a)      ((am_big_endian()) ? Swap32(a) : (a))
+
+#define TRDP_INVALID_SOCKET_INDEX  -1
 
 /*******************************************************************************
  * TYPEDEFS
