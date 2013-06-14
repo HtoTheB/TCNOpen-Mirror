@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012-2013.
  *
  *
- * $Id: vos_sock.c 955 2013-06-13 15:29:12Z bloehr $
+ * $Id: vos_sock.c 970 2013-06-14 12:56:10Z aweiss $
  *
  */
 
@@ -1355,7 +1355,6 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
 
     do
     {
-
         rcvSize = read(sock, pBuffer, bufferSize);
         if (rcvSize > 0)
         {
@@ -1380,10 +1379,17 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
 
     if ((rcvSize == -1) && !(errno == EMSGSIZE))
     {
-        char buff[VOS_MAX_ERR_STR_SIZE];
-        STRING_ERR(buff);
-        vos_printLog(VOS_LOG_WARNING, "receive() failed (Err: %s)\n", buff);
-        return VOS_IO_ERR;
+        if (errno == ECONNRESET)
+        {
+            return VOS_NODATA_ERR;
+        }
+        else
+        {
+            char buff[VOS_MAX_ERR_STR_SIZE];
+            STRING_ERR(buff);
+            vos_printLog(VOS_LOG_WARNING, "receive() failed (Err: %s)\n", buff);
+            return VOS_IO_ERR;
+        }
     }
     else if (*pSize == 0)
     {
