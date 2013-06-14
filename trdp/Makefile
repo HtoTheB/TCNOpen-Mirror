@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 954 2013-06-13 15:27:08Z bloehr $
+#// $Id: Makefile 961 2013-06-14 08:05:53Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -230,7 +230,7 @@ doc/latex/refman.pdf: Doxyfile trdp_if_light.h trdp_types.h
 			@echo ' ### Making the Reference Manual PDF'
 			$(DOXYPATH)/doxygen Doxyfile
 			make -C doc/latex
-			cp doc/latex/refman.pdf "doc/TCN-TRDP2-D-BOM-033-01 - TRDP Reference Manual.pdf"
+			cp doc/latex/refman.pdf "doc/TCN-TRDP2-D-BOM-033-xx - TRDP Reference Manual.pdf"
 
 help:
 	@echo " " >&2
