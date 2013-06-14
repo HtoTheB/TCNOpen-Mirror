@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: subTest.c 911 2013-06-10 12:26:01Z bloehr $
+ * $Id: subTest.c 965 2013-06-14 08:19:51Z bloehr $
  *
  */
 
@@ -401,8 +401,8 @@ int main (int argc, char *argv[])
     /*
      *    We always clean up behind us!
      */
-    tlp_unpublish(appHandle, subHandle1);
-    tlp_unpublish(appHandle, subHandle2);
+    tlp_unsubscribe(appHandle, subHandle1);
+    tlp_unsubscribe(appHandle, subHandle2);
 
     tlc_closeSession(appHandle);
     tlc_terminate();
