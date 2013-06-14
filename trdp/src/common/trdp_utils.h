@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 950 2013-06-13 13:51:41Z 97025 $
+ * $Id: trdp_utils.h 962 2013-06-14 08:06:30Z bloehr $
  *
  */
 
@@ -153,8 +153,9 @@ TRDP_ERR_T trdp_requestSocket(
 /** Handle the socket pool: Release a socket from our socket pool
  *
  *  @param[in,out]  iface           socket pool
- *  @param[in]      lIndex           index of socket to release
+ *  @param[in]      lIndex          index of socket to release
  *  @param[in]      connectTimeout  timeout value
+ *  @param[in]      checkAll        release all TCP pending sockets
  *
  */
 
