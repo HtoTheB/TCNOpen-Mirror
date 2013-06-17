@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 973 2013-06-17 16:44:03Z aweiss $
+ * $Id: vos_sock.c 974 2013-06-17 17:16:13Z aweiss $
  *
  */
 
@@ -112,6 +112,41 @@ INT32 recvmsg (int sock_id, struct msghdr *message, int flags)
             return -1;
     }
     return number_of_bytes;
+}
+
+/* enlarge send and receive buffers to TRDP_SOCKBUF_SIZE */
+VOS_ERR_T vos_sockSetBuffer(INT32 sock)
+{
+    int   optval      = 0;
+    int   option_len  = sizeof(optval);
+
+    (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
+    if (optval < TRDP_SOCKBUF_SIZE)
+    {
+        optval = TRDP_SOCKBUF_SIZE;
+        if (setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (const char *)&optval, option_len) == -1)
+        {
+            (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
+            vos_printLog(VOS_LOG_WARNING, "Send buffer size out of limit (max: %u)\n", optval);
+            return VOS_SOCK_ERR;
+        }
+    }
+    vos_printLog(VOS_LOG_INFO, "Send buffer limit = %u\n", optval);
+
+    (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
+    if (optval < TRDP_SOCKBUF_SIZE)
+    {
+        optval = TRDP_SOCKBUF_SIZE;
+        if (setsockopt(sock, SOL_SOCKET, SO_RCVBUF, (const char *)&optval, option_len) == -1)
+        {
+            (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
+            vos_printLog(VOS_LOG_WARNING, "Recv buffer size out of limit (max: %u)\n", optval);
+            return VOS_SOCK_ERR;
+        }
+    }
+    vos_printLog(VOS_LOG_INFO, "Recv buffer limit = %u\n", optval);
+
+    return VOS_NO_ERR;
 }
 
 /***********************************************************************************************************************
@@ -471,42 +506,11 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
         return VOS_SOCK_ERR;
     }
 
-    if (vos_sockSetOptions(sock, pOptions) != VOS_NO_ERR)
+    if (   (vos_sockSetOptions(sock, pOptions))
+        || (vos_sockSetBuffer(sock)!= VOS_NO_ERR))
     {
         (void) closesocket(sock);
         return VOS_SOCK_ERR;
-    }
-
-    /* enlarge send and receive buffers for TCP to TRDP_SOCKBUF_SIZE */
-    {
-        int   optval      = 0;
-        int   option_len  = sizeof(optval);
-
-        (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
-        if (optval < TRDP_SOCKBUF_SIZE)
-        {
-            optval = TRDP_SOCKBUF_SIZE;
-            if (setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (const char *)&optval, option_len) == -1)
-            {
-                (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
-                vos_printLog(VOS_LOG_WARNING, "vos_sockOpenUDP: send message size out of limit (max: %u)\n", optval);
-                return VOS_SOCK_ERR;
-            }
-        }
-        vos_printLog(VOS_LOG_INFO, "vos_sockOpenUDP: send message limit = %u\n", optval);
-
-        (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
-        if (optval < TRDP_SOCKBUF_SIZE)
-        {
-            optval = TRDP_SOCKBUF_SIZE;
-            if (setsockopt(sock, SOL_SOCKET, SO_RCVBUF, (const char *)&optval, option_len) == -1)
-            {
-                (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
-                vos_printLog(VOS_LOG_WARNING, "vos_sockOpenUDP: recv message size out of limit (max: %u)\n", optval);
-                return VOS_SOCK_ERR;
-            }
-        }
-        vos_printLog(VOS_LOG_INFO, "vos_sockOpenUDP: recv message limit = %u\n", optval);
     }
 
     *pSock = (INT32) sock;
@@ -553,42 +557,11 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
         return VOS_SOCK_ERR;
     }
 
-    if (vos_sockSetOptions(sock, pOptions) != VOS_NO_ERR)
+    if (   (vos_sockSetOptions(sock, pOptions) != VOS_NO_ERR)
+        || (vos_sockSetBuffer(sock) != VOS_NO_ERR))
     {
         (void) closesocket(sock);
         return VOS_SOCK_ERR;
-    }
-
-    /* enlarge send and receive buffers for TCP to TRDP_SOCKBUF_SIZE */
-    {
-        int   optval      = 0;
-        int   option_len  = sizeof(optval);
-
-        (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
-        if (optval < TRDP_SOCKBUF_SIZE)
-        {
-            optval = TRDP_SOCKBUF_SIZE;
-            if (setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (const char *)&optval, option_len) == -1)
-            {
-                (void)getsockopt(sock, SOL_SOCKET, SO_SNDBUF, (char *)&optval, &option_len);
-                vos_printLog(VOS_LOG_WARNING, "vos_sockOpenTCP: TCP send message size out of limit (max: %u)\n", optval);
-                return VOS_SOCK_ERR;
-            }
-        }
-        vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: TCP send message limit = %u\n", optval);
-
-        (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
-        if (optval < TRDP_SOCKBUF_SIZE)
-        {
-            optval = TRDP_SOCKBUF_SIZE;
-            if (setsockopt(sock, SOL_SOCKET, SO_RCVBUF, (const char *)&optval, option_len) == -1)
-            {
-                (void)getsockopt(sock, SOL_SOCKET, SO_RCVBUF, (char *)&optval, &option_len);
-                vos_printLog(VOS_LOG_WARNING, "vos_sockOpenTCP: TCP recv message size out of limit (max: %u)\n", optval);
-                return VOS_SOCK_ERR;
-            }
-        }
-        vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: TCP recv message limit = %u\n", optval);
     }
 
     *pSock = (INT32) sock;
