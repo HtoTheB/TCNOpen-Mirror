@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 951 2013-06-13 13:56:42Z 97025 $
+ * $Id: vos_sock.h 973 2013-06-17 16:44:03Z aweiss $
  *
  */
 
@@ -75,6 +75,9 @@ extern "C" {
 #endif
 #ifndef VOS_MAC_SIZE
 #define VOS_MAC_SIZE  6             /**< The MAC size supported by VOS */
+#endif
+#ifndef TRDP_SOCKBUF_SIZE
+#define TRDP_SOCKBUF_SIZE  (64 * 1024)  /**< Size of socket send and receive buffer */
 #endif
 #define VOS_INVALID_SOCKET -1       /**< Invalid socket number */
 
