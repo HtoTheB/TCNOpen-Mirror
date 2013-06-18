@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: packet-trdp_spy.c 537 2013-02-20 13:24:04Z fweispfenning $
+ * $Id: packet-trdp_spy.c 979 2013-06-18 14:37:20Z fweispfenning $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -972,7 +972,7 @@ static void dissect_trdp(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
         }
         else if ((!strcmp(trdp_spy_string,"Mn")))
         {
-            col_set_str(pinfo->cinfo, COL_INFO, "MD Notificatoin");
+            col_set_str(pinfo->cinfo, COL_INFO, "MD Notificatoin (Request without reply)");
         }
         else if ((!strcmp(trdp_spy_string,"Mr")))
         {
@@ -980,11 +980,11 @@ static void dissect_trdp(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree)
         }
         else if ((!strcmp(trdp_spy_string,"Mp")))
         {
-            col_set_str(pinfo->cinfo, COL_INFO, "MD Reply (without notification)");
+            col_set_str(pinfo->cinfo, COL_INFO, "MD Reply (without confirmation)");
         }
 		else if ((!strcmp(trdp_spy_string,"Mq")))
         {
-            col_set_str(pinfo->cinfo, COL_INFO, "MD Reply (with notification)");
+            col_set_str(pinfo->cinfo, COL_INFO, "MD Reply (with confirmation)");
         }
 		else if ((!strcmp(trdp_spy_string,"Mc")))
         {
