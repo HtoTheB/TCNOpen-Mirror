@@ -13,7 +13,7 @@
  *          Copyright NewTec GmbH, Germany, 2013.
  *
  *
- * $Id: pd_md_responder.c 958 2013-06-14 07:08:23Z aweiss $
+ * $Id: pd_md_responder.c 978 2013-06-18 07:01:40Z aweiss $
  *
  */
 
@@ -298,7 +298,8 @@ int main (int argc, char * *argv)
 
     /*    Open a session for callback operation    (PD only) */
     if (tlc_openSession(&appHandle,
-                        gOwnIP, 0,                   /* use default IP addresses           */
+                        gOwnIP,                     /* own IP address                     */
+                        0,                          /* leader IP address                  */
                         NULL,                       /* no Marshalling                     */
                         &pdConfiguration, NULL,     /* system defaults for PD and MD      */
                         &processConfig) != TRDP_NO_ERR)
