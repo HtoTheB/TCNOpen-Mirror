@@ -1,5 +1,6 @@
+#!/bin/sh
 #//
-#// $Id: buildsettings_posix_TEMPLATE 768 2013-05-06 11:53:49Z cschneider $
+#// $Id: buildsettings_posix_TEMPLATE 981 2013-06-20 08:54:17Z bloehr $
 #//
 #// DESCRIPTION   TRDP build settings for posix target
 #//
@@ -9,6 +10,5 @@
 #// to third parties without express authority is forbidden.
 #// Copyright Bombardier Transportation GmbH, Germany, 2013.
 #//
-#!/bin/sh
 export DOXYPATH="/usr/local/bin/"
 unset INCPATH
