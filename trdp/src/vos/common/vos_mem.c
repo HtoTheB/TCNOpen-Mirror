@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 951 2013-06-13 13:56:42Z 97025 $
+ * $Id: vos_mem.c 983 2013-06-21 14:57:16Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -783,7 +783,7 @@ EXT_DECL VOS_ERR_T vos_queueCreate (
                         (*pQueueHandle)->maxNoOfMsg = maxNoOfMsg;
                         (*pQueueHandle)->magicNumber = cQueueMagic;
                         /* alloc queue memory */
-                        printf("size: %u\n",maxNoOfMsg * sizeof(struct VOS_QUEUE_ELEM));
+                        printf("size: %lu\n",maxNoOfMsg * sizeof(struct VOS_QUEUE_ELEM));
                         (*pQueueHandle)->pQueue = (struct VOS_QUEUE_ELEM*)vos_memAlloc(maxNoOfMsg * sizeof(struct VOS_QUEUE_ELEM));
                         if ((*pQueueHandle)->pQueue == NULL)
                         {
