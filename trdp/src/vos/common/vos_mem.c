@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 983 2013-06-21 14:57:16Z bloehr $
+ * $Id: vos_mem.c 989 2013-06-24 15:34:24Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -1043,7 +1043,7 @@ EXT_DECL VOS_ERR_T vos_queueDestroy (
         if (err != VOS_NO_ERR)
         {
             vos_printLog(VOS_LOG_ERROR, "vos_queueDestroy() ERROR could not lock mutex\n");
-            retVal = VOS_MUTEX_ERR;
+            /* retVal = VOS_MUTEX_ERR; BL: never read */
         }
         else
         {
