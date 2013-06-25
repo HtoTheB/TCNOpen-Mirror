@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: tau_xml.c 950 2013-06-13 13:51:41Z 97025 $
+ * $Id: tau_xml.c 993 2013-06-25 13:07:28Z bloehr $
  *
  */
 
@@ -670,6 +670,10 @@ static void parseProcessConfig (xmlNodePtr pProcCfgElem, TRDP_PROCESS_CONFIG_T *
     if (checkAttrValue(pProcCfgElem, "blocking", "yes"))
     {
         pProcessConfig->options |= TRDP_OPTION_BLOCK;
+    }
+    if (checkAttrValue(pProcCfgElem, "no-reuse-addr", "yes"))
+    {
+        pProcessConfig->options |= TRDP_OPTION_NO_REUSE_ADDR;
     }
     if (checkAttrValue(pProcCfgElem, "traffic-shaping", "off"))
     {
