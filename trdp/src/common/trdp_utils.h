@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_utils.h 962 2013-06-14 08:06:30Z bloehr $
+ * $Id: trdp_utils.h 995 2013-06-27 08:01:06Z bloehr $
  *
  */
 
@@ -64,10 +64,6 @@ PD_ELE_T            *trdp_queueFindSubAddr (
     PD_ELE_T            *pHead,
     TRDP_ADDRESSES_T    *pAddr);
 
-MD_ELE_T            *trdp_MDqueueFindAddr (
-    MD_ELE_T            *pHead,
-    TRDP_ADDRESSES_T    *addr);
-
 PD_ELE_T            *trdp_queueFindPubAddr (
     PD_ELE_T            *pHead,
     TRDP_ADDRESSES_T    *addr);
@@ -76,18 +72,6 @@ void    trdp_queueDelElement (
     PD_ELE_T    * *pHead,
     PD_ELE_T    *pDelete);
 
-void    trdp_MDqueueDelElement (
-    MD_ELE_T    * *ppHead,
-    MD_ELE_T    *pDelete);
-
-void    trdp_MDqueueAppLast (
-    MD_ELE_T    * *pHead,
-    MD_ELE_T    *pNew);
-
-void    trdp_MDqueueInsFirst (
-    MD_ELE_T    * *ppHead,
-    MD_ELE_T    *pNew);
-
 void    trdp_queueAppLast (
     PD_ELE_T    * *pHead,
     PD_ELE_T    *pNew);
@@ -95,6 +79,24 @@ void    trdp_queueAppLast (
 void    trdp_queueInsFirst (
     PD_ELE_T    * *pHead,
     PD_ELE_T    *pNew);
+
+#if MD_SUPPORT
+MD_ELE_T    *trdp_MDqueueFindAddr (
+    MD_ELE_T            *pHead,
+    TRDP_ADDRESSES_T    *addr);
+
+void        trdp_MDqueueDelElement (
+    MD_ELE_T    * *ppHead,
+    MD_ELE_T    *pDelete);
+
+void        trdp_MDqueueAppLast (
+    MD_ELE_T    * *pHead,
+    MD_ELE_T    *pNew);
+
+void        trdp_MDqueueInsFirst (
+    MD_ELE_T    * *ppHead,
+    MD_ELE_T    *pNew);
+#endif
 
 
 /*********************************************************************************************************************/
