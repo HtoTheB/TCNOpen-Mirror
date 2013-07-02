@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 991 2013-06-24 15:43:09Z bloehr $
+ * $Id: trdp_if.c 1004 2013-07-02 09:12:46Z bloehr $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -657,8 +657,8 @@ EXT_DECL TRDP_ERR_T tlc_terminate (void)
             }
         }
 
-        /* Release memory?  */
-        vos_memDelete(NULL);
+        /* Close stop timers, release memory  */
+        vos_terminate();
         sInited = FALSE;
     }
     else
