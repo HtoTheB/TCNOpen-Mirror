@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 977 2013-06-18 06:33:13Z aweiss $
+ * $Id: vos_sock.c 1000 2013-07-02 08:53:28Z bloehr $
  *
  */
 
@@ -384,6 +384,17 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
     vosSockInitialised = TRUE;
 
     return VOS_NO_ERR;
+}
+
+/**********************************************************************************************************************/
+/** De-Initialize the socket library.
+ *  Must be called after last socket call
+ *
+ */
+
+EXT_DECL void vos_sockTerm (void)
+{
+    vosSockInitialised = FALSE;
 }
 
 
