@@ -17,7 +17,7 @@
  *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
  *
  *
- * $Id: vos_thread.c 951 2013-06-13 13:56:42Z 97025 $
+ * $Id: vos_thread.c 999 2013-07-02 08:51:14Z bloehr $
  *
  */
 
@@ -111,6 +111,17 @@ EXT_DECL VOS_ERR_T vos_threadInit (
     vosTreadInitialised = TRUE;
 
     return VOS_NO_ERR;
+}
+
+/**********************************************************************************************************************/
+/** De-Initialize the thread library.
+ *  Must be called after last thread/timer call
+ *
+ */
+
+EXT_DECL void vos_threadTerm (void)
+{
+    vosThreadInitialised = FALSE;
 }
 
 
