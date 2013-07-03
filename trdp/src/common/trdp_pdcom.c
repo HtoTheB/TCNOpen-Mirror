@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_pdcom.c 991 2013-06-24 15:43:09Z bloehr $
+ * $Id: trdp_pdcom.c 1010 2013-07-03 12:12:16Z bloehr $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
@@ -283,6 +283,7 @@ TRDP_ERR_T  trdp_pdSendQueued (
                     if (result == TRDP_NO_ERR)
                     {
                         appHandle->stats.pd.numSend++;
+                        iterPD->numRxTx++;
                     }
                     else
                     {
