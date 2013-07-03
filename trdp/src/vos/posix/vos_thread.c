@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_thread.c 999 2013-07-02 08:51:14Z bloehr $
+ * $Id: vos_thread.c 1009 2013-07-03 08:58:02Z bloehr $
  *
  */
 
@@ -34,6 +34,7 @@
  */
 
 #include <stdint.h>
+#include <unistd.h>
 #include <errno.h>
 #include <sys/time.h>
 #include <pthread.h>
@@ -435,7 +436,7 @@ EXT_DECL void vos_getTime (
     }
     else
     {
-#ifndef _POSIX_TIMERS
+#ifndef CLOCK_MONOTONIC
 
         /*    On systems without monotonic clock support,
             changing the system clock during operation
