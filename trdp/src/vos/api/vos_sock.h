@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.h 1001 2013-07-02 08:56:41Z bloehr $
+ * $Id: vos_sock.h 1015 2013-07-04 07:59:22Z bloehr $
  *
  */
 
@@ -58,7 +58,9 @@ extern "C" {
 
 #else
 
+#ifndef VOS_MAX_SOCKET_CNT
 #define VOS_MAX_SOCKET_CNT      4   /**< The maximum number of concurrent usable sockets per application session */
+#endif
 #ifndef VOS_MAX_MULTICAST_CNT
 #define VOS_MAX_MULTICAST_CNT   5   /**< The maximum number of multicast groups one socket can join              */
 #endif
