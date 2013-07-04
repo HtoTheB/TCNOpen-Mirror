@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_private.h 951 2013-06-13 13:56:42Z 97025 $
+ * $Id: vos_private.h 1012 2013-07-04 06:43:02Z cschneider $
  *
  */
 
@@ -48,6 +48,12 @@ struct VOS_MUTEX
 struct VOS_SEMA
 {
     struct sem_t_ *semaphore;
+};
+
+struct VOS_SHRD
+{
+    HANDLE  fd;                     /* File descriptor */
+    CHAR8   *sharedMemoryName;      /* shared memory Name */
 };
 
 VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
