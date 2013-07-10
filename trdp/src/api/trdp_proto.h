@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_proto.h 795 2013-05-10 10:12:58Z bloehr $
+ * $Id: trdp_proto.h 1017 2013-07-10 08:56:49Z bloehr $
  *
  */
 
@@ -59,8 +59,8 @@
 
 /*  PD packet properties    */
 #define TRDP_MIN_PD_HEADER_SIZE     sizeof(PD_HEADER_T)                 /**< PD header size with FCS                */
-#define TRDP_MAX_PD_DATA_SIZE       1436
-#define TRDP_MAX_PD_PACKET_SIZE     (TRDP_MAX_PD_DATA_SIZE + TRDP_MIN_PD_HEADER_SIZE)
+#define TRDP_MAX_PD_DATA_SIZE       1432                                /**< PD data size without FCS               */
+#define TRDP_MAX_PD_PACKET_SIZE     (TRDP_MAX_PD_DATA_SIZE + TRDP_MIN_PD_HEADER_SIZE + sizeof(UINT32))
 #define TRDP_MAX_MD_DATA_SIZE       ((1024 * 64) - 8 - sizeof(MD_HEADER_T))
 #define TRDP_MAX_MD_PACKET_SIZE     (TRDP_MAX_MD_DATA_SIZE + sizeof(MD_HEADER_T))
 

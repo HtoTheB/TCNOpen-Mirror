@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 1004 2013-07-02 09:12:46Z bloehr $
+ * $Id: trdp_if.c 1017 2013-07-10 08:56:49Z bloehr $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -952,7 +952,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
     /*    Check params    */
     if ((comId == 0)
         || (pData != NULL && dataSize == 0)
-        || (dataSize > TRDP_MAX_PD_PACKET_SIZE)
+        || (dataSize > TRDP_MAX_PD_DATA_SIZE)
         || (interval != 0 && interval < TRDP_TIMER_GRANULARITY)
         || (pPubHandle == NULL))
     {
@@ -1192,7 +1192,8 @@ TRDP_ERR_T tlp_put (
     PD_ELE_T    *pElement   = (PD_ELE_T *)pubHandle;
     TRDP_ERR_T  ret         = TRDP_NO_ERR;
 
-    if (pElement == NULL)
+    if (pElement == NULL ||
+        dataSize > TRDP_MAX_PD_DATA_SIZE )
     {
         return TRDP_PARAM_ERR;
     }
@@ -1629,7 +1630,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
     }
 
     /*    Check params    */
-    if (comId == 0 || maxDataSize > TRDP_MAX_PD_PACKET_SIZE)
+    if (comId == 0 || maxDataSize > TRDP_MAX_PD_DATA_SIZE)
     {
         return TRDP_PARAM_ERR;
     }
