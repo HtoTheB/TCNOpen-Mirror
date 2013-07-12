@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
  *
- * $Id: trdp_utils.c 995 2013-06-27 08:01:06Z bloehr $
+ * $Id: trdp_utils.c 1021 2013-07-12 08:53:08Z cschneider $
  *
  */
 
@@ -49,7 +49,7 @@ static INT32 sCurrentMaxSocketCnt = 0;
 void printSocketUsage (
     TRDP_SOCKETS_T iface[])
 {
-    UINT32 lIndex;
+    INT32 lIndex = 0;
     vos_printLog(VOS_LOG_DBG, "\n");
     for (lIndex = 0; lIndex < sCurrentMaxSocketCnt; lIndex++)
     {
