@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_sock.c 1000 2013-07-02 08:53:28Z bloehr $
+ * $Id: vos_sock.c 1026 2013-07-12 13:49:07Z bloehr $
  *
  */
 
@@ -98,7 +98,7 @@ UINT8   mac[VOS_MAC_SIZE];
 /** Receive a message including sender address information.
  *
  *  @param[in]      sock            socket descriptor
- *  @param[in]      message         Pointer to message header
+ *  @param[in]      pMessage        Pointer to message header
  *  @param[in]      flags           Receive flags
  *
  *  @retval         number of received bytes, -1 for error
