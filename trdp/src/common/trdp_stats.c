@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_stats.c 1005 2013-07-02 09:13:31Z bloehr $
+ * $Id: trdp_stats.c 1037 2013-07-22 13:57:31Z bloehr $
  *
  */
 
@@ -354,7 +354,7 @@ void    trdp_UpdateStats (
     TRDP_APP_SESSION_T appHandle)
 {
     PD_ELE_T    *iter;
-    UINT16      lIndex;
+    UINT16      lIndex, llIndex;
     VOS_ERR_T   ret;
     VOS_TIME_T  temp;
     TIMEDATE32  diff;
@@ -401,6 +401,20 @@ void    trdp_UpdateStats (
     }
 
     appHandle->stats.pd.numPub = lIndex;
+
+    /*  Count our joins */
+    appHandle->stats.numJoin = 0;
+    for (lIndex = 0; lIndex < VOS_MAX_SOCKET_CNT; lIndex++)
+    {
+        for (llIndex = 0; llIndex < VOS_MAX_MULTICAST_CNT; llIndex++)
+        {
+            if (appHandle->iface[lIndex].mcGroups[llIndex] != 0)
+            {
+                appHandle->stats.numJoin++;
+            }
+        }
+    }
+
 }
 
 /**********************************************************************************************************************/
