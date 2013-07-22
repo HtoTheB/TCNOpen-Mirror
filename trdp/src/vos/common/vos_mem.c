@@ -16,7 +16,7 @@
  *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: vos_mem.c 1033 2013-07-22 11:29:15Z cschneider $
+ * $Id: vos_mem.c 1034 2013-07-22 13:17:16Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -42,6 +42,10 @@
 #ifdef POSIX
 #include <strings.h>
 #include <unistd.h>
+#include <pthread.h>
+#endif
+
+#ifdef WIN32
 #include <pthread.h>
 #endif
 
