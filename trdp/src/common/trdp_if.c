@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 1017 2013-07-10 08:56:49Z bloehr $
+ * $Id: trdp_if.c 1043 2013-07-24 11:32:10Z bloehr $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -691,7 +691,7 @@ EXT_DECL TRDP_ERR_T tlc_reinitSession (
         if (ret == TRDP_NO_ERR)
         {
             /*    Walk over the registered PDs */
-            for (iterPD = appHandle->pSndQueue; iterPD != NULL; iterPD = iterPD->pNext)
+            for (iterPD = appHandle->pRcvQueue; iterPD != NULL; iterPD = iterPD->pNext)
             {
                 if (iterPD->privFlags & TRDP_MC_JOINT &&
                     iterPD->socketIdx != -1)
@@ -1154,6 +1154,7 @@ TRDP_ERR_T  tlp_unpublish (
     {
         /*    Remove from queue?    */
         trdp_queueDelElement(&appHandle->pSndQueue, pElement);
+        trdp_releaseSocket(appHandle->iface, pElement->socketIdx, 0, FALSE);
         pElement->magic = 0;
         vos_memFree(pElement->pFrame);
         vos_memFree(pElement);
@@ -1697,6 +1698,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
             if (newPD == NULL)
             {
                 ret = TRDP_MEM_ERR;
+                trdp_releaseSocket(appHandle->iface, lIndex, 0, FALSE);
             }
             else
             {
@@ -1804,6 +1806,7 @@ EXT_DECL TRDP_ERR_T tlp_unsubscribe (
     {
         /*    Remove from queue?    */
         trdp_queueDelElement(&appHandle->pRcvQueue, pElement);
+        trdp_releaseSocket(appHandle->iface, pElement->socketIdx, 0, FALSE);
         pElement->magic = 0;
         vos_memFree(pElement->pFrame);
         vos_memFree(pElement);
