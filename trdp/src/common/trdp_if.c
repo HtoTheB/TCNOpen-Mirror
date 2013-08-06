@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation GmbH, Germany, 2012.
  *
  *
- * $Id: trdp_if.c 1043 2013-07-24 11:32:10Z bloehr $
+ * $Id: trdp_if.c 1056 2013-08-06 15:27:30Z aweiss $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -2106,7 +2106,7 @@ TRDP_ERR_T tlm_addListener (
         /* Make sure that there is a TCP listener socket */
         if ((pktFlags & TRDP_FLAGS_TCP) != 0)
         {
-            errv = trdp_getTCPSocket(appHandle);
+            errv = trdp_mdGetTCPSocket(appHandle);
         }
 
         /* no error... */
