@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: test_mdSingle.c 1067 2013-09-06 08:33:24Z aweiss $
  *
  */
 
@@ -575,7 +575,7 @@ int main (int argc, char *argv[])
         if (sSessionData.sResponder == FALSE && sSessionData.sExitAfterReply == FALSE)
         {
             TRDP_UUID_T sessionId;
-            int         i, j;
+            UINT32         i, j;
 
             printf("\n");
             if (sSessionData.sNotifyOnly)
