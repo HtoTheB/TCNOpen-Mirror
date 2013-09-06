@@ -8,12 +8,11 @@
  *
  * @author          Bernd Loehr, NewTec GmbH
  *
- * @remarks All rights reserved. Reproduction, modification, use or disclosure
- *          to third parties without express authority is forbidden,
- *          Copyright NewTec GmbH, Germany, 2013.
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: pd_md_responder.c 990 2013-06-24 15:42:09Z bloehr $
+ * $Id: pd_md_responder.c 1065 2013-09-06 08:12:09Z aweiss $
  *
  */
 

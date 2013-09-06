@@ -11,13 +11,11 @@
  * @author          Bernd Loehr, NewTec GmbH
  *
  *
- * @remarks         All rights reserved. Reproduction, modification, use or disclosure
- *                  to third parties without express authority is forbidden,
- *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
- *                  vos_thread.c uses pthreads-w32 (http://sourceware.org/pthreads-win32/) under LGPL license
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: vos_thread.c 1014 2013-07-04 06:51:27Z cschneider $
+ * $Id: vos_thread.c 1065 2013-09-06 08:12:09Z aweiss $
  *
  */
 

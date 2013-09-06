@@ -14,8 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- *
- * $Id: trdp_private.h 1058 2013-08-08 11:39:52Z aweiss $
+ * $Id: trdp_private.h 1065 2013-09-06 08:12:09Z aweiss $
  *
  */
 

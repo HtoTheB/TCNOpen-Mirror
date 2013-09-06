@@ -8,12 +8,11 @@
  *
  * @author          Bernd Loehr and Florian Weispfenning, NewTec GmbH
  *
- * @remarks All rights reserved. Reproduction, modification, use or disclosure
- *          to third parties without express authority is forbidden,
- *          Copyright Bombardier Transportation GmbH, Germany, 2012.
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: sendHello.c 984 2013-06-21 14:58:44Z bloehr $
+ * $Id: sendHello.c 1065 2013-09-06 08:12:09Z aweiss $
  *
  */
 

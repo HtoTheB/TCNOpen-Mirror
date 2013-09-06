@@ -10,10 +10,11 @@
  *
  * @author          Gari Oiarbide, CAF
  *
- * @remarks All rights reserved. Reproduction, modification, use or disclosure
- *          to third parties without express authority is forbidden,
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright CAF, Spain, 2012.
  *
+ * $Id: mdManagerTCP_Siemens.c 1065 2013-09-06 08:12:09Z aweiss $
  */
 
 

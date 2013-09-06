@@ -10,14 +10,13 @@
  *
  * @note            Project: TCNOpen TRDP prototype stack
  *
- * @author          Armin-H. Weiss (initial version)
+ * @author          Armin-H. Weiss
  *
- * @remarks All rights reserved. Reproduction, modification, use or disclosure
- *          to third parties without express authority is forbidden,
- *          Copyright Bombardier Transportation GmbH, Germany, 2012.
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: tau_marshall.h 676 2013-04-18 15:27:42Z bloehr $
+ * $Id: tau_marshall.h 1065 2013-09-06 08:12:09Z aweiss $
  *
  */
 

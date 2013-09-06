@@ -11,12 +11,11 @@
  * @author          Bernd Loehr, NewTec GmbH
  *
  *
- * @remarks         All rights reserved. Reproduction, modification, use or disclosure
- *                  to third parties without express authority is forbidden,
- *                  Copyright Bombardier Transportation GmbH, Germany, 2012.
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: vos_mem.c 1034 2013-07-22 13:17:16Z aweiss $
+ * $Id: vos_mem.c 1065 2013-09-06 08:12:09Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"

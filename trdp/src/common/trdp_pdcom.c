@@ -10,12 +10,11 @@
  *
  * @author          Bernd Loehr, NewTec GmbH
  *
- * @remarks All rights reserved. Reproduction, modification, use or disclosure
- *          to third parties without express authority is forbidden,
- *          Copyright Bombardier Transportation GmbH, Germany, 2012.
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- *
- * $Id: trdp_pdcom.c 1010 2013-07-03 12:12:16Z bloehr $
+ * $Id: trdp_pdcom.c 1065 2013-09-06 08:12:09Z aweiss $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
