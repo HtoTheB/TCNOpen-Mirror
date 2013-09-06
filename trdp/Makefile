@@ -1,13 +1,13 @@
 #//
-#// $Id: Makefile 1022 2013-07-12 11:44:20Z cschneider $
+#// $Id: Makefile 1068 2013-09-06 09:27:07Z aweiss $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
 #// AUTHOR         Bernd Loehr, NewTec GmbH
 #//
-#// All rights reserved. Reproduction, modification, use or disclosure
-#// to third parties without express authority is forbidden.
-#// Copyright Bombardier Transportation GmbH, Germany, 2012.
+#// This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
+#// If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+#// Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
 #//
 
 #// Support for POSIX and VXWORKS, set buildsettings and config first!
