@@ -1,14 +1,3 @@
-/*
- *  trdp-xmlprint-test.c
- *  Test of XML configuration file parsing
- *  Reads data from provided TRDP XML configuration file using all three api functions:
- *      tau_readXmlConfig
- *      tau_readXmlDatasetConfig
- *      tau_readXmlInterfaceConfig
- *  Prints all parsed data to stdout.
- *
- *  Created by Tomas Svoboda on 17.12.12.
- *  Copyright 2012 UniControls,a.s. All rights reserved.
 /**********************************************************************************************************************/
 /**
  * @file            trdp-xmlprint-test.c
@@ -29,7 +18,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp-xmlprint-test.c 1066 2013-09-06 08:14:14Z aweiss $
  *
  */
 
