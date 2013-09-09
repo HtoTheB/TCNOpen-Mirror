@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: parsebody.h 461 2013-01-31 11:18:44Z fweispfenning $
+ * $Id: parsebody.h 1069 2013-09-09 13:49:55Z 97036 $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -57,7 +57,7 @@ struct ComId {
  */
 struct Dataset {
     guint datasetId;
-	gchar 	name[255];
+	GString *name;
 	GSList *listOfElements;
 };
 
@@ -77,10 +77,10 @@ struct Dataset {
  *  Offset that is added to the values. displayed value = scale * raw value + offset
  */
 struct Element {
-	gchar 	name[255]; //FIXME here would be a string better
+	GString* 	name;
 	guint32 	type;
 	guint32 array_size;
-	gchar 	unit[255];
+	GString* 	unit;
 	gfloat 	scale;
 	gint32 offset;
 };
