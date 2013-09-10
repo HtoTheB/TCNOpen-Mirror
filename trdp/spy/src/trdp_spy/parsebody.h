@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: parsebody.h 1069 2013-09-09 13:49:55Z 97036 $
+ * $Id: parsebody.h 1071 2013-09-10 13:46:07Z 97036 $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -79,6 +79,7 @@ struct Dataset {
 struct Element {
 	GString* 	name;
 	guint32 	type;
+	GString* 	typeName;
 	guint32 array_size;
 	GString* 	unit;
 	gfloat 	scale;
