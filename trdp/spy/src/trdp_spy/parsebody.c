@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.c 1075 2013-09-10 14:33:17Z 97036 $
+ * $Id: parsebody.c 1082 2013-09-11 07:49:58Z 97036 $
  *
  */
 
@@ -401,7 +401,7 @@ TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
 #endif
 
     /* Insert all default types */
-    insertStandardType(1,  "BOOLEAN8");
+    insertStandardType(1,  "BOOL8");
     insertStandardType(2,  "CHAR8");
     insertStandardType(3,  "UTF16");
     insertStandardType(4,  "INT8");
