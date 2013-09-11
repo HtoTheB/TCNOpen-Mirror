@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_types.h 1080 2013-09-11 06:39:34Z aweiss $
  *
  */
 
@@ -43,7 +43,7 @@ typedef signed char INT8;
 typedef signed short INT16;
 typedef signed int INT32;
 typedef signed long long INT64;
-typedef int BOOL;
+typedef unsigned char BOOL;
 typedef char CHAR8;
 typedef short UTF16;
 typedef float REAL32;
@@ -63,7 +63,7 @@ typedef int8_t INT8;
 typedef int16_t INT16;
 typedef int32_t INT32;
 typedef int64_t INT64;
-typedef signed char BOOL;
+typedef unsigned char BOOL;
 typedef char CHAR8;
 typedef uint16_t UTF16;
 typedef float REAL32;
@@ -92,7 +92,7 @@ typedef int8_t INT8;
 typedef int16_t INT16;
 typedef int32_t INT32;
 typedef int64_t INT64;
-typedef signed char BOOL;
+typedef unsigned char BOOL;
 typedef char CHAR8;
 typedef uint16_t UTF16;
 typedef float REAL32;
