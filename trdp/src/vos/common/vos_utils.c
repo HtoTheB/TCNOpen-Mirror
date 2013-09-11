@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_utils.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -125,7 +125,7 @@ static const UINT32 crc_table[256] PROGMEM =
     0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
 };
 
-static BOOL         sIsBigEndian            = FALSE;
+static BOOL8        sIsBigEndian            = FALSE;
 
 /***********************************************************************************************************************
  * LOCAL FUNCTIONS
@@ -338,7 +338,7 @@ UINT32 vos_crc32 (
  *
  *  @retval             TRUE if big endian
  */
-INLINE BOOL vos_isBigEndian (void)
+INLINE BOOL8 vos_isBigEndian (void)
 {
     return sIsBigEndian;
 }

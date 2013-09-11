@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_if.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -60,7 +60,7 @@ extern "C" {
 const TRDP_VERSION_T        trdpVersion = {TRDP_VERSION, TRDP_RELEASE, TRDP_UPDATE, TRDP_EVOLUTION};
 static TRDP_APP_SESSION_T   sSession        = NULL;
 static VOS_MUTEX_T          sSessionMutex   = NULL;
-static BOOL sInited = FALSE;
+static BOOL8 sInited = FALSE;
 
 
 /******************************************************************************
@@ -81,11 +81,11 @@ static BOOL sInited = FALSE;
  *  @retval       TRUE                  is valid
  *  @retval       FALSE                 is invalid
  */
-BOOL    trdp_isValidSession (
+BOOL8    trdp_isValidSession (
     TRDP_APP_SESSION_T pSessionHandle)
 {
     TRDP_SESSION_PT pSession = NULL;
-    BOOL found = FALSE;
+    BOOL8 found = FALSE;
 
     if (pSessionHandle == NULL)
     {
@@ -492,7 +492,7 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
     TRDP_APP_SESSION_T appHandle)
 {
     TRDP_SESSION_PT pSession = NULL;
-    BOOL found = FALSE;
+    BOOL8 found = FALSE;
     TRDP_ERR_T      ret = TRDP_NOINIT_ERR;
 
     /*    Find the session    */
@@ -761,11 +761,11 @@ EXT_DECL const TRDP_VERSION_T *tlc_getVersion (void)
 TRDP_ERR_T tlp_setRedundant (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              redId,
-    BOOL                leader)
+    BOOL8               leader)
 {
     TRDP_ERR_T  ret = TRDP_NOINIT_ERR;
     PD_ELE_T    *iterPD;
-    BOOL        found = FALSE;
+    BOOL8        found = FALSE;
 
     if (trdp_isValidSession(appHandle))
     {
@@ -824,7 +824,7 @@ TRDP_ERR_T tlp_setRedundant (
 EXT_DECL TRDP_ERR_T tlp_getRedundant (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              redId,
-    BOOL                *pLeader)
+    BOOL8               *pLeader)
 {
     TRDP_ERR_T  ret = TRDP_NOINIT_ERR;
     PD_ELE_T    *iterPD;
@@ -1080,7 +1080,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
              This will only happen, if publish() is called while we are in redundant mode */
             if (0 != redId)
             {
-                BOOL isLeader = TRUE;
+                BOOL8 isLeader = TRUE;
 
                 ret = tlp_getRedundant(appHandle, redId, &isLeader);
                 if (ret == TRDP_NO_ERR && FALSE == isLeader)
@@ -2230,7 +2230,7 @@ TRDP_ERR_T tlm_delListener (
     TRDP_ERR_T      errv        = TRDP_NO_ERR;
     MD_LIS_ELE_T    *iterLis    = NULL;
     MD_LIS_ELE_T    *pDelete    = (MD_LIS_ELE_T *) listenHandle;
-    BOOL            dequeued    = FALSE;
+    BOOL8           dequeued    = FALSE;
 
     if (!trdp_isValidSession(appHandle))
     {
@@ -2566,7 +2566,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
     const TRDP_UUID_T   *pSessionId)
 {
     MD_ELE_T    *iterMD     = appHandle->pMDSndQueue;
-    BOOL        firstLoop   = TRUE;
+    BOOL8       firstLoop   = TRUE;
     TRDP_ERR_T  err         = TRDP_NOSESSION_ERR;
 
     if (!trdp_isValidSession(appHandle))

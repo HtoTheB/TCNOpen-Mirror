@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: getStats.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -57,7 +57,7 @@
 #define APP_VERSION         "0.0.0.3"
 
 TRDP_STATISTICS_T gBuffer;
-BOOL gKeepOnRunning = TRUE;
+BOOL8 gKeepOnRunning = TRUE;
 
 void print_stats (
     TRDP_STATISTICS_T *pData)

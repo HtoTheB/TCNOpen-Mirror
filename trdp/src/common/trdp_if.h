@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_if.h 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -52,7 +52,7 @@ extern "C" {
  *  @retval         TRUE              is valid
  *  @retval         FALSE             is invalid
  */
-BOOL trdp_isValidSession (TRDP_APP_SESSION_T pSessionHandle);
+BOOL8 trdp_isValidSession (TRDP_APP_SESSION_T pSessionHandle);
 
 /**********************************************************************************************************************/
 /** Get the session queue head pointer

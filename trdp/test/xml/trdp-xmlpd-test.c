@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: trdp-xmlpd-test.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -425,7 +425,7 @@ static TRDP_ERR_T printDatasetElem(UINT8 * pBuff, UINT32 * pOffset, UINT32 elemT
         switch (elemType)
         {
 
-        case TRDP_BOOLEAN:
+        case TRDP_BOOL8:
             printf("B[%u]: %u, ", i, *(UINT8 *)pData);
             break;
         case TRDP_CHAR8:
@@ -917,7 +917,7 @@ void processData()
     TRDP_ERR_T result;
     UINT32 i;
     VOS_TIME_T now, delay, nextData, nextCycle, dataPeriod, cyclePeriod;
-    BOOL bDataPeriod = FALSE;
+    BOOL8 bDataPeriod = FALSE;
     UINT32 dataSize;
 
     /*  Cycle period  */

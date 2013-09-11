@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_mdcom.h 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -48,7 +48,7 @@ void        trdp_mdCloseSessions (
     TRDP_SESSION_PT appHandle,
     INT32 socketIndex,
     INT32 newSocket,
-    BOOL checkAllSockets);
+    BOOL8 checkAllSockets);
 
 void        trdp_mdFreeSession (
     MD_ELE_T *pMDSession);

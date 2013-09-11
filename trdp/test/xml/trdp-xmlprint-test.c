@@ -18,7 +18,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: trdp-xmlprint-test.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -156,7 +156,7 @@ static void printDatasets(
     )
 {
     const char * strtrdpTypes[17] = {
-        "UNKNOWN", "BOOLEAN", "CHAR8", "UTF16", 
+        "UNKNOWN", "BOOL8", "CHAR8", "UTF16", 
         "INT8", "INT16", "INT32", "INT64", 
         "UINT8", "UINT16", "UINT32", "UINT64", 
         "REAL32","REAL64", "TIMEDATE32", "TIMEDATE48", "TIMEDATE64"};

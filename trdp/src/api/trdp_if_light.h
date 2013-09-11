@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: trdp_if_light.h 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -303,7 +303,7 @@ EXT_DECL TRDP_ERR_T tlp_put (
 EXT_DECL TRDP_ERR_T tlp_setRedundant (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              redId,
-    BOOL                leader
+    BOOL8               leader
     );
 
 /**********************************************************************************************************************/
@@ -320,7 +320,7 @@ EXT_DECL TRDP_ERR_T tlp_setRedundant (
 EXT_DECL TRDP_ERR_T tlp_getRedundant (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              redId,
-    BOOL                *pLeader
+    BOOL8               *pLeader
     );
 
 

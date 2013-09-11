@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: tau_marshall.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -409,7 +409,7 @@ static TRDP_ERR_T do_marshall (
         {
             switch (pDataset->pElement[lIndex].type)
             {
-                case TRDP_BOOLEAN:
+                case TRDP_BOOL8:
                 case TRDP_CHAR8:
                 case TRDP_INT8:
                 case TRDP_UINT8:
@@ -624,7 +624,7 @@ static TRDP_ERR_T do_unmarshall (
         {
             switch (pDataset->pElement[lIndex].type)
             {
-                case TRDP_BOOLEAN:
+                case TRDP_BOOL8:
                 case TRDP_CHAR8:
                 case TRDP_INT8:
                 case TRDP_UINT8:
@@ -839,7 +839,7 @@ static TRDP_ERR_T size_marshall (
         {
             switch (pDataset->pElement[lIndex].type)
             {
-                case TRDP_BOOLEAN:
+                case TRDP_BOOL8:
                 case TRDP_CHAR8:
                 case TRDP_INT8:
                 case TRDP_UINT8:

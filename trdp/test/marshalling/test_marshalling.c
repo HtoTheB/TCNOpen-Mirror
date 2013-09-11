@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: test_marshalling.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 #include <stdio.h>
@@ -108,7 +108,7 @@ TRDP_DATASET_T  gDataSet1000 =
     65,         /*    No of elements    */
     {           /*    TRDP_DATASET_ELEMENT_T[]    */
         {
-            TRDP_BOOLEAN,       /*    data type         */
+            TRDP_BOOL8,         /*    data type         */
             1,                  /*    no of elements    */
             NULL                /*    cache             */
         },                      /* size = 1 */
@@ -188,7 +188,7 @@ TRDP_DATASET_T  gDataSet1000 =
             NULL
         },                      /* size = 64 */
         {    /* 16    */
-            TRDP_BOOLEAN,       /*    data type        */
+            TRDP_BOOL8,         /*    data type        */
             4,                  /*    no of elements    */
             NULL
         },                      /* size = 68 */
@@ -273,7 +273,7 @@ TRDP_DATASET_T  gDataSet1000 =
             NULL
         },                      /* size = 358 */
         {
-            TRDP_BOOLEAN,  /*    data type        */
+            TRDP_BOOL8,   /*    data type        */
             0,               /*    no of elements    */
             NULL
         },                      /* size = 362 for current test! */

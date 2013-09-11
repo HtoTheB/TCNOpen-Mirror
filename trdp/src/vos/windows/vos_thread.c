@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_thread.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -52,7 +52,7 @@ const size_t    cDefaultStackSize   = 16 * 1024;
 const UINT32    cMutextMagic        = 0x1234FEDC;
 
 UINT16          uuidCycle = 0;
-BOOL            vosThreadInitialised = FALSE;
+BOOL8           vosThreadInitialised = FALSE;
 pthread_t       threadHandle[VOS_MAX_THREAD_CNT];
 
 /***********************************************************************************************************************

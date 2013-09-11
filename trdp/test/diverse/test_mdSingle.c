@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: test_mdSingle.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -55,13 +55,13 @@ typedef struct testData
 
 typedef struct sSessionData
 {
-    BOOL                sResponder;
-    BOOL                sConfirmRequested;
-    BOOL                sNotifyOnly;
-    BOOL                sOnlyOnce;
-    BOOL                sExitAfterReply;
-    BOOL                sLoop;
-    BOOL                sNoData;
+    BOOL8                sResponder;
+    BOOL8                sConfirmRequested;
+    BOOL8                sNotifyOnly;
+    BOOL8                sOnlyOnce;
+    BOOL8                sExitAfterReply;
+    BOOL8                sLoop;
+    BOOL8                sNoData;
     UINT32              sComID;
     TRDP_APP_SESSION_T  appHandle;          /*    Our identifier to the library instance    */
     TRDP_LIS_T          listenHandle1;       /*    Our identifier to the publication         */
@@ -290,7 +290,7 @@ int main (int argc, char *argv[])
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     VOS_IF_REC_T            interfaces[MAX_IF];
-    BOOL            lastRun = FALSE;
+    BOOL8                   lastRun = FALSE;
 
     int             rv          = 0;
     UINT32          destIP      = 0;

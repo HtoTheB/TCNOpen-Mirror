@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_mem.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -89,7 +89,7 @@ typedef struct
     UINT32              memSize;        /* Size of memory area */
     UINT32              allocSize;      /* Size of allocated area */
     UINT32              noOfBlocks;     /* No of blocks */
-    BOOL                wasMalloced;    /* needs to be freed in the end */
+    BOOL8               wasMalloced;    /* needs to be freed in the end */
 
     /* Free block header array, one entry for each possible free block size */
     struct
@@ -839,7 +839,7 @@ EXT_DECL VOS_ERR_T vos_queueSend (
 {
     VOS_ERR_T retVal = VOS_UNKNOWN_ERR;
     VOS_ERR_T err = VOS_UNKNOWN_ERR;
-    BOOL giveSemaphore = FALSE;
+    BOOL8     giveSemaphore = FALSE;
 
     if ((queueHandle == (VOS_QUEUE_T) NULL)
         || (pData == NULL)

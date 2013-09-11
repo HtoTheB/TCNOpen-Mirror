@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_sock.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  */
 
@@ -69,7 +69,7 @@ const CHAR8 *cDefaultIface = "eth0";
  *  LOCALS
  */
 
-BOOL vosSockInitialised = FALSE;
+BOOL8 vosSockInitialised = FALSE;
 
 struct ifreq gIfr;
 
@@ -85,7 +85,7 @@ struct ifreq gIfr;
  *
  *  @retval             TRUE if successfull
  */
-BOOL vos_getMacAddress (
+BOOL8 vos_getMacAddress (
     UINT8       *pMacAddr,
     const char  *pIfName)
 {
@@ -122,7 +122,7 @@ BOOL vos_getMacAddress (
 #   define LLADDR_OFF  11
 
     struct ifaddrs  *pIfList;
-    BOOL found = FALSE;
+    BOOL8 found = FALSE;
     const char      *pName = cDefaultIface;
 
     if (pIfName != NULL)
@@ -278,7 +278,7 @@ EXT_DECL const CHAR8 *vos_ipDotted (
  *  @retval             FALSE       address is not a multicast address
  */
 
-EXT_DECL BOOL vos_isMulticast (
+EXT_DECL BOOL8 vos_isMulticast (
     UINT32 ipAddress)
 {
     return IN_MULTICAST(ipAddress);
@@ -935,7 +935,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     UINT32  *pSrcIPAddr,
     UINT16  *pSrcIPPort,
     UINT32  *pDstIPAddr,
-    BOOL    peek)
+    BOOL8   peek)
 {
     union
     {

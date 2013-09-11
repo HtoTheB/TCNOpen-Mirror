@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: packet-trdp_spy.c 1071 2013-09-10 13:46:07Z 97036 $
+ * $Id: packet-trdp_spy.c 1081 2013-09-11 07:20:50Z aweiss $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -300,7 +300,7 @@ static guint8 dissect_trdp_width(guint32 type)
 {
 	switch(type)
 		{
-		case 1: //BOOLEAN8	1	=UINT8, 1 bit relevant (equal to zero -> false, not equal to zero -> true)
+		case 1: //BOOL8	    1	=UINT8, 1 bit relevant (equal to zero -> false, not equal to zero -> true)
 		case 2: //CHAR8		2	char, can be used also as UTF8
 		case 4: //INT8		4	Signed integer, 8 bit
 		case 8: //UINT8		8	Unsigned integer, 8 bit
@@ -540,7 +540,7 @@ static guint32 dissect_trdp_generic_body(tvbuff_t *tvb, packet_info *pinfo, prot
 
 		switch(el->type)
 		{
-		case 1: //BOOLEAN8	1	=UINT8, 1 bit relevant (equal to zero -> false, not equal to zero -> true)
+		case 1: //BOOL8	   1	=UINT8, 1 bit relevant (equal to zero -> false, not equal to zero -> true)
 			value32 = tvb_get_guint8(tvb, offset);
 			proto_tree_add_text(userdata_actual, tvb, offset, 1, "%s : %s", el->name->str, (value32 == 0) ? "false" : "true");
 			offset += 1;
