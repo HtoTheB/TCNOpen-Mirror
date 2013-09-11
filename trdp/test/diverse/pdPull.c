@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: pdPull.c 1084 2013-09-11 09:28:14Z bloehr $
  *
  */
 
@@ -46,7 +46,7 @@
 #define APP_VERSION         "0.0.1.0"
 
 UINT32  gComID          = 1000;
-BOOL    gKeepOnRunning  = TRUE;
+int     gKeepOnRunning  = TRUE;
 
 /**********************************************************************************************************************/
 void print_data (UINT8 *pData, UINT32 len)

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_reserved.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_reserved.c 1084 2013-09-11 09:28:14Z bloehr $
  *
  */
 
@@ -584,7 +584,7 @@ TRDP_DATASET_T          dsTest =
     65,         /*    No of elements    */
     {           /*    TRDP_DATASET_ELEMENT_T[]    */
         {
-            TRDP_BOOLEAN,  /*    data type        */
+            TRDP_BOOL8,     /*    data type        */
             1               /*    no of elements    */
         },
         {
@@ -648,7 +648,7 @@ TRDP_DATASET_T          dsTest =
             1
         },
         {
-            TRDP_BOOLEAN,  /*    data type        */
+            TRDP_BOOL8,     /*    data type        */
             4               /*    no of elements    */
         },
         {
@@ -716,7 +716,7 @@ TRDP_DATASET_T          dsTest =
             1
         },
         {
-            TRDP_BOOLEAN,   /*    data type        */
+            TRDP_BOOL8,     /*    data type        */
             0               /*    no of elements    */
         },
         {
