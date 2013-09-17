@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: packet-trdp_spy.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: packet-trdp_spy.c 1089 2013-09-17 15:42:55Z 97036 $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -434,15 +434,15 @@ static guint32 dissect_trdp_generic_body(tvbuff_t *tvb, packet_info *pinfo, prot
 
 	if (pFound == NULL)
 	{
-		ti = proto_tree_add_text(trdp_spy_tree, tvb, offset, -1, "The userdata could not be unmarshalled.");
-		PRNT(printf("The userdata could for comId %d could not be unmarshalled.\n", trdp_spy_comid));
+		PRNT(printf("No Configuration for this ComId available"));
 		/* Jump to the last 4 byte and check the crc */
 		value32u = tvb_length_remaining(tvb, offset);
-		PRNT(printf("The remaining is %d (startoffset=%d)\n", value32u, start_offset));
-		if (value32u > FCS_LENGTH && value32u >= length)
+		PRNT(printf("The remaining is %d (startoffset=%d, padding=%d)\n", value32u, start_offset,
+				(value32u % 4)));
+		if (value32u > FCS_LENGTH && value32u >= length) /* check if there is space for the header */
 		{
 			offset += length;
-			ti = add_crc2tree(tvb,trdp_spy_tree, hf_trdp_spy_fcs_body, hf_trdp_spy_fcs_body_calc, start_offset + value32u, start_offset, offset, "Body");
+			ti = add_crc2tree(tvb,trdp_spy_tree, hf_trdp_spy_fcs_body, hf_trdp_spy_fcs_body_calc, start_offset + value32u - FCS_LENGTH, start_offset, offset, "Body");
 		}
 		return offset;
 	}
