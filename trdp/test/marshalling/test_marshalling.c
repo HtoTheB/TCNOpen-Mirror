@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: test_marshalling.c 1099 2013-10-10 13:00:19Z bloehr $
  *
  */
 #include <stdio.h>
@@ -691,7 +691,7 @@ int main ()
     }
     else
     {
-        printf("...### Precomputed size is wrong (> %u which is sizeof(ds) )!\n", sizeof(gMyDataSet1000));
+        printf("...### Precomputed size is wrong (> %lu which is sizeof(ds) )!\n", sizeof(gMyDataSet1000));
     }
 
     bufSize = compSize;
