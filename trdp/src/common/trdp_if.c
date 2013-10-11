@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: trdp_if.c 1104 2013-10-11 08:55:06Z bloehr $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *
@@ -1158,6 +1158,12 @@ TRDP_ERR_T  tlp_unpublish (
         vos_memFree(pElement->pFrame);
         vos_memFree(pElement);
         ret = TRDP_NO_ERR;
+
+        /* Re-compute distribution times */
+        if (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING)
+        {
+            ret = trdp_pdDistribute(appHandle->pSndQueue);
+        }
 
         if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
         {
