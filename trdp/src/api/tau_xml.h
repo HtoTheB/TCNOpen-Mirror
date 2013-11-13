@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.h 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: tau_xml.h 1115 2013-11-13 14:54:22Z ahweiss $
  *
  */
 
@@ -70,6 +70,7 @@ typedef struct
     UINT32              timeout;   /**< Timeout value in us, before considering received process data invalid */
     TRDP_TO_BEHAVIOR_T  toBehav;   /**< Behaviour when received process data is invalid/timed out. */
     TRDP_FLAGS_T        flags;     /**< TRDP_FLAGS_MARSHALL, TRDP_FLAGS_REDUNDANT */
+    UINT16              offset;    /**< Offset-address for PD in traffic store for ladder topology */
 } TRDP_PD_PAR_T;
 
 typedef struct
