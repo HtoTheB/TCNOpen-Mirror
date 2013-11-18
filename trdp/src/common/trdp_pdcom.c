@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_pdcom.c 1116 2013-11-18 11:53:26Z ahweiss $
  *
  *      BL 2013-06-24: ID 125: Time-out handling and ready descriptors fixed
  *      BL 2013-04-09: ID 92: Pull request led to reset of push message type
@@ -302,8 +302,14 @@ TRDP_ERR_T  trdp_pdSendQueued (
                 /*  Set timer if interval was set.
                     In case of a requested cyclically PD packet, this will lead to one time jump (jitter) in the interval
                 */
-                iterPD->timeToGo = iterPD->interval;
-                vos_addTime(&iterPD->timeToGo, &now);
+                vos_addTime(&iterPD->timeToGo, &iterPD->interval);
+
+                if (vos_cmpTime(&iterPD->timeToGo, &now) <= 0)
+                {
+                    /* in case of a delay of more than one interval - avoid sending it in the next cycle again */ 
+                    iterPD->timeToGo = now;
+                    vos_addTime(&iterPD->timeToGo, &iterPD->interval);
+                }
             }
 
             /* Reset "immediate" flag for request or requested packet */
