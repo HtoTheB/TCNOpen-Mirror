@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: vos_mem.c 1123 2013-11-28 07:15:16Z cfschneider $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -704,7 +704,9 @@ EXT_DECL void vos_strncpy (
     UINT32      count )
 {
 #ifdef WIN32
-    (void) strncpy_s((char *)pStrDst, (size_t) count, (const char *)pStrSrc, (size_t) count);
+    CHAR8 character = pStrDst[count];
+    (void) strncpy_s((char *)pStrDst, (size_t)(count+1), (const char *)pStrSrc, (size_t) count);
+    pStrDst[count] = character;
 #else
     (void) strncpy((char *)pStrDst, (const char *)pStrSrc, (size_t) count);
 #endif
