@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright CAF, Spain, 2012.
  *
- * $Id: mdManagerTCP.c 1114 2013-10-22 11:46:36Z ahweiss $
+ * $Id: mdManagerTCP.c 1122 2013-11-28 07:06:51Z cfschneider $
  *
  */
 
@@ -31,7 +31,6 @@
 
 #include <mqueue.h>
 #include <errno.h>
-13:31 22.10.2013
 #include "trdp_if_light.h"
 //#include "vos_thread.h"
 #include "trdp_private.h"
