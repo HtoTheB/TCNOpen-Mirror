@@ -14,12 +14,8 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_shared_mem.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_shared_mem.c 1129 2013-12-16 16:43:29Z cfschneider $
  *
- */
-
-/***********************************************************************************************************************
- * INCLUDES
  */
 
 #ifndef VXWORKS
@@ -27,24 +23,27 @@
     "You are trying to compile the VXWORKS implementation of vos_shared_mem.c - either define VXWORKS or exclude this file!"
 #endif
 
-#include <stdio.h>
-#include <stddef.h>
-#ifndef VXWORKS
-#include <stdint.h>
-#endif
-#include <stdlib.h>
+/***********************************************************************************************************************
+ * INCLUDES
+ */
 
-#include <errno.h>
-#include <string.h>
-#include <fcntl.h>
-
-#include "vos_types.h"
-#include "vos_utils.h"
 #include "vos_shared_mem.h"
-#include "vos_thread.h"
-#include "vos_private.h"
+#include "vos_types.h"
+#include "vos_mem.h"
+#include "vos_utils.h"
+#include "vos_private.h"    
+#include "smMemLib.h"
 
-/************************************************************************************************************************
+#include <vxWorks.h>
+#include <semLib.h>
+#include <semSmLib.h>
+#include <smNameLib.h>
+#include <smObjLib.h>
+#include "sysLib.h"
+
+
+
+/***********************************************************************************************************************
  * DEFINITIONS
  */
 
@@ -77,13 +76,38 @@
  *  @retval         VOS_NO_ERR         no error
  *  @retval         VOS_MEM_ERR        no memory available
  */
+
+/* ToDo: shared memory implementation missing */
 EXT_DECL VOS_ERR_T vos_sharedOpen (
     const CHAR8 *pKey,
     VOS_SHRD_T  *pHandle,
     UINT8       * *ppMemoryArea,
     UINT32      *pSize)
 {
-    
+#if(0)
+    VOS_ERR_T       ret         = VOS_MEM_ERR;
+    mode_t          PERMISSION  = 0666;      /* Shared Memory permission is rw-rw-rw- */
+    static INT32    fd;                      /* Shared Memory file descriptor */
+    struct    stat  sharedMemoryStat;        /* Shared Memory Stat */
+
+    /* Shared Memory Open */
+    *ppMemoryArea = (UINT8*)smMemMalloc(*pSize);
+    /* Initialize Shared Memory */
+    memset(*ppMemoryArea, 0, sharedMemoryStat.st_size);
+    /* Handle */
+    *pHandle = (VOS_SHRD_T) vos_memAlloc(sizeof (struct VOS_SHRD));
+    if (*pHandle == NULL)
+    {
+        vos_printLog(VOS_LOG_ERROR, "Shared Memory Handle create failed\n");
+        return ret;
+    }
+    else
+    {
+        (*pHandle)->fd = fd;
+    }
+    ret = VOS_NO_ERR;
+#endif
+    return VOS_UNKNOWN_ERR;
 }
 
 /**********************************************************************************************************************/
@@ -97,10 +121,10 @@ EXT_DECL VOS_ERR_T vos_sharedOpen (
  *  @retval         VOS_NO_ERR         no error
  *  @retval         VOS_MEM_ERR        no memory available
  */
-
+/* ToDo: shared memory implementation missing */
 EXT_DECL VOS_ERR_T vos_sharedClose (
     VOS_SHRD_T  handle,
     const UINT8 *pMemoryArea)
 {
-   
+    return VOS_UNKNOWN_ERR;
 }
