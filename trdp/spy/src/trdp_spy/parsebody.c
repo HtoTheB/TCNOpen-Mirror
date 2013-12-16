@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.c 1082 2013-09-11 07:49:58Z 97036 $
+ * $Id: parsebody.c 1127 2013-12-16 09:24:29Z fweispf $
  *
  */
 
@@ -363,20 +363,14 @@ static void insertStandardType(guint id, char* textdescr)
 
 /********************* public accessable functions **********************************/
 
-/******************************************************************************/
-/** insert a new dataset identified by its unique id.
- * Next to the identifier, also a textual description is stored in the name attribute.
- *
- *  @param[in]      id                  unique identifier
- *  @param[in]      textdescr   textual descrption
- */
+
 int trdp_parsebody_isinited( void )
 {
     return (gTableComId > 0);
 }
 
-/**
- * Create the module and extract all the needed information from the configuration file.
+/** @fn TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
+ * @brief Create the module and extract all the needed information from the configuration file.
   * @param[in]  xmlconfigFile   path to the file containing the XML description of the TRDP packets.
  * @return TRDP_PARSEBODY_OK when no errors occured
  */
@@ -433,7 +427,7 @@ TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
 
 /**
  * Looks up the dataset for a given ComId.
-  * @param[in] comId    to search for.
+ * @param[in] comId    to search for.
  * @return NULL, when nothing was found.
  */
 struct Dataset * trdp_parsebody_lookup(guint32 comId)

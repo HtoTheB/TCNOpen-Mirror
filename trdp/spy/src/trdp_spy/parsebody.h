@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.h 1097 2013-10-10 09:50:52Z bloehr $
+ * $Id: parsebody.h 1127 2013-12-16 09:24:29Z fweispf $
  *
  */
 
@@ -37,12 +37,27 @@
  */
 
 /** @struct ComId
+ *
+ @dot
+digraph Reference {
+node [shape=record, fontname=Helvetica, fontsize=10];
+c [ label="ComId" ];
+d [ label="Dataset" ];
+e [ label="Element" ];
+c -> d [ ];
+d -> d [ ];
+d -> e [ ];
+}
+@enddot
+ *
+ *
  *  @brief This struct makes a mapping between one comId and one dataset.
  *  This is a separate structure, because there could be mappings from a dataset to another one.
  *  @var ComId::comId
  *  Communication Id
  *  @var ComId::datasetId
  *  Id for a dataset (see struct ComId)
+ *
  */
 struct ComId {
 	guint32 comId;		// used as key
@@ -51,10 +66,12 @@ struct ComId {
 
 /** @struct Dataset
  *  @brief Description of one dataset.
- *  @var Dataset:datsetId
+ *  @var Dataset::datasetId
  *  Unique identification of one dataset
  *  @var Dataset::name
  *  Description of the dataset
+ *  @var Dataset::listOfElements
+ *  All elements, this dataset consists of.
  */
 struct Dataset {
     guint datasetId;
@@ -64,7 +81,7 @@ struct Dataset {
 
 /** @struct Element
  *  @brief description of one element, with a variable that is stored
- *  @var Element:name
+ *  @var Element::name
  *  Name of the variable, that is stored
  *  @var Element::type
  *  Numeric type of the variable (see Usermanual, chapter 4.2)
