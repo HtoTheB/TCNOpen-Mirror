@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_private.h 1129 2013-12-16 16:43:29Z cfschneider $
+ * $Id: vos_private.h 1131 2013-12-17 14:49:10Z cfschneider $
  *
  */
 
@@ -42,7 +42,8 @@ extern "C" {
 struct VOS_MUTEX
 {
     UINT32          magicNo;
-    SEM_ID          mutexId;
+    /*SEM_ID          mutexId;*/
+    pthread_mutex_t mutexId;
 };
 
 struct VOS_SHRD
