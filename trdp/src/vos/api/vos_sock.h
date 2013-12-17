@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: vos_sock.h 1130 2013-12-17 09:23:51Z cfschneider $
  *
  */
 
@@ -30,6 +30,17 @@
 #ifdef WIN32
 #include <winsock2.h>
 #elif defined(VXWORKS)
+#include "netinet/in.h"
+#include "sys/socket.h"
+#include "sockLib.h"
+#include "inetLib.h"
+#include "selectLib.h"
+#include "net/ifaddrs.h"
+#include "net/if.h"
+#include "string.h"
+#include "ioLib.h"
+#include "stdio.h"
+#include "vos_private.h"
 #elif defined(POSIX)
 #include <sys/select.h>
 #else

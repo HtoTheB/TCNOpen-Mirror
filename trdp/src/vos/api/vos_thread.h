@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_thread.h 1130 2013-12-17 09:23:51Z cfschneider $
  *
  */
 
@@ -26,6 +26,11 @@
  */
 
 #include "vos_types.h"
+#ifdef VXWORKS
+#include "vos_private.h"
+#include "time.h"
+#include "semaphore.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
