@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1130 2013-12-17 09:23:51Z cfschneider $
+ * $Id: vos_types.h 1132 2013-12-18 07:56:30Z ahweiss $
  *
  */
 
@@ -110,14 +110,12 @@ typedef double REAL64;
     #else
         #define EXT_DECL
     #endif
-
 #else
-
     #define EXT_DECL
-
 #endif
 
 /** inline macros  */
+#ifndef INLINE
 #ifdef WIN32
     #define INLINE  _inline
 #elif defined (VXWORKS)
@@ -127,7 +125,7 @@ typedef double REAL64;
 #else
     #define INLINE  inline
 #endif
-
+#endif
 
 #ifndef TRUE
     #define TRUE    (1)
