@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_private.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_private.h 1133 2013-12-18 08:00:43Z ahweiss $
  *
  */
 
@@ -56,6 +56,15 @@ void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
 
 #if (((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE) || __APPLE__)
 #   define STRING_ERR(pStrBuf)  (void)strerror_r(errno, pStrBuf, VOS_MAX_ERR_STR_SIZE);
+#elif INTEGRITY
+#   define STRING_ERR(pStrBuf)                                 \
+    {                                                          \
+        char *pStr = strerror(errno);                          \
+        if (pStr != NULL)                                      \
+        {                                                      \
+            strncpy(pStrBuf, pStr, VOS_MAX_ERR_STR_SIZE);      \
+        }                                                      \
+    }
 #else
 #   define STRING_ERR(pStrBuf)                                         \
     {                                                                  \
