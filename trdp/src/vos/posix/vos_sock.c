@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: vos_sock.c 1134 2013-12-18 08:17:41Z ahweiss $
  *
  */
 
@@ -37,6 +37,10 @@
 #include <fcntl.h>
 #include <sys/socket.h>
 #include <sys/ioctl.h>
+
+#ifdef INTEGRITY
+#   include <sys/uio.h>
+#endif
 
 #ifdef __linux
 #   include <linux/if.h>
@@ -151,6 +155,35 @@ BOOL8 vos_getMacAddress (
     }
 
     return found;
+
+#elif defined(INTEGRITY)
+    struct ifreq    ifinfo;
+    int             sd;
+    int             result = -1;
+
+    if (pIfName == NULL)
+    {
+        strcpy(ifinfo.ifr_name, cDefaultIface);
+    }
+    else
+    {
+        strcpy(ifinfo.ifr_name, pIfName);
+    }
+    sd = socket(AF_INET, SOCK_DGRAM, 0);
+    if (sd != -1)
+    {
+        result = ioctl(sd, SIOCGIFHWADDR, &ifinfo);
+        close(sd);
+    }
+    if ((result == 0) && (ifinfo.ifr_hwaddr.sa_family == 1))
+    {
+        memcpy(pMacAddr, ifinfo.ifr_hwaddr.sa_data, ifinfo.ifr_hwaddr.sa_len);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 
 #elif defined(__QNXNTO__)
 #   warning "no definition for get_mac_address() on this platform!"
