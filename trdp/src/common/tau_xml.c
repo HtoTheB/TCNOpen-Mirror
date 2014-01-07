@@ -14,14 +14,14 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.c 1115 2013-11-13 14:54:22Z ahweiss $
+ * $Id: tau_xml.c 1144 2014-01-07 16:29:07Z cfschneider $
  *
  */
 
 /*******************************************************************************
  * INCLUDES
  */
-
+#ifndef VXWORKS /*XML does not work yet on vxworks */
 #include <string.h>
 #include <stdio.h>
 
@@ -1838,3 +1838,4 @@ EXT_DECL void tau_freeTelegrams (
     /*  Free array of TRDP_EXCHG_PAR_T structures   */
     vos_memFree(pExchgPar);
 }
+#endif
