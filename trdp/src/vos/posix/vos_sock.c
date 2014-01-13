@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1134 2013-12-18 08:17:41Z ahweiss $
+ * $Id: vos_sock.c 1150 2014-01-13 16:24:04Z cfschneider $
  *
  */
 
@@ -391,7 +391,6 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                              (ifAddrs[count].ipAddr >> 16) & 0xFF,
                              (ifAddrs[count].ipAddr >> 8)  & 0xFF,
                              ifAddrs[count].ipAddr        & 0xFF);
-
                 if (vos_getMacAddress(ifAddrs[count].mac, ifAddrs[count].name) == TRUE)
                 {
                     vos_printLog(VOS_LOG_INFO, "Mac-Addr for '%s': %02x:%02x:%02x:%02x:%02x:%02x\n",
@@ -402,6 +401,14 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                                  ifAddrs[count].mac[3],
                                  ifAddrs[count].mac[4],
                                  ifAddrs[count].mac[5]);
+                }
+                if (cursor->ifa_flags & IFF_RUNNING)
+                {
+                    ifAddrs[count].linkState = TRUE;
+                }
+                else
+                {
+                    ifAddrs[count].linkState = FALSE;
                 }
                 count++;
             }
