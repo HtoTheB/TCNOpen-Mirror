@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.h 1128 2013-12-16 16:36:00Z cfschneider $
+ * $Id: vtest.h 1149 2014-01-13 15:13:18Z cfschneider $
  */
 /**************************/
 /* error flags definition */
@@ -123,7 +123,7 @@ typedef enum
     ROLE_SLAVE      = 1,
 } TEST_ROLE_T;
 
-const CHAR8 *cDefaultIface = "fec0";
+/*const CHAR8 *cDefaultIface = "fec0";*/
 /* define communication test identity (Master / Slave) */
 const TEST_ROLE_T TEST_ROLE = ROLE_SLAVE;
 UINT32 gTestIP = 0;

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1130 2013-12-17 09:23:51Z cfschneider $
+ * $Id: vos_sock.h 1149 2014-01-13 15:13:18Z cfschneider $
  *
  */
 
@@ -82,7 +82,7 @@ extern "C" {
 #define VOS_MAX_IF_NAME_SIZE    16
 #endif
 #ifndef VOS_MAX_NUM_IF              /**< The maximum number of IP interface adapters that can be handled by VOS */
-#define VOS_MAX_NUM_IF  4
+#define VOS_MAX_NUM_IF  8
 #endif
 #ifndef VOS_MAX_NUM_UNICAST         /**< The maximum number of unicast addresses that can be handled by VOS    */
 #define VOS_MAX_NUM_UNICAST  10
@@ -125,6 +125,7 @@ typedef struct
     VOS_IP4_ADDR_T  ipAddr;                     /**< IP address                    */
     VOS_IP4_ADDR_T  netMask;                    /**< subnet mask                   */
     UINT8           mac[VOS_MAC_SIZE];          /**< interface adapter MAC address */
+    BOOL8           linkState;                  /**< link down (false) / link up (true) */
 } VOS_IF_REC_T;
 
 /***********************************************************************************************************************
