@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.c 1127 2013-12-16 09:24:29Z fweispf $
+ * $Id: parsebody.c 1151 2014-01-17 12:26:05Z fweispf $
  *
  */
 
@@ -369,11 +369,6 @@ int trdp_parsebody_isinited( void )
     return (gTableComId > 0);
 }
 
-/** @fn TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
- * @brief Create the module and extract all the needed information from the configuration file.
-  * @param[in]  xmlconfigFile   path to the file containing the XML description of the TRDP packets.
- * @return TRDP_PARSEBODY_OK when no errors occured
- */
 TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
 {
     TRDP_RET_t ret;
@@ -425,11 +420,6 @@ TRDP_RET_t trdp_parsebody_init(const char ** xmlconfigFile)
     return ret;
 }
 
-/**
- * Looks up the dataset for a given ComId.
- * @param[in] comId    to search for.
- * @return NULL, when nothing was found.
- */
 struct Dataset * trdp_parsebody_lookup(guint32 comId)
 {
     struct ComId *pFound = NULL;
@@ -452,11 +442,6 @@ struct Dataset * trdp_parsebody_lookup(guint32 comId)
     }
 }
 
-/**
- * Uses the second hashmap to find the struct Dataset for a given datasetid
- * @param[in]   datasetId       the dataset we are searching for
- * @return NULL, when nothing was found.
- */
 struct Dataset* trdp_parsebody_search(guint32 datasetId)
 {
     struct Dataset * pFound = NULL;
@@ -476,9 +461,7 @@ struct Dataset* trdp_parsebody_search(guint32 datasetId)
     return pFound;
 }
 
-/**
- * Release all the allocated memory, needed to store the given information.
- */
+
 void trdp_parsebody_clean(void)
 {
     /* Clean lookuptable for the comIds */
