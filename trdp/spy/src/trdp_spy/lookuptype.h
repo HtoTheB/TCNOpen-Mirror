@@ -14,8 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: lookuptype.h 1073 2013-09-10 14:25:30Z fweispfenning $
+ * $Id: lookuptype.h 1154 2014-01-21 13:11:58Z fweispf $
  *
+ * @addtogroup Parsing
+ * @{
  */
 
 #ifndef TRDP_LOOKUPTYPE_H
@@ -42,7 +44,18 @@
 /*******************************************************************************
  * GLOBAL FUNCTIONS
  */
- 
+
+/** @fn gint trdp_lookupType(GHashTable *pTableDataset, GString* nameOfType)
+ * @brief Search in the given table at the names and return the found id.
+ *
+ *
+ *
+ *  @param[in]      pTableDataset             table containing all types
+ *  @param[in]      nameOfType                 textual description of a type, searching for
+ *  @return         found identifier, or zero on errors
+ */
 gint trdp_lookupType(GHashTable *pTableDataset, GString* nameOfType);
 
 #endif
+
+/** @} */

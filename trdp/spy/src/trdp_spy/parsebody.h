@@ -14,8 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.h 1153 2014-01-21 09:56:57Z fweispf $
+ * $Id: parsebody.h 1154 2014-01-21 13:11:58Z fweispf $
  *
+ * @addtogroup Parsing
+ * @{
  */
 
 #ifndef TRDP_PARESEBODY_H
@@ -146,3 +148,5 @@ struct Dataset* trdp_parsebody_lookup(guint32 comId);
 struct Dataset* trdp_parsebody_search(guint32 datasetId);
 
 #endif
+
+/** @} */
