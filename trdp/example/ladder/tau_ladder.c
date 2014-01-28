@@ -96,11 +96,10 @@ TRDP_ERR_T tau_ladder_init (void)
 	extern UINT8 *pTrafficStoreAddr;				/* pointer to pointer to Traffic Store Address */
 	UINT32 trafficStoreSize = TRAFFIC_STORE_SIZE;	/* Traffic Store Size : 64KB */
 
-#if 0
 	/* PDComLadderThread */
 	extern CHAR8 pdComLadderThreadName[];			/* Thread name is PDComLadder Thread. */
 	extern BOOL8 pdComLadderThreadActiveFlag;		/* PDComLaader Thread active/non-active Flag :active=TRUE, nonActive=FALSE */
-#endif
+
 	VOS_THREAD_T pdComLadderThread = NULL;			/* Thread handle */
 
 
@@ -109,7 +108,7 @@ TRDP_ERR_T tau_ladder_init (void)
 
 	/* Traffic Store Create */
 	/* Traffic Store Mutex Create */
-	TRDP_ERR_T ret = TRDP_MUTEX_ERR;
+	TRDP_ERR_T ret = TRDP_NO_ERR;
 
 	/*	PDComLadder Thread Active ? */
 	if (pdComLadderThreadActiveFlag == TRUE)
@@ -174,7 +173,6 @@ TRDP_ERR_T tau_ladder_init (void)
 			&pTrafficStoreMutex->mutexId,
 			sizeof(pTrafficStoreMutex->mutexId));
 
-#if 0
 	/*	PDComLadder Thread Create */
 	if (pdComLadderThreadActiveFlag == FALSE)
 	{
@@ -201,7 +199,7 @@ TRDP_ERR_T tau_ladder_init (void)
 	{
 		ret = TRDP_NO_ERR;
 	}
-#endif
+
 	return ret;	/* TRDP_NO_ERR */
 }
 

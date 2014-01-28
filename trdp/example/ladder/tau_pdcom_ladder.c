@@ -228,6 +228,8 @@ vos_printLog(VOS_LOG_DBG, "*** Traffic Store Write TIme *** comId:%d subnetId:%d
  */
 VOS_THREAD_FUNC_T PDComLadder (void)
 {
+	TRDP_ERR_T err = TRDP_NO_ERR;
+
 	/* Wait for multicast grouping */
 	vos_threadDelay(PDCOM_MULTICAST_GROUPING_DELAY_TIME);
 
@@ -346,7 +348,8 @@ VOS_THREAD_FUNC_T PDComLadder (void)
 		if (rv <= 0)
 		{
 			/* Get Write Traffic Store Receive SubnetId */
-			if (tau_getNetworkContext(&writeSubnetId) != TRDP_NO_ERR)
+			err = tau_getNetworkContext(&writeSubnetId);
+			if (err != TRDP_NO_ERR)
 			{
 				vos_printLog(VOS_LOG_ERROR, "prep Sub-network tau_getNetworkContext error\n");
 			}
@@ -369,7 +372,8 @@ VOS_THREAD_FUNC_T PDComLadder (void)
 					writeSubnetId = SUBNET1;
 				}
 				/* Set Write Traffic Store Receive Subnet */
-				if (tau_setNetworkContext(writeSubnetId) != TRDP_NO_ERR)
+				err = tau_setNetworkContext(writeSubnetId);
+				if (err != TRDP_NO_ERR)
 				{
 					vos_printLog(VOS_LOG_ERROR, "prep Sub-network tau_setNetworkContext error\n");
 				}
