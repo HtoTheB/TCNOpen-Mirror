@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1123 2013-11-28 07:15:16Z cfschneider $
+ * $Id: vos_mem.c 1160 2014-02-12 11:53:21Z ahweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -227,7 +227,7 @@ EXT_DECL VOS_ERR_T vos_memInit (
         }
     }
 
-    if (pMemoryArea == NULL && size == 0)       /* This means we will use standard malloc calls    */
+    if (pMemoryArea == NULL && size == 0)           /* This means we will use standard malloc calls    */
     {
         gMem.noOfBlocks = 0;
         gMem.memSize    = 0;
@@ -235,14 +235,25 @@ EXT_DECL VOS_ERR_T vos_memInit (
         return VOS_NO_ERR;
     }
 
-    if (pMemoryArea == NULL && size != 0)       /* We must allocate memory from the heap once   */
+    if (size != 0)
     {
-        gMem.pArea = (UINT8 *) malloc(size);    /*lint !e421 optional use of heap memory for debugging/development */
-        if (gMem.pArea == NULL)
+        if (pMemoryArea == NULL)                    /* We must allocate memory from the heap once   */
         {
-            return VOS_MEM_ERR;
+            gMem.pArea = (UINT8 *) malloc(size);    /*lint !e421 optional use of heap memory for debugging/development */
+            if (gMem.pArea == NULL)
+            {
+                return VOS_MEM_ERR;
+            }
+            gMem.wasMalloced = TRUE;
         }
-        gMem.wasMalloced = TRUE;
+        else                                        /* Use the memory provided from calling application */
+        {
+            gMem.pArea = pMemoryArea;
+        }
+    }
+    else
+    {
+        return VOS_PARAM_ERR;
     }
 
     /*  Can we pre-allocate the memory? If more than half of the memory would be occupied, we don't even try...  */
