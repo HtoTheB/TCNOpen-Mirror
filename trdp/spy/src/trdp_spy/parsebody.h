@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.h 1154 2014-01-21 13:11:58Z fweispf $
+ * $Id: parsebody.h 1171 2014-02-21 14:13:52Z fweispf $
  *
  * @addtogroup Parsing
  * @{
@@ -42,7 +42,7 @@
  *
  @dot
 digraph Reference {
-node [shape=record, fontname=Helvetica];
+node [shape=record];
 c [ label="ComId" ];
 d [ label="Dataset" ];
 e [ label="Element" ];
@@ -78,7 +78,7 @@ struct Dataset {
  *  @var Element::type
  *  Numeric type of the variable (see Usermanual, chapter 4.2)
  *  @var Element::array_size
- *  Amount this value occured. 1 is default; 0 indicates a dynamic list (the dynamic list starts with a 16bit value with the occurence)
+ *  Amount this value occurred. 1 is default; 0 indicates a dynamic list (the dynamic list starts with a 16bit value with the occurrence)
  *  @var Element::unit
  *  Unit to display
  *  @var Element::scale
