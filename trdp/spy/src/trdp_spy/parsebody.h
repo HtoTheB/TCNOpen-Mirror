@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: parsebody.h 1172 2014-02-26 13:51:20Z fweispf $
+ * $Id: parsebody.h 1173 2014-02-26 14:49:50Z fweispf $
  *
  * @addtogroup Parsing
  * @{
@@ -46,7 +46,7 @@
  * The following relation between the comId and an element of a dataset is given:
  * @dot
  * digraph Reference {
- *      size="2,2"; ranksep=0.3; nodesep=0.3;
+ *      rankdir=LR;
  *      node [shape=record];
  *      c [ label="ComId" ];
  *      d [ label="Dataset" ];
