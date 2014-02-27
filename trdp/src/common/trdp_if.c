@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1177 2014-02-27 15:47:54Z bloehr $
+ * $Id: trdp_if.c 1178 2014-02-27 15:55:39Z bloehr $
  *
  *      BL 2014-02-27: Ticket #24: trdp_if.c won't compile without MD_SUPPORT
  *
@@ -1310,19 +1310,11 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 {
                     vos_subTime(&appHandle->nextJob, &now);
                     *pInterval = appHandle->nextJob;
-                    vos_printLog(VOS_LOG_INFO,
-                                 "pInterval from nextJob %02d:%02d\n",
-                                 pInterval->tv_sec,
-                                 pInterval->tv_usec / 1000);
                 }
                 else    /* if lower than 10ms, set minimum poll time to 10ms   */
                 {
                     pInterval->tv_sec   = 0;
                     pInterval->tv_usec  = TRDP_PROCESS_DEFAULT_CYCLE_TIME;      /* Minimum poll time 10ms    */
-                    vos_printLog(VOS_LOG_INFO,
-                                 "pInterval default %02d:%02d\n",
-                                 pInterval->tv_sec,
-                                 pInterval->tv_usec / 1000);
                 }
 
                 if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
