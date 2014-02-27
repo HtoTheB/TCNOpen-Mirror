@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1174 2014-02-27 15:29:27Z bloehr $
+ * $Id: receiveHello.c 1180 2014-02-27 16:19:26Z bloehr $
  *
  */
 
@@ -107,7 +107,6 @@ int main (int argc, char *argv[])
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     UINT32                  ownIP           = 0;
     int                     rv              = 0;
-    UINT32                  destIP          = 0;
     UINT32                  lastSeqCount    = 0;
 
     /*    Generate some data, that we want to send, when nothing was specified. */
