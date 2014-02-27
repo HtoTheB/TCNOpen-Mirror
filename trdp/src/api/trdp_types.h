@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1175 2014-02-27 15:41:38Z bloehr $
+ * $Id: trdp_types.h 1179 2014-02-27 16:10:58Z bloehr $
  *
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
  *
@@ -464,7 +464,7 @@ typedef struct
 typedef struct TRDP_SESSION *TRDP_APP_SESSION_T;
 typedef struct PD_ELE *TRDP_PUB_T;
 typedef struct PD_ELE *TRDP_SUB_T;
-typedef struct PD_ELE *TRDP_LIS_T;
+typedef struct MD_LIS_ELE *TRDP_LIS_T;
 
 
 
