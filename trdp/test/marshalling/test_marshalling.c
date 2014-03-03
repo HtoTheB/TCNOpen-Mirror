@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1099 2013-10-10 13:00:19Z bloehr $
+ * $Id: test_marshalling.c 1182 2014-03-03 16:11:35Z bloehr $
  *
  */
 #include <stdio.h>
@@ -574,7 +574,7 @@ struct myDataSet1000
     0x1234,
     0x12345678,
     0x123456789ABCDEF0,
-    0.12345,
+    0.12345f,
     0.12345678,
     0x12345678,
     {0x12345678, 0x9ABC},            /* 14    */
@@ -591,7 +591,7 @@ struct myDataSet1000
     {0x1234, 0x5678, 0x9ABC, 0xDEF0},
     {0x12345671, 0x12345672, 0x12345673, 0x12345674},
     {0x123456789ABCDEF1, 0x123456789ABCDEF2, 0x123456789ABCDEF3, 0x123456789ABCDEF4},
-    {0.12341, 0x12342, 0x12343, 0x12344},
+    {0.12341f, 0.12342f, 0.12343f, 0.12344f},
     {0.12345671, 0.12345672, 0.12345673, 0.12345674},
     {0x12345671, 0x12345672, 0x12345673, 0x12345674},
     {{0x12345671, 0x89A1}, {0x12345672, 0x89A2}, {0x12345673, 0x89A3}, {0x12345674, 0x89A4}},
@@ -620,7 +620,7 @@ struct myDataSet1000
     4,
     {0x123456789ABCDEF1, 0x123456789ABCDEF2, 0x123456789ABCDEF3, 0x123456789ABCDEF4},
     4,
-    {0.12341, 0.12342, 0.12343, 0x12344},
+    {0.12341f, 0.12342f, 0.12343f, 0.12344f},
     4,
     {0.12345671, 0.12345672, 0.12345673, 0.12345674},
     4,
