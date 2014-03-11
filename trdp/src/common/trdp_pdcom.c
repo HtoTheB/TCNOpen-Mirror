@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1181 2014-02-28 15:55:27Z bloehr $
+ * $Id: trdp_pdcom.c 1189 2014-03-11 16:53:52Z ahweiss $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *      BL 2014-02-27: Ticket #23: tlc_getInterval() always returning 10ms
@@ -553,7 +553,7 @@ TRDP_ERR_T  trdp_pdReceive (
             theMessage.protVersion  = vos_ntohs(pExistingElement->pFrame->frameHead.protocolVersion);
             theMessage.replyComId   = vos_ntohl(pExistingElement->pFrame->frameHead.replyComId);
             theMessage.replyIpAddr  = vos_ntohl(pExistingElement->pFrame->frameHead.replyIpAddress);
-            theMessage.pUserRef     = pExistingElement->userRef; /* User reference given with the local subscribe? */
+            theMessage.pUserRef     = pExistingElement->pUserRef; /* User reference given with the local subscribe? */
             theMessage.resultCode   = resultCode;
 
             appHandle->pdDefault.pfCbFunction(appHandle->pdDefault.pRefCon,
@@ -662,7 +662,7 @@ void trdp_pdHandleTimeOuts (
                 theMessage.protVersion  = vos_ntohs(iterPD->pFrame->frameHead.protocolVersion);
                 theMessage.replyComId   = vos_ntohl(iterPD->pFrame->frameHead.replyComId);
                 theMessage.replyIpAddr  = vos_ntohl(iterPD->pFrame->frameHead.replyIpAddress);
-                theMessage.pUserRef     = iterPD->userRef;
+                theMessage.pUserRef     = iterPD->pUserRef;
                 theMessage.resultCode   = TRDP_TIMEOUT_ERR;
 
                 appHandle->pdDefault.pfCbFunction(appHandle->pdDefault.pRefCon, appHandle, &theMessage, NULL, 0);

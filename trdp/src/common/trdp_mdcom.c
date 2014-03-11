@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1181 2014-02-28 15:55:27Z bloehr $
+ * $Id: trdp_mdcom.c 1189 2014-03-11 16:53:52Z ahweiss $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -1048,7 +1048,7 @@ TRDP_ERR_T  trdp_mdRecv (
                     )
                 {
                     /* We found a listener, set some values for this new session  */
-                    iterMD = appHandle->pMDRcvEle;
+                    iterMD              = appHandle->pMDRcvEle;
                     iterMD->pUserRef    = iterListener->pUserRef;
                     iterMD->stateEle    = state;
 
@@ -1226,7 +1226,7 @@ TRDP_ERR_T  trdp_mdRecv (
         theMessage.numConfirmSent       = iterMD->numConfirmSent;
         theMessage.numConfirmTimeout    = iterMD->numConfirmTimeout;
         theMessage.resultCode           = TRDP_NO_ERR;
-        theMessage.pUserRef = iterMD->pUserRef;
+        theMessage.pUserRef             = iterMD->pUserRef;
 
         appHandle->mdDefault.pfCbFunction(
             appHandle->mdDefault.pRefCon,
