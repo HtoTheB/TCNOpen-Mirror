@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1168 2014-02-19 13:12:27Z ahweiss $
+ * $Id: tau_dnr.h 1192 2014-04-03 08:36:41Z ahweiss $
  *
  */
 
@@ -50,6 +50,15 @@ extern "C" {
 /***********************************************************************************************************************
  * PROTOTYPES
  */
+
+/**********************************************************************************************************************/
+/**    Function to init DNR
+ *
+ *  @retval         TRDP_NO_ERR     no error
+ *  @retval         TRDP_INIT_ERR   initialisation error
+ *
+ */
+EXT_DECL TRDP_ERR_T tau_initDnr (void);
 
 
 /**********************************************************************************************************************/
