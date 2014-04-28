@@ -14,13 +14,18 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1130 2013-12-17 09:23:51Z cfschneider $*
+ * $Id: vos_sock.c 1198 2014-04-28 13:53:17Z railroad-mike $*
  *
  */
 
+#ifndef VXWORKS
+#error \
+    "You are trying to compile the VXWORKS implementation of vos_sock.c - either define VXWORKS or exclude this file!"
+#endif
 /***********************************************************************************************************************
  * INCLUDES
  */
+#include "vxWorks.h"
 #include "vos_sock.h"
 #include "vos_types.h"
 #include "vos_utils.h"
@@ -29,16 +34,13 @@
 #include "ctype.h"
 #include "muxLib.h"
 #include "ioLib.h"
-#include "ioCtl.h"
+#include "ioctl.h"
 
 /***********************************************************************************************************************
  * DEFINITIONS
  */
  
- #ifndef VXWORKS
-#error \
-    "You are trying to compile the VXWORKS implementation of vos_sock.c - either define VXWORKS or exclude this file!"
-#endif
+
 
 /***********************************************************************************************************************
  *  LOCALS

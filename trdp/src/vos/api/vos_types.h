@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1170 2014-02-19 13:15:29Z ahweiss $
+ * $Id: vos_types.h 1198 2014-04-28 13:53:17Z railroad-mike $
  *
  */
 
@@ -75,6 +75,7 @@ typedef double REAL64;
 
 #elif defined(VXWORKS)
 
+#include "sys/types.h"
 #include <types/vxTypesOld.h>
 
 typedef char CHAR8;
