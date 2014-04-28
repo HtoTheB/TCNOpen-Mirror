@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1197 2014-04-28 12:36:39Z railroad-mike $
+#// $Id: Makefile 1199 2014-04-28 13:55:25Z railroad-mike $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -29,7 +29,8 @@ INCPATH += -I src/api
 VOS_PATH = -I src/vos/$(TARGET_VOS)
 VOS_INCPATH = -I src/vos/api -I src/common
 
-vpath %.c src/common src/vos/common test/udpmdcom src/vos/posix test example test/diverse 
+
+vpath %.c src/common src/vos/common test/udpmdcom src/vos/$(TARGET_VOS) test example test/diverse 
 vpath %.h src/api src/vos/api src/common src/vos/common
 
 INCLUDES = $(INCPATH) $(VOS_INCPATH) $(VOS_PATH)
