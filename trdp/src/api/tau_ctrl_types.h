@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1202 2014-05-02 12:54:33Z bloehr $
+ * $Id: tau_ctrl_types.h 1205 2014-05-05 14:24:54Z bloehr $
  *
  */
 
@@ -107,7 +107,7 @@ typedef struct
     UINT8                   reqCstInfo;     /**< rCi: request CSTINFO telegram exchange */
     UINT16                  reserved03;     /**< reserved (=0) */
     UINT16                  confVehCnt;     /**< number of confirmed vehicles in train (1..32) */
-    TRDP_CONF_VEHICLE_T    *pConfVehList;   /**< dynamic ordered list of confirmed vehicles in train,
+    TRDP_CONF_VEHICLE_T     confVehList[32];   /**< dynamic ordered list of confirmed vehicles in train,
                                                  starting with vehicle at train head, see sub-clause 5.3.3.2.6 */
 }  GNU_PACKED TRDP_ECSP_CTRL_T;
 
