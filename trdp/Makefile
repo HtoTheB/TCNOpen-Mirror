@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1199 2014-04-28 13:55:25Z railroad-mike $
+#// $Id: Makefile 1211 2014-05-08 12:25:42Z railroad-mike $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -317,7 +317,7 @@ loutdir:
 	@$(MD) $(LINT_OUTDIR)
 
 LINTFLAGS = +v -i ./src/api -i ./src/vos/api -i ./src/common -D$(TARGET_OS) $(LINT_SYSINCLUDE_DIRECTIVES)\
-	-DMD_SUPPORT=1 ./test/lint/au-misra2.lnt ./test/lint/co-gnu3.lnt
+	-DMD_SUPPORT=1 -summary -u ./test/lint/au-misra2.lnt ./test/lint/co-gnu3.lnt
 
 # VxWorks will be the single non POSIX OS right now, MS Win uses proprietary build
 # framework, so this condition will most likely fit also BSD/Unix targets     
