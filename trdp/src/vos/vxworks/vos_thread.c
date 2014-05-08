@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.c 1208 2014-05-07 14:01:33Z railroad-mike $*
+ * $Id: vos_thread.c 1213 2014-05-08 14:14:20Z railroad-mike $*
  *
  *
  */
@@ -26,6 +26,7 @@
 #include <semLib.h>
 #include <taskLib.h>
 #include <string.h>
+#include <time.h>
 
 #include "vos_thread.h"
 #include "vos_sock.h"
@@ -260,29 +261,13 @@ EXT_DECL VOS_ERR_T vos_threadIsActive (
 EXT_DECL VOS_ERR_T vos_threadDelay (
     UINT32 delay)
 {
-    STATUS errVal;
-    VOS_ERR_T result;
-    INT32 clock_rate;
-    INT32 noTicks;
+    VOS_ERR_T result = VOS_NO_ERR;
 
-    /* convert ms -> ticks */
-    /* clock_rate holds ticks per second */
-    clock_rate = sysClkRateGet();
-    noTicks = ( (clock_rate * delay)  + (( VOS_USECS_PER_MSEC * VOS_MSECS_PER_SEC ) - 1 )) / ( VOS_USECS_PER_MSEC * VOS_MSECS_PER_SEC );
+    struct timespec ts;
+    ts.tv_sec = delay / 1000000;
+    ts.tv_nsec = (delay % 1000000) * 1000L;
 
-    errVal = taskDelay(noTicks);
-
-    if (errVal != OK)
-    {
-        /* this result ocurs "if called from interrupt level */
-        /* or if the calling task receives a signal that is  */
-        /* not blocked or ignored" */
-        result = VOS_THREAD_ERR;
-    }
-    else
-    {
-        result = VOS_NO_ERR;
-    }
+    nanosleep(&ts, NULL);
 
     return result;
 }
