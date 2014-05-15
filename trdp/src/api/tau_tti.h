@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1200 2014-04-30 07:17:52Z ahweiss $
+ * $Id: tau_tti.h 1217 2014-05-15 12:54:01Z ahweiss $
  *
  */
 
@@ -121,7 +121,7 @@ EXT_DECL TRDP_ERR_T tau_getStaticCstInfo (
 
 
 /**********************************************************************************************************************/
-/**    Function to retrieve the operational train directory state.
+/**    Function to retrieve the operational train directory.
  *
  *
  *  @param[out]     pTrDirState     Pointer to an operational train directory state structure to be returned.
