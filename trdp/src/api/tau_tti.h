@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1217 2014-05-15 12:54:01Z ahweiss $
+ * $Id: tau_tti.h 1218 2014-05-22 15:42:29Z ahweiss $
  *
  */
 
@@ -138,7 +138,7 @@ EXT_DECL TRDP_ERR_T tau_getTTI (
     TRDP_OP_TRAIN_DIRECTORY_STATE_T         *pOpTrDirState,
     TRDP_OP_TRAIN_DIRECTORY_T               *pOpTrDir,
     TRDP_TRAIN_DIRECTORY_T                  *pTrDir,
-    TRDP_CONSIST_INFO_LIST_T                *pCstInfoList,
+    TRDP_TRAIN_NET_DIRECTORY_T              *pTrNetDir,
     UINT8                            const  etbId);
 
 
