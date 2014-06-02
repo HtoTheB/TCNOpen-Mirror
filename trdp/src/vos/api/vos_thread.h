@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.h 1209 2014-05-08 06:50:53Z railroad-mike $
+ * $Id: vos_thread.h 1220 2014-06-02 17:34:43Z bloehr $
  *
  */
 
@@ -100,9 +100,9 @@ extern "C" {
 /** Thread policy matching pthread/Posix defines    */
 typedef enum
 {
-    VOS_THREAD_POLICY_OTHER,        /*  Default for the target system    */
-    VOS_THREAD_POLICY_FIFO,         /*  First come, first serve          */
-    VOS_THREAD_POLICY_RR            /*  Round robin                      */
+    VOS_THREAD_POLICY_OTHER = 1,        /*  Default for the target system    */
+    VOS_THREAD_POLICY_FIFO = 4,         /*  First come, first serve          */
+    VOS_THREAD_POLICY_RR = 2            /*  Round robin                      */
 } VOS_THREAD_POLICY_T;
 
 /** Thread priority range from 1 (highest) to 255 (lowest), 0 default of the target system    */
