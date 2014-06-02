@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1084 2013-09-11 09:28:14Z bloehr $
+ * $Id: pdPull.c 1223 2014-06-02 17:39:38Z bloehr $
  *
+ *      BL 2014-06-02: oversized data changed
  */
 
 
@@ -292,7 +293,7 @@ int main (int argc, char * *argv)
                         TRDP_FLAGS_DEFAULT,            /*    packet flags */
                         0,                             /*    Time out in us                         */
                         TRDP_TO_SET_TO_ZERO,           /*    delete invalid data    on timeout      */
-                        1436);                          /*    net data size                          */
+                        1432);                          /*    net data size                          */
 
     if (err != TRDP_NO_ERR)
     {
