@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1222 2014-06-02 17:38:41Z bloehr $
+ * $Id: trdp_pdcom.c 1224 2014-06-02 18:04:50Z bloehr $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *                     Ticket #42: memcmp only if callback enabled
@@ -786,8 +786,9 @@ TRDP_ERR_T trdp_pdCheck (
         err = TRDP_CRC_ERR;
     }
     /*  Check protocol version  */
-    else if ((vos_ntohs(pPacket->protocolVersion) & 0xFF000000) != (TRDP_PROTO_VER & 0xFF000000) ||
-             vos_ntohl(pPacket->datasetLength) > TRDP_MAX_PD_DATA_SIZE)
+    else if ((vos_ntohs(pPacket->protocolVersion) & TRDP_PROTOCOL_VERSION_CHECK_MASK)
+                        != (TRDP_PROTO_VER & TRDP_PROTOCOL_VERSION_CHECK_MASK) ||
+                        vos_ntohl(pPacket->datasetLength) > TRDP_MAX_PD_DATA_SIZE)
     {
         vos_printLog(VOS_LOG_INFO, "PDframe protocol error (%04x != %04x))\n",
                      vos_ntohs(pPacket->protocolVersion),
