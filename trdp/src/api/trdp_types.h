@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1179 2014-02-27 16:10:58Z bloehr $
+ * $Id: trdp_types.h 1226 2014-06-04 15:00:44Z bloehr $
  *
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
  *
@@ -638,12 +638,16 @@ typedef struct
 typedef enum
 {
     TRDP_OPTION_NONE    = 0,
-    TRDP_OPTION_BLOCK   = 0x01,              /**< Default: Use nonblocking I/O calls, polling necessary
-                                                  Set: Read calls will block, use select()                */
-    TRDP_OPTION_TRAFFIC_SHAPING = 0x02,      /**< Use traffic shaping - distribute packet sending
-                                                  Default: OFF                                            */
-    TRDP_OPTION_NO_REUSE_ADDR   = 0x04       /**< Do not allow re-use of address/port (-> no multihoming)
-                                                  Default: Allow                                           */
+    TRDP_OPTION_BLOCK   = 0x01,                 /**< Default: Use nonblocking I/O calls, polling necessary
+                                                  Set: Read calls will block, use select()                  */
+    TRDP_OPTION_TRAFFIC_SHAPING = 0x02,         /**< Use traffic shaping - distribute packet sending
+                                                  Default: OFF                                              */
+    TRDP_OPTION_NO_REUSE_ADDR   = 0x04,         /**< Do not allow re-use of address/port (-> no multihoming)
+                                                  Default: Allow                                            */
+    TRDP_OPTION_NO_MC_LOOP_BACK   = 0x08,       /**< Do not allow loop back of multicast traffic
+                                                  Default: Allow                                            */
+    TRDP_OPTION_NO_UDP_CHK      = 0x10          /**< Suppress UDP CRC generation
+                                                  Default: Compute UDP CRC                                  */
 } TRDP_OPTION_T;
 
 /**********************************************************************************************************************/

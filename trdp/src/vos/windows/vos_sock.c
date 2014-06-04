@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1149 2014-01-13 15:13:18Z cfschneider $*
+ * $Id: vos_sock.c 1226 2014-06-04 15:00:44Z bloehr $*
  *
  */
 
@@ -796,6 +796,32 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
                 vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_MULTICAST_TTL failed (Err: %d)\n", err);
             }
         }
+        if (pOptions->no_mc_loop > 0)
+        {
+            // Default behavior is ON */
+            DWORD optValue = 0;
+            if (setsockopt((SOCKET)sock, IPPROTO_IP, IP_MULTICAST_LOOP, (const char *)&optValue,
+                           sizeof(sockOptValue)) == SOCKET_ERROR)
+            {
+                int err = WSAGetLastError();
+                
+                err = err; /* for lint */
+                vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_MULTICAST_LOOP failed (Err: %d)\n", err);
+            }
+        }
+        if (pOptions->no_udp_crc > 0)
+        {
+            DWORD optValue = 0;
+            if (setsockopt(sock, IPPROTO_UDP, UDP_CHECKSUM_COVERAGE, &optValue,
+                           sizeof(sockOptValue)) == -1)
+            {
+                int err = WSAGetLastError();
+                
+                err = err; /* for lint */
+                vos_printLog(VOS_LOG_ERROR, "setsockopt() UDP_CHECKSUM_COVERAGE failed (Err: %d)\n", err);
+            }
+        }
+
     }
     /*   This seems to be unsupported on XP (but IP_RECVDSTADDR is defined!)   */
     /*  Include struct in_pktinfo in the message "ancilliary" control data.
