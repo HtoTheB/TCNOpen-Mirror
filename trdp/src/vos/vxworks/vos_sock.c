@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1207 2014-05-07 08:52:35Z railroad-mike $*
+ * $Id: vos_sock.c 1227 2014-06-04 15:11:19Z bloehr $*
  *
  */
 
@@ -617,6 +617,31 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
                 vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_MULTICAST_TTL failed (Err: %s)\n", buff);
             }
         }
+        if (pOptions->no_mc_loop > 0)
+        {
+            // Default behavior is ON */
+            sockOptValue = 0;
+            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_LOOP, &sockOptValue,
+                           sizeof(sockOptValue)) == -1)
+            {
+                char buff[VOS_MAX_ERR_STR_SIZE];
+                STRING_ERR(buff);
+                vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_MULTICAST_LOOP failed (Err: %s)\n", buff);
+            }
+        }
+#ifdef SO_NO_CHECK
+        if (pOptions->no_udp_crc > 0)
+        {
+            sockOptValue = 1;
+            if (setsockopt(sock, SOL_SOCKET, SO_NO_CHECK, &sockOptValue,
+                           sizeof(sockOptValue)) == -1)
+            {
+                char buff[VOS_MAX_ERR_STR_SIZE];
+                STRING_ERR(buff);
+                vos_printLog(VOS_LOG_ERROR, "setsockopt() SO_NO_CHECK failed (Err: %s)\n", buff);
+            }
+        }
+#endif
     }
     /*  Include struct in_pktinfo in the message "ancilliary" control data.
         This way we can get the destination IP address for received UDP packets */
