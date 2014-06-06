@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1227 2014-06-04 15:11:19Z bloehr $*
+ * $Id: vos_sock.c 1228 2014-06-06 06:26:53Z railroad-mike $*
  *
  */
 
@@ -539,6 +539,8 @@ EXT_DECL VOS_ERR_T vos_sockClose (
 /**********************************************************************************************************************/
 /** Set socket options.
  *  Note: Some targeted systems might not support every option.
+ *  Note: vxWorks acknowledges the option_value of setsockopt as char*, contrary
+ *  to the POSIX nomenclature, which defines const void*
  *
  *  @param[in]      sock            socket descriptor
  *  @param[in]      pOptions        pointer to socket options (optional)
@@ -567,7 +569,7 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
                 vos_printLog(VOS_LOG_ERROR, "setsockopt() SO_REUSEPORT failed (Err: %s)\n", buff);
             }
 #else
-            if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &sockOptValue,
+            if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char *)&sockOptValue,
                            sizeof(sockOptValue)) == -1)
             {
                 char buff[VOS_MAX_ERR_STR_SIZE];
@@ -619,9 +621,9 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         }
         if (pOptions->no_mc_loop > 0)
         {
-            // Default behavior is ON */
+            /* Default behavior is ON */
             sockOptValue = 0;
-            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_LOOP, &sockOptValue,
+            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&sockOptValue,
                            sizeof(sockOptValue)) == -1)
             {
                 char buff[VOS_MAX_ERR_STR_SIZE];
@@ -633,7 +635,7 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         if (pOptions->no_udp_crc > 0)
         {
             sockOptValue = 1;
-            if (setsockopt(sock, SOL_SOCKET, SO_NO_CHECK, &sockOptValue,
+            if (setsockopt(sock, SOL_SOCKET, SO_NO_CHECK, (char *)&sockOptValue,
                            sizeof(sockOptValue)) == -1)
             {
                 char buff[VOS_MAX_ERR_STR_SIZE];
@@ -654,7 +656,7 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_RECVDSTADDR failed (Err: %s)\n", buff);
     }
 #elif defined(IP_PKTINFO)
-    if (setsockopt(sock, IPPROTO_IP, IP_PKTINFO, &sockOptValue, sizeof(sockOptValue)) == -1)
+    if (setsockopt(sock, IPPROTO_IP, IP_PKTINFO, (char *)&sockOptValue, sizeof(sockOptValue)) == -1)
     {
         char buff[VOS_MAX_ERR_STR_SIZE];
         STRING_ERR(buff);
