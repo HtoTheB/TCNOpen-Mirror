@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.h 1205 2014-05-05 14:24:54Z bloehr $
+ * $Id: tau_ctrl.h 1231 2014-06-06 12:55:57Z ahweiss $
  *
  */
 
@@ -95,6 +95,18 @@ EXT_DECL TRDP_ERR_T tau_setEcspCtrl (TRDP_ECSP_CTRL_T  *pEcspCtrl);
  */
 EXT_DECL TRDP_ERR_T tau_getEcspStat (TRDP_ECSP_STAT_T  *pEcspStat);
 
+
+/**********************************************************************************************************************/
+/**    Function to send ECSP correction information
+ *
+ *
+ *  @param[in]      pEcspCtrl       Pointer to the ECSP control structure
+ *
+ *  @retval         TRDP_NO_ERR     no error
+ *  @retval         TRDP_PARAM_ERR  Parameter error
+ *
+ */
+EXT_DECL TRDP_ERR_T tau_sendEcspCorrection (TRDP_ECSP_CORR_T  *pEcspCorrection);
 
 
 #ifdef __cplusplus

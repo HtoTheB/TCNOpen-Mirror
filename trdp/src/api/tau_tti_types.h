@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1229 2014-06-06 09:45:58Z bloehr $
+ * $Id: tau_tti_types.h 1231 2014-06-06 12:55:57Z ahweiss $
  *
  */
 
@@ -43,7 +43,7 @@ extern "C" {
 #endif
 
 #define TRDP_MAX_CST_CNT 63                 /**< max number of consists per train */
-
+#define TRDP_MAX_VEH_CNT 63                 /**< max number of vehicles per train */
 
 /***********************************************************************************************************************
  * TYPEDEFS
@@ -247,7 +247,8 @@ typedef struct
                                                  '01'B = same as operational train direction
                                                  '10'B = inverse to operational train direction */
     UINT8                   ownOpCstNo;     /**< operational consist number the vehicle belongs to */
-    UINT16                  reserved01;     /**< reserved for future use (= 0) */
+    UINT8                   reserved01;     /**< reserved for future use (= 0) */
+    UINT8                   reserved02;     /**< reserved for future use (= 0) */
 } GNU_PACKED TRDP_OP_VEHICLE_T;
 
 
