@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1225 2014-06-03 16:37:29Z bloehr $
+ * $Id: trdp_if.c 1234 2014-06-12 13:15:40Z bloehr $
  *
  *      BL 2014-06-03: Do not return error on data-less tlp_request
  *
@@ -1388,7 +1388,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
         {
             /*  We do not break here, only report error */
             result = err;
-            vos_printLog(VOS_LOG_ERROR, "trdp_pdSendQueued failed (Err: %d)\n", err);
+            /* vos_printLog(VOS_LOG_ERROR, "trdp_pdSendQueued failed (Err: %d)\n", err);*/
         }
 
         /******************************************************
