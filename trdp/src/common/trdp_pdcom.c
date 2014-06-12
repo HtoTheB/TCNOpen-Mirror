@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1224 2014-06-02 18:04:50Z bloehr $
+ * $Id: trdp_pdcom.c 1235 2014-06-12 13:18:01Z bloehr $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *                     Ticket #42: memcmp only if callback enabled
@@ -581,7 +581,7 @@ void trdp_pdCheckPending (
     /*    Find the packet which has to be received next:    */
     for (iterPD = appHandle->pRcvQueue; iterPD != NULL; iterPD = iterPD->pNext)
     {
-        if ((!iterPD->privFlags & TRDP_TIMED_OUT) &&                /* Exempt already timed-out packet */
+        if ((!(iterPD->privFlags & TRDP_TIMED_OUT)) &&              /* Exempt already timed-out packet */
             timerisset(&iterPD->interval) &&                        /* not PD PULL?                    */
             (timercmp(&iterPD->timeToGo, &appHandle->nextJob, <) || /* earlier than current time-out?  */
              !timerisset(&appHandle->nextJob)))                     /* or not set at all?              */
