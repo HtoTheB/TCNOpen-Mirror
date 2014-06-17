@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1239 2014-06-17 09:14:29Z ahweiss $
+ * $Id: tau_tti_types.h 1240 2014-06-17 11:17:48Z bloehr $
  *
  */
 
@@ -199,10 +199,10 @@ typedef struct
 {
     TRDP_SHORT_VERSION_T    version;        /**< Consist Info Control structure version
                                                  parameter 'mainVersion' shall be set to 1.     */
-<<<<<<< .mine    UINT8                   trnCstNo;       /**< train consist number
-=======    UINT8                   trnCstNo;       /**< telegram control type
->>>>>>> .theirs                                                 0 = with trnTopoCnt tracking
-                                                 1 = without trnTopoCnt tracking                */
+    UINT8                   trnCstNo;       /**< train consist number
+                                                    telegram control type
+                                                    0 = with trnTopoCnt tracking
+                                                    1 = without trnTopoCnt tracking             */
     UINT8                   cstCnt;         /**< number of consists in train; range: 1..63      */
     TRDP_CONSIST_T          cstList[TRDP_MAX_CST_CNT];
                                             /**< consist list.
