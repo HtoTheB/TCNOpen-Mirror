@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1245 2014-06-20 16:42:05Z bloehr $
+#// $Id: Makefile 1246 2014-06-20 16:52:44Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -364,7 +364,7 @@ help:
 	@echo "  * LINUX_X86_config             - Native build for Linux PC (uses host gcc regardless of 32/64 bit)" >&2
 	@echo "  * LINUX_PPC_config             - Building for Linux on PowerPC using eglibc compiler (603 core)" >&2
 	@echo "  * LINUX_ARM_OTN_config         - Building for Linux on Xscale" >&2
-    @echo "  * OSX_X86_config               - Native (X86) build for OS X" >&2
+	@echo "  * OSX_X86_config               - Native (X86) build for OS X" >&2
 	@echo "  * QNX_X86_config               - Native (X86) build for QNX" >&2	
 	@echo "  * VXWORKS_KMODE_PPC_config     - Building for VXWORKS kernel mode for PowerPC (experimental)" >&2
 	@echo " " >&2
