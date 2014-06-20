@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1198 2014-04-28 13:53:17Z railroad-mike $
+ * $Id: vos_types.h 1243 2014-06-20 16:32:33Z bloehr $
  *
  */
 
@@ -54,7 +54,7 @@ typedef double REAL64;
 #elif defined(POSIX)
 
 #include <stdint.h>
-#include <wchar.h>
+/*#include <wchar.h>*/
 #include <float.h>
 
 typedef uint8_t UINT8;
