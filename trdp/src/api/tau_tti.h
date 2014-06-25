@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1218 2014-05-22 15:42:29Z ahweiss $
+ * $Id: tau_tti.h 1249 2014-06-25 09:20:48Z bloehr $
  *
  */
 
@@ -27,9 +27,7 @@
  * INCLUDES
  */
 
-#include "vos_types.h"
 #include "trdp_types.h"
-#include "vos_types.h"
 #include "tau_tti_types.h"
 
 #ifdef __cplusplus

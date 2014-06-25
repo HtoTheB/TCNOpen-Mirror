@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1239 2014-06-17 09:14:29Z ahweiss $
+ * $Id: tau_ctrl_types.h 1249 2014-06-25 09:20:48Z bloehr $
  *
  */
 
@@ -27,7 +27,6 @@
  * INCLUDES
  */
 
-#include "vos_types.h"
 #include "trdp_types.h"
 #include "tau_tti.h"
 
@@ -67,16 +66,6 @@ typedef struct
                                                  2 = inverse to operational train direction */
     
 }  GNU_PACKED TRDP_CONF_VEHICLE_T;
-
-typedef struct
-{
-    UINT16                  reserved01;     /**< reserved (=0) */
-    UINT32                  reserved02;     /**< reserved (=0) */
-    TRDP_SHORT_VERSION_T    userDataVersion;/**< version of the vital ETBCTRL telegram
-                                                 mainVersion = 1, subVersion = 0 */ 
-    UINT32                  safeSeqCount;   /**< safe sequence counter, as defined in B.9 */
-    UINT32                  safetyCode;     /**< checksum, as defined in B.9 */
-}  GNU_PACKED TRDP_ETB_CTRL_VDP_T;
 
 typedef struct
 {
