@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1246 2014-06-20 16:52:44Z bloehr $
+#// $Id: Makefile 1248 2014-06-25 08:18:40Z railroad-mike $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -113,7 +113,7 @@ outdir:
 
 libtrdp:	outdir $(OUTDIR)/libtrdp.a
 
-demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/mdManagerTCP $(OUTDIR)/mdManagerTCP_Siemens
+demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/mdManagerTCP $(OUTDIR)/mdManagerTCP_Siemens
 
 
 example:	outdir $(OUTDIR)/mdManager
@@ -174,6 +174,14 @@ $(OUTDIR)/receivePolling:  echoPolling.c  $(OUTDIR)/libtrdp.a
 			    $(LDFLAGS)
 			$(STRIP) $@
 
+$(OUTDIR)/receiveHello: receiveHello.c  $(OUTDIR)/libtrdp.a
+			@echo ' ### Building application $(@F)'
+			$(CC) example/receiveHello.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
+						   
 $(OUTDIR)/sendHello:   sendHello.c  $(OUTDIR)/libtrdp.a
 			@echo ' ### Building application $(@F)'
 			$(CC) example/sendHello.c \
