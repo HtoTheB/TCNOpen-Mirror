@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1243 2014-06-20 16:32:33Z bloehr $
+ * $Id: vos_types.h 1251 2014-06-27 17:05:08Z bloehr $
  *
  */
 
@@ -140,6 +140,12 @@ typedef double REAL64;
     #define TRUE    (1)
     #define FALSE   (0)
 #endif
+
+/** ANTIVALENT8 values */
+#define AV_ERROR        0x00
+#define AV_FALSE        0x01
+#define AV_TRUE         0x02
+#define AV_UNDEFINED    0x03
 
 /*    Compiler dependent alignment options    */
 #undef GNU_PACKED

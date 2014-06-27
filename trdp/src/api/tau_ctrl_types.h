@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1249 2014-06-25 09:20:48Z bloehr $
+ * $Id: tau_ctrl_types.h 1251 2014-06-27 17:05:08Z bloehr $
  *
  */
 
@@ -92,7 +92,7 @@ typedef struct
                                                  '01'B = false, '10'B = true */
     ANTIVALENT8             clearConfComp;  /**< clear confirmed composition,
                                                  '01'B = false, '10'B = true */
-    ANTIVALENT8             compUnknown;    /**< request confirmation,
+    ANTIVALENT8             corrRequest;    /**< request confirmation,
                                                  '01'B = false, '10'B = true */
     ANTIVALENT8             corrInfoSet;    /**< correction info set,
                                                  '01'B = false, '10'B = true */
