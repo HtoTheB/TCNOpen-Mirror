@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1234 2014-06-12 13:15:40Z bloehr $
+ * $Id: trdp_if.c 1250 2014-06-27 11:38:19Z bloehr $
  *
  *      BL 2014-06-03: Do not return error on data-less tlp_request
  *
@@ -1931,7 +1931,8 @@ EXT_DECL TRDP_ERR_T tlp_get (
             timercmp(&pElement->timeToGo, &now, <))
         {
             /*    Packet is late    */
-            if (pElement->toBehavior == TRDP_TO_SET_TO_ZERO)
+            if (pElement->toBehavior == TRDP_TO_SET_TO_ZERO &&
+                pData != NULL && pDataSize != NULL)
             {
                 memset(pData, 0, *pDataSize);
             }
