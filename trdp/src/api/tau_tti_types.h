@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1249 2014-06-25 09:20:48Z bloehr $
+ * $Id: tau_tti_types.h 1252 2014-07-02 08:40:13Z bloehr $
  *
  */
 
@@ -281,8 +281,11 @@ typedef struct
     UINT8                   opCstOrient;    /**< consist orientation
                                                  '01'B = same as operational train direction
                                                  '10'B = inverse to operational train direction */
-    UINT8                  reserved01;     /*< reserved for future use (= 0) */
-    UINT8                  reserved02;     /*< reserved for future use (= 0) */
+    UINT8                   trnCstNo;       /*< sequence number of consist in train
+                                                 with vehicle 01 being the first vehicle in ETB reference
+                                                 direction 1 as defined in IEC61375-2-5,
+                                                 value range: 1..63, 0 = inserted by correction */
+    UINT8                   reserved02;     /*< reserved for future use (= 0) */
 } GNU_PACKED TRDP_OP_CONSIST_T;
 
 
