@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1254 2014-07-06 13:13:00Z bloehr $
+ * $Id: vos_thread.c 1255 2014-07-06 13:31:29Z bloehr $
  *
  */
 
@@ -277,7 +277,7 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
             pName,
             policy,
             retCode );
-        return VOS_THREAD_ERR;
+        /*return VOS_THREAD_ERR;*/
     }
 
     /* Set the scheduling priority of the thread */
@@ -291,7 +291,7 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
             pName,
             priority,
             retCode );
-        return VOS_THREAD_ERR;
+        /*return VOS_THREAD_ERR; */
     }
 
     /* Set inheritsched attribute of the thread */
