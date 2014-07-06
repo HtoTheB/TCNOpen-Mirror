@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1247 2014-06-23 08:41:39Z bloehr $
+ * $Id: vos_thread.c 1254 2014-07-06 13:13:00Z bloehr $
  *
  */
 
@@ -273,8 +273,9 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
     {
         vos_printLog(
             VOS_LOG_ERROR,
-            "%s pthread_attr_setschedpolicy() failed (Err:%d)\n",
+            "%s pthread_attr_setschedpolicy(%d) failed (Err:%d)\n",
             pName,
+            policy,
             retCode );
         return VOS_THREAD_ERR;
     }
@@ -286,8 +287,9 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
     {
         vos_printLog(
             VOS_LOG_ERROR,
-            "%s pthread_attr_setschedparam() failed (Err:%d)\n",
+            "%s pthread_attr_setschedparam/priority(%d) failed (Err:%d)\n",
             pName,
+            priority,
             retCode );
         return VOS_THREAD_ERR;
     }
