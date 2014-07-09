@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1256 2014-07-09 09:30:56Z railroad-mike $
+ * $Id: tau_tti_types.h 1257 2014-07-09 09:35:37Z railroad-mike $
  *
  */
 
@@ -197,8 +197,8 @@ typedef struct
 
 typedef struct
 {
-    UINT16                  reserved01;     /**< reserved (=0) */
-    UINT32                  reserved02;     /**< reserved (=0) */
+    UINT32                  reserved01;     /**< reserved (=0) */
+    UINT16                  reserved02;     /**< reserved (=0) */
     TRDP_SHORT_VERSION_T    userDataVersion;/**< version of the vital ETBCTRL telegram
                                              mainVersion = 1, subVersion = 0 */
     UINT32                  safeSeqCount;   /**< safe sequence counter, as defined in B.9 */
