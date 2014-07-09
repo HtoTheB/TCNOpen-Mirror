@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1226 2014-06-04 15:00:44Z bloehr $
+ * $Id: trdp_types.h 1256 2014-07-09 09:30:56Z railroad-mike $
  *
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
  *
@@ -88,12 +88,6 @@ typedef struct
     UINT8   upd;    /**< Update     - incremented for bug fixes            */
     UINT8   evo;    /**< Evolution  - incremented for build                */
 } TRDP_VERSION_T;
-
-typedef struct
-{
-    UINT8   ver;    /**< Version    - incremented for incompatible changes */
-    UINT8   rel;    /**< Release    - incremented for compatible changes   */
-} TRDP_SHORT_VERSION_T;
 
 /** Return codes for all API functions, -1..-29 taken over from vos */
 typedef enum

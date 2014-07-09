@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1252 2014-07-02 08:40:13Z bloehr $
+ * $Id: tau_tti_types.h 1256 2014-07-09 09:30:56Z railroad-mike $
  *
  */
 
@@ -47,6 +47,23 @@ extern "C" {
 /***********************************************************************************************************************
  * TYPEDEFS
  */
+
+#ifdef WIN32
+#pragma pack(push, 1)
+#endif
+/* moved this typedefinition from trdp_types.h to this place, as it belongs to the  */
+/* communication buffer definitions, which need a packed struct                     */
+
+/** Version information for communication buffers */
+typedef struct
+{
+    UINT8   ver;    /**< Version    - incremented for incompatible changes */
+    UINT8   rel;    /**< Release    - incremented for compatible changes   */
+} GNU_PACKED TRDP_SHORT_VERSION_T;
+
+#ifdef WIN32
+#pragma pack(pop)
+#endif
 
 /** Types for train configuration information */
 
