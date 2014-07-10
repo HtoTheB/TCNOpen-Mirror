@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1257 2014-07-09 09:35:37Z railroad-mike $
+ * $Id: tau_tti_types.h 1258 2014-07-10 14:48:21Z ahweiss $
  *
  */
 
@@ -117,7 +117,6 @@ typedef struct
     UINT8                   cnId;           /**< identifier of connected consist network in the consist, 
                                                  related to the etbId. Value range: 0..31 */
     UINT8                   reserved02;     /**< reserved for future use (= 0) */
-    TRDP_PROP_T             fctProp;        /**< properties, application defined */
 } TRDP_FUNCTION_INFO_T;
 
 
