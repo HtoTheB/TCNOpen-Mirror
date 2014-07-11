@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1235 2014-06-12 13:18:01Z bloehr $
+ * $Id: trdp_pdcom.c 1260 2014-07-11 09:38:05Z bloehr $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *                     Ticket #42: memcmp only if callback enabled
@@ -644,6 +644,7 @@ void trdp_pdHandleTimeOuts (
             /*  Update some statistics  */
             appHandle->stats.pd.numTimeout++;
             iterPD->lastErr = TRDP_TIMEOUT_ERR;
+            trdp_resetSequenceCounter(iterPD, iterPD->addr.srcIpAddr, (TRDP_MSG_T) vos_ntohs(iterPD->pFrame->frameHead.msgType));
 
             /* Packet is late! We inform the user about this:    */
             if (appHandle->pdDefault.pfCbFunction != NULL)

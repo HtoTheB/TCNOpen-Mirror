@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1221 2014-06-02 17:37:23Z bloehr $
+ * $Id: trdp_utils.h 1260 2014-07-11 09:38:05Z bloehr $
  *
  */
 
@@ -116,6 +116,22 @@ void trdp_initSockets(
 void trdp_initUncompletedTCP (
     TRDP_APP_SESSION_T appHandle);
 
+/**********************************************************************************************************************/
+/** remove the sequence counter for the comID/source IP.
+ *  The sequence counter should be reset if there was a packet time out.
+ *  
+ *
+ *  @param[in]      pElement            subscription element
+ *  @param[in]      srcIP               Source IP address
+ *  @param[in]      msgType             message type
+ *
+ *  @retval         none
+ */
+
+void trdp_resetSequenceCounter(
+                               PD_ELE_T*       pElement,
+                               TRDP_IP_ADDR_T  srcIP,
+                               TRDP_MSG_T      msgType);
 
 /*********************************************************************************************************************/
 /** Handle the socket pool: Request a socket from our socket pool
