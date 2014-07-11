@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1251 2014-06-27 17:05:08Z bloehr $
+ * $Id: tau_ctrl_types.h 1259 2014-07-11 09:37:21Z bloehr $
  *
  */
 
@@ -101,7 +101,7 @@ typedef struct
     ANTIVALENT8             sleepRequest;   /**< request sleep mode,
                                                  '01'B = false, '10'B = true */
     UINT8                   leadVehOfCst;   /**< position of leading vehicle in consist, 
-                                                 0..31 (0: first vehicle in consist in Direction 1, 1: second vehicle, etc.) */
+                                                 0..31 (1: first vehicle in consist in Direction 1, 2: second vehicle, etc.) */
     UINT8                   reserved04;     /**< reserved (=0) */
     UINT16                  reserved05;     /**< reserved (=0) */
     UINT8                   reserved06;     /**< reserved (=0) */
