@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.c 1158 2014-01-31 14:55:20Z uc-svobodat $
+ * $Id: tau_xml.c 1265 2014-07-14 16:11:53Z bloehr $
  *
  */
 
@@ -1343,11 +1343,11 @@ static void parsePdParameter (
         parseUINT32(pPdParElem, "cycle", &pExchgPar->pPdPar->cycle);
         parseUINT32(pPdParElem, "redundant", &pExchgPar->pPdPar->redundant);
         parseUINT16(pPdParElem, "offset-address", &pExchgPar->pPdPar->offset);
-        if (checkAttrValue(pPdParElem, "validity-behaviour", "keep"))
+        if (checkAttrValue(pPdParElem, "validity-behavior", "keep"))
         {
             pExchgPar->pPdPar->toBehav = TRDP_TO_KEEP_LAST_VALUE;
         }
-        if (checkAttrValue(pPdParElem, "validity-behaviour", "zero"))
+        if (checkAttrValue(pPdParElem, "validity-behavior", "zero"))
         {
             pExchgPar->pPdPar->toBehav = TRDP_TO_SET_TO_ZERO;
         }
