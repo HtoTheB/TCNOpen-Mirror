@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1181 2014-02-28 15:55:27Z bloehr $
+ * $Id: vos_utils.c 1261 2014-07-14 08:53:20Z railroad-mike $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -185,7 +185,14 @@ VOS_ERR_T vos_initRuntimeConsts (void)
     memset(&vAlignTest, 0, sizeof(vAlignTest)); /* for lint */
     sIsBigEndian = !(*((char *)(&one)));
 
-#if __BIG_ENDIAN__ || __ARMEB__ || __AARCH64EB__ || __MIPSEB__
+#ifndef B_ENDIAN
+#ifndef L_ENDIAN
+#error \
+    "Endianess is not set - define B_ENDIAN for big endian platforms or L_ENDIAN for little endian ones"
+#endif
+#endif
+
+#if B_ENDIAN
     if (sIsBigEndian == FALSE)
 #else
     if (sIsBigEndian == TRUE)
