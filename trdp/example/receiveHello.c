@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1180 2014-02-27 16:19:26Z bloehr $
+ * $Id: receiveHello.c 1264 2014-07-14 15:54:26Z bloehr $
  *
  */
 
@@ -185,6 +185,7 @@ int main (int argc, char *argv[])
                          NULL,
                          comId,                     /*    ComID                                */
                          0,                         /*    topocount: local consist only        */
+                         0,
                          0,                         /*    Source IP filter                    */
                          0,                         /*    2nd Source IP filter                    */
                          0,                         /*    Default destination    (or MC Group)   */

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1081 2013-09-11 07:20:50Z aweiss $
+ * $Id: getStats.c 1264 2014-07-14 15:54:26Z bloehr $
  *
  */
 
@@ -328,6 +328,7 @@ int main (int argc, char * *argv)
                          NULL,
                          TRDP_GLOBAL_STATISTICS_COMID,  /*    ComID                                  */
                          0,                             /*    topocount: local consist only          */
+                         0,
                          0,                             /*    Source IP filter                       */
                          0,
                          replyIP,                       /*    Default destination    (or MC Group)   */
@@ -347,6 +348,7 @@ int main (int argc, char * *argv)
     err = tlp_request(appHandle,
                       subHandle,
                       TRDP_STATISTICS_REQUEST_COMID,
+                      0,
                       0,
                       0,
                       destIP,

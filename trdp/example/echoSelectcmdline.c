@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoSelectcmdline.c 1067 2013-09-06 08:33:24Z aweiss $
+ * $Id: echoSelectcmdline.c 1264 2014-07-14 15:54:26Z bloehr $
  *
  */
 
@@ -263,6 +263,7 @@ int main (int argc, char * *argv)
                          NULL,
                          comId_In,                  /*    ComID                                */
                          0,                         /*    topocount: local consist only        */
+                         0,
                          destIP,                    /*  Source to expect packets from          */
                          0,
                          0,
@@ -284,6 +285,7 @@ int main (int argc, char * *argv)
                         &pubHandle,                 /*    our pulication identifier     */
                         comId_Out,                  /*    ComID to send                 */
                         0,                          /*    local consist only            */
+                        0,
                         0,                          /*    default source IP             */
                         destIP,                     /*    where to send to              */
                         PD_COMID1_CYCLE,            /*    Cycle time in ms              */

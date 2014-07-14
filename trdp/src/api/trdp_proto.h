@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_proto.h 1194 2014-04-11 15:24:45Z ahweiss $
+ * $Id: trdp_proto.h 1264 2014-07-14 15:54:26Z bloehr $
  *
+ *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
 
 #ifndef TRDP_PROTO_H
@@ -182,7 +183,8 @@ typedef struct
     UINT16  protocolVersion;                    /**< fix value for compatibility (set by the API)           */
     UINT16  msgType;                            /**< of datagram: PD Request (0x5072) or PD_MSG (0x5064)    */
     UINT32  comId;                              /**< set by user: unique id                                 */
-    UINT32  topoCount;                          /**< set by user: ETB to use, '0' to deacticate             */
+    UINT32  etbTopoCnt;                         /**< set by user: ETB to use, '0' for consist local traffic */
+    UINT32  opTrnTopoCnt;                       /**< set by user: direction/side critical, '0' if ignored   */
     UINT32  datasetLength;                      /**< length of the data to transmit 0...1436
                                                     without padding and FCS                                 */
     UINT32  reserved;                           /**< before used for ladder support                         */
@@ -198,7 +200,8 @@ typedef struct
     UINT16  protocolVersion;                    /**< fix value for compatibility                            */
     UINT16  msgType;                            /**< of datagram: Mn, Mr, Mp, Mq, Mc or Me                  */
     UINT32  comId;                              /**< set by user: unique id                                 */
-    UINT32  topoCount;                          /**< set by user: ETB to use, '0' to deacticate             */
+    UINT32  etbTopoCnt;                         /**< set by user: ETB to use, '0' for consist local traffic */
+    UINT32  opTrnTopoCnt;                       /**< set by user: direction/side critical, '0' if ignored   */
     UINT32  datasetLength;                      /**< defined by user: length of data to transmit            */
     INT32   replyStatus;                        /**< 0 = OK                                                 */
     UINT8   sessionID[16];                      /**< UUID as a byte stream                                  */

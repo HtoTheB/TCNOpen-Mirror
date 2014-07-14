@@ -1,5 +1,5 @@
 #//
-#// $Id: POSIX_X86_config 1261 2014-07-14 08:53:20Z railroad-mike $
+#// $Id: POSIX_X86_config 1264 2014-07-14 15:54:26Z bloehr $
 #//
 #// DESCRIPTION    Config file to make TRDP for POSIX_X86 target
 #//
@@ -14,6 +14,7 @@ TARGET_VOS = posix
 TARGET_FLAG = POSIX
 TCPREFIX = 
 TCPOSTFIX = 
+DOXYPATH = /usr/local/bin/
 
 CFLAGS += -O2 -Wall -fstrength-reduce -fno-builtin -fsigned-char -D$(TARGET_FLAG) -pthread -fPIC -DL_ENDIAN
 LDFLAGS += -lrt

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1223 2014-06-02 17:39:38Z bloehr $
+ * $Id: pdPull.c 1264 2014-07-14 15:54:26Z bloehr $
  *
  *      BL 2014-06-02: oversized data changed
  */
@@ -29,6 +29,7 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/select.h>
+#include <ctype.h>
 #elif defined (WIN32)
 #include "getopt.h"
 #endif
@@ -287,6 +288,7 @@ int main (int argc, char * *argv)
                         NULL,
                         gComID,                        /*    ComID                                  */
                         0,                             /*    topocount: local consist only          */
+                        0,
                         0,                             /*    Source IP filter                       */
                         0,
                         replyIP,                       /*    Default destination    (or MC Group)   */
@@ -303,7 +305,7 @@ int main (int argc, char * *argv)
     }
 
     /*    Request PD        */
-    err = tlp_request(appHandle, subHandle, gComID, 0, 0, destIP, 0, TRDP_FLAGS_NONE, 0, NULL, 0, gComID, replyIP);
+    err = tlp_request(appHandle, subHandle, gComID, 0, 0, 0, destIP, 0, TRDP_FLAGS_NONE, 0, NULL, 0, gComID, replyIP);
 
     if (err != TRDP_NO_ERR)
     {
@@ -412,6 +414,7 @@ int main (int argc, char * *argv)
             err = tlp_request(appHandle,
                               subHandle,
                               gComID,
+                              0,
                               0,
                               0,
                               destIP,

@@ -1,5 +1,5 @@
 #//
-#// $Id: VXWORKS_PPC_config 1261 2014-07-14 08:53:20Z railroad-mike $
+#// $Id: VXWORKS_PPC_config 1264 2014-07-14 15:54:26Z bloehr $
 #//
 #// DESCRIPTION    Config file to make TRDP for VXWORKS_PPC target
 #//
@@ -14,5 +14,6 @@ TARGET_VOS = vxworks
 TARGET_FLAG = VXWORKS
 TCPREFIX = 
 TCPOSTFIX = ppc
+DOXYPATH = /usr/local/bin/
 
 CFLAGS += -O2 -Wall -DO_DC -DO_BE -fstrength-reduce -fno-builtin -mlongcall -fsigned-char -D$(TARGET_FLAG)  -lpthread -DB_ENDIAN

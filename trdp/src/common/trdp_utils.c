@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1260 2014-07-11 09:38:05Z bloehr $
+ * $Id: trdp_utils.c 1264 2014-07-14 15:54:26Z bloehr $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  */
@@ -1065,6 +1065,7 @@ void trdp_resetSequenceCounter(
  *  @param[in]      pElement            subscription element
  *  @param[in]      sequenceCounter     sequence counter to check
  *  @param[in]      srcIP               Source IP address
+ *  @param[in]      msgType             type of the message
  *
  *  @retval         0 - no duplicate
  *                  1 - duplicate sequence counter

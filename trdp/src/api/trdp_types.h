@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1256 2014-07-09 09:30:56Z railroad-mike $
+ * $Id: trdp_types.h 1264 2014-07-14 15:54:26Z bloehr $
  *
+ *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
  *
  */
@@ -207,7 +208,8 @@ typedef struct
     UINT16          protVersion;    /**< Protocol version                                           */
     TRDP_MSG_T      msgType;        /**< Protocol ('PD', 'MD', ...)                                 */
     UINT32          comId;          /**< ComID                                                      */
-    UINT32          topoCount;      /**< received topocount                                         */
+    UINT32          etbTopoCnt;     /**< received ETB topocount                                     */
+    UINT32          opTrnTopoCnt;   /**< received operational train directory topocount             */
     UINT32          replyComId;     /**< ComID for reply (request only)                             */
     TRDP_IP_ADDR_T  replyIpAddr;    /**< IP address for reply (request only)                        */
     const void      *pUserRef;      /**< User reference given with the local subscribe              */
@@ -232,7 +234,8 @@ typedef struct
     UINT16              protVersion;        /**< Protocol version                           */
     TRDP_MSG_T          msgType;            /**< Protocol ('PD', 'MD', ...)                 */
     UINT32              comId;              /**< ComID                                      */
-    UINT32              topoCount;          /**< received topocount                         */
+    UINT32              etbTopoCnt;         /**< received topocount                         */
+    UINT32              opTrnTopoCnt;       /**< received topocount                         */
     BOOL8               aboutToDie;         /**< session is about to die                    */
     UINT32              numRepliesQuery;    /**< number of ReplyQuery received              */
     UINT32              numConfirmSent;     /**< number of Confirm sent                     */
