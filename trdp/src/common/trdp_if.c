@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: trdp_if.c 1266 2014-07-15 12:31:31Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -916,7 +916,7 @@ EXT_DECL TRDP_ERR_T tlp_getRedundant (
  *  @retval         TRDP_NO_ERR         no error
  *  @retval         TRDP_NOINIT_ERR     handle invalid
  */
-EXT_DECL TRDP_ERR_T tlc_setEtbTopoCount (
+EXT_DECL TRDP_ERR_T tlc_setETBTopoCount (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              etbTopoCnt)
 {
@@ -952,9 +952,9 @@ EXT_DECL TRDP_ERR_T tlc_setEtbTopoCount (
  *  @param[in]      appHandle           The handle returned by tlc_init
  *  @param[in]      opTrnTopoCnt        New operational topocount value
  */
-EXT_DECL TRDP_ERR_T tlc_setOpTopoCount (
-                                        TRDP_APP_SESSION_T  appHandle,
-                                        UINT32              opTrnTopoCnt)
+EXT_DECL TRDP_ERR_T tlc_setOpTrainTopoCount (
+    TRDP_APP_SESSION_T  appHandle,
+    UINT32              opTrnTopoCnt)
 {
     TRDP_ERR_T ret;
     
