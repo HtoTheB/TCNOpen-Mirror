@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1258 2014-07-10 14:48:21Z ahweiss $
+ * $Id: tau_tti_types.h 1268 2014-07-28 14:39:01Z ahweiss $
  *
  */
 
@@ -272,7 +272,10 @@ typedef struct
     UINT8                   opVehNo;        /**< operational vehicle sequence number in train
                                                  value range 1..63 */
     ANTIVALENT8             isLead;         /**< vehicle is leading */
-    UINT8                   leadDir;        /**< '01'B = leading direction 1, '10'B = leading direction 2 */
+    UINT8                   leadDir;        /**< 'vehicle leading direction
+						                          0 = not relevant
+                                                  1 = leading direction 1
+						                          2 = leading direction 2 */
     UINT8                   trnVehNo;       /**< vehicle sequence number within the train
                                                  with vehicle 01 being the first vehicle in ETB reference
                                                  direction 1 as defined in IEC61375-2-5,
