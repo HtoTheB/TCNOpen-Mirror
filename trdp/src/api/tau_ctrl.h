@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.h 1231 2014-06-06 12:55:57Z ahweiss $
+ * $Id: tau_ctrl.h 1275 2014-08-06 10:39:31Z ahweiss $
  *
  */
 
@@ -62,12 +62,25 @@ extern "C" {
 /**********************************************************************************************************************/
 /**    Function to init  ECSP control interface
  *
- *  @retval         TRDP_NO_ERR     no error
- *  @retval         TRDP_INIT_ERR   initialisation error
+ *  @param[in]      TRDP_APP_SESSION_T  appHndl
+ *
+ *  @retval         TRDP_NO_ERR         no error
+ *  @retval         TRDP_INIT_ERR       initialisation error
  *
  */
-EXT_DECL TRDP_ERR_T tau_initEcspCtrl (void);
+EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T appHndl );
 
+
+
+/**********************************************************************************************************************/
+/**    Function to close  ECSP control interface
+ *
+ *  @retval         TRDP_NO_ERR         no error
+ *  @retval         TRDP_UNKNOWN_ERR    undefined error
+ *
+ */
+
+EXT_DECL TRDP_ERR_T tau_terminateEcspCtrl (void);
 
 
 /**********************************************************************************************************************/
@@ -87,7 +100,7 @@ EXT_DECL TRDP_ERR_T tau_setEcspCtrl (TRDP_ECSP_CTRL_T  *pEcspCtrl);
 /**    Function to get ECSP status information
  *
  *
- *  @param[in/out   pEcspStat       Pointer to the ECSP status structure
+ *  @param[in/out]   pEcspStat       Pointer to the ECSP status structure
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
@@ -97,7 +110,7 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat (TRDP_ECSP_STAT_T  *pEcspStat);
 
 
 /**********************************************************************************************************************/
-/**    Function to send ECSP correction information
+/**    Function for ECSP confirmation/correction request
  *
  *
  *  @param[in]      pEcspCtrl       Pointer to the ECSP control structure
@@ -106,7 +119,8 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat (TRDP_ECSP_STAT_T  *pEcspStat);
  *  @retval         TRDP_PARAM_ERR  Parameter error
  *
  */
-EXT_DECL TRDP_ERR_T tau_sendEcspCorrection (TRDP_ECSP_CORR_T  *pEcspCorrection);
+EXT_DECL TRDP_ERR_T tau_requestEcspConfirm (TRDP_ECSP_CONF_REQUEST_T  *pEcspConfRequest, 
+                                            TRDP_ECSP_CONF_REPLY_T    *pEcspConfReply);
 
 
 #ifdef __cplusplus

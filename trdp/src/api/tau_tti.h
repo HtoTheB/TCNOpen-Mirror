@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1249 2014-06-25 09:20:48Z bloehr $
+ * $Id: tau_tti.h 1275 2014-08-06 10:39:31Z ahweiss $
  *
  */
 
@@ -81,9 +81,9 @@ EXT_DECL TRDP_ERR_T tau_initTtiAccess (void);
  *
  */
 EXT_DECL TRDP_ERR_T tau_getOpTrDirectory (
-    TRDP_OP_TRAIN_DIRECTORY_STATE_T         *pOpTrDirState,
-    TRDP_OP_TRAIN_DIRECTORY_T               *pOpTrDir,
-    UINT8                            const  etbId);
+    TRDP_OP_TRAIN_DIR_STATE_T         *pOpTrDirState,
+    TRDP_OP_TRAIN_DIR_T               *pOpTrDir,
+    UINT8                       const  etbId);
 
 
 /**********************************************************************************************************************/
@@ -98,8 +98,8 @@ EXT_DECL TRDP_ERR_T tau_getOpTrDirectory (
  *
  */
 EXT_DECL TRDP_ERR_T tau_getTrDirectory (
-    TRDP_TRAIN_DIRECTORY_T                  *pTrDir,
-    UINT8                            const  etbId);
+    TRDP_TRAIN_DIR_T                  *pTrDir,
+    UINT8                       const  etbId);
 
 
 /**********************************************************************************************************************/
@@ -133,11 +133,11 @@ EXT_DECL TRDP_ERR_T tau_getStaticCstInfo (
  *
  */
 EXT_DECL TRDP_ERR_T tau_getTTI (
-    TRDP_OP_TRAIN_DIRECTORY_STATE_T         *pOpTrDirState,
-    TRDP_OP_TRAIN_DIRECTORY_T               *pOpTrDir,
-    TRDP_TRAIN_DIRECTORY_T                  *pTrDir,
-    TRDP_TRAIN_NET_DIRECTORY_T              *pTrNetDir,
-    UINT8                            const  etbId);
+    TRDP_OP_TRAIN_DIR_STATE_T         *pOpTrDirState,
+    TRDP_OP_TRAIN_DIR_T               *pOpTrDir,
+    TRDP_TRAIN_DIR_T                  *pTrDir,
+    TRDP_TRAIN_NET_DIR_T              *pTrNetDir,
+    UINT8                       const  etbId);
 
 
 /**********************************************************************************************************************/
