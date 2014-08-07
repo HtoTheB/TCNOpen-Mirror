@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: trdp_if_light.h 1276 2014-08-07 05:58:58Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -618,7 +618,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
  *
  *  @param[in]      appHandle           the handle returned by tlc_init
  *  @param[out]     pListenHandle       Listener ID returned
- *  @param[in]      pUserRef            user supplied value returned with reply
+ *  @param[in]      pUserRef            user supplied value returned with received message
  *  @param[in]      comId               comId to be observed
  *  @param[in]      etbTopoCnt          ETB topocount to use, 0 if consist local communication
  *  @param[in]      opTrnTopoCnt        operational topocount, != 0 for orientation/direction sensitive communication
