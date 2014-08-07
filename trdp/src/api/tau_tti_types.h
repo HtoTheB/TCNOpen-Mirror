@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1275 2014-08-06 10:39:31Z ahweiss $
+ * $Id: tau_tti_types.h 1279 2014-08-07 06:18:07Z ahweiss $
  *
  */
 
