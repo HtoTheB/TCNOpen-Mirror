@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: packet-trdp_spy.h 1167 2014-02-17 15:02:13Z fweispf $
+ * $Id: packet-trdp_spy.h 1280 2014-08-20 15:39:35Z fweispf $
  *
  */
 
@@ -182,6 +182,7 @@ void proto_reg_handoff_trdp(void);
  * @param trdpRootNode      Root node of the view of an TRDP packet (Necessary, as this function will be called recursively)
  * @param trdp_spy_comid    the already extracted comId
  * @param offset            where the userdata starts in the TRDP package
+ * @param length            Amount of bytes, that are transported for the users
  * @param flag_dataset      on 0, the comId will be searched, on > 0 trdp_spy_comid will be interpreted as a dataset id
  * @param dataset_level     is set to 0 for the beginning
  *
