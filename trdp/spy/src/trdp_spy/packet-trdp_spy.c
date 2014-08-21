@@ -2,7 +2,7 @@
  * Routines for Train Real Time Data Protocol
  * Copyright 2012, Florian Weispfenning <florian.weispfenning@de.transport.bombardier.com>
  *
- * $Id: packet-trdp_spy.c 1286 2014-08-21 12:18:47Z fweispf $
+ * $Id: packet-trdp_spy.c 1287 2014-08-21 12:27:09Z fweispf $
  *
  * Ethereal - Network traffic analyzer
  * By Gerald Combs <gerald@ethereal.com>
@@ -279,7 +279,7 @@ guint32 dissect_trdp_generic_body(tvbuff_t *tvb, packet_info *pinfo, proto_tree 
 	setlocale(LC_ALL,"C");
 
     /* make the userdata accessable for wireshark */
-    ti = proto_tree_add_item(trdp_spy_tree, hf_trdp_spy_userdata, tvb, offset, tvb_length_remaining(tvb, offset), FALSE);
+    ti = proto_tree_add_item(trdp_spy_tree, hf_trdp_spy_userdata, tvb, offset, length, FALSE);
 
 	if (strcmp(gbl_trdpDictionary_1,"") == 0  ) /* No configuration file was set */
 	{
