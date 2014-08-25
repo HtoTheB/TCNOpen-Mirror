@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: trdp_utils.c 1295 2014-08-25 12:43:03Z bloehr $
  *
+ *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  */
 
@@ -172,20 +173,7 @@ int am_big_endian ()
 UINT32 trdp_packetSizePD (
     UINT32 dataSize)
 {
-    UINT32 packetSize = sizeof(PD_HEADER_T) + dataSize + sizeof(UINT32);
-
-    if (0 == dataSize)
-    {
-        /* Packet consists of header only  */
-        return sizeof(PD_HEADER_T);
-    }
-    /*  padding to 4 */
-    if ((dataSize & 0x3) > 0)
-    {
-        packetSize += 4 - dataSize % 4;
-    }
-
-    return packetSize;
+    return sizeof(PD_HEADER_T) + dataSize;
 }
 
 
@@ -200,20 +188,7 @@ UINT32 trdp_packetSizePD (
 UINT32 trdp_packetSizeMD (
     UINT32 dataSize)
 {
-    UINT32 packetSize = sizeof(MD_HEADER_T) + dataSize + sizeof(UINT32);
-
-    if (0 == dataSize)
-    {
-        /* Packet consists of header only  */
-        return sizeof(MD_HEADER_T);
-    }
-    /*  padding to 4 */
-    if ((dataSize & 0x3) > 0)
-    {
-        packetSize += 4 - dataSize % 4;
-    }
-
-    return packetSize;
+    return sizeof(MD_HEADER_T) + dataSize;
 }
 
 /**********************************************************************************************************************/
