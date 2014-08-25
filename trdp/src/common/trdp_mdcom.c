@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1293 2014-08-25 12:33:15Z ahweiss $
+ * $Id: trdp_mdcom.c 1294 2014-08-25 12:35:30Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -405,7 +405,7 @@ void    trdp_mdUpdatePacket (
 /**********************************************************************************************************************/
 /** Send MD packet
  *
- *  @param[in]      pdSock          socket descriptor
+ *  @param[in]      mdSock          socket descriptor
  *  @param[in]      port            port on which to send
  *  @param[in]      pElement        pointer to element to be sent
  *  @retval         != NULL         error
