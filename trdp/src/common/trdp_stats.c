@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1297 2014-08-25 14:38:38Z bloehr $
+ * $Id: trdp_stats.c 1298 2014-08-25 14:58:54Z bloehr $
  *
  */
 
@@ -179,7 +179,7 @@ EXT_DECL TRDP_ERR_T tlc_getSubsStatistics (
                                                                              */
         pStatistics[lIndex].timeout     = iter->interval.tv_usec + iter->interval.tv_sec * 1000000;
         /* Time-out value in us. 0 = No time-out supervision  */
-        pStatistics[lIndex].toBehav = iter->toBehavior;          /* Behaviour at time-out    */
+        pStatistics[lIndex].toBehav = iter->toBehavior;          /* Behavior at time-out    */
         pStatistics[lIndex].numRecv = iter->numRxTx;             /* Number of packets received for this subscription. */
         pStatistics[lIndex].status  = iter->lastErr;             /* Receive status information  */
     }

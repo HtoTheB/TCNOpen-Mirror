@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1297 2014-08-25 14:38:38Z bloehr $
+ * $Id: trdp_private.h 1298 2014-08-25 14:58:54Z bloehr $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *
@@ -311,7 +311,7 @@ typedef struct TRDP_SESSION
     TRDP_MARSHALL_CONFIG_T  marshall;           /**< Marshalling(unMarshalling configuration                */
     TRDP_PD_CONFIG_T        pdDefault;          /**< Default configuration for process data                 */
     TRDP_MEM_CONFIG_T       memConfig;          /**< Internal memory handling configuration                 */
-    TRDP_OPTION_T           option;             /**< Stack behaviour options                                */
+    TRDP_OPTION_T           option;             /**< Stack behavior options                                */
     TRDP_SOCKETS_T          iface[VOS_MAX_SOCKET_CNT];  /**< Collection of sockets to use                   */
     PD_ELE_T                *pSndQueue;         /**< pointer to first element of send queue                 */
     PD_ELE_T                *pRcvQueue;         /**< pointer to first element of rcv queue                  */
