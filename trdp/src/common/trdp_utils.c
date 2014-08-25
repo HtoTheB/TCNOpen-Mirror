@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1295 2014-08-25 12:43:03Z bloehr $
+ * $Id: trdp_utils.c 1297 2014-08-25 14:38:38Z bloehr $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -165,7 +165,7 @@ int am_big_endian ()
 /**********************************************************************************************************************/
 /** Get the packet size from the raw data size
  *
- *  @param[in]      dataSize            net data size (without padding or FCS)
+ *  @param[in]      dataSize            net data size
  *
  *  @retval         packet size         the size of the complete packet to
  *                                      be sent or received
@@ -180,7 +180,7 @@ UINT32 trdp_packetSizePD (
 /**********************************************************************************************************************/
 /** Get the packet size from the raw data size
  *
- *  @param[in]      dataSize            net data size (without padding or FCS)
+ *  @param[in]      dataSize            net data size
  *
  *  @retval         packet size         the size of the complete packet to
  *                                      be sent or received

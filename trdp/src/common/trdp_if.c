@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1291 2014-08-25 07:53:42Z ahweiss $
+ * $Id: trdp_if.c 1297 2014-08-25 14:38:38Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -1573,8 +1573,7 @@ EXT_DECL TRDP_ERR_T tlp_request (
                 {
                     vos_printLog(VOS_LOG_INFO, "PD Request (comId: %u) getting new element %p\n", comId, pReqElement);
                     /*
-                     Compute the overal packet size
-                     Add padding bytes to align to 32 bits
+                        Compute the overal packet size
                      */
                     pReqElement->dataSize   = dataSize;
                     pReqElement->grossSize  = trdp_packetSizePD(dataSize);
@@ -1782,7 +1781,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
 
         if (ret == TRDP_NO_ERR)
         {
-            /*    buffer size is PD_ELEMENT plus max. payload size plus padding & framecheck    */
+            /*    buffer size is PD_ELEMENT plus max. payload size    */
 
             /*    Allocate a buffer for this kind of packets    */
             newPD = (PD_ELE_T *) vos_memAlloc(sizeof(PD_ELE_T));

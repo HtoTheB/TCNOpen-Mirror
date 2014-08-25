@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: trdp_types.h 1297 2014-08-25 14:38:38Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
@@ -554,7 +554,7 @@ typedef struct
  *  @param[in]    appHandle  application handle returned by tlc_openSession
  *  @param[in]    *pMsg      pointer to received message information
  *  @param[in]    *pData     pointer to received data
- *  @param[in]    dataSize   size of received data pointer to received data excl. padding and FCS !!!!
+ *  @param[in]    dataSize   size of received data pointer to received data
  */
 typedef void (*TRDP_PD_CALLBACK_T)(
     void                    *pRefCon,
@@ -585,7 +585,7 @@ typedef struct
  *  @param[in]    *pRefCon   pointer to user context
  *  @param[in]    *pMsg      pointer to received message information
  *  @param[in]    *pData     pointer to received data
- *  @param[in]    dataSize   size of received data pointer to received data excl. padding and FCS !!!!
+ *  @param[in]    dataSize   size of received data pointer to received data
  */
 typedef void (*TRDP_MD_CALLBACK_T)(
     void                    *pRefCon,

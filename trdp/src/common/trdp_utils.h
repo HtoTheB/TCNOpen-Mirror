@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: trdp_utils.h 1297 2014-08-25 14:38:38Z bloehr $
  *
  */
 
@@ -185,7 +185,7 @@ void trdp_releaseSocket(
 /*********************************************************************************************************************/
 /** Get the packet size from the raw data size
  *
- *  @param[in]      dataSize            net data size (without padding or FCS)
+ *  @param[in]      dataSize            net data size
  *
  *  @retval         packet size         the size of the complete packet to
  *                                      be sent or received
@@ -197,7 +197,7 @@ UINT32 trdp_packetSizePD (
 /*********************************************************************************************************************/
 /** Get the packet size from the raw data size
  *
- *  @param[in]      dataSize            net data size (without padding or FCS)
+ *  @param[in]      dataSize            net data size
  *
  *  @retval         packet size         the size of the complete packet to
  *                                      be sent or received

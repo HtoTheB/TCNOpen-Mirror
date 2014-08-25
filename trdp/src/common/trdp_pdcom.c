@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1266 2014-07-15 12:31:31Z bloehr $
+ * $Id: trdp_pdcom.c 1297 2014-08-25 14:38:38Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -134,38 +134,10 @@ TRDP_ERR_T trdp_pdPut (
         /* set data valid */
         pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~TRDP_INVALID_DATA);
 
-        /* Update PD buffer */
-        trdp_pdDataUpdate(pPacket);
-
         /*  Update some statistics  */
         pPacket->updPkts++;
     }
     return ret;
-}
-
-/******************************************************************************/
-/** Add padding
- *
- */
-void trdp_pdDataUpdate (
-    PD_ELE_T *pPacket)
-{
-    UINT8   *pDest = pPacket->pFrame->data + pPacket->dataSize;
-
-    /* Padding exists only if data is transmitted */
-    if (pPacket->dataSize != 0)
-    {
-        /*  Pad with zero bytes */
-        UINT32 padding = 4 - (pPacket->dataSize & 0x3);
-
-        if (padding < 4)
-        {
-            while (padding--)
-            {
-                *pDest++ = 0;
-            }
-        }
-    }
 }
 
 /******************************************************************************/

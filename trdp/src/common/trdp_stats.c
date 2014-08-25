@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1189 2014-03-11 16:53:52Z ahweiss $
+ * $Id: trdp_stats.c 1297 2014-08-25 14:38:38Z bloehr $
  *
  */
 
@@ -511,8 +511,5 @@ void    trdp_pdPrepareStats (
     pData->tcpMd.numConfirmTimeout  = vos_htonl(appHandle->stats.tcpMd.numConfirmTimeout);
     pData->tcpMd.numSend            = vos_htonl(appHandle->stats.tcpMd.numSend);
     pPacket->dataSize = sizeof(TRDP_STATISTICS_T);
-
-    /*  Compute the CRC */
-    trdp_pdDataUpdate(pPacket);
 
 }
