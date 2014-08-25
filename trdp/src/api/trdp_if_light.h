@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1290 2014-08-25 07:51:48Z ahweiss $
+ * $Id: trdp_if_light.h 1291 2014-08-25 07:53:42Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
