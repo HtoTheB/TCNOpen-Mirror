@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: test_mdSingle.c 1290 2014-08-25 07:51:48Z ahweiss $
  *
  */
 
@@ -159,18 +159,25 @@ void mdCallback (void                   *pRefCon,
                     if (sSessionData.sConfirmRequested)
                     {
                         printf("-> sending reply with query\n");
-                        err = tlm_replyQuery(myGlobals->appHandle, pRefCon, &pMsg->sessionId,
-                                             pMsg->etbTopoCnt, pMsg->opTrnTopoCnt,pMsg->comId, ownIP,
-                                             pMsg->srcIpAddr, TRDP_FLAGS_CALLBACK, 0, 10000000, NULL,
-                                             (UINT8 *) "I'm fine, how are you?", 23, NULL, NULL);
+                        err = tlm_replyQuery(myGlobals->appHandle, 
+                                            &pMsg->sessionId,
+                                             pMsg->comId,
+                                             0,
+                                             10000000,
+                                             NULL,
+                                             (UINT8 *) "I'm fine, how are you?", 
+                                             23);
                     }
                     else
                     {
                         printf("-> sending reply\n");
-                        err = tlm_reply(myGlobals->appHandle, pRefCon, &pMsg->sessionId,
-                                        pMsg->etbTopoCnt, pMsg->opTrnTopoCnt, pMsg->comId, ownIP,
-                                        pMsg->srcIpAddr, TRDP_FLAGS_CALLBACK, 0, NULL,
-                                        (UINT8 *) "I'm fine, thanx!", 17, NULL, NULL);
+                        err = tlm_reply(myGlobals->appHandle, 
+                                        &pMsg->sessionId,
+                                        pMsg->comId,
+                                        0,
+                                        NULL,
+                                        (UINT8 *) "I'm fine, thanx!",
+                                        17);
                     }
                     if (err != TRDP_NO_ERR)
                     {
@@ -195,10 +202,10 @@ void mdCallback (void                   *pRefCon,
                         printf("   Data[%uB]: %.80s...\n", dataSize, pData);
                     }
                     printf("-> sending confirmation\n");
-                    err = tlm_confirm(myGlobals->appHandle, pRefCon, (const TRDP_UUID_T *) &pMsg->sessionId,
-                                      pMsg->comId, pMsg->etbTopoCnt, pMsg->opTrnTopoCnt, ownIP,
-                                      pMsg->srcIpAddr, TRDP_FLAGS_CALLBACK, 0, 0,
-                                      NULL, NULL, NULL);
+                    err = tlm_confirm(myGlobals->appHandle, 
+                                      (const TRDP_UUID_T *) &pMsg->sessionId,
+                                      0,
+                                      NULL);
                     if (err != TRDP_NO_ERR)
                     {
                         printf("tlm_confirm returned error %d\n", err);
