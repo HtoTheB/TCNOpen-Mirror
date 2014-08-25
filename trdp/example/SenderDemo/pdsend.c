@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: pdsend.c 1292 2014-08-25 08:47:34Z bloehr $
  *
  */
 
@@ -571,8 +571,9 @@ void pdCallBack (
             if (pMsg->msgType == TRDP_MSG_MR)
             {
             	/* Send reply	*/
-                err = tlm_reply (appHandle, pRefCon, &pMsg->sessionId, 0, 0, gMessageData.comID, pMsg->srcIpAddr, pMsg->srcIpAddr,
-    						TRDP_FLAGS_CALLBACK, 0, NULL, (UINT8*)"Maleikum Salam", 16, NULL, NULL);
+                err = tlm_reply(appHandle, &pMsg->sessionId, gMessageData.comID, 0, NULL, (UINT8*)"Maleikum Salam", 16);
+                //err = tlm_reply (appHandle, pRefCon, &pMsg->sessionId, 0, 0, gMessageData.comID, pMsg->srcIpAddr, pMsg->srcIpAddr,
+    			//			TRDP_FLAGS_CALLBACK, 0, NULL, (UINT8*)"Maleikum Salam", 16, NULL, NULL);
                 if (err != TRDP_NO_ERR)
                 {
                     printf("Error repling data (ComID %d, SrcIP: %s)\n", pMsg->comId, vos_ipDotted(pMsg->srcIpAddr));
