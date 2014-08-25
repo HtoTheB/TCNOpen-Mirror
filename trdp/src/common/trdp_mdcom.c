@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1291 2014-08-25 07:53:42Z ahweiss $
+ * $Id: trdp_mdcom.c 1293 2014-08-25 12:33:15Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -411,7 +411,7 @@ void    trdp_mdUpdatePacket (
  *  @retval         != NULL         error
  */
 TRDP_ERR_T  trdp_mdSendPacket (
-    INT32       pdSock,
+    INT32       mdSock,
     UINT32      port,
     MD_ELE_T    *pElement)
 {
@@ -424,7 +424,7 @@ TRDP_ERR_T  trdp_mdSendPacket (
 
         pElement->sendSize = pElement->grossSize - tmpSndSize;
 
-        err = vos_sockSendTCP(pdSock, ((UINT8 *)&pElement->pPacket->frameHead) + tmpSndSize, &pElement->sendSize);
+        err = vos_sockSendTCP(mdSock, ((UINT8 *)&pElement->pPacket->frameHead) + tmpSndSize, &pElement->sendSize);
         pElement->sendSize = tmpSndSize + pElement->sendSize;
 
     }
@@ -432,7 +432,7 @@ TRDP_ERR_T  trdp_mdSendPacket (
     {
         pElement->sendSize = pElement->grossSize;
 
-        err = vos_sockSendUDP(pdSock,
+        err = vos_sockSendUDP(mdSock,
                               (UINT8 *)&pElement->pPacket->frameHead,
                               &pElement->sendSize,
                               pElement->addr.destIpAddr,
@@ -442,7 +442,7 @@ TRDP_ERR_T  trdp_mdSendPacket (
     if (err != VOS_NO_ERR)
     {
         vos_printLog(VOS_LOG_ERROR, "vos_sockSend%s error (Err: %d, Sock: %d, Port: %d)\n",
-                     (pElement->pktFlags & TRDP_FLAGS_TCP) ? "TCP" : "UDP", err, pdSock, port);
+                     (pElement->pktFlags & TRDP_FLAGS_TCP) ? "TCP" : "UDP", err, mdSock, port);
 
         if (err == VOS_NOCONN_ERR)
         {
@@ -457,7 +457,7 @@ TRDP_ERR_T  trdp_mdSendPacket (
     if ((pElement->sendSize) != pElement->grossSize)
     {
         vos_printLog(VOS_LOG_INFO, "vos_sockSend%s incomplete (Sock: %d, Port: %d)\n",
-                     (pElement->pktFlags & TRDP_FLAGS_TCP) ? "TCP" : "UDP", pdSock, port);
+                     (pElement->pktFlags & TRDP_FLAGS_TCP) ? "TCP" : "UDP", mdSock, port);
         return TRDP_IO_ERR;
     }
 
