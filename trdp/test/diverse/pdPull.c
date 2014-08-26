@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: pdPull.c 1302 2014-08-26 13:29:06Z bloehr $
  *
  *      BL 2014-06-02: oversized data changed
  */
@@ -285,7 +285,7 @@ int main (int argc, char * *argv)
 
     err = tlp_subscribe(appHandle,                     /*    our application identifier             */
                         &subHandle,                    /*    our subscription identifier            */
-                        NULL,
+                        NULL, NULL,
                         gComID,                        /*    ComID                                  */
                         0,                             /*    topocount: local consist only          */
                         0,
