@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoSelectcmdline.c 1300 2014-08-26 13:08:20Z bloehr $
+ * $Id: echoSelectcmdline.c 1306 2014-08-26 13:37:49Z ahweiss $
  *
  */
 
@@ -25,9 +25,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#if defined (POSIX)
 #include <unistd.h>
-/* #include <sys/time.h> */
 #include <sys/select.h>
+#elif defined (WIN32)
+#include "getopt.h"
+#endif
 
 #include "trdp_if_light.h"
 #include "vos_thread.h"
@@ -151,7 +155,7 @@ int main (int argc, char * *argv)
     TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0}, TRDP_FLAGS_CALLBACK,
                                                10000000, TRDP_TO_SET_TO_ZERO, 20548};
-    TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {}};
+    TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     int     rv = 0;
     int     ip[4];
