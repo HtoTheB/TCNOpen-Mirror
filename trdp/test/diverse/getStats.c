@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: getStats.c 1299 2014-08-26 09:41:04Z ahweiss $
  *
  */
 
@@ -320,12 +320,12 @@ int main (int argc, char * *argv)
     }
 
     /*    Subscribe to control PD        */
-
     memset(&gBuffer, 0, sizeof(gBuffer));
 
     err = tlp_subscribe( appHandle,                     /*    our application identifier             */
                          &subHandle,                    /*    our subscription identifier            */
-                         NULL,
+                         NULL,                          /*    user reference                         */
+                         NULL,                          /*    callback function                      */
                          TRDP_GLOBAL_STATISTICS_COMID,  /*    ComID                                  */
                          0,                             /*    topocount: local consist only          */
                          0,

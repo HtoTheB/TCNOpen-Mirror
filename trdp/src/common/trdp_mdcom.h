@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.h 1294 2014-08-25 12:35:30Z ahweiss $
+ * $Id: trdp_mdcom.h 1299 2014-08-26 09:41:04Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -92,6 +92,7 @@ TRDP_ERR_T  trdp_mdCommonSend (
     const TRDP_MSG_T        msgType,
     TRDP_APP_SESSION_T      appHandle,
     const void              *pUserRef,
+    TRDP_MD_CALLBACK_T      pfCbFunction,
     TRDP_UUID_T             *pSessionId,
     UINT32                  comId,
     UINT32                  etbTopoCnt,
