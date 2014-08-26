@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoPolling.c 1299 2014-08-26 09:41:04Z ahweiss $*
+ * $Id: echoPolling.c 1300 2014-08-26 13:08:20Z bloehr $*
  *
  */
 
@@ -129,7 +129,7 @@ int main (int argc, char * *argv)
 
     err = tlp_subscribe( appHandle,                 /*    our application identifier           */
                          &subHandle,                /*    our subscription identifier          */
-                         NULL,                      /*    callback function                    */
+                         NULL, NULL,                /*    userRef & callback function          */
                          PD_COMID1,                 /*    ComID                                */
                          0,                         /*    etbTopocount: local consist only     */
                          0,                         /*    opTopocount: local consist only      */
@@ -137,8 +137,8 @@ int main (int argc, char * *argv)
                          0,                         /*    source IP 1                          */
                          0,                         /*    source IP 2                          */
                          0,                         /*    Default destination IP (or MC Group) */
-                         PD_COMID1_TIMEOUT,         /*    Time out in us                        */
-                         TRDP_TO_SET_TO_ZERO,       /*    delete invalid data    on timeout      */
+                         PD_COMID1_TIMEOUT,         /*    Time out in us                       */
+                         TRDP_TO_SET_TO_ZERO,       /*    delete invalid data on timeout       */
                          sizeof(gBuffer));          /*    net data size                        */
 
 

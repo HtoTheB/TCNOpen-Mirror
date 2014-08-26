@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright CAF, Spain, 2012.
  *
- * $Id: mdManagerTCP_Siemens.c 1114 2013-10-22 11:46:36Z ahweiss $
+ * $Id: mdManagerTCP_Siemens.c 1300 2014-08-26 13:08:20Z bloehr $
  */
 
 
@@ -953,7 +953,7 @@ TRDP_ERR_T notifies_requests()
         if(read_data == 1)
         {
             err = tlm_notify(appHandle,
-                                    NULL,
+                                    NULL, NULL,
                                     MD_COMID,
                                     0,
                                     MD_COMID1_SRC_IP,
@@ -968,7 +968,7 @@ TRDP_ERR_T notifies_requests()
         }else if(read_data == 2)
         {
             err = tlm_request(appHandle,
-                                NULL,
+                                NULL, NULL,
                                 (TRDP_UUID_T *)&pSessionId,
                                 MD_COMID,
                                 0,

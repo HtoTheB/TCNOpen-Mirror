@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1292 2014-08-25 08:47:34Z bloehr $
+ * $Id: pdsend.c 1300 2014-08-26 13:08:20Z bloehr $
  *
  */
 
@@ -238,7 +238,7 @@ int pd_init (
     gMessageData.lisHandle = NULL;
     memset(gMessageData.sessionId, 0, 16);
     gMessageData.comID = 2000;
-	gMessageData.timeout;
+	//gMessageData.timeout;
     gMessageData.srcIP[0] = 0;
     gMessageData.message[0] = 0;
     gMessageData.msgsize = 64;
@@ -334,7 +334,7 @@ void pd_sub (
     TRDP_ERR_T err = tlp_subscribe(
             gAppHandle,                                 /*	our application identifier			*/
             &recPacket->subHandle,                      /*	our subscription identifier			*/
-            NULL,
+            NULL, NULL,
             recPacket->comID,                           /*	ComID								*/
             0,                                          /*	topocount: local consist only		*/
             0,
@@ -392,11 +392,10 @@ void md_listen (
         tlm_delListener(gAppHandle, recPacket->lisHandle);
         recPacket->lisHandle = NULL;
     }
-
     TRDP_ERR_T err = tlm_addListener(
             gAppHandle,                                 /*	our application identifier			*/
     		&recPacket->lisHandle,                      /*	listener handle          			*/
-    		NULL,										/*  user ref                            */
+    		NULL,  NULL,                                /*  user ref                            */
     		recPacket->comID,							/*	ComID								*/
     		0,             								/*	topocount: local consist only		*/
             0,
@@ -416,7 +415,7 @@ int md_request(const char* targetIP, uint32_t comID, char* pMessage)
     TRDP_ERR_T err;
     // Send a message to a device and expect an answer
     err = tlm_request(gAppHandle,
-                NULL,           // user ref
+                NULL,  NULL,          // user ref
                 &gMessageData.sessionId, comID,
                 0,              // topocount
                 0,
