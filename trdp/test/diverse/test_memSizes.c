@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: test_memSizes.c 1307 2014-08-26 13:41:57Z bloehr $
  *
  */
 
@@ -289,7 +289,7 @@ int main (int argc, char * *argv)
         printf("Subscribing dataSize: %u Bytes\n", gSubPackets[i].dataSize);
         err = tlp_subscribe(appHandle,                  /*    our application identifier           */
                             &gSubPackets[i].subHandle,  /*    our subscription identifier          */
-                            NULL,
+                            NULL, NULL,
                             gSubPackets[i].comID,       /*    ComID                                */
                             0,                          /*    topocount: local consist only        */
                             0,
