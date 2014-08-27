@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1300 2014-08-26 13:08:20Z bloehr $
+ * $Id: pdsend.c 1314 2014-08-27 12:03:15Z bloehr $
  *
  */
 
@@ -339,12 +339,10 @@ void pd_sub (
             0,                                          /*	topocount: local consist only		*/
             0,
             vos_dottedIP(recPacket->srcIP),             /*	Source IP filter 1					*/
-            0,                                          /*	Source IP filter 2					*/
             0,
             0x0,                                        /*	Default destination	(or MC Group)   */
             recPacket->timeout,                         /*	Time out in us						*/
-            TRDP_TO_SET_TO_ZERO,                        /*  delete invalid data	on timeout      */
-            sizeof(recPacket->message) + sizeof(recPacket->counter));               /*	net data size   */
+            TRDP_TO_SET_TO_ZERO);                       /*  delete invalid data	on timeout      */
 
     if (err != TRDP_NO_ERR)
     {

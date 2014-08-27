@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1299 2014-08-26 09:41:04Z ahweiss $
+ * $Id: trdp_mdcom.c 1314 2014-08-27 12:03:15Z bloehr $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -79,6 +79,7 @@ TRDP_ERR_T trdp_mdGetTCPSocket (
         trdp_sock_opt.ttl   = pSession->mdDefault.sendParam.ttl;  /* Time to live (default should be 64) */
         trdp_sock_opt.ttl_multicast = 0;
         trdp_sock_opt.reuseAddrPort = TRUE;
+        trdp_sock_opt.no_mc_loop = FALSE;
 
         /* The socket is defined non-blocking */
         trdp_sock_opt.nonBlocking = TRUE;
@@ -533,7 +534,8 @@ TRDP_ERR_T  trdp_mdRecvPacket (
             size = storedHeader + readSize;
 
             if ((appHandle->uncompletedTCP[socketIndex] != NULL)
-                && (size >= sizeof(MD_HEADER_T)))
+                && (size >= sizeof(MD_HEADER_T))
+                && appHandle->uncompletedTCP[socketIndex]->pPacket != NULL)     /* BL: Prevent NULL pointer access */
             {
                 if (trdp_mdCheck(appHandle, &pElement->pPacket->frameHead, size, CHECK_HEADER_ONLY) == TRDP_NO_ERR)
                 {
@@ -1024,6 +1026,9 @@ TRDP_ERR_T  trdp_mdRecv (
                     iterMD->pUserRef        = iterListener->pUserRef;
                     iterMD->pfCbFunction    = iterListener->pfCbFunction;
                     iterMD->stateEle        = state;
+                    
+                    /* Count this Request/Notification as new session */
+                    iterListener->numSessions++;
 
                     if (iterListener->socketIdx == TRDP_INVALID_SOCKET_INDEX)    /* On TCP, listeners have no socket
                                                                                    assigned  */
@@ -1034,7 +1039,6 @@ TRDP_ERR_T  trdp_mdRecv (
                     {
                         iterMD->socketIdx = iterListener->socketIdx;
                     }
-                    /* appHandle->iface[iterMD->socketIdx].usage++;        / * mark this socket as used * / */
 
                     trdp_MDqueueInsFirst(&appHandle->pMDRcvQueue, iterMD);
 

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoSelectcmdline.c 1309 2014-08-26 14:04:48Z ahweiss $
+ * $Id: echoSelectcmdline.c 1314 2014-08-27 12:03:15Z bloehr $
  *
  */
 
@@ -270,11 +270,9 @@ int main (int argc, char * *argv)
                          0,
                          destIP,                    /*  Source to expect packets from          */
                          0,
-                         0,
                          0,                         /*    Default destination    (or MC Group) */
                          PD_COMID1_TIMEOUT,         /*    Time out in us                       */
-                         TRDP_TO_SET_TO_ZERO,       /*  delete invalid data    on timeout      */
-                         GBUFFER_SIZE);             /*    net data size                        */
+                         TRDP_TO_SET_TO_ZERO);      /*  delete invalid data    on timeout      */
 
     if (err != TRDP_NO_ERR)
     {

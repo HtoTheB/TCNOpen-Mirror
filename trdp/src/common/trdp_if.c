@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1311 2014-08-27 08:21:04Z ahweiss $
+ * $Id: trdp_if.c 1314 2014-08-27 12:03:15Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -1674,15 +1674,12 @@ EXT_DECL TRDP_ERR_T tlp_request (
  *  @param[in]      comId               comId of packet to receive
  *  @param[in]      etbTopoCnt          ETB topocount to use, 0 if consist local communication
  *  @param[in]      opTrnTopoCnt        operational topocount, != 0 for orientation/direction sensitive communication
- *  @param[in]      srcIpAddr1          IP for source filtering, set 0 if not used
- *  @param[in]      srcIpAddr2          Second source IP address for source filtering, set to zero if not used.
- *                                      Used e.g. for source filtering of redundant devices.
+ *  @param[in]      srcIpAddr          IP for source filtering, set 0 if not used
  *  @param[in]      pktFlags            OPTION:
  *                                      TRDP_FLAGS_DEFAULT, TRDP_FLAGS_NONE, TRDP_FLAGS_MARSHALL, TRDP_FLAGS_CALLBACK
  *  @param[in]      destIpAddr          IP address to join
  *  @param[in]      timeout             timeout (>= 10ms) in usec
  *  @param[in]      toBehavior          timeout behavior
- *  @param[in]      maxDataSize         expected max. size of packet data
  *
  *  @retval         TRDP_NO_ERR         no error
  *  @retval         TRDP_PARAM_ERR      parameter error
@@ -1925,7 +1922,6 @@ EXT_DECL TRDP_ERR_T tlp_unsubscribe (
  *  @param[in]      etbTopoCnt          ETB topocount to use, 0 if consist local communication
  *  @param[in]      opTrnTopoCnt        operational topocount, != 0 for orientation/direction sensitive communication
  *  @param[in]      srcIpAddr           IP for source filtering, set 0 if not used
- *                                      Used e.g. for source filtering of redundant devices.
  *  @param[in]      destIpAddr          IP address to join
  *
  *  @retval         TRDP_NO_ERR         no error

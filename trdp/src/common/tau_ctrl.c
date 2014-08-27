@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1299 2014-08-26 09:41:04Z ahweiss $
+ * $Id: tau_ctrl.c 1314 2014-08-27 12:03:15Z bloehr $
  *
  *
  */
@@ -108,12 +108,11 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                          0,                         /*    ecnTopoCounter                        */
                          0,                         /*    opTopoCounter                         */
                          0,                         /*    Source IP filter                      */
-                         0,                         /*    2nd Source IP filter                  */
                          ecscIpAddr,                /*    Default destination    (or MC Group)  */
                          TRDP_FLAGS_MARSHALL,       /*    packet flags - UDP, no call back      */
                          ECSP_STAT_TIMEOUT,         /*    Time out in us                        */
-                         TRDP_TO_SET_TO_ZERO,       /*    delete invalid data    on timeout     */
-                         sizeof(TRDP_ECSP_STAT_T)); /*    net data size                         */
+                         TRDP_TO_SET_TO_ZERO);      /*    delete invalid data on timeout        */
+
     if ( err != TRDP_NO_ERR )
     {
         vos_printLog(VOS_LOG_ERROR, "tlp_subscribe() failed !\n");

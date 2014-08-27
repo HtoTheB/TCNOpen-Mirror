@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoPolling.c 1306 2014-08-26 13:37:49Z ahweiss $*
+ * $Id: echoPolling.c 1314 2014-08-27 12:03:15Z bloehr $*
  *
  */
 
@@ -142,11 +142,9 @@ int main (int argc, char * *argv)
                          0,                         /*    opTopocount: local consist only      */
                          PD_COMID1_SRC_IP,          /*    Source IP filter                     */
                          0,                         /*    source IP 1                          */
-                         0,                         /*    source IP 2                          */
                          0,                         /*    Default destination IP (or MC Group) */
                          PD_COMID1_TIMEOUT,         /*    Time out in us                       */
-                         TRDP_TO_SET_TO_ZERO,       /*    delete invalid data on timeout       */
-                         sizeof(gBuffer));          /*    net data size                        */
+                         TRDP_TO_SET_TO_ZERO);      /*    delete invalid data on timeout       */
 
 
     if (err != TRDP_NO_ERR)
