@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: trdp_mdcom.c 1316 2014-08-27 15:05:54Z bloehr $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -571,8 +571,8 @@ TRDP_ERR_T  trdp_mdRecvPacket (
             {
                 /* Calculate the data size that is pending to read */
                 size        = appHandle->uncompletedTCP[socketIndex]->grossSize + readSize;
-                dataSize    = vos_ntohl(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.datasetLength) +
-                    sizeof(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.frameCheckSum);
+                dataSize    = vos_ntohl(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.datasetLength) /* +
+                    sizeof(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.frameCheckSum)*/;
 
                 pElement->dataSize  = dataSize;
                 dataSize        = dataSize - (size - sizeof(MD_HEADER_T));
@@ -673,7 +673,7 @@ TRDP_ERR_T  trdp_mdRecvPacket (
 
                 /* header information can't be read - throw the packet away reading some bytes */
                 size    = sizeof(MD_HEADER_T);
-                err     = (TRDP_ERR_T) vos_sockReceiveUDP(
+                (void) vos_sockReceiveUDP(
                         mdSock,
                         (UINT8 *)pElement->pPacket,
                         &size,

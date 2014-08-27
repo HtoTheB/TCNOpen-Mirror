@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_proto.h 1297 2014-08-25 14:38:38Z bloehr $
+ * $Id: trdp_proto.h 1316 2014-08-27 15:05:54Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -59,9 +59,9 @@
 
 /*  PD packet properties    */
 #define TRDP_MIN_PD_HEADER_SIZE     sizeof(PD_HEADER_T)                 /**< PD header size with FCS                */
-#define TRDP_MAX_PD_DATA_SIZE       1432                                /**< PD data size without FCS               */
-#define TRDP_MAX_PD_PACKET_SIZE     (TRDP_MAX_PD_DATA_SIZE + TRDP_MIN_PD_HEADER_SIZE + sizeof(UINT32))
-#define TRDP_MAX_MD_DATA_SIZE       ((1024 * 64) - 8 - sizeof(MD_HEADER_T))
+#define TRDP_MAX_PD_DATA_SIZE       1432                                /**< PD data                                */
+#define TRDP_MAX_PD_PACKET_SIZE     (TRDP_MAX_PD_DATA_SIZE + TRDP_MIN_PD_HEADER_SIZE)
+#define TRDP_MAX_MD_DATA_SIZE       (65388)
 #define TRDP_MAX_MD_PACKET_SIZE     (TRDP_MAX_MD_DATA_SIZE + sizeof(MD_HEADER_T))
 
 /** Maximum values    */

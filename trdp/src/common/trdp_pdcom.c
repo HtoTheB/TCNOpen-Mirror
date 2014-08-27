@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1308 2014-08-26 13:49:53Z ahweiss $
+ * $Id: trdp_pdcom.c 1316 2014-08-27 15:05:54Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -764,39 +764,36 @@ TRDP_ERR_T trdp_pdCheck (
         vos_printLog(VOS_LOG_INFO, "PDframe size error (%u))\n", packetSize);
         err = TRDP_WIRE_ERR;
     }
-
-    /*    Check Header CRC (FCS)  */
-    myCRC = vos_crc32(INITFCS, (UINT8 *) pPacket, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
-
-    if (pPacket->frameCheckSum != MAKE_LE(myCRC))
-    {
-        vos_printLog(VOS_LOG_INFO, "PDframe crc error (%08x != %08x))\n", pPacket->frameCheckSum, MAKE_LE(myCRC));
-        err = TRDP_CRC_ERR;
-    }
-    /*  Check protocol version  */
-    else if ((vos_ntohs(pPacket->protocolVersion) & TRDP_PROTOCOL_VERSION_CHECK_MASK)
-                        != (TRDP_PROTO_VER & TRDP_PROTOCOL_VERSION_CHECK_MASK) ||
-                        vos_ntohl(pPacket->datasetLength) > TRDP_MAX_PD_DATA_SIZE)
-    {
-        vos_printLog(VOS_LOG_INFO, "PDframe protocol error (%04x != %04x))\n",
-                     vos_ntohs(pPacket->protocolVersion),
-                     TRDP_PROTO_VER);
-        err = TRDP_WIRE_ERR;
-    }
-    /*  Check type  */
-    else if (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PD &&
-             vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PP &&
-             vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PR &&
-             vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PE)
-    {
-        vos_printLog(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
-        err = TRDP_WIRE_ERR;
-    }
     else
     {
-        err = TRDP_NO_ERR;
-    }
+        /*    Check Header CRC (FCS)  */
+        myCRC = vos_crc32(INITFCS, (UINT8 *) pPacket, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
 
+        if (pPacket->frameCheckSum != MAKE_LE(myCRC))
+        {
+            vos_printLog(VOS_LOG_INFO, "PDframe crc error (%08x != %08x))\n", pPacket->frameCheckSum, MAKE_LE(myCRC));
+            err = TRDP_CRC_ERR;
+        }
+        /*  Check protocol version  */
+        else if ((vos_ntohs(pPacket->protocolVersion) & TRDP_PROTOCOL_VERSION_CHECK_MASK)
+                            != (TRDP_PROTO_VER & TRDP_PROTOCOL_VERSION_CHECK_MASK) ||
+                            vos_ntohl(pPacket->datasetLength) > TRDP_MAX_PD_DATA_SIZE)
+        {
+            vos_printLog(VOS_LOG_INFO, "PDframe protocol error (%04x != %04x))\n",
+                         vos_ntohs(pPacket->protocolVersion),
+                         TRDP_PROTO_VER);
+            err = TRDP_WIRE_ERR;
+        }
+        /*  Check type  */
+        else if (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PD &&
+                 vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PP &&
+                 vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PR &&
+                 vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PE)
+        {
+            vos_printLog(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
+            err = TRDP_WIRE_ERR;
+        }
+    }
     return err;
 }
 
