@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: trdp_stats.c 1322 2014-08-28 16:06:13Z bloehr $
  *
  */
 
@@ -314,8 +314,6 @@ EXT_DECL TRDP_ERR_T tlc_getRedStatistics (
     {
         return TRDP_NOINIT_ERR;
     }
-
-    iterPD = ((TRDP_SESSION_T*) appHandle)->pSndQueue;
 
     /*    Search the redundancy flag for every PD  */
     for (lIndex = 0, iterPD = appHandle->pSndQueue; lIndex < *pNumRed && NULL != iterPD; iterPD = iterPD->pNext)

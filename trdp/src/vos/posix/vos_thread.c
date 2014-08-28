@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1255 2014-07-06 13:31:29Z bloehr $
+ * $Id: vos_thread.c 1322 2014-08-28 16:06:13Z bloehr $
  *
  */
 
@@ -99,11 +99,13 @@ int sem_timedwait (sem_t *sem, const struct timespec *abs_timeout)
     return -1;
 }
 
-//int sem_init(sem_t *, int, unsigned int);
+/* simulate 
+    int sem_init(sem_t *, int, unsigned int);
+*/
 int sem_init(sem_t *pSema, int flags, unsigned int mode)
 {
     *pSema = sem_open("/tmp/trdp.sema", O_CREAT, 0644, (UINT8)mode);
-    if (*pSema == SEM_FAILED)
+    if (pSema == SEM_FAILED)
     {
         return -1;
     }

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1296 2014-08-25 14:27:53Z bloehr $
+ * $Id: vos_sock.c 1322 2014-08-28 16:06:13Z bloehr $
  *
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
  *
@@ -140,7 +140,7 @@ BOOL8 vos_getMacAddress (
     {
         struct ifaddrs *cur;
 
-        for (cur = pIfList; cur; cur = cur->ifa_next)
+        for (cur = pIfList; pName != NULL && cur != NULL; cur = cur->ifa_next)
         {
             if ((cur->ifa_addr->sa_family == AF_LINK) &&
                 (strcmp(cur->ifa_name, pName) == 0) &&
