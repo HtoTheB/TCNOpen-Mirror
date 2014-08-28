@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: trdp_if.c 1318 2014-08-28 14:55:14Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -570,7 +570,10 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
 
                     /*    Only close socket if not used anymore    */
                     trdp_releaseSocket(pSession->iface, pSession->pRcvQueue->socketIdx, 0, FALSE);
-                    vos_memFree(pSession->pRcvQueue->pSeqCntList);
+                    if (pSession->pRcvQueue->pSeqCntList != NULL)
+                    {
+                        vos_memFree(pSession->pRcvQueue->pSeqCntList);
+                    }
                     vos_memFree(pSession->pRcvQueue->pFrame);
                     vos_memFree(pSession->pRcvQueue);
                     pSession->pRcvQueue = pNext;
@@ -1231,8 +1234,11 @@ TRDP_ERR_T  tlp_unpublish (
         trdp_queueDelElement(&appHandle->pSndQueue, pElement);
         trdp_releaseSocket(appHandle->iface, pElement->socketIdx, 0, FALSE);
         pElement->magic = 0;
+        if (pElement->pSeqCntList != NULL)
+        {
+            vos_memFree(pElement->pSeqCntList);
+        }
         vos_memFree(pElement->pFrame);
-        vos_memFree(pElement->pSeqCntList);
         vos_memFree(pElement);
         ret = TRDP_NO_ERR;
 
