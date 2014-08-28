@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1297 2014-08-25 14:38:38Z bloehr $
+ * $Id: trdp_utils.c 1319 2014-08-28 14:56:17Z bloehr $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -51,7 +51,7 @@ void printSocketUsage (
     TRDP_SOCKETS_T iface[])
 {
     INT32 lIndex = 0;
-    vos_printLog(VOS_LOG_DBG, "\n");
+    vos_printLog(VOS_LOG_DBG, "------- Socket usage -------\n");
     for (lIndex = 0; lIndex < sCurrentMaxSocketCnt; lIndex++)
     {
         if (iface[lIndex].sock == -1)
@@ -60,11 +60,13 @@ void printSocketUsage (
         }
         vos_printLog(VOS_LOG_DBG, "iface[%u].sock = %u\n", lIndex, iface[lIndex].sock);
         vos_printLog(VOS_LOG_DBG, "iface[%u].bindAddr = %x\n", lIndex, iface[lIndex].bindAddr);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].type = %u \n", lIndex, iface[lIndex].type);
+        vos_printLog(VOS_LOG_DBG, "iface[%u].type = %s \n", lIndex, (iface[lIndex].type == 0 ? "PD_UDP" :
+                                                                     (iface[lIndex].type == 1 ? "MD_UDP" : "MD_TCP")));
         vos_printLog(VOS_LOG_DBG, "iface[%u].sendParam.qos = %u\n", lIndex, iface[lIndex].sendParam.qos);
         vos_printLog(VOS_LOG_DBG, "iface[%u].sendParam.ttl = %u\n", lIndex, iface[lIndex].sendParam.ttl);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].rcvMostly = %u\n\n", lIndex, iface[lIndex].rcvMostly);
+        vos_printLog(VOS_LOG_DBG, "iface[%u].rcvMostly = %u\n", lIndex, iface[lIndex].rcvMostly);
     }
+    vos_printLog(VOS_LOG_DBG, "----------------------------\n\n");
 }
 
 /**********************************************************************************************************************/
