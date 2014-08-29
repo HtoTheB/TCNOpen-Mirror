@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1299 2014-08-26 09:41:04Z ahweiss $
+ * $Id: trdp-md-test.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -550,15 +550,15 @@ void md_callback (void *ref, TRDP_APP_SESSION_T apph,
     int test;
 
     print(0, "md_callback(%p, %p, %p, %p, %u) - ref %p",
-          ref, apph, msg, data, size, msg ? msg->pUserRef : 0);
+          ref, apph, msg, data, size, (msg != NULL ? msg->pUserRef : 0));
 
     /* test number is encoded into user reference */
     test = (int) (msg ? msg->pUserRef : 0);
     /* verify the callback is related to currently executed test */
-    if (opts.mode == MODE_CALLER && test != sts.test)
+    if (msg == NULL || (opts.mode == MODE_CALLER && test != sts.test))
     {
         print(-4, "unexpected callback ! - %s",
-              get_result_string(msg->resultCode));
+              get_result_string(msg != NULL ? msg->resultCode : 0));
         return;
     }
 

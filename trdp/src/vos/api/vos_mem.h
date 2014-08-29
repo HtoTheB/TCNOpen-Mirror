@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.h 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: vos_mem.h 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -64,7 +64,7 @@ typedef enum
 /** Default pre-allocation of free memory blocks. To avoid problems with too many small blocks and no large one.
    Specify how many of each block size that should be pre-allocated (and freed!) to pre-segment the memory area. */
 
-#define VOS_MEM_PREALLOCATE  {0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 0, 0, 4, 0, 0}
+#define VOS_MEM_PREALLOCATE  {0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 1, 0, 2, 0, 0}
 
 #else /* Small systems, PD only */
 

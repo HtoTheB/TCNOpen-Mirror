@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: test_memSizes.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -123,18 +123,19 @@ void initPacketList (
  *  @retval         none
  */
 void dbgOut (
-    void        *pRefCon,
-    TRDP_LOG_T  category,
-    const CHAR8 *pTime,
-    const CHAR8 *pFile,
-    UINT16      LineNumber,
-    const CHAR8 *pMsgStr)
+             void        *pRefCon,
+             TRDP_LOG_T  category,
+             const CHAR8 *pTime,
+             const CHAR8 *pFile,
+             UINT16      LineNumber,
+             const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
-    printf("%s %s %s:%d %s",
-           pTime,
+    const char *catStr[] = {"*Err:", "Warn:", " Inf:", " Dbg:"};
+    
+    printf("%s %s %16s:%-4d %s",
+           strrchr(pTime, '-') + 1,
            catStr[category],
-           pFile,
+           strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }

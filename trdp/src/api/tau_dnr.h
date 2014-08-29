@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1279 2014-08-07 06:18:07Z ahweiss $
+ * $Id: tau_dnr.h 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -384,7 +384,7 @@ EXT_DECL TRDP_ERR_T tau_label2TcnCstNo (
 /**    Function to retrieve the operational consist sequence number of the consist hosting a vehicle with label vehLabel.
  *  
  *
- *  @param[out]     opCstNo         Pointer to the operational consist number to be returned
+ *  @param[out]     pOpCstNo        Pointer to the operational consist number to be returned
  *  @param[in,out]  pTopoCnt        Pointer to the actual topo count. If !=0 will be checked. Returns the actual one.
  *  @param[in]      vehLabel        Pointer to a vehicle label. NULL means own vehicle, so the own IEC consist number is returned.
  *

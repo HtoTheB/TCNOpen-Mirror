@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1322 2014-08-28 16:06:13Z bloehr $
+ * $Id: vos_utils.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -132,6 +132,29 @@ static BOOL8        sIsBigEndian = FALSE;
 /***********************************************************************************************************************
  * LOCAL FUNCTIONS
  */
+
+#ifdef DEBUG
+#include "trdp_private.h"
+/**********************************************************************************************************************/
+/** Print sizes of used structs.
+ *
+ *  @retval        none
+ */
+void printStructSizes ()
+{
+    vos_printLog(VOS_LOG_DBG, "Size(in Bytes) of\n");
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "TRDP_SESSION_T", sizeof(TRDP_SESSION_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "TRDP_SOCKETS_T", sizeof(TRDP_SOCKETS_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "TRDP_SEQ_CNT_LIST_T", sizeof(TRDP_SEQ_CNT_LIST_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "TRDP_SEQ_CNT_ENTRY_T", sizeof(TRDP_SEQ_CNT_ENTRY_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "PD_ELE_T", sizeof(PD_ELE_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "PD_PACKET_T", sizeof(PD_PACKET_T));
+#if MD_SUPPORT
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "MD_ELE_T", sizeof(MD_ELE_T));
+    vos_printLog(VOS_LOG_DBG, "\t%-22s:\t%lu\n", "MD_LIS_ELE_T", sizeof(MD_LIS_ELE_T));
+#endif
+}
+#endif
 
 /**********************************************************************************************************************/
 /** Pre-compute alignment and endianess.
@@ -257,7 +280,9 @@ VOS_ERR_T vos_initRuntimeConsts (void)
     {
         err = VOS_NO_ERR;
     }
-
+#ifdef DEBUG
+    printStructSizes();
+#endif
     return err;
 #else
     return VOS_NO_ERR;

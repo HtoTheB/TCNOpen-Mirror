@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: test_trafficShaping.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -119,16 +119,17 @@ void dbgOut (
              UINT16      LineNumber,
              const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
+    const char *catStr[] = {"*Err:", "Warn:", " Inf:", " Dbg:"};
+    
     if (category == VOS_LOG_DBG)
     {
         return;
     }
 
-    printf("%s %s %s:%d %s",
-           pTime,
+    printf("%s %s %16s:%-4d %s",
+           strrchr(pTime, '-') + 1,
            catStr[category],
-           pFile,
+           strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }

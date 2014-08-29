@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1160 2014-02-12 11:53:21Z ahweiss $
+ * $Id: vos_mem.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -555,6 +555,7 @@ EXT_DECL void vos_memFree (void *pMemBlock)
             pBlock->pNext = gMem.freeBlock[i].pFirst;
             gMem.freeBlock[i].pFirst = pBlock;
 
+            vos_printLog(VOS_LOG_DBG, "vos_memFree() %p, size %u\n", pMemBlock, pBlock->size);
             /* Destroy the size first in the block. If user tries to return same memory this will then fail. */
             pBlock->size = 0;
         }

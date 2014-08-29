@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.h 1279 2014-08-07 06:18:07Z ahweiss $
+ * $Id: tau_ctrl.h 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -113,8 +113,8 @@ EXT_DECL TRDP_ERR_T tau_setEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
 /**    Function to get ECSP status information
  *
  *  @param[in]      appHandle       Application Handle
- *  @param[in/out]  pEcspStat       Pointer to the ECSP status structure
- *  @param[in/out]  pPdInfo         Pointer to PD status information
+ *  @param[in,out]  pEcspStat       Pointer to the ECSP status structure
+ *  @param[in,out]  pPdInfo         Pointer to PD status information
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_NOINIT_ERR module not initialised
@@ -129,9 +129,9 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat ( TRDP_APP_SESSION_T   appHandle,
 /**********************************************************************************************************************/
 /**    Function for ECSP confirmation/correction request, reply will be received via call back
  *
- *  @param[in]      TRDP_APP_SESSION_T  appHandle
+ *  @param[in]      appHandle           Application Handle
  *  @param[in]      pUserRef            user reference returned with reply
- *  @param[in]      EcspConfRequest     Pointer to confirmation data       
+ *  @param[in]      pEcspConfRequest    Pointer to confirmation data       
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_NOINIT_ERR module not initialised

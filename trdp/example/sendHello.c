@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1264 2014-07-14 15:54:26Z bloehr $
+ * $Id: sendHello.c 1323 2014-08-29 14:09:08Z bloehr $
  *
  */
 
@@ -45,7 +45,7 @@
 #define PD_COMID_CYCLE  1000000             /* in us (1000000 = 1 sec) */
 
 /* We use dynamic memory    */
-#define RESERVED_MEMORY  100000
+#define RESERVED_MEMORY  160000
 
 /**********************************************************************************************************************/
 /** callback routine for TRDP logging/error output
@@ -68,9 +68,9 @@ void dbgOut (
 {
     const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
     printf("%s %s %s:%d %s",
-           pTime,
+           strrchr(pTime, '-') + 1,
            catStr[category],
-           pFile,
+           strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }
