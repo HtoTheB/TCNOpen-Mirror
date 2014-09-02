@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1305 2014-08-26 13:33:17Z ahweiss $
+ * $Id: receiveHello.c 1325 2014-09-02 12:06:15Z bloehr $
  *
  */
 
@@ -188,12 +188,11 @@ int main (int argc, char *argv[])
                          0,                         /*    etbTopoCnt: local consist only        */
                          0,                         /*    opTopoCnt                             */
                          0,                         /*    Source IP filter                      */
-                         0,                         /*    2nd Source IP filter                  */
                          0,                         /*    Default destination    (or MC Group)  */
                          0,                         /*    TRDP flags                            */
                          PD_COMID_CYCLE * 3,        /*    Time out in us                        */
-                         TRDP_TO_SET_TO_ZERO,       /*    delete invalid data on timeout        */
-                         sizeof(gBuffer));          /*    net data size                         */
+                         TRDP_TO_SET_TO_ZERO       /*    delete invalid data on timeout        */
+                         );
 
     if (err != TRDP_NO_ERR)
     {
