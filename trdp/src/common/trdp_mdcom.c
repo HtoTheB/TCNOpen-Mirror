@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1322 2014-08-28 16:06:13Z bloehr $
+ * $Id: trdp_mdcom.c 1326 2014-09-03 08:52:34Z railroad-mike $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -2717,7 +2717,7 @@ TRDP_ERR_T trdp_mdCommonSend (
         }
 
         /* payload */
-        if ((pData != NULL) && (dataSize > 0) && (dataSize <= TRDP_MAX_MD_PACKET_SIZE))
+        if ((pData != NULL) && (dataSize > 0) && (dataSize <= TRDP_MAX_MD_DATA_SIZE))
         {
             /* Copy payload */
             memcpy(pSenderElement->pPacket->data, pData, dataSize);
