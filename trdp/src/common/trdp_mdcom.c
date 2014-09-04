@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1326 2014-09-03 08:52:34Z railroad-mike $
+ * $Id: trdp_mdcom.c 1327 2014-09-04 09:21:51Z bloehr $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -1016,6 +1016,19 @@ TRDP_ERR_T  trdp_mdRecv (
                 {
                     continue;
                 }
+
+                if (pH->etbTopoCnt != 0 && (vos_ntohl(pH->etbTopoCnt) != iterListener->addr.etbTopoCnt))
+                {
+                    /* wrong topo count, this listener must be updated (re-added) */
+                    continue;
+                }
+
+                if (pH->opTrnTopoCnt != 0 && (vos_ntohl(pH->opTrnTopoCnt) != iterListener->addr.opTrnTopoCnt))
+                {
+                    /* wrong topo count, this listener must be updated (re-added) */
+                    continue;
+                }
+
                 /* If multicast address is set, but does not match, we go to the next listener (if any) */
                 if (iterListener->addr.mcGroup != 0 &&
                     iterListener->addr.mcGroup != appHandle->pMDRcvEle->addr.destIpAddr)
@@ -1023,6 +1036,7 @@ TRDP_ERR_T  trdp_mdRecv (
                     /* no IP match for unicast addressing */
                     continue;
                 }
+                
                 if ((iterListener->destURI[0] == 0 &&                               /* ComId listener ?    */
                      vos_ntohl(pH->comId) == iterListener->addr.comId) ||
                     (iterListener->destURI[0] != 0 &&                               /* URI listener   */
@@ -1034,7 +1048,9 @@ TRDP_ERR_T  trdp_mdRecv (
                     iterMD->pUserRef        = iterListener->pUserRef;
                     iterMD->pfCbFunction    = iterListener->pfCbFunction;
                     iterMD->stateEle        = state;
-                    
+                    iterMD->addr.etbTopoCnt = iterListener->addr.etbTopoCnt;
+                    iterMD->addr.opTrnTopoCnt = iterListener->addr.opTrnTopoCnt;
+
                     /* Count this Request/Notification as new session */
                     iterListener->numSessions++;
 
@@ -1095,6 +1111,12 @@ TRDP_ERR_T  trdp_mdRecv (
             /* search for existing session  */
             for (iterMD = appHandle->pMDRcvQueue; iterMD != NULL; iterMD = iterMD->pNext)
             {
+                if ((pH->etbTopoCnt != 0 && iterMD->addr.etbTopoCnt != vos_ntohl(pH->etbTopoCnt)) ||
+                    (pH->opTrnTopoCnt != 0 && iterMD->addr.opTrnTopoCnt != vos_ntohl(pH->opTrnTopoCnt)))
+                {
+                    /* wrong topo count, this receiver is outdated */
+                    continue;
+                }
                 if (0 == memcmp(iterMD->pPacket->frameHead.sessionID, pH->sessionID, TRDP_SESS_ID_SIZE))
                 {
                     /* throw away old packet data  */
@@ -1111,8 +1133,6 @@ TRDP_ERR_T  trdp_mdRecv (
 
                     iterMD->curSeqCnt       = vos_ntohl(pH->sequenceCounter);
                     iterMD->addr.comId      = vos_ntohl(pH->comId);
-                    iterMD->addr.etbTopoCnt  = vos_ntohl(pH->etbTopoCnt);
-                    iterMD->addr.opTrnTopoCnt  = vos_ntohl(pH->opTrnTopoCnt);
                     iterMD->addr.srcIpAddr  = appHandle->pMDRcvEle->addr.srcIpAddr;
                     iterMD->addr.destIpAddr = appHandle->pMDRcvEle->addr.destIpAddr;
                     /* why??? 
@@ -1130,6 +1150,12 @@ TRDP_ERR_T  trdp_mdRecv (
             /* search for existing session */
             for (iterMD = appHandle->pMDSndQueue; iterMD != NULL; iterMD = iterMD->pNext)
             {
+                if ((pH->etbTopoCnt != 0 && iterMD->addr.etbTopoCnt != vos_ntohl(pH->etbTopoCnt)) ||
+                    (pH->opTrnTopoCnt != 0 && iterMD->addr.opTrnTopoCnt != vos_ntohl(pH->opTrnTopoCnt)))
+                {
+                    /* wrong topo count, this receiver is outdated */
+                    continue;
+                }
                 if (0 == memcmp(iterMD->pPacket->frameHead.sessionID, pH->sessionID, TRDP_SESS_ID_SIZE))
                 {
                     /* throw away old data  */
@@ -1148,8 +1174,6 @@ TRDP_ERR_T  trdp_mdRecv (
 
                     /* Copy other identification params */
                     iterMD->addr.comId          = vos_ntohl(pH->comId);
-                    iterMD->addr.etbTopoCnt     = vos_ntohl(pH->etbTopoCnt);
-                    iterMD->addr.opTrnTopoCnt   = vos_ntohl(pH->opTrnTopoCnt);
                     iterMD->addr.srcIpAddr      = appHandle->pMDRcvEle->addr.srcIpAddr;
                     iterMD->addr.destIpAddr     = appHandle->pMDRcvEle->addr.destIpAddr;
                     
