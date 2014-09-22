@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1297 2014-08-25 14:38:38Z bloehr $
+ * $Id: trdp_utils.h 1331 2014-09-22 11:12:05Z railroad-mike $
  *
  */
 
@@ -40,7 +40,15 @@
                                  ((0x00FF0000 & (UINT32)val) >> 8)  | \
                                  ((0x0000FF00 & (UINT32)val) << 8)  | \
                                  ((0x000000FF & (UINT32)val) << 24))
-#define MAKE_LE(a)      ((am_big_endian()) ? Swap32(a) : (a))
+
+#if B_ENDIAN
+/* introduce byte swapping on big endian machines needed for CRC handling */
+#define MAKE_LE(a)      Swap32(a)
+#else
+#if L_ENDIAN
+#define MAKE_LE(a)      (a)
+#endif
+#endif
 
 #define TRDP_INVALID_SOCKET_INDEX  -1
 
@@ -52,7 +60,7 @@
  * GLOBAL FUNCTIONS
  */
 
-extern int          am_big_endian ();
+
 extern TRDP_LOG_T   gDebugLevel;
 
 PD_ELE_T            *trdp_queueFindComId (

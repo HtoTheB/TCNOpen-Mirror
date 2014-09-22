@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1327 2014-09-04 09:21:51Z bloehr $
+ * $Id: trdp_utils.c 1331 2014-09-22 11:12:05Z railroad-mike $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -150,18 +150,6 @@ BOOL8 trdp_SockDelJoin (
 /***********************************************************************************************************************
  *   Globals
  */
-
-/**********************************************************************************************************************/
-/** Determine if we are Big or Little endian
- *
- *  @retval         != 0        we are big endian
- *  @retval         0           we are little endian
- */
-int am_big_endian ()
-{
-    int one = 1;
-    return !(*((char *)(&one)));
-}
 
 
 /**********************************************************************************************************************/
