@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1228 2014-06-06 06:26:53Z railroad-mike $*
+ * $Id: vos_sock.c 1332 2014-09-22 13:10:58Z railroad-mike $*
  *
  */
 
@@ -214,7 +214,17 @@ EXT_DECL UINT32 vos_ntohl (
 EXT_DECL UINT32 vos_dottedIP (
     const CHAR8 *pDottedIP)
 {
-    return vos_ntohl((UINT32)inet_addr((char*)pDottedIP));
+    struct in_addr addr;
+    /* vxWorks does not regard the const qualifier for first parameter */
+    /* casting to non const, helps to get rid of compiler noise        */
+    if (inet_aton((CHAR8*)pDottedIP, &addr) <= 0)
+    {
+        return 0;   /* Prevent returning broadcast address on error */
+    }
+    else
+    {
+        return vos_ntohl(addr.s_addr);
+    }
 }
 
 /**********************************************************************************************************************/

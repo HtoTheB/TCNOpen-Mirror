@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1322 2014-08-28 16:06:13Z bloehr $
+ * $Id: vos_sock.c 1332 2014-09-22 13:10:58Z railroad-mike $
  *
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
  *
@@ -284,7 +284,7 @@ EXT_DECL UINT32 vos_dottedIP (
     const CHAR8 *pDottedIP)
 {
     struct in_addr addr;
-    if (inet_aton(pDottedIP, &addr) < 0)
+    if (inet_aton(pDottedIP, &addr) <= 0)
     {
         return 0;   /* Prevent returning broadcast address on error */
     }

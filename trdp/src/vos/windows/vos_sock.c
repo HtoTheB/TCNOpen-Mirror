@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1230 2014-06-06 11:44:28Z ahweiss $*
+ * $Id: vos_sock.c 1332 2014-09-22 13:10:58Z railroad-mike $*
  *
  */
 
@@ -210,7 +210,22 @@ EXT_DECL UINT32 vos_ntohl (
 EXT_DECL UINT32 vos_dottedIP (
     const CHAR8 *pDottedIP)
 {
-    return vos_ntohl(inet_addr(pDottedIP));
+    UINT32 conversionResult;
+    conversionResult = inet_addr(pDottedIP);
+    /* Accd. MSDN the values INADDR_NONE and INADDR_ANY */
+    /* indicate conversion errors, therefore zero has   */
+    /* to be returned in order to have similar behavior */
+    /* as by using inet_aton                            */
+    if ((conversionResult == INADDR_NONE)
+        ||
+        (conversionResult == INADDR_ANY))
+    {
+        return 0;
+    }
+    else
+    {
+        return vos_ntohl(inet_addr(pDottedIP));
+    }
 }
 
 /**********************************************************************************************************************/
