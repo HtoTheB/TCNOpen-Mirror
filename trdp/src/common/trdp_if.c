@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1329 2014-09-04 16:03:50Z bloehr $
+ * $Id: trdp_if.c 1336 2014-09-30 07:25:02Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -2114,8 +2114,7 @@ EXT_DECL TRDP_ERR_T tlp_get (
             pPdInfo->protVersion    = vos_ntohs(pElement->pFrame->frameHead.protocolVersion);
             pPdInfo->replyComId     = vos_ntohl(pElement->pFrame->frameHead.replyComId);
             pPdInfo->replyIpAddr    = vos_ntohl(pElement->pFrame->frameHead.replyIpAddress);
-            pPdInfo->pUserRef       = pElement->pUserRef;        /* TBD: User reference given with the local subscribe?
-                                                                 */
+            pPdInfo->pUserRef       = pElement->pUserRef;
             pPdInfo->resultCode     = TRDP_NO_ERR;
         }
 

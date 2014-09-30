@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: trdp_types.h 1336 2014-09-30 07:25:02Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
@@ -417,7 +417,8 @@ typedef struct
     TRDP_IP_ADDR_T      joinedAddr; /**< Joined IP address   */
     TRDP_IP_ADDR_T      filterAddr; /**< Filter IP address, i.e IP address of the sender for this subscription, 0.0.0.0
                                             in case all senders. */
-    void                *callBack;  /**< Reference for call back function if used */
+    UINT32              callBack;   /**< call back function if used */
+    UINT32              userRef;    /**< User reference if used */
     UINT32              timeout;    /**< Time-out value in us. 0 = No time-out supervision */
     TRDP_ERR_T          status;     /**< Receive status information TRDP_NO_ERR, TRDP_TIMEOUT_ERR */
     TRDP_TO_BEHAVIOR_T  toBehav;    /**< Behavior at time-out. Set data to zero / keep last value */
@@ -443,7 +444,7 @@ typedef struct
     UINT32          comId;      /**< ComId to listen to */
     TRDP_URI_USER_T uri;        /**< URI user part to listen to */
     TRDP_IP_ADDR_T  joinedAddr; /**< Joined IP address */
-    UINT32          callBack;   /**< Call back function reference if used */
+    UINT32          callBack;   /**< Call back function if used */
     UINT32          userRef;    /**< User reference if used */
     UINT32          numSessions;/**< Number of sessions  */
 } TRDP_LIST_STATISTICS_T;
