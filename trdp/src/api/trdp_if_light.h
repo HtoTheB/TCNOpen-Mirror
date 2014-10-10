@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1327 2014-09-04 09:21:51Z bloehr $
+ * $Id: trdp_if_light.h 1338 2014-10-10 13:59:48Z railroad-mike $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -577,6 +577,7 @@ EXT_DECL TRDP_ERR_T tlm_notify (
  *  @param[in]      pktFlags            OPTIONS: TRDP_FLAGS_DEFAULT, TRDP_FLAGS_MARSHALL, TRDP_PLAGS_TCP
  *  @param[in]      numReplies          number of expected replies, 0 if unknown
  *  @param[in]      replyTimeout        timeout for reply
+ *  @param[in]      maxNumRetries       maximum number of retries (0 … 2)
  *  @param[in]      pSendParam          Pointer to send parameters, NULL to use default send parameters
  *  @param[in]      pData               pointer to packet data / dataset
  *  @param[in]      dataSize            size of packet data
@@ -601,6 +602,7 @@ EXT_DECL TRDP_ERR_T tlm_request (
     TRDP_FLAGS_T            pktFlags,
     UINT32                  numReplies,
     UINT32                  replyTimeout,
+    UINT32                  maxNumRetries,
     const TRDP_SEND_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,

@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1337 2014-10-10 10:39:23Z railroad-mike $
+ * $Id: trdp_mdcom.c 1338 2014-10-10 13:59:48Z railroad-mike $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -2562,6 +2562,7 @@ TRDP_ERR_T trdp_mdCommonSend (
                              UINT32                  numExpReplies,
                              UINT32                  replyTimeout,
                              INT32                   replyStatus,
+                             UINT32                  maxNumRetries,
                              const TRDP_SEND_PARAM_T *pSendParam,
                              const UINT8             *pData,
                              UINT32                  dataSize,

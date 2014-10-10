@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1323 2014-08-29 14:09:08Z bloehr $
+ * $Id: tau_ctrl.c 1338 2014-10-10 13:59:48Z railroad-mike $
  *
  *
  */
@@ -72,13 +72,13 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                                        TRDP_IP_ADDR_T       ecspIpAddr, 
                                        TRDP_IP_ADDR_T       ecscIpAddr)
 {
-	/* session already opened, handle publish/subscribe */
+    /* session already opened, handle publish/subscribe */
     TRDP_ERR_T             err;
     
     priv_ecspIpAddr = ecspIpAddr;
     priv_ecscIpAddr = ecscIpAddr;
 
-	/*    Copy the packet into the internal send queue, prepare for sending.    */
+    /*    Copy the packet into the internal send queue, prepare for sending.    */
     /*    If we change the data, just re-publish it    */
     err = tlp_publish(  appHandle,                  /*    our application identifier        */
                         &priv_pubHandle,            /*    our pulication identifier         */
@@ -142,7 +142,7 @@ EXT_DECL TRDP_ERR_T tau_terminateEcspCtrl (TRDP_APP_SESSION_T   appHandle)
     {
         /* clean up */
         TRDP_ERR_T             err;
-	
+
         priv_ecspCtrlInitialised = FALSE;
 
         err = tlp_unpublish(appHandle, priv_pubHandle);
@@ -159,7 +159,7 @@ EXT_DECL TRDP_ERR_T tau_terminateEcspCtrl (TRDP_APP_SESSION_T   appHandle)
             return err;
         }
 
-	    return err;
+        return err;
     }
 
     return TRDP_NOINIT_ERR;
@@ -251,6 +251,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
                             TRDP_FLAGS_NONE,                /* pktFlags */
                             1,                              /* numReplies */
                             ECSP_CONF_REPLY_TIMEOUT,        /* replyTimeout */
+                            0,                              /* maxNumRetries */
                             NULL,                           /* pSendParam */
                             (const UINT8 *) &pEcspConfRequest,
                             sizeof(TRDP_ECSP_CONF_REQUEST_T),
