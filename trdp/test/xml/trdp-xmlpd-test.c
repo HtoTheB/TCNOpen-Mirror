@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1299 2014-08-26 09:41:04Z ahweiss $
+ * $Id: trdp-xmlpd-test.c 1339 2014-10-10 14:08:52Z railroad-mike $
  *
  */
 
@@ -788,7 +788,7 @@ static TRDP_ERR_T subscribeTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
         /*  Subscribe the telegram    */
         result = tlp_subscribe(
             pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL, pExchgPar->comId, 
-            0, 0, srcIP1, srcIP2, destMCIP, flags, timeout, toBehav, pSubTlg->dataset.size);
+            0, 0, srcIP1, destMCIP, flags, timeout, toBehav);
         if (result != TRDP_NO_ERR)
         {
             printf("tlp_subscribe for comID %u, srcID %u failed: %s\n", 

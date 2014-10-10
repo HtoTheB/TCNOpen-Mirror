@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1323 2014-08-29 14:09:08Z bloehr $
+ * $Id: trdp-md-test.c 1339 2014-10-10 14:08:52Z railroad-mike $
  *
  */
 
@@ -1108,6 +1108,7 @@ void send_msg (TRDP_MD_INFO_T *msg, TRDP_FLAGS_T flags)
                     flags,                          /* flags */
                     msg->numExpReplies,             /* number of expected replies */
                     opts.tmo * 1000,                /* reply timeout [usec] */
+                    2,                              /* maxNumRetries */
                     NULL,                           /* send parameters */
                     (UINT8 *) buf,                  /* dataset buffer */
                     opts.msgsz,                     /* dataset size */
