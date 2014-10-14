@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1338 2014-10-10 13:59:48Z railroad-mike $
+ * $Id: trdp_if_light.h 1341 2014-10-14 16:05:53Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -230,7 +230,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
 
 /**********************************************************************************************************************/
 /** Prepare for sending PD messages.
- *  Queue a PD message, it will be send when trdp_work has been called
+ *  Queue a PD message, it will be send when tlc_publish has been called
  *
  *  @param[in]      appHandle           the handle returned by tlc_init
  *  @param[out]     pPubHandle          returned handle for related re/unpublish
@@ -269,7 +269,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
 
 /**********************************************************************************************************************/
 /** Prepare for sending PD messages.
- *  Reinitialize and queue a PD message, it will be send when trdp_work has been called
+ *  Reinitialize and queue a PD message, it will be send when tlc_publish has been called
  *
  *  @param[in]      appHandle           the handle returned by tlc_init
  *  @param[in]      pubHandle           handle for related unpublish
