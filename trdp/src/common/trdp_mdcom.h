@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.h 1338 2014-10-10 13:59:48Z railroad-mike $
+ * $Id: trdp_mdcom.h 1345 2014-10-16 13:43:05Z railroad-mike $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -46,31 +46,8 @@
 TRDP_ERR_T  trdp_mdGetTCPSocket (
     TRDP_SESSION_PT pSession);
 
-void        trdp_mdCloseSessions (
-    TRDP_SESSION_PT appHandle,
-    INT32 socketIndex,
-    INT32 newSocket,
-    BOOL8 checkAllSockets);
-
 void        trdp_mdFreeSession (
     MD_ELE_T *pMDSession);
-
-void        trdp_mdSetSessionTimeout (
-    MD_ELE_T    *pMDSession,
-    UINT32      usTimeOut);
-
-TRDP_ERR_T  trdp_mdSendPacket (
-    INT32       mdSock,
-    UINT32      port,
-    MD_ELE_T    *pPacket);
-
-void        trdp_mdUpdatePacket (
-    MD_ELE_T *pPacket);
-
-TRDP_ERR_T  trdp_mdRecv (
-    TRDP_SESSION_PT appHandle,
-    UINT32          sock/*,
-    TRDP_SOCK_TYPE_T    sockType*/);
 
 TRDP_ERR_T  trdp_mdSend (
     TRDP_SESSION_PT appHandle);
