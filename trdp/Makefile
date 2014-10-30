@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1343 2014-10-15 13:44:16Z railroad-mike $
+#// $Id: Makefile 1348 2014-10-30 14:47:47Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -120,7 +120,7 @@ libtrdp:	outdir $(OUTDIR)/libtrdp.a
 
 example:	outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello
 
-test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/test_mdSingle
+test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest
 
 pdtest:		outdir $(OUTDIR)/trdp-pd-test $(OUTDIR)/pd_md_responder $(OUTDIR)/testSub
 
@@ -231,6 +231,14 @@ $(OUTDIR)/mdTest4: mdTest4.c  $(OUTDIR)/libtrdp.a
 $(OUTDIR)/test_mdSingle: test_mdSingle.c $(OUTDIR)/libtrdp.a
 			@echo ' ### Building MD single test application $(@F)'
 			$(CC) test/diverse/test_mdSingle.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
+
+$(OUTDIR)/inaugTest:   diverse/inaugTest.c  $(OUTDIR)/libtrdp.a
+			@echo ' ### Building republish test $(@F)'
+			$(CC) test/diverse/inaugTest.c \
 			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
