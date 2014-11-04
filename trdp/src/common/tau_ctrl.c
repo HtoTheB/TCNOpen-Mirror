@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1338 2014-10-10 13:59:48Z railroad-mike $
+ * $Id: tau_ctrl.c 1349 2014-11-04 11:40:43Z ahweiss $
  *
  *
  */
@@ -224,6 +224,7 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat ( TRDP_APP_SESSION_T   appHandle,
  *
  *  @param[in]      appHandle           Application Handle
  *  @param[in]      pUserRef            user reference returned with reply
+ *  @param[in]      pfCbFunction        Pointer to callback function, NULL for default
  *  @param[in]      pEcspConfRequest    Pointer to confirmation data
  *
  *  @retval         TRDP_NO_ERR     no error
@@ -233,6 +234,7 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat ( TRDP_APP_SESSION_T   appHandle,
  */
 EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandle,
                                              const void                *pUserRef,
+                                             TRDP_MD_CALLBACK_T         pfCbFunction,
                                              TRDP_ECSP_CONF_REQUEST_T  *pEcspConfRequest)
 {
     if (priv_ecspCtrlInitialised == TRUE)
@@ -241,7 +243,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
        
         return tlm_request( appHandle,                      /* appHandle */
                             pUserRef,                       /* pUserRef */
-                            NULL,                           /* callback function */
+                            pfCbFunction,                   /* callback function */
                             &sessionId,                     /* pSessionId */
                             TRDP_ECSP_CONF_REQUEST_COMID,   /* comId */
                             0,                              /* etbTopoCnt */
