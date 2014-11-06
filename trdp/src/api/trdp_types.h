@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1336 2014-09-30 07:25:02Z ahweiss $
+ * $Id: trdp_types.h 1350 2014-11-06 12:41:20Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
@@ -155,8 +155,8 @@ typedef VOS_FDS_T TRDP_FDS_T;
 /** Reply status messages    */
 typedef enum
 {
-    TRDP_REPLY_OK = 0,
-    TRDP_REPLY_APPL_TIMEOUT         = -1,
+    TRDP_REPLY_OK                   = 0,
+    TRDP_REPLY_RESERVED01           = -1,
     TRDP_REPLY_SESSION_ABORT        = -2,
     TRDP_REPLY_NO_REPLIER_INST      = -3,
     TRDP_REPLY_NO_MEM_REPL          = -4,
@@ -164,7 +164,7 @@ typedef enum
     TRDP_REPLY_NO_REPLY             = -6,
     TRDP_REPLY_NOT_ALL_REPLIES      = -7,
     TRDP_REPLY_NO_CONFIRM           = -8,
-    TRDP_REPLY_WRONG_TOPO_COUNT     = -9,
+    TRDP_REPLY_RESERVED02           = -9,
     TRDP_REPLY_SENDING_FAILED       = -10,
     TRDP_REPLY_UNSPECIFIED_ERROR    = -99
 } TRDP_REPLY_STATUS_T;
