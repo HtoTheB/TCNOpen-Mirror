@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1331 2014-09-22 11:12:05Z railroad-mike $
+ * $Id: trdp_utils.h 1353 2014-11-11 15:11:13Z ahweiss $
  *
  */
 
@@ -41,11 +41,11 @@
                                  ((0x0000FF00 & (UINT32)val) << 8)  | \
                                  ((0x000000FF & (UINT32)val) << 24))
 
-#if B_ENDIAN
+#ifdef B_ENDIAN
 /* introduce byte swapping on big endian machines needed for CRC handling */
 #define MAKE_LE(a)      Swap32(a)
 #else
-#if L_ENDIAN
+#ifdef L_ENDIAN
 #define MAKE_LE(a)      (a)
 #endif
 #endif

@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1333 2014-09-22 14:04:14Z railroad-mike $
+ * $Id: vos_utils.c 1353 2014-11-11 15:11:13Z ahweiss $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -215,7 +215,7 @@ VOS_ERR_T vos_initRuntimeConsts (void)
 #endif
 #endif
 
-#if B_ENDIAN
+#ifdef B_ENDIAN
     if (sIsBigEndian == FALSE)
 #else
     if (sIsBigEndian == TRUE)
