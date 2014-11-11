@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1349 2014-11-04 11:40:43Z ahweiss $
+ * $Id: tau_ctrl.c 1354 2014-11-11 15:22:13Z ahweiss $
  *
  *
  */
@@ -240,7 +240,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
     if (priv_ecspCtrlInitialised == TRUE)
     {
         TRDP_UUID_T sessionId;                 /*    Our session ID for sending MD                             */
-       
+
         return tlm_request( appHandle,                      /* appHandle */
                             pUserRef,                       /* pUserRef */
                             pfCbFunction,                   /* callback function */

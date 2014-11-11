@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1341 2014-10-14 16:05:53Z bloehr $
+ * $Id: trdp_if.c 1354 2014-11-11 15:22:13Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -2061,7 +2061,7 @@ EXT_DECL TRDP_ERR_T tlp_resubscribe (
             if (ret != TRDP_NO_ERR)
             {
                 /* This is a critical error: We must unsubscribe! */
-                tlp_unsubscribe(appHandle, subHandle);
+                (void) tlp_unsubscribe(appHandle, subHandle);
                 vos_printLog(VOS_LOG_ERROR, "tlp_resubscribe() failed, out of sockets\n");
             }
             else
@@ -2656,7 +2656,7 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
             if (ret != TRDP_NO_ERR)
             {
                 /* This is a critical error: We must delete the listener! */
-                tlm_delListener(appHandle, listenHandle);
+                (void) tlm_delListener(appHandle, listenHandle);
                 vos_printLog(VOS_LOG_ERROR, "tlm_readdListener() failed, out of sockets\n");
             }
             else

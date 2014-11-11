@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1329 2014-09-04 16:03:50Z bloehr $
+ * $Id: trdp_pdcom.c 1354 2014-11-11 15:22:13Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -466,7 +466,7 @@ TRDP_ERR_T  trdp_pdReceive (
         switch (trdp_checkSequenceCounter(pExistingElement,
                                           vos_ntohl(pNewFrame->frameHead.sequenceCounter),
                                           subAddresses.srcIpAddr,
-                                          vos_ntohs(pNewFrame->frameHead.msgType)))
+                                          (TRDP_MSG_T) vos_ntohs(pNewFrame->frameHead.msgType)))
         {
             case 0:                     /* Sequence counter is valid (at least 1 higher than previous one) */
                 break;

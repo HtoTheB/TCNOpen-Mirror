@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1345 2014-10-16 13:43:05Z railroad-mike $
+ * $Id: trdp_mdcom.c 1354 2014-11-11 15:22:13Z ahweiss $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -1645,6 +1645,7 @@ static TRDP_ERR_T  trdp_mdRecv (
         case TRDP_MSG_MP:
             /*  */
             iterMD = trdp_mdHandleConfirmReply(appHandle, pH);
+            break;
         default:
             /* Shall never get here! */
             break;
@@ -2914,7 +2915,6 @@ TRDP_ERR_T trdp_mdCommonSend (
         pSenderElement->pPacket->frameHead.replyTimeout = 0;
     }
 
-
     if ( srcURI != NULL )
     {
         memcpy((CHAR8 *)pSenderElement->pPacket->frameHead.sourceURI, srcURI, TRDP_MAX_URI_USER_LEN);
@@ -2926,7 +2926,10 @@ TRDP_ERR_T trdp_mdCommonSend (
     }
 
     /* pData and the corresponding dataSize have been checked already - just use them here */
-    memcpy(pSenderElement->pPacket->data, pData, dataSize);
+    if (pData != NULL)
+    {
+        memcpy(pSenderElement->pPacket->data, pData, dataSize);
+    }
 
     /* Insert element in send queue */
     if ( TRUE == newSession )
