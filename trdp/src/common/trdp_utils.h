@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1353 2014-11-11 15:11:13Z ahweiss $
+ * $Id: trdp_utils.h 1360 2014-11-17 09:59:26Z railroad-mike $
  *
  */
 
@@ -272,4 +272,8 @@ BOOL8 trdp_isAddressed (
     const TRDP_URI_USER_T   listUri,
     const TRDP_URI_USER_T   destUri);
 
+
+TRDP_ERR_T trdpCheckTopograhy(TRDP_APP_SESSION_T appHandle,
+                              UINT32             etbTopoCnt,
+                              UINT32             opTrnTopoCnt);
 #endif
