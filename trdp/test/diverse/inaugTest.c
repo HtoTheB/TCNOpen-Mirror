@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1347 2014-10-30 14:46:35Z bloehr $
+ * $Id: inaugTest.c 1361 2014-11-21 07:47:23Z railroad-mike $
  *
  */
 
@@ -626,10 +626,11 @@ int main (int argc, char * *argv)
                 int nread;
                 UINT32  addr;
                 UINT8 buffer[256];
+                int i;
                 ioctl(STDIN_FILENO,FIONREAD, &nread);
                 nread = read(STDIN_FILENO, buffer, nread);
                 buffer[nread] = 0;
-                for (int i = 0; buffer[i] != 0; i++)
+                for (i = 0; buffer[i] != 0; i++)
                 {
                     switch (buffer[i])
                     {
