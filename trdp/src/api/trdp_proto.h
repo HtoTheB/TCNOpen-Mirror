@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_proto.h 1316 2014-08-27 15:05:54Z bloehr $
+ * $Id: trdp_proto.h 1363 2014-11-21 14:25:16Z railroad-mike $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -52,6 +52,8 @@
 /*  Default MD communication parameters   */
 #define TRDP_MD_DEFAULT_QOS     3
 #define TRDP_MD_DEFAULT_TTL     64
+/*  Definitions for time out behaviour accd. table A.17 */
+#define TDRP_MD_INFINITE_TIME 0xFFFFFFFF
 
 /*  Default PD communication parameters   */
 #define TRDP_PD_DEFAULT_QOS     5
