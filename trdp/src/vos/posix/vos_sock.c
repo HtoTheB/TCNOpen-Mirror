@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1332 2014-09-22 13:10:58Z railroad-mike $
+ * $Id: vos_sock.c 1367 2014-11-25 12:49:11Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
  *
@@ -1533,4 +1533,28 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
         }
     }
     return result;
+}
+
+
+/**********************************************************************************************************************/
+/** Determines the address to bind to since the behaviour in the different OS is different
+ *  @param[in]      srcIP           IP to bind to (0 = any address)
+ *  @param[in]      mcGroup         MC group to join (0 = do not join)
+ *  @param[in]      rcvMostly       primarily used for receiving (tbd: bind on sender, too?)
+ *
+ *  @retval         Address to bind to
+ */
+EXT_DECL VOS_IP4_ADDR_T vos_determineBindAddr( VOS_IP4_ADDR_T   srcIP,
+                                               VOS_IP4_ADDR_T   mcGroup,
+                                               VOS_IP4_ADDR_T   rcvMostly)
+{
+	/* On Linux, binding to an interface address will prevent receiving of MCs! */ 
+    if (vos_isMulticast(mcGroup) && rcvMostly)
+    {
+        return 0;
+    }
+    else
+    {
+        return srcIP;
+    }
 }

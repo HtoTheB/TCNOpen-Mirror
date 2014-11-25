@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1226 2014-06-04 15:00:44Z bloehr $
+ * $Id: vos_sock.h 1367 2014-11-25 12:49:11Z ahweiss $
  *
  */
 
@@ -573,6 +573,18 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
     INT32   sock,
     UINT32  mcIfAddress);
 
+
+/**********************************************************************************************************************/
+/** Determines the address to bind to since the behaviour in the different OS is different
+ *  @param[in]      srcIP           IP to bind to (0 = any address)
+ *  @param[in]      mcGroup         MC group to join (0 = do not join)
+ *  @param[in]      rcvMostly       primarily used for receiving (tbd: bind on sender, too?)
+ *
+ *  @retval         Address to bind to
+ */
+EXT_DECL VOS_IP4_ADDR_T vos_determineBindAddr( VOS_IP4_ADDR_T   srcIP,
+                                               VOS_IP4_ADDR_T   mcGroup,
+                                               VOS_IP4_ADDR_T   rcvMostly);
 
 #ifdef __cplusplus
 }
