@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1367 2014-11-25 12:49:11Z ahweiss $
+ * $Id: trdp_utils.c 1368 2014-11-25 12:56:15Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -1181,7 +1181,7 @@ TRDP_ERR_T trdpCheckTopograhy(TRDP_APP_SESSION_T appHandle,
             /* unlock mutex */
             if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
             {
-                return VOS_MUTEX_ERR;
+                return TRDP_MUTEX_ERR;
             }
             else
             {
@@ -1192,12 +1192,12 @@ TRDP_ERR_T trdpCheckTopograhy(TRDP_APP_SESSION_T appHandle,
         /* unlock mutex */        
         if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
         {
-            return VOS_MUTEX_ERR;
+            return TRDP_MUTEX_ERR;
         }
     }
     else
     {
-        return VOS_MUTEX_ERR;
+        return TRDP_MUTEX_ERR;
     }
     /* topography check passed */
     return TRDP_NO_ERR;
