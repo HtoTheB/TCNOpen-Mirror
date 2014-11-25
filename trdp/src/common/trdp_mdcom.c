@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1364 2014-11-24 12:01:30Z railroad-mike $
+ * $Id: trdp_mdcom.c 1369 2014-11-25 12:57:34Z ahweiss $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -3430,7 +3430,12 @@ TRDP_ERR_T trdp_mdConfirm (
             {
                 trdp_mdFillStateElement(TRDP_MSG_MC, pSenderElement);
 
-                trdp_mdManageSessionId(pSessionId, pSenderElement);
+                vos_printLog(VOS_LOG_INFO, "Using %s MD session '%02x%02x%02x%02x%02x%02x%02x%02x'\n",
+                    pSenderElement->pktFlags & TRDP_FLAGS_TCP ? "TCP" : "UDP",
+                    pSenderElement->sessionID[0], pSenderElement->sessionID[1],
+                    pSenderElement->sessionID[2], pSenderElement->sessionID[3],
+                    pSenderElement->sessionID[4], pSenderElement->sessionID[5],
+                    pSenderElement->sessionID[6], pSenderElement->sessionID[7]);
 
                 if ( NULL != pSenderElement->pPacket )
                 {
