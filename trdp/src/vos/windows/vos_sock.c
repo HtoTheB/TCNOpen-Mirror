@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1352 2014-11-11 15:06:54Z ahweiss $*
+ * $Id: vos_sock.c 1366 2014-11-25 09:43:31Z ahweiss $*
  *
  */
 
@@ -397,7 +397,7 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                     UINT8 physAddr[VOS_MAC_SIZE];
                     BOOL8 mismatch;    
 
-                    for (j = 0; j < pIfRow->dwPhysAddrLen; j++) 
+                    for (j = 0; (j < pIfRow->dwPhysAddrLen) && (j < VOS_MAC_SIZE); j++) 
                     {
                         physAddr[j] = (UINT8) pIfRow->bPhysAddr[j];
                     }
