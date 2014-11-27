@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1370 2014-11-25 14:26:24Z ahweiss $
+ * $Id: trdp_mdcom.c 1373 2014-11-27 10:19:13Z ahweiss $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -1476,9 +1476,9 @@ static MD_ELE_T* trdp_mdHandleRequest(TRDP_SESSION_PT  appHandle,
                 *pResult = TRDP_NO_ERR;
                 return (MD_ELE_T*)NULL; 
             }
-            else if ( (pH->etbTopoCnt   != 0 && (vos_ntohl(pH->etbTopoCnt)   != iterListener->addr.etbTopoCnt))
+            else if ( (iterListener->addr.etbTopoCnt   != 0 && (vos_ntohl(pH->etbTopoCnt)   != iterListener->addr.etbTopoCnt))
                       || 
-                      (pH->opTrnTopoCnt != 0 && (vos_ntohl(pH->opTrnTopoCnt) != iterListener->addr.opTrnTopoCnt)) )
+                      (iterListener->addr.opTrnTopoCnt != 0 && (vos_ntohl(pH->opTrnTopoCnt) != iterListener->addr.opTrnTopoCnt)) )
             {
                 /* there has been a change in train configuration - ignore request */
                 vos_printLog(VOS_LOG_INFO,"trdp_mdRecv: Repeated request with wrong topocount - discard!\n");
