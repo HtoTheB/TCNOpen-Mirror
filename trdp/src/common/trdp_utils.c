@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1368 2014-11-25 12:56:15Z ahweiss $
+ * $Id: trdp_utils.c 1372 2014-11-27 10:17:42Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -273,8 +273,8 @@ PD_ELE_T *trdp_queueFindSubAddr (
                      if etbTopoCnt or opTrnTopoCnt are zero or match*/
         if ((iterPD->addr.comId == addr->comId)
             && ((iterPD->addr.srcIpAddr == 0) || (iterPD->addr.srcIpAddr == addr->srcIpAddr))
-            && ((addr->etbTopoCnt == 0) || (iterPD->addr.etbTopoCnt == addr->etbTopoCnt))
-            && ((addr->opTrnTopoCnt == 0) || (iterPD->addr.opTrnTopoCnt == addr->opTrnTopoCnt))
+            && ((iterPD->addr.etbTopoCnt == 0) || (iterPD->addr.etbTopoCnt == addr->etbTopoCnt))
+            && ((iterPD->addr.opTrnTopoCnt == 0) || (iterPD->addr.opTrnTopoCnt == addr->opTrnTopoCnt))
             )
         {
             return iterPD;
