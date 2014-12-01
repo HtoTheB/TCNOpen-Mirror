@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1377 2014-12-01 15:43:03Z ahweiss $
+ * $Id: trdp_pdcom.c 1379 2014-12-01 16:27:24Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -381,6 +381,7 @@ TRDP_ERR_T  trdp_pdReceive (
                                   vos_ntohl(pNewFrame->frameHead.etbTopoCnt),
                                   vos_ntohl(pNewFrame->frameHead.opTrnTopoCnt)))
     {
+        appHandle->stats.pd.numTopoErr++;
         return TRDP_TOPO_ERR;
     }
 
