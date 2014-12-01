@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1362 2014-11-21 14:16:56Z railroad-mike $
+ * $Id: trdp_if.c 1378 2014-12-01 16:26:17Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -2338,11 +2338,12 @@ TRDP_ERR_T tlm_request (
         mdTimeOut = appHandle->mdDefault.confirmTimeout;
     }
 
-    errv = trdpCheckTopograhy(appHandle, etbTopoCnt, opTrnTopoCnt);
-
-    if ( errv != TRDP_NO_ERR )
+    if ( !trdp_validTopoCounters( appHandle->etbTopoCnt,
+                                  appHandle->opTrnTopoCnt,
+                                  etbTopoCnt,
+                                  opTrnTopoCnt))  
     {
-        return errv;
+        return TRDP_TOPO_ERR;
     }
     else
     {
