@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1377 2014-12-01 15:43:03Z ahweiss $
+ * $Id: trdp_utils.c 1380 2014-12-09 15:46:28Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -271,14 +271,16 @@ PD_ELE_T *trdp_queueFindSubAddr (
     {
         /*  We match if src/dst/mc address is zero or matches */
         if ((iterPD->addr.comId == addr->comId)
-            && ((iterPD->addr.srcIpAddr == 0) || (iterPD->addr.srcIpAddr == addr->srcIpAddr))
-            && ((iterPD->addr.etbTopoCnt == 0) || (iterPD->addr.etbTopoCnt == addr->srcIpAddr)))
+            && ((iterPD->addr.srcIpAddr == 0) || (iterPD->addr.srcIpAddr == addr->srcIpAddr)))
         {
-            /*  We match if etbTopoCnt or opTrnTopoCnt of the subscription are zero or match */
-            if ( trdp_validTopoCounters( addr->srcIpAddr,
-                                         addr->opTrnTopoCnt,
-                                         iterPD->addr.etbTopoCnt,
-                                         iterPD->addr.opTrnTopoCnt))
+            /*  We check for local communication
+                or if etbTopoCnt and opTrnTopoCnt of the subscription are zero or match */
+            if ( 
+                    ((addr->etbTopoCnt == 0) && (addr->opTrnTopoCnt == 0))
+                  || trdp_validTopoCounters( addr->etbTopoCnt,
+                                             addr->opTrnTopoCnt,
+                                             iterPD->addr.etbTopoCnt,
+                                             iterPD->addr.opTrnTopoCnt))
             {
                 return iterPD;
             }
