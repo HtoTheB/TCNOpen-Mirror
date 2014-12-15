@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1323 2014-08-29 14:09:08Z bloehr $
+ * $Id: tau_dnr.h 1381 2014-12-15 12:50:10Z bloehr $
  *
  */
 
@@ -63,7 +63,7 @@ EXT_DECL TRDP_ERR_T tau_initDnr (void);
 
 /**********************************************************************************************************************/
 /**    Who am I ?.
- *  Realizes a kind of ëWho am Ií function. It is used to determine the own identifiers (i.e. the own labels),
+ *  Realizes a kind of 'Who am I' function. It is used to determine the own identifiers (i.e. the own labels),
  *  which may be used as host part of the own fully qualified domain name.
  *
  *  @param[out]     devId           Returns the device label (host name)

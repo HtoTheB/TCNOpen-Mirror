@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.h 1298 2014-08-25 14:58:54Z bloehr $
+ * $Id: tau_xml.h 1381 2014-12-15 12:50:10Z bloehr $
  *
  */
 
@@ -113,7 +113,7 @@ typedef struct
 typedef struct
 {
     TRDP_LABEL_T    ifName;       /**< interface name   */
-    UINT8           networkId;    /**< used network on the device (1…4)   */
+    UINT8           networkId;    /**< used network on the device (1...4)   */
     TRDP_IP_ADDR_T  hostIp;       /**< host IP address   */
     TRDP_IP_ADDR_T  leaderIp;     /**< Leader IP address dependant on redundancy concept   */
 } TRDP_IF_CONFIG_T;
