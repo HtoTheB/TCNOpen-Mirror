@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1380 2014-12-09 15:46:28Z ahweiss $
+ * $Id: trdp_mdcom.c 1382 2014-12-15 12:52:22Z bloehr $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -3150,14 +3150,14 @@ TRDP_ERR_T trdp_mdReply (const TRDP_MSG_T        msgType,
  *  @param[in]      destIpAddr          where to send the packet to
  *  @param[in]      pktFlags            OPTION:
  *                                      TRDP_FLAGS_DEFAULT, TRDP_FLAGS_NONE, TRDP_FLAGS_MARSHALL
- *  @param[in]      confirmTimeout      time out for replies (zero for TRDP_MSG_MN)
  *  @param[in]      numExpReplies       number of expected replies, 0 if unknown
  *  @param[in]      replyTimeout        timeout for reply
- *  @param[in]      maxNumRetries       maximum number of retries (0 … 2) 
+ *  @param[in]      replyStatus         status to be returned
+ *  @param[in]      maxNumRetries       maximum number of retries (0 ... 2)
  *  @param[in]      pSendParam          Pointer to send parameters, NULL to use default send parameters
  *  @param[in]      pData               pointer to packet data / dataset
  *  @param[in]      dataSize            size of packet data
- *  @param[in]      sourceURI           only functional group of source URI
+ *  @param[in]      srcURI              only functional group of source URI
  *  @param[in]      destURI             only functional group of destination URI
  *
  *  @retval         TRDP_NO_ERR         no error

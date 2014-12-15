@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1380 2014-12-09 15:46:28Z ahweiss $
+ * $Id: trdp_utils.c 1382 2014-12-15 12:52:22Z bloehr $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -335,10 +335,10 @@ void    trdp_queueDelElement (
  *  3    equal      any          equal            0
  *  4    equal      equal        equal            equal
  *
- *  @param[in]      etbTopoCount            ETB topography counter to be checked
- *  @param[in]      opTopoCount             Operational topography counter to be checked
- *  @param[in]      etbTopoCountFilter      ETB topography counter filter value
- *  @param[in]      opTopoCountFilter       Operational topography counter filter value
+ *  @param[in]      etbTopoCnt              ETB topography counter to be checked
+ *  @param[in]      opTrnTopoCnt            Operational topography counter to be checked
+ *  @param[in]      etbTopoCntFilter        ETB topography counter filter value
+ *  @param[in]      opTrnTopoCntFilter      Operational topography counter filter value
  *
  *  @retval         TRUE           Filter criteria matched
  *                  FALSE          Filter criteria not matched
