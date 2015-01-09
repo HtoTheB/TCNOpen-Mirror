@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1329 2014-09-04 16:03:50Z bloehr $
+ * $Id: trdp_private.h 1389 2015-01-09 08:40:01Z ahweiss $
  *
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *
@@ -38,7 +38,7 @@
  */
 
 #define TRDP_VERSION            1
-#define TRDP_RELEASE            0
+#define TRDP_RELEASE            2
 #define TRDP_UPDATE             1
 #define TRDP_EVOLUTION          0
 
