@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1382 2014-12-15 12:52:22Z bloehr $
+ * $Id: trdp_utils.c 1393 2015-03-27 12:36:17Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -646,7 +646,7 @@ TRDP_ERR_T  trdp_requestSocket (
                 }
                 else
                 {
-                    if (vos_sockJoinMC(iface[lIndex].sock, mcGroup, iface[lIndex].bindAddr) != VOS_NO_ERR)
+                    if (vos_sockJoinMC(iface[lIndex].sock, mcGroup, srcIP) != VOS_NO_ERR)
                     {
                         if (trdp_SockDelJoin(iface[lIndex].mcGroups, mcGroup) == FALSE)
                         {
@@ -778,7 +778,7 @@ TRDP_ERR_T  trdp_requestSocket (
                         if (0 != mcGroup)
                         {
 
-                            err = (TRDP_ERR_T) vos_sockJoinMC(iface[lIndex].sock, mcGroup, iface[lIndex].bindAddr);
+                            err = (TRDP_ERR_T) vos_sockJoinMC(iface[lIndex].sock, mcGroup, srcIP);
                             if (err != TRDP_NO_ERR)
                             {
                                 vos_printLog(VOS_LOG_ERROR, "vos_sockJoinMC() for UDP rcv failed! (Err: %d)\n", err);
