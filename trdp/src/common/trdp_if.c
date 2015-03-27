@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1382 2014-12-15 12:52:22Z bloehr $
+ * $Id: trdp_if.c 1392 2015-03-27 12:10:05Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -680,6 +680,10 @@ EXT_DECL TRDP_ERR_T tlc_terminate (void)
                 vos_printLog(VOS_LOG_ERROR, "tlc_closeSession() failed (Err: %d)\n", ret);
             }
         }
+
+        /* Delete SessionMutex and clear static variable */
+        vos_mutexDelete(sSessionMutex);
+        sSessionMutex = NULL;
 
         /* Close stop timers, release memory  */
         vos_terminate();
