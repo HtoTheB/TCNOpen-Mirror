@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1395 2015-04-10 13:35:15Z ahweiss $
+ * $Id: trdp_if.c 1396 2015-04-10 15:52:28Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -429,6 +429,13 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     pSession->stats.ownIpAddr       = ownIpAddr;
     pSession->stats.leaderIpAddr    = leaderIpAddr;
 
+    /*  Get a buffer to receive PD   */
+    pSession->pNewFrame = (PD_PACKET_T *) vos_memAlloc(TRDP_MAX_PD_PACKET_SIZE);
+    if (pSession->pNewFrame == NULL)
+    {
+        vos_printLog(VOS_LOG_ERROR, "Out of meory!\n");
+        return TRDP_MEM_ERR;
+    }
 
     /*    Queue the session in    */
     ret = (TRDP_ERR_T) vos_mutexLock(sSessionMutex);
@@ -555,6 +562,8 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
             else
             {
                 /*    Release all allocated sockets and memory    */
+                vos_memFree(pSession->pNewFrame);   
+
                 while (pSession->pSndQueue != NULL)
                 {
                     PD_ELE_T *pNext = pSession->pSndQueue->pNext;
