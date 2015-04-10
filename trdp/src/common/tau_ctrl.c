@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1354 2014-11-11 15:22:13Z ahweiss $
+ * $Id: tau_ctrl.c 1395 2015-04-10 13:35:15Z ahweiss $
  *
  *
  */
@@ -91,8 +91,8 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                         0,                          /*    not redundant                     */
                         TRDP_FLAGS_MARSHALL,        /*    packet flags - UDP, no call back  */
                         NULL,                       /*    default qos and ttl               */
-                        (UINT8 *)NULL,              /*    initial data                      */
-                        0                           /*    data size                         */
+                        (UINT8 *)NULL,              /*    no initial data                   */
+                        sizeof(TRDP_ECSP_CTRL_T)    /*    data size                         */
                         );
     if ( err != TRDP_NO_ERR )
     {

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1379 2014-12-01 16:27:24Z ahweiss $
+ * $Id: trdp_pdcom.c 1395 2015-04-10 13:35:15Z ahweiss $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
@@ -127,16 +127,17 @@ TRDP_ERR_T trdp_pdPut (
                            &dataSize,
                            &pPacket->pCachedDS);
         }
+
+        if (TRDP_NO_ERR == ret)
+        {
+            /* set data valid */
+            pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~TRDP_INVALID_DATA);
+
+            /*  Update some statistics  */
+            pPacket->updPkts++;
+        }
     }
 
-    if (TRDP_NO_ERR == ret)
-    {
-        /* set data valid */
-        pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~TRDP_INVALID_DATA);
-
-        /*  Update some statistics  */
-        pPacket->updPkts++;
-    }
     return ret;
 }
 
