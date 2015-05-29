@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1323 2014-08-29 14:09:08Z bloehr $
+ * $Id: vos_mem.c 1400 2015-05-29 15:24:16Z ahweiss $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -599,7 +599,16 @@ EXT_DECL VOS_ERR_T vos_memCount (
 
     if (gMem.memSize == 0 && gMem.pArea == NULL)
     {
-         return VOS_INIT_ERR;
+        /* normal heap memory is used */
+		*pAllocatedMemory   = 0;
+		*pFreeMemory        = 0;
+		*pMinFree           = 0;
+		*pNumAllocBlocks    = 0;
+		*pNumAllocErr       = 0;
+		*pNumFreeErr        = 0;
+
+		memset(blockSize, 0, sizeof(blockSize));
+		memset(usedBlockSize, 0, sizeof(usedBlockSize));
     }
 
     *pAllocatedMemory   = gMem.memSize;
