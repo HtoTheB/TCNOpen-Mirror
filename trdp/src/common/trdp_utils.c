@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1393 2015-03-27 12:36:17Z ahweiss $
+ * $Id: trdp_utils.c 1402 2015-06-19 13:56:41Z ahweiss $
  *
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
@@ -1120,7 +1120,7 @@ int trdp_checkSequenceCounter(
         {
             /*        Is this packet a duplicate?    */
             if (pElement->pSeqCntList->seq[index].lastSeqCnt == 0 ||    /* first time after timeout */
-                sequenceCounter >= pElement->pSeqCntList->seq[index].lastSeqCnt + 1)
+                sequenceCounter != pElement->pSeqCntList->seq[index].lastSeqCnt)
             {
                 vos_printLog(VOS_LOG_DBG, "Rcv sequence: %u    last seq: %u\n", sequenceCounter, pElement->pSeqCntList->seq[index].lastSeqCnt);
                 vos_printLog(VOS_LOG_DBG, "-> new PD data found (SrcIp: %s comId %u)\n", vos_ipDotted(srcIP), pElement->addr.comId);
@@ -1130,7 +1130,7 @@ int trdp_checkSequenceCounter(
             else
             {
                 vos_printLog(VOS_LOG_DBG, "Rcv sequence: %u    last seq: %u\n", sequenceCounter, pElement->pSeqCntList->seq[index].lastSeqCnt);
-                vos_printLog(VOS_LOG_DBG, "-> old PD data ignored (SrcIp: %s comId %u)\n", vos_ipDotted(srcIP), pElement->addr.comId);
+                vos_printLog(VOS_LOG_DBG, "-> duplicated PD data ignored (SrcIp: %s comId %u)\n", vos_ipDotted(srcIP), pElement->addr.comId);
                 return 1;
             }
         }
