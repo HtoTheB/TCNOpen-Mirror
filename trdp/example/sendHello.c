@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1403 2015-06-24 12:57:08Z bloehr $
+ * $Id: sendHello.c 1404 2015-06-24 15:35:02Z bloehr $
  *
  */
 
@@ -335,7 +335,7 @@ int main (int argc, char *argv[])
             fflush(stdout);
         }
 
-        if (strlen((char*)outputBuffer) == 0)
+        if (outputBuffer != NULL && strlen((char*)outputBuffer) == 0)
         {
             sprintf((char*)outputBuffer, "Just a Counter: %08d", hugeCounter++);
             outputBufferSize = strlen((char*)outputBuffer);
