@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1384 2014-12-15 14:06:23Z bloehr $
+ * $Id: sendHello.c 1403 2015-06-24 12:57:08Z bloehr $
  *
  */
 
@@ -275,7 +275,8 @@ int main (int argc, char *argv[])
         TRDP_FDS_T  rfds;
         INT32       noDesc;
         TRDP_TIME_T tv;
-        TRDP_TIME_T max_tv = {0, 1000000};
+        const TRDP_TIME_T max_tv = {0, 1000000};
+        const TRDP_TIME_T min_tv = {0, 10000};
 
         /*
            Prepare the file descriptor set for the select call.
@@ -300,6 +301,10 @@ int main (int argc, char *argv[])
         if (vos_cmpTime(&tv, &max_tv) > 0)
         {
             tv = max_tv;
+        }
+        else if (vos_cmpTime(&tv, &min_tv) < 0)
+        {
+            tv = min_tv;
         }
 
         /*
@@ -330,9 +335,10 @@ int main (int argc, char *argv[])
             fflush(stdout);
         }
 
-        if (outputBuffer != NULL)
+        if (strlen((char*)outputBuffer) == 0)
         {
-            sprintf((char *)outputBuffer, "Just a Counter: %08d", hugeCounter++);
+            sprintf((char*)outputBuffer, "Just a Counter: %08d", hugeCounter++);
+            outputBufferSize = strlen((char*)outputBuffer);
         }
 
         err = tlp_put(appHandle, pubHandle, outputBuffer, outputBufferSize);
