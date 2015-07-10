@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.h 1410 2015-07-10 12:35:19Z bloehr $
+ * $Id: tau_xml.h 1411 2015-07-10 14:25:14Z bloehr $
  *
  */
 
@@ -55,7 +55,7 @@ typedef enum
     TRDP_EXCHG_UNSET        = 0,    /**< default, direction is not defined  */
     TRDP_EXCHG_SOURCE       = 1,    /**< telegram shall be published  */
     TRDP_EXCHG_SINK         = 2,    /**< telegram shall be subscribed  */
-    TRDP_EXCHG_SOURCESINK   = 3,    /**< telegram shall be published and subscribed  */
+    TRDP_EXCHG_SOURCESINK   = 3     /**< telegram shall be published and subscribed  */
 } TRDP_EXCHG_OPTION_T;
 
 /** Types to read out the XML configuration    */

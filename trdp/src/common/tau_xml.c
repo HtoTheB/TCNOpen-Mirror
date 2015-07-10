@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.c 1265 2014-07-14 16:11:53Z bloehr $
+ * $Id: tau_xml.c 1411 2015-07-10 14:25:14Z bloehr $
  *
  */
 
@@ -1569,6 +1569,23 @@ static TRDP_ERR_T parseTelegram (
     parseUINT32(pTlgElem, "com-id", &pExchgPar->comId);
     parseUINT32(pTlgElem, "data-set-id", &pExchgPar->datasetId);
     parseUINT32(pTlgElem, "com-parameter-id", &pExchgPar->comParId);
+
+    if (checkAttrValue(pTlgElem, "type", "source-sink"))
+    {
+        pExchgPar->type = TRDP_EXCHG_SOURCESINK;
+    }
+    else if (checkAttrValue(pTlgElem, "type", "source"))
+    {
+        pExchgPar->type = TRDP_EXCHG_SOURCE;
+    }
+    else if (checkAttrValue(pTlgElem, "type", "sink"))
+    {
+        pExchgPar->type = TRDP_EXCHG_SINK;
+    }
+    else
+    {
+        pExchgPar->type = TRDP_EXCHG_UNSET;
+    }
 
     /*  Set current node to XPath context   */
     pXPathCtx->node = pTlgElem;
