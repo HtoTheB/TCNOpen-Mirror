@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1383 2014-12-15 14:02:23Z ahweiss $
+ * $Id: trdp_types.h 1408 2015-07-10 12:19:25Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
@@ -82,13 +82,7 @@ typedef CHAR8 TRDP_URI_USER_T[TRDP_MAX_URI_USER_LEN];
 typedef CHAR8 TRDP_FILE_NAME_T[TRDP_MAX_FILE_NAME_LEN];
 
 /** Version information */
-typedef struct
-{
-    UINT8   ver;    /**< Version    - incremented for incompatible changes */
-    UINT8   rel;    /**< Release    - incremented for compatible changes   */
-    UINT8   upd;    /**< Update     - incremented for bug fixes            */
-    UINT8   evo;    /**< Evolution  - incremented for build                */
-} TRDP_VERSION_T;
+typedef VOS_VERSION_T TRDP_VERSION_T;   /* TRDP_VERSION_T is identical to VOS_VERSION_T now  */
 
 /** Return codes for all API functions, -1..-29 taken over from vos */
 typedef enum
@@ -138,15 +132,7 @@ typedef VOS_TIME_T TRDP_TIME_T;
 
 /**    File descriptor set compatible with fd_set / select.
  */
-/*typedef struct
-   {
-    UINT32  fd_count;
-    INT32   fds_bits[VOS_MAX_SOCKET_CNT];
-   } TRDP_FDS_T;
- */
 typedef VOS_FDS_T TRDP_FDS_T;
-
-/*#define TRDP_FDS_T    fd_set */
 
 /**********************************************************************************************************************/
 /**                          TRDP data transfer type definitions.                                                     */

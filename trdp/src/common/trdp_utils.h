@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1382 2014-12-15 12:52:22Z bloehr $
+ * $Id: trdp_utils.h 1408 2015-07-10 12:19:25Z bloehr $
  *
  */
 
@@ -47,6 +47,8 @@
 #else
 #ifdef L_ENDIAN
 #define MAKE_LE(a)      (a)
+#else
+#error "Endianess undefined!"
 #endif
 #endif
 

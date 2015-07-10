@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1262 2014-07-14 13:03:58Z bloehr $
+ * $Id: vos_types.h 1408 2015-07-10 12:19:25Z bloehr $
  *
  */
 
@@ -206,6 +206,15 @@ typedef uuid_t VOS_UUID_T;      /**< universal unique identifier according to RF
 typedef UINT8 VOS_UUID_T[16];   /**< universal unique identifier according to RFC 4122, time based version */
 #endif
 
+/** Version information */
+typedef struct
+{
+    UINT8   ver;                /**< Version    - incremented for incompatible changes */
+    UINT8   rel;                /**< Release    - incremented for compatible changes   */
+    UINT8   upd;                /**< Update     - incremented for bug fixes            */
+    UINT8   evo;                /**< Evolution  - incremented for build                */
+} VOS_VERSION_T;
+    
 /**    Timer value compatible with timeval / select.
  * Relative or absolute date, depending on usage
  */

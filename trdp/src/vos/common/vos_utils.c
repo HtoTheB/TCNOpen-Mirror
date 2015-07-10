@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1353 2014-11-11 15:11:13Z ahweiss $
+ * $Id: vos_utils.c 1408 2015-07-10 12:19:25Z bloehr $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -53,6 +53,9 @@ void *gRefCon = NULL;
 /***********************************************************************************************************************
  *  LOCALS
  */
+
+static const VOS_VERSION_T vosVersion = {VOS_VERSION, VOS_RELEASE, VOS_UPDATE, VOS_EVOLUTION};
+
 /** Table of CRC-32s of all single-byte values according to IEEE802.3
  *  The FCS-32 generator polynomial:
  *  x**0 + x**1 + x**2 + x**4 + x**5 + x**7 + x**8 + x**10 + x**11 + x**12 + x**16
@@ -368,3 +371,36 @@ INLINE BOOL8 vos_isBigEndian (void)
 {
     return sIsBigEndian;
 }
+
+/**********************************************************************************************************************/
+/** Return a human readable version representation.
+ *    Return string in the form 'v.r.u.b'
+ *
+ *  @retval            const string
+ */
+const char *vos_getVersionString (void)
+{
+    static CHAR8 version[16];
+    
+    (void) vos_snprintf(version,
+                        sizeof(version),
+                        "%d.%d.%d.%d",
+                        VOS_VERSION,
+                        VOS_RELEASE,
+                        VOS_UPDATE,
+                        VOS_EVOLUTION);
+    
+    return version;
+}
+
+/**********************************************************************************************************************/
+/** Return version.
+ *    Return pointer to version structure
+ *
+ *  @retval            VOS_VERSION_T
+ */
+EXT_DECL const VOS_VERSION_T *vos_getVersion (void)
+{
+    return &vosVersion;
+}
+

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1181 2014-02-28 15:55:27Z bloehr $
+ * $Id: vos_utils.h 1408 2015-07-10 12:19:25Z bloehr $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -145,6 +145,24 @@ EXT_DECL VOS_ERR_T vos_init (
 
 EXT_DECL void vos_terminate ();
 
+/**********************************************************************************************************************/
+/** Return a human readable version representation.
+ *    Return string in the form 'v.r.u.b'
+ *
+ *  @retval            const string
+ */
+EXT_DECL const CHAR8 *vos_getVersionString (void);
+
+
+/**********************************************************************************************************************/
+/** Return version.
+ *    Return pointer to version structure
+ *
+ *  @retval            const VOS_VERSION_T
+ */
+EXT_DECL const VOS_VERSION_T *vos_getVersion (void);
+    
+    
 
 #ifdef __cplusplus
 }
