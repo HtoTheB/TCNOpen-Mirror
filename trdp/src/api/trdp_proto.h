@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_proto.h 1383 2014-12-15 14:02:23Z ahweiss $
+ * $Id: trdp_proto.h 1413 2015-08-03 09:48:27Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
@@ -34,13 +34,13 @@
  */
 
 #ifndef TRDP_PD_UDP_PORT
-#define TRDP_PD_UDP_PORT  20548                                         /**< process data UDP port                  */
+#define TRDP_PD_UDP_PORT  17224                                         /**< process data UDP port                  */
 #endif
 #ifndef TRDP_MD_UDP_PORT
-#define TRDP_MD_UDP_PORT  20550                                         /**< message data UDP port                  */
+#define TRDP_MD_UDP_PORT  17225                                         /**< message data UDP port                  */
 #endif
 #ifndef TRDP_MD_TCP_PORT
-#define TRDP_MD_TCP_PORT  20550                                         /**< message data TCP port                  */
+#define TRDP_MD_TCP_PORT  17225                                         /**< message data TCP port                  */
 #endif
 
 #define TRDP_PROTO_VER                      0x0100                      /**< Protocol version                       */
