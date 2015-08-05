@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1367 2014-11-25 12:49:11Z ahweiss $*
+ * $Id: vos_sock.c 1421 2015-08-05 13:37:41Z bloehr $*
  *
  */
 
@@ -1050,7 +1050,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
  *
  *  @param[in]      sock            socket descriptor
  *  @param[in]      ipAddress       source IP to receive on, 0 for any
- *  @param[in]      port            port to receive on, 20548 for PD
+ *  @param[in]      port            port to receive on, 17224 for PD
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
@@ -1132,7 +1132,7 @@ EXT_DECL VOS_ERR_T vos_sockListen (
  *  @param[in]      sock            Socket descriptor
  *  @param[out]     pSock           Pointer to socket descriptor, on exit new socket
  *  @param[out]     pIPAddress      source IP to receive on, 0 for any
- *  @param[out]     pPort           port to receive on, 20548 for PD
+ *  @param[out]     pPort           port to receive on, 17224 for PD
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   NULL parameter, parameter error
