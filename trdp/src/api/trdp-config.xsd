@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.10.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 1407 2015-07-01 09:57:58Z bloehr $
+#  SVN           : $Id: trdp-config.xsd 1419 2015-08-05 11:05:33Z bloehr $
 #
 #  HISTORY       :
 #                            1.10.0.0  sink/source attribute for telegrams added
@@ -603,7 +603,7 @@ keep = keep the last value</xs:documentation>
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="port" default="20548" type="uint32" use="optional"/>
+      <xs:attribute name="port" default="17224" type="uint32" use="optional"/>
     </xs:complexType>
   </xs:element>
   

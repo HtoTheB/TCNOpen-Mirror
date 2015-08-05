@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: Controller.h 1103 2013-10-11 08:53:49Z bloehr $
+ * $Id: Controller.h 1419 2015-08-05 11:05:33Z bloehr $
  *
  */
 
@@ -65,6 +65,7 @@
 	IBOutlet	id	MRcomID;
 	IBOutlet	id	MDrecColor;
     
+	IBOutlet	id	MsgView;
     
 	Boolean	isActive;
 	

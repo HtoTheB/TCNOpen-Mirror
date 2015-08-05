@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1342 2014-10-15 09:41:16Z bloehr $
+ * $Id: pdsend.c 1419 2015-08-05 11:05:33Z bloehr $
  *
  */
 
@@ -184,9 +184,9 @@ int pd_init (
     uint32_t    interval)
 {
     TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, {0, 0},
-                                               TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 20548};
+                                               TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MD_CONFIG_T        mdConfiguration = {mdCallback, NULL, {0, 0},
-                                                TRDP_FLAGS_CALLBACK, 5000000, 5000000, 5000000, 20550, 20550, 2};
+                                                TRDP_FLAGS_CALLBACK, 5000000, 5000000, 5000000, 20550, 0, 2};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, 100000, {}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
 

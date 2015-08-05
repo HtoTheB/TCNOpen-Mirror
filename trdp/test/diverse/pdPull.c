@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: pdPull.c 1419 2015-08-05 11:05:33Z bloehr $
  *
  *      BL 2014-06-02: oversized data changed
  */
@@ -180,7 +180,7 @@ int main (int argc, char * *argv)
     TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0},
                                                (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_MARSHALL), 10000000,
-                                               TRDP_TO_SET_TO_ZERO, 20548};
+                                               TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, PREALLOCATE};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
 

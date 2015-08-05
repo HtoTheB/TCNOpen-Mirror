@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoSelect.c 1384 2014-12-15 14:06:23Z bloehr $*
+ * $Id: echoSelect.c 1419 2015-08-05 11:05:33Z bloehr $*
  *
  */
 
@@ -143,7 +143,7 @@ int main (int argc, char * *argv)
     TRDP_PUB_T              pubHandle; /*    Our identifier to the publication         */
     TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0},
-                                               TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 20548};
+                                               TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     int rv = 0;

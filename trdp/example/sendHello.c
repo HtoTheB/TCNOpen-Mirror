@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1404 2015-06-24 15:35:02Z bloehr $
+ * $Id: sendHello.c 1419 2015-08-05 11:05:33Z bloehr $
  *
  */
 
@@ -107,7 +107,7 @@ int main (int argc, char *argv[])
     UINT32                  comId       = PD_COMID;
     UINT32                  cycleTime   = PD_COMID_CYCLE;
     TRDP_ERR_T              err;
-    TRDP_PD_CONFIG_T        pdConfiguration = {NULL, NULL, {0, 64}, TRDP_FLAGS_NONE, 1000, TRDP_TO_SET_TO_ZERO, 20548};
+    TRDP_PD_CONFIG_T        pdConfiguration = {NULL, NULL, {0, 64}, TRDP_FLAGS_NONE, 1000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     UINT32                  ownIP   = 0;
