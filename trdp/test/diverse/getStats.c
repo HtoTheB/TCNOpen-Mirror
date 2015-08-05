@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1314 2014-08-27 12:03:15Z bloehr $
+ * $Id: getStats.c 1420 2015-08-05 11:37:03Z bloehr $
  *
  */
 
@@ -119,6 +119,7 @@ void print_stats (
     printf("pd.numNoPub:        %u\n", vos_ntohl(pData->pd.numNoPub));
     printf("pd.numTimeout:      %u\n", vos_ntohl(pData->pd.numTimeout));
     printf("pd.numSend:         %u\n", vos_ntohl(pData->pd.numSend));
+    printf("pd.numMissed:       %u\n", vos_ntohl(pData->pd.numMissed));
     printf("----------------------------------------------------------------------------------------------------\n\n");
 }
 
@@ -228,7 +229,7 @@ int main (int argc, char * *argv)
     TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0},
                                                (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_MARSHALL), 10000000,
-                                               TRDP_TO_SET_TO_ZERO, 20548};
+                                               TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, PREALLOCATE};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
 

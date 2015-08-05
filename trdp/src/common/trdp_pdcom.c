@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1396 2015-04-10 15:52:28Z ahweiss $
+ * $Id: trdp_pdcom.c 1420 2015-08-05 11:37:03Z bloehr $
  *
  *     AHW 2015-04-10: Ticket #76: Wrong initialisation of frame pointer in trdp_pdReceive()
  *     AHW 2015-04-10: Ticket #79: handling for dataSize==0/pData== NULL fixed in in trdp_pdPut()
@@ -446,19 +446,20 @@ TRDP_ERR_T  trdp_pdReceive (
     }
     else
     {
+        UINT32 newSeqCnt = vos_ntohl(pNewFrameHead->sequenceCounter);
         /* Save the source IP address of the received packet */
         pExistingElement->lastSrcIP = subAddresses.srcIpAddr;
         /* Save the real destination of the received packet (own IP or MC group) */
         pExistingElement->addr.destIpAddr = subAddresses.destIpAddr;
 
-        if (pNewFrameHead->sequenceCounter == 0)  /* restarted or new sender */
+        if (newSeqCnt == 0)  /* restarted or new sender */
         {
             trdp_resetSequenceCounter(pExistingElement, subAddresses.srcIpAddr, (TRDP_MSG_T) vos_ntohs(pNewFrameHead->msgType));
         }
 
         /* find sender in our list */
         switch (trdp_checkSequenceCounter(pExistingElement,
-                                          vos_ntohl(pNewFrameHead->sequenceCounter),
+                                          newSeqCnt,
                                           subAddresses.srcIpAddr,
                                           (TRDP_MSG_T) vos_ntohs(pNewFrameHead->msgType)))
         {
@@ -470,6 +471,15 @@ TRDP_ERR_T  trdp_pdReceive (
                 vos_printLog(VOS_LOG_INFO, "Old PD data ignored (SrcIp: %s comId %u)\n", vos_ipDotted(
                                  subAddresses.srcIpAddr), vos_ntohl(pNewFrameHead->comId));
                 return TRDP_NO_ERR;     /* Ignore packet, too old or duplicate */
+        }
+
+        if (newSeqCnt > 0 && newSeqCnt > pExistingElement->curSeqCnt + 1)
+        {
+            pExistingElement->numMissed += newSeqCnt - pExistingElement->curSeqCnt - 1;
+        }
+        else if (pExistingElement->curSeqCnt > newSeqCnt)
+        {
+            pExistingElement->numMissed += UINT32_MAX - pExistingElement->curSeqCnt + newSeqCnt;
         }
 
         /* Store last received sequence counter here, too (pd_get et. al. may access it).   */

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1408 2015-07-10 12:19:25Z bloehr $
+ * $Id: trdp_types.h 1420 2015-08-05 11:37:03Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *      BL 2014-02-27: Ticket #17: tlp_subscribe() returns wrong *pSubHandle
@@ -353,6 +353,7 @@ typedef struct
     UINT32  numNoPub;         /**< number of received PD pull packets without publisher */
     UINT32  numTimeout;       /**< number of PD timeouts */
     UINT32  numSend;          /**< number of sent PD  packets */
+    UINT32  numMissed;        /**< number of packets skipped */
 } TRDP_PD_STATISTICS_T;
 
 
@@ -408,7 +409,8 @@ typedef struct
     UINT32              timeout;    /**< Time-out value in us. 0 = No time-out supervision */
     TRDP_ERR_T          status;     /**< Receive status information TRDP_NO_ERR, TRDP_TIMEOUT_ERR */
     TRDP_TO_BEHAVIOR_T  toBehav;    /**< Behavior at time-out. Set data to zero / keep last value */
-    UINT32              numRecv;    /**< Number of packets received for this subscription. */
+    UINT32              numRecv;    /**< Number of packets received for this subscription */
+    UINT32              numMissed;  /**< number of packets skipped for this subscription */
 } TRDP_SUBS_STATISTICS_T;
 
 /** Table containing particular PD publishing information. */

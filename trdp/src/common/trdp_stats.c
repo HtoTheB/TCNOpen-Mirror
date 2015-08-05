@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1336 2014-09-30 07:25:02Z ahweiss $
+ * $Id: trdp_stats.c 1420 2015-08-05 11:37:03Z bloehr $
  *
  */
 
@@ -182,6 +182,7 @@ EXT_DECL TRDP_ERR_T tlc_getSubsStatistics (
         /* Time-out value in us. 0 = No time-out supervision  */
         pStatistics[lIndex].toBehav = iter->toBehavior;          /* Behavior at time-out    */
         pStatistics[lIndex].numRecv = iter->numRxTx;             /* Number of packets received for this subscription. */
+        pStatistics[lIndex].numMissed = iter->numMissed;         /* Number of packets received for this subscription. */
         pStatistics[lIndex].status  = iter->lastErr;             /* Receive status information  */
     }
     if (lIndex >= *pNumSubs && iter != NULL)
@@ -426,10 +427,12 @@ void    trdp_UpdateStats (
         vos_printLog(VOS_LOG_ERROR, "vos_memCount() failed (Err: %d)\n", ret);
     }
 
+    appHandle->stats.pd.numMissed = 0;
+
     /*  Count our subscriptions */
     for (lIndex = 0, iter = appHandle->pRcvQueue; iter != NULL; lIndex++, iter = iter->pNext)
     {
-        ;
+        appHandle->stats.pd.numMissed += iter->numMissed;
     }
 
     appHandle->stats.pd.numSubs = lIndex;
@@ -522,6 +525,7 @@ void    trdp_pdPrepareStats (
     pData->pd.numNoPub      = vos_htonl(appHandle->stats.pd.numNoPub);
     pData->pd.numTimeout    = vos_htonl(appHandle->stats.pd.numTimeout);
     pData->pd.numSend       = vos_htonl(appHandle->stats.pd.numSend);
+    pData->pd.numMissed     = vos_htonl(appHandle->stats.pd.numMissed);
 
     /* Message data */
     pData->udpMd.defQos = vos_htonl(appHandle->stats.udpMd.defQos);
