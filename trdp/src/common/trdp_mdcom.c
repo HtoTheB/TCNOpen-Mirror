@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1412 2015-07-10 14:41:12Z bloehr $
+ * $Id: trdp_mdcom.c 1422 2015-08-05 14:28:02Z bloehr $
  *
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
@@ -2703,6 +2703,23 @@ void  trdp_mdCheckListenSocks (
             {
                 vos_printLog(VOS_LOG_INFO,
                              "The socket has been closed in the other corner (Corner Ip: %s, Socket: %d)\n",
+                             vos_ipDotted(appHandle->iface[lIndex].tcpParams.cornerIp),
+                             appHandle->iface[lIndex].sock);
+
+                appHandle->iface[lIndex].tcpParams.morituri = TRUE;
+
+                trdp_mdCloseSessions(appHandle, TRDP_INVALID_SOCKET_INDEX, VOS_INVALID_SOCKET, TRUE);
+            }
+
+            /* Check if the socket has been closed in the other corner */
+            if ((err == TRDP_CRC_ERR ||
+                 err == TRDP_WIRE_ERR ||
+                 err == TRDP_TOPO_ERR ||
+                 err == TRDP_PACKET_ERR)
+                 && appHandle->iface[lIndex].type == TRDP_SOCK_MD_TCP)
+            {
+                vos_printLog(VOS_LOG_INFO,
+                             "Closing TCP connection, out of sync (Corner Ip: %s, Socket: %d)\n",
                              vos_ipDotted(appHandle->iface[lIndex].tcpParams.cornerIp),
                              appHandle->iface[lIndex].sock);
 
