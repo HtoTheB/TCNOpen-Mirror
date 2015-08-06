@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1408 2015-07-10 12:19:25Z bloehr $
+ * $Id: vos_types.h 1424 2015-08-06 11:56:31Z bloehr $
  *
  */
 
@@ -35,6 +35,8 @@ extern "C" {
 
 #if defined(WIN32)
 
+#include <stdint.h>
+
 typedef unsigned char UINT8;
 typedef unsigned short UINT16;
 typedef unsigned int UINT32;
@@ -54,7 +56,6 @@ typedef double REAL64;
 #elif defined(POSIX)
 
 #include <stdint.h>
-/*#include <wchar.h>*/
 #include <float.h>
 
 typedef uint8_t UINT8;
