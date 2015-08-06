@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1418 2015-08-04 15:41:57Z bloehr $
+ * $Id: vos_thread.c 1425 2015-08-06 11:58:48Z bloehr $
  *
  */
 
@@ -1065,7 +1065,7 @@ EXT_DECL VOS_ERR_T vos_semaCreate (
         /*Parameters are OK*/
         *ppSema = (VOS_SEMA_T) vos_memAlloc(sizeof (VOS_SEMA_T));
 
-        if (*pSema == NULL)
+        if (*ppSema == NULL)
         {
             return VOS_MEM_ERR;
         }
