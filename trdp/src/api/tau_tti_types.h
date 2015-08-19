@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1399 2015-05-28 10:56:09Z ahweiss $
+ * $Id: tau_tti_types.h 1428 2015-08-19 14:56:33Z ahweiss $
  *
  */
 
@@ -79,13 +79,13 @@ typedef struct
 /** Closed train consists information */
 typedef struct
 {
-    TRDP_UUID_T             cltrCstUUID;        /**< closed train consist UUID */
-    UINT8                   cltrCstOrient;      /**< closed train consist orientation
-                                                     '01'B = same as closed train direction
-                                                     '10'B = inverse to closed train direction */
-    UINT8                   cltrCstNo;          /**< sequence number of the consist within the
-                                                     closed train, value range 1..32 */
-    UINT16                  reserved01;         /**< reserved for future use (= 0) */
+    TRDP_UUID_T             cltrCstUUID;    /**< closed train consist UUID */
+    UINT8                   cltrCstOrient;  /**< closed train consist orientation
+                                                 '01'B = same as closed train direction
+                                                 '10'B = inverse to closed train direction */
+    UINT8                   cltrCstNo;      /**< sequence number of the consist within the
+                                                  closed train, value range 1..32 */
+    UINT16                  reserved01;     /**< reserved for future use (= 0) */
 } TRDP_CLTR_CST_INFO_T;
 
 
@@ -194,6 +194,7 @@ typedef struct
 #ifdef WIN32
 #pragma pack(push, 1)
 #endif
+
 
 typedef struct
 {
@@ -325,7 +326,7 @@ typedef struct
                                                  bit3: ETB3 (other network) */
     UINT8                   trnDirState;    /**< TTDB status: '01'B == unconfirmed, '10'B == confirmed */
     UINT8                   opTrnDirState;  /**< Operatiobal train directory status:
-                                                 '01'B == inalid, '10'B == valid */
+                                                 '01'B == ivnalid, '10'B == valid */
     UINT8                   reserved03;     /**< reserved for future use (= 0) */
     TRDP_LABEL_T            trnId;          /**< train identifier, application defined
                                                  (e.g. 'ICE75', 'IC346'), informal */
