@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.h 1349 2014-11-04 11:40:43Z ahweiss $
+ * $Id: tau_ctrl.h 1429 2015-08-19 15:25:47Z ahweiss $
  *
  */
 
@@ -69,15 +69,13 @@ extern "C" {
  *
  *  @param[in]      appHandle           Application handle
  *  @param[in]      ecspIpAddr          ECSP address
- *  @param[in]      ecscIpAddr          ECSC address
  *
  *  @retval         TRDP_NO_ERR         no error
  *  @retval         TRDP_INIT_ERR       initialisation error
  *
  */
 EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle, 
-                                       TRDP_IP_ADDR_T       ecspIpAddr, 
-                                       TRDP_IP_ADDR_T       ecscIpAddr);
+                                       TRDP_IP_ADDR_T       ecspIpAddr);
 
 
 
