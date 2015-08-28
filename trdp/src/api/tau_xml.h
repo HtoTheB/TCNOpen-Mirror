@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.h 1411 2015-07-10 14:25:14Z bloehr $
+ * $Id: tau_xml.h 1436 2015-08-28 11:42:49Z ahweiss $
  *
  */
 
@@ -119,6 +119,8 @@ typedef struct
     UINT32              srcCnt;     /**< number of sources */
     TRDP_SRC_T          *pSrc;      /**< Pointer to array of source descriptors */
     TRDP_EXCHG_OPTION_T type;       /**< shall telegram be sent or received */
+    BOOL8               create;     /**< TRUE: associated publisher/listener/subscriber 
+                                         shall be generated automatically */
 } TRDP_EXCHG_PAR_T;
 
 typedef struct
