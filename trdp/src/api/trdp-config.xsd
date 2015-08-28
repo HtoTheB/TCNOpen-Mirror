@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.10.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 1419 2015-08-05 11:05:33Z bloehr $
+#  SVN           : $Id: trdp-config.xsd 1435 2015-08-28 11:33:52Z ahweiss $
 #
 #  HISTORY       :
 #                            1.10.0.0  sink/source attribute for telegrams added
@@ -807,6 +807,17 @@ keep = keep the last value</xs:documentation>
                   <xs:enumeration value="source-sink"/>
               </xs:restriction>
           </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="create" default="off" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines whether publisher/listener/subscriber should be automatically created based on the given type or not.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="on"/>
+            <xs:enumeration value="off"/>
+          </xs:restriction>
+        </xs:simpleType>
       </xs:attribute>
 
     </xs:complexType>
