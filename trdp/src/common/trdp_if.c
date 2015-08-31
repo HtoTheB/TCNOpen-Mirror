@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1396 2015-04-10 15:52:28Z ahweiss $
+ * $Id: trdp_if.c 1437 2015-08-31 13:25:59Z bloehr $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *
@@ -139,7 +139,7 @@ TRDP_APP_SESSION_T *trdp_sessionQueue (void)
 /**********************************************************************************************************************/
 /** Initialize the TRDP stack.
  *
- *  tlc_init returns in pAppHandle a unique handle to be used in further calls to the stack.
+ *    tlc_init initializes the memory subsystem and takes a function pointer to an output function for logging.
  *
  *  @param[in]      pPrintDebugString   Pointer to debug print function
  *  @param[in]      pMemConfig          Pointer to memory configuration
@@ -509,8 +509,8 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
     TRDP_APP_SESSION_T appHandle)
 {
     TRDP_SESSION_PT pSession    = NULL;
-    BOOL8 found         = FALSE;
-    TRDP_ERR_T      ret = TRDP_NOINIT_ERR;
+    BOOL8           found       = FALSE;
+    TRDP_ERR_T      ret;
 
     /*    Find the session    */
     if (appHandle == NULL)

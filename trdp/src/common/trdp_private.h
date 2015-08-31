@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1419 2015-08-05 11:05:33Z bloehr $
+ * $Id: trdp_private.h 1437 2015-08-31 13:25:59Z bloehr $
  *
+ *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *
  */
@@ -308,7 +309,6 @@ typedef struct TRDP_SESSION
     VOS_MUTEX_T             mutex;              /**< protect this session                                   */
     TRDP_IP_ADDR_T          realIP;             /**< Real IP address                                        */
     TRDP_IP_ADDR_T          virtualIP;          /**< Virtual IP address                                     */
-    BOOL8                   beQuiet;            /**< if set, only react on ownIP requests                   */
     UINT32                  redID;              /**< redundant comId                                        */
     UINT32                  etbTopoCnt;         /**< current valid topocount or zero                        */
     UINT32                  opTrnTopoCnt;       /**< current valid topocount or zero                        */

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1420 2015-08-05 11:37:03Z bloehr $
+ * $Id: trdp_pdcom.c 1437 2015-08-31 13:25:59Z bloehr $
  *
+ *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
  *     AHW 2015-04-10: Ticket #76: Wrong initialisation of frame pointer in trdp_pdReceive()
  *     AHW 2015-04-10: Ticket #79: handling for dataSize==0/pData== NULL fixed in in trdp_pdPut()
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -255,9 +256,14 @@ TRDP_ERR_T  trdp_pdSendQueued (
                     err = TRDP_TOPO_ERR;
                     vos_printLog(VOS_LOG_INFO, "Sending PD: TopoCount is out of date!\n");
                 }
+                /*    In case we're sending on an uninitialized publisher; should never happen. */
+                else if (iterPD->socketIdx == TRDP_INVALID_SOCKET_INDEX)
+                {
+                    vos_printLog(VOS_LOG_ERROR, "Sending PD: Socket invalid!\n");
+                    /* Try to send the other packets */
+                }
                 /*    Send the packet if it is not redundant    */
-                else if (iterPD->socketIdx != -1 &&
-                         (!appHandle->beQuiet || (iterPD->privFlags & TRDP_REDUNDANT)))
+                else if (!(iterPD->privFlags & TRDP_REDUNDANT))
                 {
                     TRDP_ERR_T result;
                     /* We pass the error to the application, but we keep on going    */

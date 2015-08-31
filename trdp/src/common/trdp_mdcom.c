@@ -16,8 +16,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1422 2015-08-05 14:28:02Z bloehr $
+ * $Id: trdp_mdcom.c 1437 2015-08-31 13:25:59Z bloehr $
  *
+ *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
  *                                 Do not read if there's nothing to read ('Mc' has no data!)
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
@@ -2091,9 +2092,14 @@ TRDP_ERR_T  trdp_mdSend (
         }
         if (dotx)
         {
+            /*    In case we're sending on an uninitialized publisher; should never happen. */
+            if (iterMD->socketIdx == TRDP_INVALID_SOCKET_INDEX)
+            {
+                vos_printLog(VOS_LOG_ERROR, "Sending MD: Socket invalid!\n");
+                /* Try to send the other packets */
+            }
             /*    Send the packet if it is not redundant    */
-            if ((iterMD->socketIdx != TRDP_INVALID_SOCKET_INDEX)
-                && (!appHandle->beQuiet || (iterMD->privFlags & TRDP_REDUNDANT)))
+            else if (!(iterMD->privFlags & TRDP_REDUNDANT))
             {
                 trdp_mdUpdatePacket(iterMD);
 
