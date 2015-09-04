@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1437 2015-08-31 13:25:59Z bloehr $
+ * $Id: trdp_mdcom.c 1442 2015-09-04 16:07:01Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
@@ -56,8 +56,8 @@
  */
 
 static const UINT32         cMinimumMDSize = 1480;                    /**< Initial size for message data received */
-static const UINT8          cEmptySession[TRDP_SESS_ID_SIZE] = {0};   /**< Empty sessionID to compare             */
-static const TRDP_MD_INFO_T cTrdp_md_info_default = {0};
+static const UINT8          cEmptySession[TRDP_SESS_ID_SIZE];         /**< Empty sessionID to compare             */
+static const TRDP_MD_INFO_T cTrdp_md_info_default;
 
 /***********************************************************************************************************************
  *   Local Functions
