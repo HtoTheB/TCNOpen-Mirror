@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1419 2015-08-05 11:05:33Z bloehr $
+ * $Id: test_memSizes.c 1440 2015-09-04 11:42:00Z bloehr $
  *
  */
 
@@ -262,6 +262,7 @@ int main (int argc, char * *argv)
 
     /*    Init the library for callback operation    (PD only) */
     if (tlc_init(dbgOut,                           /* actually printf    */
+                 NULL,
                  &dynamicConfig                    /* Use application supplied memory    */
                  ) != TRDP_NO_ERR)
     {

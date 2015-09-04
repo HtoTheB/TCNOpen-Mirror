@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1385 2014-12-15 14:10:52Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1440 2015-09-04 11:42:00Z bloehr $
  *
  */
 
@@ -1078,7 +1078,7 @@ int main(int argc, char * argv[])
         maxLogCategory = VOS_LOG_ERROR;
 
     /*  Initialize the stack    */
-    result = tlc_init(dbgOut, &memConfig);
+    result = tlc_init(dbgOut, NULL, &memConfig);
     if (result != TRDP_NO_ERR)
     {
         printf("Failed to initialize TRDP stack: %s\n", getResultString(result));
