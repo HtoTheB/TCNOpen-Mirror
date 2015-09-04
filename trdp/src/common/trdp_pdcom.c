@@ -14,9 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1437 2015-08-31 13:25:59Z bloehr $
+ * $Id: trdp_pdcom.c 1443 2015-09-04 16:08:26Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
+ *      BL 2015-08-05: Ticket #81: Counts for packet loss
  *     AHW 2015-04-10: Ticket #76: Wrong initialisation of frame pointer in trdp_pdReceive()
  *     AHW 2015-04-10: Ticket #79: handling for dataSize==0/pData== NULL fixed in in trdp_pdPut()
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed

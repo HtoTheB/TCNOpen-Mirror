@@ -14,9 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1437 2015-08-31 13:25:59Z bloehr $
+ * $Id: trdp_private.h 1443 2015-09-04 16:08:26Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
+ *      BL 2015-08-05: Ticket #81: Counts for packet loss
  *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
  *
  */
