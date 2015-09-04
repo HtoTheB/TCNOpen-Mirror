@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoPolling.c 1384 2014-12-15 14:06:23Z bloehr $*
+ * $Id: echoPolling.c 1441 2015-09-04 13:46:12Z bloehr $*
  *
  */
 
@@ -112,6 +112,7 @@ int main (int argc, char * *argv)
 
     /*    Init the library for non-blocking operation    */
     if (tlc_init(&dbgOut,                            /* actually printf                    */
+                 NULL,
                  &dynamicConfig) != TRDP_NO_ERR)
     {
         printf("Initialization error\n");

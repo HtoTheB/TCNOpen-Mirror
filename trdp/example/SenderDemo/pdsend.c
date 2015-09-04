@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1419 2015-08-05 11:05:33Z bloehr $
+ * $Id: pdsend.c 1441 2015-09-04 13:46:12Z bloehr $
  *
  */
 
@@ -200,6 +200,7 @@ int pd_init (
 
     /*	Init the library for dynamic operation	(PD only) */
     if (tlc_init(dbgOut,                            /* actually printf	*/
+                 NULL,
                  &dynamicConfig                    /* Use application supplied memory	*/
                  ) != TRDP_NO_ERR)
     {
