@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1419 2015-08-05 11:05:33Z bloehr $
+ * $Id: vos_sock.h 1438 2015-09-04 11:36:45Z bloehr $
  *
  */
 
@@ -43,6 +43,7 @@
 #include "vos_private.h"
 #elif defined(POSIX)
 #include <sys/select.h>
+#include <netinet/in.h>
 #else
 #include "vos_private.h"
 #endif
@@ -97,7 +98,10 @@ extern "C" {
 #define TRDP_SOCKBUF_SIZE   (8 * 1024)
 #endif
 #endif
+
 #define VOS_INVALID_SOCKET  -1      /**< Invalid socket number */
+
+#define VOS_INADDR_ANY      INADDR_ANY
 
 #define VOS_DEFAULT_IFACE   cDefaultIface
 
