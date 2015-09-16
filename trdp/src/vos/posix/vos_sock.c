@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1419 2015-08-05 11:05:33Z bloehr $
+ * $Id: vos_sock.c 1446 2015-09-16 12:24:23Z bloehr $
  *
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
  *
@@ -286,7 +286,7 @@ EXT_DECL UINT32 vos_dottedIP (
     struct in_addr addr;
     if (inet_aton(pDottedIP, &addr) <= 0)
     {
-        return 0;   /* Prevent returning broadcast address on error */
+        return INADDR_ANY;          /* Prevent returning broadcast address on error */
     }
     else
     {
@@ -536,12 +536,13 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
         || (vos_sockSetBuffer(sock) != VOS_NO_ERR))
     {
         close(sock);
+        vos_printLog(VOS_LOG_ERROR, "socket() failed, setsockoptions or buffer failed!\n");
         return VOS_SOCK_ERR;
     }
 
     *pSock = (INT32) sock;
 
-    vos_printLog(VOS_LOG_INFO, "vos_sockOpenUDP: socket()=%d success\n", sock);
+    vos_printLog(VOS_LOG_DBG, "vos_sockOpenUDP: socket()=%d success\n", sock);
     return VOS_NO_ERR;
 }
 
@@ -616,7 +617,7 @@ EXT_DECL VOS_ERR_T vos_sockClose (
     }
     else
     {
-        vos_printLog(VOS_LOG_INFO,
+        vos_printLog(VOS_LOG_DBG,
                      "vos_sockClose(%d) okay\n", sock);
     }
 
