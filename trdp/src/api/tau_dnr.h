@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1432 2015-08-20 12:11:43Z ahweiss $
+ * $Id: tau_dnr.h 1448 2015-09-24 11:10:13Z bloehr $
  *
  */
 
@@ -66,8 +66,19 @@ extern "C" {
 EXT_DECL TRDP_ERR_T tau_initDnr (
 	TRDP_APP_SESSION_T appHandle,
     TRDP_IP_ADDR_T     ecspIpAddr,
-    UINT32             ecspPort,
-    CHAR8             *hostFileName);
+    UINT16             ecspPort,
+    const CHAR8        *hostFileName);
+
+/**********************************************************************************************************************/
+/**    Release any resources allocated by DNR
+ *
+ *  @param[in]      appHandle       Handle returned by tlc_openSession().
+ *
+ *  @retval         none
+ *
+ */
+EXT_DECL void tau_deInitDnr (
+    TRDP_APP_SESSION_T appHandle);
 
 
 /**********************************************************************************************************************/
