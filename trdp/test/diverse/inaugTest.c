@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1361 2014-11-21 07:47:23Z railroad-mike $
+ * $Id: inaugTest.c 1452 2015-10-12 12:10:39Z bloehr $
  *
  */
 
@@ -525,6 +525,7 @@ int main (int argc, char * *argv)
 
     /*    Init the library for callback operation    (PD only) */
     if (tlc_init(dbgOut,                           /* actually printf    */
+                 NULL,
                  &dynamicConfig                    /* Use application supplied memory    */
                  ) != TRDP_NO_ERR)
     {
