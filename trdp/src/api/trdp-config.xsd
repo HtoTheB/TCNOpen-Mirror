@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.10.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 1435 2015-08-28 11:33:52Z ahweiss $
+#  SVN           : $Id: trdp-config.xsd 1456 2015-10-16 16:22:31Z bloehr $
 #
 #  HISTORY       :
 #                            1.10.0.0  sink/source attribute for telegrams added
@@ -436,8 +436,8 @@
           </xs:restriction>
         </xs:simpleType>
       </xs:attribute>
-      <xs:attribute name="udp-port" default="20550" type="uint32" use="optional"/>
-      <xs:attribute name="tcp-port" default="20550" type="uint32" use="optional"/>
+      <xs:attribute name="udp-port" default="17225" type="uint32" use="optional"/>
+      <xs:attribute name="tcp-port" default="17225" type="uint32" use="optional"/>
       <xs:attribute name="num-sessions" default="1000" type="uint32" use="optional"/>
     </xs:complexType>
   </xs:element>
