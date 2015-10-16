@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: test_mdSingle.c 1455 2015-10-16 16:20:47Z bloehr $
  *
  */
 
@@ -296,7 +296,7 @@ int main (int argc, char *argv[])
 {
     int ip[4];
     TRDP_MD_CONFIG_T        mdConfiguration =
-    {mdCallback, &sSessionData, {0, 64}, TRDP_FLAGS_CALLBACK, 1000000, 1000000, 1000000, 20550, 20550};
+    {mdCallback, &sSessionData, {0, 64}, TRDP_FLAGS_CALLBACK, 1000000, 1000000, 1000000, 17225, 17225};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
     VOS_IF_REC_T            interfaces[MAX_IF];

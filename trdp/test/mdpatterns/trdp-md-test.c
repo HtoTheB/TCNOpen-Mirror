@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: trdp-md-test.c 1455 2015-10-16 16:20:47Z bloehr $
  *
  */
 
@@ -701,8 +701,8 @@ int main (int argc, char *argv[])
     mdcfg.replyTimeout      = 1000 * opts.tmo;
     mdcfg.confirmTimeout    = 1000 * opts.tmo;
     mdcfg.connectTimeout    = 1000 * opts.tmo;
-    mdcfg.udpPort           = 20550;
-    mdcfg.tcpPort           = 20550;
+    mdcfg.udpPort           = 17225;
+    mdcfg.tcpPort           = 17225;
     mdcfg.maxNumSessions    = 64;
 
     /* open session */
