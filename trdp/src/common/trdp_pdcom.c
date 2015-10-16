@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1443 2015-09-04 16:08:26Z bloehr $
+ * $Id: trdp_pdcom.c 1454 2015-10-16 16:14:02Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -855,7 +855,7 @@ TRDP_ERR_T  trdp_pdSend (
  *
  *  The duration of PD packets on a 100MBit/s network ranges from 3us to 150us max.
  *  Because a cyclic thread scheduling below 5ms would put a too heavy load on the system, and
- *  PD packets cannot get larger than 1436 (+ UDP header), we will not account for differences in packet size.
+ *  PD packets cannot get larger than 1432 (+ UDP header), we will not account for differences in packet size.
  *  Another factor is the differences in intervals for different packets: We should only change the
  *  starting times of the packets within 1/2 the interval time. Otherwise a late addition of packets
  *  could lead to timeouts of already queued packets.
