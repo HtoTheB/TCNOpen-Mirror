@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.h 1436 2015-08-28 11:42:49Z ahweiss $
+ * $Id: tau_xml.h 1464 2015-11-20 15:18:28Z bloehr $
  *
  */
 
@@ -134,7 +134,7 @@ typedef struct
 typedef struct
 {
     UINT32            id;         /**< communication parameter identifier */
-    TRDP_SEND_PARAM_T sendParam;  /**< Send parameter (TTL, QoS, retries) */
+    TRDP_SEND_PARAM_T sendParam;  /**< Send parameter (TTL, QoS) */
 } TRDP_COM_PAR_T;
 
 /** Control for debug output format on application level.
