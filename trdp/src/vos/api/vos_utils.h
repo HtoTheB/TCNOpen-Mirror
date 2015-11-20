@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1408 2015-07-10 12:19:25Z bloehr $
+ * $Id: vos_utils.h 1459 2015-11-20 14:24:43Z bloehr $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -99,6 +99,34 @@ extern void *gRefCon;
 /** CRC/FCS constants */
 #define INITFCS         0xffffffff      /**< Initial FCS value */
 #define SIZE_OF_FCS     4               /**< for better understanding of address calculations */
+
+/** Define endianess if not already done by compiler */
+#if (!defined(L_ENDIAN) && !defined(B_ENDIAN))
+#if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
+#define L_ENDIAN
+#elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
+#define B_ENDIAN
+#else
+#error "Endianess undefined!"
+#endif
+#endif
+
+#define Swap32(val)     (UINT32)(((0xFF000000 & (UINT32)val) >> 24) | \
+                                 ((0x00FF0000 & (UINT32)val) >> 8)  | \
+                                 ((0x0000FF00 & (UINT32)val) << 8)  | \
+                                 ((0x000000FF & (UINT32)val) << 24))
+    
+#ifdef B_ENDIAN
+/** introduce byte swapping on big endian machines needed for CRC handling */
+#define MAKE_LE(a)      Swap32(a)
+#else
+#ifdef L_ENDIAN
+#define MAKE_LE(a)      (a)
+#else
+#error "Endianess undefined!"
+#endif
+#endif
+    
 
 /***********************************************************************************************************************
  * TYPEDEFS
