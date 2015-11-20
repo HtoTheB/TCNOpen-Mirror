@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1446 2015-09-16 12:24:23Z bloehr $
+ * $Id: vos_sock.c 1458 2015-11-20 14:22:22Z bloehr $
  *
+ *      BL 2015-11-20: Compiler warnings fixed (lines 392 + 393)
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
  *
  */
@@ -389,8 +390,10 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
         {
             if (cursor->ifa_addr != NULL && cursor->ifa_addr->sa_family == AF_INET)
             {
-                ifAddrs[count].ipAddr   = ntohl(*(UINT32 *)&cursor->ifa_addr->sa_data[2]);
-                ifAddrs[count].netMask  = ntohl(*(UINT32 *)&cursor->ifa_netmask->sa_data[2]);
+                memcpy(&ifAddrs[count].ipAddr, &cursor->ifa_addr->sa_data[2], 4);
+                ifAddrs[count].ipAddr   = vos_ntohl(ifAddrs[count].ipAddr);
+                memcpy(&ifAddrs[count].netMask, &cursor->ifa_netmask->sa_data[2], 4);
+                ifAddrs[count].netMask  = vos_ntohl(ifAddrs[count].netMask);
                 if (cursor->ifa_name != NULL)
                 {
                     strncpy((char *) ifAddrs[count].name, cursor->ifa_name, VOS_MAX_IF_NAME_SIZE);

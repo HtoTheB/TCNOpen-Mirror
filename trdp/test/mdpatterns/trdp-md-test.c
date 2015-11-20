@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1455 2015-10-16 16:20:47Z bloehr $
+ * $Id: trdp-md-test.c 1458 2015-11-20 14:22:22Z bloehr $
  *
  */
 
@@ -532,9 +532,10 @@ void print_status ()
     /* print test statistics */
     printf("\n");
     print(0, "finished : %u iteration(s)", ++sts.err[0]);
-    for (i = TST_BEGIN + 1; i < TST_END; ++i, nerr += sts.err[i])
+    for (i = TST_BEGIN + 1; i < TST_END; ++i)
     {
         print(0, "  test %d : %u errors", i, sts.err[i]);
+        nerr += sts.err[i];
     }
     printf("\n");
     /* update final result code */

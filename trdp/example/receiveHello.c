@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1441 2015-09-04 13:46:12Z bloehr $
+ * $Id: receiveHello.c 1458 2015-11-20 14:22:22Z bloehr $
  *
  */
 
@@ -46,7 +46,7 @@
 /* We use dynamic memory    */
 #define RESERVED_MEMORY  1000000
 
-CHAR8 gBuffer[32] = "Hello World";
+CHAR8 gBuffer[32];
 
 /**********************************************************************************************************************/
 /** callback routine for TRDP logging/error output
@@ -107,17 +107,10 @@ int main (int argc, char *argv[])
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_NONE};
     UINT32                  ownIP           = 0;
     int                     rv              = 0;
-    UINT32                  lastSeqCount    = 0;
-
-    /*    Generate some data, that we want to send, when nothing was specified. */
-    UINT8                   *outputBuffer;
-    UINT8                   exampleData[DATA_MAX] = "Hello World";
 
     int                     ch;
     TRDP_PD_INFO_T          myPDInfo;
     UINT32                  receivedSize;
-
-    outputBuffer = exampleData;
 
     while ((ch = getopt(argc, argv, "o:h?vc:")) != -1)
     {
@@ -296,7 +289,6 @@ int main (int argc, char *argv[])
         if ((TRDP_NO_ERR == err)
             && (receivedSize > 0))
         {
-            lastSeqCount = myPDInfo.seqCount;
             printf("\nMessage reveived:\n");
             printf("Type = %c%c, ", myPDInfo.msgType >> 8, myPDInfo.msgType & 0xFF);
             printf("Seq  = %u, ", myPDInfo.seqCount);
