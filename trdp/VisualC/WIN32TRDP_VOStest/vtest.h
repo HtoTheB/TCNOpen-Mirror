@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.h 1149 2014-01-13 15:13:18Z cfschneider $
+ * $Id: vtest.h 1462 2015-11-20 15:10:43Z bloehr $
  */
 /**************************/
 /* error flags definition */
@@ -36,8 +36,8 @@
 #define DEST_IP "192.168.64.118"
 #define MC_IP "238.0.0.1"
 #define MC_IF "192.168.64.2"
-#define PORT_PD 20548
-#define PORT_MD 20550
+#define PORT_PD 17224
+#define PORT_MD 17225
 #ifdef WIN32
 #define THREAD_POLICY VOS_THREAD_POLICY_OTHER
 #else 
