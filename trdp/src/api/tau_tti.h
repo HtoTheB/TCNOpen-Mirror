@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1430 2015-08-19 15:26:45Z ahweiss $
+ * $Id: tau_tti.h 1465 2015-11-23 15:54:09Z bloehr $
  *
  */
 
@@ -69,11 +69,21 @@ extern "C" {
  *  @retval         TRDP_INIT_ERR   initialisation error
  *
  */
-EXT_DECL TRDP_ERR_T tau_initTtiAccess (
+EXT_DECL TRDP_ERR_T tau_initTTIaccess (
 	TRDP_APP_SESSION_T appHandle,
     TRDP_IP_ADDR_T     ecspIpAddr,
     CHAR8             *hostFileName);
 
+/**********************************************************************************************************************/
+/**    Function to terminate TTI access
+ *
+ *  @param[in]      appHandle       Handle returned by tlc_openSession().
+ *
+ *  @retval         none
+ *
+ */
+EXT_DECL void tau_deInitTTI (
+    TRDP_APP_SESSION_T appHandle);
 
 /**********************************************************************************************************************/
 /**    Function to retrieve the operational train directory state.

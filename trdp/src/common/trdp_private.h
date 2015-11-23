@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1443 2015-09-04 16:08:26Z bloehr $
+ * $Id: trdp_private.h 1465 2015-11-23 15:54:09Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -303,6 +303,8 @@ typedef struct
 } TRDP_TCP_FD_T;
 #endif
 
+struct TAU_TTDB;
+
 /** Session/application variables store */
 typedef struct TRDP_SESSION
 {
@@ -326,7 +328,9 @@ typedef struct TRDP_SESSION
     TRDP_TIME_T             initTime;           /**< initialization time of session                         */
     TRDP_STATISTICS_T       stats;              /**< statistics of this session                             */
 #if MD_SUPPORT
-    TRDP_TCP_FD_T           tcpFd;              /**< TCP file descriptor parameters   */
+    struct TAU_TTDB         *pTTDB;             /**< session related TTDB data                              */
+    void                    *pUser;             /**< space for higher layer data                            */
+    TRDP_TCP_FD_T           tcpFd;              /**< TCP file descriptor parameters                         */
     TRDP_MD_CONFIG_T        mdDefault;          /**< Default configuration for message data                 */
     MD_LIS_ELE_T            *pMDListenQueue;    /**< pointer to first element of listeners queue            */
     MD_ELE_T                *pMDSndQueue;       /**< pointer to first element of send MD queue (caller)     */

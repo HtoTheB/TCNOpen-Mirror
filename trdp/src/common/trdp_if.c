@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: trdp_if.c 1465 2015-11-23 15:54:09Z bloehr $
  *
  *      BL 2015-09-04: Ticket #99: refCon for tlc_init()
  *
@@ -1046,9 +1046,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
     TRDP_ERR_T  ret = TRDP_NO_ERR;
 
     /*    Check params    */
-    if ((comId == 0)
-        || (dataSize == 0)
-        || (dataSize > TRDP_MAX_PD_DATA_SIZE)
+    if ((dataSize > TRDP_MAX_PD_DATA_SIZE)
         || (interval != 0 && interval < TRDP_TIMER_GRANULARITY)
         || (pPubHandle == NULL))
     {
@@ -1116,7 +1114,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
                     vos_memFree(pNewElement);
                     pNewElement = NULL;
                 }
-                else
+                else if (dataSize != 0)
                 {
                     /*  Alloc the corresponding data buffer  */
                     pNewElement->pFrame = (PD_PACKET_T *) vos_memAlloc(pNewElement->grossSize);
@@ -1125,6 +1123,10 @@ EXT_DECL TRDP_ERR_T tlp_publish (
                         vos_memFree(pNewElement);
                         pNewElement = NULL;
                     }
+                }
+                else    /* Allow late allocation (on tlp_put)   */
+                {
+                    pNewElement->pFrame = NULL;
                 }
             }
         }

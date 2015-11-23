@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1439 2015-09-04 11:38:29Z bloehr $
+ * $Id: trdp_types.h 1465 2015-11-23 15:54:09Z bloehr $
  *
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -123,6 +123,8 @@ typedef enum
     TRDP_REQCONFIRMTO_ERR   = -45,  /**< Protocol Confirm Timeout (Request sender)      */
     TRDP_PACKET_ERR         = -46,  /**< Incomplete message data packet                 */
     TRDP_UNRESOLVED_ERR     = -47,  /**< DNR: address could not be resolved             */
+    TRDP_XML_PARSER_ERR     = -48,  /**< Returned by the tau_xml subsystem              */
+    TRDP_INUSE_ERR          = -49,  /**< Resource is still in use                       */
     TRDP_UNKNOWN_ERR        = -99   /**< Unspecified error                              */
 } TRDP_ERR_T;
 
