@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1467 2015-11-25 17:00:35Z bloehr $
+ * $Id: trdp_pdcom.c 1469 2015-11-26 16:19:12Z bloehr $
  *
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
  *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
@@ -140,9 +140,12 @@ TRDP_ERR_T trdp_pdPut (
             {
                 return TRDP_MEM_ERR;
             }
+            /* copy existing header info */
             memcpy(pTemp, pPacket->pFrame, trdp_packetSizePD(0));
             vos_memFree(pPacket->pFrame);
             pPacket->pFrame = pTemp;
+            /* complete header info, set dataset length */
+            pPacket->pFrame->frameHead.datasetLength = vos_htonl(pPacket->dataSize);
         }
 
         if (!(pPacket->pktFlags & TRDP_FLAGS_MARSHALL) || (marshall == NULL))
