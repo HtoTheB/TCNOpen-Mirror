@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1465 2015-11-23 15:54:09Z bloehr $
+ * $Id: tau_tti.h 1470 2015-12-02 08:59:28Z bloehr $
  *
  */
 
@@ -62,6 +62,7 @@ extern "C" {
 /**    Function to init TTI access
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
+ *  @param[in]      pUserAction     Semaphore to fire if inauguration took place.
  *  @param[in]      ecspIpAddr      ECSP IP address.
  *  @param[in]      hostFileName    Optional host file name as ECSP replacement.
  *
@@ -70,9 +71,10 @@ extern "C" {
  *
  */
 EXT_DECL TRDP_ERR_T tau_initTTIaccess (
-	TRDP_APP_SESSION_T appHandle,
-    TRDP_IP_ADDR_T     ecspIpAddr,
-    CHAR8             *hostFileName);
+	TRDP_APP_SESSION_T  appHandle,
+    VOS_SEMA_T          userAction,
+    TRDP_IP_ADDR_T      ecspIpAddr,
+    CHAR8               *hostFileName);
 
 /**********************************************************************************************************************/
 /**    Function to terminate TTI access

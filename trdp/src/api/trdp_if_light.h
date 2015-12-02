@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1468 2015-11-25 17:03:01Z bloehr $
+ * $Id: trdp_if_light.h 1470 2015-12-02 08:59:28Z bloehr $
  *
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-09-04: Ticket #99: refCon for tlc_init()
@@ -797,6 +797,7 @@ TRDP_ERR_T tlm_replyQuery (
  *
  *  @param[in]      appHandle           the handle returned by tlc_openSession
  *  @param[in]      pSessionId          Session ID returned by indication
+ *  @param[in]      comId               ComId for reply
  *  @param[in]      replyStatus         Info for requester about stack errors
  *  @param[in]      pSendParam          Pointer to send parameters, NULL to use default send parameters
  *
@@ -809,6 +810,7 @@ TRDP_ERR_T tlm_replyQuery (
 TRDP_ERR_T tlm_replyErr (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
+    UINT32                  comId,
     TRDP_REPLY_STATUS_T     replyStatus,
     const TRDP_SEND_PARAM_T *pSendParam);
 

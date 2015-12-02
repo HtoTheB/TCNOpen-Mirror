@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1467 2015-11-25 17:00:35Z bloehr $
+ * $Id: trdp_if.c 1470 2015-12-02 08:59:28Z bloehr $
  *
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
@@ -419,6 +419,8 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
 #ifdef TRDP_RETRIES
         pSession->mdDefault.sendParam.retries = TRDP_MD_DEFAULT_RETRIES;
 #endif
+        pSession->mdDefault.maxNumSessions = TRDP_MD_MAX_NUM_SESSIONS;
+
     }
 
     /* zero is a valid file/socket descriptor! */
@@ -2001,8 +2003,14 @@ EXT_DECL TRDP_ERR_T tlp_unsubscribe (
         trdp_queueDelElement(&appHandle->pRcvQueue, pElement);
         trdp_releaseSocket(appHandle->iface, pElement->socketIdx, 0, FALSE);
         pElement->magic = 0;
-        vos_memFree(pElement->pFrame);
-        vos_memFree(pElement->pSeqCntList);
+        if (pElement->pFrame != NULL)
+        {
+            vos_memFree(pElement->pFrame);
+        }
+        if (pElement->pSeqCntList != NULL)
+        {
+            vos_memFree(pElement->pSeqCntList);
+        }
         vos_memFree(pElement);
         ret = TRDP_NO_ERR;
         if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
@@ -2864,10 +2872,28 @@ TRDP_ERR_T tlm_replyQuery (
 TRDP_ERR_T tlm_replyErr (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
+    UINT32                  comId,
     TRDP_REPLY_STATUS_T     replyStatus,
     const TRDP_SEND_PARAM_T *pSendParam)
 {
-    return TRDP_PARAM_ERR; /* this function is deprecated!!!! */
+    if ( !trdp_isValidSession(appHandle) )
+    {
+        return TRDP_NOINIT_ERR;
+    }
+    if (pSessionId == NULL)
+    {
+        return TRDP_PARAM_ERR;
+    }
+
+    return trdp_mdReply (TRDP_MSG_MP,
+                         appHandle,
+                         (TRDP_UUID_T *)pSessionId,
+                         comId,
+                         0,
+                         replyStatus,
+                         pSendParam,
+                         NULL,
+                         0);
 }
 
 
