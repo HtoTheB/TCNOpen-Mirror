@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1190 2014-03-12 13:15:17Z ahweiss $
+ * $Id: tau_marshall.c 1472 2015-12-10 17:11:59Z bloehr $
  *
  */
 
@@ -976,7 +976,7 @@ EXT_DECL TRDP_ERR_T tau_initMarshall (
 {
     UINT32 i, j;
 
-    if (ppRefCon == NULL || pDataset == NULL || numDataSet == 0 || numComId == 0 || pComIdDsIdMap == 0)
+    if (pDataset == NULL || numDataSet == 0 || numComId == 0 || pComIdDsIdMap == 0)
     {
         return TRDP_PARAM_ERR;
     }
