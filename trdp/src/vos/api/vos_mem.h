@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.h 1323 2014-08-29 14:09:08Z bloehr $
+ * $Id: vos_mem.h 1475 2015-12-10 17:16:59Z bloehr $
  *
  */
 
@@ -77,7 +77,7 @@ typedef enum
 /** Default pre-allocation of free memory blocks. To avoid problems with too many small blocks and no large one.
  Specify how many of each block size that should be pre-allocated (and freed!) to pre-segment the memory area. */
 
-#define VOS_MEM_PREALLOCATE  {0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 1, 0, 0, 0, 0}
+#define VOS_MEM_PREALLOCATE  {0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0}
 
 #endif
 
@@ -205,7 +205,7 @@ EXT_DECL void vos_qsort (
  *  This is just a wrapper for the standard bsearch function.
  *
  *  @param[in]      pKey            Key to search for
- *  @param[in]      pBuf            Pointer to the array to sort
+ *  @param[in]      pBuf            Pointer to the array to search
  *  @param[in]      num             number of elements
  *  @param[in]      size            size of one element
  *  @param[in]      compare         Pointer to compare function

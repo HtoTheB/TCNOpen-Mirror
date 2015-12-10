@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1444 2015-09-04 16:11:02Z bloehr $
+ * $Id: vos_mem.c 1475 2015-12-10 17:16:59Z bloehr $
  *
  * Changes:
  *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
@@ -662,7 +662,7 @@ EXT_DECL void vos_qsort (
  *  This is just a wrapper for the standard bsearch function.
  *
  *  @param[in]      pKey            Key to search for
- *  @param[in]      pBuf            Pointer to the array to sort
+ *  @param[in]      pBuf            Pointer to the array to search
  *  @param[in]      num             number of elements
  *  @param[in]      size            size of one element
  *  @param[in]      compare         Pointer to compare function

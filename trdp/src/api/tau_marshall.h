@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.h 1279 2014-08-07 06:18:07Z ahweiss $
+ * $Id: tau_marshall.h 1475 2015-12-10 17:16:59Z bloehr $
  *
  */
 
@@ -27,7 +27,6 @@
  * INCLUDES
  */
 
-#include "vos_types.h"
 #include "trdp_types.h"
 
 
@@ -56,8 +55,7 @@ extern "C" {
  */
 
 /**********************************************************************************************************************/
-/*    Marshalling/Unmarshalling
-                                                                                          */
+/*    Marshalling/Unmarshalling                                                                                       */
 /**********************************************************************************************************************/
 
 /**********************************************************************************************************************/
