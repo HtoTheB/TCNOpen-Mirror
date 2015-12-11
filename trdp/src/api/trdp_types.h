@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_types.h 1465 2015-11-23 15:54:09Z bloehr $
+ * $Id: trdp_types.h 1477 2015-12-11 17:36:53Z bloehr $
  *
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -204,6 +204,8 @@ typedef struct
     TRDP_IP_ADDR_T  replyIpAddr;    /**< IP address for reply (request only)                        */
     const void      *pUserRef;      /**< User reference given with the local subscribe              */
     TRDP_ERR_T      resultCode;     /**< error code                                                 */
+    TRDP_URI_HOST_T srcHostURI;     /**< source URI host part (unused)                              */
+    TRDP_URI_HOST_T destHostURI;    /**< destination URI host part (unused)                         */
 } TRDP_PD_INFO_T;
 
 
@@ -234,8 +236,10 @@ typedef struct
     TRDP_REPLY_STATUS_T replyStatus;        /**< reply status                               */
     TRDP_UUID_T         sessionId;          /**< for response                               */
     UINT32              replyTimeout;       /**< reply timeout in us given with the request */
-    TRDP_URI_USER_T     destURI;            /**< destination URI user part from MD header   */
-    TRDP_URI_USER_T     srcURI;             /**< source URI user part from MD header        */
+    TRDP_URI_USER_T     srcUserURI;         /**< source URI user part from MD header        */
+    TRDP_URI_HOST_T     srcHostURI;         /**< source URI host part (unused)              */
+    TRDP_URI_USER_T     destUserURI;        /**< destination URI user part from MD header   */
+    TRDP_URI_HOST_T     destHostURI;        /**< destination URI host part (unused)         */
     UINT32              numExpReplies;      /**< number of expected replies, 0 if unknown   */
     UINT32              numReplies;         /**< actual number of replies for the request   */
     const void          *pUserRef;          /**< User reference given with the local call   */

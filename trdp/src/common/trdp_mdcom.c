@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1473 2015-12-10 17:13:15Z bloehr $
+ * $Id: trdp_mdcom.c 1477 2015-12-11 17:36:53Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: TRDP_REDUNDANT flag is evaluated, beQuiet removed
  *      BL 2014-08-28: Ticket #62: Failing TCP communication fixed,
@@ -264,8 +264,8 @@ static void trdp_mdInvokeCallback(const MD_ELE_T *pMdItem, const TRDP_SESSION_PT
         theMessage.msgType      = (TRDP_MSG_T) vos_ntohs(pMdItem->pPacket->frameHead.msgType);
         memcpy(theMessage.sessionId, pMdItem->pPacket->frameHead.sessionID, TRDP_SESS_ID_SIZE);
         theMessage.replyTimeout = vos_ntohl(pMdItem->pPacket->frameHead.replyTimeout);
-        memcpy(theMessage.destURI, pMdItem->pPacket->frameHead.destinationURI, TRDP_MAX_URI_USER_LEN);
-        memcpy(theMessage.srcURI, pMdItem->pPacket->frameHead.sourceURI, TRDP_MAX_URI_USER_LEN);
+        memcpy(theMessage.destUserURI, pMdItem->pPacket->frameHead.destinationURI, TRDP_MAX_URI_USER_LEN);
+        memcpy(theMessage.srcUserURI, pMdItem->pPacket->frameHead.sourceURI, TRDP_MAX_URI_USER_LEN);
     }
     else
     {

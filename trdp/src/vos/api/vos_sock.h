@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1438 2015-09-04 11:36:45Z bloehr $
+ * $Id: vos_sock.h 1477 2015-12-11 17:36:53Z bloehr $
  *
  */
 
@@ -232,6 +232,18 @@ EXT_DECL BOOL8 vos_isMulticast (
 EXT_DECL VOS_ERR_T vos_getInterfaces(
     UINT32         * pAddrCnt,
     VOS_IF_REC_T ifAddrs[]);
+
+/**********************************************************************************************************************/
+/** Get the state of an interface
+ *
+ *
+ *  @param[in]      ifAddress       address of interface to check
+ *
+ *  @retval         TRUE            interface is up and ready
+ *                  FALSE           interface is down / not ready
+ */
+EXT_DECL BOOL8 vos_netIfUp(
+    VOS_IP4_ADDR_T  ifAddress);
 
 /**********************************************************************************************************************/
 /** select function.

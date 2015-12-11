@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1458 2015-11-20 14:22:22Z bloehr $
+ * $Id: vos_sock.c 1477 2015-12-11 17:36:53Z bloehr $
  *
  *      BL 2015-11-20: Compiler warnings fixed (lines 392 + 393)
  *      BL 2014-08-25: Ticket #51: change underlying function for vos_dottedIP
@@ -438,6 +438,53 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
 
     *pAddrCnt = count;
     return VOS_NO_ERR;
+}
+
+/**********************************************************************************************************************/
+/** Get the state of an interface
+ *
+ *
+ *  @param[in]      ifAddress       address of interface to check
+ *
+ *  @retval         TRUE            interface is up and ready
+ *                  FALSE           interface is down / not ready
+ */
+EXT_DECL BOOL8 vos_netIfUp(
+    VOS_IP4_ADDR_T  ifAddress)
+{
+    struct ifaddrs  *addrs;
+    struct ifaddrs  *cursor;
+    VOS_IF_REC_T    ifAddrs;
+    
+    ifAddrs.linkState = FALSE;
+    
+    if (getifaddrs(&addrs) == 0)
+    {
+        cursor = addrs;
+        while (cursor != 0)
+        {
+            if (cursor->ifa_addr != NULL && cursor->ifa_addr->sa_family == AF_INET)
+            {
+                memcpy(&ifAddrs.ipAddr, &cursor->ifa_addr->sa_data[2], 4);
+                ifAddrs.ipAddr   = vos_ntohl(ifAddrs.ipAddr);
+                /* Exit if first (default) interface matches */
+                if (ifAddress == INADDR_ANY || ifAddress == ifAddrs.ipAddr)
+                {
+                    if (cursor->ifa_flags & IFF_UP)
+                    {
+                        ifAddrs.linkState = TRUE;
+                    }
+                    /* vos_printLog(VOS_LOG_INFO, "cursor->ifa_flags = 0x%x\n", cursor->ifa_flags); */
+                    break;
+                }
+            }
+            cursor = cursor->ifa_next;
+        }
+        
+        freeifaddrs(addrs);
+        
+    }
+    return ifAddrs.linkState;
 }
 
 /*    Sockets    */
