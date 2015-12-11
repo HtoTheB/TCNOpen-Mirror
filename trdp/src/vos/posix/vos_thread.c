@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1470 2015-12-02 08:59:28Z bloehr $
+ * $Id: vos_thread.c 1476 2015-12-11 15:03:37Z bloehr $
  *
  */
 
@@ -80,6 +80,7 @@ int sem_timedwait (sem_t *sem, const struct timespec *abs_timeout)
         {
             return 0;
         }
+        usleep(10000);      /* cancellation point */
         if (errno == EINTR)
         {
             break;

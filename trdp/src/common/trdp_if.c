@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1474 2015-12-10 17:14:18Z bloehr $
+ * $Id: trdp_if.c 1476 2015-12-11 15:03:37Z bloehr $
  *
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
@@ -626,15 +626,26 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
             }
             else
             {
+              
                 /*    Release all allocated sockets and memory    */
                 vos_memFree(pSession->pNewFrame);   
 
                 while (pSession->pSndQueue != NULL)
                 {
                     PD_ELE_T *pNext = pSession->pSndQueue->pNext;
+                    
+                    /*  UnPublish our packets   */
+                    trdp_releaseSocket(appHandle->iface, pSession->pSndQueue->socketIdx, 0, FALSE);
+
+                    if (pSession->pSndQueue->pSeqCntList != NULL)
+                    {
+                        vos_memFree(pSession->pSndQueue->pSeqCntList);
+                    }
+                    vos_memFree(pSession->pSndQueue->pFrame);
 
                     /*    Only close socket if not used anymore    */
                     trdp_releaseSocket(pSession->iface, pSession->pSndQueue->socketIdx, 0, FALSE);
+
                     vos_memFree(pSession->pSndQueue);
                     pSession->pSndQueue = pNext;
                 }
@@ -643,13 +654,17 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
                 {
                     PD_ELE_T *pNext = pSession->pRcvQueue->pNext;
 
+                    /*  UnPublish our statistics packet   */
                     /*    Only close socket if not used anymore    */
                     trdp_releaseSocket(pSession->iface, pSession->pRcvQueue->socketIdx, 0, FALSE);
                     if (pSession->pRcvQueue->pSeqCntList != NULL)
                     {
                         vos_memFree(pSession->pRcvQueue->pSeqCntList);
                     }
-                    vos_memFree(pSession->pRcvQueue->pFrame);
+                    if (pSession->pRcvQueue->pFrame != NULL)
+                    {
+                        vos_memFree(pSession->pRcvQueue->pFrame);
+                    }
                     vos_memFree(pSession->pRcvQueue);
                     pSession->pRcvQueue = pNext;
                 }
@@ -1383,7 +1398,6 @@ TRDP_ERR_T  tlp_unpublish (
         }
         vos_memFree(pElement->pFrame);
         vos_memFree(pElement);
-        ret = TRDP_NO_ERR;
 
         /* Re-compute distribution times */
         if (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING)
