@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1465 2015-11-23 15:54:09Z bloehr $
+ * $Id: trdp_private.h 1480 2015-12-14 16:45:24Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -77,6 +77,8 @@
 #define TRDP_MAGIC_SUB_HNDL_VALUE           0xBABECAFE
 
 #define TRDP_SEQ_CNT_START_ARRAY_SIZE       64                          /**< This should be enough for the start    */
+
+#define TRDP_IF_WAIT_FOR_READY              120   /**< 120 seconds (120 tries each second to bind to an IP address) */
 
 /***********************************************************************************************************************
  * TYPEDEFS

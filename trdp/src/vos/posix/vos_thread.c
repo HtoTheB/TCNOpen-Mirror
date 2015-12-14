@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1476 2015-12-11 15:03:37Z bloehr $
+ * $Id: vos_thread.c 1480 2015-12-14 16:45:24Z bloehr $
  *
  */
 
@@ -1174,7 +1174,7 @@ EXT_DECL VOS_ERR_T vos_semaTake (
     if (sema == NULL)
     {
         vos_printLog(VOS_LOG_ERROR, "vos_semaTake() ERROR invalid parameter 'sema' == NULL\n");
-        retVal = VOS_PARAM_ERR;
+        return VOS_PARAM_ERR;
     }
     else if (timeout == 0)
     {
