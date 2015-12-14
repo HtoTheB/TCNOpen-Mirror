@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1470 2015-12-02 08:59:28Z bloehr $
+ * $Id: tau_dnr.h 1481 2015-12-14 17:11:47Z bloehr $
  *
+ *      BL 2015-12-14: Ticket #8: DNR client
  */
 
 #ifndef TAU_DNR_H
@@ -156,7 +157,7 @@ EXT_DECL TRDP_ERR_T tau_addr2Uri (
 
 
 /* ---------------------------------------------------------------------------- */
-
+#if 0
 /**********************************************************************************************************************/
 /**    Function to retrieve the id of the consist and vehicle with label vehLabel in the consist with cstLabel.
  *  
@@ -487,7 +488,7 @@ EXT_DECL TRDP_ERR_T tau_addr2OpCstNo (
 
 /* ---------------------------------------------------------------------------- */
 
-
+#endif /* if 0 */
 
 #ifdef __cplusplus
 }
