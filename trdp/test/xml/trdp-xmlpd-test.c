@@ -14,7 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1478 2015-12-14 09:05:11Z bloehr $
+ *
+ *      BL 2015-12-14: Ticket #97  trdp-xmlpd-test.c subscribed telegram issue.
  *
  */
 
@@ -989,7 +991,7 @@ void processData()
         for (i = 0; i < numSubTelegrams; i++)
         {
             /*  Read data from TRDP stack   */
-            dataSize = aPubTelegrams[i].dataset.size;
+            dataSize = aSubTelegrams[i].dataset.size;
             aSubTelegrams[i].result = tlp_get(
                 aSubTelegrams[i].sessionhandle, aSubTelegrams[i].subHandle, 
                 &aSubTelegrams[i].pdInfo, 
