@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStatsMarshall.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: getStatsMarshall.c 1479 2015-12-14 14:53:45Z bloehr $
  *
  */
 
@@ -311,7 +311,7 @@ void myPDcallBack (
             {
                 if (pMsg->comId == 12)
                 {
-                    tau_unmarshall(NULL, pMsg->comId, pData, (UINT8 *) &gBuffer, &dataSize, NULL);
+                    tau_unmarshall(NULL, pMsg->comId, pData, dataSize, (UINT8 *) &gBuffer, &dataSize, NULL);
                     print_stats(&gBuffer);
                     gKeepOnRunning = FALSE;
                 }

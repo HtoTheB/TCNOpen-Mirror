@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1182 2014-03-03 16:11:35Z bloehr $
+ * $Id: test_marshalling.c 1479 2015-12-14 14:53:45Z bloehr $
  *
  */
 #include <stdio.h>
@@ -675,7 +675,7 @@ int main ()
     }
 
     /*    Compute size of marshalled data */
-    err = tau_calcDatasetSizeByComId(refCon, 1000, (UINT8 *) &gMyDataSet1000, &compSize, NULL);
+    err = tau_calcDatasetSizeByComId(refCon, 1000, (UINT8 *) &gMyDataSet1000, sizeof(gMyDataSet1000), &compSize, NULL);
 
     if (err != TRDP_NO_ERR)
     {
@@ -697,7 +697,7 @@ int main ()
     bufSize = compSize;
     memset(gDstDataBuffer, 0, bufSize);
 
-    err = tau_marshall(refCon, 1000, (UINT8 *) &gMyDataSet1000, gDstDataBuffer, &bufSize, NULL);
+    err = tau_marshall(refCon, 1000, (UINT8 *) &gMyDataSet1000, sizeof(gMyDataSet1000), gDstDataBuffer, &bufSize, NULL);
 
     if (err != TRDP_NO_ERR)
     {
@@ -716,10 +716,10 @@ int main ()
         printf("...### Marshalled size is different!\n");
     }
 
-    bufSize = sizeof(gMyDataSet1000Copy);
-    memset(&gMyDataSet1000Copy, 0, bufSize);
+    UINT32 bufSize2 = sizeof(gMyDataSet1000Copy);
+    memset(&gMyDataSet1000Copy, 0, bufSize2);
 
-    err = tau_unmarshall(refCon, 1000, gDstDataBuffer, (UINT8 *) &gMyDataSet1000Copy, &bufSize, NULL);
+    err = tau_unmarshall(refCon, 1000, gDstDataBuffer, bufSize, (UINT8 *) &gMyDataSet1000Copy, &bufSize2, NULL);
 
     if (err != TRDP_NO_ERR)
     {
