@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1455 2015-10-16 16:20:47Z bloehr $
+ * $Id: inaugTest.c 1484 2015-12-16 16:45:29Z bloehr $
  *
  */
 
@@ -155,9 +155,7 @@ void publishPD(
                           0,                            /*    etbTopoCnt local consist only */
                           0,                            /*    opTrnTopoCnt                  */
                           0,                            /*    default source IP             */
-                          pdData->addr,                 /*    where to send to              */
-                          pdData->dataSize ? pdData->data : NULL,      /*    actual data    */
-                          pdData->dataSize              /*    data size                     */
+                          pdData->addr                 /*    where to send to              */
                           );
     }
     if (err != TRDP_NO_ERR)

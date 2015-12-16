@@ -20,7 +20,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: tau_tti.c 1483 2015-12-16 14:43:30Z bloehr $
+ * $Id: tau_tti.c 1484 2015-12-16 16:45:29Z bloehr $
  *
  */
 
@@ -183,7 +183,7 @@ static void ttiPDCallback (
             tlc_setOpTrainTopoCount(appHandle, appHandle->pTTDB->opTrnState.state.opTrnTopoCnt);
             appHandle->pTTDB->opTrnState.state.crc = vos_ntohl(pTelegram->state.crc);
         }
-        else if (pMsg->resultCode == TRDP_TIMED_OUT)
+        else if (pMsg->resultCode == TRDP_TIMEOUT_ERR )
         {
             if (appHandle->etbTopoCnt != 0)
             {
