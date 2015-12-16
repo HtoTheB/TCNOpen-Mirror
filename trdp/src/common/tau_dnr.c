@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1481 2015-12-14 17:11:47Z bloehr $
+ * $Id: tau_dnr.c 1483 2015-12-16 14:43:30Z bloehr $
  *
  *      BL 2015-12-14: Ticket #8: DNR client
  */
@@ -350,8 +350,8 @@ static TRDP_ERR_T createSendQuery (
     *pSize  += 4;               /* add query type and class size! */
 
     /* send the query */
-    err = vos_sockSendUDP(sock, packetBuffer, &size, pDNR->ecspIpAddr, pDNR->ecspPort);
-    if (err != VOS_NO_ERR)
+    err = (TRDP_ERR_T) vos_sockSendUDP(sock, packetBuffer, &size, pDNR->ecspIpAddr, pDNR->ecspPort);
+    if (err != TRDP_NO_ERR)
     {
         vos_printLogStr(VOS_LOG_ERROR, "createSendQuery failed to sent a query!\n");
         return err;
@@ -540,7 +540,7 @@ static void updateDNSentry (
         return;
     }
 
-    err = createSendQuery(pDNR, my_socket, pUri, id, &querySize);
+    err = (VOS_ERR_T) createSendQuery(pDNR, my_socket, pUri, id, &querySize);
 
     if (err != VOS_NO_ERR)
     {
