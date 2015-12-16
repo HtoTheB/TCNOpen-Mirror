@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1484 2015-12-16 16:45:29Z bloehr $
+ * $Id: trdp-md-test.c 1485 2015-12-16 17:13:51Z bloehr $
  *
  */
 
@@ -1139,7 +1139,7 @@ void send_msg (TRDP_MD_INFO_T *msg, TRDP_FLAGS_T flags)
             /* send reply */
             err = tlm_reply(
                     apph,                           /* session handle */
-                    msg->sessionId,                 /* session id */
+                    (const TRDP_UUID_T *) &msg->sessionId,               /* session id */
                     msg->comId,                     /* comid */
                     0,                              /* user status */
                     NULL,                           /* send parameters */
