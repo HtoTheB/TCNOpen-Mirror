@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1483 2015-12-16 14:43:30Z bloehr $
+ * $Id: tau_dnr.c 1486 2015-12-17 16:13:22Z bloehr $
  *
  *      BL 2015-12-14: Ticket #8: DNR client
  */
@@ -526,7 +526,7 @@ static void updateDNSentry (
     UINT8           packetBuffer[TAU_MAX_DNS_BUFFER_SIZE];
     UINT32          size, querySize;
     VOS_SOCK_OPT_T  opts;
-    UINT16          id      = (UINT16) appHandle;
+    UINT16          id      = (UINT16) ((UINT32)appHandle & 0xFFFF);
     TAU_DNR_DATA_T  *pDNR = (TAU_DNR_DATA_T *) appHandle->pUser;
     TRDP_IP_ADDR_T  ip_addr = VOS_INADDR_ANY;
 
