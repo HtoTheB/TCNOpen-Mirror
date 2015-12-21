@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id$
+ * $Id: taulApp_PD_sample.c 1491 2015-12-21 15:46:13Z bloehr $
  *
  */
 
