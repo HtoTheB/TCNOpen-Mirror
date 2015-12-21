@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.c 1476 2015-12-11 15:03:37Z bloehr $
+ * $Id: tau_xml.c 1487 2015-12-21 14:33:26Z bloehr $
  *
  */
 
@@ -28,8 +28,8 @@
 #include "trdp_types.h"
 #include "trdp_utils.h"
 #include "tau_xml.h"
-#include "libxml/parser.h"
-#include "libxml/xpath.h"
+#include <libxml2/libxml/parser.h>
+#include <libxml2/libxml/xpath.h>
 
 /*******************************************************************************
  * DEFINES

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1479 2015-12-14 14:53:45Z bloehr $
+ * $Id: tau_marshall.c 1487 2015-12-21 14:33:26Z bloehr $
  *
  *      BL 2015-12-14: Ticket #33: source size check for marshalling
  */
@@ -288,7 +288,7 @@ static TRDP_DATASET_T *findDSFromComId (
 
     if (key2 != NULL)
     {
-        TRDP_DATASET_T key22 = {0};
+        TRDP_DATASET_T key22 = {0, 0, 0};
 
         key22.id    = key2->datasetId;
         key3        = (TRDP_DATASET_T * *) vos_bsearch(&key22,
@@ -319,7 +319,7 @@ static TRDP_DATASET_T *findDs (
 {
     if ((sDataSets != NULL) && (sNumEntries != 0))
     {
-        TRDP_DATASET_T  key2 = {0};
+        TRDP_DATASET_T  key2 = {0, 0, 0};
         TRDP_DATASET_T  * *key3;
 
         key2.id = datasetId;

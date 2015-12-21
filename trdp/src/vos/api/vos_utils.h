@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1459 2015-11-20 14:24:43Z bloehr $
+ * $Id: vos_utils.h 1487 2015-12-21 14:33:26Z bloehr $
  *
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
@@ -106,6 +106,10 @@ extern void *gRefCon;
 #define L_ENDIAN
 #elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
 #define B_ENDIAN
+    #elif defined(O_BE)
+        #define B_ENDIAN
+    #elif defined(O_LE)
+        #define L_ENDIAN
 #else
 #error "Endianess undefined!"
 #endif
