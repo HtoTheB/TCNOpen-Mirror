@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1484 2015-12-16 16:45:29Z bloehr $
+ * $Id: test_mdSingle.c 1489 2015-12-21 14:42:11Z bloehr $
  *
  */
 
@@ -172,7 +172,7 @@ void mdCallback (void                   *pRefCon,
                     {
                         printf("-> sending reply\n");
                         err = tlm_reply(myGlobals->appHandle, 
-                                        pMsg->sessionId,
+                                        &pMsg->sessionId,
                                         pMsg->comId,
                                         0,
                                         NULL,
