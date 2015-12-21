@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_xml.c 1487 2015-12-21 14:33:26Z bloehr $
+ * $Id: tau_xml.c 1492 2015-12-21 16:15:40Z bloehr $
  *
  */
 
@@ -1245,7 +1245,7 @@ EXT_DECL TRDP_ERR_T tau_readXmlDatasetConfig (
  *  @param[in]      numComId            The number of entries in the ComId DatasetId mapping list
  *  @param[in]      pComIdDsIdMap       Pointer to an array of structures of type TRDP_COMID_DSID_MAP_T
  *  @param[in]      numDataset          The number of datasets found in the configuration
- *  @param[in]      pNumDataset         Pointer to an array of pointers to a structures of type TRDP_DATASET_T
+ *  @param[in]      ppDataset           Pointer to an array of pointers to a structures of type TRDP_DATASET_T
  *
  *  @retval         none
  *

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: tau_cstinfo.c 1484 2015-12-16 16:45:29Z bloehr $
+ * $Id: tau_cstinfo.c 1492 2015-12-21 16:15:40Z bloehr $
  *
  */
 
@@ -47,9 +47,8 @@
 /**    Getter function to retrieve a value from the consist info telegram value.
  *
  *  @param[in]      pCstInfo        pointer to packed consist info in network byte order
- *  @param[out]     pValue          pointer to value to return
  *
- *  @retval         none
+ *  @retval         len
  *
  */
 UINT16 cstInfoGetPropSize (TRDP_CONSIST_INFO_T *pCstInfo)
