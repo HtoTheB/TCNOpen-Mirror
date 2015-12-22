@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1485 2015-12-16 17:13:51Z bloehr $
+ * $Id: trdp_if.c 1496 2015-12-22 16:32:30Z bloehr $
  *
+ *      BL 2015-12-22: Mutex optimised in closeSession
  *      BL 2015-12-14: Setter for default configuration added
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
@@ -621,6 +622,12 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
             }
         }
 
+        /* We can release the global session mutex after removing the session from the list */
+        if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
+        {
+            vos_printLog(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
+        }
+
         /*    At this point we removed the session from the queue    */
         if (found)
         {
@@ -740,10 +747,6 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
                 vos_mutexDelete(pSession->mutex);
                 vos_memFree(pSession);
             }
-        }
-        if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
-        {
-            vos_printLog(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
         }
     }
 
