@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1480 2015-12-14 16:45:24Z bloehr $
+ * $Id: vos_thread.c 1497 2015-12-23 15:56:10Z bloehr $
  *
  */
 
@@ -453,8 +453,11 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
     struct timespec remaining_delay;
     int ret;
 
+
     if (delay == 0)
     {
+        pthread_testcancel();
+
         /*    yield cpu to other processes   */
         if (sched_yield() != 0)
         {
@@ -467,6 +470,7 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
     wanted_delay.tv_nsec    = (delay % 1000000) * 1000;
     do
     {
+        pthread_testcancel();
         ret = nanosleep(&wanted_delay, &remaining_delay);
         if (ret == -1 && errno == EINTR)
         {
