@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1486 2015-12-17 16:13:22Z bloehr $
+ * $Id: tau_dnr.c 1498 2016-01-21 16:59:31Z bloehr $
  *
  *      BL 2015-12-14: Ticket #8: DNR client
  */
@@ -863,7 +863,7 @@ EXT_DECL TRDP_ERR_T tau_addr2Uri (
     }
     else
     {
-        int i;
+        UINT32 i;
         for (i = 0; i < pDNR->noOfCachedEntries; ++i)
         {
             if (pDNR->cache[i].ipAddr == addr &&
