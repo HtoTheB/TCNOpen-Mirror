@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1479 2015-12-14 14:53:45Z bloehr $
+ * $Id: trdp_pdcom.c 1499 2016-01-22 16:08:55Z bloehr $
  *
  *      BL 2015-12-14: Ticket #33: source size check for marshalling
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
@@ -53,6 +53,9 @@
  * DEFINES
  */
 
+#ifndef UINT32_MAX
+#define UINT32_MAX  4294967295U
+#endif
 
 /*******************************************************************************
  * TYPEDEFS
