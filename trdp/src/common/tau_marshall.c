@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1487 2015-12-21 14:33:26Z bloehr $
+ * $Id: tau_marshall.c 1502 2016-02-03 17:08:45Z bloehr $
  *
+ *      BL 2016-02-03: Ticket #108: Uninitialized info variable
  *      BL 2015-12-14: Ticket #33: source size check for marshalling
  */
 
@@ -1084,6 +1085,7 @@ EXT_DECL TRDP_ERR_T tau_marshall (
 
     info.level      = 0;
     info.pSrc       = pSrc;
+    info.pSrcEnd    = pSrc + srcSize;
     info.pDst       = pDest;
     info.pDstEnd    = pDest + *pDestSize;
 
