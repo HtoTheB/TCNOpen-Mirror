@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1501 2016-01-26 12:45:17Z bloehr $
+ * $Id: trdp_pdcom.c 1504 2016-02-04 10:23:54Z newtecbosse $
  *
+ *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
  *      BL 2016-01-25: Ticket #106: User needs to be informed on every received PD packet
  *      BL 2015-12-14: Ticket #33: source size check for marshalling
  *      BL 2015-11-24: Ticket #104: PD telegrams with no data is never sent
@@ -230,7 +231,7 @@ TRDP_ERR_T trdp_pdGet (
             return unmarshall(refCon,
                               pPacket->addr.comId,
                               pPacket->pFrame->data,
-                              vos_ntohs(pPacket->pFrame->frameHead.datasetLength),
+                              vos_ntohl(pPacket->pFrame->frameHead.datasetLength),
                               (UINT8 *)pData,
                               pDataSize,
                               &pPacket->pCachedDS);
