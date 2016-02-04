@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1496 2015-12-22 16:32:30Z bloehr $
+ * $Id: trdp_if.c 1503 2016-02-04 08:51:34Z bloehr $
  *
  *      BL 2015-12-22: Mutex optimised in closeSession
  *      BL 2015-12-14: Setter for default configuration added
@@ -1671,7 +1671,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
  *  @param[in]      pSendParam          optional pointer to send parameter, NULL - default parameters are used
  *  @param[in]      pData               pointer to packet data / dataset
  *  @param[in]      dataSize            size of packet data
- *  @param[in]      replyComId          comId of reply
+ *  @param[in]      replyComId          comId of reply (default comID of subscription)
  *  @param[in]      replyIpAddr         IP for reply
  *
  *  @retval         TRDP_NO_ERR         no error
@@ -1804,6 +1804,10 @@ EXT_DECL TRDP_ERR_T tlp_request (
             if (ret == TRDP_NO_ERR && pReqElement != NULL)
             {
                 
+                if (replyComId == 0)
+                {
+                    replyComId = pSubPD->addr.comId;
+                }
 
                 /*    Compute the header fields */
                 trdp_pdInit(pReqElement, TRDP_MSG_PR, etbTopoCnt, opTrnTopoCnt, replyComId, replyIpAddr);
