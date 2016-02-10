@@ -15,11 +15,12 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1475 2015-12-10 17:16:59Z bloehr $
+ * $Id: vos_mem.c 1508 2016-02-10 15:45:39Z bloehr $
  *
  * Changes:
- *                  BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
- *                                 ID 2: "uninitialized PD_ELE_T newPD->pNext in tlp_subscribe()"
+ *      BL 2016-02-10: Debug print: tabs before size output
+ *      BL 2012-12-03: ID 1: "using uninitialized PD_ELE_T.pullIpAddress variable"
+ *                     ID 2: "uninitialized PD_ELE_T newPD->pNext in tlp_subscribe()"
  *
  *
  */
@@ -366,7 +367,7 @@ EXT_DECL UINT8 *vos_memAlloc (
         {
             memset(p, 0, size);
         }
-        vos_printLog(VOS_LOG_DBG, "vos_memAlloc() %p, size %u\n", p, size);
+        vos_printLog(VOS_LOG_DBG, "vos_memAlloc() %p, size\t%u\n", p, size);
 
         return p;
     }
@@ -469,7 +470,7 @@ EXT_DECL UINT8 *vos_memAlloc (
             memset((UINT8 *) pBlock + sizeof(MEM_BLOCK_T), 0, blockSize);
 
             /* Return pointer to data area, not the memory block itself */
-            vos_printLog(VOS_LOG_DBG, "vos_memAlloc() %p, size %u\n", ((UINT8 *) pBlock + sizeof(MEM_BLOCK_T)), size);
+            vos_printLog(VOS_LOG_DBG, "vos_memAlloc() %p, size\t%u\n", ((UINT8 *) pBlock + sizeof(MEM_BLOCK_T)), size);
             return (UINT8 *) pBlock + sizeof(MEM_BLOCK_T);
         }
         else

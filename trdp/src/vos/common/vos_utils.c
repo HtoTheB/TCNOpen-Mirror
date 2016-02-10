@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1408 2015-07-10 12:19:25Z bloehr $
+ * $Id: vos_utils.c 1508 2016-02-10 15:45:39Z bloehr $
  *
+ *      BL 2016-02-10: ifdef DEBUG for some functions
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
  */
@@ -167,7 +168,7 @@ static void vos_printStructSizes ()
 
 VOS_ERR_T vos_initRuntimeConsts (void)
 {
-#if MD_SUPPORT
+#ifdef DEBUG
     VOS_ERR_T   err                     = VOS_INTEGRATION_ERR;
     UINT32      sAlignINT8              = 1;
     UINT32      sAlignINT16             = 2;
@@ -362,6 +363,7 @@ UINT32 vos_crc32 (
     return ~crc;
 }
 
+#ifdef DEBUG
 /**********************************************************************************************************************/
 /** Return endianess
  *
@@ -371,6 +373,7 @@ INLINE BOOL8 vos_isBigEndian (void)
 {
     return sIsBigEndian;
 }
+#endif
 
 /**********************************************************************************************************************/
 /** Return a human readable version representation.
