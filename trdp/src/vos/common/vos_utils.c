@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1508 2016-02-10 15:45:39Z bloehr $
+ * $Id: vos_utils.c 1509 2016-02-11 14:29:05Z bloehr $
  *
  *      BL 2016-02-10: ifdef DEBUG for some functions
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
@@ -131,13 +131,13 @@ static const UINT32 crc_table[256] PROGMEM =
     0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
 };
 
+#ifdef DEBUG
 static BOOL8        sIsBigEndian = FALSE;
 
 /***********************************************************************************************************************
  * LOCAL FUNCTIONS
  */
 
-#ifdef DEBUG
 #include "trdp_private.h"
 /**********************************************************************************************************************/
 /** Print sizes of used structs.
@@ -384,7 +384,7 @@ INLINE BOOL8 vos_isBigEndian (void)
 const char *vos_getVersionString (void)
 {
     static CHAR8 version[16];
-    
+
     (void) vos_snprintf(version,
                         sizeof(version),
                         "%d.%d.%d.%d",
@@ -392,7 +392,7 @@ const char *vos_getVersionString (void)
                         VOS_RELEASE,
                         VOS_UPDATE,
                         VOS_EVOLUTION);
-    
+
     return version;
 }
 
@@ -406,4 +406,3 @@ EXT_DECL const VOS_VERSION_T *vos_getVersion (void)
 {
     return &vosVersion;
 }
-
