@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1383 2014-12-15 14:02:23Z ahweiss $
+ * $Id: tau_ctrl_types.h 1510 2016-02-17 14:03:45Z bloehr $
  *
  */
 
@@ -115,7 +115,11 @@ typedef struct
 typedef struct
 {
     TRDP_SHORT_VERSION_T    version;        /**< telegram version information, main_version = 1, sub_version = 0    */ 
-    UINT16                  reserved01;     /**< reserved (=0)                                                      */
+    UINT8                   reserved01;     /**< reserved (=0)                                                      */
+    UINT8                   leadVehOfCst;   /**< position of leading vehicle in consist range 0...32
+                                                    0 = not defined
+                                                    1 = first vehicle in consist in direction 1
+                                                    2 = second vehicle etc.                                         */
     TRDP_LABEL_T            deviceName;     /**< function device of ECSC which sends the telegram                   */
     UINT8                   inhibit;        /**< inauguration inhibit
                                                     0 = no inhibit request
