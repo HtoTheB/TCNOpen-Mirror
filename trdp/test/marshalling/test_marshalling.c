@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1479 2015-12-14 14:53:45Z bloehr $
+ * $Id: test_marshalling.c 1519 2016-02-26 16:18:39Z bloehr $
  *
  */
 #include <stdio.h>
@@ -660,11 +660,11 @@ struct myDataSet1001    gMyDataSet1001Copy;
 ***********************************************************************************************************************/
 int main ()
 {
-    /*INT32       index;*/
     UINT32      *refCon;
     TRDP_ERR_T  err;
     UINT32      compSize    = 0;
     UINT32      bufSize     = 0;
+    UINT32      bufSize2;
 
     err = tau_initMarshall((void *)&refCon, 2, gComIdMap, 6, gDataSets);
 
@@ -716,7 +716,7 @@ int main ()
         printf("...### Marshalled size is different!\n");
     }
 
-    UINT32 bufSize2 = sizeof(gMyDataSet1000Copy);
+    bufSize2 = sizeof(gMyDataSet1000Copy);
     memset(&gMyDataSet1000Copy, 0, bufSize2);
 
     err = tau_unmarshall(refCon, 1000, gDstDataBuffer, bufSize, (UINT8 *) &gMyDataSet1000Copy, &bufSize2, NULL);

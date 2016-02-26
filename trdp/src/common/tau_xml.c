@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: tau_xml.c 1516 2016-02-25 13:26:03Z bloehr $
+ * $Id: tau_xml.c 1519 2016-02-26 16:18:39Z bloehr $
  *
  *      BL 2016-02-11: Ticket #111: unit, scale, offset added
  *      BL 2016-02-11: Ticket #102: Replacing libxml2
@@ -168,7 +168,7 @@ static void setDefaultInterfaceValues (
 
 void dbgPrint (UINT32 num, TRDP_EXCHG_PAR_T *pArray)
 {
-    int i, j;
+    UINT32 i, j;
 
     printf( "---\nExchange parameters (ComId / parId / dataSetId / type:\n");
     for (i = 0; i < num; ++i)

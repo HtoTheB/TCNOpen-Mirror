@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.h 1475 2015-12-10 17:16:59Z bloehr $
+ * $Id: vos_mem.h 1519 2016-02-26 16:18:39Z bloehr $
  *
  */
 
@@ -259,6 +259,20 @@ EXT_DECL void vos_strncpy (
     const CHAR8 *pStr2,
     UINT32      count );
 
+/**********************************************************************************************************************/
+/** String concatenation with length limitation.
+ *
+ *  @param[in]      pStrDst       Destination string
+ *  @param[in]      count         Size of destination buffer
+ *  @param[in]      pStrSrc       Null terminated string to append
+ *
+ *  @retval         none
+ */
+
+EXT_DECL void vos_strncat (
+    CHAR8       *pStrDst,
+    UINT32      count,
+    const CHAR8 *pStrSrc);
 
 /**********************************************************************************************************************/
 /*    Queues
