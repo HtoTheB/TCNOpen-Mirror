@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1497 2015-12-23 15:56:10Z bloehr $
+ * $Id: vos_thread.c 1517 2016-02-26 12:40:02Z newtecbosse $
  *
  */
 
@@ -72,7 +72,7 @@ int sem_timedwait (sem_t *sem, const struct timespec *abs_timeout)
     VOS_TIME_T now, timeOut;
 
     timeOut.tv_sec  = abs_timeout->tv_sec;
-    timeOut.tv_usec = abs_timeout->tv_nsec;
+    timeOut.tv_usec = abs_timeout->tv_nsec * 1000;
 
     while (1)
     {
