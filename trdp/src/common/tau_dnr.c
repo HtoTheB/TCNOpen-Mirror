@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1520 2016-02-29 09:09:53Z newtecbosse $
+ * $Id: tau_dnr.c 1521 2016-02-29 09:28:22Z bloehr $
  *
  *      BL 2015-12-14: Ticket #8: DNR client
  */
@@ -284,7 +284,7 @@ static void readHostsFile (
                 /* Try to get IP */
                 pDNR->cache[pDNR->noOfCachedEntries].ipAddr = vos_dottedIP(&line[index]);
                 
-                if (pDNR->cache[pDNR->noOfCachedEntries].ipAddr == INADDR_ANY)
+                if (pDNR->cache[pDNR->noOfCachedEntries].ipAddr == VOS_INADDR_ANY)
                 {
                     continue;
                 }

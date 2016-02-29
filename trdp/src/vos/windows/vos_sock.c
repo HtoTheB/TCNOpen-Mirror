@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1477 2015-12-11 17:36:53Z bloehr $*
+ * $Id: vos_sock.c 1521 2016-02-29 09:28:22Z bloehr $*
  *
  */
 
@@ -216,9 +216,9 @@ EXT_DECL UINT32 vos_dottedIP (
     /* indicate conversion errors, therefore zero has   */
     /* to be returned in order to have similar behavior */
     /* as by using inet_aton                            */
-    if ((conversionResult == INADDR_NONE)
+    if ((conversionResult == VOS_INADDR_ANY)
         ||
-        (conversionResult == INADDR_ANY))
+        (conversionResult == VOS_INADDR_ANY))
     {
         return 0;
     }
@@ -1270,7 +1270,7 @@ EXT_DECL VOS_ERR_T vos_sockBind (
     /*  Never bind to multicast address  */
     if (vos_isMulticast(ipAddress))
     {
-        ipAddress = INADDR_ANY;
+        ipAddress = VOS_INADDR_ANY;
     }
 
     /*  Allow the socket to be bound to an address and port
