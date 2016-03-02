@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1506 2016-02-04 17:11:02Z bloehr $
+ * $Id: trdp_if.c 1525 2016-03-02 13:44:48Z newtecbosse $
  *
  *      BL 2016-02-04: Late configuration update/merging 
  *      BL 2015-12-22: Mutex optimised in closeSession
@@ -1137,6 +1137,43 @@ EXT_DECL TRDP_ERR_T tlc_setOpTrainTopoCount (
     }
     
     return ret;
+}
+    
+/**********************************************************************************************************************/
+/** Set new topocount for trainwide communication
+ *
+ *    This value is used for validating outgoing and incoming packets only!
+ *
+ *  @param[in]      appHandle           the handle returned by tlc_openSession
+ *
+ *  @retval         etbTopoCnt
+ */
+EXT_DECL UINT32 tlc_getETBTopoCount (TRDP_APP_SESSION_T  appHandle)
+{
+    if (trdp_isValidSession(appHandle))
+    {
+        return appHandle->etbTopoCnt;
+    }
+    return 0;
+}
+    
+/**********************************************************************************************************************/
+/** Set new operational train topocount for direction/orientation sensitive communication.
+ *
+ *    This value is used for validating outgoing and incoming packets only!
+ *
+ *  @param[in]      appHandle           The handle returned by tlc_init
+ *
+ *  @retval         opTrnTopoCnt        New operational topocount value
+ */
+EXT_DECL UINT32 tlc_getOpTrainTopoCount (
+        TRDP_APP_SESSION_T  appHandle)
+{
+    if (trdp_isValidSession(appHandle))
+    {
+        return appHandle->opTrnTopoCnt;
+    }
+    return 0;
 }
     
 /**********************************************************************************************************************/
