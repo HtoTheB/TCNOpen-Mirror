@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1485 2015-12-16 17:13:51Z bloehr $
+ * $Id: trdp_if_light.h 1526 2016-03-02 13:45:31Z newtecbosse $
  *
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-09-04: Ticket #99: refCon for tlc_init()
@@ -183,7 +183,9 @@ EXT_DECL TRDP_ERR_T tlc_setETBTopoCount (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              etbTopoCnt);
 
-
+EXT_DECL UINT32 tlc_getETBTopoCount (
+    TRDP_APP_SESSION_T  appHandle);
+    
 /**********************************************************************************************************************/
 /** Set new operational train topocount for direction/orientation sensitive communication.
  *
@@ -196,6 +198,8 @@ EXT_DECL TRDP_ERR_T tlc_setOpTrainTopoCount (
     TRDP_APP_SESSION_T  appHandle,
     UINT32              opTrnTopoCnt);
 
+EXT_DECL UINT32 tlc_getOpTrainTopoCount (
+    TRDP_APP_SESSION_T  appHandle);
 
 /**********************************************************************************************************************/
 /** Frees the buffer reserved by the TRDP layer.
