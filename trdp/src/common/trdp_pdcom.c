@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1504 2016-02-04 10:23:54Z newtecbosse $
+ * $Id: trdp_pdcom.c 1528 2016-03-04 17:28:04Z bloehr $
  *
+ *      BL 2016-03-04: Ticket #112: Marshalling sets wrong datasetLength (PD)
  *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
  *      BL 2016-01-25: Ticket #106: User needs to be informed on every received PD packet
  *      BL 2015-12-14: Ticket #33: source size check for marshalling
@@ -167,6 +168,10 @@ TRDP_ERR_T trdp_pdPut (
                            pPacket->pFrame->data,
                            &dataSize,
                            &pPacket->pCachedDS);
+            /* We must set a possible smaller packet size! */
+            pPacket->dataSize   = dataSize;
+            pPacket->grossSize  = trdp_packetSizePD(dataSize);
+            pPacket->pFrame->frameHead.datasetLength = vos_htonl(pPacket->dataSize);
         }
 
         if (TRDP_NO_ERR == ret)
