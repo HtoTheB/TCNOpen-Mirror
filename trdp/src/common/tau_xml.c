@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: tau_xml.c 1528 2016-03-04 17:28:04Z bloehr $
+ * $Id: tau_xml.c 1529 2016-03-06 18:18:50Z bloehr $
  *
  *      BL 2016-03-04: Ticket #113: parsing of dataset element "type" always returns 0
  *      BL 2016-02-11: Ticket #111: unit, scale, offset added
@@ -805,7 +805,14 @@ TRDP_ERR_T readXmlDatasets (
                     {
                         if (vos_strnicmp(attribute, "type", MAX_TOK_LEN) == 0)
                         {
-                            (*papDataset)[idx]->pElement[i].type = string2type(value);
+                            if (valueInt == 0)
+                            {
+                                (*papDataset)[idx]->pElement[i].type = string2type(value);
+                            }
+                            else
+                            {
+                                (*papDataset)[idx]->pElement[i].type = valueInt;
+                            }
                         }
                         else if (vos_strnicmp(attribute, "array-size", MAX_TOK_LEN) == 0)
                         {
