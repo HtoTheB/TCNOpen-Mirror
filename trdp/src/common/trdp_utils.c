@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1523 2016-03-01 10:51:35Z bloehr $
+ * $Id: trdp_utils.c 1530 2016-03-07 13:18:45Z newtecbosse $
  *
  *      BL 2016-03-01: Setting correct multicast TTL for PDs
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
@@ -737,8 +737,8 @@ TRDP_ERR_T  trdp_requestSocket (
         sock_options.ttl    = params->ttl;
         sock_options.reuseAddrPort  = (options & TRDP_OPTION_NO_REUSE_ADDR) ? FALSE : TRUE;
         sock_options.nonBlocking    = (options & TRDP_OPTION_BLOCK) ? FALSE : TRUE;
-        sock_options.ttl_multicast  = (usage != TRDP_SOCK_MD_TCP) ? VOS_TTL_MULTICAST : 0;
-        sock_options.ttl_multicast  = (mcGroup != VOS_INADDR_ANY) ? params->ttl : sock_options.ttl_multicast;
+        //sock_options.ttl_multicast  = (usage != TRDP_SOCK_MD_TCP) ? VOS_TTL_MULTICAST : 0;
+        sock_options.ttl_multicast  = params->ttl;
         sock_options.no_mc_loop     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_MC_LOOP_BACK)) ? 1 : 0;
         sock_options.no_udp_crc     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_UDP_CHK)) ? 1 : 0;
 
