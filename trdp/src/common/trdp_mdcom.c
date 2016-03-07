@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1527 2016-03-04 12:46:21Z bloehr $
+ * $Id: trdp_mdcom.c 1531 2016-03-07 13:36:11Z bloehr $
  *
  *      BL 2016-02-04: Ticket #110: Handling of optional marshalling on sending
  *      BL 2015-12-22: Mutex removed
@@ -3355,7 +3355,7 @@ TRDP_ERR_T trdp_mdCall (
         {
             trdp_mdFillStateElement(msgType, pSenderElement);
 
-            trdp_mdManageSessionId(pSessionId, pSenderElement);
+            trdp_mdManageSessionId((UINT8*)pSessionId, pSenderElement);
 
             /*
              (Re-)allocate the data buffer if current size is different from requested size.
@@ -3456,7 +3456,7 @@ TRDP_ERR_T trdp_mdConfirm (
     {
         errv = trdp_mdLookupElement((MD_ELE_T*)appHandle->pMDSndQueue,
                                     TRDP_ST_TX_REQ_W4AP_CONFIRM,
-                                    (const TRDP_UUID_T*)pSessionId,
+                                    (const UINT8 *)pSessionId,
                                     &pSenderElement);
 
         if ( TRDP_NO_ERR == errv && NULL != pSenderElement )

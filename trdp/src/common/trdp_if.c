@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1525 2016-03-02 13:44:48Z newtecbosse $
+ * $Id: trdp_if.c 1531 2016-03-07 13:36:11Z bloehr $
  *
  *      BL 2016-02-04: Late configuration update/merging 
  *      BL 2015-12-22: Mutex optimised in closeSession
@@ -2941,7 +2941,7 @@ TRDP_ERR_T tlm_reply (
     }  
     return trdp_mdReply (TRDP_MSG_MP,
                          appHandle,
-                         (TRDP_UUID_T *)pSessionId,
+                         (UINT8 *)pSessionId,
                          comId,
                          (INT32)userStatus,
                          0,
@@ -3001,7 +3001,7 @@ TRDP_ERR_T tlm_replyQuery (
 
     return trdp_mdReply (TRDP_MSG_MQ,
                          appHandle,
-                         (TRDP_UUID_T *)pSessionId,
+                         (UINT8 *)pSessionId,
                          comId,
 						 mdTimeOut,
                          (INT32)userStatus,                         
@@ -3045,7 +3045,7 @@ TRDP_ERR_T tlm_replyErr (
 
     return trdp_mdReply (TRDP_MSG_MP,
                          appHandle,
-                         (TRDP_UUID_T *)pSessionId,
+                         (UINT8 *)pSessionId,
                          comId,
                          0,
                          replyStatus,

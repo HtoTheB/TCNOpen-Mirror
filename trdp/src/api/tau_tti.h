@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1512 2016-02-18 11:05:20Z bloehr $
+ * $Id: tau_tti.h 1531 2016-03-07 13:36:11Z bloehr $
  *
  *      BL 2016-02-18: Ticket #7: Add train topology information support
  */
@@ -63,9 +63,9 @@ extern "C" {
 /**    Function to init TTI access
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[in]      pUserAction     Semaphore to fire if inauguration took place.
+ *  @param[in]      userAction      Semaphore to fire if inauguration took place.
  *  @param[in]      ecspIpAddr      ECSP IP address.
- *  @param[in]      hostsFileName    Optional host file name as ECSP replacement.
+ *  @param[in]      hostsFileName   Optional host file name as ECSP replacement.
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_INIT_ERR   initialisation error
@@ -183,7 +183,7 @@ EXT_DECL TRDP_ERR_T tau_getTrnCstCnt (
  *
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[out]     pTrnCnt         Pointer to the number of vehicles to be returned
+ *  @param[out]     pTrnVehCnt      Pointer to the number of vehicles to be returned
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
