@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1531 2016-03-07 13:36:11Z bloehr $
+ * $Id: trdp_if.c 1533 2016-03-07 17:02:45Z ahweiss $
  *
  *      BL 2016-02-04: Late configuration update/merging 
  *      BL 2015-12-22: Mutex optimised in closeSession
@@ -394,7 +394,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                           sizeof(TRDP_STATISTICS_T));
             if (ret == TRDP_SOCK_ERR)
             {
-                vos_threadDelay(1000000);
+                (void) vos_threadDelay(1000000);
             }
             else
             {
@@ -530,7 +530,7 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
         {
             pSession->pdDefault.sendParam.ttl = pPdDefault->sendParam.ttl;
         }
-}
+	}
     
 #if MD_SUPPORT
     
