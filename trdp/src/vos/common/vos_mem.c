@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1519 2016-02-26 16:18:39Z bloehr $
+ * $Id: vos_mem.c 1532 2016-03-07 15:09:49Z bloehr $
  *
  * Changes:
  *      BL 2016-02-10: Debug print: tabs before size output
@@ -1015,7 +1015,10 @@ EXT_DECL VOS_ERR_T vos_queueReceive (
         err = vos_semaTake(queueHandle->semaphore, usTimeout);
         if (err != VOS_NO_ERR)
         {
-            vos_printLog(VOS_LOG_ERROR, "vos_queueReceive() ERROR could not take semaphore\n");
+            if (usTimeout != 0)
+            {
+                vos_printLog(VOS_LOG_ERROR, "vos_queueReceive() could not take semaphore\n");
+            }
             *ppData = NULL;
             *pSize  = 0;
             retVal  = VOS_QUEUE_ERR;
