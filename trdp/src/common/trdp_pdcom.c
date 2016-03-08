@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1528 2016-03-04 17:28:04Z bloehr $
+ * $Id: trdp_pdcom.c 1535 2016-03-08 09:10:37Z newtecbosse $
  *
  *      BL 2016-03-04: Ticket #112: Marshalling sets wrong datasetLength (PD)
  *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
@@ -477,7 +477,7 @@ TRDP_ERR_T  trdp_pdReceive (
             if (trdp_pdSendQueued(appHandle) != TRDP_NO_ERR)
             {
                 /*  We do not break here, only report error */
-                vos_printLog(VOS_LOG_ERROR, "Error sending one or more PD packets (Err: %d)\n", err);
+                vos_printLog(VOS_LOG_WARNING, "Error sending one or more PD packets\n");
             }
 
             informUser = TRUE;
