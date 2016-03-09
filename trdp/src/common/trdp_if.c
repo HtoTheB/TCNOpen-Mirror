@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1541 2016-03-08 16:14:39Z bloehr $
+ * $Id: trdp_if.c 1544 2016-03-09 12:44:57Z newtecbosse $
  *
  *      BL 2016-02-04: Late configuration update/merging
  *      BL 2015-12-22: Mutex optimised in closeSession
@@ -2887,12 +2887,12 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
                 (void) tlm_delListener(appHandle, listenHandle);
                 vos_printLog(VOS_LOG_ERROR, "tlm_readdListener() failed, out of sockets\n");
             }
-            else
-            {
-                pListener->addr.etbTopoCnt      = etbTopoCnt;
-                pListener->addr.opTrnTopoCnt    = opTrnTopoCnt;
-                pListener->addr.mcGroup         = mcDestIpAddr;
-            }
+        }
+        if (ret == TRDP_NO_ERR)
+        {
+            pListener->addr.etbTopoCnt      = etbTopoCnt;
+            pListener->addr.opTrnTopoCnt    = opTrnTopoCnt;
+            pListener->addr.mcGroup         = mcDestIpAddr;
         }
     }
 
