@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: tau_xml.c 1541 2016-03-08 16:14:39Z bloehr $
+ * $Id: tau_xml.c 1552 2016-03-10 18:35:13Z bloehr $
  *
  *      BL 2016-03-04: Ticket #113: parsing of dataset element "type" always returns 0
  *      BL 2016-02-11: Ticket #111: unit, scale, offset added
@@ -1213,7 +1213,7 @@ EXT_DECL TRDP_ERR_T tau_readXmlInterfaceConfig (
                         {
                             trdp_XMLEnter(pDocHnd->pXmlDocument);
                             result = readTelegramDef(pDocHnd->pXmlDocument, &(*ppExchgPar)[idx]);
-                            dbgPrint(1, &(*ppExchgPar)[idx]);
+                            //dbgPrint(1, &(*ppExchgPar)[idx]);
                             trdp_XMLLeave(pDocHnd->pXmlDocument);
                             if (result != TRDP_NO_ERR)
                             {
