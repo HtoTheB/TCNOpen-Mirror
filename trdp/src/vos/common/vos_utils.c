@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1548 2016-03-10 14:19:39Z bloehr $
+ * $Id: vos_utils.c 1549 2016-03-10 14:50:27Z bloehr $
  *
  *      BL 2016-03-10: Ticket #114 SC-32
  *      BL 2016-02-10: ifdef DEBUG for some functions
@@ -132,6 +132,10 @@ static const UINT32 fcs_table[256] PROGMEM =
     0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0x2d02ef8d
 };
 
+/** Table of CRC-32s of all single-byte values according to IEC 61375-2-3 B.7 / IEC61784-3-3
+ *  The CRC of the string "123456789" is 0x1697d06a
+ *
+ */
 static const UINT32 sc32_table[256] PROGMEM =
 {
     0x00000000U, 0xF4ACFB13U, 0x1DF50D35U, 0xE959F626U,
