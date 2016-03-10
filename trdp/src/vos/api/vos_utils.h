@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1487 2015-12-21 14:33:26Z bloehr $
+ * $Id: vos_utils.h 1548 2016-03-10 14:19:39Z bloehr $
  *
+ *      BL 2016-03-10: Ticket #114 SC-32
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
  */
@@ -151,6 +152,21 @@ extern void *gRefCon;
  */
 
 EXT_DECL UINT32 vos_crc32 (
+    UINT32      crc,
+    const UINT8 *pData,
+    UINT32      dataLen);
+
+/**********************************************************************************************************************/
+/** Compute crc32 according to IEC 61375-2-3 B.7
+ *  Note: Returned CRC is inverted
+ *
+ *  @param[in]          crc         Initial value.
+ *  @param[in,out]      pData       Pointer to data.
+ *  @param[in]          dataLen     length in bytes of data.
+ *  @retval             crc32 according to IEC 61375-2-3
+ */
+
+EXT_DECL UINT32 vos_sc32 (
     UINT32      crc,
     const UINT8 *pData,
     UINT32      dataLen);

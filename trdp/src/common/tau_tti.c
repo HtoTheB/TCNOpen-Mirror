@@ -20,7 +20,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1541 2016-03-08 16:14:39Z bloehr $
+ * $Id: tau_tti.c 1548 2016-03-10 14:19:39Z bloehr $
  *
  *      BL 2016-02-18: Ticket #7: Add train topology information support
  */
@@ -169,7 +169,7 @@ static void ttiPDCallback (
             UINT32 crc;
 
             /* check the crc:   */
-            crc = vos_crc32(0xFFFFFFFF, (const UINT8 *) &pTelegram->state, sizeof(TRDP_OP_TRAIN_DIR_STATE_T) - 4);
+            crc = vos_sc32(0xFFFFFFFF, (const UINT8 *) &pTelegram->state, sizeof(TRDP_OP_TRAIN_DIR_STATE_T) - 4);
             if (crc != MAKE_LE(pTelegram->state.crc))
             {
                 vos_printLog(VOS_LOG_ERROR, "CRC error of received operational status info (%08x != %08x)!\n",
