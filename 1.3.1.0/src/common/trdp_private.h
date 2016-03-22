@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1558 2016-03-22 14:53:38Z bloehr $
+ * $Id: trdp_private.h 1560 2016-03-22 16:58:13Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -43,8 +43,8 @@
 #ifndef TRDP_VERSION
 #define TRDP_VERSION            1
 #define TRDP_RELEASE            3
-#define TRDP_UPDATE             0
-#define TRDP_EVOLUTION          1
+#define TRDP_UPDATE             1
+#define TRDP_EVOLUTION          0
 #endif
 
 #define TRDP_TIMER_GRANULARITY  10000                                   /**< granularity in us                      */
