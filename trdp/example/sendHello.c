@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1441 2015-09-04 13:46:12Z bloehr $
+ * $Id: sendHello.c 1561 2016-04-28 15:43:16Z bloehr $
  *
  */
 
@@ -248,8 +248,8 @@ int main (int argc, char *argv[])
     err = tlp_publish(  appHandle,                  /*    our application identifier    */
                         &pubHandle,                 /*    our pulication identifier     */
                         comId,                      /*    ComID to send                 */
-                        0,                          /*    local consist only            */
-                        0,
+                        0,                          /*    etbTopoCnt = 0 for local consist only     */
+                        0,                          /*    opTopoCnt = 0 for non-directinal data     */
                         ownIP,                      /*    default source IP             */
                         destIP,                     /*    where to send to              */
                         cycleTime,                  /*    Cycle time in us              */

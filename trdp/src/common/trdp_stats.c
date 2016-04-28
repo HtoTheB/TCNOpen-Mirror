@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1541 2016-03-08 16:14:39Z bloehr $
+ * $Id: trdp_stats.c 1561 2016-04-28 15:43:16Z bloehr $
  *
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
  */
@@ -609,4 +609,6 @@ void    trdp_pdPrepareStats (
     pData->tcpMd.numSend            = vos_htonl(appHandle->stats.tcpMd.numSend);
     pPacket->dataSize = sizeof(TRDP_STATISTICS_T);
 
+    /* mark the data as valid */
+    pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~TRDP_INVALID_DATA);
 }
