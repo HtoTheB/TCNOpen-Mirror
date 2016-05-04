@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1561 2016-04-28 15:43:16Z bloehr $
+ * $Id: trdp_stats.c 1562 2016-05-04 08:07:12Z bloehr $
  *
+ *      BL 2016-05-04: Ticket #117: PD Status packet is not sent on request
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
  */
 
