@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1563 2016-06-01 14:47:57Z bloehr $
+ * $Id: trdp_if.c 1564 2016-06-08 13:12:52Z bloehr $
  *
+ *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *      BL 2016-06-01: Ticket #119 tlc_getInterval() repeatedly returns 0 after timeout
  *      BL 2016-02-04: Late configuration update/merging
  *      BL 2015-12-22: Mutex optimised in closeSession
@@ -410,7 +411,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                                 &dummySubHandle,        /*    our subscription identifier   */
                                 NULL,
                                 NULL,
-                                TRDP_STATISTICS_REQUEST_COMID, /*    ComID                         */
+                                TRDP_STATISTICS_PULL_COMID, /*    ComID                         */
                                 0,                      /*    etbtopocount: local consist only */
                                 0,                      /*    optrntopocount                   */
                                 0,                      /*    Source IP filter                 */

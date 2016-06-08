@@ -14,7 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: getStats.c 1564 2016-06-08 13:12:52Z bloehr $
+ *
+ *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *
  */
 
@@ -347,7 +349,7 @@ int main (int argc, char * *argv)
     /*    Request statistics PD        */
     err = tlp_request(appHandle,
                       subHandle,
-                      TRDP_STATISTICS_REQUEST_COMID,
+                      TRDP_STATISTICS_PULL_COMID,
                       0,
                       0,
                       0,
