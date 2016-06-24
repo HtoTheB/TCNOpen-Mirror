@@ -14,10 +14,11 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1564 2016-06-08 13:12:52Z bloehr $
+ * $Id: trdp_pdcom.c 1565 2016-06-24 09:13:41Z bloehr $
  *
+ *      BL 2016-06-24: Ticket #121: Callback on first packet after time out
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
- *      BL 2016-06-01: Ticket #119 tlc_getInterval() repeatedly returns 0 after timeout
+ *      BL 2016-06-01: Ticket #119: tlc_getInterval() repeatedly returns 0 after timeout
  *      BL 2016-03-04: Ticket #112: Marshalling sets wrong datasetLength (PD)
  *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
  *      BL 2016-01-25: Ticket #106: User needs to be informed on every received PD packet
@@ -545,7 +546,8 @@ TRDP_ERR_T  trdp_pdReceive (
         /*  Has the data changed?   */
         if (pExistingElement->pktFlags & TRDP_FLAGS_CALLBACK)
         {
-            if (pExistingElement->pktFlags & TRDP_FLAGS_FORCE_CB)
+            if (pExistingElement->pktFlags & TRDP_FLAGS_FORCE_CB ||
+                pExistingElement->privFlags & TRDP_TIMED_OUT)
             {
                 informUser = 1;                 /* Inform user anyway */
             }
