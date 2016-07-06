@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStatsMarshall.c 1564 2016-06-08 13:12:52Z bloehr $
+ * $Id: getStatsMarshall.c 1566 2016-07-06 15:48:37Z bloehr $
  *
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *
@@ -199,7 +199,7 @@ void print_stats (
 
     printf("\n--------------------\n");
     printf("version:        %u\n", pData->version);
-    printf("timestamp:      %u:%u\n", pData->timeStamp.tv_sec, pData->timeStamp.tv_usec);
+    printf("timestamp:      %ld:%u\n", pData->timeStamp.tv_sec, pData->timeStamp.tv_usec);
     printf("upTime:         %u\n", pData->upTime);
     printf("statisticTime:  %u\n", pData->statisticTime);
     printf("ownIpAddr:      %u\n", pData->ownIpAddr);

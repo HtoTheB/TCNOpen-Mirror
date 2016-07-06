@@ -14,8 +14,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: trdp_xml.c 1541 2016-03-08 16:14:39Z bloehr $
+ * $Id: trdp_xml.c 1566 2016-07-06 15:48:37Z bloehr $
  *
+ *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-02-24: missing include (thanks to Robert)
  *      BL 2016-02-11: Ticket #102: Replacing libxml2
  */
@@ -90,7 +91,7 @@ static XML_TOKEN_T trdp_XMLNextToken (
             {
                 if (p < (pXML->tokenValue + MAX_TOK_LEN - 1))
                 {
-                    *(p++) = ch;
+                    *(p++) = (char) ch;
                 }
             }
 
@@ -205,7 +206,7 @@ static XML_TOKEN_T trdp_XMLNextToken (
         {
             /* Unquoted identifier */
             p       = pXML->tokenValue;
-            *(p++)  = ch;
+            *(p++)  = (char) ch;
             while (!feof(pXML->infile) &&
                    (ch = fgetc(pXML->infile)) != '<' /*lint !e160 Lint objects a GNU warning suppression macro - OK */
                    && ch != '>'
@@ -215,7 +216,7 @@ static XML_TOKEN_T trdp_XMLNextToken (
             {
                 if (p < (pXML->tokenValue + MAX_TOK_LEN - 1))
                 {
-                    *(p++) = ch;
+                    *(p++) = (char) ch;
                 }
             }
 
@@ -392,7 +393,7 @@ int trdp_XMLSeekStartTagAny (
         else if (pXML->tagDepth == pXML->tagDepthSeek && token == TOK_START_TAG)
         {
             /* We are on the correct depth and have found a start tag */
-            vos_strncpy(tag, pXML->tokenTag, maxlen);
+            vos_strncpy(tag, pXML->tokenTag, (UINT32) maxlen);
             ret = 0;
         }
         /* else ignore */
