@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: vos_types.h 1567 2016-07-07 08:39:22Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *
@@ -59,6 +59,7 @@ typedef double REAL64;
 
 #include <stdint.h>
 #include <float.h>
+#include <sys/time.h>
 
 typedef uint8_t UINT8;
 typedef uint16_t UINT16;
@@ -230,7 +231,6 @@ typedef struct
 } VOS_TIME_T;
 
 #else
-
 typedef struct timeval VOS_TIME_T;
 
 #endif
