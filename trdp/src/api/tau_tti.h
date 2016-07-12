@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1531 2016-03-07 13:36:11Z bloehr $
+ * $Id: tau_tti.h 1568 2016-07-12 16:02:54Z bloehr $
  *
  *      BL 2016-02-18: Ticket #7: Add train topology information support
  */
@@ -105,6 +105,22 @@ EXT_DECL TRDP_ERR_T tau_getOpTrDirectory (
     TRDP_OP_TRAIN_DIR_STATE_T         *pOpTrDirState,
     TRDP_OP_TRAIN_DIR_T               *pOpTrDir);
 
+
+/**********************************************************************************************************************/
+/**    Function to retrieve the operational train directory state info.
+ *  Return a copy of the last received PD 100 telegram.
+ *  Note: The values are in host endianess! When validating (SDTv2), network endianess must be ensured.
+ *
+ *  @param[in]      appHandle               Handle returned by tlc_openSession().
+ *  @param[out]     pOpTrnDirStatusInfo     Pointer to an operational train directory state structure to be returned.
+ *
+ *  @retval         TRDP_NO_ERR     no error
+ *  @retval         TRDP_PARAM_ERR  Parameter error
+ *
+ */
+EXT_DECL TRDP_ERR_T tau_getOpTrnDirectoryStatusInfo (
+    TRDP_APP_SESSION_T              appHandle,
+    TRDP_OP_TRAIN_DIR_STATUS_INFO_T *pOpTrnDirStatusInfo);
 
 /**********************************************************************************************************************/
 /**    Function to retrieve the operational train directory.
