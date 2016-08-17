@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: vos_utils.c 1569 2016-08-17 12:29:48Z bloehr $
  *
+ *      BL 2016-08-17: parentheses added (compiler warning)
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-03-10: Ticket #114 SC-32
  *      BL 2016-02-10: ifdef DEBUG for some functions
@@ -456,7 +457,7 @@ UINT32 vos_sc32 (
     UINT32 i;
     for (i = 0; i < dataLen; i++)
     {
-        crc = pgm_read_dword(&sc32_table[(UINT32)(crc >> 24) ^ pData[i] & 0xff]) ^ (crc << 8);
+        crc = pgm_read_dword(&sc32_table[((UINT32)(crc >> 24) ^ pData[i]) & 0xff]) ^ (crc << 8);
     }
     return crc;
 }
