@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1563 2016-06-01 14:47:57Z bloehr $
+ * $Id: receiveHello.c 1570 2016-08-29 14:41:21Z bloehr $
  *
  */
 
@@ -268,7 +268,7 @@ int main (int argc, char *argv[])
          Select() will wait for ready descriptors or time out,
          what ever comes first.
          */
-        rv = vos_select(noDesc + 1, NULL, NULL, NULL, &tv);
+        rv = vos_select(noDesc + 1, &rfds, NULL, NULL, &tv);
 
         /*
          Check for overdue PDs (sending and receiving)
