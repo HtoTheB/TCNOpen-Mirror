@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_utils.c 1571 2016-09-06 11:38:57Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-03-01: Setting correct multicast TTL for PDs
@@ -661,12 +661,14 @@ TRDP_ERR_T  trdp_requestSocket (
 
 /* add_start TOSHIBA 0306 */
             if ((usage != TRDP_SOCK_MD_TCP)
-                && (iface[lIndex].bindAddr != 0))
+                && (iface[lIndex].bindAddr != 0)
+                && !vos_isMulticast(iface[lIndex].bindAddr))
             {
                 err = (TRDP_ERR_T) vos_sockSetMulticastIf(iface[lIndex].sock, iface[lIndex].bindAddr);
                 if (err != TRDP_NO_ERR)
                 {
-                    vos_printLog(VOS_LOG_ERROR, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err);
+                   /* Avoid to excessive error reporting:
+                    vos_printLog(VOS_LOG_WARNING, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err); */
                 }
             }
 /* add_end TOSHIBA */
@@ -803,12 +805,13 @@ TRDP_ERR_T  trdp_requestSocket (
                     }
 
                     /*    Multicast sender shall be bound to an interface    */
-                    if (iface[lIndex].bindAddr != 0)
+                    if (iface[lIndex].bindAddr != 0 && !vos_isMulticast(iface[lIndex].bindAddr))
                     {
                         err = (TRDP_ERR_T) vos_sockSetMulticastIf(iface[lIndex].sock, iface[lIndex].bindAddr);
                         if (err != TRDP_NO_ERR)
                         {
-                            vos_printLog(VOS_LOG_ERROR, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err);
+                           /* Avoid to excessive error reporting:
+                            vos_printLog(VOS_LOG_ERROR, "vos_sockSetMulticastIf() for UDP snd failed! (Err: %d)\n", err); */
                             *pIndex = TRDP_INVALID_SOCKET_INDEX;
                             break;
                         }

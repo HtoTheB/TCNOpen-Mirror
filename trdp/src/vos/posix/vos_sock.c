@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: vos_sock.c 1571 2016-09-06 11:38:57Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2015-11-20: Compiler warnings fixed (lines 392 + 393)
@@ -1216,7 +1216,8 @@ EXT_DECL VOS_ERR_T vos_sockBind (
     {
         char buff[VOS_MAX_ERR_STR_SIZE];
         STRING_ERR(buff);
-        vos_printLog(VOS_LOG_ERROR, "bind() failed (Err: %s)\n", buff);
+        vos_printLog(VOS_LOG_ERROR, "binding to %s:%hu failed (Err: %s)\n",
+                     inet_ntoa(srcAddress.sin_addr), port, buff);
         return VOS_SOCK_ERR;
     }
     return VOS_NO_ERR;
