@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_if.c 1572 2016-09-19 15:13:12Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
@@ -1630,7 +1630,6 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 {
                     pInterval->tv_sec   = 0;                                /* 0ms if time is over (were we delayed?) */
                     pInterval->tv_usec  = 0;                                /* Application should limit this    */
-                    vos_printLogStr(VOS_LOG_WARNING, "Task time exceeded! System overload?\n");
                 }
                 else    /* if no timeout set, set maximum time to 1000sec   */
                 {

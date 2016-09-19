@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: Controller.m 1103 2013-10-11 08:53:49Z bloehr $
+ * $Id: Controller.m 1572 2016-09-19 15:13:12Z bloehr $
  *
  */
 
@@ -166,15 +166,7 @@ extern int gIsActive;
     pd_updateSubscriber(4);
 }
 
-//  MD field handler
-IBOutlet	id	MDOutMessage;
-IBOutlet	id	MDcomID;
-IBOutlet	id	MDipAddress;
-IBOutlet	id	MDrecColor;
-IBOutlet	id	MRcomID;
-IBOutlet	id	MRinMessage;
-
-//  Called if send button is depressed 
+//  Called if send button is depressed
 - (IBAction) MDRequest:(id)sender
 {
     // set the color to blue (waiting for reply)

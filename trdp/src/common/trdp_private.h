@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1557 2016-03-22 14:50:37Z bloehr $
+ * $Id: trdp_private.h 1572 2016-09-19 15:13:12Z bloehr $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -47,8 +47,8 @@
 #define TRDP_EVOLUTION          0
 #endif
 
-#define TRDP_TIMER_GRANULARITY  10000                                   /**< granularity in us                      */
-#define TRDP_TIMER_FOREVER      0xffffffff                              /**< granularity in us                      */
+#define TRDP_TIMER_GRANULARITY  10000                                    /**< granularity in us                      */
+#define TRDP_TIMER_FOREVER      0xffffffff                               /**< granularity in us                      */
 
 /*  Default MD communication parameters   */
 #define TRDP_MD_DEFAULT_REPLY_TIMEOUT       5000000                      /**< default reply time out 5s             */
@@ -57,14 +57,15 @@
 #define TRDP_MD_DEFAULT_SENDING_TIMEOUT     5000000                      /**< Socket sending time out 5s            */
 #define TRDP_MD_DEFAULT_QOS                 3
 #define TRDP_MD_DEFAULT_TTL                 64
-#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL}
+#define TRDP_MD_DEFAULT_RETRIES             3
+#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES}
 #define TRDP_MD_MAX_NUM_SESSIONS            1000
 
 /*  Default PD communication parameters   */
-#define TRDP_PD_DEFAULT_QOS         5
-#define TRDP_PD_DEFAULT_TTL         64
-#define TRDP_PD_DEFAULT_TIMEOUT     100000
-#define TRDP_PD_DEFAULT_SEND_PARAM  {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0}
+#define TRDP_PD_DEFAULT_QOS                 5
+#define TRDP_PD_DEFAULT_TTL                 64
+#define TRDP_PD_DEFAULT_TIMEOUT             100000
+#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0}
 
 /*  Default TRDP process options    */
 #define TRDP_PROCESS_DEFAULT_CYCLE_TIME     10000                       /**< Default cycle time for TRDP process    */
