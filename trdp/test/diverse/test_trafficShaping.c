@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1440 2015-09-04 11:42:00Z bloehr $
+ * $Id: test_trafficShaping.c 1573 2016-10-24 12:07:27Z newtecbosse $
  *
  */
 
@@ -129,7 +129,7 @@ void dbgOut (
     printf("%s %s %16s:%-4d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-           strrchr(pFile, '/') + 1,
+		   strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }

@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: test_tau_tti.c 1487 2015-12-21 14:33:26Z bloehr $
+ * $Id: test_tau_tti.c 1573 2016-10-24 12:07:27Z newtecbosse $
  *
  */
 
@@ -77,7 +77,7 @@ void dbgOut (
     
     if (category == VOS_LOG_ERROR || category == VOS_LOG_INFO)
     {
-        CHAR8 *pStr = strrchr(pFile, '/');
+        CHAR8 *pStr = (strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1;
         printf("%s %s %s:%d %s",
                pTime,
                catStr[category],

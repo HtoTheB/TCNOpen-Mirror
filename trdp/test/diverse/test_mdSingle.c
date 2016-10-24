@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1489 2015-12-21 14:42:11Z bloehr $
+ * $Id: test_mdSingle.c 1573 2016-10-24 12:07:27Z newtecbosse $
  *
  */
 
@@ -281,7 +281,7 @@ void dbgOut (
     printf("%s %s %16s:%-4d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-           strrchr(pFile, '/') + 1,
+           (strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }
@@ -653,6 +653,7 @@ int main (int argc, char *argv[])
 
                     tlm_request(sSessionData.appHandle, &sSessionData, NULL, &sessionId, sSessionData.sComID, 0, 0, ownIP,
                                 destIP, flags, expReplies, 0, 0, NULL, NULL, 0, 0, 0);
+
                 }
                 else if (sSessionData.sDataSize > 0)
                 {
