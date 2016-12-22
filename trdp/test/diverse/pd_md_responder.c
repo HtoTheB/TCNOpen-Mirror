@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pd_md_responder.c 1574 2016-10-24 12:12:34Z newtecbosse $
+ * $Id: pd_md_responder.c 1576 2016-12-22 16:31:29Z bloehr $
  *
  */
 
@@ -30,6 +30,7 @@
 #endif
 #include "trdp_if_light.h"
 #include "vos_thread.h"
+#include "vos_utils.h"
 
 /***********************************************************************************************************************
  * DEFINES
@@ -135,7 +136,7 @@ void dbgOut (
     printf("%s %s %16s:%-4d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-           (strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
+           strrchr(pFile, VOS_DIR_SEP) + 1,
            LineNumber,
            pMsgStr);
 }

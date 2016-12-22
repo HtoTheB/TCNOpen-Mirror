@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1564 2016-06-08 13:12:52Z bloehr $
+ * $Id: getStats.c 1576 2016-12-22 16:31:29Z bloehr $
  *
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *
@@ -53,7 +53,7 @@
 #define PD_COMID2_DST_IP        PD_COMID1_SRC_IP
 
 /* We use dynamic memory    */
-#define RESERVED_MEMORY     24000
+#define RESERVED_MEMORY     240000
 #define PREALLOCATE         {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
 
 #define APP_VERSION         "0.0.0.3"
@@ -159,12 +159,15 @@ void dbgOut (
     const CHAR8 *pMsgStr)
 {
     const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
-    printf("%s %s %s:%d %s",
+    if (category != VOS_LOG_DBG)
+    {
+       printf("%s %s %s:%d %s",
            pTime,
            catStr[category],
            pFile,
            LineNumber,
            pMsgStr);
+    }
 }
 
 
@@ -329,7 +332,7 @@ int main (int argc, char * *argv)
     err = tlp_subscribe( appHandle,                     /*    our application identifier             */
                          &subHandle,                    /*    our subscription identifier            */
                          NULL,                          /*    user reference                         */
-                         NULL,                          /*    callback function                      */
+                         myPDcallBack,                          /*    callback function                      */
                          TRDP_GLOBAL_STATISTICS_COMID,  /*    ComID                                  */
                          0,                             /*    topocount: local consist only          */
                          0,

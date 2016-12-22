@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1573 2016-10-24 12:07:27Z newtecbosse $
+ * $Id: test_trafficShaping.c 1576 2016-12-22 16:31:29Z bloehr $
  *
  */
 
@@ -129,7 +129,7 @@ void dbgOut (
     printf("%s %s %16s:%-4d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-		   strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
+          (strrchr(pFile, '/') == NULL)? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
            LineNumber,
            pMsgStr);
 }
@@ -306,7 +306,7 @@ int main (int argc, char *argv[])
          Select() will wait for ready descriptors or time out,
          what ever comes first.
          */
-        rv = select((int)noDesc + 1, &rfds, NULL, NULL, &tv);
+        rv = vos_select((int)noDesc + 1, &rfds, NULL, NULL, &tv);
         
         /*
          Check for overdue PDs (sending and receiving)

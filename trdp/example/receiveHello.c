@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1570 2016-08-29 14:41:21Z bloehr $
+ * $Id: receiveHello.c 1576 2016-12-22 16:31:29Z bloehr $
  *
  */
 
@@ -75,7 +75,7 @@ void dbgOut (
         printf("%s %s %s:%d %s",
                pTime,
                catStr[category],
-               strrchr(pFile, '/') + 1,
+               strrchr(pFile, VOS_DIR_SEP) + 1,
                LineNumber,
                pMsgStr);
     }
@@ -327,11 +327,11 @@ int main (int argc, char *argv[])
         }
         else if (TRDP_TIMEOUT_ERR == err)
         {
-            vos_printLog(VOS_LOG_INFO, "Packet timed out\n");
+            vos_printLogStr(VOS_LOG_INFO, "Packet timed out\n");
         }
         else if (TRDP_NODATA_ERR == err)
         {
-            vos_printLog(VOS_LOG_INFO, "No data yet\n");
+            vos_printLogStr(VOS_LOG_INFO, "No data yet\n");
         }
         else
         {

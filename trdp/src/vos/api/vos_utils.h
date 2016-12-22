@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1548 2016-03-10 14:19:39Z bloehr $
+ * $Id: vos_utils.h 1576 2016-12-22 16:31:29Z bloehr $
  *
  *      BL 2016-03-10: Ticket #114 SC-32
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
@@ -48,10 +48,20 @@ extern void *gRefCon;
 #define VOS_MAX_FRMT_SIZE       64          /**< Max. size of the 'format' part */
 #define VOS_MAX_ERR_STR_SIZE    (VOS_MAX_PRNT_STR_SIZE - VOS_MAX_FRMT_SIZE) /**< Max. size of the error part */
 
+/** This is a helper define for separating a path in debug output */
+#ifdef WIN32
+#define VOS_DIR_SEP       '\\'
+#else
+#define VOS_DIR_SEP       '/'
+#endif
+   
 /** Safe printf function */
 #ifdef WIN32
     #define vos_snprintf(str, size, format, ...) \
     _snprintf_s(str, size, _TRUNCATE, format, __VA_ARGS__)
+#elif defined(__clang__)
+   #define vos_snprintf(str, size, format, ...) \
+   snprintf(str, size, format, __VA_ARGS__)
 #else
     #define vos_snprintf(str, size, format, args ...) \
     snprintf(str, size, format, ## args)
@@ -75,6 +85,14 @@ extern void *gRefCon;
          vos_printLogStr(level, str);                                          \
      }                                                                         \
     }
+#elif defined(__clang__)
+    #define vos_printLog(level, format, ...)            \
+    {if (gPDebugFunction != NULL)                            \
+     {   char str[VOS_MAX_PRNT_STR_SIZE];                    \
+         (void) snprintf(str, sizeof(str), format, __VA_ARGS__); \
+         vos_printLogStr(level, str);                        \
+     }                                                       \
+    }
 #else
     #define vos_printLog(level, format, args ...)            \
     {if (gPDebugFunction != NULL)                            \
@@ -82,7 +100,7 @@ extern void *gRefCon;
          (void) snprintf(str, sizeof(str), format, ## args); \
          vos_printLogStr(level, str);                        \
      }                                                       \
-    }
+   }
 #endif
 
 
