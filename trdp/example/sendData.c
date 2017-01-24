@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: sendData.c 1576 2016-12-22 16:31:29Z bloehr $
+ * $Id: sendData.c 1578 2017-01-24 17:00:12Z vikas-newtec $
  *
  */
 
@@ -32,7 +32,7 @@
 
 #include "trdp_if_light.h"
 #include "vos_thread.h"
-
+#include "vos_utils.h"
 
 /***********************************************************************************************************************
  * DEFINITIONS
