@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_pdcom.c 1580 2017-02-03 16:09:58Z ahweiss $
  *
  *      BL 2016-06-24: Ticket #121: Callback on first packet after time out
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
@@ -456,8 +456,15 @@ TRDP_ERR_T  trdp_pdReceive (
         }
         else
         {
-            /*  Find requested publish element  */
-            pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, vos_ntohl(pNewFrameHead->replyComId));
+			UINT32 replyComId = vos_ntohl(pNewFrameHead->replyComId);
+
+			if (replyComId == 0)
+			{
+				replyComId = vos_ntohl(pNewFrameHead->comId);
+			}
+
+			/*  Find requested publish element  */
+            pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, replyComId);
         }
 
         if (pPulledElement != NULL)
