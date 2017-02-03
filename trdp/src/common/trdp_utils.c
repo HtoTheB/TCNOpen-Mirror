@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1571 2016-09-06 11:38:57Z bloehr $
+ * $Id: trdp_utils.c 1579 2017-02-03 16:06:25Z ahweiss $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-03-01: Setting correct multicast TTL for PDs
@@ -198,7 +198,7 @@ PD_ELE_T *trdp_queueFindComId (
 {
     PD_ELE_T *iterPD;
 
-    if (pHead == NULL || comId == 0)
+    if (pHead == NULL)
     {
         return NULL;
     }
