@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: trdp_xml.h 1509 2016-02-11 14:29:05Z bloehr $
+ * $Id: trdp_xml.h 1581 2017-02-08 17:39:38Z bloehr $
  *
  *      BL 2016-02-11: Ticket #102: Replacing libxml2
  *
@@ -43,9 +43,9 @@
 
 /* XML parser declarations */
 
-#define MAX_URI_LEN     101         /* Max length of a URI string */
-#define MAX_TOK_LEN     124         /* Max length of token/attribute string */
-#define MAX_TAG_LEN     132         /* Max length of tag string */
+#define MAX_URI_LEN     101u         /* Max length of a URI string */
+#define MAX_TOK_LEN     124u         /* Max length of token/attribute string */
+#define MAX_TAG_LEN     132u         /* Max length of tag string */
 
 /* Tokens */
 typedef enum

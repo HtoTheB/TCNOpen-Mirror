@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: tau_xml.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: tau_xml.c 1581 2017-02-08 17:39:38Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-03-21: Ticket #116: Memory corruption using new XML library
@@ -1151,7 +1151,7 @@ EXT_DECL TRDP_ERR_T tau_readXmlInterfaceConfig (
 #ifdef TRDP_RETRIES
                                 else if (vos_strnicmp(attribute, "retries", MAX_TOK_LEN) == 0)
                                 {
-                                    pMdConfig->sendParam.retries = valueInt;
+                                    pMdConfig->sendParam.retries = (UINT8) valueInt;
                                 }
 #endif
                                 else if (vos_strnicmp(attribute, "ttl", MAX_TOK_LEN) == 0)
@@ -1489,7 +1489,7 @@ EXT_DECL TRDP_ERR_T tau_readXmlDeviceConfig (
 #ifdef TRDP_RETRIES
                             else if (vos_strnicmp(attribute, "retries", MAX_TOK_LEN) == 0)
                             {
-                                (*ppComPar)[i].sendParam.retries = valueInt;
+                                (*ppComPar)[i].sendParam.retries = (UINT8) valueInt;
                             }
 #endif
                         }

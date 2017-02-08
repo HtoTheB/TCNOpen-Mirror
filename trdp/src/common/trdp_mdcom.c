@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_mdcom.c 1581 2017-02-08 17:39:38Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-03-10: Ticket #115 MD: Missing parameter pktFlags in tlm_reply() and tlm_replyQuery()
@@ -3297,7 +3297,7 @@ TRDP_ERR_T trdp_mdCall (
     }
 
     /* set correct source IP address */
-    if ( srcIpAddr == 0 )
+    if ( srcIpAddr == 0u )
     {
         srcIpAddr = appHandle->realIP;
     }
@@ -3363,14 +3363,14 @@ TRDP_ERR_T trdp_mdCall (
         if ((msgType == TRDP_MSG_MR) && (replyTimeout == TDRP_MD_INFINITE_TIME))
         {
             /* add the infinity requirement from table A.17 */
-            pSenderElement->interval.tv_sec     = 0xFFFFFFFFU; /* let alone this setting gives a timeout way longer than
+            pSenderElement->interval.tv_sec     = TDRP_MD_INFINITE_TIME; /* let alone this setting gives a timeout way longer than
                                                                  a century */
-            pSenderElement->interval.tv_usec    = 999999U;    /* max upper limit for micro seconds below 1 second */
+            pSenderElement->interval.tv_usec    = 999999;    /* max upper limit for micro seconds below 1 second */
             timeoutWire = 0U; /* the table A.17 representation of infinity, only applicable for Mr! */
         }
         else
         {
-            pSenderElement->interval.tv_sec     = replyTimeout / 1000000;
+            pSenderElement->interval.tv_sec     = replyTimeout / 1000000u;
             pSenderElement->interval.tv_usec    = replyTimeout % 1000000;
             /* this line will set the timeout value for Mn also to zero, which */
             /* seems to be ok, as this mesage will not cause the creation of   */
