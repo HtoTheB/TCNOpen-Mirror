@@ -17,8 +17,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1585 2017-02-10 14:38:43Z bloehr $
+ * $Id: trdp_mdcom.c 1587 2017-02-27 09:25:10Z bloehr $
  *
+ *      BL 2017-02-27: Ticket #148 Wrong element used in trdp_mdCheckTimeouts() to invoke the callback
  *      BL 2017-02-10: Ticket #138 Erroneous closing of receive md socket
  *      BL 2017-02-10: Ticket #142 Compiler warnings /​ MISRA-C 2012 issues
  *      BL 2016-07-09: Ticket #127 MD notify message: Invalid session identifier
@@ -2904,7 +2905,7 @@ void  trdp_mdCheckTimeouts (
                             /* Execute callback for each session */
                             if (iterMD_find->pfCbFunction != NULL)
                             {
-                                trdp_mdInvokeCallback(iterMD, appHandle, TRDP_TIMEOUT_ERR);
+                                trdp_mdInvokeCallback(iterMD_find, appHandle, TRDP_TIMEOUT_ERR);
                             }
                         }
                     }
