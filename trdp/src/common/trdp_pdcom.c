@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1584 2017-02-10 10:47:22Z bloehr $
+ * $Id: trdp_pdcom.c 1588 2017-02-27 09:26:34Z bloehr $
  *
  *      BL 2017-02-10: Ticket #132: tlp_publish: Check of datasize wrong if using marshaller
  *      BL 2017-02-08: Ticket #142: Compiler warnings /​ MISRA-C 2012 issues
@@ -809,6 +809,7 @@ TRDP_ERR_T   trdp_pdCheckListenSocks (
                 {
                     case TRDP_NO_ERR:
                         break;
+                    case TRDP_BLOCK_ERR:
                     case TRDP_NODATA_ERR:
                         result  = err;
                         break;
