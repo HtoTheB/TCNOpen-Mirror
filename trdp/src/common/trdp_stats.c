@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_stats.c 1590 2017-03-02 15:11:52Z bloehr $
  *
+ *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-05-04: Ticket #117: PD Status packet is not sent on request
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -283,7 +284,7 @@ EXT_DECL TRDP_ERR_T tlc_getUdpListStatistics (
     {
         if ((pIter->pktFlags & TRDP_FLAGS_TCP) == 0)
         {
-            vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN - 1);
+            vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN);
             pStatistics->comId          = pIter->addr.comId;
             pStatistics->joinedAddr     = pIter->addr.mcGroup;
             pStatistics->callBack       = (UINT32) pIter->pfCbFunction;
@@ -331,7 +332,7 @@ EXT_DECL TRDP_ERR_T tlc_getTcpListStatistics (
     {
         if ((pIter->pktFlags & TRDP_FLAGS_TCP) != 0)
         {
-            vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN - 1);
+            vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN);
             pStatistics->comId          = pIter->addr.comId;
             pStatistics->joinedAddr     = pIter->addr.mcGroup;
             pStatistics->callBack       = (UINT32) pIter->pfCbFunction;

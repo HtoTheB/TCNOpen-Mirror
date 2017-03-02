@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1581 2017-02-08 17:39:38Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1590 2017-03-02 15:11:52Z bloehr $
  *
  *      BL 2017-02-08: Ticket #134 Example trdp-xmlpd-test crash due to zero elemSize
  *      BL 2015-12-14: Ticket #97  trdp-xmlpd-test.c subscribed telegram issue.
@@ -44,16 +44,16 @@
 #define MAX_DATASETS        32u      /* Maximum number of dataset types supported    */
 #define MAX_PUB_TELEGRAMS   32u      /* Maximum number of published telegrams supported  */
 #define MAX_SUB_TELEGRAMS   32u      /* Maximum number of subscribed telegrams supported  */
-#define DATA_PERIOD         1000000u /* Period [us] in which tlg data are updated and printed    */
+#define DATA_PERIOD         10000u /* Period [us] in which tlg data are updated and printed    */
 
 /*  General parameters from xml configuration file */
 TRDP_MEM_CONFIG_T       memConfig;
 TRDP_DBG_CONFIG_T       dbgConfig;
 UINT32                  numComPar = 0u;
 TRDP_COM_PAR_T         *pComPar = NULL;
-UINT32                  numIfConfig = 0;
+UINT32                  numIfConfig = 0u;
 TRDP_IF_CONFIG_T       *pIfConfig = NULL;
-UINT32                  minCycleTime = 0xFFFFFFFF;
+UINT32                  minCycleTime = 0xFFFFFFFFu;
 
 /*  Log configuration   */
 INT32                   maxLogCategory = -1;
@@ -79,7 +79,7 @@ sSESSION_CFG_T          aSessionCfg[MAX_SESSIONS];
 TRDP_MARSHALL_CONFIG_T  marshallCfg;
 
 /*  Dataset buffers */
-typedef UINT64  DATASET_BUF_T[MAX_DATASET_LEN/8];
+typedef UINT64  DATASET_BUF_T[MAX_DATASET_LEN/8u];
 typedef struct 
 {
     UINT32          size;
