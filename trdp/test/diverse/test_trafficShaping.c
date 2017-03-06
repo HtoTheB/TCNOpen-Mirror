@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1576 2016-12-22 16:31:29Z bloehr $
+ * $Id: test_trafficShaping.c 1596 2017-03-06 07:46:33Z ahweiss $
  *
  */
 
@@ -273,10 +273,10 @@ int main (int argc, char *argv[])
      */
     while (1)
     {
-        fd_set  rfds;
-        INT32   noDesc;
-        struct timeval  tv;
-        struct timeval  max_tv = {0, 10000};
+        fd_set		rfds;
+        INT32		noDesc;
+        VOS_TIME_T  tv;
+        VOS_TIME_T  max_tv = {0, 10000};
         
         /*
          Prepare the file descriptor set for the select call.
