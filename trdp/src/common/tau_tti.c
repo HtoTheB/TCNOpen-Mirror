@@ -20,8 +20,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1586 2017-02-10 15:07:32Z bloehr $
+ * $Id: tau_tti.c 1598 2017-03-13 16:17:39Z bloehr $
  *
+ *      BL 2017-03-13: Ticket #154 ComIds and DSIds literals (#define TRDP_...) in trdp_proto.h too long
  *      BL 2017-02-10: Ticket #129 Found a bug which yields wrong output params and potentially segfaults
  *      BL 2017-02-08: Ticket #142 Compiler warnings / MISRA-C 2012 issues
  *      BL 2016-02-18: Ticket #7: Add train topology information support
@@ -609,7 +610,7 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
     if (tlp_subscribe(appHandle,
                       &appHandle->pTTDB->pd100SubHandle,
                       userAction, ttiPDCallback,
-                      TRDP_TTDB_OP_TRAIN_DIR_STATUS_INFO_COMID,
+                      TRDP_TTDB_OP_TRN_DIR_STAT_INF_COMID,
                       0, 0,
                       VOS_INADDR_ANY,
                       vos_dottedIP(TTDB_STATUS_DEST_IP),
