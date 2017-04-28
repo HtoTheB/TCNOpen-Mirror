@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: tau_cstinfo.c 1514 2016-02-24 18:09:18Z bloehr $
+ * $Id: tau_cstinfo.c 1600 2017-04-28 15:11:33Z bloehr $
  *
+ *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *      BL 2016-02-24: C89 compatibility (thanks to Robert)
  */
 
@@ -28,7 +29,6 @@
 
 #include "trdp_if_light.h"
 #include "tau_tti.h"
-#include "iec61375-2-3.h"
 #include "vos_sock.h"
 
 /***********************************************************************************************************************

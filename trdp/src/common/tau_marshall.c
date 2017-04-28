@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: tau_marshall.c 1600 2017-04-28 15:11:33Z bloehr $
  *
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings), alignment casts fixed
  *      BL 2016-02-11: Ticket #108: missing initialisation of size-pointer
@@ -1095,7 +1095,7 @@ EXT_DECL TRDP_ERR_T tau_marshall (
 
     err = marshallDs(&info, pDataset);
 
-    *pDestSize = info.pDst - pDest;
+    *pDestSize = (UINT32) (info.pDst - pDest);
 
     return err;
 }
@@ -1168,7 +1168,7 @@ EXT_DECL TRDP_ERR_T tau_unmarshall (
 
     err = unmarshallDs(&info, pDataset);
 
-    *pDestSize = info.pDst - pDest;
+    *pDestSize = (UINT32) (info.pDst - pDest);
 
     return err;
 }
@@ -1242,7 +1242,7 @@ EXT_DECL TRDP_ERR_T tau_marshallDs (
 
     err = marshallDs(&info, pDataset);
 
-    *pDestSize = info.pDst - pDest;
+    *pDestSize = (UINT32) (info.pDst - pDest);
 
     return err;
 }
@@ -1315,7 +1315,7 @@ EXT_DECL TRDP_ERR_T tau_unmarshallDs (
 
     err = unmarshallDs(&info, pDataset);
 
-    *pDestSize = info.pDst - pDest;
+    *pDestSize = (UINT32) (info.pDst - pDest);
 
     return err;
 }

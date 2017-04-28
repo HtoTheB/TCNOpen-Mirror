@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1576 2016-12-22 16:31:29Z bloehr $
+ * $Id: test_mdSingle.c 1600 2017-04-28 15:11:33Z bloehr $
  *
  */
 
@@ -548,7 +548,7 @@ int main (int argc, char *argv[])
         }
         else
         {
-            vos_threadDelay(tv.tv_sec * 1000000 + tv.tv_usec);
+            vos_threadDelay((UINT32)(tv.tv_sec * 1000000u) + tv.tv_usec);
             rv = 0;
 
 

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1590 2017-03-02 15:11:52Z bloehr $
+ * $Id: trdp_if.c 1600 2017-04-28 15:11:33Z bloehr $
  *
  *      BL 2017-03-02: Ticket #151 tlp_request: timeout-flag is not cleared
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
@@ -371,7 +371,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     }
     else
     {
-        int retries;
+        unsigned int retries;
 
         pSession->pNext = sSession;
         sSession        = pSession;
@@ -1941,7 +1941,7 @@ EXT_DECL TRDP_ERR_T tlp_request (
                 {
                     vos_getTime(&pSubPD->timeToGo);
                     vos_addTime(&pSubPD->timeToGo, &pSubPD->interval);
-                    pSubPD->privFlags ^= ~TRDP_TIMED_OUT;   /* Reset time out flag (#151) */
+                    pSubPD->privFlags ^= (unsigned)~TRDP_TIMED_OUT;   /* Reset time out flag (#151) */
                 }
             }
         }
