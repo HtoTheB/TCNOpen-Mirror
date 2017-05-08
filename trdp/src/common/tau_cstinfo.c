@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: tau_cstinfo.c 1600 2017-04-28 15:11:33Z bloehr $
+ * $Id: tau_cstinfo.c 1601 2017-05-08 15:27:38Z bloehr $
  *
+ *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *      BL 2016-02-24: C89 compatibility (thanks to Robert)
  */
@@ -41,8 +42,18 @@
  */
 
 /***********************************************************************************************************************
- * Locals
+ * Local Functions
  */
+
+UINT16 cstInfoGetPropSize (TRDP_CONSIST_INFO_T *pCstInfo);
+void cstInfoGetProperty (TRDP_CONSIST_INFO_T *pCstInfo, UINT8 *pValue);
+void cstInfoGetETBInfo (TRDP_CONSIST_INFO_T *pCstInfo,
+                        UINT32              index,
+                        TRDP_ETB_INFO_T     *pValue);
+UINT32  cstInfoGetVehInfoSize (UINT8 *pVehList);
+void cstInfoGetVehInfo (TRDP_CONSIST_INFO_T *pCstInfo, UINT32 index, TRDP_VEHICLE_INFO_T *pValue, UINT32 *pSize);
+void cstInfoGetFctInfo (TRDP_CONSIST_INFO_T *pCstInfo, UINT32 index, TRDP_FUNCTION_INFO_T *pValue, UINT32 *pSize);
+void cstInfoGetCltrCstInfo (TRDP_CONSIST_INFO_T *pCstInfo, UINT32 index, TRDP_FUNCTION_INFO_T *pValue, UINT32 *pSize);
 
 /**********************************************************************************************************************/
 /**    Getter function to retrieve a value from the consist info telegram value.

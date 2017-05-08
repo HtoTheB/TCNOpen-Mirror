@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1566 2016-07-06 15:48:37Z bloehr $
+ * $Id: trdp_utils.h 1601 2017-05-08 15:27:38Z bloehr $
  *
+ *      BL 2017-05-08: Doxygen comment errors
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  */
 
@@ -209,9 +210,9 @@ UINT32 trdp_packetSizeMD (
  *  Note: The standard demands that sequenceCounter is managed per comID/msgType at each publisher,
  *        but shall be the same for redundant telegrams (subnet/srcIP).
  *
- *  @param[in]      comId           comID to look for
+ *  @param[in]      comID           comID to look for
  *  @param[in]      msgType         PD/MD type
- *  @param[in]      srcIpAddr       Source IP address
+ *  @param[in]      srcIP           Source IP address
  *
  *  @retval            return the sequence number
  */

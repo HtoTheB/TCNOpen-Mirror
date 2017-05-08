@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1600 2017-04-28 15:11:33Z bloehr $
+ * $Id: trdp_if.c 1601 2017-05-08 15:27:38Z bloehr $
  *
+ *      BL 2017-05-08: Compiler warnings, local prototypes added
  *      BL 2017-03-02: Ticket #151 tlp_request: timeout-flag is not cleared
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
  *      BL 2017-02-10: Ticket #137 tlc_closeSession should close the tcp socket used for md communication
@@ -81,12 +82,13 @@ static TRDP_APP_SESSION_T   sSession        = NULL;
 static VOS_MUTEX_T          sSessionMutex   = NULL;
 static BOOL8 sInited = FALSE;
 
-
 /******************************************************************************
  * LOCAL FUNCTIONS
  */
 
-
+BOOL8 trdp_isValidSession (TRDP_APP_SESSION_T pSessionHandle);
+TRDP_APP_SESSION_T *trdp_sessionQueue (void);
+    
 /***********************************************************************************************************************
  * GLOBAL FUNCTIONS
  */
