@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1485 2015-12-16 17:13:51Z bloehr $
+ * $Id: trdp-md-test.c 1604 2017-05-10 14:43:25Z bloehr $
  *
  */
 
@@ -293,6 +293,11 @@ void print_log (void *pRefCon, VOS_LOG_T category, const CHAR8 *pTime,
     const char *file = strrchr(pFile, '/');
     fprintf(stderr, "%s %s:%d %s",
             cat[category], file ? file + 1 : pFile, line, pMsgStr);
+    if (pLogFile != NULL)
+    {
+        fprintf(pLogFile, "%s %s:%d %s",
+            cat[category], file ? file + 1 : pFile, line, pMsgStr);
+    }
 #endif
 }
 
