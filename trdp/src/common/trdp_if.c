@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: trdp_if.c 1603 2017-05-10 14:42:43Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, local prototypes added
  *      BL 2017-03-02: Ticket #151 tlp_request: timeout-flag is not cleared
@@ -1646,7 +1646,7 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
                 }
                 else    /* if no timeout set, set maximum time to 1000sec   */
                 {
-                    pInterval->tv_sec   = 1000u;                            /* 1 hour if no timeout is set      */
+                    pInterval->tv_sec   = 1000u;                            /* 1000s if no timeout is set      */
                     pInterval->tv_usec  = 0;                                /* Application should limit this    */
                 }
 
