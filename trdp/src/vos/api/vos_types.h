@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: vos_types.h 1607 2017-05-19 11:40:48Z ahweiss $
  *
  *      BL 2017-05-08: Doxygen comment errors
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
@@ -225,6 +225,7 @@ typedef struct
  *      Assume 32 Bit system, if not defined
  */
 #ifndef _STRUCT_TIMEVAL
+typedef INT32 suseconds_t;
 typedef struct
 {
     UINT32  tv_sec;         /**< full seconds                                     */
