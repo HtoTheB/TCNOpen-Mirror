@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1610 2017-05-19 12:58:18Z ahweiss $
+ * $Id: iec61375-2-3.h 1611 2017-05-19 14:40:47Z bloehr $
  *
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
@@ -158,8 +158,6 @@
 #define TRDP_MSG_MQ                         0x4D71u                 /**< 'Mq' MD Reply with confirmation            */
 #define TRDP_MSG_MC                         0x4D63u                 /**< 'Mc' MD Confirm                            */
 #define TRDP_MSG_ME                         0x4D65u                 /**< 'Me' MD Error                              */
-
-typedef UINT16 TRDP_MSG_T;
 
 /**********************************************************************************************************************/
 /**                          Reserved COMIDs in the range 1 ... 1000                                                  */
