@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: trdp_mdcom.c 1605 2017-05-19 11:35:54Z ahweiss $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
@@ -68,7 +68,7 @@
 
 static const UINT32 cMinimumMDSize = 1480u;                            /**< Initial size for message data received */
 static const UINT8  cEmptySession[TRDP_SESS_ID_SIZE];                 /**< Empty sessionID to compare             */
-static const TRDP_MD_INFO_T cTrdp_md_info_default;
+static const TRDP_MD_INFO_T cTrdp_md_info_default = {0};
 
 /***********************************************************************************************************************
  *   Local Functions
