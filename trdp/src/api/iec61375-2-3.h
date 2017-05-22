@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1611 2017-05-19 14:40:47Z bloehr $
+ * $Id: iec61375-2-3.h 1612 2017-05-22 09:44:27Z ahweiss $
  *
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
@@ -91,9 +91,9 @@
 #define TRDP_SESS_ID_SIZE                   16u                         /**< Session ID (UUID) size in MD header    */
 #define TRDP_DEST_URI_SIZE                  32u                         /**< max. Dest URI size in MD header        */
 
-
-/**  Definitions for time out behaviour accd. table A.17 */
-#define TDRP_MD_INFINITE_TIME               (-1)
+/**  Definitions for time out behaviour accd. table A.18 */
+#define TDRP_MD_INFINITE_TIME               (0)
+#define TDRP_MD_INFINITE_USEC_TIME          (0)
 #define TDRP_MD_MAX_USEC_TIME               (999999)
 
 /**  Default MD communication parameters   */
