@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1590 2017-03-02 15:11:52Z bloehr $
+ * $Id: trdp_pdcom.c 1613 2017-05-22 11:18:52Z ahweiss $
  *
  *      BL 2017-03-01: Ticket #136 PD topography counter with faulty behavior
  *      BL 2017-02-27: Ticket #146 On Timeout, PD Callback is always called with no data/datasize == 0
@@ -853,7 +853,9 @@ TRDP_ERR_T   trdp_pdCheckListenSocks (
                    case TRDP_TIMEOUT_ERR:
                        result   = err;
                        logType  = VOS_LOG_WARNING;
-                   default:
+                       vos_printLog(logType, "trdp_pdReceive() failed (Err: %d)\n", err);
+					   break;
+				   default:
                        vos_printLog(logType, "trdp_pdReceive() failed (Err: %d)\n", err);
                        break;
 
