@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1615 2017-05-22 13:08:24Z bloehr $
+ * $Id: vos_thread.c 1616 2017-05-22 13:16:43Z bloehr $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -714,12 +714,12 @@ EXT_DECL void vos_getUuid (
     vos_getTime(&current);
 
     pUuID[0]    = current.tv_usec & 0xFF;
-    pUuID[1]    = (current.tv_usec & 0xFF00) >> 8;
-    pUuID[2]    = (current.tv_usec & 0xFF0000) >> 16;
-    pUuID[3]    = (current.tv_usec & 0xFF000000) >> 24;
+    pUuID[1]    = (UINT8)((current.tv_usec & 0xFF00) >> 8);
+    pUuID[2]    = (UINT8)((current.tv_usec & 0xFF0000) >> 16);
+    pUuID[3]    = (UINT8)((current.tv_usec & 0xFF000000) >> 24);
     pUuID[4]    = current.tv_sec & 0xFF;
     pUuID[5]    = (current.tv_sec & 0xFF00) >> 8;
-    pUuID[6]    = (current.tv_sec & 0xFF0000) >> 16;
+    pUuID[6]    = (UINT8)((current.tv_sec & 0xFF0000) >> 16);
     pUuID[7]    = ((current.tv_sec & 0x0F000000) >> 24) | 0x4; /*  pseudo-random version   */
 
     /* we always increment these values, this definitely makes the UUID unique */
