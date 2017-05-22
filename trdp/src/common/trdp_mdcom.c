@@ -17,8 +17,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1612 2017-05-22 09:44:27Z ahweiss $
+ * $Id: trdp_mdcom.c 1614 2017-05-22 12:58:09Z ahweiss $
  *
+ *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
  *      BL 2017-02-27: Ticket #148 Wrong element used in trdp_mdCheckTimeouts() to invoke the callback

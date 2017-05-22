@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1603 2017-05-10 14:42:43Z bloehr $
+ * $Id: trdp_if.c 1614 2017-05-22 12:58:09Z ahweiss $
  *
+ *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-05-08: Compiler warnings, local prototypes added
  *      BL 2017-03-02: Ticket #151 tlp_request: timeout-flag is not cleared
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
@@ -2555,13 +2556,17 @@ TRDP_ERR_T tlm_request (
     {
         return TRDP_PARAM_ERR;
     }
-    if ( replyTimeout != 0U )
+    if ( replyTimeout == 0U )
     {
-        mdTimeOut = replyTimeout;
+        mdTimeOut = appHandle->mdDefault.confirmTimeout;
+	}
+	else if ( replyTimeout == TRDP_INFINITE_TIMEOUT)
+	{
+        mdTimeOut = 0;
     }
     else
     {
-        mdTimeOut = appHandle->mdDefault.confirmTimeout;
+        mdTimeOut = replyTimeout;
     }
 
     if ( !trdp_validTopoCounters( appHandle->etbTopoCnt,
