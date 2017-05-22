@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1590 2017-03-02 15:11:52Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1615 2017-05-22 13:08:24Z bloehr $
  *
+ *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-02-08: Ticket #134 Example trdp-xmlpd-test crash due to zero elemSize
  *      BL 2015-12-14: Ticket #97  trdp-xmlpd-test.c subscribed telegram issue.
  *
@@ -930,7 +931,7 @@ void processData()
 {
     TRDP_ERR_T result;
     UINT32 i;
-    VOS_TIME_T now, delay, nextData, nextCycle, dataPeriod, cyclePeriod;
+    VOS_TIMEVAL_T now, delay, nextData, nextCycle, dataPeriod, cyclePeriod;
     BOOL8 bDataPeriod = FALSE;
     UINT32 dataSize;
 

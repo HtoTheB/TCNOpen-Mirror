@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1596 2017-03-06 07:46:33Z ahweiss $
+ * $Id: test_trafficShaping.c 1615 2017-05-22 13:08:24Z bloehr $
  *
+ *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
 
 /***********************************************************************************************************************
@@ -143,7 +144,7 @@ void dbgOut (
  */
 int main (int argc, char *argv[])
 {
-    int                 ip[4];
+    unsigned int        ip[4];
     TRDP_APP_SESSION_T  appHandle;  /*    Our identifier to the library instance    */
     TRDP_PUB_T          pubHandle;  /*    Our identifier to the publication    */
     TRDP_ERR_T          err;
@@ -275,8 +276,8 @@ int main (int argc, char *argv[])
     {
         fd_set		rfds;
         INT32		noDesc;
-        VOS_TIME_T  tv;
-        VOS_TIME_T  max_tv = {0, 10000};
+        VOS_TIMEVAL_T  tv;
+        VOS_TIMEVAL_T  max_tv = {0, 10000};
         
         /*
          Prepare the file descriptor set for the select call.

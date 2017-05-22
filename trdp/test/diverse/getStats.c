@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1576 2016-12-22 16:31:29Z bloehr $
+ * $Id: getStats.c 1615 2017-05-22 13:08:24Z bloehr $
  *
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *
@@ -68,9 +68,9 @@ void print_stats (
     TRDP_VERSION_T trdp;
 
     trdp.ver    = (UINT8) pData->version;
-    trdp.rel    = (UINT8) pData->version << 8;
-    trdp.upd    = (UINT8) pData->version << 16;
-    trdp.evo    = (UINT8) pData->version << 24;
+    trdp.rel    = (UINT8) (pData->version << 8);
+    trdp.upd    = (UINT8) (pData->version << 16);
+    trdp.evo    = (UINT8) (pData->version << 24);
 
     printf("\n----------------------------------------------------------------------------------------------------\n");
     printf("version:            %d.%d.%d.%d\n",
