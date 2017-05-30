@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1618 2017-05-30 09:07:50Z ahweiss $
+ * $Id: trdp_if_light.h 1623 2017-05-30 10:54:29Z ahweiss $
  *
  *     AHW 2017-05-30: Ticket #143 tlm_replyErr() only at TRDP level allowed
  *      BL 2015-11-24: Accessor for IP address of session
@@ -815,6 +815,8 @@ TRDP_ERR_T tlm_replyQuery (
     const TRDP_SEND_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize );
+
+#endif /* MD_SUPPORT    */
 
 
 /*******************************************************************************
