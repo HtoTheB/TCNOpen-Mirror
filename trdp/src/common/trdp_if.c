@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1618 2017-05-30 09:07:50Z ahweiss $
+ * $Id: trdp_if.c 1625 2017-05-30 11:30:59Z ahweiss $
  *
  *     AHW 2017-05-30: Ticket #143 tlm_replyErr() only at TRDP level allowed
  *     AHW 2017-05-22: Ticket #158 Infinit timeout at TRDB level is 0 acc. standard
@@ -2557,12 +2557,13 @@ TRDP_ERR_T tlm_request (
     {
         return TRDP_PARAM_ERR;
     }
+
     if ( replyTimeout == 0U )
     {
         mdTimeOut = appHandle->mdDefault.confirmTimeout;
-	}
-	else if ( replyTimeout == TRDP_INFINITE_TIMEOUT)
-	{
+    }
+    else if ( replyTimeout == TRDP_INFINITE_TIMEOUT)
+    {
         mdTimeOut = 0;
     }
     else
