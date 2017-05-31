@@ -1,5 +1,5 @@
 #//
-#// $Id: VXWORKS_PPC_config 769 2013-05-06 11:56:54Z cschneider $
+#// $Id: VXWORKS_KMODE_PPC_config 1634 2017-05-31 13:39:15Z bloehr $
 #//
 #// DESCRIPTION    Config file to make TRDP for VXWORKS_PPC target
 #//
