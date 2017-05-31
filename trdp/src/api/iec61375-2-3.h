@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1620 2017-05-30 09:25:22Z ahweiss $
+ * $Id: iec61375-2-3.h 1631 2017-05-31 12:03:26Z bloehr $
  *
  *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
@@ -22,7 +22,7 @@
  *
  *      BL 2017-03-13: Ticket #154 ComIds and DSIds literals (#define TRDP_...) in trdp_proto.h too long
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
- *      BL 2017-02-08: Ticket #142: Compiler warnings /​ MISRA-C 2012 issues
+ *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
  *      BL 2016-11-09: Default PD/MD parameter defines moved from trdp_private.h
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
@@ -37,7 +37,7 @@
 
 /*
  TCN-URI (host part)               Scope       IP address      Description
- ￼
+ 
  grpAll.aVeh.lCst.lClTrn.lTrn      D           239.192.0.0     broadcast to all end devices
  within the local consist.
                                                 NOTE 1: 239.255/16 is defined as CN multicast range in IEC61375-2- 5)

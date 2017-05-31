@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.h 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: vos_mem.h 1631 2017-05-31 12:03:26Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  */
@@ -248,16 +248,16 @@ EXT_DECL INT32 vos_strnicmp (
 /**********************************************************************************************************************/
 /** String copy with length limitation.
  *
- *  @param[in]      pStr1       Destination string
- *  @param[in]      pStr2       Null terminated string to copy
+ *  @param[in]      pStrDst     Destination string
+ *  @param[in]      pStrSrc     Null terminated string to copy
  *  @param[in]      count       Maximum number of characters to copy
  *
  *  @retval         none
  */
 
 EXT_DECL void vos_strncpy (
-    CHAR8       *pStr1,
-    const CHAR8 *pStr2,
+    CHAR8       *pStrDst,
+    const CHAR8 *pStrSrc,
     UINT32      count );
 
 /**********************************************************************************************************************/

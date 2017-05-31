@@ -14,10 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: vos_utils.h 1631 2017-05-31 12:03:26Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
- *      BL 2017-02-08: Ticket #142: Compiler warnings /​ MISRA-C 2012 issues
+ *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
  *      BL 2016-03-10: Ticket #114 SC-32
  *      BL 2014-02-28: Ticket #25: CRC32 calculation is not according IEEE802.3
  *
