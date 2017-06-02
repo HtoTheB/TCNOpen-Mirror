@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1635 2017-06-02 14:00:20Z railroad-mike $
+ * $Id: trdp_mdcom.c 1636 2017-06-02 14:08:21Z railroad-mike $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *     AHW 2017-05-22: Ticket #158 Infinit timeout at TRDB level is 0 acc. standard
@@ -1035,7 +1035,7 @@ static TRDP_ERR_T trdp_mdRecvTCPPacket (TRDP_SESSION_PT appHandle, INT32 mdSock,
     pElement->dataSize = 0u;
 
     /* Fill destination address */
-    pElement->addr.detIpAddr = appHandle->realIP;
+    pElement->addr.destIpAddr = appHandle->realIP;
 
     /* Find the socket index */
     for ( socketIndex = 0u; socketIndex < VOS_MAX_SOCKET_CNT; socketIndex++ )
