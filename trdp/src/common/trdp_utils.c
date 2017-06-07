@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1637 2017-06-07 14:33:58Z bloehr $
+ * $Id: trdp_utils.c 1638 2017-06-07 15:05:37Z bloehr $
  *
+ *      BL 2017-06-07: Undoing setting of usage (came in with #126 fix!)
  *      BL 2017-05-08: Ticket #126 Opened UDP socket is not released if join or bind failed in trdp_requestSocket()
  *      BL 2017-05-08: Compiler warnings, static definitions
  *      BL 2017-03-01: Ticket #136 PD topography counter with faulty behavior
@@ -759,7 +760,7 @@ TRDP_ERR_T  trdp_requestSocket (
                 }
                 else
                 {
-                    iface[lIndex].usage = 1;
+                    iface[lIndex].usage = 0;
                     *pIndex = lIndex;
 
                     if (rcvMostly)
@@ -829,7 +830,7 @@ TRDP_ERR_T  trdp_requestSocket (
                 }
                 else
                 {
-                    iface[lIndex].usage = 1;
+                    iface[lIndex].usage = 0;
                     *pIndex = lIndex;
                 }
 
