@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1626 2017-05-30 11:35:08Z bloehr $
+ * $Id: trdp_utils.c 1637 2017-06-07 14:33:58Z bloehr $
  *
  *      BL 2017-05-08: Ticket #126 Opened UDP socket is not released if join or bind failed in trdp_requestSocket()
  *      BL 2017-05-08: Compiler warnings, static definitions
@@ -742,8 +742,7 @@ TRDP_ERR_T  trdp_requestSocket (
         sock_options.ttl    = params->ttl;
         sock_options.reuseAddrPort  = (options & TRDP_OPTION_NO_REUSE_ADDR) ? FALSE : TRUE;
         sock_options.nonBlocking    = (options & TRDP_OPTION_BLOCK) ? FALSE : TRUE;
-        /* sock_options.ttl_multicast  = (usage != TRDP_SOCK_MD_TCP) ? VOS_TTL_MULTICAST : 0; */
-        sock_options.ttl_multicast  = params->ttl;
+        sock_options.ttl_multicast  = (usage != TRDP_SOCK_MD_TCP) ? params->ttl : 0;
         sock_options.no_mc_loop     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_MC_LOOP_BACK)) ? 1 : 0;
         sock_options.no_udp_crc     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_UDP_CHK)) ? 1 : 0;
 
