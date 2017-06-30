@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: subTest.c 1458 2015-11-20 14:22:22Z bloehr $
+ * $Id: subTest.c 1641 2017-06-30 15:09:01Z bloehr $
  *
+ *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
 
 /***********************************************************************************************************************
@@ -50,6 +51,13 @@
 CHAR8 gBuffer[32] = "Hello World";
 CHAR8 gBuffer1[DATA_MAX];
 CHAR8 gBuffer2[DATA_MAX];
+
+/***********************************************************************************************************************
+ * PROTOTYPES
+ */
+void dbgOut (void *, TRDP_LOG_T , const CHAR8 *, const CHAR8 *, UINT16 , const CHAR8 *);
+void usage (const char *);
+void myPDcallBack (void *, TRDP_APP_SESSION_T,const TRDP_PD_INFO_T *, UINT8 *, UINT32 );
 
 /**********************************************************************************************************************/
 /** callback routine for TRDP logging/error output
@@ -142,13 +150,13 @@ void usage (const char *appName)
  */
 int main (int argc, char *argv[])
 {
-    int                     ip[4];
+    unsigned int            ip[4];
     TRDP_APP_SESSION_T      appHandle; /*    Our identifier to the library instance    */
     TRDP_SUB_T              subHandle1; /*    Our identifier to the publication         */
     TRDP_SUB_T              subHandle2; /*    Our identifier to the publication         */
     UINT32                  comId = PD_COMID1;
     TRDP_ERR_T              err;
-    TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0},
+    TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0, 0},
                                                TRDP_FLAGS_CALLBACK, 10000000,
                                                TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, PREALLOCATE};
@@ -317,8 +325,13 @@ int main (int argc, char *argv[])
          The callback function will be called from within the tlc_process
          function (in it's context and thread)!
          */
-        tlc_process(appHandle, &rfds, &rv);
-
+        err = tlc_process(appHandle, &rfds, &rv);
+        if (err != TRDP_NO_ERR)
+        {
+            printf("tlc_process error\n");
+            break;
+        }
+        
         /* Handle other ready descriptors... */
         if (rv > 0)
         {
@@ -330,7 +343,7 @@ int main (int argc, char *argv[])
             fflush(stdout);
         }
 
-		if (0)
+        if (/* DISABLES CODE */ (0))
         {
             /*
              Get the subscribed telegram.
