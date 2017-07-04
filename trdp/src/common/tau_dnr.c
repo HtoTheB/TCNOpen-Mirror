@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: tau_dnr.c 1645 2017-07-04 15:35:52Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
@@ -188,7 +188,7 @@ static CHAR8 *readName (UINT8 *pReader, UINT8 *pBuffer, UINT32 *pCount, CHAR8 *p
 
     for (i = 0; (i < (int)strlen((const char *)pName)) && (i < (int)(TAU_MAX_NAME_SIZE - 1u)); i++)
     {
-        p = (unsigned int) pName[i];
+        p = (unsigned int) pName[i];    /*lint !e571 Suspicious cast? Not clear! */
         for (j = 0; j < (int)p; j++)
         {
             pName[i]    = pName[i + 1];
@@ -281,7 +281,7 @@ static TRDP_ERR_T readHostsFile (
             {
                 UINT32  start       = 0u;
                 UINT32  index       = 0u;
-                UINT32  maxIndex    = strlen(line);
+                UINT32  maxIndex    = (UINT32) strlen(line);
 
                 /* Skip empty lines, comment lines */
                 if (line[index] == '#' ||

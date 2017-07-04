@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1600 2017-04-28 15:11:33Z bloehr $
+ * $Id: tau_ctrl.c 1645 2017-07-04 15:35:52Z bloehr $
  *
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *
@@ -240,7 +240,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
         return tlm_request( appHandle,                      /* appHandle */
                             pUserRef,                       /* pUserRef */
                             pfCbFunction,                   /* callback function */
-                            &sessionId,                     /* pSessionId */
+                            &sessionId, /*lint !e545 Return of UINT8 array */  /* pSessionId */
                             TRDP_ECSP_CONF_REQ_COMID,       /* comId */
                             0,                              /* etbTopoCnt */
                             0,                              /* opTrnTopoCnt */
