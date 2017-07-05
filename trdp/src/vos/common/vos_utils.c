@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.c 1643 2017-07-03 11:13:24Z ahweiss $
+ * $Id: vos_utils.c 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings
  *      BL 2017-02-27: #142 Compiler warnings / MISRA-C 2012 issues
@@ -554,11 +554,11 @@ EXT_DECL const CHAR8 *vos_getErrorString (VOS_ERR_T error)
 {
     static char buf[64u];
 #if MD_SUPPORT
-    UINT32      index = (UINT32)((int)error * (-1));
+    UINT32      l_index = (UINT32)((int)error * (-1));
 
-    if (index < NO_OF_ERROR_STRINGS)
+    if (l_index < NO_OF_ERROR_STRINGS)
     {
-        return pgm_read_dword(&cErrStrings[index]);
+        return pgm_read_dword(&cErrStrings[l_index]);
     }
     (void) vos_snprintf(buf, 64u, "%s (%d)", pgm_read_dword(&cErrStrings[NO_OF_ERROR_STRINGS - 1u]), error);
 #else

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1641 2017-06-30 15:09:01Z bloehr $
+ * $Id: vos_utils.h 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
@@ -31,7 +31,7 @@
  */
 
 #include <stdio.h>
-#include <stddef.h>
+#include <stddef.h> /*lint !e451 standard include guard missing */
 #include "vos_types.h"
 
 #ifdef __cplusplus
@@ -66,7 +66,7 @@ extern void *gRefCon;
     snprintf(str, size, format, __VA_ARGS__)
 #else
     #define vos_snprintf(str, size, format, args ...) \
-    snprintf(str, size, format, ## args)
+    snprintf(str, size, format, ## args)    /*lint !e586 logging output needed */
 #endif
 
 /** Debug output macro without formatting options */

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_stats.c 1615 2017-05-22 13:08:24Z bloehr $
+ * $Id: trdp_stats.c 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-05-08: Compiler warnings
@@ -277,12 +277,12 @@ EXT_DECL TRDP_ERR_T tlc_getUdpListStatistics (
         return TRDP_NOINIT_ERR;
     }
 
-    if (pNumList == NULL || pStatistics == NULL || *pNumList == 0)
+    if ((pNumList == NULL) || (pStatistics == NULL) || (*pNumList == 0u))
     {
         return TRDP_PARAM_ERR;
     }
 
-    for (lIndex = 0; lIndex < *pNumList && pIter != NULL; pIter = pIter->pNext)
+    for (lIndex = 0; (lIndex < *pNumList) && (pIter != NULL); pIter = pIter->pNext) /*lint !e443: clause irregularity OK */
     {
         if ((pIter->pktFlags & TRDP_FLAGS_TCP) == 0)
         {
@@ -330,7 +330,7 @@ EXT_DECL TRDP_ERR_T tlc_getTcpListStatistics (
         return TRDP_PARAM_ERR;
     }
 
-    for (lIndex = 0; lIndex < *pNumList && pIter != NULL; pIter = pIter->pNext)
+    for (lIndex = 0; lIndex < *pNumList && pIter != NULL; pIter = pIter->pNext) /*lint !e443: clause irregularity OK */
     {
         if ((pIter->pktFlags & TRDP_FLAGS_TCP) != 0)
         {

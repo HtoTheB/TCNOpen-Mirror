@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: trdp_utils.h 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-05-08: Doxygen comment errors
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
@@ -28,7 +28,7 @@
  * INCLUDES
  */
 
-#include <stdio.h>
+#include <stdio.h>  /*lint !e451 missing guard in std-header */
 
 #include "trdp_private.h"
 #include "vos_utils.h"

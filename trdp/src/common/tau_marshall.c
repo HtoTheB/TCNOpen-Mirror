@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1601 2017-05-08 15:27:38Z bloehr $
+ * $Id: tau_marshall.c 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, MISRA-C
  *      BL 2017-05-08: Ticket #156 Recursion counter never decremented (+ compiler warnings, MISRA)
@@ -119,7 +119,7 @@ static INLINE void unpackedCopy64 (
 #if __BIG_ENDIAN__ || __ARMEB__ || __AARCH64EB__ || __MIPSEB__
 {
     UINT32  size    = noOfItems * sizeof(UINT64);
-    UINT8   *pDst8  = alignePtr(*ppDst, ALIGNOF(UINT64));
+    UINT8   *pDst8  = (UINT8 *) alignePtr(*ppDst, ALIGNOF(UINT64));
     memcpy(pDst8, *ppSrc, size);
     *ppSrc  = (UINT8 *) *ppSrc + size;
     *ppDst  = (UINT8 *) pDst8 + size;

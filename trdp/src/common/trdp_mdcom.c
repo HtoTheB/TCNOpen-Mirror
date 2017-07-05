@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1640 2017-06-28 15:35:49Z bloehr $
+ * $Id: trdp_mdcom.c 1646 2017-07-05 14:34:41Z bloehr $
  *
  *      BL 2017-06-28: Ticket #160: Receiving fragmented TCP packets
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -1588,7 +1588,6 @@ static TRDP_ERR_T trdp_mdHandleRequest (TRDP_SESSION_PT     appHandle,
         /* Indicate that this call can not get replied due to receiver count limitation  */
         (void)trdp_mdSendME(appHandle, pH, TRDP_REPLY_NO_MEM_REPL);
         /* return to calling routine without performing any receiver action */
-        iterMD = (MD_ELE_T *)NULL;
         return result;
     }
 
@@ -1846,7 +1845,7 @@ static TRDP_ERR_T trdp_mdSendME (TRDP_SESSION_PT appHandle, MD_HEADER_T *pH, INT
         vos_printLog(VOS_LOG_ERROR, "vos_mutexUnlock() failed\n");
         errv = TRDP_MUTEX_ERR;
     }*/
-    return errv;
+    return errv;    /*lint !e438 unused pSenderElement */
 }
 
 /**********************************************************************************************************************/
@@ -3254,7 +3253,7 @@ TRDP_ERR_T trdp_mdReply (const TRDP_MSG_T           msgType,
         vos_printLogStr(VOS_LOG_ERROR, "vos_mutexUnlock() failed\n");
     }
 
-    return errv;
+    return errv;    /*lint !e438 unused pSenderElement */
 }
 
 /**********************************************************************************************************************/
@@ -3478,7 +3477,7 @@ TRDP_ERR_T trdp_mdCall (
         vos_printLogStr(VOS_LOG_ERROR, "vos_mutexUnlock() failed\n");
     }
 
-    return errv;
+    return errv;    /*lint !e438 unused pSenderElement */
 }
 
 
@@ -3607,5 +3606,5 @@ TRDP_ERR_T trdp_mdConfirm (
     {
         vos_printLogStr(VOS_LOG_ERROR, "vos_mutexUnlock() failed\n");
     }
-    return errv;
+    return errv;    /*lint !e438 unused pSenderElement */
 }

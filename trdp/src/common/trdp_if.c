@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1625 2017-05-30 11:30:59Z ahweiss $
+ * $Id: trdp_if.c 1646 2017-07-05 14:34:41Z bloehr $
  *
  *     AHW 2017-05-30: Ticket #143 tlm_replyErr() only at TRDP level allowed
  *     AHW 2017-05-22: Ticket #158 Infinit timeout at TRDB level is 0 acc. standard
@@ -1996,7 +1996,6 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
     UINT32              timeout,
     TRDP_TO_BEHAVIOR_T  toBehavior)
 {
-    PD_ELE_T    *newPD = NULL;
     TRDP_TIME_T         now;
     TRDP_ERR_T          ret = TRDP_NO_ERR;
     TRDP_ADDRESSES_T    subHandle;
@@ -2072,6 +2071,8 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
 
         if (ret == TRDP_NO_ERR)
         {
+            PD_ELE_T            *newPD;
+
             /*    buffer size is PD_ELEMENT plus max. payload size    */
 
             /*    Allocate a buffer for this kind of packets    */
@@ -2140,7 +2141,7 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
                     *pSubHandle = (TRDP_SUB_T) newPD;
                 }
             }
-        }
+        } /*lint !e438 unused newPD */
     }
 
     if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
