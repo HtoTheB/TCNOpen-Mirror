@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1615 2017-05-22 13:08:24Z bloehr $*
+ * $Id: vos_sock.c 1647 2017-07-06 07:17:22Z ahweiss $*
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -1549,7 +1549,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
     UINT32  *pSize)
 {
     int rcvSize     = 0;
-    int bufferSize  = (size_t) *pSize;
+    int bufferSize  = (int) *pSize;
     int err         = 0;
 
     *pSize = 0;
