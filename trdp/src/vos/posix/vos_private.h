@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_private.h 1589 2017-02-27 13:50:53Z bloehr $
+ * $Id: vos_private.h 1651 2017-07-12 07:54:17Z bloehr $
  *
  */
 
@@ -43,7 +43,7 @@ extern "C" {
 #ifndef VOS_VERSION
 #define VOS_VERSION            1u
 #define VOS_RELEASE            0u
-#define VOS_UPDATE             2u
+#define VOS_UPDATE             3u
 #define VOS_EVOLUTION          0u
 #endif
 
