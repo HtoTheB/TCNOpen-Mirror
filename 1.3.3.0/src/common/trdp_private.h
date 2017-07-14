@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1650 2017-07-12 07:50:58Z bloehr $
+ * $Id: trdp_private.h 1664 2017-07-14 12:02:53Z ahweiss $
  *
  *      BL 2017-05-08: Compiler warnings: enum flags to #defines
  *      BL 2017-05-08: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h and here
@@ -46,7 +46,7 @@
 #ifndef TRDP_VERSION
 #define TRDP_VERSION            1u
 #define TRDP_RELEASE            3u
-#define TRDP_UPDATE             2u
+#define TRDP_UPDATE             3u
 #define TRDP_EVOLUTION          0u
 #endif
 
