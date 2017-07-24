@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1647 2017-07-06 07:17:22Z ahweiss $*
+ * $Id: vos_sock.c 1672 2017-07-24 13:11:45Z ahweiss $*
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -37,6 +37,7 @@
 #include <fcntl.h>
 #include <winsock2.h>
 #include <Ws2tcpip.h>
+#include <ws2def.h>
 #include <MSWSock.h>
 #include <lm.h>
 #include <iphlpapi.h>
@@ -218,11 +219,10 @@ EXT_DECL UINT32 vos_dottedIP (
     /* indicate conversion errors, therefore zero has   */
     /* to be returned in order to have similar behavior */
     /* as by using inet_aton                            */
-    if ((conversionResult == VOS_INADDR_ANY)
-        ||
-        (conversionResult == VOS_INADDR_ANY))
+    if (    (conversionResult == INADDR_ANY)
+         || (conversionResult == INADDR_NONE))
     {
-        return 0;
+        return VOS_INADDR_ANY;
     }
     else
     {
