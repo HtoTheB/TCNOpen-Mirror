@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1627 2017-05-30 11:55:34Z bloehr $*
+ * $Id: vos_sock.c 1670 2017-07-24 13:02:42Z ahweiss $*
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -218,9 +218,9 @@ EXT_DECL UINT32 vos_dottedIP (
     struct in_addr addr;
     /* vxWorks does not regard the const qualifier for first parameter */
     /* casting to non const, helps to get rid of compiler noise        */
-    if (inet_aton((CHAR8*)pDottedIP, &addr) <= 0)
+    if (inet_aton((CHAR8*)pDottedIP, &addr) != OK)
     {
-        return 0;   /* Prevent returning broadcast address on error */
+        return VOS_INADDR_ANY;   /* Prevent returning broadcast address on error */
     }
     else
     {
