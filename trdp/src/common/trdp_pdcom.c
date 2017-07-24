@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1613 2017-05-22 11:18:52Z ahweiss $
+ * $Id: trdp_pdcom.c 1671 2017-07-24 13:06:56Z bloehr $
  *
+ *      BL 2017-07-24: Ticket #166 Bug in trdp_pdReceive for "if data has changed"
  *      BL 2017-03-01: Ticket #136 PD topography counter with faulty behavior
  *      BL 2017-02-27: Ticket #146 On Timeout, PD Callback is always called with no data/datasize == 0
  *      BL 2017-02-10: Ticket #132: tlp_publish: Check of datasize wrong if using marshaller
@@ -593,13 +594,13 @@ TRDP_ERR_T  trdp_pdReceive (
                 if ((pExistingElement->pktFlags & TRDP_FLAGS_FORCE_CB) ||
                     (pExistingElement->privFlags & TRDP_TIMED_OUT))
                 {
-                    informUser = 1;                 /* Inform user anyway */
+                    informUser = TRUE;                 /* Inform user anyway */
                 }
-                else
-                {
-                    informUser = memcmp(appHandle->pNewFrame->data,
+                else if (0 != memcmp(appHandle->pNewFrame->data,
                                         pExistingElement->pFrame->data,
-                                        pExistingElement->dataSize);
+                                        pExistingElement->dataSize))
+                {
+                    informUser = TRUE;
                 }
             }
 
