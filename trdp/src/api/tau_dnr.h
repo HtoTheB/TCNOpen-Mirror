@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1522 2016-03-01 10:17:09Z bloehr $
+ * $Id: tau_dnr.h 1673 2017-07-25 16:41:21Z bloehr $
  *
+ *      BL 2017-07-25: Ticket #125: tau_dnr: TCN DNS support missing
  *      BL 2015-12-14: Ticket #8: DNR client
  */
 
@@ -53,6 +54,12 @@ typedef enum TRDP_DNR_STATE {
     TRDP_DNR_HOSTSFILE      = 3
 } TRDP_DNR_STATE_T;
 
+typedef enum TRDP_DNR_OPTS {
+    TRDP_DNR_COMMON_THREAD  = 0,
+    TRDP_DNR_OWN_THREAD     = 1,
+    TRDP_DNR_STANDARD_DNS   = 2
+} TRDP_DNR_OPTS_T;
+    
 /***********************************************************************************************************************
  * PROTOTYPES
  */
@@ -63,17 +70,19 @@ typedef enum TRDP_DNR_STATE {
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
  *  @param[in]      dnsIpAddr       DNS/ECSP IP address.
  *  @param[in]      dnsPort         DNS port number.
- *  @param[in]      hostsFileName   Optional host file name as ECSP replacement/addition.
+ *  @param[in]      pHostsFileName  Optional host file name as ECSP replacement/addition.
+ *  @param[in]      dnsOptions      Use existing thread (recommended), use own tlc_process loop or use standard DNS
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_INIT_ERR   initialisation error
  *
  */
 EXT_DECL TRDP_ERR_T tau_initDnr (
-	TRDP_APP_SESSION_T appHandle,
-    TRDP_IP_ADDR_T     dnsIpAddr,
-    UINT16             dnsPort,
-    const CHAR8        *hostsFileName);
+	TRDP_APP_SESSION_T  appHandle,
+    TRDP_IP_ADDR_T      dnsIpAddr,
+    UINT16              dnsPort,
+    const CHAR8         *pHostsFileName,
+    TRDP_DNR_OPTS_T     dnsOptions);
 
 /**********************************************************************************************************************/
 /**    Release any resources allocated by DNR
