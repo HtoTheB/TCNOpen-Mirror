@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1661 2017-07-12 15:32:19Z bloehr $
+ * $Id: trdp_if.c 1675 2017-07-31 13:36:40Z bloehr $
  *
+ *      BL 2017-07-31: Ticket #168 Unnecessary multicast Join on tlp_publish()
  *      BL 2017-07-12: Ticket #164 Fix for #151 (operator '&' instead of xor)
  *     AHW 2017-05-30: Ticket #143 tlm_replyErr() only at TRDP level allowed
  *     AHW 2017-05-22: Ticket #158 Infinit timeout at TRDB level is 0 acc. standard
@@ -1289,7 +1290,7 @@ EXT_DECL TRDP_ERR_T tlp_publish (
                         appHandle->pdDefault.port,
                         (pSendParam != NULL) ? pSendParam : &appHandle->pdDefault.sendParam,
                         (srcIpAddr == VOS_INADDR_ANY) ? appHandle->realIP : srcIpAddr,
-                        pubHandle.mcGroup,
+                        0u,
                         TRDP_SOCK_PD,
                         appHandle->option,
                         FALSE,
