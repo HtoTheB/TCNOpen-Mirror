@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1673 2017-07-25 16:41:21Z bloehr $
+ * $Id: iec61375-2-3.h 1676 2017-08-04 08:24:44Z bloehr $
  *
  *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
@@ -159,6 +159,9 @@
 #define TRDP_MSG_MQ                         0x4D71u                 /**< 'Mq' MD Reply with confirmation            */
 #define TRDP_MSG_MC                         0x4D63u                 /**< 'Mc' MD Confirm                            */
 #define TRDP_MSG_ME                         0x4D65u                 /**< 'Me' MD Error                              */
+
+#define ETB0_ALL_END_DEVICES_URI            "grpAll.aVeh.aCst.aClTrn.lTrn"
+#define ETB0_ALL_END_DEVICES_IP             "239.193.0.0"           /**< from Table 22  */
 
 /**********************************************************************************************************************/
 /**                          Reserved COMIDs in the range 1 ... 1000                                                  */
