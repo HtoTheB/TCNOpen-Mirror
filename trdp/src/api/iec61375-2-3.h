@@ -11,9 +11,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1677 2017-11-06 17:16:36Z ahweiss $
+ * $Id: iec61375-2-3.h 1678 2017-11-09 09:09:50Z bloehr $
  *
- *     AHW 2017-11-05: Ticket #174 Max. number of retries of a MD request needs to be checked
+ *     AHW 2017-11-05: Ticket #179 Max. number of retries of a MD request needs to be checked
  *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
