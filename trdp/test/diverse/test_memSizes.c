@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1641 2017-06-30 15:09:01Z bloehr $
+ * $Id: test_memSizes.c 1686 2017-11-09 15:55:29Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -365,7 +365,7 @@ int main (int argc, char * *argv)
          Compute the min. timeout value for select and return descriptors to wait for.
          This way we can guarantee that PDs are sent in time...
          */
-        err = tlc_getInterval(appHandle,
+        (void) tlc_getInterval(appHandle,
                               &tv,
                               &rfds,
                               &noOfDesc);
