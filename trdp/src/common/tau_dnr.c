@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1681 2017-11-09 10:37:16Z ahweiss $
+ * $Id: tau_dnr.c 1685 2017-11-09 12:54:33Z bloehr $
  *
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-07-25: Ticket #125: tau_dnr: TCN DNS support missing
@@ -984,7 +984,7 @@ static void updateTCNDNSentry (
 
             rv = vos_select(noDesc + 1, &rfds, NULL, NULL, &tv);
 
-            err = tlc_process(appHandle, &rfds, &rv);
+            (void) tlc_process(appHandle, &rfds, &rv);
 
             /* wait 1s for the reply */
 
