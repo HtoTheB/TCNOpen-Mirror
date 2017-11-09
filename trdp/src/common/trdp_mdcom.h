@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.h 1527 2016-03-04 12:46:21Z bloehr $
+ * $Id: trdp_mdcom.h 1681 2017-11-09 10:37:16Z ahweiss $
  *
+ *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
  */
@@ -117,7 +118,6 @@ TRDP_ERR_T trdp_mdCall (const TRDP_MSG_T        msgType,
                         UINT32                  numExpReplies,
                         UINT32                  replyTimeout,
                         INT32                   replyStatus,
-                        UINT32                  maxNumRetries,
                         const TRDP_SEND_PARAM_T *pSendParam,
                         const UINT8             *pData,
                         UINT32                  dataSize,

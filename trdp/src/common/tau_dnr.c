@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1673 2017-07-25 16:41:21Z bloehr $
+ * $Id: tau_dnr.c 1681 2017-11-09 10:37:16Z ahweiss $
  *
+ *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-07-25: Ticket #125: tau_dnr: TCN DNS support missing
  *      BL 2017-05-08: Compiler warnings
  *      BL 2017-03-01: Ticket #149 SourceUri and DestinationUri don't with 32 characters
@@ -943,7 +944,6 @@ static void updateTCNDNSentry (
                         TRDP_FLAGS_CALLBACK,
                         1u,
                         TCN_DNS_REQ_TO_US,
-                        1u,
                         NULL,
                         sTCN_DNS_Buffer,
                         querySize,

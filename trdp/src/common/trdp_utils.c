@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1680 2017-11-09 09:38:08Z bloehr $
+ * $Id: trdp_utils.c 1681 2017-11-09 10:37:16Z ahweiss $
  *
  *      BL 2017-11-09: Ticket #181/182 Missing padding bytes in user dataset of PD/MD-PDU
  *      BL 2017-11-06: Ticket #178 trdp_releaseSocket does not cleanup tcpParams
@@ -1007,11 +1007,11 @@ void  trdp_releaseSocket (
 
                 if (iface[lIndex].usage <= 0)
                 {
-                    iface[lIndex].usage = 0;
-
                     /* Start the socket connection timeout */
                     TRDP_TIME_T tmpt_interval, tmpt_now;
 
+                    iface[lIndex].usage = 0;
+					
                     vos_printLog(VOS_LOG_INFO,
                                  "The Socket (Num = %d usage=0) ConnectionTimeout will be started\n",
                                  iface[lIndex].sock);
