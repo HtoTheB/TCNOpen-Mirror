@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1641 2017-06-30 15:09:01Z bloehr $
+ * $Id: test_mdSingle.c 1683 2017-11-09 11:05:23Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -662,7 +662,7 @@ int main (int argc, char *argv[])
                 {
 
                     tlm_request(sSessionData.appHandle, &sSessionData, NULL, &sessionId, sSessionData.sComID, 0, 0, ownIP,
-                                destIP, flags, expReplies, 0, 0, NULL, NULL, 0, 0, 0);
+                                destIP, flags, expReplies, 0, NULL, NULL, 0, 0, 0);
 
                 }
                 else if (sSessionData.sDataSize > 0)
@@ -687,7 +687,6 @@ int main (int argc, char *argv[])
                                 flags,
                                 expReplies,
                                 0,
-                                0,
                                 NULL,
                                 (const UINT8 *) gBuffer,
                                 sSessionData.sDataSize,
@@ -698,7 +697,7 @@ int main (int argc, char *argv[])
                 else
                 {
                     tlm_request(sSessionData.appHandle, &sSessionData, NULL, &sessionId, sSessionData.sComID, 0, 0, ownIP,
-                                destIP, flags, expReplies, 0, 0, NULL, (const UINT8 *) "How are you?", 13, 0, 0);
+                                destIP, flags, expReplies, 0, NULL, (const UINT8 *) "How are you?", 13, 0, 0);
                 }
             }
 

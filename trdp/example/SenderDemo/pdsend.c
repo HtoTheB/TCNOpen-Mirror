@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1641 2017-06-30 15:09:01Z bloehr $
+ * $Id: pdsend.c 1683 2017-11-09 11:05:23Z bloehr $
  *
  */
 
@@ -422,7 +422,6 @@ int md_request(const char* targetIP, uint32_t comID, char* pMessage)
                 vos_dottedIP(targetIP), TRDP_FLAGS_CALLBACK,
                 1u,              //  Expected replies
                 0u,              //  reply timeout
-                3u,              //  number of replies
                 NULL,           //  send parameters
                 (const UINT8*) pMessage,
                 (UINT32) strlen(pMessage),

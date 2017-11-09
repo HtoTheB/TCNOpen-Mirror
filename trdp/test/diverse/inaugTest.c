@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1578 2017-01-24 17:00:12Z vikas-newtec $
+ * $Id: inaugTest.c 1683 2017-11-09 11:05:23Z bloehr $
  *
  */
 
@@ -636,7 +636,7 @@ int main (int argc, char * *argv)
                     {
                         case 'r':
                             printf("sending MD request to %s\n", vos_ipDotted(gDestMC1));
-                            tlm_request(gAppHandle, NULL, &myMDcallBack, &gMDPacket.sessionId, gMDPacket.comID, 0, 0, 0, gMDPacket.addr, TRDP_FLAGS_CALLBACK, 1, 10000000, 3, NULL, cDemoData, sizeof(cDemoData), NULL, NULL);
+                            tlm_request(gAppHandle, NULL, &myMDcallBack, &gMDPacket.sessionId, gMDPacket.comID, 0, 0, 0, gMDPacket.addr, TRDP_FLAGS_CALLBACK, 1, 10000000, NULL, cDemoData, sizeof(cDemoData), NULL, NULL);
                             break;
                         case 'q':
                             gRun = FALSE;
