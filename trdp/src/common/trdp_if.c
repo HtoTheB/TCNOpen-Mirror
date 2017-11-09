@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1681 2017-11-09 10:37:16Z ahweiss $
+ * $Id: trdp_if.c 1684 2017-11-09 12:08:23Z ahweiss $
  *
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-07-31: Ticket #168 Unnecessary multicast Join on tlp_publish()
@@ -571,6 +571,13 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
             (pMdDefault->sendParam.ttl != 0u))
         {
             pSession->mdDefault.sendParam.ttl = pMdDefault->sendParam.ttl;
+        }
+
+		 if ((pSession->mdDefault.sendParam.retries == TRDP_MD_DEFAULT_RETRIES) &&
+            (pMdDefault->sendParam.retries != TRDP_MD_DEFAULT_RETRIES) &&
+            (pMdDefault->sendParam.retries <= TRDP_MAX_MD_RETRIES))
+        {
+            pSession->mdDefault.sendParam.retries = pMdDefault->sendParam.retries;
         }
 
         if ((pMdDefault->flags != TRDP_FLAGS_DEFAULT) &&

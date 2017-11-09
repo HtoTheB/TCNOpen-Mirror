@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1681 2017-11-09 10:37:16Z ahweiss $
+ * $Id: trdp_mdcom.c 1684 2017-11-09 12:08:23Z ahweiss $
  *
  *      BL 2017-11-09: Ticket #174: Receiving fragmented TCP packets
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
@@ -3316,7 +3316,7 @@ TRDP_ERR_T trdp_mdCall (
 
 	/*check for valid values within msgType*/
     if (    ((msgType != TRDP_MSG_MR) && (msgType != TRDP_MSG_MN))
-		 || (pSendParam->retries > TRDP_MAX_MD_RETRIES))
+		 || ((pSendParam != NULL) && (pSendParam->retries > TRDP_MAX_MD_RETRIES)))
     {
         return TRDP_PARAM_ERR;
     }
@@ -3360,7 +3360,7 @@ TRDP_ERR_T trdp_mdCall (
             &&
             (vos_isMulticast(destIpAddr) == FALSE))  /* no multicast addr used    */
         {
-			pSenderElement->numRetriesMax = ((pSendParam != NULL) ? pSendParam->retries : &appHandle->mdDefault.sendParam.retries);
+			pSenderElement->numRetriesMax = ((pSendParam != NULL) ? pSendParam->retries : appHandle->mdDefault.sendParam.retries);
         } /* no else needed as memset has set all memory to zero */
           /* Prepare element data */
         pSenderElement->addr.comId          = comId;
