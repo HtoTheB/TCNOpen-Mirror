@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1615 2017-05-22 13:08:24Z bloehr $
+ * $Id: vos_types.h 1687 2017-11-10 16:28:26Z bloehr $
  *
+ *      BL 2017-11-10: Additional log type: VOS_LOG_USR
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-05-08: Doxygen comment errors
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
@@ -204,6 +205,7 @@ typedef enum
     VOS_LOG_WARNING = 1,        /**< This is a warning                        */
     VOS_LOG_INFO    = 2,        /**< This is an info                          */
     VOS_LOG_DBG     = 3,        /**< This is a debug info                     */
+    VOS_LOG_USR     = 4,        /**< This is a user info                      */
 } VOS_LOG_T;
 
 #ifdef _UUID_T

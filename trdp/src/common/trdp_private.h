@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1661 2017-07-12 15:32:19Z bloehr $
+ * $Id: trdp_private.h 1687 2017-11-10 16:28:26Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings: enum flags to #defines
  *      BL 2017-05-08: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h and here
@@ -97,7 +97,7 @@ typedef enum
 #define TRDP_INVALID_DATA       0x4u        /**< if set, inform the user                                */
 #define TRDP_REQ_2B_SENT        0x8u        /**< if set, the request needs to be sent                   */
 #define TRDP_PULL_SUB           0x10u       /**< if set, its a PULL subscription                        */
-#define TRDP_REDUNDANT          0x20u       /**< if set, packet should not be sent (redundant           */
+#define TRDP_REDUNDANT          0x20u       /**< if set, packet should not be sent (redundant)          */
 
 typedef UINT8   TRDP_PRIV_FLAGS_T;
 
