@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti.h 1568 2016-07-12 16:02:54Z bloehr $
+ * $Id: tau_tti.h 1688 2017-11-13 17:08:52Z bloehr $
  *
  *      BL 2016-02-18: Ticket #7: Add train topology information support
  */
@@ -161,10 +161,10 @@ EXT_DECL TRDP_ERR_T tau_getStaticCstInfo (
  *
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[out]     pOpTrDirState   Pointer to an operational train directory state structure to be returned.
- *  @param[out]     pOpTrDir        Pointer to an operational train directory structure to be returned.
- *  @param[out]     pTrDir          Pointer to a train directory structure to be returned.
- *  @param[out]     pTrNetDir       Pointer to a train network directory structure to be returned.
+ *  @param[out]     pOpTrnDirState   Pointer to an operational train directory state structure to be returned.
+ *  @param[out]     pOpTrnDir        Pointer to an operational train directory structure to be returned.
+ *  @param[out]     pTrnDir          Pointer to a train directory structure to be returned.
+ *  @param[out]     pTrnNetDir       Pointer to a train network directory structure to be returned.
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
@@ -172,10 +172,10 @@ EXT_DECL TRDP_ERR_T tau_getStaticCstInfo (
  */
 EXT_DECL TRDP_ERR_T tau_getTTI (
 	TRDP_APP_SESSION_T                 appHandle,
-	TRDP_OP_TRAIN_DIR_STATE_T         *pOpTrDirState,
-    TRDP_OP_TRAIN_DIR_T               *pOpTrDir,
-    TRDP_TRAIN_DIR_T                  *pTrDir,
-    TRDP_TRAIN_NET_DIR_T              *pTrNetDir);
+    TRDP_OP_TRAIN_DIR_STATE_T   *pOpTrnDirState,
+    TRDP_OP_TRAIN_DIR_T         *pOpTrnDir,
+    TRDP_TRAIN_DIR_T            *pTrnDir,
+    TRDP_TRAIN_NET_DIR_T        *pTrnNetDir);
 
 
 /**********************************************************************************************************************/
