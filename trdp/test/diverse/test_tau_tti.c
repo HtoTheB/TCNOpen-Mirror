@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: test_tau_tti.c 1573 2016-10-24 12:07:27Z newtecbosse $
+ * $Id: test_tau_tti.c 1691 2017-11-16 16:05:02Z bloehr $
  *
  */
 
@@ -73,7 +73,7 @@ void dbgOut (
              UINT16      LineNumber,
              const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
+    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
     
     if (category == VOS_LOG_ERROR || category == VOS_LOG_INFO)
     {

@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017. All rights reserved.
  *
- * $Id: test_tau_dnr.c 1673 2017-07-25 16:41:21Z bloehr $
+ * $Id: test_tau_dnr.c 1691 2017-11-16 16:05:02Z bloehr $
  *
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
  */
@@ -76,7 +76,7 @@ static void dbgOut (
              UINT16      LineNumber,
              const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:"};
+    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
     
     if (category != VOS_LOG_DBG)
     {
@@ -98,9 +98,19 @@ static int testNetwork()
     VOS_ERR_T ret;
     memset(MAC, 0, sizeof(MAC)); // clean the memory
     ret = vos_sockInit();
-    
+    if (ret != VOS_NO_ERR)
+    {
+        printf("vos_sockInit error %d \n", ret);
+        return 1;
+    }
+
     ret = vos_sockGetMAC(MAC);
-    
+    if (ret != VOS_NO_ERR)
+    {
+        printf("vos_sockGetMAC error %d \n", ret);
+        return 1;
+    }
+
     printf("Got MAC %.2X:%.2X:%.2X:%.2X:%.2X:%.2X\n", MAC[0],
            MAC[1],
            MAC[2],
