@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1690 2017-11-15 15:56:34Z bloehr $
+ * $Id: trdp_if.c 1693 2017-11-17 16:05:47Z bloehr $
  *
+ *      BL 2017-11-17: superfluous session->redID replaced by sndQueue->redId
  *      BL 2017-11-15: Ticket #1   Unjoin on unsubscribe/delListener (finally ;-)
  *      BL 2017-11-10: Ticket #172 Infinite loop of message sending after PD Pull Request when registered in multicast group
  *      BL 2017-11-10: return error in resultCode of tlp_get()
@@ -1003,7 +1004,7 @@ TRDP_ERR_T tlp_setRedundant (
             for (iterPD = appHandle->pSndQueue; NULL != iterPD; iterPD = iterPD->pNext)
             {
                 if (iterPD->redId == redId ||       /* packet redundant ID matches                      */
-                    (iterPD->redId && 0 == redId))  /* all set redundant ID are targeted if redID == 0  */
+                    (iterPD->redId && 0 == redId))  /* all set redundant ID are targeted if redId == 0  */
                 {
                     if (TRUE == leader)
                     {
@@ -1019,7 +1020,7 @@ TRDP_ERR_T tlp_setRedundant (
 
             /*  It would lead to an error, if the user tries to change the redundancy on a non-existant group, because
              the leadership state is recorded in the PD send queue! If there is no published comID with a certain
-             redID, it would never be set... */
+             redId, it would never be set... */
             if (FALSE == found)
             {
                 vos_printLogStr(VOS_LOG_ERROR, "Redundant ID not found\n");
