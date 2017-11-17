@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1683 2017-11-09 11:05:23Z bloehr $
+ * $Id: trdp-md-test.c 1694 2017-11-17 16:11:34Z ahweiss $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -733,10 +733,13 @@ int main (int argc, char *argv[])
     }
 
     /* prepare default md configuration */
+    /* prepare default md configuration */
+    /* prepare default md configuration */
     mdcfg.pfCbFunction      = md_callback;
     mdcfg.pRefCon           = NULL;
-    mdcfg.sendParam.qos     = 3;
+    mdcfg.sendParam.qos	    = 3;
     mdcfg.sendParam.ttl     = 64;
+    mdcfg.sendParam.retries = 2;
     mdcfg.flags             = (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_TCP);
     mdcfg.replyTimeout      = 1000 * opts.tmo;
     mdcfg.confirmTimeout    = 1000 * opts.tmo;
