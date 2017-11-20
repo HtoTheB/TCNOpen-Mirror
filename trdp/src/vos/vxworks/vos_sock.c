@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1670 2017-07-24 13:02:42Z ahweiss $*
+ * $Id: vos_sock.c 1695 2017-11-20 10:09:21Z railroad-mike $*
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -373,7 +373,6 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
 EXT_DECL BOOL8 vos_netIfUp(
     VOS_IP4_ADDR_T  ifAddress)
 {
-    // tbd
     return TRUE;
 }
 
@@ -637,9 +636,9 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         }
         if (pOptions->ttl_multicast > 0)
         {
-            sockOptValue = pOptions->ttl_multicast;
-            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, (char *)&sockOptValue,
-                           sizeof(sockOptValue)) == -1)
+            char ttlMulticastOptValue = (pOptions->ttl_multicast & 0x000000FF);
+            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, &ttlMulticastOptValue,
+                           sizeof(ttlMulticastOptValue)) == -1)
             {
                 char buff[VOS_MAX_ERR_STR_SIZE];
                 STRING_ERR(buff);
