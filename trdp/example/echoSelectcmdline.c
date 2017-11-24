@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoSelectcmdline.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: echoSelectcmdline.c 1696 2017-11-24 08:50:24Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -380,7 +380,7 @@ int main (int argc, char * *argv)
             function (in it's context and thread)!
          */
 
-        tlc_process(appHandle, (TRDP_FDS_T *) &rfds, &rv);
+        (void) tlc_process(appHandle, (TRDP_FDS_T *) &rfds, &rv);
 
         /*
            Handle other ready descriptors...

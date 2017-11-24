@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: test_trafficShaping.c 1696 2017-11-24 08:50:24Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -325,12 +325,7 @@ int main (int argc, char *argv[])
          The callback function will be called from within the tlc_process
          function (in it's context and thread)!
          */
-        err = tlc_process(appHandle, (TRDP_FDS_T *) &rfds, &rv);
-        if (err != TRDP_NO_ERR)
-        {
-            printf("tlc_process error\n");
-            break;
-        }
+        (void) tlc_process(appHandle, (TRDP_FDS_T *) &rfds, &rv);
 
         /* Handle other ready descriptors... */
         if (rv > 0)

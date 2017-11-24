@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: inaugTest.c 1696 2017-11-24 08:50:24Z bloehr $
  *
  */
 
@@ -679,7 +679,6 @@ int main (int argc, char * *argv)
         {
             fprintf(stderr, "tlc_process error\n");
             rv = 1;
-            break;
         }
 
     }   /*    Bottom of while-loop    */

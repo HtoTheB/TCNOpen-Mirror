@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: receiveHello.c 1696 2017-11-24 08:50:24Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -292,12 +292,7 @@ int main (int argc, char *argv[])
          The callback function will be called from within the tlc_process
          function (in it's context and thread)!
          */
-        err = tlc_process(appHandle, &rfds, &rv);
-        if (err != TRDP_NO_ERR)
-        {
-            /* Ignore return errors! */
-            vos_printLog(VOS_LOG_USR, "tlc_process error: %s\n", vos_getErrorString((VOS_ERR_T)err));
-        }
+        (void) tlc_process(appHandle, &rfds, &rv);
 
         /* Handle other ready descriptors... */
         if (rv > 0)
