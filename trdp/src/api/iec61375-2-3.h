@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1678 2017-11-09 09:09:50Z bloehr $
+ * $Id: iec61375-2-3.h 1697 2017-11-28 17:30:32Z bloehr $
  *
  *     AHW 2017-11-05: Ticket #179 Max. number of retries of a MD request needs to be checked
  *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
@@ -91,7 +91,7 @@
 #define TRDP_PROTO_VER                      0x0100u                     /**< Protocol version                       */
 #define TRDP_PROTOCOL_VERSION_CHECK_MASK    0xFF00u                     /**< Version check, two digits are relevant */
 #define TRDP_SESS_ID_SIZE                   16u                         /**< Session ID (UUID) size in MD header    */
-#define TRDP_DEST_URI_SIZE                  32u                         /**< max. Dest URI size in MD header        */
+#define TRDP_USR_URI_SIZE                   32u                         /**< max. User URI size in MD header        */
 
 /**  Definitions for time out behaviour accd. table A.18 */
 #define TDRP_MD_INFINITE_TIME               (0)

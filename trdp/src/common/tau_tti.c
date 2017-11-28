@@ -20,8 +20,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1688 2017-11-13 17:08:52Z bloehr $
+ * $Id: tau_tti.c 1697 2017-11-28 17:30:32Z bloehr $
  *
+ *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -636,11 +637,13 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
                         &appHandle->pTTDB->md101Listener,
                         userAction,
                         ttiMDCallback,
+                        TRUE,
                         TTDB_OP_DIR_INFO_COMID,
                         0,
                         0,
+                        VOS_INADDR_ANY, VOS_INADDR_ANY,
                         vos_dottedIP(TTDB_OP_DIR_INFO_IP),
-                        TRDP_FLAGS_CALLBACK, NULL) != TRDP_NO_ERR)
+                        TRDP_FLAGS_CALLBACK, NULL, NULL) != TRDP_NO_ERR)
     {
         vos_memFree(appHandle->pTTDB);
         return TRDP_INIT_ERR;

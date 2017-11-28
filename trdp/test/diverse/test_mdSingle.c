@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: test_mdSingle.c 1697 2017-11-28 17:30:32Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -495,15 +495,17 @@ int main (int argc, char *argv[])
     if (sSessionData.sResponder == TRUE)
     {
         printf("add listener\n");
-        if (tlm_addListener(sSessionData.appHandle, &sSessionData.listenHandle1, NULL, NULL, sSessionData.sComID, 0, 0, destIP,
-                            flags, NULL) != TRDP_NO_ERR)
+        if (tlm_addListener(sSessionData.appHandle, &sSessionData.listenHandle1, NULL, NULL, TRUE, sSessionData.sComID,
+                            0u, 0u, VOS_INADDR_ANY, VOS_INADDR_ANY, destIP,
+                            flags, NULL, NULL) != TRDP_NO_ERR)
         {
             printf("tlm_addListener error (TCP)\n");
             return 1;
         }
         printf("add listener\n");
-        if (tlm_addListener(sSessionData.appHandle, &sSessionData.listenHandle2, NULL, NULL, sSessionData.sComID, 0, 0, destIP,
-                            flags &= ~TRDP_FLAGS_TCP, NULL) != TRDP_NO_ERR)
+        if (tlm_addListener(sSessionData.appHandle, &sSessionData.listenHandle2, NULL, NULL, TRUE, sSessionData.sComID,
+                            0u, 0u, VOS_INADDR_ANY, VOS_INADDR_ANY, destIP,
+                            flags &= ~TRDP_FLAGS_TCP, NULL, NULL) != TRDP_NO_ERR)
         {
             printf("tlm_addListener error (UDP)\n");
             return 1;
