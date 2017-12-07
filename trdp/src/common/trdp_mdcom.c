@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: trdp_mdcom.c 1698 2017-12-07 11:04:56Z railroad-mike $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-11-15: Ticket #1   Unjoin on unsubscribe/delListener (finally ;-)
@@ -2393,11 +2393,10 @@ TRDP_ERR_T  trdp_mdSend (
                                     {
                                         trdp_mdInvokeCallback(iterMD_find, appHandle, TRDP_TIMEOUT_ERR);
                                     }
+                                    /* Close the socket */
+                                    appHandle->iface[iterMD->socketIdx].tcpParams.morituri = TRUE;
                                 }
                             }
-
-                            /* Close the socket */
-                            appHandle->iface[iterMD->socketIdx].tcpParams.morituri = TRUE;
                         }
                     }
                 }
