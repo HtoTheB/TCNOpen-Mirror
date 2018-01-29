@@ -11,8 +11,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: iec61375-2-3.h 1700 2018-01-29 14:58:34Z bloehr $
  *
+ *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition
  *     AHW 2017-11-05: Ticket #179 Max. number of retries of a MD request needs to be checked
  *     AHW 2017-05-22: Ticket #159 Infinit timeout at TRDB level is 0 acc. standard
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
@@ -94,8 +95,8 @@
 #define TRDP_USR_URI_SIZE                   32u                         /**< max. User URI size in MD header        */
 
 /**  Definitions for time out behaviour accd. table A.18 */
-#define TDRP_MD_INFINITE_TIME               (0)
-#define TDRP_MD_INFINITE_USEC_TIME          (0)
+#define TRDP_MD_INFINITE_TIME               (0)
+#define TRDP_MD_INFINITE_USEC_TIME          (0)
 #define TDRP_MD_MAX_USEC_TIME               (999999)
 
 /**  Default MD communication parameters   */
