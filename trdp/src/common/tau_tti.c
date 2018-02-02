@@ -20,7 +20,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: tau_tti.c 1706 2018-02-02 15:38:03Z bloehr $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
@@ -621,7 +621,7 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
                       userAction, ttiPDCallback,
                       TRDP_TTDB_OP_TRN_DIR_STAT_INF_COMID,
                       0u, 0u,
-                      VOS_INADDR_ANY,
+                      VOS_INADDR_ANY, VOS_INADDR_ANY,
                       vos_dottedIP(TTDB_STATUS_DEST_IP),
                       (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB),
                       TTDB_STATUS_TO * 1000u,

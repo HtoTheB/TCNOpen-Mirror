@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pd_md_responder.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: pd_md_responder.c 1706 2018-02-02 15:38:03Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -341,7 +341,8 @@ int main (int argc, char * *argv)
                             gSubPackets[i].comID,       /*    ComID                                */
                             0,                          /*    topocount: local consist only        */
                             0,
-                            0,                          /*    Source to expect packets from        */
+                            VOS_INADDR_ANY,             /*    Source to expect packets from        */
+                            VOS_INADDR_ANY,
                             gSubPackets[i].addr,        /*    Default destination    (or MC Group) */
                             TRDP_FLAGS_CALLBACK,        /*    packet flags                         */
                             gSubPackets[i].time,        /*    Time out in us                       */

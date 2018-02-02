@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: getStats.c 1706 2018-02-02 15:38:03Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2016-06-08: Ticket #120: ComIds for statistics changed to proposed 61375 errata
@@ -353,15 +353,15 @@ int main (int argc, char * *argv)
     err = tlp_subscribe( appHandle,                     /*    our application identifier             */
                          &subHandle,                    /*    our subscription identifier            */
                          NULL,                          /*    user reference                         */
-                         myPDcallBack,                          /*    callback function                      */
+                         myPDcallBack,                  /*    callback function                      */
                          TRDP_GLOBAL_STATISTICS_COMID,  /*    ComID                                  */
-                         0,                             /*    topocount: local consist only          */
-                         0,
-                         0,                             /*    Source IP filter                       */
+                         0, 0,                          /*    topocount: local consist only          */
+                         VOS_INADDR_ANY,                /*    source IP 1                           */
+                         VOS_INADDR_ANY,                /*    Source IP filter                       */
                          replyIP,                       /*    Default destination    (or MC Group)   */
                          TRDP_FLAGS_DEFAULT,            /*    packet flags */
                          PD_COMID1_TIMEOUT,             /*    Time out in us                         */
-                         TRDP_TO_SET_TO_ZERO);           /*    delete invalid data    on timeout      */
+                         TRDP_TO_SET_TO_ZERO);          /*    delete invalid data    on timeout      */
 
     if (err != TRDP_NO_ERR)
     {

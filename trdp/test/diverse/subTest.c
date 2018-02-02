@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: subTest.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: subTest.c 1706 2018-02-02 15:38:03Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -238,6 +238,7 @@ int main (int argc, char *argv[])
                          0,                         /*    topocount: local consist only        */
                          0,
                          vos_dottedIP(PD_COMID1_SRC_IP1),   /*    Source IP filter             */
+                         VOS_INADDR_ANY,
                          vos_dottedIP(PD_COMID_MC), /*    Default destination    (or MC Group) */
                          0,
                          PD_COMID1_CYCLE * 3,       /*    Time out in us                       */
@@ -257,6 +258,7 @@ int main (int argc, char *argv[])
                          0,                         /*    topocount: local consist only          */
                          0,
                          vos_dottedIP(PD_COMID1_SRC_IP2),   /* Source IP filter                  */
+                         VOS_INADDR_ANY,
                          vos_dottedIP(PD_COMID_MC), /* Default destination (or MC Group)         */
                          0,
                          PD_COMID2_CYCLE * 3,       /*    Time out in us                       */

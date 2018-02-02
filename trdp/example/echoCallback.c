@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: echoCallback.c 1704 2018-02-02 10:10:51Z bloehr $
+ * $Id: echoCallback.c 1706 2018-02-02 15:38:03Z bloehr $
  *
  *      BL 2018-02-02: Example renamed: cmdLineSelect -> echoCallback
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -288,11 +288,12 @@ int main (int argc, char * *argv)
                          comId_In,                  /*    ComID                                */
                          0,                         /*    topocount: local consist only        */
                          0,
-                         destIP,                    /*  Source to expect packets from          */
-                         0,
-                         0,                         /*    Default destination    (or MC Group) */
+                         VOS_INADDR_ANY,            /*    source IP 1                          */
+                         VOS_INADDR_ANY,            /*     */
+                         destIP,                    /*    Default destination IP (or MC Group) */
+                         TRDP_FLAGS_DEFAULT,        /*   */
                          PD_COMID1_TIMEOUT,         /*    Time out in us                       */
-                         TRDP_TO_SET_TO_ZERO);      /*  delete invalid data    on timeout      */
+                         TRDP_TO_SET_TO_ZERO);      /*    delete invalid data    on timeout    */
 
     if (err != TRDP_NO_ERR)
     {
