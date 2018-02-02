@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: inaugTest.c 1709 2018-02-02 17:07:59Z bloehr $
  *
  */
 
@@ -181,7 +181,7 @@ static void subscribePD(
                             pdData->comID,                  /*    ComID                             */
                             0,                              /*    etbTopoCnt: local consist only    */
                             0,                              /*    opTrnTopoCnt                      */
-                            pdData->addr,                   /*    Source to expect packets from     */
+                            pdData->addr, 0,                /*    Source to expect packets from     */
                             0,                              /*    Default destination (or MC Group) */
                             TRDP_FLAGS_CALLBACK,            /*    packet flags                      */
                             pdData->time,                   /*    Time out in us                    */
@@ -194,7 +194,7 @@ static void subscribePD(
                             (TRDP_SUB_T)pdData->handle,     /*    our subscription identifier       */
                             0,                              /*    etbTopoCnt: local consist only    */
                             0,                              /*    opTrnTopoCnt                      */
-                            pdData->addr,                   /*    Source to expect packets from     */
+                            pdData->addr, 0,                /*    Source to expect packets from     */
                             0);                             /*    Default destination (or MC Group) */
         printf("resubscribe to %s\n", vos_ipDotted(pdData->addr));
         

@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1704 2018-02-02 10:10:51Z bloehr $
+#// $Id: Makefile 1709 2018-02-02 17:07:59Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -129,7 +129,7 @@ outdir:
 
 libtrdp:	outdir $(OUTDIR)/libtrdp.a
 
-example:	$(OUTDIR)/echoCallback $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/sendData
+example:	$(OUTDIR)/echoCallback $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/sendData $(OUTDIR)/sourceFiltering
 
 test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest $(OUTDIR)/localtest $(OUTDIR)/pdPull
 
@@ -168,6 +168,14 @@ $(OUTDIR)/echoCallback:  echoCallback.c  $(OUTDIR)/libtrdp.a
 				-ltrdp \
 			    $(LDFLAGS) 
 			$(STRIP) $@
+
+$(OUTDIR)/sourceFiltering:  sourceFilter/sourceFiltering.c  $(OUTDIR)/libtrdp.a
+			@echo ' ### Building application $(@F)'
+			$(CC) example/sourceFilter/sourceFiltering.c \
+			$(CFLAGS) $(INCLUDES) -o $@\
+				-ltrdp \
+				$(LDFLAGS)
+				$(STRIP) $@
 
 $(OUTDIR)/receivePolling:  echoPolling.c  $(OUTDIR)/libtrdp.a
 			@echo ' ### Building application $(@F)'

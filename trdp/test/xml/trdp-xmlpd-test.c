@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1704 2018-02-02 10:10:51Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1709 2018-02-02 17:07:59Z bloehr $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -804,7 +804,7 @@ static TRDP_ERR_T subscribeTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
         /*  Subscribe the telegram    */
         result = tlp_subscribe(
             pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL, pExchgPar->comId, 
-            0, 0, srcIP1, destMCIP, flags, timeout, toBehav);
+            0, 0, srcIP1, 0, destMCIP, flags, timeout, toBehav);
         if (result != TRDP_NO_ERR)
         {
             printf("tlp_subscribe for comID %u, srcID %u failed: %s\n", 
