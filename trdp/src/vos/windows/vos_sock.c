@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1672 2017-07-24 13:11:45Z ahweiss $*
+ * $Id: vos_sock.c 1703 2018-02-02 09:31:06Z bloehr $*
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -745,8 +745,7 @@ EXT_DECL VOS_ERR_T vos_sockClose (
     {
         int err = WSAGetLastError();
 
-        err = err; /* for lint */
-        vos_printLog(VOS_LOG_ERROR, "closesocket() failed (Err: %d)\n");
+        vos_printLog(VOS_LOG_ERROR, "closesocket() failed (Err: %d)\n", err);
         return VOS_PARAM_ERR;
     }
     return VOS_NO_ERR;
