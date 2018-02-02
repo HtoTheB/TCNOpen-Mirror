@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: trdp-md-test.c 1704 2018-02-02 10:10:51Z bloehr $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -304,6 +304,11 @@ void print_log (void *pRefCon, VOS_LOG_T category, const CHAR8 *pTime,
                 const CHAR8 *pFile, UINT16 line, const CHAR8 *pMsgStr)
 {
     static const char *cat[] = { "ERR", "WAR", "INF", "DBG" };
+
+    if (category == VOS_LOG_DBG)
+    {
+        return;
+    }
 #ifdef _WIN32
     if (pLogFile == NULL)
     {

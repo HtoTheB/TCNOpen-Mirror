@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1704 2018-02-02 10:10:51Z bloehr $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -1062,6 +1062,8 @@ int main(int argc, char * argv[])
         return 1;
     }
     pFileName = argv[1];
+
+    vos_memInit(NULL, 20000, NULL);
 
     /*  Prepare XML document    */
     result = tau_prepareXmlDoc(pFileName, &docHnd);

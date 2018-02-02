@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: Controller.m 1641 2017-06-30 15:09:01Z bloehr $
+ * $Id: Controller.m 1704 2018-02-02 10:10:51Z bloehr $
  *
  */
 
@@ -338,7 +338,7 @@ extern int gIsActive;
 	dataChanged = false;
 	[NSThread detachNewThreadSelector:@selector(doIt) toTarget:self withObject:self];
 
-#if 1
+#if 0
     // Create timer for updating the receive views with NSThread
 	[NSThread detachNewThreadSelector:@selector(doViewUpdates) toTarget:self withObject:self];
 #else
