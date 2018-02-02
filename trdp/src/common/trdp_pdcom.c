@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1701 2018-01-29 15:18:13Z bloehr $
+ * $Id: trdp_pdcom.c 1708 2018-02-02 16:34:09Z bloehr $
  *
  *      BL 2018-01-29: Ticket #186 Potential SEGFAULT in case of PD timeout
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -870,6 +870,7 @@ TRDP_ERR_T   trdp_pdCheckListenSocks (
                 {
                    case TRDP_NO_ERR:
                        break;
+                   case TRDP_NOSUB_ERR:         /* missing subscription should not lead to extensive error output */
                    case TRDP_BLOCK_ERR:
                    case TRDP_NODATA_ERR:
                        result = err;
