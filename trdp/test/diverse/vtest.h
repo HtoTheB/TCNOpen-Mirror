@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.h 1214 2014-05-08 14:14:56Z railroad-mike $
+ * $Id: vtest.h 1711 2018-03-06 16:11:32Z bloehr $
  */
 /**************************/
 /* error flags definition */

@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1709 2018-02-02 17:07:59Z bloehr $
+ * $Id: inaugTest.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  */
 
@@ -135,6 +135,7 @@ static void publishPD(
     {
         err = tlp_publish(gAppHandle,                   /*    our application identifier    */
                           (TRDP_PUB_T*)&pdData->handle, /*    our publication identifier    */
+                          NULL, NULL,
                           pdData->comID,                /*    ComID to send                 */
                           0,                            /*    etbTopoCnt local consist only */
                           0,                            /*    opTrnTopoCnt                  */
@@ -156,7 +157,7 @@ static void publishPD(
                           0,                            /*    etbTopoCnt local consist only */
                           0,                            /*    opTrnTopoCnt                  */
                           0,                            /*    default source IP             */
-                          pdData->addr                 /*    where to send to              */
+                          pdData->addr                  /*    where to send to              */
                           );
     }
     if (err != TRDP_NO_ERR)

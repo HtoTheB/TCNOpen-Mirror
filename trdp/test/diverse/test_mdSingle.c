@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_mdSingle.c 1697 2017-11-28 17:30:32Z bloehr $
+ * $Id: test_mdSingle.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */

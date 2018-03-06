@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: test_trafficShaping.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -252,19 +252,20 @@ int main (int argc, char *argv[])
         
         /*    Copy the packet into the internal send queue, prepare for sending.    */
         /*    If we change the data, just re-publish it    */
-        err = tlp_publish(  appHandle,                /*    our application identifier    */
-                          &pubHandle,                 /*    our pulication identifier    */
+        err = tlp_publish(  appHandle,                /*    our application identifier      */
+                          &pubHandle,                 /*    our pulication identifier       */
+                          NULL, NULL,
                           gPD[i].comID,
-                          0,                          /*    local consist only            */
+                          0,                          /*    local consist only              */
                           0,
-                          0,                          /*    default source IP            */
-                          destIP,                     /*    where to send to            */
-                          gPD[i].cycle,               /*    Cycle time in us            */
-                          0,                          /*    not redundant                */
-                          TRDP_FLAGS_NONE,            /*    Use callback for errors        */
-                          NULL,                       /*    default qos and ttl            */
-                          (UINT8 *)outputBuffer,      /*    initial data                */
-                          gPD[i].size);               /*    no ladder                    */
+                          0,                          /*    default source IP               */
+                          destIP,                     /*    where to send to                */
+                          gPD[i].cycle,               /*    Cycle time in us                */
+                          0,                          /*    not redundant                   */
+                          TRDP_FLAGS_NONE,            /*    Use callback for errors         */
+                          NULL,                       /*    default qos and ttl             */
+                          (UINT8 *)outputBuffer,      /*    initial data                    */
+                          gPD[i].size);               /*    no ladder                       */
         
         
         if (err != TRDP_NO_ERR)

@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pd_md_responder.c 1706 2018-02-02 15:38:03Z bloehr $
+ * $Id: pd_md_responder.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -359,6 +359,7 @@ int main (int argc, char * *argv)
 
         err = tlp_publish(appHandle,                    /*    our application identifier    */
                           &gPubPackets[i].pubHandle,    /*    our pulication identifier     */
+                          NULL, NULL,
                           gPubPackets[i].comID,         /*    ComID to send                 */
                           0,                            /*    local consist only            */
                           0,
@@ -368,8 +369,7 @@ int main (int argc, char * *argv)
                           0,                            /*    not redundant                 */
                           TRDP_FLAGS_CALLBACK,          /*    Use callback for errors       */
                           NULL,                         /*    default qos and ttl           */
-                          gPubPackets[i].dataSize ? gPubPackets[i].data : NULL,      /*    initial data
-                                                                                                        */
+                          gPubPackets[i].dataSize ? gPubPackets[i].data : NULL,      /*    initial data */
                           gPubPackets[i].dataSize       /*    data size                     */
                           );                            /*    no ladder                     */
 
@@ -424,7 +424,7 @@ int main (int argc, char * *argv)
          what ever comes first.
          */
 
-        rv = select((int)noOfDesc + 1, &rfds, NULL, NULL, &tv);
+        rv = vos_select((int)noOfDesc + 1, &rfds, NULL, NULL, &tv);
 
         /* printf("Pending events: %d\n", rv); */
         /*

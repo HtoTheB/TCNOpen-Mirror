@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1696 2017-11-24 08:50:24Z bloehr $
+ * $Id: sendHello.c 1711 2018-03-06 16:11:32Z bloehr $
  *
+ *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
 
@@ -266,6 +267,7 @@ int main (int argc, char *argv[])
     /*    If we change the data, just re-publish it    */
     err = tlp_publish(  appHandle,                  /*    our application identifier    */
                         &pubHandle,                 /*    our pulication identifier     */
+                        NULL, NULL,
                         comId,                      /*    ComID to send                 */
                         0,                          /*    etbTopoCnt = 0 for local consist only     */
                         0,                          /*    opTopoCnt = 0 for non-directinal data     */

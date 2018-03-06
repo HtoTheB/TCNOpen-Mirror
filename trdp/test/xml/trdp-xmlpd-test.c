@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1709 2018-02-02 17:07:59Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1711 2018-03-06 16:11:32Z bloehr $
  *
+ *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-02-08: Ticket #134 Example trdp-xmlpd-test crash due to zero elemSize
@@ -679,7 +680,8 @@ static TRDP_ERR_T publishTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
 
         /*  Publish the telegram    */
         result = tlp_publish(
-            pPubTlg->sessionhandle, &pPubTlg->pubHandle, pExchgPar->comId, 
+            pPubTlg->sessionhandle, &pPubTlg->pubHandle, NULL, NULL,
+            pExchgPar->comId, 
             0, 0, 0, destIP, interval, redId, flags, pSendParam, 
             (UINT8 *)pPubTlg->dataset.buffer, pPubTlg->dataset.size);
         if (result != TRDP_NO_ERR)

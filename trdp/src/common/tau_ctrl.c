@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl.c 1707 2018-02-02 15:41:06Z bloehr $
+ * $Id: tau_ctrl.c 1711 2018-03-06 16:11:32Z bloehr $
  *
+ *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
  *
@@ -79,6 +80,7 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
     /*    If we change the data, just re-publish it    */
     err = tlp_publish(  appHandle,                  /*    our application identifier        */
                         &priv_pubHandle,            /*    our pulication identifier         */
+                        NULL, NULL,
                         TRDP_ECSP_CTRL_COMID,       /*    ComID to send                     */
                         0,                          /*    ecnTopoCounter                    */
                         0,                          /*    opTopoCounter                     */

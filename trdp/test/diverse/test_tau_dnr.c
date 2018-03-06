@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017. All rights reserved.
  *
- * $Id: test_tau_dnr.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: test_tau_dnr.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
  */

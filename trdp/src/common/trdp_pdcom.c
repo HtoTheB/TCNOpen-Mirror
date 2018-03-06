@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1708 2018-02-02 16:34:09Z bloehr $
+ * $Id: trdp_pdcom.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  *      BL 2018-01-29: Ticket #186 Potential SEGFAULT in case of PD timeout
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -338,6 +338,28 @@ TRDP_ERR_T  trdp_pdSendQueued (
                 else if (!(iterPD->privFlags & TRDP_REDUNDANT))
                 {
                     TRDP_ERR_T result;
+                    if (iterPD->pfCbFunction != NULL)
+                    {
+                        TRDP_PD_INFO_T theMessage;
+                        theMessage.comId        = iterPD->addr.comId;
+                        theMessage.srcIpAddr    = iterPD->addr.srcIpAddr;
+                        theMessage.destIpAddr   = iterPD->addr.destIpAddr;
+                        theMessage.etbTopoCnt   = vos_ntohl(iterPD->pFrame->frameHead.etbTopoCnt);
+                        theMessage.opTrnTopoCnt = vos_ntohl(iterPD->pFrame->frameHead.opTrnTopoCnt);
+                        theMessage.msgType      = (TRDP_MSG_T) vos_ntohs(iterPD->pFrame->frameHead.msgType);
+                        theMessage.seqCount     = iterPD->curSeqCnt;
+                        theMessage.protVersion  = vos_ntohs(iterPD->pFrame->frameHead.protocolVersion);
+                        theMessage.replyComId   = vos_ntohl(iterPD->pFrame->frameHead.replyComId);
+                        theMessage.replyIpAddr  = vos_ntohl(iterPD->pFrame->frameHead.replyIpAddress);
+                        theMessage.pUserRef     = iterPD->pUserRef; /* User reference given with the local subscribe? */
+                        theMessage.resultCode   = err;
+
+                        iterPD->pfCbFunction(appHandle->pdDefault.pRefCon,
+                                                       appHandle,
+                                                       &theMessage,
+                                                       iterPD->pFrame->data,
+                                                       vos_ntohl(iterPD->pFrame->frameHead.datasetLength));
+                    }
                     /* We pass the error to the application, but we keep on going    */
                     result = trdp_pdSend(appHandle->iface[iterPD->socketIdx].sock, iterPD, appHandle->pdDefault.port);
                     if (result == TRDP_NO_ERR)

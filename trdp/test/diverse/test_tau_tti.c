@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: test_tau_tti.c 1691 2017-11-16 16:05:02Z bloehr $
+ * $Id: test_tau_tti.c 1711 2018-03-06 16:11:32Z bloehr $
  *
  */
 
