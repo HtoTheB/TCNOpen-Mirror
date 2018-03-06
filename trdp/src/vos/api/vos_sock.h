@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1615 2017-05-22 13:08:24Z bloehr $
+ * $Id: vos_sock.h 1710 2018-03-06 13:58:59Z bloehr $
  *
+ *      BL 2018-03-06: 64Bit endian swap added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
 
@@ -182,6 +183,28 @@ EXT_DECL UINT32 vos_htonl (
 
 EXT_DECL UINT32 vos_ntohl (
     UINT32 val);
+
+/**********************************************************************************************************************/
+/** Byte swapping 8å Bytes.
+ *
+ *  @param[in]          val             Initial value.
+ *
+ *  @retval             swapped value
+ */
+
+EXT_DECL UINT64 vos_htonll (
+    UINT64 val);
+
+/**********************************************************************************************************************/
+/** Byte swapping 8 Bytes.
+ *
+ *  @param[in]          val             Initial value.
+ *
+ *  @retval             swapped value
+ */
+
+EXT_DECL UINT64 vos_ntohll (
+    UINT64 val);
 
 /**********************************************************************************************************************/
 /** Convert IP address from dotted dec. to !host! endianess

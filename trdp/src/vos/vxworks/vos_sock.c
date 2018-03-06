@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1695 2017-11-20 10:09:21Z railroad-mike $*
+ * $Id: vos_sock.c 1710 2018-03-06 13:58:59Z bloehr $*
  *
+ *      BL 2018-03-06: 64Bit endian swap added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
 
@@ -127,7 +128,7 @@ BOOL vos_getMacAddress (
     }
     return found;
 }
- /**********************************************************************************************************************/
+/**********************************************************************************************************************/
 /** Enlarge send and receive buffers to TRDP_SOCKBUF_SIZE if necessary.
  *
  *  @param[in]      sock            socket descriptor
@@ -169,6 +170,32 @@ VOS_ERR_T vos_sockSetBuffer (INT32 sock)
     return VOS_NO_ERR;
 }
 
+#ifdef htonll
+/**********************************************************************************************************************/
+/** Swap 64 bit value if necessary.
+ *
+ *  @param[in]      value            Input
+ *
+ *  @retval         swapped input if on little endian
+ */
+UINT64 htonll(UINT64 value)
+{
+    int num = 42;
+    if (*(char *)&num == 42)
+    {
+        uint32_t high_part = htonl((uint32_t)(value >> 32));
+        uint32_t low_part = htonl((uint32_t)(value & 0xFFFFFFFFLL));
+        return (((UINT64)low_part) << 32) | high_part;
+    }
+    else
+    {
+        return value;
+    }
+}
+UINT64 ntohll(UINT64 value) {return htonll(value); }
+
+#endif
+
 /***********************************************************************************************************************
  * GLOBAL FUNCTIONS
  */
@@ -203,6 +230,18 @@ EXT_DECL UINT32 vos_ntohl (
     UINT32 val)
 {
     return ntohl(val);
+}
+
+EXT_DECL UINT64 vos_htonll (
+    UINT64 val)
+{
+    return htonll(val);
+}
+
+EXT_DECL UINT64 vos_ntohll (
+    UINT64 val)
+{
+    return ntohll(val);
 }
 
 /**********************************************************************************************************************/
