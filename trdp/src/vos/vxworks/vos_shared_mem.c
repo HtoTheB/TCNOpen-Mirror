@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_shared_mem.c 1129 2013-12-16 16:43:29Z cfschneider $
+ * $Id: vos_shared_mem.c 1715 2018-03-22 17:01:53Z bloehr $
  *
+ *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  */
 
 #ifndef VXWORKS
@@ -98,7 +99,7 @@ EXT_DECL VOS_ERR_T vos_sharedOpen (
     *pHandle = (VOS_SHRD_T) vos_memAlloc(sizeof (struct VOS_SHRD));
     if (*pHandle == NULL)
     {
-        vos_printLog(VOS_LOG_ERROR, "Shared Memory Handle create failed\n");
+        vos_printLogStr(VOS_LOG_ERROR, "Shared Memory Handle create failed\n");
         return ret;
     }
     else

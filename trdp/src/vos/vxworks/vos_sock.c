@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1710 2018-03-06 13:58:59Z bloehr $*
+ * $Id: vos_sock.c 1715 2018-03-22 17:01:53Z bloehr $*
  *
+ *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2018-03-06: 64Bit endian swap added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -459,7 +460,7 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
 {
    if (pMAC == NULL)
     {
-        vos_printLog(VOS_LOG_ERROR, "Parameter error");
+        vos_printLogStr(VOS_LOG_ERROR, "Parameter error");
         return VOS_PARAM_ERR;
     }
 
@@ -498,7 +499,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
 
     if (pSock == NULL)
     {
-        vos_printLog(VOS_LOG_ERROR, "Parameter error");
+        vos_printLogStr(VOS_LOG_ERROR, "Parameter error");
         return VOS_PARAM_ERR;
     }
 
@@ -549,7 +550,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
 
     if (pSock == NULL)
     {
-        vos_printLog(VOS_LOG_ERROR, "Parameter error");
+        vos_printLogStr(VOS_LOG_ERROR, "Parameter error");
         return VOS_PARAM_ERR;
     }
 
