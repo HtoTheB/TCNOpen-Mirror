@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1706 2018-02-02 15:38:03Z bloehr $
+ * $Id: trdp_utils.c 1717 2018-03-26 10:38:58Z vikas-newtec $
  *
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -1058,8 +1058,7 @@ void  trdp_releaseSocket (
                     vos_sockLeaveMC(iface[lIndex].sock, mcGroupUsed, iface[lIndex].bindAddr);
                 }
             }
-            else
-                ;
+            else {}
         }
 #if MD_SUPPORT
         else /* TCP socket */
