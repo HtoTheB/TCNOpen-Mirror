@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1715 2018-03-22 17:01:53Z bloehr $
+ * $Id: vos_thread.c 1716 2018-03-26 10:28:02Z vikas-newtec $
  *
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -424,8 +424,13 @@ EXT_DECL VOS_ERR_T vos_threadIsActive (
         return VOS_INIT_ERR;
     }
 
-    retValue = pthread_getschedparam(*(pthread_t *)thread, &policy, &param);
-
+    /* Validate the thread id. 0 sig will not kill the thread but will check if the thread is valid.*/
+    retValue = pthread_kill (*(pthread_t *)thread, 0);
+    if (0 == retValue)
+    {
+        /* the thread does exist. */
+        retValue = pthread_getschedparam(*(pthread_t *)thread, &policy, &param);
+    }
     return (retValue == 0 ? VOS_NO_ERR : VOS_PARAM_ERR);
 }
 
