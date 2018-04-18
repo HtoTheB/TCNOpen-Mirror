@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1688 2017-11-13 17:08:52Z bloehr $
+ * $Id: tau_tti_types.h 1719 2018-04-18 14:31:53Z bloehr $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -366,7 +366,7 @@ typedef struct
     UINT8                   reserved06;     /**< reserved for future use (= 0) */
     UINT8                   opVehCnt;
                                             /**< number of vehicles in train (1..63) */
-    TRDP_OP_VEHICLE_T       opVehList[TRDP_MAX_CST_CNT];    /**< operational vehicle list starting with op. vehicle #1
+    TRDP_OP_VEHICLE_T       opVehList[TRDP_MAX_VEH_CNT];    /**< operational vehicle list starting with op. vehicle #1
                                                              Note: This is a variable size array, only opCstCnt array elements
                                                              are present        */
     UINT32                  opTrnTopoCnt;   /**< operational train topology counter 

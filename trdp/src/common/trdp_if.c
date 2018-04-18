@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: trdp_if.c 1719 2018-04-18 14:31:53Z bloehr $
  *
+ *      BL 2018-04-18: MD notify: pass optional cb pointer to mdsend
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -2527,7 +2528,7 @@ TRDP_ERR_T tlm_notify (
                TRDP_MSG_MN,                            /* notify without reply */
                appHandle,
                pUserRef,
-               NULL,                                   /* callback function */
+               pfCbFunction,                           /* callback function */
                NULL,                                   /* no return session id?
                                                           useful to abort send while waiting of output queue */
                comId,
