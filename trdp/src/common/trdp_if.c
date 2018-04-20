@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1719 2018-04-18 14:31:53Z bloehr $
+ * $Id: trdp_if.c 1720 2018-04-20 15:36:07Z bloehr $
  *
+ *      BL 2018-04-20: Ticket #196 setRedundant with redId = 0 stops all publishers
  *      BL 2018-04-18: MD notify: pass optional cb pointer to mdsend
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
@@ -1008,8 +1009,8 @@ TRDP_ERR_T tlp_setRedundant (
             /*    Set the redundancy flag for every PD with the specified ID */
             for (iterPD = appHandle->pSndQueue; NULL != iterPD; iterPD = iterPD->pNext)
             {
-                if (iterPD->redId == redId ||       /* packet redundant ID matches                      */
-                    (iterPD->redId && 0 == redId))  /* all set redundant ID are targeted if redId == 0  */
+                if ((iterPD->redId != 0u) && (iterPD->redId == redId) ||       /* packet redundant ID matches       */
+                    ((iterPD->redId != 0u) && (0u == redId)))   /* all set redundant ID are targeted if redId == 0  */
                 {
                     if (TRUE == leader)
                     {
