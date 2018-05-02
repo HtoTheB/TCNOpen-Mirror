@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1646 2017-07-05 14:34:41Z bloehr $
+ * $Id: tau_marshall.c 1722 2018-05-02 16:12:46Z bloehr $
  *
+ *      BL 2018-05-02: Ticket #188 Typo in the TRDP_VAR_SIZE definition
  *      BL 2017-05-08: Compiler warnings, MISRA-C
  *      BL 2017-05-08: Ticket #156 Recursion counter never decremented (+ compiler warnings, MISRA)
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings), alignment casts fixed
@@ -383,7 +384,7 @@ static TRDP_ERR_T marshallDs (
     {
         UINT32 noOfItems = pDataset->pElement[lIndex].size;
 
-        if (TDRP_VAR_SIZE == noOfItems) /* variable size    */
+        if (TRDP_VAR_SIZE == noOfItems) /* variable size    */
         {
             noOfItems = var_size;
         }
@@ -608,7 +609,7 @@ static TRDP_ERR_T unmarshallDs (
     {
         UINT32 noOfItems = pDataset->pElement[lIndex].size;
 
-        if (TDRP_VAR_SIZE == noOfItems) /* variable size    */
+        if (TRDP_VAR_SIZE == noOfItems) /* variable size    */
         {
             noOfItems = var_size;
         }
@@ -829,7 +830,7 @@ static TRDP_ERR_T size_unmarshall (
     {
         UINT32 noOfItems = pDataset->pElement[lIndex].size;
 
-        if (TDRP_VAR_SIZE == noOfItems) /* variable size    */
+        if (TRDP_VAR_SIZE == noOfItems) /* variable size    */
         {
             noOfItems = var_size;
         }
