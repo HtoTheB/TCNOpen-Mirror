@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1719 2018-04-18 14:31:53Z bloehr $
+ * $Id: vos_thread.c 1724 2018-05-03 09:34:48Z bloehr $
  *
  *      BL 2018-04-18: Ticket #195: Invalid thread handle (SEGFAULT)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -272,6 +272,8 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
         return VOS_PARAM_ERR;
     }
 
+    *pThread = NULL;
+    
     if (interval > 0u)
     {
         vos_printLog(VOS_LOG_ERROR,

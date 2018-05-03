@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.c 1715 2018-03-22 17:01:53Z bloehr $*
+ * $Id: vos_thread.c 1724 2018-05-03 09:34:48Z bloehr $*
  *
+ *      BL 2018-05-03: Ticket #195: Invalid thread handle (SEGFAULT)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -199,9 +200,17 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
     
     if (vosThreadInitialised != TRUE)
     {
-        result = VOS_INIT_ERR;
+        return VOS_INIT_ERR;
     }
-    else if (interval > 0U)
+
+    if ((pThread == NULL) || (pName == NULL))
+    {
+        return VOS_PARAM_ERR;
+    }
+
+    *pThread = NULL;
+
+    if (interval > 0U)
     {
         vos_printLog(VOS_LOG_ERROR,
                      "%s cyclic threads not implemented yet\n",
