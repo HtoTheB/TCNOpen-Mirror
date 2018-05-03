@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1685 2017-11-09 12:54:33Z bloehr $
+ * $Id: tau_dnr.c 1725 2018-05-03 14:58:55Z bloehr $
  *
+ *      BL 2018-05-03: Ticket #193 Unused parameter warnings
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2017-07-25: Ticket #125: tau_dnr: TCN DNS support missing
  *      BL 2017-05-08: Compiler warnings
@@ -441,6 +442,9 @@ static void parseResponse (
     CHAR8   name[256];
     TAU_RES_RECORD_T answers[20] /*, auth[20], addit[20]*/;    /* the replies from the DNS server */
 
+    size = size;
+    id = id;
+
     /* move ahead of the dns header and the query field */
     pReader = pPacket + sizeof(TAU_DNS_HEADER_T) + querySize;
 
@@ -803,6 +807,8 @@ static void parseUpdateTCNResponse (
     UINT32  i;
     TAU_DNR_ENTRY_T *pTemp;
 
+    size = size;
+
     for (i = 0u; i < pReply->tcnUriCnt; i++)
     {
         if (pReply->tcnUriList[i].resolvState != -1)
@@ -863,6 +869,8 @@ static void dnrMDCallback (
     {
          return;
     }
+
+    pRefCon = pRefCon;
 
     /* we await TCN-DNS reply */
     if ((pMsg->comId == TCN_DNS_REP_COMID) &&
