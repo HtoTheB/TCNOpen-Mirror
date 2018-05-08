@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1725 2018-05-03 14:58:55Z bloehr $
+ * $Id: tau_dnr.c 1730 2018-05-08 16:09:09Z bloehr $
  *
  *      BL 2018-05-03: Ticket #193 Unused parameter warnings
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
@@ -923,7 +923,7 @@ static void updateTCNDNSentry (
     /* Create semaphore */
     err = (TRDP_ERR_T) vos_semaCreate(&dnsSema, VOS_SEMA_EMPTY);
 
-    if (err != VOS_NO_ERR)
+    if (err != TRDP_NO_ERR)
     {
         vos_printLogStr(VOS_LOG_ERROR, "updateTCNDNSentry failed to get semaphore\n");
         return;
