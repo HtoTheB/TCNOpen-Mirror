@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1725 2018-05-03 14:58:55Z bloehr $
+ * $Id: vos_types.h 1731 2018-05-10 21:02:44Z bloehr $
  *
  *      BL 2018-05-03: no inline if < C99
  *      BL 2017-11-17: Undone: Ticket #169 Encapsulate declaration of packed structures within a macro
@@ -97,7 +97,7 @@ typedef unsigned char ANTIVALENT8;
 
 #else
 
-#warning "Using default standard types - target not defined!"
+/* #warning "Using compiler default standard types" */
 
 #include <stdint.h>
 

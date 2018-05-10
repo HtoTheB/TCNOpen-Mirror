@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.h 1710 2018-03-06 13:58:59Z bloehr $
+ * $Id: vos_sock.h 1731 2018-05-10 21:02:44Z bloehr $
  *
  *      BL 2018-03-06: 64Bit endian swap added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -46,6 +46,8 @@
 #elif defined(POSIX)
 #include <sys/select.h>
 #include <netinet/in.h>
+#elif defined(ESP32)
+#include "lwip/sockets.h"
 #else
 #include "vos_private.h"
 #endif

@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1717 2018-03-26 10:38:58Z vikas-newtec $
+ * $Id: vos_mem.c 1731 2018-05-10 21:02:44Z bloehr $
  *
  * Changes:
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
@@ -43,10 +43,14 @@
 #ifdef POSIX
 #include <strings.h>
 #include <unistd.h>
-#include "pthread.h"
+#include <pthread.h>
 #endif
 
 #ifdef WIN32
+#include <pthread.h>
+#endif
+
+#ifdef ESP32
 #include <pthread.h>
 #endif
 

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.h 1615 2017-05-22 13:08:24Z bloehr $
+ * $Id: vos_thread.h 1731 2018-05-10 21:02:44Z bloehr $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -27,6 +27,9 @@
  */
 
 #include "vos_types.h"
+#ifdef ESP32
+#include <sys/time.h>
+#endif
 #ifdef VXWORKS
 #include "vos_private.h"
 #include "time.h"
