@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: test_trafficShaping.c 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -282,8 +282,8 @@ int main (int argc, char *argv[])
      */
     while (1)
     {
-        fd_set		rfds;
-        INT32		noDesc;
+        fd_set        rfds;
+        INT32        noDesc;
         VOS_TIMEVAL_T  tv;
         VOS_TIMEVAL_T  max_tv = {0, 10000};
         

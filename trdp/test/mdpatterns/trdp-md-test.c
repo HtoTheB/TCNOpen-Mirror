@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1704 2018-02-02 10:10:51Z bloehr $
+ * $Id: trdp-md-test.c 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -743,7 +743,7 @@ int main (int argc, char *argv[])
     /* prepare default md configuration */
     mdcfg.pfCbFunction      = md_callback;
     mdcfg.pRefCon           = NULL;
-    mdcfg.sendParam.qos	    = 3;
+    mdcfg.sendParam.qos     = 3;
     mdcfg.sendParam.ttl     = 64;
     mdcfg.sendParam.retries = 2;
     mdcfg.flags             = (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_TCP);

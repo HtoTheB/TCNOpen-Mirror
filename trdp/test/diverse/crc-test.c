@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: crc-test.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: crc-test.c 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -25,7 +25,7 @@
 
 UINT8 gSampleDATA[] =
 {
-    0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8,     /* Testdata	*/
+    0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8,     /* Testdata */
     0x0, 0x0, 0x0, 0x0                          /* CRC */
 };
 

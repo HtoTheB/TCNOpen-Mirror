@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1719 2018-04-18 14:31:53Z bloehr $
+ * $Id: tau_tti_types.h 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -279,9 +279,9 @@ typedef struct
                                                  value range 1..63 */
     ANTIVALENT8             isLead;         /**< vehicle is leading */
     UINT8                   leadDir;        /**< 'vehicle leading direction
-						                          0 = not relevant
+                                                  0 = not relevant
                                                   1 = leading direction 1
-						                          2 = leading direction 2 */
+                                                  2 = leading direction 2 */
     UINT8                   trnVehNo;       /**< vehicle sequence number within the train
                                                  with vehicle 01 being the first vehicle in ETB reference
                                                  direction 1 as defined in IEC61375-2-5,

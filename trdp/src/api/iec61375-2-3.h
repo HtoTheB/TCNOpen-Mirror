@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1722 2018-05-02 16:12:46Z bloehr $
+ * $Id: iec61375-2-3.h 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition
  *     AHW 2017-11-05: Ticket #179 Max. number of retries of a MD request needs to be checked
@@ -426,12 +426,12 @@
 #define TRDP_TTDB_READ_CMPL_REP_DSID                    111u
 
 #define TRDP_ECSP_CTRL_DSID                             120u
-#define TRDP_ECSP_STAT_DSID	                            121u
+#define TRDP_ECSP_STAT_DSID                             121u
 #define TRDP_ECSP_CONF_REQ_DSID                         122u
 #define TRDP_ECSP_CONF_REP_DSID                         123u
 
 #define TRDP_ETBN_CTRL_REQ_DSID                         130u
-#define TRDP_ETBN_STATUS_REP_DSID	                    131u
+#define TRDP_ETBN_STATUS_REP_DSID                       131u
 #define TRDP_ETBN_TRN_NET_DIR_INF_REQ_DSID              132u
 #define TRDP_ETBN_TRN_NET_DIR_INF_REP_DSID              133u
 

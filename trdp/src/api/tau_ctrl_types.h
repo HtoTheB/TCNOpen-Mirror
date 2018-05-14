@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1688 2017-11-13 17:08:52Z bloehr $
+ * $Id: tau_ctrl_types.h 1732 2018-05-14 08:05:07Z bloehr $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-03-09: Ticket #131 errata: Last change undone (leadVehOfCst defined in corrigendum)
@@ -53,7 +53,7 @@ extern "C" {
 typedef struct
 {
     UINT8                   trnVehNo;       /**< vehicle sequence number within the train
- 	                                             with vehicle 01 being the first vehicle
+                                                  with vehicle 01 being the first vehicle
                                                  in ETB reference direction 1 as defined in IEC61375-2-5
                                                  value range: 0..63
                                                  a value of 0 indicates that this vehicle
@@ -208,8 +208,8 @@ typedef struct
 {
     TRDP_SHORT_VERSION_T    version;        /**< telegram version information, main_version = 1, sub_version = 0    */
     UINT8                   command;        /**< confirmation order
-							                    1 = confirmation/correction request
- 							                    2 = un-confirmation request                                         */
+                                                1 = confirmation/correction request
+                                                 2 = un-confirmation request                                         */
     UINT8                   reserved01;     /**< reserved (=0)                                                      */
     TRDP_NET_LABEL_T        deviceName;     /**< function device of ECSC which sends the telegram                   */
     UINT32                  opTrnTopoCnt;   /**< operational train topocounter value of the operational 
