@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1722 2018-05-02 16:12:46Z bloehr $
+ * $Id: test_marshalling.c 1735 2018-05-15 15:34:41Z bloehr $
  *
  *      BL 2018-04-27: Testing ticket #197
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -705,7 +705,8 @@ struct DS2 {
 
 struct myDataSet2003 {
     UINT32 a;
-    INT32 b;
+    //INT32 b;
+    CHAR8 b;
     struct DS2 c;
 } gMyDataSet2003  =
 {
