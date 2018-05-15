@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1723 2018-05-03 09:32:18Z ahweiss $
+ * $Id: vos_thread.c 1734 2018-05-15 15:31:15Z bloehr $
  *
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -243,11 +243,11 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
         return VOS_INIT_ERR;
     }
 
-	if ((pThread == NULL) || (pName == NULL))
+    if ((pThread == NULL) || (pName == NULL))
     {
         return VOS_PARAM_ERR;
     }
-	*pThread = NULL;
+    *pThread = NULL;
 
     if ((pThreadHandle = vos_getFreeThreadHandle()) == NULL)
     {
