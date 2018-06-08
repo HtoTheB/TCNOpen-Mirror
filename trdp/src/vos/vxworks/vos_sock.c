@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1715 2018-03-22 17:01:53Z bloehr $*
+ * $Id: vos_sock.c 1737 2018-06-08 16:29:00Z bloehr $*
  *
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2018-03-06: 64Bit endian swap added
@@ -212,7 +212,7 @@ UINT64 ntohll(UINT64 value) {return htonll(value); }
 EXT_DECL UINT16 vos_htons (
     UINT16 val)
 {
-	return htons(val);
+    return htons(val);
 }
 
 EXT_DECL UINT16 vos_ntohs (
@@ -1526,7 +1526,7 @@ EXT_DECL VOS_IP4_ADDR_T vos_determineBindAddr( VOS_IP4_ADDR_T   srcIP,
                                                VOS_IP4_ADDR_T   mcGroup,
                                                VOS_IP4_ADDR_T   rcvMostly)
 {
-	/* On Linux, binding to an interface address will prevent receiving of MCs! */ 
+    /* On Linux, binding to an interface address will prevent receiving of MCs! */ 
     if (vos_isMulticast(mcGroup) && rcvMostly)
     {
         return 0;
