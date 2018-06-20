@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1725 2018-05-03 14:58:55Z bloehr $
+ * $Id: trdp_if.c 1739 2018-06-20 11:24:07Z bloehr $
  *
+ *      BL 2018-06-12: Ticket #204 tlp_publish should take default callback function
  *      BL 2018-05-03: Ticket #199 Setting redId on tlp_request() has no effect
  *      BL 2018-04-20: Ticket #196 setRedundant with redId = 0 stops all publishers
  *      BL 2018-04-18: MD notify: pass optional cb pointer to mdsend
@@ -1382,7 +1383,17 @@ EXT_DECL TRDP_ERR_T tlp_publish (
             pNewElement->pCachedDS      = NULL;
             pNewElement->magic          = TRDP_MAGIC_PUB_HNDL_VALUE;
             pNewElement->pUserRef       = pUserRef;
-            pNewElement->pfCbFunction   = pfCbFunction;
+
+            /* if default flags supplied and no callback func supplied, take default one */
+            if ((pktFlags == TRDP_FLAGS_DEFAULT) &&
+                (pfCbFunction == NULL))
+            {
+                pNewElement->pfCbFunction   = appHandle->pdDefault.pfCbFunction;
+            }
+            else
+            {
+                pNewElement->pfCbFunction   = pfCbFunction;
+            }
 
             /*  Find a possible redundant entry in one of the other sessions and sync the sequence counter!
              curSeqCnt holds the last sent sequence counter, therefore set the value initially to -1,
