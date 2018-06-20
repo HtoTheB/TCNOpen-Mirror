@@ -20,8 +20,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1725 2018-05-03 14:58:55Z bloehr $
+ * $Id: tau_tti.c 1740 2018-06-20 16:03:12Z bloehr $
  *
+ *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
@@ -208,7 +209,7 @@ static void ttiPDCallback (
             if (appHandle->etbTopoCnt != appHandle->pTTDB->opTrnState.etbTopoCnt)
             {
                 vos_printLog(VOS_LOG_INFO, "ETB topocount changed (old: 0x%08x, new: 0x%08x) on %p!\n",
-                             appHandle->etbTopoCnt, appHandle->pTTDB->opTrnState.etbTopoCnt, appHandle);
+                             appHandle->etbTopoCnt, appHandle->pTTDB->opTrnState.etbTopoCnt, (void*) appHandle);
                 changed++;
                 (void) tlc_setETBTopoCount(appHandle, appHandle->pTTDB->opTrnState.etbTopoCnt);
             }
@@ -223,7 +224,7 @@ static void ttiPDCallback (
         else if (pMsg->resultCode == TRDP_TIMEOUT_ERR )
         {
             vos_printLog(VOS_LOG_ERROR, "---> Operational status info timed out! Invalidating topocounts on %p!\n",
-                         appHandle);
+                         (void*)appHandle);
 
             if (appHandle->etbTopoCnt != 0u)
             {
@@ -239,7 +240,7 @@ static void ttiPDCallback (
         else
         {
             vos_printLog(VOS_LOG_INFO, "---> Unsolicited msg received on %p!\n",
-                         appHandle);
+                         (void*)appHandle);
         }
         if ((changed > 0) && (waitForInaug != NULL))
         {

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: trdp-md-test.c 1740 2018-06-20 16:03:12Z bloehr $
  *
+ *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -368,6 +369,7 @@ void _sleep_msec (int msec)
     Sleep(msec);
 }
 
+#ifndef WIN32
 int snprintf (char *str, size_t size, const char *format, ...)
 {
     va_list args;
@@ -394,6 +396,7 @@ int snprintf (char *str, size_t size, const char *format, ...)
     /* return number of characters written to the buffer */
     return n;
 }
+#endif
 
 #elif defined (POSIX)
 

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_pdcom.h 1377 2014-12-01 15:43:03Z ahweiss $
+ * $Id: trdp_pdcom.h 1740 2018-06-20 16:03:12Z bloehr $
  *
+ *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  *                     Ticket #47: Protocol change: no FCS for data part of telegrams
  */
@@ -43,7 +44,14 @@
  * GLOBAL FUNCTIONS
  */
 
-void        trdp_pdInit(PD_ELE_T *, TRDP_MSG_T, UINT32 topoCount, UINT32 optopoCount, UINT32 replyComId, UINT32 replyIpAddress);
+void        trdp_pdInit(
+    PD_ELE_T *,
+    TRDP_MSG_T,
+    UINT32 topoCount,
+    UINT32 optopoCount,
+    UINT32 replyComId,
+    UINT32 replyIpAddress);
+
 void        trdp_pdUpdate (
     PD_ELE_T *);
 
@@ -59,7 +67,7 @@ TRDP_ERR_T  trdp_pdCheck (
     UINT32      packetSize);
 
 TRDP_ERR_T  trdp_pdSend (
-    INT32       pdSock,
+    SOCKET      pdSock,
     PD_ELE_T    *pPacket,
     UINT16      port);
 
@@ -75,7 +83,7 @@ TRDP_ERR_T  trdp_pdSendQueued (
 
 TRDP_ERR_T  trdp_pdReceive (
     TRDP_SESSION_PT pSessionHandle,
-    INT32           sock);
+    SOCKET           sock);
 
 void        trdp_pdCheckPending (
     TRDP_APP_SESSION_T  appHandle,

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1738 2018-06-12 09:59:56Z siddhiw $
+ * $Id: tau_marshall.c 1740 2018-06-20 16:03:12Z bloehr $
  *
+ *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      SW 2018-06-12: Ticket #203 Incorrect unmarshalling of datasets containing TIMEDATE64 array
  *      BL 2018-05-17: Ticket #197 Incorrect Marshalling/Unmarshalling for nested datasets
  *      BL 2018-05-15: Wrong source size/range should not lead to marshalling error, check discarded
@@ -1462,7 +1463,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSize (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) info.pDst;
+    *pDestSize = (UINT32) (info.pDst - (UINT8*)NULL);
 
     return err;
 }
@@ -1534,7 +1535,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSizeByComId (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) info.pDst;
+    *pDestSize = (UINT32) (info.pDst - (UINT8*)NULL);
 
     return err;
 }

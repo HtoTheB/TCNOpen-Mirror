@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1734 2018-05-15 15:31:15Z bloehr $
+ * $Id: vos_thread.c 1740 2018-06-20 16:03:12Z bloehr $
  *
+ *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -27,9 +28,13 @@
     "You are trying to compile the WIN32 implementation of vos_thread.c - either define WIN32 or exclude this file!"
 #endif
 
-#define NSECS_PER_USEC  1000
-#define USECS_PER_MSEC  1000
-#define MSECS_PER_SEC   1000
+#ifdef _WIN64
+#include "vos_winThread.c"
+#else
+
+#define NSECS_PER_USEC  1000u
+#define USECS_PER_MSEC  1000u
+#define MSECS_PER_SEC   1000u
 
 /***********************************************************************************************************************
  * INCLUDES
@@ -51,10 +56,10 @@
  * DEFINITIONS
  */
 
-const size_t    cDefaultStackSize   = 16 * 1024;
+const size_t    cDefaultStackSize   = 16u * 1024u;
 const UINT32    cMutextMagic        = 0x1234FEDC;
 
-UINT16          uuidCycle = 0;
+UINT16          uuidCycle = 0u;
 BOOL8           vosThreadInitialised = FALSE;
 pthread_t       threadHandle[VOS_MAX_THREAD_CNT];
 
@@ -81,15 +86,15 @@ pthread_t       threadHandle[VOS_MAX_THREAD_CNT];
  *  @retval         void
  */
 
-#define NSECS_PER_USEC  1000
-#define USECS_PER_MSEC  1000
-#define MSECS_PER_SEC   1000
+#define NSECS_PER_USEC  1000u
+#define USECS_PER_MSEC  1000u
+#define MSECS_PER_SEC   1000u
 
 /* This define holds the max amount os seconds to get stored in 32bit holding micro seconds        */
 /* It is the result when using the common time struct with tv_sec and tv_usec as on a 32 bit value */
 /* so far 0..999999 gets used for the tv_usec field as per definition, then 0xFFF0BDC0 usec        */
 /* are remaining to represent the seconds, which in turn give 0x10C5 seconds or in decimal 4293    */
-#define MAXSEC_FOR_USECPRESENTATION  4293
+#define MAXSEC_FOR_USECPRESENTATION  4293u
 
 void vos_cyclicThread (
     UINT32              interval,
@@ -1263,3 +1268,6 @@ EXT_DECL void vos_semaGive (
     }
     return;
 }
+
+#endif /* #else #ifdef _WIN64 */
+
