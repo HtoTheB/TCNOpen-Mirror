@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_thread.c 1740 2018-06-20 16:03:12Z bloehr $
+ * $Id: vos_thread.c 1745 2018-06-25 13:46:46Z bloehr $
  *
+ *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -1001,7 +1002,7 @@ EXT_DECL VOS_ERR_T vos_mutexTryLock (
     err = pthread_mutex_trylock(&pMutex->mutexId);
     if (err == EBUSY)
     {
-        return VOS_MUTEX_ERR;
+        return VOS_INUSE_ERR;
     }
     if (err == EINVAL)
     {

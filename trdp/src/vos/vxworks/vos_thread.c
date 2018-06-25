@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.c 1724 2018-05-03 09:34:48Z bloehr $*
+ * $Id: vos_thread.c 1745 2018-06-25 13:46:46Z bloehr $*
  *
+ *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-05-03: Ticket #195: Invalid thread handle (SEGFAULT)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -838,7 +839,7 @@ EXT_DECL VOS_ERR_T vos_mutexTryLock (
         errVal = semTake(pMutex->mutexId, NO_WAIT);
         if (errVal == ERROR)
         {
-            result = VOS_MUTEX_ERR;
+            result = VOS_INUSE_ERR;     /* Shouldn't there be a distinction between timeout and a real error? */
         }
         /* potentially a check of errno may be needed here */
     }
