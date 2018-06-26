@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1745 2018-06-25 13:46:46Z bloehr $
+ * $Id: trdp_if.c 1746 2018-06-26 06:52:18Z siddhiw $
  *
+ *      SW 2018-06-26: Ticket #205 tlm_addListener() does not acknowledge TRDP_FLAGS_DEFAULT flag
  *      BL 2018-06-25: Ticket #201 tlp_setRedundant return value if redId is 0
  *      BL 2018-06-12: Ticket #204 tlp_publish should take default callback function
  *      BL 2018-05-03: Ticket #199 Setting redId on tlp_request() has no effect
@@ -2740,6 +2741,9 @@ EXT_DECL TRDP_ERR_T  tlm_addListener (
 
     /* mutex protected */
     {
+        /* Replace pktFlags with default values if required */
+        pktFlags = (pktFlags == TRDP_FLAGS_DEFAULT) ? appHandle->mdDefault.flags : pktFlags;
+
         /* Make sure that there is a TCP listener socket */
         if ((pktFlags & TRDP_FLAGS_TCP) != 0)
         {
