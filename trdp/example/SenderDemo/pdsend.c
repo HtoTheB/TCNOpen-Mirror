@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: pdsend.c 1748 2018-07-13 15:59:36Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -368,7 +368,7 @@ PD_RECEIVE_PACKET_T *pd_get (
  *
  *  @param[in]      index           into our subscription array
  *  @param[in]      data            pointer to received data
- *  @param[in]      valid            flag for timeouts
+ *  @param[in]      invalid         flag for timeouts
  *  @retval         none
  */
 static void pd_getData (int index, uint8_t *data, int invalid)
