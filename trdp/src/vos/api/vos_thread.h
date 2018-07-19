@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.h 1731 2018-05-10 21:02:44Z bloehr $
+ * $Id: vos_thread.h 1749 2018-07-19 16:38:21Z bloehr $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -255,6 +255,17 @@ EXT_DECL VOS_ERR_T vos_threadIsActive (
 
 EXT_DECL VOS_ERR_T vos_threadDelay (
     UINT32 delay);
+
+/**********************************************************************************************************************/
+/** Return thread handle of calling task
+ *
+ *  @param[out]     pThread         pointer to thread handle
+ *  @retval         VOS_NO_ERR      no error
+ *  @retval         VOS_PARAM_ERR   parameter out of range/invalid
+ */
+
+EXT_DECL VOS_ERR_T vos_threadSelf (
+    VOS_THREAD_T *pThread);
 
 /**********************************************************************************************************************/
 /** Return the current time in sec and us

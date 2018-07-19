@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: trdp_mdcom.c 1749 2018-07-19 16:38:21Z bloehr $
  *
  *      BL 2018-06-27: Ticket #206 Message data transmission fails for several test cases
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -1623,11 +1623,11 @@ static TRDP_ERR_T trdp_mdHandleRequest (TRDP_SESSION_PT     appHandle,
             continue;
         }
 
-        /* Ticket #206: TCP requests should use TCP listeners only
+        /* Ticket #206: TCP requests should use TCP listeners only */
         if ((iterListener->pktFlags & TRDP_FLAGS_TCP) && (isTCP == FALSE))
         {
             continue;
-        }*/
+        }
 
         /* Ticket #180: Do the filtering as the standard demands */
 

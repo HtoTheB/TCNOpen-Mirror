@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: test_mdSingle.c 1749 2018-07-19 16:38:21Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -62,6 +62,7 @@ typedef struct sSessionData
     BOOL8               sOnlyOnce;
     BOOL8               sExitAfterReply;
     BOOL8               sLoop;
+    BOOL8               sLastRun;
     BOOL8               sNoData;
     UINT32              sComID;
     TRDP_APP_SESSION_T  appHandle;              /*    Our identifier to the library instance    */
@@ -235,6 +236,7 @@ void mdCallback (void                   *pRefCon,
                   if (sSessionData.sExitAfterReply == TRUE)
                   {
                       sSessionData.sLoop = FALSE;
+                      sSessionData.sLastRun = TRUE;
                   }
                   break;
               case  TRDP_MSG_MC:        /**< 'Mc' MD Confirm                                 */
@@ -273,7 +275,7 @@ void mdCallback (void                   *pRefCon,
            vos_printLog(VOS_LOG_USR, "### No Confirmation within time out for ComID %d, destIP: %s\n",
                         pMsg->comId,
                         vos_ipDotted(pMsg->destIpAddr));
-           sSessionData.sLoop = FALSE;
+ //          sSessionData.sLoop = FALSE;
            break;
        default:
            vos_printLog(VOS_LOG_USR, "### Error on packet received (ComID %d), err = %d\n",
@@ -545,12 +547,14 @@ int main (int argc, char *argv[])
     /*
      Enter the main processing loop.
      */
-    while (sSessionData.sLoop)
+    while (sSessionData.sLoop || sSessionData.sLastRun)
     {
         fd_set      rfds;
         INT32       noDesc  = 0;
         TRDP_TIME_T tv      = {0, 0};
         TRDP_TIME_T max_tv  = {0, 100000};           /* 0.1 second  */
+
+        sSessionData.sLastRun = FALSE;
 
         if (sSessionData.sBlockingMode == TRUE)
         {

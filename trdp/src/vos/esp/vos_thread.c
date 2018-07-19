@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright 2018. All rights reserved.
  *
- * $Id: vos_thread.c 1745 2018-06-25 13:46:46Z bloehr $
+ * $Id: vos_thread.c 1749 2018-07-19 16:38:21Z bloehr $
  *
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -394,6 +394,28 @@ EXT_DECL VOS_ERR_T vos_threadIsActive (
 {
     return VOS_NO_ERR;
 }
+
+/**********************************************************************************************************************/
+/** Return thread handle of calling task
+ *
+ *  @param[out]     pThread         pointer to thread handle
+ *  @retval         VOS_NO_ERR      no error
+ *  @retval         VOS_PARAM_ERR   parameter out of range/invalid
+ */
+
+EXT_DECL VOS_ERR_T vos_threadSelf (
+    VOS_THREAD_T *pThread)
+{
+    if (pThread == NULL)
+    {
+        return VOS_PARAM_ERR;
+    }
+
+    *pThread = (VOS_THREAD_T *) pthread_self();
+
+    return VOS_NO_ERR;
+}
+
 
 /**********************************************************************************************************************/
 /*  Timers                                                                                                            */
