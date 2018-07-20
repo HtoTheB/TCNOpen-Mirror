@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1750 2018-07-20 08:35:25Z s-bender $*
+ * $Id: vos_sock.c 1751 2018-07-20 09:47:50Z s-bender $*
  *
  *      SB 2018-07-20: Ticket #209: vos_getInterfaces returning incorrect "name" and "linkState" on windows (requires
  *                                  at least windows vista now).
@@ -402,6 +402,7 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                     {
                         ifAddrs[addrCnt].name[i] = (CHAR8)pAdapter->Description[i];
                     }
+                    ifAddrs[addrCnt].name[VOS_MAX_IF_NAME_SIZE - 1] = '\0';
 
                     /* Store subnet mask */
                     netMask = 0;
@@ -413,11 +414,11 @@ EXT_DECL VOS_ERR_T vos_getInterfaces (
                     /* Store link state */
                     if (pAdapter->OperStatus == IfOperStatusUp)
                     {
-                        ifAddrs[addrCnt].linkState = 1;
+                        ifAddrs[addrCnt].linkState = TRUE;
                     }
                     else
                     {
-                        ifAddrs[addrCnt].linkState = 0;
+                        ifAddrs[addrCnt].linkState = FALSE;
                     }
                     /* increment number of addresses stored */
                     addrCnt++;
