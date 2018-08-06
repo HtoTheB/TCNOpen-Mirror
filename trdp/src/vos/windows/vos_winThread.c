@@ -15,8 +15,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: vos_winThread.c 1753 2018-07-25 13:55:46Z s-bender $
+ * $Id: vos_winThread.c 1754 2018-08-06 13:34:22Z bloehr $
  *
+ *      BL 2018-08-06: CloseHandle succeeds with return value != 0
+ *      SB 2018-07-25: vos_mutexLocalCreate mem allocation fixed
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  */
@@ -756,7 +758,7 @@ EXT_DECL void vos_mutexDelete (
     }
     else
     {
-        if (CloseHandle(pMutex->mutexId) == 0)
+        if (CloseHandle(pMutex->mutexId) != 0)
         {
             pMutex->magicNo = 0;
         }
