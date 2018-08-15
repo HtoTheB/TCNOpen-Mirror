@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright 2018. All rights reserved.
  *
- * $Id: vos_sock.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: vos_sock.c 1757 2018-08-15 15:34:47Z bloehr $
  *
  *      BL 2018-07-13: Ticket #208: VOS socket options: QoS/ToS field priority handling needs update
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -829,7 +829,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
         {
             if (pDstIPAddr != NULL)
             {
-                vos_printLogStr(VOS_LOG_WARNING, "destination IP not supported\n");
+                vos_printLogStr(VOS_LOG_DBG, "destination IP not supported\n");
             }
 
             if (pSrcIPAddr != NULL)

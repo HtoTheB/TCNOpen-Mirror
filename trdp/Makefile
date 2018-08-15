@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1729 2018-05-08 15:43:31Z bloehr $
+#// $Id: Makefile 1757 2018-08-15 15:34:47Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -132,7 +132,7 @@ libtrdp:	outdir $(OUTDIR)/libtrdp.a
 
 example:	$(OUTDIR)/echoCallback $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/sendData $(OUTDIR)/sourceFiltering
 
-test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest $(OUTDIR)/localtest $(OUTDIR)/pdPull
+test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/MCreceiver $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest $(OUTDIR)/localtest $(OUTDIR)/pdPull
 
 pdtest:		outdir $(OUTDIR)/trdp-pd-test $(OUTDIR)/pd_md_responder $(OUTDIR)/testSub
 
@@ -356,6 +356,14 @@ $(OUTDIR)/localtest:   localtest/api_test.c  $(OUTDIR)/libtrdp.a
 			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) -Wno-unused-variable $(INCLUDES) \
 			    -o $@
+			$(STRIP) $@
+
+$(OUTDIR)/MCreceiver: $(OUTDIR)/libtrdp.a
+			@echo ' ### Building MC joiner application $(@F)'
+			$(CC) test/diverse/MCreceiver.c \
+				-ltrdp \
+				$(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+				-o $@
 			$(STRIP) $@
 
 ###############################################################################

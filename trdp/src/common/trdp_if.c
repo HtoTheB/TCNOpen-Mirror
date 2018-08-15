@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1747 2018-06-29 16:44:28Z bloehr $
+ * $Id: trdp_if.c 1757 2018-08-15 15:34:47Z bloehr $
  *
  *      BL 2018-06-29: Default settings handling / compiler warnings
  *      SW 2018-06-26: Ticket #205 tlm_addListener() does not acknowledge TRDP_FLAGS_DEFAULT flag
@@ -416,7 +416,8 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                               NULL,                     /*    default qos and ttl           */
                               NULL,                     /*    initial data                  */
                               sizeof(TRDP_STATISTICS_T));
-            if (ret == TRDP_SOCK_ERR)
+            if ((ret == TRDP_SOCK_ERR) &&
+                (ownIpAddr == VOS_INADDR_ANY))          /*  do not wait if own IP was set (but invalid)    */
             {
                 (void) vos_threadDelay(1000000u);
             }
