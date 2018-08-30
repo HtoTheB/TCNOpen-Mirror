@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: trdp-md-test.c 1758 2018-08-30 13:48:47Z bloehr $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -1007,10 +1007,9 @@ void setup_listeners ()
                 0u,                                 /* comid (0 .. take all) */
                 0u,                                 /* topo */
                 0u,                                 /* topo */
-                /*   opts.srcip,                         / * destination IP address (is source of listener) * / */
-                opts.dstip,                         /* destination IP address (is source of listener) */
                 VOS_INADDR_ANY,
                 VOS_INADDR_ANY,
+                opts.srcip,                         /* destination IP address (is source of listener) */
                 (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_TCP), /* flags */
                 NULL,
                 opts.uri);                          /* destination URI */
