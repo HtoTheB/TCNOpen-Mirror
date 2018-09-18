@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: trdp_utils.c 1761 2018-09-18 15:54:02Z bloehr $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
@@ -84,14 +84,13 @@ static void printSocketUsage (
         {
             continue;
         }
-        vos_printLog(VOS_LOG_DBG, "iface[%u].sock = %d\n", lIndex, (int) iface[lIndex].sock);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].bindAddr = %x\n", lIndex, iface[lIndex].bindAddr);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].type = %s \n", lIndex, (iface[lIndex].type == 0 ? "PD_UDP" :
+        vos_printLog(VOS_LOG_DBG, "iface[%d].sock = %d\n", lIndex, (int) iface[lIndex].sock);
+        vos_printLog(VOS_LOG_DBG, "iface[%d].bindAddr = %x\n", lIndex, iface[lIndex].bindAddr);
+        vos_printLog(VOS_LOG_DBG, "iface[%d].type = %s \n", lIndex, (iface[lIndex].type == 0 ? "PD_UDP" :
                                                                      (iface[lIndex].type == 1 ? "MD_UDP" : "MD_TCP")));
-        vos_printLog(VOS_LOG_DBG, "iface[%u].sendParam.qos = %u\n", lIndex, iface[lIndex].sendParam.qos);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].sendParam.ttl = %u\n", lIndex, iface[lIndex].sendParam.ttl);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].rcvMostly = %u\n", lIndex, iface[lIndex].rcvMostly);
-        vos_printLog(VOS_LOG_DBG, "iface[%u].usage = %d\n", lIndex, iface[lIndex].usage);
+        vos_printLog(VOS_LOG_DBG, "iface[%d].sendParam.qos = %u, ttl = %u\n", lIndex, (unsigned) iface[lIndex].sendParam.qos, (unsigned) iface[lIndex].sendParam.ttl);
+        vos_printLog(VOS_LOG_DBG, "iface[%d].rcvMostly = %u\n", lIndex, (unsigned) iface[lIndex].rcvMostly);
+        vos_printLog(VOS_LOG_DBG, "iface[%d].usage = %d\n", lIndex, iface[lIndex].usage);
     }
     vos_printLogStr(VOS_LOG_DBG, "----------------------------\n\n");
 }
