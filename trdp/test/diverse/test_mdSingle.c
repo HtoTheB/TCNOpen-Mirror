@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 1761 2018-09-18 15:54:02Z bloehr $
+ * $Id: test_mdSingle.c 1762 2018-09-18 16:10:10Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -121,9 +121,10 @@ void mdCallback (void *,
 /* Print wait message */
 void printSelParams(int noDesc, VOS_FDS_T *pReadableFD, VOS_TIMEVAL_T   *pTimeOut)
 {
+    int i;
     char myStr[256] = "";
     char *pStr = myStr;
-    for (int i = 0; i < noDesc; i++)
+    for (i = 0; i < noDesc; i++)
     {
         if (FD_ISSET(i, pReadableFD))
         {
@@ -516,11 +517,13 @@ int main (int argc, char *argv[])
     /*  Output available interfaces (in debug output)  */
     {
         UINT32 availableIfaces = MAX_IF;
+        int i;
+
         if (vos_getInterfaces(&availableIfaces, interfaces) == VOS_NO_ERR)
         {
             vos_printLog(VOS_LOG_USR, "%u IP interfaces found\n", availableIfaces);
         }
-        for (int i = 0; i < availableIfaces; i++)
+        for (i = 0; i < availableIfaces; i++)
         {
             if (interfaces[i].ipAddr == ownIP)
             {
