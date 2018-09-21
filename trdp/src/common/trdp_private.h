@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1740 2018-06-20 16:03:12Z bloehr $
+ * $Id: trdp_private.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -167,7 +167,7 @@ typedef struct TRDP_SOCKETS
     TRDP_IP_ADDR_T      mcGroups[VOS_MAX_MULTICAST_CNT]; /**< List of multicast addresses for this socket */
 } TRDP_SOCKETS_T;
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(push, 1)
 #endif
 
@@ -221,7 +221,7 @@ typedef struct
 } GNU_PACKED MD_PACKET_T;
 #endif
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(pop)
 #endif
 

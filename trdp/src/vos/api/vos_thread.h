@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.h 1749 2018-07-19 16:38:21Z bloehr $
+ * $Id: vos_thread.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -54,7 +54,7 @@ extern "C" {
 /** Timeout value to wait forever for a semaphore */
 #define VOS_SEMA_WAIT_FOREVER  0xFFFFFFFFU
 
-#ifdef WIN32
+#if (defined(WIN32) || defined(WIN64))
 #include <winsock2.h>
 #else
 #ifndef timerisset

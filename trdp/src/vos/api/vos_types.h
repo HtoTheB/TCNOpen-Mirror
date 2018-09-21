@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_types.h 1745 2018-06-25 13:46:46Z bloehr $
+ * $Id: vos_types.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-05-03: no inline if < C99
@@ -41,7 +41,7 @@ extern "C" {
  * DEFINES
  */
 
-#if defined(WIN32)
+#if (defined (WIN32) || defined (WIN64))
 
 #include <stdint.h>
 
@@ -121,7 +121,7 @@ typedef double REAL64;
 #endif
 
 /*    Special handling for Windows DLLs    */
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
     #ifdef DLL_EXPORT
         #define EXT_DECL    __declspec(dllexport)
     #elif DLL_IMPORT
@@ -135,7 +135,7 @@ typedef double REAL64;
 
 /** inline macros  */
 #ifndef INLINE
-    #ifdef WIN32
+    #if (defined (WIN32) || defined (WIN64))
         #define INLINE  _inline
     #elif defined (VXWORKS)
         #define INLINE  __inline__

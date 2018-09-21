@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1751 2018-07-20 09:47:50Z s-bender $*
+ * $Id: vos_sock.c 1763 2018-09-21 16:03:13Z ahweiss $*
  *
  *      SB 2018-07-20: Ticket #209: vos_getInterfaces returning incorrect "name" and "linkState" on windows (requires
  *                                  at least windows vista now).
@@ -26,9 +26,9 @@
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
 
-#ifndef WIN32
+#if (!defined (WIN32) && !defined (WIN64))
 #error \
-    "You are trying to compile the WIN32 implementation of vos_sock.c - either define WIN32 or exclude this file!"
+    "You are trying to compile the Windows implementation of vos_sock.c - either define WIN32 or WIN64 or exclude this file!"
 #endif
 
 /***********************************************************************************************************************

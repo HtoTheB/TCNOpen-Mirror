@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_ctrl_types.h 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: tau_ctrl_types.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-03-09: Ticket #131 errata: Last change undone (leadVehOfCst defined in corrigendum)
@@ -45,7 +45,7 @@ extern "C" {
  * TYPEDEFS
  */
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(push, 1)
 #endif
 
@@ -329,7 +329,7 @@ typedef struct
 } GNU_PACKED TRDP_ETBN_TRAIN_NET_DIR_INFO_REPLY_T;
 
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(pop)
 #endif
 

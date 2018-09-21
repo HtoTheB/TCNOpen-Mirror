@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1740 2018-06-20 16:03:12Z bloehr $
+ * $Id: vos_mem.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  * Changes:
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -45,12 +45,6 @@
 #include <strings.h>
 #include <unistd.h>
 #include <pthread.h>
-#endif
-
-#ifdef WIN32
-#ifndef _WIN64
-#include <pthread.h>
-#endif
 #endif
 
 #ifdef ESP32
@@ -715,7 +709,7 @@ EXT_DECL INT32 vos_strnicmp (
     const CHAR8 *pStr2,
     UINT32      count )
 {
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
     return (INT32) _strnicmp((const char *)pStr1, (const char *)pStr2, (size_t) count);
 #else
     return (INT32) strncasecmp((const char *)pStr1, (const char *)pStr2, (size_t) count);
@@ -738,7 +732,7 @@ EXT_DECL void vos_strncpy (
     const CHAR8 *pStrSrc,
     UINT32      count )
 {
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
     CHAR8 character = pStrDst[count];
     (void) strncpy_s((char *)pStrDst, (size_t)(count + 1), (const char *)pStrSrc, (size_t) count);
     pStrDst[count] = character;
@@ -762,7 +756,7 @@ EXT_DECL void vos_strncat (
     UINT32      count,
     const CHAR8 *pStrSrc)
 {
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
     (void) strcat_s((char *)pStrDst, (size_t) count, (const char *)pStrSrc);
 #else
     (void) strncat((char *)pStrDst, (const char *)pStrSrc, (size_t) count); /*lint !e920: return value not used */

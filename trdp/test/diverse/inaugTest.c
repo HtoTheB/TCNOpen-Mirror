@@ -1,4 +1,4 @@
-/**********************************************************************************************************************/
+﻿/**********************************************************************************************************************/
 /**
  * @file            inaugTest.c
  *
@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: inaugTest.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  */
 
@@ -27,7 +27,7 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <sys/ioctl.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 #include "trdp_if_light.h"

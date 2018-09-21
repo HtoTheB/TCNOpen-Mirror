@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: MCreceiver.c 1757 2018-08-15 15:34:47Z bloehr $
+ * $Id: MCreceiver.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *
  */
@@ -30,7 +30,7 @@
 #if defined(POSIX)
 #include <unistd.h>
 
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 //#include <stdafx.h>
 #endif
 

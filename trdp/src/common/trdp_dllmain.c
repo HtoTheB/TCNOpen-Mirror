@@ -14,14 +14,14 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_dllmain.c 1065 2013-09-06 08:12:09Z aweiss $
+ * $Id: trdp_dllmain.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  */
 
 /***********************************************************************************************************************
  * INCLUDES
  */
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #ifdef DLL_EXPORT
 
 #define WIN32_LEAN_AND_MEAN

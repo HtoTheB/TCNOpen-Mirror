@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: test_trafficShaping.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -27,7 +27,7 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/select.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 #include "trdp_if_light.h"
@@ -155,7 +155,7 @@ int main (int argc, char *argv[])
     TRDP_APP_SESSION_T  appHandle;  /*    Our identifier to the library instance    */
     TRDP_PUB_T          pubHandle;  /*    Our identifier to the publication    */
     TRDP_ERR_T          err;
-    TRDP_PD_CONFIG_T    pdConfiguration = {NULL, NULL, {0u, 64u, 0u}, TRDP_FLAGS_NONE, 1000u, TRDP_TO_SET_TO_ZERO, 17224};
+    TRDP_PD_CONFIG_T    pdConfiguration = {NULL, NULL, {0u, 64u, 0u}, TRDP_FLAGS_NONE, 1000u, TRDP_TO_SET_TO_ZERO, TRDP_PD_UDP_PORT};
     TRDP_MEM_CONFIG_T   dynamicConfig = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK | TRDP_OPTION_TRAFFIC_SHAPING};
     

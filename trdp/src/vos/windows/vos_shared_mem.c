@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_shared_mem.c 1740 2018-06-20 16:03:12Z bloehr $*
+ * $Id: vos_shared_mem.c 1763 2018-09-21 16:03:13Z ahweiss $*
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
@@ -25,9 +25,9 @@
 * INCLUDES
 */
 
-#ifndef WIN32
+#if (!defined (WIN32) && !defined (WIN64))
 #error \
-    "You are trying to compile the WIN32 implementation of vos_shared_mem.c - either define WIN32 or exclude this file!"
+    "You are trying to compile the Windows implementation of vos_shared_mem.c - either define WIN32 or WIN64 or exclude this file!"
 #endif
 
 #include <stdio.h>

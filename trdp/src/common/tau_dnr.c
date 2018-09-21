@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1755 2018-08-07 12:10:03Z bloehr $
+ * $Id: tau_dnr.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-08-07: Ticket #183 tau_getOwnIds declared but not defined
  *      BL 2018-08-06: Ticket #210 IF condition for DNS Options incorrect in tau_uri2Addr()
@@ -95,7 +95,7 @@ typedef struct tau_dnr_query
 } TAU_DNR_QUERY_T;
 
 /* Constant sized fields of the resource record structure */
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(push, 1)
 #endif
 
@@ -120,7 +120,7 @@ typedef struct DNS_HEADER
 }  GNU_PACKED TAU_DNS_HEADER_T;
 
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(pop)
 #endif
 

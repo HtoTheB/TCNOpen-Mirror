@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: echoCallback.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: echoCallback.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2018-02-02: Example renamed: cmdLineSelect -> echoCallback
@@ -32,7 +32,7 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/select.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 

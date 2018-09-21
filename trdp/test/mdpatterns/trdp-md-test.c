@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1758 2018-08-30 13:48:47Z bloehr $
+ * $Id: trdp-md-test.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -26,7 +26,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
-#if defined (_WIN32)
+#if (defined (WIN32) || defined (WIN64))
 #pragma warning (disable: 4200)
 #endif
 
@@ -310,7 +310,7 @@ void print_log (void *pRefCon, VOS_LOG_T category, const CHAR8 *pTime,
     {
         /* return; */
     }
-#ifdef _WIN32
+#if (defined (WIN32) || defined (WIN64))
     if (pLogFile == NULL)
     {
         char        buf[1024];
@@ -338,7 +338,7 @@ void print_log (void *pRefCon, VOS_LOG_T category, const CHAR8 *pTime,
 
 /* --- platform helper functions ----------------------------------------------- */
 
-#if defined (WIN32)
+#if (defined (WIN32) || defined (WIN64))
 
 void _set_color_red ()
 {
@@ -369,7 +369,7 @@ void _sleep_msec (int msec)
     Sleep(msec);
 }
 
-#ifndef WIN32
+#if (!defined (WIN32) && !defined (WIN64))
 int snprintf (char *str, size_t size, const char *format, ...)
 {
     va_list args;

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1735 2018-05-15 15:34:41Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#ifdef _WIN32
+#if (defined (WIN32) || defined (WIN64))
 #include <winsock2.h>
 #endif
 #include "vos_sock.h"

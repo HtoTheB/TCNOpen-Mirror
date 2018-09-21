@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017. All rights reserved.
  *
- * $Id: test_tau_dnr.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: test_tau_dnr.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
  */
@@ -22,7 +22,7 @@
  */
 
 
-#ifdef WIN32
+#ifdef (defined (WIN32) || defined (WIN64))
 // include also stuff, needed for window
 //#include "stdafx.h"
 #include <winsock2.h>

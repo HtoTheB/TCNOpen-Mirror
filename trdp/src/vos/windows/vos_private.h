@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_private.h 1740 2018-06-20 16:03:12Z bloehr $
+ * $Id: vos_private.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  */
@@ -26,10 +26,10 @@
  * INCLUDES
  */
 
-#ifndef _WIN64
-#include <pthread.h>
-#else
+#if (defined (WIN32) || defined (WIN64))
 #include <WinBase.h>
+#else
+#include <pthread.h>
 #endif
 
 #include "vos_types.h"
@@ -48,7 +48,7 @@ extern "C" {
 #define VOS_UPDATE             0u
 #define VOS_EVOLUTION          0u
 
-#ifdef _WIN64
+#if (defined (WIN32) || defined (WIN64))
 
 #define MAX_SEM_COUNT           10
 

@@ -16,7 +16,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: tau_tti_types.h 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: tau_tti_types.h 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
@@ -51,7 +51,7 @@ extern "C" {
  * TYPEDEFS
  */
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(push, 1)
 #endif
 /* moved this typedefinition from trdp_types.h to this place, as it belongs to the  */
@@ -64,7 +64,7 @@ typedef struct
     UINT8   rel;    /**< Release    - incremented for compatible changes   */
 } GNU_PACKED TRDP_SHORT_VERSION_T;
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(pop)
 #endif
 
@@ -194,7 +194,7 @@ typedef struct
 
 
 /** TCN consist structure */
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(push, 1)
 #endif
 
@@ -422,7 +422,7 @@ typedef struct
 
 
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 #pragma pack(pop)
 #endif
 

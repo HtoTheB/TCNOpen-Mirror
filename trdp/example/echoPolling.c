@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoPolling.c 1711 2018-03-06 16:11:32Z bloehr $*
+ * $Id: echoPolling.c 1763 2018-09-21 16:03:13Z ahweiss $*
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -31,7 +31,7 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/select.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 

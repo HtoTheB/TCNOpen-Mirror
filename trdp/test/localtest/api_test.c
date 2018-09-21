@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017.
  *                  All rights reserved.
  *
- * $Id: api_test.c 1760 2018-09-06 09:37:01Z bloehr $
+ * $Id: api_test.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -32,7 +32,7 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/select.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 

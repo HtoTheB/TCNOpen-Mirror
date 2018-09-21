@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: sourceFiltering.c 1708 2018-02-02 16:34:09Z bloehr $
+ * $Id: sourceFiltering.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  */
 
@@ -30,7 +30,7 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <getopt.h>
-#elif defined (WIN32)
+#elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
 

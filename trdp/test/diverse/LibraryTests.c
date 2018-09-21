@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: LibraryTests.c 1711 2018-03-06 16:11:32Z bloehr $
+ * $Id: LibraryTests.c 1763 2018-09-21 16:03:13Z ahweiss $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -22,7 +22,7 @@
  */
 
 
-#ifdef WIN32
+#if (defined (WIN32) || defined (WIN64))
 // include also stuff, needed for window
 //#include "stdafx.h"
 #include <winsock2.h>
