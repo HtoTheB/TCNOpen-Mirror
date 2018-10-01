@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: test_mdSingle.c 1764 2018-10-01 16:19:03Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -99,23 +99,11 @@ UINT8 gBuffer[64 * 1024];
 /***********************************************************************************************************************
  * PROTOTYPES
  */
-void dbgOut (void *,
-             TRDP_LOG_T,
-             const  CHAR8 *,
-             const  CHAR8 *,
-             UINT16,
-             const  CHAR8 *);
-void    usage (const char *);
-void    myPDcallBack (void *,
-                      TRDP_APP_SESSION_T,
-                      const TRDP_PD_INFO_T *,
-                      UINT8 *,
-                      UINT32 );
-void mdCallback (void *,
-                 TRDP_APP_SESSION_T,
-                 const TRDP_MD_INFO_T *,
-                 UINT8 *,
-                 UINT32 );
+void dbgOut (void *, TRDP_LOG_T, const  CHAR8 *, const  CHAR8 *, UINT16, const  CHAR8 *);
+void usage (const char *);
+void myPDcallBack (void *, TRDP_APP_SESSION_T, const TRDP_PD_INFO_T *, UINT8 *, UINT32 );
+void mdCallback (void *, TRDP_APP_SESSION_T, const TRDP_MD_INFO_T *, UINT8 *, UINT32 );
+void printSelParams(int noDesc, VOS_FDS_T *pReadableFD, VOS_TIMEVAL_T   *pTimeOut);
 
 /**********************************************************************************************************************/
 /* Print wait message */
