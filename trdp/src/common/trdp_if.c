@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1757 2018-08-15 15:34:47Z bloehr $
+ * $Id: trdp_if.c 1767 2018-10-09 09:07:12Z bloehr $
  *
+ *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed
  *      BL 2018-06-29: Default settings handling / compiler warnings
  *      SW 2018-06-26: Ticket #205 tlm_addListener() does not acknowledge TRDP_FLAGS_DEFAULT flag
  *      BL 2018-06-25: Ticket #201 tlp_setRedundant return value if redId is 0
@@ -427,26 +428,6 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
             }
         }
 
-        /*  Subscribe our request packet   */
-        if (ret == TRDP_NO_ERR)
-        {
-            ret = tlp_subscribe(pSession,               /*    our application identifier    */
-                                &dummySubHandle,        /*    our subscription identifier   */
-                                NULL,
-                                NULL,
-                                TRDP_STATISTICS_PULL_COMID, /*    ComID                         */
-                                0u,                     /*    etbtopocount: local consist only  */
-                                0u,                     /*    optrntopocount                    */
-                                0u, 0u,                 /*    Source IP filters                  */
-                                0u,                     /*    Default destination (or MC Group) */
-                                TRDP_FLAGS_NONE,        /*    packet flags                      */
-                                TRDP_TIMER_FOREVER,     /*    Time out in us                    */
-                                TRDP_TO_DEFAULT);       /*    delete invalid data on timeout    */
-        }
-        if (ret == TRDP_NO_ERR)
-        {
-            vos_printLogStr(VOS_LOG_INFO, "TRDP session opened successfully\n");
-        }
         if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
         {
             vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
@@ -521,8 +502,8 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
         if ((pPdDefault->flags != TRDP_FLAGS_DEFAULT) &&
             (!(pPdDefault->flags & TRDP_FLAGS_NONE)))
         {
-            pSession->pdDefault.flags |= pPdDefault->flags;
-            pSession->pdDefault.flags &= ~TRDP_FLAGS_NONE;     /* clear TRDP_FLAGS_NONE */
+            pSession->pdDefault.flags   |= pPdDefault->flags;
+            pSession->pdDefault.flags   &= ~TRDP_FLAGS_NONE;   /* clear TRDP_FLAGS_NONE */
         }
 
         if ((pSession->pdDefault.port == TRDP_PD_UDP_PORT) &&
@@ -601,8 +582,8 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
         if ((pMdDefault->flags != TRDP_FLAGS_DEFAULT) &&
             (!(pMdDefault->flags & TRDP_FLAGS_NONE)))
         {
-            pSession->mdDefault.flags |= pMdDefault->flags;
-            pSession->mdDefault.flags &= ~TRDP_FLAGS_NONE;     /* clear TRDP_FLAGS_NONE */
+            pSession->mdDefault.flags   |= pMdDefault->flags;
+            pSession->mdDefault.flags   &= ~TRDP_FLAGS_NONE;   /* clear TRDP_FLAGS_NONE */
         }
 
         /* check whether default values needed or not */
@@ -1394,11 +1375,11 @@ EXT_DECL TRDP_ERR_T tlp_publish (
             if ((pktFlags == TRDP_FLAGS_DEFAULT) &&
                 (pfCbFunction == NULL))
             {
-                pNewElement->pfCbFunction   = appHandle->pdDefault.pfCbFunction;
+                pNewElement->pfCbFunction = appHandle->pdDefault.pfCbFunction;
             }
             else
             {
-                pNewElement->pfCbFunction   = pfCbFunction;
+                pNewElement->pfCbFunction = pfCbFunction;
             }
 
             /*  Find a possible redundant entry in one of the other sessions and sync the sequence counter!
@@ -2338,7 +2319,7 @@ EXT_DECL TRDP_ERR_T tlp_resubscribe (
 
     /*  Change the addressing item   */
     subHandle->addr.srcIpAddr   = srcIpAddr1;
-    subHandle->addr.srcIpAddr2   = srcIpAddr2;
+    subHandle->addr.srcIpAddr2  = srcIpAddr2;
     subHandle->addr.destIpAddr  = destIpAddr;
 
     subHandle->addr.etbTopoCnt      = etbTopoCnt;
