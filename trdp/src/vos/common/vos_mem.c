@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_mem.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: vos_mem.c 1768 2018-10-25 09:59:45Z ahweiss $
  *
  * Changes:
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -331,7 +331,10 @@ EXT_DECL void vos_memDelete (
     }
 
     /* we will nevertheless clear the memory area because it makes no sence to report to the application... */
-    vos_mutexLocalDelete(&gMem.mutex);
+	if (gMem.mutex.magicNo != 0)
+	{
+		vos_mutexLocalDelete(&gMem.mutex);
+	}
     if (gMem.wasMalloced && gMem.pArea != NULL)
     {
         free(gMem.pArea);    /*lint !e421 !e586 optional use of heap memory for debugging/development */
