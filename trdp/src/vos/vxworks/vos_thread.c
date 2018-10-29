@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.c 1749 2018-07-19 16:38:21Z bloehr $*
+ * $Id: vos_thread.c 1771 2018-10-29 12:35:42Z bloehr $*
  *
+ *      BL 2018-10-29: Ticket #215: use CLOCK_MONOTONIC if available
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-05-03: Ticket #195: Invalid thread handle (SEGFAULT)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
@@ -372,7 +373,11 @@ EXT_DECL void vos_getTime (
     else
     {
         /*lint -e(534) ignore return value */
+#ifdef CLOCK_MONOTONIC
+        clock_gettime(CLOCK_MONOTONIC, &myTime);
+#else
         clock_gettime(CLOCK_REALTIME, &myTime);
+#endif
         pTime->tv_sec   = (UINT32) myTime.tv_sec;
         pTime->tv_usec  = (INT32) (myTime.tv_nsec / VOS_NSECS_PER_USEC);
     }
