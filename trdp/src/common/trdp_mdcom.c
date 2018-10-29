@@ -17,8 +17,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1749 2018-07-19 16:38:21Z bloehr $
+ * $Id: trdp_mdcom.c 1770 2018-10-29 10:49:08Z s-bender $
  *
+ *      SB 2018-10-29: Ticket #216: Message data size and padding wrong if marshalling is used
  *      BL 2018-06-27: Ticket #206 Message data transmission fails for several test cases
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-05-14: Ticket #200 Notify 'sender element' fields, set twice
@@ -3146,6 +3147,8 @@ static void trdp_mdDetailSenderPacket (const TRDP_MSG_T         msgType,
                                                     &destSize,
                                                     &pSenderElement->pCachedDS);
             pSenderElement->pPacket->frameHead.datasetLength = vos_htonl(destSize);
+            pSenderElement->grossSize = trdp_packetSizeMD(destSize);
+            pSenderElement->dataSize = destSize;
         }
         else
         {
