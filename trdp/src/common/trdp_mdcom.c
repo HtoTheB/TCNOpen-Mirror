@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1770 2018-10-29 10:49:08Z s-bender $
+ * $Id: trdp_mdcom.c 1772 2018-10-30 12:18:12Z bloehr $
  *
  *      SB 2018-10-29: Ticket #216: Message data size and padding wrong if marshalling is used
  *      BL 2018-06-27: Ticket #206 Message data transmission fails for several test cases
@@ -1995,8 +1995,8 @@ static TRDP_ERR_T  trdp_mdRecv (
     vos_printLog(VOS_LOG_INFO,
                  "Received %s MD packet (type: '%c%c' UUID: %02x%02x%02x%02x%02x%02x%02x%02x Data len: %u)\n",
                  appHandle->pMDRcvEle->pktFlags & TRDP_FLAGS_TCP ? "TCP" : "UDP",
-                 (char) (pH->msgType & 0xFF),
-                 (char) (pH->msgType >> 8),
+                 (char)(*(char *)&pH->msgType),
+                 (char)(*((char *)&pH->msgType + 1u)),
                  pH->sessionID[0],
                  pH->sessionID[1],
                  pH->sessionID[2],

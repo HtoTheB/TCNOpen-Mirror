@@ -14,9 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1767 2018-10-09 09:07:12Z bloehr $
+ * $Id: trdp_if.c 1772 2018-10-30 12:18:12Z bloehr $
  *
- *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed
+ *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed (<-- undone!)
  *      BL 2018-06-29: Default settings handling / compiler warnings
  *      SW 2018-06-26: Ticket #205 tlm_addListener() does not acknowledge TRDP_FLAGS_DEFAULT flag
  *      BL 2018-06-25: Ticket #201 tlp_setRedundant return value if redId is 0
@@ -428,6 +428,26 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
             }
         }
 
+        /*  Subscribe our request packet   */
+        if (ret == TRDP_NO_ERR)
+        {
+            ret = tlp_subscribe(pSession,               /*    our application identifier    */
+                                &dummySubHandle,        /*    our subscription identifier   */
+                                NULL,
+                                NULL,
+                                TRDP_STATISTICS_PULL_COMID, /*    ComID                         */
+                                0u,                     /*    etbtopocount: local consist only  */
+                                0u,                     /*    optrntopocount                    */
+                                0u, 0u,                 /*    Source IP filters                  */
+                                0u,                     /*    Default destination (or MC Group) */
+                                TRDP_FLAGS_NONE,        /*    packet flags                      */
+                                TRDP_TIMER_FOREVER,     /*    Time out in us                    */
+                                TRDP_TO_DEFAULT);       /*    delete invalid data on timeout    */
+        }
+        if (ret == TRDP_NO_ERR)
+        {
+            vos_printLogStr(VOS_LOG_INFO, "TRDP session opened successfully\n");
+        }
         if (vos_mutexUnlock(sSessionMutex) != VOS_NO_ERR)
         {
             vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
