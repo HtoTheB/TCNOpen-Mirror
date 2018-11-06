@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1773 2018-11-06 09:35:34Z ahweiss $
+ * $Id: trdp_utils.c 1775 2018-11-06 14:13:08Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
@@ -698,6 +698,8 @@ TRDP_ERR_T  trdp_requestSocket (
     INT32           emptySockIdx = -1;  /* was emptySock, renamed to avoid confusion */
     TRDP_ERR_T      err         = TRDP_NO_ERR;
     TRDP_IP_ADDR_T  bindAddr    = vos_determineBindAddr(srcIP, mcGroup, rcvMostly);
+
+    memset(&sock_options, 0, sizeof(sock_options));
 
     if (iface == NULL || params == NULL || pIndex == NULL)
     {
