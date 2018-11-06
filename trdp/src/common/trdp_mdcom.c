@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1775 2018-11-06 14:13:08Z ahweiss $
+ * $Id: trdp_mdcom.c 1776 2018-11-06 14:27:36Z bloehr $
  *
  *      SB 2018-10-29: Ticket #216: Message data size and padding wrong if marshalling is used
  *      BL 2018-06-27: Ticket #206 Message data transmission fails for several test cases
@@ -1121,22 +1121,18 @@ static TRDP_ERR_T trdp_mdRecvTCPPacket (TRDP_SESSION_PT appHandle, SOCKET mdSock
             /* Get the rest of the message length */
             dataSize = vos_ntohl(pElement->pPacket->frameHead.datasetLength);
 
-            readDataSize        = trdp_packetSizeMD(dataSize - sizeof(MD_HEADER_T));
-            pElement->grossSize = trdp_packetSizeMD(dataSize);
+            readDataSize        = dataSize;
             pElement->dataSize  = dataSize;
-            dataSize = pElement->grossSize - sizeof(MD_HEADER_T);
         }
         else
         {
             /* Calculate the data size that is pending to read */
-            dataSize = vos_ntohl(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.datasetLength);
+            size        = appHandle->uncompletedTCP[socketIndex]->grossSize + readSize;
+            dataSize    = vos_ntohl(appHandle->uncompletedTCP[socketIndex]->pPacket->frameHead.datasetLength);
 
             pElement->dataSize  = dataSize;
-            pElement->grossSize = trdp_packetSizeMD(dataSize);
-
-            size = appHandle->uncompletedTCP[socketIndex]->grossSize + readSize;
             dataSize        = dataSize - (size - sizeof(MD_HEADER_T));
-            readDataSize    = dataSize; /* trdp_packetSizeMD(dataSize); */
+            readDataSize    = dataSize;
         }
 
         /* If all the Header is read, check if more memory is needed */
@@ -1171,13 +1167,9 @@ static TRDP_ERR_T trdp_mdRecvTCPPacket (TRDP_SESSION_PT appHandle, SOCKET mdSock
 
             /* Add the read Data size to the size read during this cycle */
             readSize = readSize + readDataSize;
-            /* readDataSize = 0u; */
         }
     }
-    if (pElement->grossSize == 0)
-    {
-        pElement->grossSize = size;
-    }
+    pElement->grossSize = size;
 
     /* If the Header is incomplete, the data size will be "0". Otherwise it will be calculated. */
     switch ( err )
