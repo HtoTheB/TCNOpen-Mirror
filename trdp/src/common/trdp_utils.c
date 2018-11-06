@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1761 2018-09-18 15:54:02Z bloehr $
+ * $Id: trdp_utils.c 1773 2018-11-06 09:35:34Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-02-03: Ticket #190 Source filtering (IP-range) for PD subscribe
@@ -686,7 +686,7 @@ TRDP_ERR_T  trdp_requestSocket (
     const TRDP_SEND_PARAM_T *params,
     TRDP_IP_ADDR_T          srcIP,
     TRDP_IP_ADDR_T          mcGroup,
-    TRDP_SOCK_TYPE_T        usage,
+    TRDP_SOCK_TYPE_T        type,
     TRDP_OPTION_T           options,
     BOOL8                   rcvMostly,
     SOCKET                  useSocket,
@@ -724,12 +724,12 @@ TRDP_ERR_T  trdp_requestSocket (
         }
         else if ((iface[lIndex].sock != VOS_INVALID_SOCKET)
                  && (iface[lIndex].bindAddr == bindAddr)
-                 && (iface[lIndex].type == usage)
+                 && (iface[lIndex].type == type)
                  && (iface[lIndex].sendParam.qos == params->qos)
                  && (iface[lIndex].sendParam.ttl == params->ttl)
                  && (iface[lIndex].rcvMostly == rcvMostly)
-                 && ((usage != TRDP_SOCK_MD_TCP)
-                     || ((usage == TRDP_SOCK_MD_TCP) && (iface[lIndex].tcpParams.cornerIp == cornerIp))))
+                 && ((type != TRDP_SOCK_MD_TCP)
+                     || ((type == TRDP_SOCK_MD_TCP) && (iface[lIndex].tcpParams.cornerIp == cornerIp) && (iface[lIndex].usage == 0))))
         {
             /*  Did this socket join the required multicast group?  */
             if (mcGroup != 0 && trdp_SockIsJoined(iface[lIndex].mcGroups, mcGroup) == FALSE)
@@ -753,7 +753,7 @@ TRDP_ERR_T  trdp_requestSocket (
             }
 
 /* add_start TOSHIBA 0306 */
-            if ((usage != TRDP_SOCK_MD_TCP)
+            if ((type != TRDP_SOCK_MD_TCP)
                 && (iface[lIndex].bindAddr != 0)
                 && !vos_isMulticast(iface[lIndex].bindAddr))
             {
@@ -800,7 +800,7 @@ TRDP_ERR_T  trdp_requestSocket (
 
         iface[lIndex].sock          = VOS_INVALID_SOCKET;
         iface[lIndex].bindAddr      = bindAddr /* was srcIP (ID #125) */;
-        iface[lIndex].type          = usage;
+        iface[lIndex].type          = type;
         iface[lIndex].sendParam.qos = params->qos;
         iface[lIndex].sendParam.ttl = params->ttl;
         iface[lIndex].rcvMostly     = rcvMostly;
@@ -840,11 +840,11 @@ TRDP_ERR_T  trdp_requestSocket (
         sock_options.ttl    = params->ttl;
         sock_options.reuseAddrPort  = (options & TRDP_OPTION_NO_REUSE_ADDR) ? FALSE : TRUE;
         sock_options.nonBlocking    = (options & TRDP_OPTION_BLOCK) ? FALSE : TRUE;
-        sock_options.ttl_multicast  = (usage != TRDP_SOCK_MD_TCP) ? params->ttl : 0;
-        sock_options.no_mc_loop     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_MC_LOOP_BACK)) ? 1 : 0;
-        sock_options.no_udp_crc     = ((usage != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_UDP_CHK)) ? 1 : 0;
+        sock_options.ttl_multicast  = (type != TRDP_SOCK_MD_TCP) ? params->ttl : 0;
+        sock_options.no_mc_loop     = ((type != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_MC_LOOP_BACK)) ? 1 : 0;
+        sock_options.no_udp_crc     = ((type != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_UDP_CHK)) ? 1 : 0;
 
-        switch (usage)
+        switch (type)
         {
            case TRDP_SOCK_MD_UDP:
                sock_options.nonBlocking = TRUE;  /* MD UDP sockets are always non blocking because they are polled */
@@ -931,10 +931,6 @@ TRDP_ERR_T  trdp_requestSocket (
                    *pIndex = lIndex;
                }
 
-               if (iface[lIndex].bindAddr != 0)
-               {
-                   (void) vos_sockBind(iface[lIndex].sock, iface[lIndex].bindAddr, 0);
-               }
                break;
            default:
                *pIndex  = TRDP_INVALID_SOCKET_INDEX;
