@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1777 2018-11-06 17:16:47Z bloehr $
+ * $Id: trdp_utils.c 1779 2018-11-07 09:49:55Z bloehr $
  *
  *      BL 2018-11-06: for-loops limited to sCurrentMaxSocketCnt instead VOS_MAX_SOCKET_CNT
  *      BL 2018-11-06: Ticket #219: PD Sequence Counter is not synched correctly
@@ -179,9 +179,9 @@ static BOOL8 trdp_SockDelJoin (
  *   Globals
  */
 
-UINT32 trdp_getCurrentMaxSocketCnt()
+INT32 trdp_getCurrentMaxSocketCnt()
 {
-    return (UINT32)sCurrentMaxSocketCnt;
+    return sCurrentMaxSocketCnt;
 }
 
 /**********************************************************************************************************************/

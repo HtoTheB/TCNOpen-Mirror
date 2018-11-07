@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.h 1777 2018-11-06 17:16:47Z bloehr $
+ * $Id: trdp_utils.h 1779 2018-11-07 09:49:55Z bloehr $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -102,7 +102,7 @@ void        trdp_MDqueueInsFirst (
  *  @return      maxSocketCount
  */
 
-UINT32 trdp_getCurrentMaxSocketCnt(void);
+INT32 trdp_getCurrentMaxSocketCnt(void);
 
 
 /*********************************************************************************************************************/
