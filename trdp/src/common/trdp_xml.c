@@ -14,8 +14,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: trdp_xml.c 1581 2017-02-08 17:39:38Z bloehr $
+ * $Id: trdp_xml.c 1778 2018-11-07 08:31:57Z s-bender $
  *
+ *      SB 2018-11-07: Ticket #221 readXmlDatasets failed 
  *      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
  *      BL 2016-02-24: missing include (thanks to Robert)
  *      BL 2016-02-11: Ticket #102: Replacing libxml2
@@ -309,7 +310,7 @@ TRDP_ERR_T trdp_XMLOpen (
     XML_HANDLE_T    *pXML,
     const char      *file)
 {
-    if ((pXML->infile = fopen(file, "r")) == NULL)
+    if ((pXML->infile = fopen(file, "r+b")) == NULL)
     {
         return TRDP_IO_ERR;
     }
