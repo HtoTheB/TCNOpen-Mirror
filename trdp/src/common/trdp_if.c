@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1772 2018-10-30 12:18:12Z bloehr $
+ * $Id: trdp_if.c 1785 2018-11-07 10:43:13Z bloehr $
  *
  *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed (<-- undone!)
  *      BL 2018-06-29: Default settings handling / compiler warnings
@@ -3143,13 +3143,17 @@ TRDP_ERR_T tlm_replyQuery (
     {
         return TRDP_PARAM_ERR;
     }
-    if ( confirmTimeout != 0U )
+    if ( confirmTimeout == 0U )
     {
-        mdTimeOut = confirmTimeout;
+        mdTimeOut = appHandle->mdDefault.confirmTimeout;
+    }
+    else if ( confirmTimeout == TRDP_INFINITE_TIMEOUT)
+    {
+        mdTimeOut = 0;
     }
     else
     {
-        mdTimeOut = appHandle->mdDefault.confirmTimeout;
+        mdTimeOut = confirmTimeout;
     }
 
     return trdp_mdReply(TRDP_MSG_MQ,

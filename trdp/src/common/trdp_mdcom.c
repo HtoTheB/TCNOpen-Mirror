@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1779 2018-11-07 09:49:55Z bloehr $
+ * $Id: trdp_mdcom.c 1785 2018-11-07 10:43:13Z bloehr $
  *
  *      BL 2018-11-07: Ticket #185 MD reply: Infinite timeout wrong handled
  *      BL 2018-11-07: Ticket #220 Message Data - Different behaviour UDP & TCP
@@ -3270,7 +3270,7 @@ TRDP_ERR_T trdp_mdReply (const TRDP_MSG_T           msgType,
 
                 if ( msgType == TRDP_MSG_MQ )
                 {
-                    /* infinite timeouts for confirmation shall not exist */
+                    /* infinite timeouts for confirmation shall not exist, but are possible */
                     pSenderElement->interval.tv_sec     = timeout / 1000000u;
                     pSenderElement->interval.tv_usec    = timeout % 1000000;
                     trdp_mdSetSessionTimeout(pSenderElement);
