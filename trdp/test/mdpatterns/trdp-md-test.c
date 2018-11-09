@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: trdp-md-test.c 1796 2018-11-09 13:21:36Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -40,6 +40,13 @@
 #include <sys/ioctl.h>
 #include <time.h>
 #endif
+
+#define UDP
+#define TCPN
+#define TCPRR
+#define TCPRRC
+#define MCAST
+#define MCASTN
 
 /* --- globals ----------------------------------------------------------------- */
 
@@ -624,6 +631,7 @@ void md_callback (void *ref, TRDP_APP_SESSION_T apph,
        case TRDP_REPLYTO_ERR:
        case TRDP_TIMEOUT_ERR:
            /* reply doesn't arrived */
+           sts.err[test]++;
            print(-4, "error %s", get_result_string(msg->resultCode));
            switch (sts.test)
            {
@@ -643,6 +651,7 @@ void md_callback (void *ref, TRDP_APP_SESSION_T apph,
            break;
 
        default:
+           sts.err[test]++;
            print(-4, "error %s", get_result_string(msg->resultCode));
            break;
     }
@@ -824,6 +833,7 @@ void exec_next_test ()
     {
        case TST_NOTIFY_TCP:
            /* notification - TCP */
+#ifdef TCPN
            if ((opts.groups & TST_TCP) && (opts.groups & TST_NOTIFY))
            {
                print(-1, "TEST %d -- notification - TCP", sts.test);
@@ -834,10 +844,12 @@ void exec_next_test ()
                flags = (TRDP_FLAGS_T) (flags | TRDP_FLAGS_TCP);
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_NOTIFY_UCAST:
            /* notification - unicast */
+#ifdef UDP
            if ((opts.groups & TST_UCAST) && (opts.groups & TST_NOTIFY))
            {
                print(-1, "TEST %d -- notification - UDP - unicast", sts.test);
@@ -847,10 +859,12 @@ void exec_next_test ()
                msg.numExpReplies    = 0;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_NOTIFY_MCAST:
            /* notification - multicast */
+#ifdef MCAST
            if ((opts.groups & TST_MCAST) && (opts.groups & TST_NOTIFY))
            {
                print(-1, "TEST %d -- notification - UDP - multicast", sts.test);
@@ -860,10 +874,12 @@ void exec_next_test ()
                msg.numExpReplies    = 0;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREP_TCP:
            /* request/reply - TCP */
+#ifdef TCPRR
            if ((opts.groups & TST_TCP) && (opts.groups & TST_REQREP))
            {
                print(-1, "TEST %d -- request/reply - TCP", sts.test);
@@ -874,10 +890,12 @@ void exec_next_test ()
                flags = (TRDP_FLAGS_T) (flags | TRDP_FLAGS_TCP);
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREP_UCAST:
            /* request/reply - unicast */
+#ifdef UDP
            if ((opts.groups & TST_UCAST) && (opts.groups & TST_REQREP))
            {
                print(-1, "TEST %d -- request/reply - UDP - unicast", sts.test);
@@ -887,10 +905,12 @@ void exec_next_test ()
                msg.numExpReplies    = 1;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREP_MCAST_1:
            /* request/reply - multicast (1 reply) */
+#ifdef MCAST
            if ((opts.groups & TST_MCAST) && (opts.groups & TST_REQREP))
            {
                print(-1, "TEST %d "
@@ -901,10 +921,12 @@ void exec_next_test ()
                msg.numExpReplies    = 1;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREP_MCAST_N:
            /* request/reply - multicast (? replies) */
+#ifdef MCASTN
            if ((opts.groups & TST_MCAST) && (opts.groups & TST_REQREP))
            {
                print(-1, "TEST %d "
@@ -915,10 +937,12 @@ void exec_next_test ()
                msg.numExpReplies    = 0;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREPCFM_TCP:
            /* request/reply/confirm - TCP */
+#ifdef TCPRRC
            if ((opts.groups & TST_TCP) && (opts.groups & TST_REQREPCFM))
            {
                print(-1, "TEST %d -- request/reply/confirm - TCP", sts.test);
@@ -929,10 +953,12 @@ void exec_next_test ()
                flags = (TRDP_FLAGS_T) (flags | TRDP_FLAGS_TCP);
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREPCFM_UCAST:
            /* request/reply/confirm - unicast */
+#ifdef UDP
            if ((opts.groups & TST_UCAST) && (opts.groups & TST_REQREPCFM))
            {
                print(-1, "TEST %d -- request/reply/confirm - UDP - unicast", sts.test);
@@ -942,10 +968,12 @@ void exec_next_test ()
                msg.numExpReplies    = 1;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREPCFM_MCAST_1:
            /* request/reply/confirm - multicast (1 reply) */
+#ifdef MCAST
            if ((opts.groups & TST_MCAST) && (opts.groups & TST_REQREPCFM))
            {
                print(-1, "TEST %d "
@@ -956,10 +984,12 @@ void exec_next_test ()
                msg.numExpReplies    = 1;
                break;
            }
+#endif
            ++sts.test;
        /* fall through */
        case TST_REQREPCFM_MCAST_N:
            /* request/reply/confirm - multicast (? reps.) */
+#ifdef MCASTN
            if ((opts.groups & TST_MCAST) && (opts.groups & TST_REQREPCFM))
            {
                print(-1, "TEST %d "
@@ -970,8 +1000,10 @@ void exec_next_test ()
                msg.numExpReplies    = 0;
                break;
            }
+#endif
        /* fall through */
        default:
+ //          vos_threadDelay(6000000);
            exec_next_test();
            return;
     }
