@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: iec61375-2-3.h 1755 2018-08-07 12:10:03Z bloehr $
+ * $Id: iec61375-2-3.h 1793 2018-11-09 10:20:09Z ahweiss $
  *
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition
  *     AHW 2017-11-05: Ticket #179 Max. number of retries of a MD request needs to be checked
@@ -143,10 +143,9 @@
         to facilitate alignment the size will be increased by 1 byte
  */
 
-#define TRDP_MAX_URI_USER_LEN   (2u * TRDP_MAX_LABEL_LEN)           /**< URI user part excl. terminating '0'        */
-#define TRDP_MAX_URI_HOST_LEN   (4u * TRDP_MAX_LABEL_LEN)           /**< URI host part length excl. terminating '0' */
-#define TRDP_MAX_URI_LEN        ((6u * TRDP_MAX_LABEL_LEN) + 8u)    /**< URI length excl. terminating '0'
-                                                                                            and 1 padding   byte    */
+#define TRDP_MAX_URI_USER_LEN   (2u * TRDP_MAX_LABEL_LEN)           /**< URI user part incl. '.' and terminating '0' */
+#define TRDP_MAX_URI_HOST_LEN   (5u * TRDP_MAX_LABEL_LEN)           /**< URI host part incl. terminating '0'  */
+#define TRDP_MAX_URI_LEN        (7u * TRDP_MAX_LABEL_LEN)           /**< URI length incl. '.', '@' and terminating '0' */
 #define TRDP_MAX_FILE_NAME_LEN              128u                    /**< path and file name length incl. terminating '0'*/
 #define TRDP_VAR_SIZE                       0u                      /**< Variable size dataset                      */
 
