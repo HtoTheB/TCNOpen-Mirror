@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_marshall.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: tau_marshall.c 1789 2018-11-09 08:15:22Z ahweiss $
  *
+ *      BL 2018-11-08: Use B_ENDIAN from vos_utils.h in unpackedCopy64()
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      SW 2018-06-12: Ticket #203 Incorrect unmarshalling of datasets containing TIMEDATE64 array
  *      BL 2018-05-17: Ticket #197 Incorrect Marshalling/Unmarshalling for nested datasets
@@ -126,7 +127,7 @@ static INLINE void unpackedCopy64 (
     UINT8   * *ppDst,
     UINT32  noOfItems)
 
-#if __BIG_ENDIAN__ || __ARMEB__ || __AARCH64EB__ || __MIPSEB__
+#ifdef B_ENDIAN
 {
     UINT32  size    = noOfItems * sizeof(UINT64);
     UINT8   *pDst8  = (UINT8 *) alignePtr(*ppDst, ALIGNOF(UINT64));
@@ -1463,7 +1464,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSize (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) (info.pDst - (UINT8 *)NULL);
+    *pDestSize = (UINT32) (info.pDst);
 
     return err;
 }
@@ -1535,7 +1536,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSizeByComId (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) (info.pDst - (UINT8 *)NULL);
+    *pDestSize = (UINT32) (info.pDst);
 
     return err;
 }

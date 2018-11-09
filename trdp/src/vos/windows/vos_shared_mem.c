@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_shared_mem.c 1763 2018-09-21 16:03:13Z ahweiss $*
+ * $Id: vos_shared_mem.c 1789 2018-11-09 08:15:22Z ahweiss $*
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
@@ -109,7 +109,7 @@ EXT_DECL VOS_ERR_T vos_sharedOpen (
         else
         {
             /* CHAR8 to TCHAR (Unicode) */
-            err = mbstowcs_s(&convertedChars, shMemName, strlen(pKey) + 1, pKey, _TRUNCATE);
+            err = mbstowcs_s(&convertedChars, (wchar_t *) shMemName, strlen(pKey) + 1, pKey, _TRUNCATE);
             if (err != 0)
             {
                 vos_printLogStr(VOS_LOG_ERROR,"vos_sharedOpen() ERROR Could not convert CHAR8 to TCHAR\n");

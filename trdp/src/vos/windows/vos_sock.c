@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1769 2018-10-25 15:55:28Z ahweiss $*
+ * $Id: vos_sock.c 1789 2018-11-09 08:15:22Z ahweiss $*
  *
  *      SB 2018-07-20: Ticket #209: vos_getInterfaces returning incorrect "name" and "linkState" on windows (requires
  *                                  at least windows vista now).
@@ -528,7 +528,7 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
 EXT_DECL void vos_sockTerm (void)
 {
     vosSockInitialised = FALSE;
-    WSACleanup();
+    (void) WSACleanup();
 }
 
 

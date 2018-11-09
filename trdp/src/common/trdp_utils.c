@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1779 2018-11-07 09:49:55Z bloehr $
+ * $Id: trdp_utils.c 1789 2018-11-09 08:15:22Z ahweiss $
  *
  *      BL 2018-11-06: for-loops limited to sCurrentMaxSocketCnt instead VOS_MAX_SOCKET_CNT
  *      BL 2018-11-06: Ticket #219: PD Sequence Counter is not synched correctly
@@ -1062,11 +1062,14 @@ void  trdp_releaseSocket (
                     we do that only if the caller is the only user of this MC group on this socket! */
                 if (trdp_SockDelJoin(iface[lIndex].mcGroups, mcGroupUsed) == FALSE)
                 {
-                    vos_printLogStr(VOS_LOG_WARNING, "trdp_SockDelJoin() failed!\n");
+                    vos_printLogStr(VOS_LOG_WARNING, "trdp_sockDelJoin() failed!\n");
                 }
                 else    /* and unjoin MC group */
                 {
-                    vos_sockLeaveMC(iface[lIndex].sock, mcGroupUsed, iface[lIndex].bindAddr);
+                   if (vos_sockLeaveMC(iface[lIndex].sock, mcGroupUsed, iface[lIndex].bindAddr) != VOS_NO_ERR)
+                   {
+                      vos_printLogStr(VOS_LOG_WARNING, "trdp_sockLeaveMC() failed!\n");
+                   }
                 }
             }
             else

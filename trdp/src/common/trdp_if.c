@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1785 2018-11-07 10:43:13Z bloehr $
+ * $Id: trdp_if.c 1789 2018-11-09 08:15:22Z ahweiss $
  *
  *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed (<-- undone!)
  *      BL 2018-06-29: Default settings handling / compiler warnings
@@ -1681,7 +1681,11 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
         {
             ret = (TRDP_ERR_T) vos_mutexLock(appHandle->mutex);
 
-            if (ret == TRDP_NO_ERR)
+            if (ret != TRDP_NO_ERR)
+            {
+               vos_printLogStr(VOS_LOG_INFO, "vos_mutexLock() failed\n");
+            }
+            else
             {
                 /*    Get the current time    */
                 vos_getTime(&now);
