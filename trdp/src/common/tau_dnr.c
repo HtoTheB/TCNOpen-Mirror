@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.c 1793 2018-11-09 10:20:09Z ahweiss $
+ * $Id: tau_dnr.c 1799 2018-11-09 13:51:12Z bloehr $
  *
  *      BL 2018-08-07: Ticket #183 tau_getOwnIds declared but not defined
  *      BL 2018-08-06: Ticket #210 IF condition for DNS Options incorrect in tau_uri2Addr()
@@ -1203,6 +1203,10 @@ EXT_DECL TRDP_IP_ADDR_T tau_getOwnAddr (
                     return localIF[i].ipAddr;   /* Could still be unset!    */
                 }
             }
+        }
+        else
+        {
+            return appHandle->realIP;
         }
     }
 
