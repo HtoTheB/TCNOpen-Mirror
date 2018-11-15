@@ -17,7 +17,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_mdcom.c 1789 2018-11-09 08:15:22Z ahweiss $
+ * $Id: trdp_mdcom.c 1807 2018-11-15 12:56:26Z railroad-mike $
  *
  *      BL 2018-11-07: Ticket #185 MD reply: Infinite timeout wrong handled
  *      BL 2018-11-07: Ticket #220 Message Data - Different behaviour UDP & TCP
@@ -1832,7 +1832,7 @@ static TRDP_ERR_T trdp_mdSendME (TRDP_SESSION_PT appHandle, MD_HEADER_T *pH, INT
             pSenderElement->dataSize        = 0u;
             pSenderElement->grossSize       = trdp_packetSizeMD(0);
             pSenderElement->socketIdx       = TRDP_INVALID_SOCKET_INDEX;
-            pSenderElement->pktFlags        = appHandle->mdDefault.flags;
+            pSenderElement->pktFlags        = mdElement->pktFlags; /* use the senders flagset to be able to deistinguish between TCP and UDP */
             pSenderElement->pfCbFunction    = mdElement->pfCbFunction;
             pSenderElement->privFlags       = TRDP_PRIV_NONE;
             pSenderElement->sendSize        = 0u;
