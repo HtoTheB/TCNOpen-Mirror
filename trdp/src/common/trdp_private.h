@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1808 2018-11-17 06:42:13Z ahweiss $
+ * $Id: trdp_private.h 1812 2018-11-17 07:22:14Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -48,9 +48,9 @@
 
 /* The TRDP version can be predefined as CFLAG   */
 #ifndef TRDP_VERSION
-#define TRDP_VERSION            1u
-#define TRDP_RELEASE            4u
-#define TRDP_UPDATE             1u
+#define TRDP_VERSION            0u
+#define TRDP_RELEASE            0u
+#define TRDP_UPDATE             0u
 #define TRDP_EVOLUTION          0u
 #endif
 
