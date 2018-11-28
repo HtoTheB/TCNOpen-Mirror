@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_utils.h 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: vos_utils.h 1814 2018-11-28 09:10:25Z ahweiss $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
@@ -168,6 +168,7 @@ extern void *gRefCon;
 /**********************************************************************************************************************/
 /** Calculate CRC for the given buffer and length.
  *  For TRDP FCS CRC calculation the CRC32 according to IEEE802.3 with start value 0xffffffff is used.
+ *  Note: Returned CRC is inverted
  *
  *  @param[in]          crc             Initial value.
  *  @param[in,out]      pData           Pointer to data.
@@ -182,7 +183,6 @@ EXT_DECL UINT32 vos_crc32 (
 
 /**********************************************************************************************************************/
 /** Compute crc32 according to IEC 61375-2-3 B.7
- *  Note: Returned CRC is inverted
  *
  *  @param[in]          crc             Initial value.
  *  @param[in,out]      pData           Pointer to data.
