@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1813 2018-11-26 14:03:32Z bloehr $*
+ * $Id: vos_sock.c 1816 2018-11-29 15:56:31Z s-bender $*
  *
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
  *      SB 2018-07-20: Ticket #209: vos_getInterfaces returning incorrect "name" and "linkState" on windows (requires
@@ -126,8 +126,9 @@ INT32 recvmsg (SOCKET sock, struct msghdr *pMessage, int flags)
         if (err != WSAEWOULDBLOCK)
         {
             vos_printLog(VOS_LOG_ERROR, "WSAIoctl() failed (Err: %d)\n", err);
+            return -1;
         }
-        return -1;
+        
     }
     else
     {
@@ -138,11 +139,15 @@ INT32 recvmsg (SOCKET sock, struct msghdr *pMessage, int flags)
             DWORD err = WSAGetLastError();
             
             /* to avoid flooding with error messages */
-            if (err != WSAEWOULDBLOCK)
+            if (err != WSAEMSGSIZE)
             {
-                vos_printLog(VOS_LOG_ERROR, "WSARecvMsg() failed (Err: %d)\n", err);
+                if (err != WSAEWOULDBLOCK)
+                {
+                    vos_printLog(VOS_LOG_ERROR, "WSARecvMsg() failed (Err: %d)\n", err);
+                }
+                return -1;
             }
-            return -1;
+            
         }
     }
     return numBytes;
