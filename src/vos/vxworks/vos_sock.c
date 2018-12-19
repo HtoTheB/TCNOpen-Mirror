@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1825 2018-12-18 15:15:33Z matthiasmossner $*
+ * $Id: vos_sock.c 1826 2018-12-19 12:08:09Z matthiasmossner $*
  *
  */
 
@@ -217,9 +217,9 @@ EXT_DECL UINT32 vos_dottedIP (
     struct in_addr addr;
     /* vxWorks does not regard the const qualifier for first parameter */
     /* casting to non const, helps to get rid of compiler noise        */
-    if (inet_aton((CHAR8*)pDottedIP, &addr) <= 0)
+    if (inet_aton((CHAR8 *)pDottedIP, &addr) != OK)
     {
-        return 0;   /* Prevent returning broadcast address on error */
+        return VOS_INADDR_ANY;   /* Prevent returning broadcast address on error */
     }
     else
     {
@@ -638,9 +638,9 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
         }
         if (pOptions->ttl_multicast > 0)
         {
-            sockOptValue = pOptions->ttl_multicast;
-            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, (char *)&sockOptValue,
-                           sizeof(sockOptValue)) == -1)
+            char ttlMulticastOptValue = (pOptions->ttl_multicast & 0x000000FF);
+            if (setsockopt(sock, IPPROTO_IP, IP_MULTICAST_TTL, &ttlMulticastOptValue,
+                           sizeof(ttlMulticastOptValue)) == -1)
             {
                 char buff[VOS_MAX_ERR_STR_SIZE];
                 STRING_ERR(buff);
