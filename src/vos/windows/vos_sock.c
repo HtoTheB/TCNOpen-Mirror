@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1540 2016-03-08 15:59:31Z bloehr $*
+ * $Id: vos_sock.c 1827 2018-12-20 07:47:20Z matthiasmossner $*
  *
  */
 
@@ -1667,4 +1667,17 @@ EXT_DECL VOS_IP4_ADDR_T vos_determineBindAddr ( VOS_IP4_ADDR_T  srcIP,
                                                 VOS_IP4_ADDR_T  rcvMostly)
 {
     return srcIP;
+}
+
+/**********************************************************************************************************************/
+/** Sets the name of the interface
+ *  @param[in]      iFaceName       name of interface which shall be used by TRDP stack
+ *
+ *  @retval             VOS_NO_ERR
+ *                      VOS_LEN_ERR
+ *                      VOS_NOT_SUPPORTED
+ */
+EXT_DECL VOS_ERR_T vos_setIfaceName ( CHAR8 *iFaceName )
+{
+    return VOS_NOT_SUPPORTED;
 }
