@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1789 2018-11-09 08:15:22Z ahweiss $
+ * $Id: trdp_utils.c 1829 2019-01-17 09:38:36Z s-bender $
  *
+ *      SB 2018-01-17: Ticket: #230 multiple Subscribers with same comId, sourceIPs but different destinationIPs not working
  *      BL 2018-11-06: for-loops limited to sCurrentMaxSocketCnt instead VOS_MAX_SOCKET_CNT
  *      BL 2018-11-06: Ticket #219: PD Sequence Counter is not synched correctly
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -370,7 +371,8 @@ PD_ELE_T *trdp_queueFindSubAddr (
         /*  We match if src/dst/mc address is zero or matches */
         if (iterPD->addr.comId == addr->comId)
         {
-            if ((iterPD->addr.srcIpAddr == VOS_INADDR_ANY) || (iterPD->addr.srcIpAddr == addr->srcIpAddr))
+            if (((iterPD->addr.srcIpAddr == VOS_INADDR_ANY) || (iterPD->addr.srcIpAddr == addr->srcIpAddr))
+                && ((iterPD->addr.destIpAddr == VOS_INADDR_ANY) || (iterPD->addr.destIpAddr == addr->destIpAddr)))
             {
                 return iterPD;
             }
@@ -378,12 +380,12 @@ PD_ELE_T *trdp_queueFindSubAddr (
             if (iterPD->addr.srcIpAddr2 != VOS_INADDR_ANY)
             {
                 if ((addr->srcIpAddr >= iterPD->addr.srcIpAddr) &&
-                    (addr->srcIpAddr <= iterPD->addr.srcIpAddr2))
+                    (addr->srcIpAddr <= iterPD->addr.srcIpAddr2) &&
+                    ((iterPD->addr.destIpAddr == VOS_INADDR_ANY) || (iterPD->addr.destIpAddr == addr->destIpAddr)))
                 {
                     return iterPD;
                 }
             }
-
         }
     }
     return NULL;
