@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2018. All rights reserved.
  *
- * $Id: vos_utils.h 1815 2018-11-28 09:33:07Z ahweiss $
+ * $Id: vos_utils.h 1831 2019-01-28 13:51:11Z bloehr $
  *
+ *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *     AHW 2018-11-28: Doxygen comment errors
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-02-08: Ticket #142: Compiler warnings / MISRA-C 2012 issues
@@ -114,6 +115,8 @@ extern void *gRefCon;
 #elif defined(__GNUC__)
     #define ALIGNOF(type)   __alignof__(type)
 */
+#elif defined(__clang__)
+    #define ALIGNOF(type)   __alignof__(type)
 #else
     #define ALIGNOF(type)  ((UINT32)offsetof(struct { char c; type member; }, member))
 #endif
@@ -157,6 +160,9 @@ extern void *gRefCon;
 #endif
 #endif
 
+#if defined(__APPLE__) || defined(__USE_XOPEN2K8)
+#define HAS_FMEMOPEN    1
+#endif
 
 /***********************************************************************************************************************
  * TYPEDEFS
