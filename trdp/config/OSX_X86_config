@@ -1,5 +1,5 @@
 #//
-#// $Id: OSX_X86_config 1639 2017-06-08 09:04:15Z bloehr $
+#// $Id: OSX_X86_config 1832 2019-01-28 14:02:32Z bloehr $
 #//
 #// DESCRIPTION    Config file to make TRDP for OSX_X86 target
 #//
@@ -18,5 +18,5 @@ TCPOSTFIX =
 DOXYPATH = /Applications/Doxygen.app/Contents/Resources/
 
 CFLAGS += -Wall -m32 -fno-builtin -fsigned-char -pthread -fPIC -D__USE_BSD -D_DARWIN_C_SOURCE -DPOSIX -DL_ENDIAN
-CFLAGS += -Wno-unused-label -Wno-unused-function
+CFLAGS += -Wno-unused-label -Wno-unused-function -Wno-int-to-void-pointer-cast -Wno-self-assign
 INCPATH += -I /usr/include/uuid
