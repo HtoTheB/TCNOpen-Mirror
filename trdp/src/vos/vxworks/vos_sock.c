@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: vos_sock.c 1813 2018-11-26 14:03:32Z bloehr $*
+ * $Id: vos_sock.c 1833 2019-01-29 13:18:48Z bloehr $*
  *
+ *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
  *      BL 2018-07-13: Ticket #208: VOS socket options: QoS/ToS field priority handling needs update
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -664,13 +665,16 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
              This field is now called the "DS" (Differentiated Services) field and the upper 6 bits contain
              a value called the "DSCP" (Differentiated Services Code Point).
              QoS as priority value is now mapped to DSCP values and the Explicit Congestion Notification (ECN)
-             is set to 0 */
+             is set to 0
 
-            /* old:
-             sockOptValue = (int) ((pOptions->qos << 5) | 4);
-             New: */
-            const int dscpMap[] = {0, 8, 16, 24, 32, 40, 48, 56};
-            sockOptValue = (int) dscpMap[pOptions->qos];
+             IEC61375-3-4 Chap 4.6.3 defines the binary representation of DSCP field as:
+                LLL000
+             where
+                LLL: priority level (0-7) defined in Chap 4.6.2
+
+             */
+
+            sockOptValue = (int) pOptions->qos << 5;    /* The lower 2 bits are the ECN field! */
             if (setsockopt(sock, IPPROTO_IP, IP_TOS, (char *)&sockOptValue,
                            sizeof(sockOptValue)) == -1)
             {
