@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: vos_thread.c 1334 2014-09-23 09:27:40Z railroad-mike $*
+ * $Id: vos_thread.c 1834 2019-01-30 07:13:18Z matthiasmossner $*
  *
  *
  */
@@ -340,7 +340,11 @@ EXT_DECL void vos_getTime (
     else
     {
         /*lint -e(534) ignore return value */
+#ifdef CLOCK_MONOTONIC
+        clock_gettime(CLOCK_MONOTONIC, &myTime);
+#else
         clock_gettime(CLOCK_REALTIME, &myTime);
+#endif
         pTime->tv_sec   = (UINT32) myTime.tv_sec;
         pTime->tv_usec  = (INT32) (myTime.tv_nsec / VOS_NSECS_PER_USEC);
     }
