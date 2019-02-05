@@ -23,7 +23,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1835 2019-01-31 14:29:35Z s-bender $
+ * $Id: tau_tti.c 1836 2019-02-05 16:11:47Z bloehr $
  *
  *      SB 2019-01-31: fixed reference of waitForInaug semaphore pointer in ttiMDCallback
  *      BL 2019-01-24: ttiStoreOpTrnDir returns changed flag
@@ -426,6 +426,8 @@ static void ttiMDCallback (
 {
     VOS_SEMA_T waitForInaug = (VOS_SEMA_T) pMsg->pUserRef;
 
+    (void) pRefCon;
+    
     if (pMsg->comId == TTDB_OP_DIR_INFO_COMID ||      /* TTDB notification */
         pMsg->comId == TTDB_OP_DIR_INFO_REP_COMID)
     {

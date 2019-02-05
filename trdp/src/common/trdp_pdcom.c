@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1789 2018-11-09 08:15:22Z ahweiss $
+ * $Id: trdp_pdcom.c 1836 2019-02-05 16:11:47Z bloehr $
  *
+ *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-10-29: Ticket #217 PD Pull requests must be subscribed for
  *      BL 2018-08-07: Ticket #207 tlp_put() and variable dataSize
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -622,10 +623,9 @@ TRDP_ERR_T  trdp_pdReceive (
                 /*  Handle statistics request  */
                 if (vos_ntohl(pNewFrameHead->comId) == TRDP_STATISTICS_PULL_COMID)
                 {
-                    pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, TRDP_GLOBAL_STATISTICS_COMID);
+                    pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, TRDP_GLOBAL_STATS_REPLY_COMID);
                     if (pPulledElement != NULL)
                     {
-                        pPulledElement->addr.comId      = TRDP_GLOBAL_STATISTICS_COMID;
                         pPulledElement->addr.destIpAddr = vos_ntohl(pNewFrameHead->replyIpAddress);
 
                         trdp_pdInit(pPulledElement, TRDP_MSG_PP, appHandle->etbTopoCnt, appHandle->opTrnTopoCnt, 0u, 0u);
