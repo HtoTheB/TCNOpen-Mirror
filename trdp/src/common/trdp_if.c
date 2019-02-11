@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if.c 1836 2019-02-05 16:11:47Z bloehr $
+ * $Id: trdp_if.c 1841 2019-02-11 14:38:42Z s-bender $
  *
+ *      SB 2019-02-11: Ticket #230 Setting destIpAddr to 0 in tlp_subscribe() if it is not multicast address
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-10-09: Ticket #213 ComId 31 subscription removed (<-- undone!)
  *      BL 2018-06-29: Default settings handling / compiler warnings
@@ -2173,16 +2174,17 @@ EXT_DECL TRDP_ERR_T tlp_subscribe (
                     {
                         newPD->addr.mcGroup = destIpAddr;
                         newPD->privFlags    |= TRDP_MC_JOINT;
+                        newPD->addr.destIpAddr  = destIpAddr;
                     }
                     else
                     {
                         newPD->addr.mcGroup = 0u;
+                        newPD->addr.destIpAddr  = 0u;
                     }
 
                     newPD->addr.comId       = comId;
                     newPD->addr.srcIpAddr   = srcIpAddr1;
                     newPD->addr.srcIpAddr2  = srcIpAddr2;
-                    newPD->addr.destIpAddr  = destIpAddr;
                     newPD->interval.tv_sec  = timeout / 1000000u;
                     newPD->interval.tv_usec = timeout % 1000000u;
                     newPD->toBehavior       =
