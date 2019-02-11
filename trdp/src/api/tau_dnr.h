@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: tau_dnr.h 1755 2018-08-07 12:10:03Z bloehr $
+ * $Id: tau_dnr.h 1839 2019-02-11 13:03:26Z mohamedyoussef $
  *
  *      BL 2018-08-07: Ticket #183 tau_getOwnIds moved here
  *      BL 2017-07-25: Ticket #125: tau_dnr: TCN DNS support missing
@@ -47,7 +47,7 @@ extern "C" {
 /***********************************************************************************************************************
  * TYPEDEFS
  */
-
+/** DNR state */
 typedef enum TRDP_DNR_STATE {
     TRDP_DNR_UNKNOWN        = 0,
     TRDP_DNR_NOT_AVAILABLE  = 1,
@@ -55,9 +55,10 @@ typedef enum TRDP_DNR_STATE {
     TRDP_DNR_HOSTSFILE      = 3
 } TRDP_DNR_STATE_T;
 
+/**DNR options */
 typedef enum TRDP_DNR_OPTS {
     TRDP_DNR_COMMON_THREAD  = 0,
-    TRDP_DNR_OWN_THREAD     = 1,
+    TRDP_DNR_OWN_THREAD     = 1, /**<For single threaded systems only! Internally call tlc_process() */
     TRDP_DNR_STANDARD_DNS   = 2
 } TRDP_DNR_OPTS_T;
     
