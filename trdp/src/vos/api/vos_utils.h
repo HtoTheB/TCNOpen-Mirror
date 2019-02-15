@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2018. All rights reserved.
  */
  /*
- * $Id: vos_utils.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: vos_utils.h 1843 2019-02-15 14:50:01Z s-bender $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *     AHW 2018-11-28: Doxygen comment errors
@@ -163,6 +163,10 @@ extern void *gRefCon;
 
 #if defined(__APPLE__) || defined(__USE_XOPEN2K8)
 #define HAS_FMEMOPEN    1
+#endif
+
+#ifndef MD_SUPPORT
+#define MD_SUPPORT 1
 #endif
 
 /***********************************************************************************************************************
