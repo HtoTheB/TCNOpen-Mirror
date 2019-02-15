@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: tau_ctrl.c 1711 2018-03-06 16:11:32Z bloehr $
+ */
+ /*
+ * $Id: tau_ctrl.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked

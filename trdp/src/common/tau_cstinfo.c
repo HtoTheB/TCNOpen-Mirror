@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
- *
- * $Id: tau_cstinfo.c 1646 2017-07-05 14:34:41Z bloehr $
+ */
+ /*
+ * $Id: tau_cstinfo.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h

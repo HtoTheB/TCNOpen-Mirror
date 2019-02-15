@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: trdp_dllmain.c 1763 2018-09-21 16:03:13Z ahweiss $
+ */
+ /*
+ * $Id: trdp_dllmain.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  */
 

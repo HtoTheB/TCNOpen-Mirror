@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: trdp_if.h 1264 2014-07-14 15:54:26Z bloehr $
+ */
+ /*
+ * $Id: trdp_if.h 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */

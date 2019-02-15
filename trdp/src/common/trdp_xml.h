@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH or its subsidiaries and others, 2016. All rights reserved.
- *
- * $Id: trdp_xml.h 1831 2019-01-28 13:51:11Z bloehr $
+ */
+ /*
+ * $Id: trdp_xml.h 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *      BL 2016-02-11: Ticket #102: Replacing libxml2

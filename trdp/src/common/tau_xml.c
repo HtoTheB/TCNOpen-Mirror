@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
- *
- * $Id: tau_xml.c 1831 2019-01-28 13:51:11Z bloehr $
+ */
+ /*
+ * $Id: tau_xml.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *      SB 2018-10-29: Ticket #214 Incorrect parsing of <source> and <destination> elements

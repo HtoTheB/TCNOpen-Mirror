@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright 2018. All rights reserved.
- *
- * $Id: vos_thread.c 1749 2018-07-19 16:38:21Z bloehr $
+ */
+ /*
+ * $Id: vos_thread.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)

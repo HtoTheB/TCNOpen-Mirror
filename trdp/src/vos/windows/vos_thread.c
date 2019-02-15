@@ -14,8 +14,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: vos_thread.c 1789 2018-11-09 08:15:22Z ahweiss $
+ */
+ /*
+ * $Id: vos_thread.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *     AHW 2018-09-13: replaced by code of vos_thread.c to use native code of VS 2015 instead of pthread
  *      BL 2018-08-06: CloseHandle succeeds with return value != 0

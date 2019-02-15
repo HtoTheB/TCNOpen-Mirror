@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: trdp_mdcom.h 1681 2017-11-09 10:37:16Z ahweiss $
+ */
+ /*
+ * $Id: trdp_mdcom.h 1842 2019-02-15 14:46:14Z s-bender $
  *
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed

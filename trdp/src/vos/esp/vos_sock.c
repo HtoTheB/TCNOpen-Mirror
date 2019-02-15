@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright 2018. All rights reserved.
- *
- * $Id: vos_sock.c 1833 2019-01-29 13:18:48Z bloehr $
+ */
+ /*
+ * $Id: vos_sock.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)

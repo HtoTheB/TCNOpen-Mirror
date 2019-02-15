@@ -22,8 +22,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
- *
- * $Id: tau_tti.c 1837 2019-02-06 08:34:34Z s-bender $
+ */
+ /*
+ * $Id: tau_tti.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      SB 2019-02-06: Added OpTrn topocnt changed log message (PD100), wait in mdCallback only when topocnt changed
  *      SB 2019-01-31: fixed reference of waitForInaug semaphore pointer in ttiMDCallback

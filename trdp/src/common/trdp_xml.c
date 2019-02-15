@@ -13,8 +13,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * $Id: trdp_xml.c 1833 2019-01-29 13:18:48Z bloehr $
+ */
+ /*
+ * $Id: trdp_xml.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2019-01-29: Ticket #232: Write access to XML file
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer

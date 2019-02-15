@@ -16,8 +16,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: trdp_mdcom.c 1807 2018-11-15 12:56:26Z railroad-mike $
+ */
+ /*
+ * $Id: trdp_mdcom.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2018-11-07: Ticket #185 MD reply: Infinite timeout wrong handled
  *      BL 2018-11-07: Ticket #220 Message Data - Different behaviour UDP & TCP

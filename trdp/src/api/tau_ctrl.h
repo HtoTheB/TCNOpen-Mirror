@@ -15,8 +15,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: tau_ctrl.h 1483 2015-12-16 14:43:30Z bloehr $
+ */
+ /*
+ * $Id: tau_ctrl.h 1842 2019-02-15 14:46:14Z s-bender $
  *
  */
 

@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: tau_dnr.c 1840 2019-02-11 13:31:35Z s-bender $
+ */
+ /*
+ * $Id: tau_dnr.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      SB 2019-02-11: Ticket #237: tau_initDnr: Parameter waitForDnr to reduce wait times added
  *      BL 2018-08-07: Ticket #183 tau_getOwnIds declared but not defined

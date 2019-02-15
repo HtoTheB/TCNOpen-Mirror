@@ -10,8 +10,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *
- * $Id: iec61375-2-3.h 1836 2019-02-05 16:11:47Z bloehr $
+ */
+ /*
+ * $Id: iec61375-2-3.h 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition

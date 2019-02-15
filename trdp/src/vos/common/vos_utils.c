@@ -14,8 +14,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
- *
- * $Id: vos_utils.c 1831 2019-01-28 13:51:11Z bloehr $
+ */
+ /*
+ * $Id: vos_utils.c 1842 2019-02-15 14:46:14Z s-bender $
  *
  *      BL 2017-05-08: Compiler warnings
  *      BL 2017-02-27: #142 Compiler warnings / MISRA-C 2012 issues
