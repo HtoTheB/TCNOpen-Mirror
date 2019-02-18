@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 1842 2019-02-15 14:46:14Z s-bender $*
+ * $Id: vos_sock.c 1844 2019-02-18 12:56:27Z s-bender $*
  *
+ *      SB 2019-02-18: Ticket #227: vos_sockGetMAC() not name dependant anymore 
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
  *      BL 2018-07-13: Ticket #208: VOS socket options: QoS/ToS field priority handling needs update
@@ -472,9 +473,30 @@ EXT_DECL VOS_ERR_T vos_sockGetMAC (
         return VOS_PARAM_ERR;
     }
 
-    if (vos_getMacAddress(pMAC, cDefaultIface) == TRUE)
+    UINT32 i;
+    UINT32 AddrCount = VOS_MAX_NUM_IF;
+    VOS_IF_REC_T ifAddrs[VOS_MAX_NUM_IF];
+    VOS_ERR_T err;
+
+    err = vos_getInterfaces(&AddrCount, ifAddrs);
+
+    if (err == VOS_NO_ERR)
     {
-        return VOS_NO_ERR;
+        for (i = 0u; i < AddrCount; ++i)
+        {
+            if (ifAddrs[i].mac[0] ||
+                ifAddrs[i].mac[1] ||
+                ifAddrs[i].mac[2] ||
+                ifAddrs[i].mac[3] ||
+                ifAddrs[i].mac[4] ||
+                ifAddrs[i].mac[5])
+            {
+                if (vos_getMacAddress(pMAC, ifAddrs[i].name) == TRUE)
+                {
+                    return VOS_NO_ERR;
+                }
+            }
+        }
     }
 
     return VOS_SOCK_ERR;
