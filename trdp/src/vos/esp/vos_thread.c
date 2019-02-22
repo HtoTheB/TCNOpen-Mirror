@@ -15,7 +15,7 @@
  *          Copyright 2018. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: vos_thread.c 1845 2019-02-22 16:23:41Z bloehr $
  *
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -434,10 +434,10 @@ EXT_DECL VOS_ERR_T vos_threadSelf (
 EXT_DECL VOS_ERR_T vos_threadDelay (
     UINT32 delay)
 {
+    TickType_t  xDelay = delay / (1000u * portTICK_PERIOD_MS);
+
     if (delay == 0u)
     {
-        //pthread_testcancel();
-
         /*    yield cpu to other processes   */
         if (sched_yield() != 0)
         {
@@ -445,8 +445,7 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
         }
         return VOS_NO_ERR;
     }
-
-    vTaskDelay(delay);
+    vTaskDelay(xDelay);
     return VOS_NO_ERR;
 }
 
