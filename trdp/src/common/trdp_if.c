@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_if.c 1849 2019-03-05 10:50:10Z s-bender $
+ * $Id: trdp_if.c 1850 2019-03-05 10:59:58Z s-bender $
  *
  *      SB 2019-03-05: Ticket #243 Option to turn of ComId 31 subscription, replaced trdp_queueFindSubAddr with trdp_queueFindExistingSub
  *      SB 2019-02-11: Ticket #230 Setting destIpAddr to 0 in tlp_subscribe() if it is not multicast address
@@ -435,7 +435,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
         /*  Subscribe our request packet   */
         if (ret == TRDP_NO_ERR)
         {
-            if ((pProcessConfig->options & TRDP_OPTION_NO_PD_STATS) != 0)
+            if ((pProcessConfig != NULL) && ((pProcessConfig->options & TRDP_OPTION_NO_PD_STATS) != 0))
             {
                 ret = tlp_unpublish(pSession, dummyPubHndl);
             }
