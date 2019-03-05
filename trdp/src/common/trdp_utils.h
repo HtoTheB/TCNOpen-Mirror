@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_utils.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: trdp_utils.h 1849 2019-03-05 10:50:10Z s-bender $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -60,6 +60,10 @@ PD_ELE_T            *trdp_queueFindComId (
     UINT32      comId);
 
 PD_ELE_T            *trdp_queueFindSubAddr (
+    PD_ELE_T            *pHead,
+    TRDP_ADDRESSES_T    *pAddr);
+
+PD_ELE_T            *trdp_queueFindExistingSub (
     PD_ELE_T            *pHead,
     TRDP_ADDRESSES_T    *pAddr);
 
