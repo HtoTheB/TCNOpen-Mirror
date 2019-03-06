@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017.
  *                  All rights reserved.
  *
- * $Id: api_test.c 1851 2019-03-05 14:31:13Z bloehr $
+ * $Id: api_test.c 1853 2019-03-06 09:23:29Z s-bender $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -1575,7 +1575,7 @@ static int test12 ()
 
         err = tlp_publish(gSession1.appHandle, &pubHandle, NULL, NULL, TEST12_COMID1, 0u, 0u,
                           0u, /* gSession1.ifaceIP,                   / * Source * / */
-                          TEST12_MCDEST3,                           /* Destination */
+                          TEST12_MCDEST1,                           /* Destination */
                           TEST12_INTERVAL,
                           0u, TRDP_FLAGS_DEFAULT, NULL, NULL, TEST12_DATA_LEN);
 
