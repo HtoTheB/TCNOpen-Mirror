@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: sendData.c 1836 2019-02-05 16:11:47Z bloehr $
+ * $Id: sendData.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -115,7 +115,7 @@ int main (int argc, char *argv[])
     UINT32          dataSize    = PD_DEF_DATASIZE;
     TRDP_ERR_T err;
     TRDP_PD_CONFIG_T        pdConfiguration =
-    {NULL, NULL, {5u, 48u, 3u}, TRDP_FLAGS_NONE, 1000000u, TRDP_TO_SET_TO_ZERO, 0u};
+    {NULL, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_NONE, 1000000u, TRDP_TO_SET_TO_ZERO, 0u};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0u, 0u, TRDP_OPTION_BLOCK};
     UINT32  ownIP   = 0u;

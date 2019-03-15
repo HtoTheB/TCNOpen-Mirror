@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 1748 2018-07-13 15:59:36Z bloehr $
+ * $Id: pdsend.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -184,7 +184,7 @@ int pd_init (
     uint32_t    comID,
     uint32_t    interval)
 {
-    TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, {0, 0, 0},
+    TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, {0, 0, 0, 0u, 0u},
                                                TRDP_FLAGS_CALLBACK, 10000000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MD_CONFIG_T        mdConfiguration = {mdCallback, NULL, {0, 0, 0},
                                                 TRDP_FLAGS_CALLBACK, 5000000, 5000000, 5000000, 0, 0, 2, 10};

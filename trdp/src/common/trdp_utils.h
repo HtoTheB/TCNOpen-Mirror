@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_utils.h 1849 2019-03-05 10:50:10Z s-bender $
+ * $Id: trdp_utils.h 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -108,6 +108,7 @@ void        trdp_MDqueueInsFirst (
  */
 
 INT32 trdp_getCurrentMaxSocketCnt(void);
+void trdp_setCurrentMaxSocketCnt(INT32 currentMaxSocketCnt);
 
 
 /*********************************************************************************************************************/
@@ -226,6 +227,19 @@ void trdp_releaseSocket(
 
 UINT32 trdp_packetSizePD (
     UINT32 dataSize);
+
+#ifdef TRDP_TSN
+/*********************************************************************************************************************/
+/** Get the TSN packet size from the raw data size
+ *
+ *  @param[in]      dataSize            net data size
+ *
+ *  @retval         packet size         the size of the complete packet to
+ *                                      be sent or received
+ */
+UINT32 trdp_packetSizePD2 (
+    UINT32 dataSize);
+#endif
 
 /*********************************************************************************************************************/
 /** Get the packet size from the raw data size

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_ctrl.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: tau_ctrl.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *     AHW 2017-11-08: Ticket #179 Max. number of retries (part of sendParam) of a MD request needs to be checked
@@ -110,6 +110,9 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                          0, 0,                      /*    Source IP filter                      */
                          appHandle->realIP,         /*    Default destination    (or MC Group)  */
                          TRDP_FLAGS_MARSHALL,       /*    packet flags - UDP, no call back      */
+#ifdef TRDP_TSN
+                         NULL,
+#endif
                          ECSP_STAT_TIMEOUT,         /*    Time out in us                        */
                          TRDP_TO_SET_TO_ZERO);      /*    delete invalid data on timeout        */
 

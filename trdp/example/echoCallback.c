@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: echoCallback.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: echoCallback.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2018-02-02: Example renamed: cmdLineSelect -> echoCallback
@@ -173,7 +173,7 @@ int main (int argc, char * *argv)
     TRDP_SUB_T              subHandle;  /*    Our identifier to the subscription        */
     TRDP_PUB_T              pubHandle;  /*    Our identifier to the publication         */
     TRDP_ERR_T              err;
-    TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, {0, 0, 0}, TRDP_FLAGS_CALLBACK,
+    TRDP_PD_CONFIG_T        pdConfiguration = {myPDcallBack, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                                10000000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};

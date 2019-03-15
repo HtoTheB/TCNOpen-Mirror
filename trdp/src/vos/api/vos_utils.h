@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2018. All rights reserved.
  */
  /*
- * $Id: vos_utils.h 1843 2019-02-15 14:50:01Z s-bender $
+ * $Id: vos_utils.h 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *     AHW 2018-11-28: Doxygen comment errors
@@ -195,11 +195,12 @@ EXT_DECL UINT32 vos_crc32 (
 
 /**********************************************************************************************************************/
 /** Compute crc32 according to IEC 61375-2-3 B.7
+ *  Note: Returned CRC is inverted
  *
  *  @param[in]          crc             Initial value.
  *  @param[in,out]      pData           Pointer to data.
  *  @param[in]          dataLen         length in bytes of data.
- *  @retval             crc32 according to IEC61784-3-3
+ *  @retval             crc32 according to IEC 61375-2-3
  */
 
 EXT_DECL UINT32 vos_sc32 (

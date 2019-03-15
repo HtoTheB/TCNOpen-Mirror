@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: sourceFiltering.c 1852 2019-03-05 14:42:10Z bloehr $
+ * $Id: sourceFiltering.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  */
 
@@ -228,7 +228,7 @@ int main (int argc, char * *argv)
     TRDP_APP_SESSION_T      appHandle       = NULL;  /*    Our identifier to the library instance    */
     TRDP_SUB_T              subHandle       = NULL;  /*    Our identifier to the subscription        */
     TRDP_ERR_T              err             = TRDP_NO_ERR;
-    TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, {0, 0, 0}, TRDP_FLAGS_CALLBACK,
+    TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, {0, 0, 0, 0u, 0u}, TRDP_FLAGS_CALLBACK,
                                                         10000000, TRDP_TO_SET_TO_ZERO, 0};
     TRDP_PROCESS_CONFIG_T   processConfig   = {"subscriber", "", 0, 0, TRDP_OPTION_NONE};
     TRDP_IP_ADDR_T          ownIP           = VOS_INADDR_ANY;

@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
  /*
- * $Id: iec61375-2-3.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: iec61375-2-3.h 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition
@@ -116,7 +116,7 @@
 #define TRDP_PD_DEFAULT_QOS                 5u
 #define TRDP_PD_DEFAULT_TTL                 64u
 #define TRDP_PD_DEFAULT_TIMEOUT             100000u                     /**< [us] 100ms default PD timeout          */
-#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0u}
+#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0u, 0u, 0u}
 
 /**  Default TRDP process options    */
 #define TRDP_PROCESS_DEFAULT_CYCLE_TIME     10000u                      /**< [us] 10ms cycle time for TRDP process  */

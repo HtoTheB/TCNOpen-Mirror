@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  */
  /*
- * $Id: tau_tti.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: tau_tti.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      SB 2019-02-06: Added OpTrn topocnt changed log message (PD100), wait in mdCallback only when topocnt changed
  *      SB 2019-01-31: fixed reference of waitForInaug semaphore pointer in ttiMDCallback
@@ -648,6 +648,9 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
                       VOS_INADDR_ANY, VOS_INADDR_ANY,
                       vos_dottedIP(TTDB_STATUS_DEST_IP),
                       (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB),
+#ifdef TRDP_TSN
+                      NULL,
+#endif
                       TTDB_STATUS_TO * 1000u,
                       TRDP_TO_SET_TO_ZERO) != TRDP_NO_ERR)
     {

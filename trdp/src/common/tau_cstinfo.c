@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  */
  /*
- * $Id: tau_cstinfo.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: tau_cstinfo.c 1854 2019-03-15 16:44:48Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  *      BL 2017-04-28: Ticket #155: Kill trdp_proto.h - move definitions to iec61375-2-3.h
@@ -182,7 +182,6 @@ void cstInfoGetCltrCstInfo (
     UINT16  etbCnt  = vos_ntohs(*pSrc);
     UINT16  vehCnt;
     UINT16  fctCnt;
-    // UINT16  cltrCstCnt;
     UINT32  itemSize;
     UINT32  i;
     UINT8   *pCurInfo;
@@ -208,7 +207,6 @@ void cstInfoGetCltrCstInfo (
     }
 
     pSrc        = pCurInfo + itemSize + 2;                      /* pSrc points to cltrCstCnt    */
-    //cltrCstCnt  = vos_ntohs(*(UINT16 *)pSrc);
 
     if (l_index> fctCnt)
     {
