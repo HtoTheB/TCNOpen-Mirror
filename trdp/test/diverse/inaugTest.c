@@ -1,4 +1,4 @@
-﻿/**********************************************************************************************************************/
+/**********************************************************************************************************************/
 /**
  * @file            inaugTest.c
  *
@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: inaugTest.c 1857 2019-03-21 15:24:13Z bloehr $
  *
  */
 
@@ -272,11 +272,12 @@ static void dbgOut (
              const CHAR8 *pMsgStr)
 {
     const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
-    
+    CHAR8       *pF = strrchr(pFile, VOS_DIR_SEP);
+
     printf("%s %s %16s:%-4d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-           strrchr(pFile, VOS_DIR_SEP) + 1,
+           (pF == NULL)? "" : pF + 1,
            LineNumber,
            pMsgStr);
 }

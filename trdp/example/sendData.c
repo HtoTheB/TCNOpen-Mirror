@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: sendData.c 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: sendData.c 1857 2019-03-21 15:24:13Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -74,10 +74,11 @@ static void dbgOut (
     (void) pRefCon;
 
     const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
+    CHAR8       *pF = strrchr(pFile, VOS_DIR_SEP);
     printf("%s %s %s:%d %s",
            strrchr(pTime, '-') + 1,
            catStr[category],
-           strrchr(pFile, VOS_DIR_SEP) + 1,
+           (pF == NULL)? "" : pF + 1,
            LineNumber,
            pMsgStr);
 }

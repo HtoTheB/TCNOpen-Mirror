@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: receiveHello.c 1857 2019-03-21 15:24:13Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -81,13 +81,14 @@ void dbgOut (
     const CHAR8 *pMsgStr)
 {
     const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
+    CHAR8       *pF = strrchr(pFile, VOS_DIR_SEP);
 
     if (category != VOS_LOG_DBG)
     {
         printf("%s %s %s:%d %s",
                pTime,
                catStr[category],
-               strrchr(pFile, VOS_DIR_SEP) + 1,
+               (pF == NULL)? "" : pF + 1,
                LineNumber,
                pMsgStr);
     }
