@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 1844 2019-02-18 12:56:27Z s-bender $
+ * $Id: vos_sock.c 1856 2019-03-21 15:13:23Z bloehr $
  *
  *      SB 2019-02-18: Ticket #227: vos_sockGetMAC() not name dependant anymore
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
@@ -35,6 +35,11 @@
 #ifndef POSIX
 #error \
     "You are trying to compile the POSIX implementation of vos_sock.c - either define POSIX or exclude this file!"
+#endif
+
+#ifdef TRDP_TSN
+#error \
+    "To build a TSN capable TRDP library another vos_sock implementation is necessary. Sorry!"
 #endif
 
 /***********************************************************************************************************************
