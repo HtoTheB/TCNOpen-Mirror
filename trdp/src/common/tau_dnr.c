@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 1846 2019-03-01 07:45:33Z s-bender $
+ * $Id: tau_dnr.c 1859 2019-04-12 06:40:00Z siddhiw $
  *
  *      SB 2019-03-01: Ticket #237: tau_initDnr: Fixed comparison of readHostFile return value
  *      SB 2019-02-11: Ticket #237: tau_initDnr: Parameter waitForDnr to reduce wait times added
@@ -1284,8 +1284,8 @@ EXT_DECL TRDP_ERR_T tau_uri2Addr (
             ((pTemp->fixedEntry == TRUE) ||
              (pTemp->etbTopoCnt == appHandle->etbTopoCnt) ||                    /* Do the topocounts match? */
              (pTemp->opTrnTopoCnt == appHandle->opTrnTopoCnt) ||
-             ((appHandle->etbTopoCnt == 0u) && (appHandle->opTrnTopoCnt == 0u))   /* Or do we not care?       */
-            ))
+             ((appHandle->etbTopoCnt == 0u) && (appHandle->opTrnTopoCnt == 0u))) &&   /* Or do we not care?       */
+            (pTemp->ipAddr != 0))                                                 /* 0 is only a placeholder */
         {
             *pAddr = pTemp->ipAddr;
             return TRDP_NO_ERR;
