@@ -20,7 +20,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1863 2019-05-15 07:21:14Z matthiasmossner $
+ * $Id: tau_tti.c 1864 2019-05-15 07:23:13Z matthiasmossner $
  *
  *      BL 2016-03-11: Ticket #114: SC32 check
  *      BL 2016-02-18: Ticket #7: Add train topology information support
@@ -1304,4 +1304,40 @@ EXT_DECL TRDP_ERR_T tau_getVehOrient (
         return TRDP_NODATA_ERR;
     }
     return TRDP_NO_ERR;
+}
+
+/**********************************************************************************************************************/
+/** Get own operational consist number.
+ *
+ *
+ *  @param[in]      appHandle           The handle returned by tlc_init
+ *
+ *  @retval         ownOpCstNo          own operational consist number value
+ */
+EXT_DECL UINT8 tlc_getOwnOpCstNo (
+    TRDP_APP_SESSION_T appHandle)
+{
+    if (trdp_isValidSession(appHandle))
+    {
+        return appHandle->pTTDB->opTrnState.ownOpCstNo;    //pTTDB opTrnState ownOpCstNo;
+    }
+    return 0;
+}
+
+/**********************************************************************************************************************/
+/** Get own train consist number.
+ *
+ *
+ *  @param[in]      appHandle           The handle returned by tlc_init
+ *
+ *  @retval         ownTrnCstNo         own train consist number value
+ */
+EXT_DECL UINT8 tlc_getOwnTrnCstNo (
+    TRDP_APP_SESSION_T appHandle)
+{
+    if (trdp_isValidSession(appHandle))
+    {
+        return appHandle->pTTDB->opTrnState.ownTrnCstNo;
+    }
+    return 0;
 }

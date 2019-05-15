@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_if_light.h 1526 2016-03-02 13:45:31Z newtecbosse $
+ * $Id: trdp_if_light.h 1864 2019-05-15 07:23:13Z matthiasmossner $
  *
  *      BL 2015-11-24: Accessor for IP address of session
  *      BL 2015-09-04: Ticket #99: refCon for tlc_init()
@@ -200,6 +200,12 @@ EXT_DECL TRDP_ERR_T tlc_setOpTrainTopoCount (
 
 EXT_DECL UINT32 tlc_getOpTrainTopoCount (
     TRDP_APP_SESSION_T  appHandle);
+
+EXT_DECL UINT8 tlc_getOwnOpCstNo (
+    TRDP_APP_SESSION_T appHandle);
+
+EXT_DECL UINT8 tlc_getOwnTrnCstNo (
+    TRDP_APP_SESSION_T appHandle);
 
 /**********************************************************************************************************************/
 /** Frees the buffer reserved by the TRDP layer.
