@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1535 2016-03-08 09:10:37Z newtecbosse $
+ * $Id: trdp_pdcom.c 1865 2019-05-15 07:29:42Z matthiasmossner $
  *
  *      BL 2016-03-04: Ticket #112: Marshalling sets wrong datasetLength (PD)
  *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
@@ -429,6 +429,7 @@ TRDP_ERR_T  trdp_pdReceive (
     subAddresses.comId = vos_ntohl(pNewFrameHead->comId);
     subAddresses.etbTopoCnt = vos_ntohl(pNewFrameHead->etbTopoCnt);
     subAddresses.opTrnTopoCnt = vos_ntohl(pNewFrameHead->opTrnTopoCnt);
+    subAddresses.mcGroup = vos_isMulticast(subAddresses.destIpAddr) ? subAddresses.destIpAddr : 0;
 
     /*  It might be a PULL request      */
     if (vos_ntohs(pNewFrameHead->msgType) == (UINT16) TRDP_MSG_PR)

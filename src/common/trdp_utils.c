@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: trdp_utils.c 1530 2016-03-07 13:18:45Z newtecbosse $
+ * $Id: trdp_utils.c 1865 2019-05-15 07:29:42Z matthiasmossner $
  *
  *      BL 2016-03-01: Setting correct multicast TTL for PDs
  *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
@@ -272,7 +272,8 @@ PD_ELE_T *trdp_queueFindSubAddr (
     {
         /*  We match if src/dst/mc address is zero or matches */
         if ((iterPD->addr.comId == addr->comId)
-            && ((iterPD->addr.srcIpAddr == 0) || (iterPD->addr.srcIpAddr == addr->srcIpAddr)))
+            && ((iterPD->addr.srcIpAddr == 0) || (iterPD->addr.srcIpAddr == addr->srcIpAddr))
+            && ((iterPD->addr.mcGroup == 0) || (iterPD->addr.mcGroup == addr->mcGroup)))
         {
             /*  We check for local communication
                 or if etbTopoCnt and opTrnTopoCnt of the subscription are zero or match */
