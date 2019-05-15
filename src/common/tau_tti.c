@@ -20,7 +20,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016. All rights reserved.
  *
- * $Id: tau_tti.c 1555 2016-03-11 12:21:57Z bloehr $
+ * $Id: tau_tti.c 1863 2019-05-15 07:21:14Z matthiasmossner $
  *
  *      BL 2016-03-11: Ticket #114: SC32 check
  *      BL 2016-02-18: Ticket #7: Add train topology information support
@@ -188,8 +188,8 @@ static void ttiPDCallback (
                 (void) tlc_setETBTopoCount(appHandle, vos_ntohl(pTelegram->etbTopoCnt));
             }
 
-            memcpy(&appHandle->pTTDB->opTrnState, &pTelegram->state,
-                   (sizeof(TRDP_OP_TRAIN_DIR_STATE_T) < dataSize) ? sizeof(TRDP_OP_TRAIN_DIR_STATE_T) : dataSize);
+            memcpy(&appHandle->pTTDB->opTrnState, pTelegram,
+                   (sizeof(TRDP_OP_TRAIN_DIR_STATUS_INFO_T) < dataSize) ? sizeof(TRDP_OP_TRAIN_DIR_STATUS_INFO_T) : dataSize);
 
             /* unmarshall manually:   */
             appHandle->pTTDB->opTrnState.state.opTrnTopoCnt = vos_ntohl(pTelegram->state.opTrnTopoCnt);
