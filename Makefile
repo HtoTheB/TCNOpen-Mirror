@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1551 2016-03-10 17:58:32Z bloehr $
+#// $Id: Makefile 1870 2019-05-16 08:38:03Z matthiasmossner $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -91,7 +91,6 @@ else
 TRDP_OBJS += trdp_mdcom.o
 CFLAGS += -DMD_SUPPORT=1
 endif
-
 ifeq ($(DEBUG), TRUE)
 	OUTDIR = bld/output/$(ARCH)-dbg
 else
@@ -114,7 +113,7 @@ endif
 TARGETS = outdir libtrdp
 
 ifneq ($(TARGET_OS),VXWORKS)
-TARGETS += example test pdtest mdtest xml
+TARGETS += example test pdtest mdtest xml md_caller
 else
 TARGETS += vtests
 endif
@@ -126,7 +125,7 @@ outdir:
 
 libtrdp:	outdir $(OUTDIR)/libtrdp.a
 
-example:	outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello
+example:	outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/sendETB
 
 test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest
 
@@ -137,6 +136,10 @@ mdtest:		outdir $(OUTDIR)/trdp-md-test $(OUTDIR)/trdp-md-reptestcaller $(OUTDIR)
 vtests:		outdir $(OUTDIR)/vtest
 
 xml:		outdir $(OUTDIR)/trdp-xmlprint-test $(OUTDIR)/trdp-xmlpd-test
+
+md_caller:  outdir $(OUTDIR)/test_trdp_md_caller
+
+md_replier:  outdir $(OUTDIR)/test_trdp_md_replier
 
 
 
@@ -197,6 +200,14 @@ $(OUTDIR)/sendHello:   sendHello.c  $(OUTDIR)/libtrdp.a
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
 			$(STRIP) $@
+            
+$(OUTDIR)/sendETB:   sendETB.c  $(OUTDIR)/libtrdp.a
+			@echo ' ### Building application $(@F)'
+			$(CC) example/sendETB.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			$(STRIP) $@
 
 $(OUTDIR)/getStats:   diverse/getStats.c  $(OUTDIR)/libtrdp.a
 			@echo ' ### Building statistics commandline tool $(@F)'
@@ -206,129 +217,22 @@ $(OUTDIR)/getStats:   diverse/getStats.c  $(OUTDIR)/libtrdp.a
 			    -o $@
 			$(STRIP) $@
 
-###############################################################################
-#
-# rule for the example
-#
-###############################################################################
-$(OUTDIR)/mdManager: mdManager.c  $(OUTDIR)/libtrdp.a
-			@echo ' ### Building example MD application $(@F)'
-			$(CC) example/mdManager.c \
-			    -ltrdp \
-			    -luuid \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
 
-###############################################################################
-#
-# rule for the various test binaries
-#
-###############################################################################
-$(OUTDIR)/trdp-xmlprint-test:  trdp-xmlprint-test.c  $(OUTDIR)/libtrdp.a $(addprefix $(OUTDIR)/,$(notdir $(TRDP_OPT_OBJS)))
-			@$(ECHO) ' ### Building application $(@F)'
-			$(CC) $^ \
-			$(CFLAGS) $(INCLUDES) -o $@ \
-			-ltrdp -lz \
-			$(LDFLAGS)
-			$(STRIP) $@
-
-$(OUTDIR)/trdp-xmlpd-test:  trdp-xmlpd-test.c  $(OUTDIR)/libtrdp.a $(OUTDIR)/libtrdp.a $(addprefix $(OUTDIR)/,$(notdir $(TRDP_OPT_OBJS)))
-			@$(ECHO) ' ### Building application $(@F)'
-			$(CC) $^  \
-			$(CFLAGS) $(INCLUDES) -o $@\
-			-ltrdp -lz \
-			$(LDFLAGS)
-			$(STRIP) $@
-
-$(OUTDIR)/mdTest4: mdTest4.c  $(OUTDIR)/libtrdp.a
-			@echo ' ### Building UDPMDCom test application $(@F)'
-			$(CC) test/udpmdcom/mdTest4.c \
-			    -ltrdp \
-			    -luuid \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/test_mdSingle: test_mdSingle.c $(OUTDIR)/libtrdp.a
-			@echo ' ### Building MD single test application $(@F)'
-			$(CC) test/diverse/test_mdSingle.c \
+$(OUTDIR)/test_trdp_md_caller: $(OUTDIR)/libtrdp.a
+			@echo ' ### Building personal MD test application $(@F)'
+			$(CC) test_trdp_md_caller.c \
 			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
-			$(STRIP) $@
+			$(STRIP) $@     
 
-$(OUTDIR)/inaugTest:   diverse/inaugTest.c  $(OUTDIR)/libtrdp.a
-			@echo ' ### Building republish test $(@F)'
-			$(CC) test/diverse/inaugTest.c \
+$(OUTDIR)/test_trdp_md_replier: $(OUTDIR)/libtrdp.a
+			@echo ' ### Building personal MD test application $(@F)'
+			$(CC) test_trdp_md_replier.c \
 			    -ltrdp \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/trdp-pd-test: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building PD test application $(@F)'
-			$(CC) test/pdpatterns/trdp-pd-test.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/trdp-md-test: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building MD test application $(@F)'
-			$(CC) test/mdpatterns/trdp-md-test.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/trdp-md-reptestcaller: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building MD test Caller application $(@F)'
-			$(CC) test/mdpatterns/rep-testcaller.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/trdp-md-reptestreplier: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building MD test Replier application $(@F)'
-			$(CC) test/mdpatterns/rep-testreplier.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/vtest: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building vtest application $(@F)'
-			$(CC) test/diverse/vtest.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/vostest: $(OUTDIR)/libtrdp.a
-			@echo ' ### Building VOS test application $(@F)'
-			$(CC) test/diverse/LibraryTests.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/pd_md_responder: $(OUTDIR)/libtrdp.a pd_md_responder.c
-			@echo ' ### Building PD test application $(@F)'
-			$(CC) test/diverse/pd_md_responder.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@
-
-$(OUTDIR)/testSub: $(OUTDIR)/libtrdp.a subTest.c
-			@echo ' ### Building subscribe PD test application $(@F)'
-			$(CC) test/diverse/subTest.c \
-			    -ltrdp \
-			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
-			    -o $@
-			$(STRIP) $@  
+			$(STRIP) $@             
 			
 ###############################################################################
 #
