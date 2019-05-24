@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_marshalling.c 1875 2019-05-24 08:30:19Z s-bender $
+ * $Id: test_marshalling.c 1876 2019-05-24 08:31:28Z s-bender $
  *
+ *      SB 2019-05-24: Ticket #252 Bug in unmarshalling/marshalling of TIMEDATE48 and TIMEDATE64
  *      BL 2018-09-05: Ticket #211 XML handling: Dataset Name should be stored in TRDP_DATASET_ELEMENT_T
  *      BL 2018-04-27: Testing ticket #197
  *      BL 2017-06-30: Compiler warnings, local prototypes added
