@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_marshall.c 1875 2019-05-24 08:30:19Z s-bender $
+ * $Id: tau_marshall.c 1877 2019-06-11 13:31:34Z bloehr $
  *
  *      SB 2019-05-24: Ticket #252 Bug in unmarshalling/marshalling of TIMEDATE48 and TIMEDATE64
  *      BL 2018-11-08: Use B_ENDIAN from vos_utils.h in unpackedCopy64()
@@ -1470,7 +1470,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSize (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) (info.pDst);
+    *pDestSize = (UINT32) (info.pDst - (UINT8*) NULL);  /* Subtract pointer to emphasize size calculation */
 
     return err;
 }
@@ -1542,7 +1542,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSizeByComId (
 
     err = size_unmarshall(&info, pDataset);
 
-    *pDestSize = (UINT32) (info.pDst);
+    *pDestSize = (UINT32) (info.pDst - (UINT8*) NULL); /* Subtract pointer to emphasize size calculation */
 
     return err;
 }
