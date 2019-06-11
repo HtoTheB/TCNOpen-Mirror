@@ -15,7 +15,7 @@
  *          Copyright TOSHIBA, Japan, 2013.
  */
  /*
- * $Id: vos_shared_mem.c 1878 2019-06-11 14:30:32Z bloehr $
+ * $Id: vos_shared_mem.c 1880 2019-06-11 15:38:37Z bloehr $
  *
  *      BL 2019-06-11: Ticket #259: Shared memory name fixed
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -145,12 +145,10 @@ EXT_DECL VOS_ERR_T vos_sharedOpen (
         else
         {
             vos_strncpy((*pHandle)->sharedMemoryName, pKey, (UINT32) (strlen(pKey) + 1));
-            ret = VOS_NO_ERR;
         }
     }
 
-    ret = VOS_NO_ERR;
-    return ret;
+    return VOS_NO_ERR;
 }
 
 /**********************************************************************************************************************/
