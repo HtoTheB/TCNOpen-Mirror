@@ -24,8 +24,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2019. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 1872 2019-05-21 15:03:33Z bloehr $
+* $Id: tau_tti.c 1879 2019-06-11 14:41:26Z bloehr $
 *
+*      BL 2019-06-11: Ticket #253 Incorrect storing of TTDB_STATIC_CONSIST_INFO_REPLY from network packet into local copy
 *      BL 2019-05-15: Ticket #254 API of TTI to get OwnOpCstNo and OwnTrnCstNo
 *      BL 2019-05-15: Ticket #255 opTrnState of pTTDB isn't copied completely
 *      BL 2019-05-15: Ticket #257 TTI: register for ComID100 PD to both valid multicast addresses
