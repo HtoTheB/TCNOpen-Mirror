@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_shared_mem.c 1842 2019-02-15 14:46:14Z s-bender $*
+ * $Id: vos_shared_mem.c 1885 2019-06-12 13:06:56Z ahweiss $*
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
@@ -42,6 +42,7 @@
 
 #include "vos_shared_mem.h"
 #include "vos_utils.h"
+#include "vos_private.h"
 
 #include <windows.h>
 #include <stdio.h>
