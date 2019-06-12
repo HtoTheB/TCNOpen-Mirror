@@ -15,8 +15,9 @@
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 1881 2019-06-12 08:15:26Z bloehr $
+ * $Id: tau_xml.c 1882 2019-06-12 09:32:47Z bloehr $
  *
+ *      BL 2019-06-12: Ticket #262 XML Parsing Bug Fixes for Debug Output Print Level and SDTv2 Parameters
  *      BL 2019-06-12: Ticket #246 Incorrect reading of "user" part of source uri and destination
  *      BL 2019-05-22: Ticket #249 Issue when parsing memory block configuration from config file
  *      BL 2019-03-15: Ticket #191: Provisions for TSN
@@ -500,9 +501,7 @@ static TRDP_ERR_T readTelegramDef (
                     vos_strncpy((char *)pSrc->pUriHost2, p, (UINT32)  strlen(p) + 1u);
                 }
             }
-            if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE)
-            {}
-            else
+            if (token == TOK_CLOSE)
             {
                 trdp_XMLEnter(pXML);
                 if (trdp_XMLCountStartTag(pXML, "sdt-parameter") > 0 &&
@@ -616,9 +615,7 @@ static TRDP_ERR_T readTelegramDef (
                     vos_strncpy((char *)pDest->pUriHost, p, (UINT32) strlen(p) + 1u);
                 }
             }
-            if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE)
-            {}
-            else
+            if (token == TOK_CLOSE)
             {
                 trdp_XMLEnter(pXML);
                 if (trdp_XMLCountStartTag(pXML, "sdt-parameter") > 0 &&
@@ -1532,11 +1529,11 @@ EXT_DECL TRDP_ERR_T tau_readXmlDeviceConfig (
                         }
                         if (strpbrk(value, "Ee") != NULL)
                         {
-                            pDbgConfig->option |= TRDP_DBG_ERR | TRDP_DBG_WARN | TRDP_DBG_ERR;
+                            pDbgConfig->option |= TRDP_DBG_ERR;
                         }
                         if (strpbrk(value, "Ii") != NULL)
                         {
-                            pDbgConfig->option |= TRDP_DBG_INFO;
+                            pDbgConfig->option |= TRDP_DBG_ERR | TRDP_DBG_WARN | TRDP_DBG_INFO;
                         }
                     }
                 }
