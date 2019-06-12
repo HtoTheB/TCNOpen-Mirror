@@ -15,9 +15,10 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 1844 2019-02-18 12:56:27Z s-bender $*
+ * $Id: vos_sock.c 1883 2019-06-12 12:51:22Z bloehr $*
  *
- *      SB 2019-02-18: Ticket #227: vos_sockGetMAC() not name dependant anymore 
+ *      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
+ *      SB 2019-02-18: Ticket #227: vos_sockGetMAC() not name dependant anymore
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
  *      BL 2018-07-13: Ticket #208: VOS socket options: QoS/ToS field priority handling needs update
@@ -37,6 +38,7 @@
 #include "vxWorks.h"
 #include "vos_sock.h"
 #include "vos_types.h"
+#include "vos_private.h"
 #include "vos_utils.h"
 #include "vos_thread.h"
 #include "vos_mem.h"

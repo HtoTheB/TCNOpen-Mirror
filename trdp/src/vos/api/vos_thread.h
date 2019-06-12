@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
 /*
-* $Id: vos_thread.h 1856 2019-03-21 15:13:23Z bloehr $
+* $Id: vos_thread.h 1883 2019-06-12 12:51:22Z bloehr $
 *
+*      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
 *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
 */
 
@@ -32,7 +33,6 @@
 #include <sys/time.h>
 #endif
 #ifdef VXWORKS
-#include "vos_private.h"
 #include "time.h"
 #include "semaphore.h"
 #else
