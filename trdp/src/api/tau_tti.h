@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: tau_tti.h 1872 2019-05-21 15:03:33Z bloehr $
+ * $Id: tau_tti.h 1894 2019-06-13 11:05:03Z bloehr $
  *
  *
  *      BL 2019-05-15: Ticket #254 API of TTI to get OwnOpCstNo and OwnTrnCstNo
@@ -118,17 +118,17 @@ EXT_DECL void tau_deInitTTI (
  *
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[out]     pOpTrDirState   Pointer to an operational train directory state structure to be returned.
- *  @param[out]     pOpTrDir        Pointer to an operational train directory structure to be returned.
+ *  @param[out]     pOpTrnDirState  Pointer to an operational train directory state structure to be returned.
+ *  @param[out]     pOpTrnDir       Pointer to an operational train directory structure to be returned.
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
  *
  */
 EXT_DECL TRDP_ERR_T tau_getOpTrDirectory (
-    TRDP_APP_SESSION_T                 appHandle,
-    TRDP_OP_TRAIN_DIR_STATE_T         *pOpTrDirState,
-    TRDP_OP_TRAIN_DIR_T               *pOpTrDir);
+    TRDP_APP_SESSION_T          appHandle,
+    TRDP_OP_TRAIN_DIR_STATE_T   *pOpTrnDirState,
+    TRDP_OP_TRAIN_DIR_T         *pOpTrnDir);
 
 
 /**********************************************************************************************************************/
@@ -148,19 +148,20 @@ EXT_DECL TRDP_ERR_T tau_getOpTrnDirectoryStatusInfo (
     TRDP_OP_TRAIN_DIR_STATUS_INFO_T *pOpTrnDirStatusInfo);
 
 /**********************************************************************************************************************/
-/**    Function to retrieve the operational train directory.
+/**    Function to retrieve the train directory.
  *
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[out]     pTrDir          Pointer to a train directory structure to be returned.
+ *  @param[out]     pTrnDir         Pointer to a train directory structure to be returned.
  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
+ *  @retval         TRDP_NODATA_ERR Try later
  *
  */
 EXT_DECL TRDP_ERR_T tau_getTrDirectory (
-    TRDP_APP_SESSION_T                 appHandle,
-    TRDP_TRAIN_DIR_T                  *pTrDir);
+    TRDP_APP_SESSION_T              appHandle,
+    TRDP_TRAIN_DIR_T                *pTrnDir);
 
 
 /**********************************************************************************************************************/
