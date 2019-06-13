@@ -13,7 +13,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
- * $Id: ladderApplication_publisher.c 1712 2018-03-06 16:31:19Z bloehr $
+ * $Id: ladderApplication_publisher.c 1890 2019-06-13 08:41:58Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -59,7 +59,7 @@ TRDP_PUB_T          pubHandleNet1ComId2;		/*	Sub-network Id1 ComID2 identifier t
 TRDP_ERR_T          err;
 /* TRDP_PD_CONFIG_T    pdConfiguration = {tau_recvPdDs, NULL, {0, 0}, TRDP_FLAGS_NONE,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};*/
-TRDP_PD_CONFIG_T    pdConfiguration = {&tau_recvPdDs, NULL, {0, 0}, TRDP_FLAGS_CALLBACK,
+TRDP_PD_CONFIG_T    pdConfiguration = {&tau_recvPdDs, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};
 TRDP_MEM_CONFIG_T   dynamicConfig = {NULL, RESERVED_MEMORY, {}};
 TRDP_PROCESS_CONFIG_T	processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
@@ -76,7 +76,7 @@ TRDP_PUB_T          pubHandleNet2ComId2;		/*	Sub-network Id2 ComID2 identifier t
 TRDP_ERR_T          err2;
 /* TRDP_PD_CONFIG_T    pdConfiguration2 = {tau_recvPdDs, NULL, {0, 0}, TRDP_FLAGS_NONE,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};*/	/* Sub-network Id2 PDconfiguration */
-TRDP_PD_CONFIG_T    pdConfiguration2 = {&tau_recvPdDs, NULL, {0, 0}, TRDP_FLAGS_CALLBACK,
+TRDP_PD_CONFIG_T    pdConfiguration2 = {&tau_recvPdDs, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};
 TRDP_MEM_CONFIG_T   dynamicConfig2 = {NULL, RESERVED_MEMORY, {}};					/* Sub-network Id2 Structure describing memory */
 TRDP_PROCESS_CONFIG_T   processConfig2   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
