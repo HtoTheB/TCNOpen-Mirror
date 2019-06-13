@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_marshall.c 1884 2019-06-12 12:55:53Z bloehr $
+ * $Id: tau_marshall.c 1889 2019-06-13 08:37:10Z bloehr $
  *
  *      SB 2019-05-24: Ticket #252 Bug in unmarshalling/marshalling of TIMEDATE48 and TIMEDATE64
  *      BL 2018-11-08: Use B_ENDIAN from vos_utils.h in unpackedCopy64()
@@ -945,8 +945,7 @@ static TRDP_ERR_T size_unmarshall (
                    UINT16 *pDst16 = (UINT16 *) alignePtr(pDst, ALIGNOF(UINT16));
 
                    /*    possible variable source size    */
-                   var_size = ((UINT16)*pSrc) << 8;
-                   var_size += *(pSrc + 1);
+                   var_size = vos_ntohs(*(UINT16 *)pSrc);
 
                    while (noOfItems-- > 0u)
                    {
@@ -964,7 +963,7 @@ static TRDP_ERR_T size_unmarshall (
                    UINT32 *pDst32 = (UINT32 *) alignePtr(pDst, ALIGNOF(UINT32));
 
                    /*    possible variable source size    */
-                   var_size = *(UINT32 *)pSrc;
+                   var_size = vos_ntohl(*(UINT32 *)pSrc);
 
                    while (noOfItems-- > 0u)
                    {
