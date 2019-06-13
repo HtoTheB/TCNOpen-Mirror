@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: tau_xml.h 1887 2019-06-13 07:04:37Z ahweiss $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *      BL 2017-05-08: Compiler warnings, flag enums -> defines
@@ -72,8 +72,8 @@ typedef struct
     UINT16  txPeriod;    /**< Source cycle time */
     UINT16  nGuard;      /**< Initial timeout cycles */
     UINT8   nrxSafe;     /**< Timout cycles */
-    UINT8   reserved1;   /**< Reserved for future use */
-    UINT16  reserved2;   /**< Reserved for future use */
+    UINT8   lmiMax;      /**< Latency monitoring cycles */
+    UINT16  reserved1;   /**< Reserved for future use */
 } TRDP_SDT_PAR_T;
 
 typedef struct

@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.11.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 1501 2016-01-26 12:45:17Z bloehr $
+#  SVN           : $Id: trdp-config.xsd 1887 2019-06-13 07:04:37Z ahweiss $
 #
 #  HISTORY       :
 #                            1.11.0.0  Ticket #106: User needs to be informed on every received PD packet
@@ -772,6 +772,7 @@ keep = keep the last value</xs:documentation>
       <xs:attribute name="n-rxsafe" type="uint8" default="3" use="optional"/>
       <xs:attribute name="n-guard" type="uint16" default="100" use="optional"/>
       <xs:attribute name="cm-thr" type="uint32" default="10" use="optional"/>
+	  <xs:attribute name="lmi-max" type="uint8" default="40" use="optional"/>
      </xs:complexType>
   </xs:element>
   
