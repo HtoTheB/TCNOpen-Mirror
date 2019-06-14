@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: vos_thread.c 1901 2019-06-14 07:52:26Z bloehr $
  *
  *     AHW 2018-09-13: replaced by code of vos_thread.c to use native code of VS 2015 instead of pthread
  *      BL 2018-08-06: CloseHandle succeeds with return value != 0
@@ -285,7 +285,7 @@ EXT_DECL VOS_ERR_T vos_threadTerminate(VOS_THREAD_T thread)
 
    if (TerminateThread((HANDLE)thread, 0) == 0)
    {
-      vos_printLog(VOS_LOG_ERROR,
+      vos_printLog(VOS_LOG_WARNING,
          "TerminateThread() failed (Err: %d)\n",
          GetLastError());
       return VOS_THREAD_ERR;

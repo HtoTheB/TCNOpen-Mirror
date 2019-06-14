@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 1881 2019-06-12 08:15:26Z bloehr $*
+ * $Id: vos_thread.c 1901 2019-06-14 07:52:26Z bloehr $*
  *
  *      BL 2019-06-12: Ticket #260: Error in vos_threadCreate() not handled properly (vxworks)
  *      BL 2018-10-29: Ticket #215: use CLOCK_MONOTONIC if available
@@ -278,7 +278,7 @@ EXT_DECL VOS_ERR_T vos_threadTerminate (
     errVal = taskDelete((int)thread);
     if (errVal != OK)
     {
-        vos_printLog(VOS_LOG_ERROR,
+        vos_printLog(VOS_LOG_WARNING,
                      "taskDelete() failed (Err:%d)\n",
                      errVal );
     }

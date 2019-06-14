@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2018.
  *
- * $Id: vos_thread.c 1880 2019-06-11 15:38:37Z bloehr $
+ * $Id: vos_thread.c 1901 2019-06-14 07:52:26Z bloehr $
  *
  *      BL 2019-06-11: Possible NULL pointer access
  *      BL 2019-04-05: QNX monotonic time for semaphore; unused code removed
@@ -628,7 +628,7 @@ EXT_DECL VOS_ERR_T vos_threadTerminate (
     retCode = pthread_cancel((pthread_t)thread);
     if (retCode != 0)
     {
-        vos_printLog(VOS_LOG_ERROR,
+        vos_printLog(VOS_LOG_WARNING,
                      "pthread_cancel() failed (Err:%d)\n",
                      (int)retCode );
         return VOS_THREAD_ERR;

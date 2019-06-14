@@ -15,7 +15,7 @@
  *          Copyright 2018. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 1845 2019-02-22 16:23:41Z bloehr $
+ * $Id: vos_thread.c 1901 2019-06-14 07:52:26Z bloehr $
  *
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -372,7 +372,7 @@ EXT_DECL VOS_ERR_T vos_threadTerminate (
     retCode = pthread_cancel((pthread_t)thread);
     if (retCode != 0)
     {
-        vos_printLog(VOS_LOG_ERROR,
+        vos_printLog(VOS_LOG_WARNING,
                      "pthread_cancel() failed (Err:%d)\n",
                      (int)retCode );
         return VOS_THREAD_ERR;
