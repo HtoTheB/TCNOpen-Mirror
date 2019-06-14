@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: trdp_private.h 1913 2019-06-14 12:07:15Z ahweiss $
  *
  *      BL 2018-09-29: Ticket #191 Ready for TSN (PD2 Header)
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -50,9 +50,9 @@
 
 /* The TRDP version can be predefined as CFLAG   */
 #ifndef TRDP_VERSION
-#define TRDP_VERSION            0u
-#define TRDP_RELEASE            0u
-#define TRDP_UPDATE             0u
+#define TRDP_VERSION            1u
+#define TRDP_RELEASE            4u
+#define TRDP_UPDATE             2u
 #define TRDP_EVOLUTION          0u
 #endif
 
