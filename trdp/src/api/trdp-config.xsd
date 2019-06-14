@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.12.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 1896 2019-06-13 12:22:56Z bloehr $
+#  SVN           : $Id: trdp-config.xsd 1907 2019-06-14 11:35:49Z bloehr $
 #
 #  HISTORY       :
 #                            1.12.0.0  Added optional TSN/VLAN definitions for send parameters (com-parameters)
@@ -795,7 +795,7 @@ keep = keep the last value</xs:documentation>
       <xs:attribute name="n-rxsafe" type="uint8" default="3" use="optional"/>
       <xs:attribute name="n-guard" type="uint16" default="100" use="optional"/>
       <xs:attribute name="cm-thr" type="uint32" default="10" use="optional"/>
-	  <xs:attribute name="lmi-max" type="uint8" default="40" use="optional"/>
+	  <xs:attribute name="lmi-max" type="uint16" default="40" use="optional"/>
      </xs:complexType>
   </xs:element>
   
