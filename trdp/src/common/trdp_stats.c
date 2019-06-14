@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: trdp_stats.c 1904 2019-06-14 10:58:34Z ahweiss $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -192,7 +192,7 @@ EXT_DECL TRDP_ERR_T tlc_getSubsStatistics (
         pStatistics[lIndex].toBehav     = iter->toBehavior;     /* Behavior at time-out    */
         pStatistics[lIndex].numRecv     = iter->numRxTx;        /* Number of packets received for this subscription.  */
         pStatistics[lIndex].numMissed   = iter->numMissed;      /* Number of packets received for this subscription.  */
-        pStatistics[lIndex].status      = (UINT32) iter->lastErr;        /* Receive status information  */
+        pStatistics[lIndex].status      = (UINT32) iter->lastErr;        /*lint !e571 suspicious cast, Receive status information  */
     }
     if (lIndex >= *pNumSubs && iter != NULL)
     {
