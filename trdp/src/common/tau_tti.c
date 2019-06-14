@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2019. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 1904 2019-06-14 10:58:34Z ahweiss $
+* $Id: tau_tti.c 1906 2019-06-14 11:27:08Z bloehr $
 *
 *      BL 2019-06-11: Ticket #253 Incorrect storing of TTDB_STATIC_CONSIST_INFO_REPLY from network packet into local copy
 *      BL 2019-05-15: Ticket #254 API of TTI to get OwnOpCstNo and OwnTrnCstNo
@@ -211,8 +211,8 @@ static void ttiPDCallback (
             }
 
             /* Store the state locally */
-            memcpy(&appHandle->pTTDB->opTrnState, &pTelegram->state,
-                   (sizeof(TRDP_OP_TRAIN_DIR_STATE_T) < dataSize) ? sizeof(TRDP_OP_TRAIN_DIR_STATE_T) : dataSize);
+            memcpy(&appHandle->pTTDB->opTrnState, pTelegram,
+                   (sizeof(TRDP_OP_TRAIN_DIR_STATUS_INFO_T) < dataSize) ? sizeof(TRDP_OP_TRAIN_DIR_STATUS_INFO_T) : dataSize);
 
             /* unmarshall manually:   */
             appHandle->pTTDB->opTrnState.etbTopoCnt         = vos_ntohl(pTelegram->etbTopoCnt);
