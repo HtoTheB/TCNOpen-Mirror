@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 1908 2019-06-14 11:53:32Z bloehr $
+ * $Id: trdp_stats.c 1910 2019-06-14 11:57:20Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -340,7 +340,8 @@ EXT_DECL TRDP_ERR_T tlc_getTcpListStatistics (
     {
         if ((pIter->pktFlags & TRDP_FLAGS_TCP) != 0)
         {
-            vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN);
+            /* vos_strncpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN); */
+            memcpy(pStatistics->uri, pIter->destURI, TRDP_MAX_URI_USER_LEN); /* less dangerous */
             pStatistics->comId          = pIter->addr.comId;
             pStatistics->joinedAddr     = pIter->addr.mcGroup;
             pStatistics->callBack       = (pIter->pfCbFunction == NULL) ? 0u : 1u;      /* > 0 if call back function is used */
