@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_trafficShaping.c 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: test_trafficShaping.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -255,6 +255,7 @@ int main (int argc, char *argv[])
         err = tlp_publish(  appHandle,                /*    our application identifier      */
                           &pubHandle,                 /*    our pulication identifier       */
                           NULL, NULL,
+                          0u,
                           gPD[i].comID,
                           0,                          /*    local consist only              */
                           0,

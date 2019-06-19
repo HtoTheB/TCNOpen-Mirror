@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: tau_tti.h 1894 2019-06-13 11:05:03Z bloehr $
+ * $Id: tau_tti.h 1916 2019-06-19 14:37:27Z bloehr $
  *
  *
  *      BL 2019-05-15: Ticket #254 API of TTI to get OwnOpCstNo and OwnTrnCstNo

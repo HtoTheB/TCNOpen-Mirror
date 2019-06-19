@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1898 2019-06-13 15:17:38Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
@@ -702,7 +702,7 @@ static TRDP_ERR_T publishTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
         }
         /*  Publish the telegram    */
         result = tlp_publish(
-            pPubTlg->sessionhandle, &pPubTlg->pubHandle, NULL, NULL,
+            pPubTlg->sessionhandle, &pPubTlg->pubHandle, NULL, NULL, 0u,
             pExchgPar->comId, 
             0, 0, 0, destIP, interval, redId, flags, pSendParam, 
             (UINT8 *)pPubTlg->dataset.buffer, pPubTlg->dataset.size);
@@ -802,8 +802,11 @@ static TRDP_ERR_T subscribeTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
         }
         /*  Subscribe the telegram    */
         result = tlp_subscribe(
-                               pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL, pExchgPar->comId,
-                               0u, 0u, 0u, 0u, destMCIP, flags, timeout, toBehav);
+                               pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL,
+                               pExchgPar->serviceId, pExchgPar->comId,
+                               0u, 0u, 0u, 0u, destMCIP, flags,
+                               NULL,                      /*    default interface                    */
+                               timeout, toBehav);
         if (result != TRDP_NO_ERR)
         {
             printf("tlp_subscribe for comID %u, destMC %s failed: %s\n",
@@ -870,8 +873,10 @@ static TRDP_ERR_T subscribeTelegram(UINT32 ifcIdx, TRDP_EXCHG_PAR_T * pExchgPar)
 
             /*  Subscribe the telegram    */
             result = tlp_subscribe(
-                pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL, pExchgPar->comId,
-                0, 0, srcIP1, srcIP2, destMCIP, flags, timeout, toBehav);
+                pSubTlg->sessionhandle, &pSubTlg->subHandle, pSubTlg, NULL, pExchgPar->serviceId, pExchgPar->comId,
+                0, 0, srcIP1, srcIP2, destMCIP, flags,
+                NULL,                      /*    default interface                    */
+                timeout, toBehav);
             if (result != TRDP_NO_ERR)
             {
                 printf("tlp_subscribe for comID %u, srcID %u failed: %s\n",

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2018. All rights reserved.
  */
  /*
- * $Id: vos_utils.h 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: vos_utils.h 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *     AHW 2018-11-28: Doxygen comment errors
@@ -176,6 +176,15 @@ extern void *gRefCon;
 /***********************************************************************************************************************
  * PROTOTYPES
  */
+
+/**********************************************************************************************************************/
+/** Return 1 if this is a big endian machine.
+ *
+ *  @retval    0        if machine is little endian
+ *  @retval    1        if machine is big endian
+ */
+
+EXT_DECL int vos_hostIsBigEndian(void);
 
 /**********************************************************************************************************************/
 /** Calculate CRC for the given buffer and length.

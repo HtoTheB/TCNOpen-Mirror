@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: getStats.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -354,12 +354,14 @@ int main (int argc, char * *argv)
                          &subHandle,                    /*    our subscription identifier            */
                          NULL,                          /*    user reference                         */
                          myPDcallBack,                  /*    callback function                      */
+                         0u,
                          TRDP_STATISTICS_PULL_COMID,    /*    ComID                                  */
                          0, 0,                          /*    topocount: local consist only          */
                          VOS_INADDR_ANY,                /*    source IP 1                           */
                          VOS_INADDR_ANY,                /*    Source IP filter                       */
                          replyIP,                       /*    Default destination    (or MC Group)   */
                          TRDP_FLAGS_DEFAULT,            /*    packet flags */
+                         NULL,                          /*    default interface                    */
                          PD_COMID1_TIMEOUT,             /*    Time out in us                         */
                          TRDP_TO_SET_TO_ZERO);          /*    delete invalid data    on timeout      */
 
@@ -373,6 +375,7 @@ int main (int argc, char * *argv)
     /*    Request statistics PD        */
     err = tlp_request(appHandle,
                       subHandle,
+                      0u,
                       TRDP_STATISTICS_PULL_COMID,
                       0,
                       0,

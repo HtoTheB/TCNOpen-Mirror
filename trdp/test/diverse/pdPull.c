@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdPull.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: pdPull.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  *      BL 2014-06-02: oversized data changed
@@ -300,12 +300,14 @@ int main (int argc, char * *argv)
     err = tlp_subscribe(appHandle,                     /*    our application identifier             */
                         &subHandle,                    /*    our subscription identifier            */
                         NULL, NULL,
+                        0u,
                         gComID,                        /*    ComID                                  */
                         0u,                            /*    topocounts: local consist only         */
                         0u,
                         VOS_INADDR_ANY, VOS_INADDR_ANY, /*    Source IP filter                       */
                         replyIP,                       /*    Default destination    (or MC Group)   */
                         TRDP_FLAGS_DEFAULT,            /*    packet flags */
+                        NULL,
                         0u,                            /*    Time out in us                         */
                         TRDP_TO_SET_TO_ZERO);          /*    delete invalid data    on timeout      */
 
@@ -317,7 +319,7 @@ int main (int argc, char * *argv)
     }
 
     /*    Request PD        */
-    err = tlp_request(appHandle, subHandle, gComID, 0u, 0u, VOS_INADDR_ANY, destIP,
+    err = tlp_request(appHandle, subHandle, 0u, gComID, 0u, 0u, VOS_INADDR_ANY, destIP,
                       0u, TRDP_FLAGS_NONE, 0u, NULL, 0u, gComID, replyIP);
 
     if (err != TRDP_NO_ERR)
@@ -426,6 +428,7 @@ int main (int argc, char * *argv)
             /*    Request PD        */
             err = tlp_request(appHandle,
                               subHandle,
+                              0u,
                               gComID,
                               0u,
                               0u,

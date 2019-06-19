@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_ctrl_types.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: tau_ctrl_types.h 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
  *      BL 2017-03-09: Ticket #131 errata: Last change undone (leadVehOfCst defined in corrigendum)

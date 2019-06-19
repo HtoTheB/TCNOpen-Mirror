@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: sendHello.c 1857 2019-03-21 15:24:13Z bloehr $
+ * $Id: sendHello.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-06-30: Compiler warnings, local prototypes added
@@ -269,13 +269,14 @@ int main (int argc, char *argv[])
     err = tlp_publish(  appHandle,                  /*    our application identifier    */
                         &pubHandle,                 /*    our pulication identifier     */
                         NULL, NULL,
+                        0u,
                         comId,                      /*    ComID to send                 */
-                        0,                          /*    etbTopoCnt = 0 for local consist only     */
-                        0,                          /*    opTopoCnt = 0 for non-directinal data     */
+                        0u,                          /*    etbTopoCnt = 0 for local consist only     */
+                        0u,                          /*    opTopoCnt = 0 for non-directinal data     */
                         ownIP,                      /*    default source IP             */
                         destIP,                     /*    where to send to              */
                         cycleTime,                  /*    Cycle time in us              */
-                        0,                          /*    not redundant                 */
+                        0u,                          /*    not redundant                 */
                         TRDP_FLAGS_NONE,            /*    Use callback for errors       */
                         NULL,                       /*    default qos and ttl           */
                         (UINT8 *)outputBuffer,      /*    initial data                  */

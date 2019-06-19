@@ -13,7 +13,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
- * $Id: ladderApplication_subscriber.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: ladderApplication_subscriber.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -1118,9 +1118,10 @@ int main (int argc, char *argv[])
 							 PD_COMID1_SUB_SRC_IP1,     /* Source IP filter */
 							 0,                        	/* Source IP filter2 : no used */
 							 PD_COMID1_SUB_DST_IP1,     /* Default destination	(or MC Group) */
-							 TRDP_FLAGS_DEFAULT,			/* Option */
-							 PD_COMID1_TIMEOUT,         /* Time out in us	*/
-							 TRDP_TO_SET_TO_ZERO       /* delete invalid data on timeout */
+							 TRDP_FLAGS_DEFAULT,	    /* Option */
+                             NULL,                      /* default interface */
+ 							 PD_COMID1_TIMEOUT,         /* Time out in us	*/
+							 TRDP_TO_SET_TO_ZERO        /* delete invalid data on timeout */
 							 );
 		if (err != TRDP_NO_ERR)
 		{
@@ -1147,7 +1148,8 @@ int main (int argc, char *argv[])
 							 PD_COMID2_SUB_SRC_IP1,     /* Source IP filter */
 							 0,                        	/* Source IP filter2 : no used */
 							 PD_COMID2_SUB_DST_IP1,     /* Default destination	(or MC Group) */
-							 TRDP_FLAGS_DEFAULT,			/* Option */
+							 TRDP_FLAGS_DEFAULT,		/* Option */
+                             NULL,                      /* default interface */
 							 PD_COMID2_TIMEOUT,         /* Time out in us	*/
 							 TRDP_TO_SET_TO_ZERO        /* delete invalid data on timeout */
 							 );  	       	            /* net data size */
@@ -1183,7 +1185,8 @@ int main (int argc, char *argv[])
 								 PD_COMID1_SUB_SRC_IP2,     /* Source IP filter */
 								 0,                        	/* Source IP filter2 : no used */
 								 PD_COMID1_SUB_DST_IP2,     /* Default destination	(or MC Group) */
-								 TRDP_FLAGS_DEFAULT,			/* Option */
+								 TRDP_FLAGS_DEFAULT,		/* Option */
+                                 NULL,                      /* default interface */
 								 PD_COMID1_TIMEOUT,        	/* Time out in us	*/
 								 TRDP_TO_SET_TO_ZERO      	/* delete invalid data on timeout */
 								 );
@@ -1212,7 +1215,8 @@ int main (int argc, char *argv[])
 								 PD_COMID2_SUB_SRC_IP2,     /* Source IP filter */
 								 0,                        	/* Source IP filter2 : no used */
 								 PD_COMID2_SUB_DST_IP2,     /* Default destination	(or MC Group) */
-								 TRDP_FLAGS_DEFAULT,			/* Option */
+								 TRDP_FLAGS_DEFAULT,	    /* Option */
+                                 NULL,                      /* default interface */
 								 PD_COMID2_TIMEOUT,        	/* Time out in us	*/
 								 TRDP_TO_SET_TO_ZERO      	/* delete invalid data on timeout */
 								 );        		/* net data size */

@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: test_memSizes.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -303,12 +303,14 @@ int main (int argc, char * *argv)
         err = tlp_subscribe(appHandle,                  /*    our application identifier           */
                             &gSubPackets[i].subHandle,  /*    our subscription identifier          */
                             NULL, NULL,
+                            0u,                         /* serviceId                                */
                             gSubPackets[i].comID,       /*    ComID                                */
                             0u,                         /*    topocount: local consist only        */
                             0u,
                             VOS_INADDR_ANY, VOS_INADDR_ANY,  /*    Source to expect packets from   */
                             gSubPackets[i].addr,        /*    Default destination    (or MC Group) */
                             TRDP_FLAGS_CALLBACK,        /*    packet flags                         */
+                            NULL,                       /*    default interface                    */
                             gSubPackets[i].time,        /*    Time out in us                       */
                             TRDP_TO_SET_TO_ZERO);       /*    delete invalid data on timeout       */
 
@@ -325,6 +327,7 @@ int main (int argc, char * *argv)
         err = tlp_publish(appHandle,                    /*    our application identifier    */
                           &gPubPackets[i].pubHandle,    /*    our pulication identifier     */
                           NULL, NULL,
+                          0u,                           /* serviceId                        */
                           gPubPackets[i].comID,         /*    ComID to send                 */
                           0u,                           /*    local consist only            */
                           0u,

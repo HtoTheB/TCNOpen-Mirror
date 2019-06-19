@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: sendData.c 1857 2019-03-21 15:24:13Z bloehr $
+ * $Id: sendData.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -244,6 +244,7 @@ int main (int argc, char *argv[])
     err = tlp_publish(  appHandle,                  /*    our application identifier    */
                         &pubHandle,                 /*    our pulication identifier     */
                         NULL, NULL,
+                        0u,
                         comId,                      /*    ComID to send                 */
                         0,                          /*    local consist only            */
                         0,

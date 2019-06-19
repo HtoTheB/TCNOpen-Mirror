@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: echoCallback.c 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: echoCallback.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2018-02-02: Example renamed: cmdLineSelect -> echoCallback
@@ -286,6 +286,7 @@ int main (int argc, char * *argv)
     err = tlp_subscribe( appHandle,                 /*    our application identifier           */
                          &subHandle,                /*    our subscription identifier          */
                          NULL, NULL,                /*    userRef & callback function          */
+                         0u,
                          comId_In,                  /*    ComID                                */
                          0u,                        /*    topocount: local consist only        */
                          0u,
@@ -293,6 +294,7 @@ int main (int argc, char * *argv)
                          VOS_INADDR_ANY,            /*     */
                          destIP,                    /*    Default destination IP (or MC Group) */
                          TRDP_FLAGS_DEFAULT,        /*   */
+                         NULL,                      /*    default interface                    */
                          PD_COMID1_TIMEOUT,         /*    Time out in us                       */
                          TRDP_TO_SET_TO_ZERO);      /*    delete invalid data    on timeout    */
 
@@ -308,6 +310,7 @@ int main (int argc, char * *argv)
     err = tlp_publish(  appHandle,                  /*    our application identifier    */
                         &pubHandle,                 /*    our pulication identifier     */
                         NULL, NULL,
+                        0u,
                         comId_Out,                  /*    ComID to send                 */
                         0u,                         /*    local consist only            */
                         0u,

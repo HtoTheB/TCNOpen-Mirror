@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: ladderApplication_multiPD.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: ladderApplication_multiPD.c 1916 2019-06-19 14:37:27Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -1689,13 +1689,14 @@ PD_APP_ERR_TYPE trdp_pdApplicationInitialize (PD_THREAD_PARAMETER *pPdThreadPara
 							 &pPdThreadParameter->subHandleNet1ComId1,                          /* our subscription identifier */
 							 &pPdThreadParameter->pPdCommandValue->OFFSET_ADDRESS3,	NULL,       /* user referece value = offsetAddress */
 							 pPdThreadParameter->pPdCommandValue->PD_SUB_COMID1,                /* ComID */
-							 0, 0,                                                               /* topocount: local consist only */
+							 0, 0,                                                              /* topocount: local consist only */
 							 pPdThreadParameter->pPdCommandValue->PD_COMID1_SUB_SRC_IP1,        /* Source IP filter */
 							 0,                                                                 /* Source IP filter2 : no used */
 							 pPdThreadParameter->pPdCommandValue->PD_COMID1_SUB_DST_IP1,        /* Default destination	(or MC Group) */
 							 0,                                                                 /* Option */
+                             NULL,                                                              /*    default interface                    */
 							 pPdThreadParameter->pPdCommandValue->PD_COMID1_TIMEOUT,            /* Time out in us	*/
-							 TRDP_TO_SET_TO_ZERO                                               /* delete invalid data on timeout */
+							 TRDP_TO_SET_TO_ZERO                                                /* delete invalid data on timeout */
 							 );
 		if (err != TRDP_NO_ERR)
 		{
@@ -1718,6 +1719,7 @@ PD_APP_ERR_TYPE trdp_pdApplicationInitialize (PD_THREAD_PARAMETER *pPdThreadPara
 							 0,                        											/* Source IP filter2 : no used */
 							 pPdThreadParameter->pPdCommandValue->PD_COMID1_SUB_DST_IP2,        /* Default destination	(or MC Group) */
 							 0,                                                                 /* Option */
+                             NULL,                                                              /*    default interface                    */
 							 pPdThreadParameter->pPdCommandValue->PD_COMID1_TIMEOUT,            /* Time out in us	*/
 							 TRDP_TO_SET_TO_ZERO                                                /* delete invalid data on timeout */
 							 );
