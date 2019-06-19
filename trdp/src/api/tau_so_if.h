@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_if_soa_.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: tau_so_if.h 1917 2019-06-19 14:46:29Z bloehr $
  *
  */
 
