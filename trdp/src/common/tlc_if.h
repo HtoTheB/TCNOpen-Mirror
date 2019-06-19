@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            trdp_if.h
+ * @file            tlc_if.h
  *
  * @brief           Typedefs for TRDP communication
  *
@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: tlc_if.h 1919 2019-06-19 14:51:35Z bloehr $
+ * $Id: tlc_if.h 1920 2019-06-19 15:37:21Z bloehr $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -26,8 +26,8 @@
  *      BL 2014-07-14: Ticket #46: Protocol change: operational topocount needed
  */
 
-#ifndef TRDP_IF_H
-#define TRDP_IF_H
+#ifndef TLC_IF_H
+#define TLC_IF_H
 
 /***********************************************************************************************************************
  * INCLUDES

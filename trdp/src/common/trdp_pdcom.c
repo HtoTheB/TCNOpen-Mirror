@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: trdp_pdcom.c 1920 2019-06-19 15:37:21Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -72,7 +72,7 @@
 #include "trdp_types.h"
 #include "trdp_utils.h"
 #include "trdp_pdcom.h"
-#include "trdp_if.h"
+#include "tlc_if.h"
 #include "trdp_stats.h"
 #include "vos_sock.h"
 #include "vos_mem.h"

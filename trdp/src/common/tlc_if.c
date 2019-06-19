@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            trdp_if.c
+ * @file            tlc_if.c
  *
  * @brief           Functions for ECN communication
  *
@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 1918 2019-06-19 14:51:06Z bloehr $
+* $Id: tlc_if.c 1920 2019-06-19 15:37:21Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter

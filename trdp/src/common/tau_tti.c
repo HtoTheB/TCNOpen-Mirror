@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2019. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: tau_tti.c 1920 2019-06-19 15:37:21Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -108,17 +108,6 @@ static void ttiGetUUIDfromLabel (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_UUID_T         cstUUID,
     const TRDP_LABEL_T  cstLabel);
-
-static TRDP_IP_ADDR_T ipFromURI (
-    TRDP_APP_SESSION_T  appHandle,
-    TRDP_URI_HOST_T     uri)
-{
-    TRDP_IP_ADDR_T ipAddr = VOS_INADDR_ANY;
-
-    (void) tau_uri2Addr(appHandle, &ipAddr, uri);
-
-    return ipAddr;
-}
 
 /**********************************************************************************************************************/
 /**    Function returns the UUID for the given UIC ID
@@ -807,7 +796,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_OP_DIR_INFO_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
                                                                      TTDB_OP_DIR_INFO_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_OP_DIR_INFO_REQ_TO, NULL, &param, sizeof(param), NULL, NULL);
             /* Make sure the request is sent: */
@@ -817,7 +806,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_TRN_DIR_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
                                                                      TTDB_TRN_DIR_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_TRN_DIR_REQ_TO, NULL, &param, sizeof(param), NULL, NULL);
         }
@@ -826,7 +815,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_NET_DIR_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
                                                                      TTDB_NET_DIR_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_NET_DIR_REQ_TO, NULL, &param, sizeof(param), NULL, NULL);
         }
@@ -835,7 +824,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_READ_CMPLT_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
                                                                      TTDB_READ_CMPLT_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_READ_CMPLT_REQ_TO, NULL, &param, sizeof(param), NULL, NULL);
         }
@@ -843,7 +832,7 @@ static void ttiRequestTTDBdata (
         case TTDB_STAT_CST_REQ_COMID:
         {
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_STAT_CST_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
                                                                      TTDB_STAT_CST_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_STAT_CST_REQ_TO, NULL, cstUUID, sizeof(TRDP_UUID_T), NULL, NULL);
         }

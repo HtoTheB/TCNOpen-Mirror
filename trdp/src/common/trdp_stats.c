@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 1910 2019-06-14 11:57:20Z bloehr $
+ * $Id: trdp_stats.c 1920 2019-06-19 15:37:21Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -37,7 +37,7 @@
 
 #include "trdp_stats.h"
 #include "trdp_if_light.h"
-#include "trdp_if.h"
+#include "tlc_if.h"
 #include "trdp_private.h"
 #include "trdp_pdcom.h"
 #include "vos_mem.h"

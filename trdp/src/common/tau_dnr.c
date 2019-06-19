@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 1860 2019-04-12 06:49:12Z siddhiw $
+ * $Id: tau_dnr.c 1920 2019-06-19 15:37:21Z bloehr $
  *
  *      SB 2019-03-01: Ticket #237: tau_initDnr: Fixed comparison of readHostFile return value
  *      SB 2019-02-11: Ticket #237: tau_initDnr: Parameter waitForDnr to reduce wait times added
@@ -1312,7 +1312,16 @@ EXT_DECL TRDP_ERR_T tau_uri2Addr (
     return TRDP_UNRESOLVED_ERR;
 }
 
+EXT_DECL TRDP_IP_ADDR_T tau_ipFromURI (
+    TRDP_APP_SESSION_T  appHandle,
+    TRDP_URI_HOST_T     uri)
+{
+    TRDP_IP_ADDR_T ipAddr = VOS_INADDR_ANY;
 
+    (void) tau_uri2Addr(appHandle, &ipAddr, uri);
+
+    return ipAddr;
+}
 
 /**********************************************************************************************************************/
 /**    Function to convert an IP address to a URI.

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: trdp_if_light.h 1920 2019-06-19 15:37:21Z bloehr $
 *
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -132,9 +132,7 @@ EXT_DECL TRDP_ERR_T     tlp_getInterval (
     INT32               *pNoDesc);
 
 EXT_DECL TRDP_ERR_T tlp_processSend (
-    TRDP_APP_SESSION_T  appHandle,
-    TRDP_FDS_T          *pRfds,
-    INT32               *pCount);
+    TRDP_APP_SESSION_T  appHandle);
 
 EXT_DECL TRDP_ERR_T tlp_processReceive (
     TRDP_APP_SESSION_T  appHandle,

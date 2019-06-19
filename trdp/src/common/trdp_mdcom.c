@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 1880 2019-06-11 15:38:37Z bloehr $
+ * $Id: trdp_mdcom.c 1920 2019-06-19 15:37:21Z bloehr $
  *
  *      BL 2019-06-11: Possible NULL pointer access
  *      SB 2019-03-20: Ticket #235 TRDP MD Listener: Additional filter rule for multicast destIpAddr added
@@ -66,7 +66,7 @@
 #include <string.h>
 
 #include "trdp_if_light.h"
-#include "trdp_if.h"
+#include "tlc_if.h"
 #include "trdp_utils.h"
 #include "trdp_mdcom.h"
 
