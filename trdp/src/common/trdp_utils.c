@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 1920 2019-06-19 15:37:21Z bloehr $
+* $Id: trdp_utils.c 1924 2019-06-20 12:32:07Z ahweiss $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -900,7 +900,7 @@ TRDP_ERR_T  trdp_requestSocket (
                         }
                         continue;   /* No, socket cannot join more MC groups */
                     }
-                    vos_printLog(VOS_LOG_INFO, "socket %d joined %s!\n", iface[lIndex].sock, vos_ipDotted(mcGroup));
+                    vos_printLog(VOS_LOG_INFO, "socket %d joined %s!\n", (int) iface[lIndex].sock, vos_ipDotted(mcGroup));
                 }
             }
 
