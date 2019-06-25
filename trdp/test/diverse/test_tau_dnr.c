@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017-2018. All rights reserved.
  *
- * $Id: test_tau_dnr.c 1798 2018-11-09 13:47:26Z bloehr $
+ * $Id: test_tau_dnr.c 1927 2019-06-25 15:23:26Z bloehr $
  *
  *      BL 2018-11-09: Testing TCN-DNS for LINT findings in tau_dnr.c
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
@@ -169,7 +169,7 @@ static int test_tau_init(
         return 1;
     }
 
-    err = tau_initDnr (appHandle, dnsServerIP, 0, NULL /*PATH_TO_HOSTSFILE*/, TRDP_DNR_OWN_THREAD);
+    err = tau_initDnr (appHandle, dnsServerIP, 0, NULL /*PATH_TO_HOSTSFILE*/, TRDP_DNR_OWN_THREAD, FALSE);
 //    err = tau_initDnr (appHandle, 0, 0, PATH_TO_HOSTSFILE);
     if (err != TRDP_NO_ERR)
     {

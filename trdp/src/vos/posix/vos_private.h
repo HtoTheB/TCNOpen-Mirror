@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_private.h 1854 2019-03-15 16:44:48Z bloehr $
+ * $Id: vos_private.h 1927 2019-06-25 15:23:26Z bloehr $
  *
  */
 
@@ -42,10 +42,10 @@ extern "C" {
 
 /* The VOS version can be predefined as CFLAG   */
 #ifndef VOS_VERSION
-#define VOS_VERSION            1u
+#define VOS_VERSION            2u
 #define VOS_RELEASE            0u
-#define VOS_UPDATE             3u
-#define VOS_EVOLUTION          2u
+#define VOS_UPDATE             0u
+#define VOS_EVOLUTION          0u
 #endif
 
 /* Defines for Linux TSN ready sockets */
