@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: trdp_private.h 1929 2019-06-27 16:18:22Z bloehr $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -368,6 +368,8 @@ typedef struct TRDP_SESSION
 {
     struct TRDP_SESSION     *pNext;             /**< Pointer to next session                                */
     VOS_MUTEX_T             mutex;              /**< protect this session                                   */
+    VOS_MUTEX_T             pdSndMutex;         /**< protect the sending queue                              */
+    VOS_MUTEX_T             pdRcvMutex;         /**< protect the receiving queue                            */
     TRDP_IP_ADDR_T          realIP;             /**< Real IP address                                        */
     TRDP_IP_ADDR_T          virtualIP;          /**< Virtual IP address                                     */
     UINT32                  etbTopoCnt;         /**< current valid topocount or zero                        */
@@ -385,6 +387,7 @@ typedef struct TRDP_SESSION
     TRDP_TIME_T             initTime;           /**< initialization time of session                         */
     TRDP_STATISTICS_T       stats;              /**< statistics of this session                             */
 #if MD_SUPPORT
+    VOS_MUTEX_T             mdMutex;            /**< protect the message data handling                      */
     struct TAU_TTDB         *pTTDB;             /**< session related TTDB data                              */
     void                    *pUser;             /**< space for higher layer data                            */
     TRDP_TCP_FD_T           tcpFd;              /**< TCP file descriptor parameters                         */

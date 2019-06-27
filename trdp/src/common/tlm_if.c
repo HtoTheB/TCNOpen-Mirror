@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 1920 2019-06-19 15:37:21Z bloehr $
+* $Id: tlm_if.c 1929 2019-06-27 16:18:22Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -86,7 +86,7 @@ EXT_DECL TRDP_ERR_T tlm_process (
         return TRDP_NOINIT_ERR;
     }
 
-    if (vos_mutexLock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexLock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         return TRDP_NOINIT_ERR;
     }
@@ -121,7 +121,7 @@ EXT_DECL TRDP_ERR_T tlm_process (
 
         trdp_mdCheckTimeouts(appHandle);
 
-        if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
+        if (vos_mutexUnlock(appHandle->mdMutex) != VOS_NO_ERR)
         {
             vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
         }
@@ -358,7 +358,7 @@ EXT_DECL TRDP_ERR_T  tlm_addListener (
     }
 
     /* lock mutex */
-    if (vos_mutexLock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexLock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         return TRDP_NOINIT_ERR;
     }
@@ -479,7 +479,7 @@ EXT_DECL TRDP_ERR_T  tlm_addListener (
     }
 
     /* Release mutex */
-    if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexUnlock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
     }
@@ -521,7 +521,7 @@ TRDP_ERR_T tlm_delListener (
 
     /* lock mutex */
 
-    if (vos_mutexLock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexLock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         return TRDP_NOINIT_ERR;
     }
@@ -580,7 +580,7 @@ TRDP_ERR_T tlm_delListener (
     }
 
     /* Release mutex */
-    if ( vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR )
+    if ( vos_mutexUnlock(appHandle->mdMutex) != VOS_NO_ERR )
     {
         vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
     }
@@ -627,7 +627,7 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
         return TRDP_PARAM_ERR;
     }
     /* lock mutex */
-    if (vos_mutexLock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexLock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         return TRDP_NOINIT_ERR;
     }
@@ -673,7 +673,7 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
     }
 
     /* Release mutex */
-    if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexUnlock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
     }
@@ -854,7 +854,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
 
     /* lock mutex */
 
-    if (vos_mutexLock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexLock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         return TRDP_NOINIT_ERR;
     }
@@ -883,7 +883,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
     while (iterMD != NULL);
 
     /* Release mutex */
-    if (vos_mutexUnlock(appHandle->mutex) != VOS_NO_ERR)
+    if (vos_mutexUnlock(appHandle->mdMutex) != VOS_NO_ERR)
     {
         vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
     }

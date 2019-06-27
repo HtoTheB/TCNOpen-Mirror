@@ -15,10 +15,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
+ *          Copyright NewTec GmbH 2019. All rights reserved.
  */
 /*
-* $Id: tau_so_if.c 1920 2019-06-19 15:37:21Z bloehr $
+* $Id: tau_so_if.c 1929 2019-06-27 16:18:22Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 */
