@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 1926 2019-06-25 15:07:33Z bloehr $*
+ * $Id: vos_sock.c 1928 2019-06-27 14:46:08Z bloehr $*
  *
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
  *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
@@ -838,9 +838,9 @@ EXT_DECL VOS_ERR_T vos_sockOpenTSN (
     SOCKET                  *pSock,
     const VOS_SOCK_OPT_T    *pOptions)
 {
-    int sock;
 #ifdef WIN32
 #else
+    int sock;
     if (!vosSockInitialised)
     {
         return VOS_INIT_ERR;
