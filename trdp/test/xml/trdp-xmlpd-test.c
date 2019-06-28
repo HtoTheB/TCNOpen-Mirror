@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: trdp-xmlpd-test.c 1931 2019-06-28 14:52:43Z bloehr $
  *
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
@@ -1136,7 +1136,7 @@ int main(int argc, char * argv[])
     printf("TRDP PD test using XML configuration\n\n");
     if (argc < 2)
     {
-        printf("usage: %s <xmlfilename> [quite]\n", argv[0]);
+        printf("usage: %s <xmlfilename> [quiet]\n", argv[0]);
         return 1;
     }
     pFileName = argv[1];

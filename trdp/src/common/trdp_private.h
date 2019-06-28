@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 1929 2019-06-27 16:18:22Z bloehr $
+ * $Id: trdp_private.h 1931 2019-06-28 14:52:43Z bloehr $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -62,19 +62,19 @@
 #define TRDP_EVOLUTION  0u
 #endif
 
-#define TRDP_TIMER_GRANULARITY          10000u                            /**< granularity in us                      */
+#define TRDP_TIMER_GRANULARITY          100u                        /**< granularity in us - we allow 0.1ms now!      */
 
-#define TRDP_DEBUG_DEFAULT_FILE_SIZE    65536u                            /**< Default maximum size of log file       */
+#define TRDP_DEBUG_DEFAULT_FILE_SIZE    65536u                      /**< Default maximum size of log file             */
 
 #define TRDP_MAGIC_PUB_HNDL_VALUE       0xCAFEBABEu
 #define TRDP_MAGIC_SUB_HNDL_VALUE       0xBABECAFEu
 
-#define TRDP_SEQ_CNT_START_ARRAY_SIZE   64u                               /**< This should be enough for the start    */
+#define TRDP_SEQ_CNT_START_ARRAY_SIZE   64u                         /**< This should be enough for the start          */
 
 #define TRDP_IF_WAIT_FOR_READY          120u        /**< 120 seconds (120 tries each second to bind to an IP address) */
 
 #undef  TRDP_PROTO_VER
-#define TRDP_PROTO_VER  0x0101u                                      /**< compatible protocol version with service Id */
+#define TRDP_PROTO_VER                  0x0101u                     /**< compatible protocol version with service Id  */
 
 /***********************************************************************************************************************
  * TYPEDEFS
