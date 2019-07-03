@@ -15,7 +15,7 @@
  *          Copyright 2018. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 1927 2019-06-25 15:23:26Z bloehr $
+ * $Id: vos_sock.c 1932 2019-07-03 15:31:16Z bloehr $
  *
  *      BL 2019-02-22: lwip patch: recvfrom to return destIP
  *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
@@ -28,6 +28,11 @@
 #ifndef ESP32
 #error \
     "You are trying to compile the ESP32 implementation of vos_sock.c - either define ESP32 or exclude this file!"
+#endif
+
+#ifdef TSN_SUPPORT
+#warning \
+    "To build a TSN capable TRDP library another vos_sock implementation is necessary. Sorry!"
 #endif
 
 /***********************************************************************************************************************
@@ -62,6 +67,8 @@ static int vosSockInitialised = FALSE;
 /***********************************************************************************************************************
  * GLOBAL FUNCTIONS
  */
+
+#ifdef TSN_SUPPORT
 
 /* Unimplemented extensions for TSN & VLAN support */
 EXT_DECL VOS_ERR_T  vos_ifnameFromVlanId (UINT16    vlanId,
@@ -116,6 +123,7 @@ EXT_DECL void       vos_sockPrintOptions (SOCKET sock)
 {
     return;
 }
+#endif
 
 /**********************************************************************************************************************/
 /** Byte swapping.

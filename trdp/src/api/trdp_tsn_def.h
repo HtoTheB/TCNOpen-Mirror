@@ -5,6 +5,8 @@
  * @brief           Additional definitions for TSN
  *
  * @details         This header file defines proposed extensions and additions to IEC61375-2-3:2017
+ *                  The definitions herein are preliminary and may change with the next major release
+ *                  of the IEC 61375-2-3 standard.
  *
  * @note            Project: TCNOpen TRDP prototype stack & FDF/DbD
  *
@@ -13,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: trdp_tsn_def.h 1932 2019-07-03 15:31:16Z bloehr $
  *
  */
 

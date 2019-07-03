@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_private.h 1927 2019-06-25 15:23:26Z bloehr $
+ * $Id: vos_private.h 1932 2019-07-03 15:31:16Z bloehr $
  *
  */
 
@@ -31,6 +31,7 @@
 
 #include "vos_types.h"
 #include "vos_thread.h"
+#include "vos_sock.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -92,6 +93,8 @@ void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
         }                                                              \
     }
 #endif
+
+EXT_DECL    VOS_ERR_T   vos_sockSetBuffer (SOCKET sock);
 
 #ifdef __cplusplus
 }

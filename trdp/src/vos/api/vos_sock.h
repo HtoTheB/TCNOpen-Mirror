@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: vos_sock.h 1932 2019-07-03 15:31:16Z bloehr $
  *
  *      BL 2019-06-17: Ticket #191 Add provisions for TSN / Hard Real Time (open source)
  *      V 2.0.0 --------- ^^^ -----------
@@ -645,6 +645,7 @@ EXT_DECL VOS_IP4_ADDR_T vos_determineBindAddr ( VOS_IP4_ADDR_T  srcIP,
                                                 VOS_IP4_ADDR_T  mcGroup,
                                                 VOS_IP4_ADDR_T  rcvMostly);
 
+#ifdef TSN_SUPPORT
 /* Extension for TSN & VLAN support */
 EXT_DECL VOS_ERR_T  vos_ifnameFromVlanId (UINT16    vlanId,
                                           CHAR8     *pIFaceName);
@@ -671,6 +672,7 @@ EXT_DECL VOS_ERR_T  vos_sockBind2IF (SOCKET         sock,
                                      VOS_IF_REC_T   *pIFace,
                                      BOOL8          doBind);
 EXT_DECL void       vos_sockPrintOptions (SOCKET sock);
+#endif
 
 #ifdef __cplusplus
 }

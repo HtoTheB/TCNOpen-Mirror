@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.h 1929 2019-06-27 16:18:22Z bloehr $
+* $Id: trdp_pdcom.h 1932 2019-07-03 15:31:16Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -91,10 +91,15 @@ TRDP_ERR_T trdp_pdGet (
 TRDP_ERR_T  trdp_pdSendQueued (
     TRDP_SESSION_PT appHandle);
 
-TRDP_ERR_T  trdp_pdSendImmediate (
+#ifdef TSN_SUPPORT
+TRDP_ERR_T  trdp_pdSendImmediateTSN (
     TRDP_SESSION_PT appHandle,
     PD_ELE_T        *pSendPD,
     VOS_TIMEVAL_T   *pTxTime);
+#endif
+TRDP_ERR_T  trdp_pdSendImmediate (
+    TRDP_SESSION_PT appHandle,
+    PD_ELE_T        *pSendPD);
 
 TRDP_ERR_T  trdp_pdReceive (
     TRDP_SESSION_PT pSessionHandle,
