@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 1932 2019-07-03 15:31:16Z bloehr $
+ * $Id: trdp_private.h 1933 2019-07-05 15:40:19Z bloehr $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -62,7 +62,11 @@
 #define TRDP_EVOLUTION  0u
 #endif
 
-#define TRDP_TIMER_GRANULARITY          100u                        /**< granularity in us - we allow 0.1ms now!      */
+#ifdef HIGH_PERF_INDEX
+#define TRDP_TIMER_GRANULARITY          500u                        /**< granularity in us - we allow 0.5ms now!      */
+#else
+#define TRDP_TIMER_GRANULARITY          5000u                        /**< granularity in us - we allow 5ms now!      */
+#endif
 
 #define TRDP_DEBUG_DEFAULT_FILE_SIZE    65536u                      /**< Default maximum size of log file             */
 

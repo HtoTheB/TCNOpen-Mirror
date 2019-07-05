@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 1920 2019-06-19 15:37:21Z bloehr $
+* $Id: trdp_if_light.h 1933 2019-07-05 15:40:19Z bloehr $
 *
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -87,6 +87,9 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
     const TRDP_PD_CONFIG_T          *pPdDefault,
     const TRDP_MD_CONFIG_T          *pMdDefault,
     const TRDP_PROCESS_CONFIG_T     *pProcessConfig);
+
+EXT_DECL TRDP_ERR_T tlc_updateSession (
+    TRDP_APP_SESSION_T appHandle);
 
 EXT_DECL TRDP_ERR_T tlc_closeSession (
     TRDP_APP_SESSION_T appHandle);
