@@ -17,8 +17,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: tau_xml.h 1934 2019-07-10 08:48:04Z s-bender $
  *
+ *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
  *      BL 2019-06-14: Ticket #250: additional parameter lmi-max SDTv2
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *      BL 2017-05-08: Compiler warnings, flag enums -> defines
@@ -164,10 +165,17 @@ typedef struct
 
 typedef struct
 {
-    UINT32  srcId;   /**< Id of source tags used in telegram in XML */
-    UINT32  dstId;  /**< Id of destination tags used in telegram in XML */
-    UINT8   instanceId; /**< Instance identifier */
+    TRDP_URI_T  dstUri;         /**< Destination URI of the instance */
+    UINT8       instanceId;     /**< Instance identifier */
 }TRDP_INSTANCE_T;
+
+typedef struct
+{
+    TRDP_URI_HOST_T     dstUri;         /**< Destination URI of the device */
+    TRDP_URI_HOST_T     hostUri;        /**< Host URI of the device */
+    UINT32              instanceCnt;    /**< Number of instances of a specific service on the device */
+    TRDP_INSTANCE_T     *pInstance;     /**< Pointer to the Device's instances */
+}TRDP_SERVICE_DEVICE_T;
 
 typedef struct
 {
@@ -179,18 +187,18 @@ typedef struct
 
 typedef struct
 {
-    TRDP_URI_USER_T     serviceName;    /**< Service Type/Name */
-    UINT32              serviceId;      /**< Service Id (24 bits) */
-    UINT32              eventCnt;       /**< Number of Events in Service */
-    TRDP_EVENT_T        *pEvent;        /**< Pointer to the Service's Events */
-    UINT32              fieldCnt;       /**< Number of Fields in Service */
-    TRDP_FIELD_T        *pField;        /**< Pointer to the Service's Fields */
-    UINT32              methodCnt;      /**< Number of Methods in Service */
-    TRDP_METHOD_T       *pMethod;       /**< Pointer to the Service's Methods */
-    UINT32              instanceCnt;    /**< Number of Instances of Service */
-    TRDP_INSTANCE_T     *pInstance;     /**< Pointer to the Service's Instances */
-    UINT32              telegramRefCnt; /**< Number of telegrams in dummy Service */
-    TRDP_TELEGRAM_REF_T *pTelegramRef;  /**< Pointer to the telegrams in dummy Service */
+    TRDP_URI_USER_T         serviceName;    /**< Service Type/Name */
+    UINT32                  serviceId;      /**< Service Id (24 bits) */
+    UINT32                  eventCnt;       /**< Number of Events in Service */
+    TRDP_EVENT_T            *pEvent;        /**< Pointer to the Service's Events */
+    UINT32                  fieldCnt;       /**< Number of Fields in Service */
+    TRDP_FIELD_T            *pField;        /**< Pointer to the Service's Fields */
+    UINT32                  methodCnt;      /**< Number of Methods in Service */
+    TRDP_METHOD_T           *pMethod;       /**< Pointer to the Service's Methods */
+    UINT32                  deviceCnt;      /**< Number of Devices in Service */
+    TRDP_SERVICE_DEVICE_T   *pDevice;       /**< Pointer to the Service's Devices */
+    UINT32                  telegramRefCnt; /**< Number of telegrams in dummy Service */
+    TRDP_TELEGRAM_REF_T     *pTelegramRef;  /**< Pointer to the telegrams in dummy Service */
 } TRDP_SERVICE_DEF_T;
 
 /** Control for debug output format on application level.
