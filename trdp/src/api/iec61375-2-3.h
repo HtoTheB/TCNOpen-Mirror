@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
  /*
- * $Id: iec61375-2-3.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: iec61375-2-3.h 1935 2019-07-10 10:01:25Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition
@@ -109,7 +109,7 @@
 #define TRDP_MD_DEFAULT_QOS                 3u
 #define TRDP_MD_DEFAULT_TTL                 64u
 #define TRDP_MD_DEFAULT_RETRIES             2u
-#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES}
+#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES, 0u, 0u}
 #define TRDP_MD_MAX_NUM_SESSIONS            1000u
 
 /**  Default PD communication parameters   */

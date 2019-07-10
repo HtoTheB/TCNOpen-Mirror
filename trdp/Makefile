@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 1932 2019-07-03 15:31:16Z bloehr $
+#// $Id: Makefile 1935 2019-07-10 10:01:25Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -134,12 +134,23 @@ endif
 
 ifeq ($(SOA_SUPPORT),1)
 	TRDP_OPT_OBJS   += tau_so_if.o
+	CFLAGS += -DSOA_SUPPORT
+#	Option: Building with service orientation support!
 endif
 
 ifeq ($(TSN_SUPPORT),1)
 	TARGETS += tsn
+	# Additional sources for TSN support
+	VOS_OBJS += vos_sockTSN.o
+	CFLAGS += -DTSN_SUPPORT
+#	Option: Building with TSN support
 endif
 
+ifeq ($(HIGH_PERF_INDEXED),1)
+	TRDP_OBJS += trdp_pdindex.o
+	CFLAGS += -DHIGH_PERF_INDEXED -DPD_SPEED
+#	Option: Building high performance stack
+endif
 
 all:	$(TARGETS)
 
