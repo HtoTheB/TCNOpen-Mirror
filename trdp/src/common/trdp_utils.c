@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 1932 2019-07-03 15:31:16Z bloehr $
+* $Id: trdp_utils.c 1943 2019-07-12 13:08:56Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -1304,7 +1304,8 @@ void  trdp_releaseSocket (
         /* Handle a specified socket */
         if (iface[lIndex].sock != VOS_INVALID_SOCKET &&
             (iface[lIndex].type == TRDP_SOCK_MD_UDP ||
-             iface[lIndex].type == TRDP_SOCK_PD))
+             iface[lIndex].type == TRDP_SOCK_PD ||
+             iface[lIndex].type == TRDP_SOCK_PD_TSN))
         {
             vos_printLog(VOS_LOG_DBG,
                          "Decrement the socket %d usage = %d\n",

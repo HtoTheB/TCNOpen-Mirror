@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 1935 2019-07-10 10:01:25Z bloehr $
+* $Id: tlc_if.c 1943 2019-07-12 13:08:56Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -444,7 +444,9 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     ret = (TRDP_ERR_T) vos_mutexCreate(&pSession->mutex);
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexTxPD);
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexRxPD);
+#if MD_SUPPORT
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexMD);
+#endif
 
     if (ret != TRDP_NO_ERR)
     {
@@ -983,8 +985,9 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
                 vos_mutexDelete(pSession->mutex);
                 vos_mutexDelete(pSession->mutexTxPD);
                 vos_mutexDelete(pSession->mutexRxPD);
+#if MD_SUPPORT
                 vos_mutexDelete(pSession->mutexMD);
-
+#endif
                 vos_memFree(pSession);
             }
 

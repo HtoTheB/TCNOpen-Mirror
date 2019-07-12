@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 1932 2019-07-03 15:31:16Z bloehr $
+* $Id: trdp_pdcom.c 1943 2019-07-12 13:08:56Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -1082,11 +1082,9 @@ TRDP_ERR_T   trdp_pdCheckListenSocks (
                 switch (err)
                 {
                     case TRDP_NO_ERR:
-                        break;
                     case TRDP_NOSUB_ERR:        /* missing subscription should not lead to extensive error output */
                     case TRDP_BLOCK_ERR:
-                    case TRDP_NODATA_ERR:
-                        result = err;
+                    case TRDP_NODATA_ERR:       /* ignore would-block or sporadic unsolicited messages */
                         break;
                     case TRDP_TOPO_ERR:
                     case TRDP_TIMEOUT_ERR:
