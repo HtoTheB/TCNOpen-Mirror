@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 1935 2019-07-10 10:01:25Z bloehr $
+* $Id: tlm_if.c 1942 2019-07-12 12:15:31Z s-bender $
 *
+*      SB 2019-07-12: Removing callback during tlm_abortSession to prevent it from being called with deleted pUserRef
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
 *      BL 2019-06-17: Ticket #161 Increase performance
@@ -929,6 +930,7 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
         {
             if (memcmp(iterMD->sessionID, pSessionId, TRDP_SESS_ID_SIZE) == 0)
             {
+                iterMD->pfCbFunction = NULL;
                 iterMD->morituri = TRUE;
                 err = TRDP_NO_ERR;
             }
