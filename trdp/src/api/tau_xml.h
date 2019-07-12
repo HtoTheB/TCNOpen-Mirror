@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 1934 2019-07-10 08:48:04Z s-bender $
+ * $Id: tau_xml.h 1945 2019-07-12 14:44:32Z bloehr $
  *
  *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
  *      BL 2019-06-14: Ticket #250: additional parameter lmi-max SDTv2
@@ -405,8 +405,8 @@ EXT_DECL void tau_freeTelegrams (
  *  The user must release the memory for pServiceDefs (using vos_memFree)
  *
  *  @param[in]      pDocHnd           Handle of the XML document prepared by tau_prepareXmlDoc
- *  @param[out]     pNumServiceDefs   Pointer to number of defined Services
- *  @param[out]     ppServiceDefs     Pointer to pointer to the defined Services
+ *  @param[out]     pNumServiceDefs   Number of defined Services
+ *  @param[out]     ppServiceDefs     Pointer to pointer of the defined Services
  *
  *  @retval         TRDP_NO_ERR       no error
  *  @retval         TRDP_MEM_ERR      provided buffer to small

@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_utils.c 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: vos_utils.c 1945 2019-07-12 14:44:32Z bloehr $
 *
 *      BL 2017-05-08: Compiler warnings
 *      BL 2017-02-27: #142 Compiler warnings / MISRA-C 2012 issues
@@ -140,9 +140,8 @@ static const UINT32 fcs_table[256u] PROGMEM =
 
 /** Table of CRC-32s of all single-byte values according to IEC 61375-2-3 B.7 / IEC61784-3-3
  *  The CRC of the string "123456789" is 0x1697d06a
- *
  */
-static const UINT32 sc32_table[256] PROGMEM =
+static const UINT32 sc32_table[256u] PROGMEM =              /**< Table of CRC-32s */
 {
     0x00000000U, 0xF4ACFB13U, 0x1DF50D35U, 0xE959F626U,
     0x3BEA1A6AU, 0xCF46E179U, 0x261F175FU, 0xD2B3EC4CU,

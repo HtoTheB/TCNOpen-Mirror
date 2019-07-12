@@ -16,7 +16,7 @@
  *          Copyright NewTec GmbH, 2017. All rights reserved.
  */
 /*
-* $Id: tau_dnr_types.h 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: tau_dnr_types.h 1945 2019-07-12 14:44:32Z bloehr $
 *
 *
 *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
@@ -75,7 +75,7 @@ typedef struct TRDP_DNS_REQUEST
                                              1 = ETB1 (multimedia network)
                                              2 = ETB2 (other network)
                                              3 = ETB3 (other network)
-                                             255 = dont care (for access to
+                                             255 = don't care (for access to
                                              local DNS server) */
     UINT8               reserved02;
     UINT8               reserved03;
@@ -100,7 +100,7 @@ typedef struct TRDP_DNS_REPLY
                                              1 = ETB1 (multimedia network)
                                              2 = ETB2 (other network)
                                              3 = ETB3 (other network)
-                                             255 = dont care (for access to
+                                             255 = don't care (for access to
                                              local DNS server)          */
     INT8 dnsStatus;                         /**< 0 = OK
                                              -1 = DNS Server not ready

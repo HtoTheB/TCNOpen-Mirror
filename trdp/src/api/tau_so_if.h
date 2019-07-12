@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            tau_soa.h
+ * @file            tau_so_if.h
  *
  * @brief           Access to the Service Registry
  *
@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: tau_so_if.h 1917 2019-06-19 14:46:29Z bloehr $
+ * $Id: tau_so_if.h 1945 2019-07-12 14:44:32Z bloehr $
  *
  */
 
