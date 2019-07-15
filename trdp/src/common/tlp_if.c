@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 1935 2019-07-10 10:01:25Z bloehr $
+* $Id: tlp_if.c 1946 2019-07-15 08:42:43Z bloehr $
 *
 *      BL 2019-07-09: Ticket #270 Bug in handling of PD telegrams with new topocounters
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -138,8 +138,10 @@ EXT_DECL TRDP_ERR_T tlp_getInterval (
 
 /**********************************************************************************************************************/
 /** Work loop of the TRDP handler.
- *    Search the queue for pending PDs to be sent
- *    Search the receive queue for pending PDs (time out)
+ *    Check the sockets for incoming PD telegrams.
+ *    Search the receive queue for pending PDs (time out) and report them,
+ *    either by informing the higher layer via the callback mechanism or just by
+ *    marking the subscriber as timed-out
  *
  *
  *  @param[in]      appHandle          The handle returned by tlc_openSession

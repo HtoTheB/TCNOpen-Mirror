@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 1942 2019-07-12 12:15:31Z s-bender $
+* $Id: tlm_if.c 1946 2019-07-15 08:42:43Z bloehr $
 *
 *      SB 2019-07-12: Removing callback during tlm_abortSession to prevent it from being called with deleted pUserRef
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -62,10 +62,9 @@ extern "C" {
  */
 
 /**********************************************************************************************************************/
-/** Get the lowest time interval for PDs.
+/** Get the lowest time interval for MDs.
  *  Return the maximum time interval suitable for 'select()' so that we
- *    can send due PD packets in time.
- *    If the PD send queue is empty, return zero time
+ *    can report time outs to the higher layer.
  *
  *  @param[in]      appHandle          The handle returned by tlc_openSession
  *  @param[out]     pInterval          pointer to needed interval
@@ -118,9 +117,9 @@ EXT_DECL TRDP_ERR_T tlm_getInterval (
 }
 
 /**********************************************************************************************************************/
-/** Work loop of the TRDP handler.
- *    Search the queue for pending PDs to be sent
- *    Search the receive queue for pending PDs (time out)
+/** Message Data Work loop of the TRDP handler.
+ *    Search the queue for pending MDs to be sent
+ *    Search the receive queue for pending MDs (replies, time outs) and incoming requests
  *
  *
  *  @param[in]      appHandle          The handle returned by tlc_openSession
