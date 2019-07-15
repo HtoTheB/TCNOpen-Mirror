@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2018.
  *
- * $Id: vos_thread.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: vos_thread.c 1947 2019-07-15 14:18:46Z bloehr $
  *
  *      BL 2019-06-11: Possible NULL pointer access
  *      BL 2019-04-05: QNX monotonic time for semaphore; unused code removed
@@ -198,11 +198,6 @@ int sem_init (sem_t *pSema, int flags, unsigned int mode)
 #endif
 
 
-/***********************************************************************************************************************
- * GLOBAL FUNCTIONS
- */
-
-
 /**********************************************************************************************************************/
 /*  Threads
                                                                                                                */
@@ -382,6 +377,10 @@ static void vos_runCyclicThread (
     }
 #endif
 }
+
+/***********************************************************************************************************************
+ * GLOBAL FUNCTIONS
+ */
 
 /**********************************************************************************************************************/
 /** Initialize the thread library.

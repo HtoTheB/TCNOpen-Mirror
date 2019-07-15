@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_mem.h 1945 2019-07-12 14:44:32Z bloehr $
+ * $Id: vos_mem.h 1947 2019-07-15 14:18:46Z bloehr $
  *
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors
  */
@@ -67,7 +67,7 @@ typedef enum
 
 #define VOS_MEM_PREALLOCATE  {0u, 0u, 0u, 0u, 0u, 0u, 0u, 10u, 0u, 2u, 0u, 1u, 0u, 1u, 0u}
 
-#elseif MD_SUPPORT
+#elif MD_SUPPORT
 /** We internally allocate memory always by these block sizes. The largest available block is 524288 Bytes, provided
     the overal size of the used memory allocation area is larger. */
 
