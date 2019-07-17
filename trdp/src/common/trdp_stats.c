@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 1920 2019-06-19 15:37:21Z bloehr $
+ * $Id: trdp_stats.c 1948 2019-07-17 12:58:29Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -40,6 +40,7 @@
 #include "tlc_if.h"
 #include "trdp_private.h"
 #include "trdp_pdcom.h"
+#include "trdp_utils.h"
 #include "vos_mem.h"
 #include "vos_thread.h"
 
@@ -513,11 +514,22 @@ void    trdp_UpdateStats (
 
     /*  Count our joins */
     appHandle->stats.numJoin = 0u;
-    for (lIndex = 0u; lIndex < VOS_MAX_SOCKET_CNT; lIndex++)
+    for (lIndex = 0u; lIndex < trdp_getCurrentMaxSocketCnt(TRDP_SOCK_PD); lIndex++)
     {
         for (llIndex = 0u; llIndex < VOS_MAX_MULTICAST_CNT; llIndex++)
         {
-            if (appHandle->iface[lIndex].mcGroups[llIndex] != 0u)
+            if (appHandle->ifacePD[lIndex].mcGroups[llIndex] != 0u)
+            {
+                appHandle->stats.numJoin++;
+            }
+        }
+    }
+    /* Count the joins on MD sockets, as well */
+    for (lIndex = 0u; lIndex < trdp_getCurrentMaxSocketCnt(TRDP_SOCK_MD_UDP); lIndex++)
+    {
+        for (llIndex = 0u; llIndex < VOS_MAX_MULTICAST_CNT; llIndex++)
+        {
+            if (appHandle->ifaceMD[lIndex].mcGroups[llIndex] != 0u)
             {
                 appHandle->stats.numJoin++;
             }

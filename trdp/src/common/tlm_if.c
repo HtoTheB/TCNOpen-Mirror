@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 1946 2019-07-15 08:42:43Z bloehr $
+* $Id: tlm_if.c 1948 2019-07-17 12:58:29Z bloehr $
 *
 *      SB 2019-07-12: Removing callback during tlm_abortSession to prevent it from being called with deleted pUserRef
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -485,7 +485,7 @@ EXT_DECL TRDP_ERR_T  tlm_addListener (
                 {
                     /* socket to receive UDP MD */
                     errv = trdp_requestSocket(
-                            appHandle->iface,
+                            appHandle->ifaceMD,
                             appHandle->mdDefault.udpPort,
                             &appHandle->mdDefault.sendParam,
                             appHandle->realIP,
@@ -613,7 +613,7 @@ TRDP_ERR_T tlm_delListener (
                 {
                     mcGroup = trdp_findMCjoins(appHandle, pDelete->addr.mcGroup);
                 }
-                trdp_releaseSocket(appHandle->iface,
+                trdp_releaseSocket(appHandle->ifaceMD,
                                    pDelete->socketIdx,
                                    appHandle->mdDefault.connectTimeout,
                                    FALSE,
@@ -697,8 +697,8 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
             pListener->addr.mcGroup != mcDestIpAddr)                /* nor if there's no change in group */
         {
             /*  Find the correct socket    */
-            trdp_releaseSocket(appHandle->iface, pListener->socketIdx, 0u, FALSE, mcDestIpAddr);
-            ret = trdp_requestSocket(appHandle->iface,
+            trdp_releaseSocket(appHandle->ifaceMD, pListener->socketIdx, 0u, FALSE, mcDestIpAddr);
+            ret = trdp_requestSocket(appHandle->ifaceMD,
                                      appHandle->mdDefault.udpPort,
                                      &appHandle->mdDefault.sendParam,
                                      appHandle->realIP,

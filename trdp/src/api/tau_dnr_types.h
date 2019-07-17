@@ -9,14 +9,14 @@
  *
  * @note            Project: TCNOpen TRDP prototype stack
  *
- * @author          Bernd Lhr (initial version)
+ * @author          Bernd Loehr (initial version)
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017. All rights reserved.
  */
 /*
-* $Id: tau_dnr_types.h 1945 2019-07-12 14:44:32Z bloehr $
+* $Id: tau_dnr_types.h 1948 2019-07-17 12:58:29Z bloehr $
 *
 *
 *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
@@ -31,7 +31,9 @@
  */
 
 #include "trdp_types.h"
+#ifdef SOA_SUPPORT
 #include "trdp_serviceRegistry.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2018.
  *
- * $Id: vos_thread.c 1947 2019-07-15 14:18:46Z bloehr $
+ * $Id: vos_thread.c 1948 2019-07-17 12:58:29Z bloehr $
  *
  *      BL 2019-06-11: Possible NULL pointer access
  *      BL 2019-04-05: QNX monotonic time for semaphore; unused code removed
@@ -329,7 +329,7 @@ static void vos_runCyclicThread (
 
         execTime    = ((UINT32)now.tv_usec % interval);
         waitingTime = interval - execTime;
-        if (waitingTime >= interval)
+        if (waitingTime > interval)
         {
             vos_printLog(VOS_LOG_ERROR,
                          "waiting time > interval:  %u > %u usec!\n",

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.h 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: trdp_utils.h 1948 2019-07-17 12:58:29Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -124,13 +124,16 @@ void        trdp_MDqueueInsFirst (
     MD_ELE_T    *pNew);
 #endif
 
-INT32   trdp_getCurrentMaxSocketCnt (void);
-void    trdp_setCurrentMaxSocketCnt (INT32 currentMaxSocketCnt);
+INT32   trdp_getCurrentMaxSocketCnt (
+    TRDP_SOCK_TYPE_T    type);
 
+void trdp_setCurrentMaxSocketCnt (
+    TRDP_SOCK_TYPE_T    type,
+    INT32               currentMaxSocketCnt);
 
-void    trdp_initSockets(
-    TRDP_SOCKETS_T iface[]);
-
+void trdp_initSockets (
+    TRDP_SOCKETS_T  iface[],
+    UINT8           noOfEntries);
 
 void    trdp_initUncompletedTCP (
     TRDP_APP_SESSION_T appHandle);
