@@ -15,7 +15,7 @@
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 1945 2019-07-12 14:44:32Z bloehr $
+ * $Id: tau_xml.c 1953 2019-08-06 16:01:01Z bloehr $
  *
  *      SB 2018-07-10: Ticket #264: Added parsing of service definitions for service oriented interface
  *      BL 2019-06-12: Ticket #262 XML Parsing Bug Fixes for Debug Output Print Level and SDTv2 Parameters
@@ -1761,7 +1761,7 @@ EXT_DECL void tau_freeXmlDatasetConfig (
  *  The user must release the memory for pServiceDefs (using vos_memFree)
  *
  *  @param[in]      pDocHnd           Handle of the XML document prepared by tau_prepareXmlDoc
- *  @param[out]     pNumServiceDefs   Number of defined Services
+ *  @param[out]     pNumServiceDefs   Pointer to number of defined Services
  *  @param[out]     ppServiceDefs     Pointer to pointer of the defined Services
  *
  *  @retval         TRDP_NO_ERR       no error
@@ -1786,17 +1786,17 @@ EXT_DECL TRDP_ERR_T tau_readXmlServiceConfig (
     TRDP_INSTANCE_T *pInstance = NULL;
     TRDP_TELEGRAM_REF_T *pTelegramRef = NULL;
 
+    if ((pNumServiceDefs == NULL) ||
+        (ppServiceDefs == NULL))
+    {
+        return TRDP_PARAM_ERR;
+    }
+
     trdp_XMLRewind(pDocHnd->pXmlDocument);
 
     /*  Default all parameters    */
-    if(pNumServiceDefs)
-    {
-        *pNumServiceDefs = 0u;
-    }
-    if (ppServiceDefs)
-    {
-        *ppServiceDefs = NULL;
-    }
+    *pNumServiceDefs = 0u;
+    *ppServiceDefs = NULL;
 
     trdp_XMLEnter(pDocHnd->pXmlDocument);
 

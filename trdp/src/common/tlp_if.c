@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 1948 2019-07-17 12:58:29Z bloehr $
+* $Id: tlp_if.c 1953 2019-08-06 16:01:01Z bloehr $
 *
 *      BL 2019-07-09: Ticket #270 Bug in handling of PD telegrams with new topocounters
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -40,6 +40,10 @@
 #include "vos_sock.h"
 #include "vos_mem.h"
 #include "vos_utils.h"
+
+#ifdef HIGH_PERF_INDEXED
+#include "trdp_pdindex.h"
+#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -229,8 +233,11 @@ EXT_DECL TRDP_ERR_T tlp_processSend (
          Find and send the packets which have to be sent next:
          ******************************************************/
 
+#ifdef HIGH_PERF_INDEXED
+        err = trdp_pdSendIndexed(appHandle);
+#else
         err = trdp_pdSendQueued(appHandle);
-
+#endif
         if (err != TRDP_NO_ERR)
         {
             /*  We do not break here, only report error */
@@ -622,10 +629,16 @@ EXT_DECL TRDP_ERR_T tlp_publish (
             /*    Compute the header fields */
             trdp_pdInit(pNewElement, msgType, etbTopoCnt, opTrnTopoCnt, 0u, 0u, serviceId);
 
+#ifdef HIGH_PERF_INDEXED
+            /*    Keep queue sorted    */
+            trdp_queueInsThroughputAccending(&appHandle->pSndQueue, pNewElement);
+#else
             /*    Insert at front    */
             trdp_queueInsFirst(&appHandle->pSndQueue, pNewElement);
+#endif
 
             *pPubHandle = (TRDP_PUB_T) pNewElement;
+
 #ifdef TSN_SUPPORT
             if (pNewElement->privFlags & TRDP_IS_TSN)
             {
