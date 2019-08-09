@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.h 1948 2019-07-17 12:58:29Z bloehr $
+* $Id: trdp_utils.h 1959 2019-08-09 12:40:11Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -81,6 +81,11 @@ TRDP_IP_ADDR_T  trdp_getOwnIP (void);
 PD_ELE_T        *trdp_queueFindComId (
     PD_ELE_T    *pHead,
     UINT32      comId);
+
+PD_ELE_T        *trdp_findSubAddr (
+    PD_ELE_T            *pHead,
+    TRDP_ADDRESSES_T    *pAddr,
+    UINT32              comId);
 
 PD_ELE_T        *trdp_queueFindSubAddr (
     PD_ELE_T            *pHead,

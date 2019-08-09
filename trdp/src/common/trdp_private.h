@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 1948 2019-07-17 12:58:29Z bloehr $
+ * $Id: trdp_private.h 1959 2019-08-09 12:40:11Z bloehr $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -282,7 +282,7 @@ typedef struct
 #endif /* MD_SUPPORT */
 
 #ifdef HIGH_PERF_INDEXED
-typedef struct hp_slot TRDP_HP_SLOTS_T;                 /**< forward declaration                                    */
+typedef struct hp_slots TRDP_HP_SLOTS_T;        /**< forward declaration                                    */
 #endif /* HIGH_PERF_INDEXED */
 
 #if (defined (WIN32) || defined (WIN64))

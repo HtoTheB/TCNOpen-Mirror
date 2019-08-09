@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 1958 2019-08-09 11:55:42Z newtecbosse $
+* $Id: tlc_if.c 1959 2019-08-09 12:40:11Z bloehr $
 *
 *      BL 2019-07-15: Ticket #272 Missing initialization of values in Global Statistics
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -807,7 +807,7 @@ EXT_DECL TRDP_ERR_T tlc_updateSession (
 
 #ifdef HIGH_PERF_INDEXED
 
-/*#error "High performance extension is not ready yet!"*/
+//#error "High performance extension is not ready yet!"
     
     /*  Stop any ongoing communication by getting the mutexes */
     ret = trdp_getAccess(appHandle);
