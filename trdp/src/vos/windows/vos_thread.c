@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 1961 2019-08-09 13:01:31Z newtecbosse $
+ * $Id: vos_thread.c 1968 2019-08-09 15:40:14Z newtecbosse $
  *
  *     AHW 2018-09-13: replaced by code of vos_thread.c to use native code of VS 2015 instead of pthread
  *      BL 2018-08-06: CloseHandle succeeds with return value != 0
@@ -98,7 +98,7 @@ typedef struct
 static void vos_runCyclicThread(
 	VOS_THREAD_CYC_T *pParameters)
 {
-	vos_cyclicThread(pParameters->interval, pParameters->pFunction, pParameters->pArguments);
+	vos_cyclicThread(pParameters->interval, pParameters->pFunction, pParameters->pArguments /*pParameters->startTime*/);
 }
 
 /**********************************************************************************************************************/
@@ -240,17 +240,25 @@ EXT_DECL VOS_ERR_T vos_threadCreateSync(
 
    if (interval > 0)
    {
-	   VOS_THREAD_CYC_T params = { pName,{ 0, 0 }, interval, pFunction, pArguments };
+	   VOS_THREAD_CYC_T *p_params = vos_memAlloc(sizeof(VOS_THREAD_CYC_T)); /* malloc not freed, improved implementation highly recommended !!!!*/
+
+	   p_params->pName = pName;
+	   p_params->startTime.tv_sec = 0;
+	   p_params->startTime.tv_usec = 0;
+	   p_params->interval = interval; 
+	   p_params->pFunction = pFunction;
+	   p_params->pArguments = pArguments;
+
 	   if (pStartTime != NULL)
 	   {
-		   params.startTime = *pStartTime;
+		   p_params->startTime = *pStartTime;
 	   }
 	   /* Create a cyclic thread */
 	   hThread = CreateThread(
 		   NULL,                           /* default security attributes */
 		   stackSize,                                      /* use default stack size */
 		   (LPTHREAD_START_ROUTINE)vos_runCyclicThread,       /* thread function name */
-		   (LPVOID)&params,                             /* argument to thread function */
+		   (LPVOID)p_params,                             /* argument to thread function */
 		   0,                                              /* use default creation flags */
 		   &threadId);
 	   
