@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 1959 2019-08-09 12:40:11Z bloehr $
+ * $Id: trdp_pdindex.c 1960 2019-08-09 12:49:38Z bloehr $
  *
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
  *      BL 2019-06-17: Ticket #161 Increase performance
@@ -35,11 +35,12 @@
 #include "vos_utils.h"
 #include "trdp_pdindex.h"
 
-/*
+#ifdef HIGH_PERF_INDEXED
+
 #ifdef __cplusplus
 extern "C" {
 #endif
- */
+
 
 /***********************************************************************************************************************
  * DEFINES
@@ -932,8 +933,9 @@ PD_ELE_T *trdp_indexedFindSubAddr (
     return trdp_findSubAddr (pFirstMatchedPD, pAddr, pAddr->comId);
 }
 
-/*
- #ifdef __cplusplus
+
+#ifdef __cplusplus
 }
 #endif
-*/
+#endif
+
