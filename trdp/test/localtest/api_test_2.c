@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019.
  *                  All rights reserved.
  *
- * $Id: api_test_2.c 1959 2019-08-09 12:40:11Z bloehr $
+ * $Id: api_test_2.c 1970 2019-08-12 16:38:28Z bloehr $
  *
  *      BL 2019-07-09: Ticket #161/162 Tests for Version 2 features
  */
@@ -2720,7 +2720,7 @@ static int test20 ()
             {0,0,NULL,0,INADDR_ANY,INADDR_ANY,INADDR_ANY}
         };
 
-        UINT32  noOfTelegrams = sizeof(lArray) / sizeof(struct telegram_array);
+        UINT32  noOfTelegrams = sizeof(lArray) / sizeof(struct telegram_array) - 1;
 
         TRDP_PUB_T  pubHandle[noOfTelegrams];
         TRDP_SUB_T  subHandle[noOfTelegrams];
@@ -2728,7 +2728,7 @@ static int test20 ()
         UINT32      i;
 
         TRDP_PROCESS_CONFIG_T   procConf = {"TestHost", "me", TEST20_CYCLE_TIME, 0, TRDP_OPTION_NONE};
-        TRDP_PD_CONFIG_T        pdConfig = {test20CBFunction, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_FORCE_CB,
+        TRDP_PD_CONFIG_T        pdConfig = {test20CBFunction, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB,
                                             100000u, TRDP_TO_SET_TO_ZERO, 0};
 
         gFullLog = TRUE;
@@ -2804,9 +2804,9 @@ static int test20 ()
  */
         }
 
-        usleep(100000000);   /* Let it run for 100s */
+        usleep(10000000);   /* Let it run for 100s */
         fprintf(gFp, "\n...transmission is finished\n");
-        gFullLog = FALSE;
+        //gFullLog = FALSE;
     }
 
     /* ------------------------- test code ends here --------------------------- */
