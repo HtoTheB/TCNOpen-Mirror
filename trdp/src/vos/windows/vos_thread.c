@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 1975 2019-08-13 12:49:37Z bloehr $
+* $Id: vos_thread.c 1978 2019-08-13 14:32:14Z s-bender $
 *
 *      SB 2019-08-13: Ticket #274: Cyclic parameters are now freed in the called thread
 *     AHW 2018-09-13: replaced by code of vos_thread.c to use native code of VS 2015 instead of pthread
@@ -103,11 +103,13 @@ static void vos_runCyclicThread (
     UINT32              interval    = pParameters->interval;
     VOS_THREAD_FUNC_T   pFunction   = pParameters->pFunction;
     void                *pArguments = pParameters->pArguments;
-    vos_memFree(pParameters);
     VOS_TIMEVAL_T       priorCall;
     VOS_TIMEVAL_T       afterCall;
     UINT32              execTime;
     UINT32              waitingTime;
+
+    vos_memFree(pParameters);
+
     for (;; )
     {
         vos_getTime(&priorCall); /* get initial time */
