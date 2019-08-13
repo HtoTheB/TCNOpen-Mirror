@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
 /*
-* $Id: vos_thread.h 1883 2019-06-12 12:51:22Z bloehr $
+* $Id: vos_thread.h 1976 2019-08-13 13:05:05Z s-bender $
 *
 *      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
 *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -231,21 +231,6 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
     UINT32                  stackSize,
     VOS_THREAD_FUNC_T       pFunction,
     void                    *pArguments);
-
-/**********************************************************************************************************************/
-/** Cyclic thread functions.
- *  Wrapper for cyclic threads. The thread function will be called cyclically with interval.
- *
- *  @param[in]      interval        Interval for cyclic threads in us (incl. runtime)
- *  @param[in]      pFunction       Pointer to the thread function
- *  @param[in]      pArguments      Pointer to the thread function parameters
- *  @retval         void
- */
-
-EXT_DECL void vos_cyclicThread (
-    UINT32              interval,
-    VOS_THREAD_FUNC_T   pFunction,
-    void                *pArguments);
 
 /**********************************************************************************************************************/
 /** Terminate a thread.
