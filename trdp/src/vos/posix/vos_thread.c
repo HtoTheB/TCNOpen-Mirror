@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2019.
  *
- * $Id: vos_thread.c 1971 2019-08-12 17:04:29Z bloehr $
+ * $Id: vos_thread.c 1973 2019-08-13 12:02:16Z s-bender $
  *
  *      BL 2019-08-12: Ticket #274 Cyclic thread parameters must not use stack
  *      BL 2019-08-02: SCHEDULE_DEADLINE option: interval * 1000 (-> nanosec)
@@ -287,7 +287,7 @@ static void vos_runCyclicThread (
         {
             vos_printLog(VOS_LOG_ERROR,
                          "%s sched_setattr for policy %d failed (Err: %d)\n",
-                         pParameters->pName,
+                         name,
                          (int)rt_attribs.sched_policy,
                          (int)errno);
             return;
@@ -310,7 +310,7 @@ static void vos_runCyclicThread (
             {
                 vos_printLog(VOS_LOG_ERROR,
                              "cyclic thread %s sleep error.\n",
-                             pParameters->pName);
+                             name);
             }
         }
         pFunction(pArguments);
