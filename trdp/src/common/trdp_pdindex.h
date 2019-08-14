@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.h 1980 2019-08-13 16:27:31Z bloehr $
+ * $Id: trdp_pdindex.h 1989 2019-08-14 16:34:03Z bloehr $
  *
  *      BL 2019-07-10: Ticket #162 Independent handling of PD and MD to reduce jitter
  *      BL 2019-07-10: Ticket #161 Increase performance
@@ -72,5 +72,9 @@ PD_ELE_T    *trdp_indexedFindSubAddr (TRDP_SESSION_PT   appHandle,
 void        trdp_indexClearTables (TRDP_SESSION_PT appHandle);
 TRDP_ERR_T  trdp_indexCreatePubTables (TRDP_SESSION_PT appHandle);
 TRDP_ERR_T  trdp_indexCreateSubTables (TRDP_SESSION_PT appHandle);
+void        trdp_indexCheckPending (TRDP_APP_SESSION_T  appHandle,
+                                    TRDP_TIME_T         *pInterval,
+                                    TRDP_FDS_T          *pFileDesc,
+                                    INT32               *pNoDesc);
 
 #endif /* TRDP_PDINDEX_H */

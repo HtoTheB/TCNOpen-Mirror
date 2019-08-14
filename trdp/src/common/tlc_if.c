@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 1980 2019-08-13 16:27:31Z bloehr $
+* $Id: tlc_if.c 1989 2019-08-14 16:34:03Z bloehr $
 *
 *      BL 2019-07-15: Ticket #272 Missing initialization of values in Global Statistics
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -203,16 +203,18 @@ TRDP_APP_SESSION_T *trdp_sessionQueue (void)
 TRDP_ERR_T  trdp_getAccess (TRDP_APP_SESSION_T appHandle, int force)
 {
     TRDP_ERR_T ret = TRDP_INIT_ERR;
+    VOS_ERR_T (*mutexLock)(VOS_MUTEX_T) = (force == TRUE)? vos_mutexTryLock : vos_mutexLock;
+
     if (appHandle != NULL)
     {
         ret = (TRDP_ERR_T) vos_mutexLock(appHandle->mutex);
         if (ret == TRDP_NO_ERR)
         {
             /*  Wait for any ongoing communications by getting the other mutexes as well */
-            ret = (TRDP_ERR_T) vos_mutexTryLock(appHandle->mutexTxPD);
+            ret = (TRDP_ERR_T) mutexLock(appHandle->mutexTxPD);
             if (ret == TRDP_NO_ERR)
             {
-                ret = (TRDP_ERR_T) vos_mutexTryLock(appHandle->mutexRxPD);
+                ret = (TRDP_ERR_T) mutexLock(appHandle->mutexRxPD);
                 if (ret != TRDP_NO_ERR)
                 {
                     /* In case of error release the locks already taken. */
@@ -808,10 +810,10 @@ EXT_DECL TRDP_ERR_T tlc_updateSession (
 
 #ifdef HIGH_PERF_INDEXED
 
-/* #error "High performance extension is not ready yet!" */
-
     /*  Stop any ongoing communication by getting the mutexes */
+
     ret = trdp_getAccess(appHandle, FALSE);
+
     if (ret == TRDP_NO_ERR)
     {
         if (appHandle->pSlot != NULL)
@@ -823,6 +825,7 @@ EXT_DECL TRDP_ERR_T tlc_updateSession (
         trdp_indexCreateSubTables(appHandle);
         trdp_releaseAccess(appHandle);
     }
+
 #else
 
     appHandle = appHandle;
