@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test-fast.c 1931 2019-06-28 14:52:43Z bloehr $
+ * $Id: trdp-xmlpd-test-fast.c 1985 2019-08-14 13:38:54Z newtecbosse $
  *
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
@@ -1154,9 +1154,14 @@ static void processData()
         /*  call process function for all sessions  */
         for (i = 0; i < numIfConfig; i++)
         {
-            result = tlc_process(aSessionCfg[i].sessionhandle, NULL, NULL);
+            result = tlp_processSend(aSessionCfg[i].sessionhandle, NULL, NULL);
             if (result != TRDP_NO_ERR)
-                printf("tlc_process for interface %s failed: %s\n", 
+                printf("tlp_processSend for interface %s failed: %s\n",
+                    pIfConfig[i].ifName, getResultString(result));
+
+            result = tlp_processReceive(aSessionCfg[i].sessionhandle, NULL, NULL);
+            if (result != TRDP_NO_ERR)
+                printf("tlp_processReceive for interface %s failed: %s\n",
                     pIfConfig[i].ifName, getResultString(result));
         }
 
