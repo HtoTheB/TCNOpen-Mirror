@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2019.
  *
- * $Id: vos_thread.c 1981 2019-08-13 16:30:27Z bloehr $
+ * $Id: vos_thread.c 1988 2019-08-14 16:29:13Z bloehr $
  *
  *      BL 2019-08-12: Ticket #274 Cyclic thread parameters must not use stack
  *      BL 2019-08-02: SCHEDULE_DEADLINE option: interval * 1000 (-> nanosec)
@@ -699,16 +699,13 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
 EXT_DECL VOS_ERR_T vos_threadTerminate (
     VOS_THREAD_T thread)
 {
-    int retCode;
+    /* We can ignore any returned error here, because:
+        1. we cannot handle any error in this stage
+        2. the only error returned is error code 3 (ESRCH) - no such thread
+            which means the thread already terminated!
+     */
+    (void) pthread_cancel((pthread_t)thread);
 
-    retCode = pthread_cancel((pthread_t)thread);
-    if (retCode != 0)
-    {
-        vos_printLog(VOS_LOG_WARNING,
-                     "pthread_cancel() failed (Err:%d)\n",
-                     (int)retCode );
-        return VOS_THREAD_ERR;
-    }
     return VOS_NO_ERR;
 }
 
