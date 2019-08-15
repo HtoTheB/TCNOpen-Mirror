@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test-fast.c 1990 2019-08-15 09:27:20Z bloehr $
+ * $Id: trdp-xmlpd-test-fast.c 1991 2019-08-15 11:44:53Z newtecbosse $
  *
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
@@ -1151,19 +1151,14 @@ static void processData()
             globCounter += 1;
         }
 
-        /*  call process function for all sessions  */
-        for (i = 0; i < numIfConfig; i++)
-        {
-            result = tlp_processSend(aSessionCfg[i].sessionhandle);
-            if (result != TRDP_NO_ERR)
-                printf("tlp_processSend for interface %s failed: %s\n",
-                    pIfConfig[i].ifName, getResultString(result));
-
-            result = tlp_processReceive(aSessionCfg[i].sessionhandle, NULL, NULL);
-            if (result != TRDP_NO_ERR)
-                printf("tlp_processReceive for interface %s failed: %s\n",
-                    pIfConfig[i].ifName, getResultString(result));
-        }
+        ///*  call process function for all sessions  */
+        //for (i = 0; i < numIfConfig; i++)
+        //{
+        //    result = tlc_process(aSessionCfg[i].sessionhandle, NULL, NULL);
+        //    if (result != TRDP_NO_ERR)
+        //        printf("tlp_process for interface %s failed: %s\n",
+        //            pIfConfig[i].ifName, getResultString(result));
+        //}
 
         /*  call tlp_get for all subscribed telegrams   */
         for (i = 0; i < numSubTelegrams; i++)
