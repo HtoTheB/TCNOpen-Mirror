@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            trdp-xmlpd-test.c
+ * @file            trdp-xmlpd-test-fast.c
  *
  * @brief           Test application for TRDP XMLPD
  *
@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test-fast.c 1986 2019-08-14 14:28:19Z newtecbosse $
+ * $Id: trdp-xmlpd-test-fast.c 1990 2019-08-15 09:27:20Z bloehr $
  *
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
