@@ -1,5 +1,5 @@
 #//
-#// $Id:  $
+#// $Id: rules.mk 1998 2019-08-15 13:05:01Z bloehr $
 #//
 #// DESCRIPTION    Basic Make Rules to create TRDP
 #//

@@ -1,5 +1,5 @@
 TCNOpen TRDP Ladder Support Readme
-$Id$
+$Id: readme-Ladder-support.txt 1998 2019-08-15 13:05:01Z bloehr $
 
 1. Ladder network for TRDP Ladder Support
 
