@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019.
  *                  All rights reserved.
  *
- * $Id: api_test_2.c 2004 2019-08-15 14:42:00Z s-bender $
+ * $Id: api_test_2.c 2006 2019-08-15 15:35:55Z bloehr $
  *
  *      BL 2019-07-09: Ticket #161/162 Tests for Version 2 features
  */
@@ -48,7 +48,7 @@
 /***********************************************************************************************************************
  * DEFINITIONS
  */
-#define APP_VERSION  "1.0"
+#define APP_VERSION  "2.0"
 
 typedef int (test_func_t)(void);
 
