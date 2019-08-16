@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_mem.c 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: vos_mem.c 2012 2019-08-16 09:43:29Z s-bender $
  *
  * Changes:
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -1024,7 +1024,7 @@ EXT_DECL VOS_ERR_T vos_queueReceive (
         err = vos_semaTake(queueHandle->semaphore, usTimeout);
         if (err != VOS_NO_ERR)
         {
-            if (usTimeout != 0)
+            if (usTimeout == 0)
             {
                 vos_printLogStr(VOS_LOG_ERROR, "vos_queueReceive() could not take semaphore\n");
             }
