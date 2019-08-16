@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019.
  *                  All rights reserved.
  *
- * $Id: api_test_2.c 2006 2019-08-15 15:35:55Z bloehr $
+ * $Id: api_test_2.c 2025 2019-08-16 16:19:06Z bloehr $
  *
  *      BL 2019-07-09: Ticket #161/162 Tests for Version 2 features
  */
@@ -2991,7 +2991,7 @@ static int test20 ()
             err = tlp_subscribe(gSession2.appHandle, &subHandle[i], NULL, NULL,
                                 0u, /* service Id */
                                 lArray[i].comId + i, 0u, 0u,
-                                lArray[i].srcIP1, lArray[i].srcIP2,
+                                0u, 0u,
                                 0u, /* TEST20_DESTINATION,                              / * MC Destination * / */
                                 TRDP_FLAGS_DEFAULT, NULL,
                                 lArray[i].interval * 3, TRDP_TO_DEFAULT);
