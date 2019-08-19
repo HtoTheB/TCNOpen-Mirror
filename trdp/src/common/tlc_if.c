@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 1989 2019-08-14 16:34:03Z bloehr $
+* $Id: tlc_if.c 2034 2019-08-19 09:22:26Z bloehr $
 *
 *      BL 2019-07-15: Ticket #272 Missing initialization of values in Global Statistics
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -821,8 +821,11 @@ EXT_DECL TRDP_ERR_T tlc_updateSession (
             /* we are called again! It seems there are additional subs/pubs? */
             trdp_indexClearTables(appHandle);
         }
-        trdp_indexCreatePubTables(appHandle);
-        trdp_indexCreateSubTables(appHandle);
+        ret = trdp_indexCreatePubTables(appHandle);
+        if (ret == TRDP_NO_ERR)
+        {
+            ret = trdp_indexCreateSubTables(appHandle);
+        }
         trdp_releaseAccess(appHandle);
     }
 

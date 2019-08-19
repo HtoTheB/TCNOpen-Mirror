@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  *
- * $Id: sendData.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: sendData.c 2034 2019-08-19 09:22:26Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -111,19 +111,19 @@ int main (int argc, char *argv[])
     unsigned int    ip[4];
     TRDP_APP_SESSION_T      appHandle; /*    Our identifier to the library instance    */
     TRDP_PUB_T              pubHandle; /*    Our identifier to the publication         */
-    UINT32          comId       = PD_DEF_COMID;
-    UINT32          cycleTime   = PD_DEF_COMID_CYCLE;
-    UINT32          dataSize    = PD_DEF_DATASIZE;
-    TRDP_ERR_T err;
+    UINT32                  comId       = PD_DEF_COMID;
+    UINT32                  interval    = PD_DEF_COMID_CYCLE;
+    UINT32                  dataSize    = PD_DEF_DATASIZE;
+    TRDP_ERR_T              err;
     TRDP_PD_CONFIG_T        pdConfiguration =
-    {NULL, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_NONE, 1000000u, TRDP_TO_SET_TO_ZERO, 0u};
+                        {NULL, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_NONE, 1000000u, TRDP_TO_SET_TO_ZERO, 0u};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0u, 0u, TRDP_OPTION_BLOCK};
-    UINT32  ownIP   = 0u;
-    int     rv      = 0;
-    UINT32  destIP  = 0u;
-    int     verbose = 0;
-    int     ch, i;
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_BLOCK};
+    UINT32                  ownIP   = 0u;
+    int                     rv      = 0;
+    UINT32                  destIP  = 0u;
+    int                     verbose = 0;
+    int                     ch, i;
 
     /*    Generate some data, that we want to send, when nothing was specified. */
 
@@ -167,7 +167,7 @@ int main (int argc, char *argv[])
            case 's':
            {    /*  read cycle time    */
                if (sscanf(optarg, "%u",
-                          &cycleTime) < 1 )
+                          &interval) < 1 )
                {
                    usage(argv[0]);
                    exit(1);
@@ -250,7 +250,7 @@ int main (int argc, char *argv[])
                         0,
                         ownIP,                      /*    default source IP             */
                         destIP,                     /*    where to send to              */
-                        cycleTime,                  /*    Cycle time in us              */
+                        interval,                   /*    Cycle time in us              */
                         0,                          /*    not redundant                 */
                         TRDP_FLAGS_NONE,            /*    Use callback for errors       */
                         NULL,                       /*    default qos and ttl           */
@@ -266,6 +266,22 @@ int main (int argc, char *argv[])
         return 1;
     }
 
+    /*
+     Finish the setup.
+     On non-high-performance targets, this is a no-op.
+     This call is necessary if HIGH_PERF_INDEXED is defined. It will create the internal index tables for faster access.
+     It should be called after the last publisher and subscriber has been added.
+     Maybe tlc_activateSession would be a better name.If HIGH_PERF_INDEXED is set, this call will create the internal index tables for fast telegram access
+     */
+
+    err = tlc_updateSession(appHandle);
+    if (err != TRDP_NO_ERR)
+    {
+        vos_printLog(VOS_LOG_USR, "tlc_updateSession error (%s)\n", vos_getErrorString((VOS_ERR_T)err));
+        tlc_terminate();
+        return 1;
+    }
+
     vos_printLogStr(VOS_LOG_USR, "running...\n");
 
     /*
@@ -277,7 +293,7 @@ int main (int argc, char *argv[])
         INT32 noDesc;
         TRDP_TIME_T tv;
         const TRDP_TIME_T   max_tv  = {1, 0};
-        const TRDP_TIME_T   min_tv  = {0, 10000};
+        const TRDP_TIME_T   min_tv  = {0, TRDP_PROCESS_DEFAULT_CYCLE_TIME};
 
         /*
            Prepare the file descriptor set for the select call.
