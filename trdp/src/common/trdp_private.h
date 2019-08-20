@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2015 2019-08-16 13:06:49Z bloehr $
+ * $Id: trdp_private.h 2037 2019-08-20 09:44:25Z bloehr $
  *
  *      SB 2019-08-15: Ticket #269: tau_initTTI: leave standard MC fails
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -81,7 +81,7 @@
 #   define TRDP_MAX_PD_SOCKET_CNT       VOS_MAX_SOCKET_CNT          /**< all available sockets for PD                 */
 #endif
 
-#if (TRDP_MAX_PD_SOCKET_CNT <= 0)
+#if (TRDP_MAX_PD_SOCKET_CNT < 3)
 #error "**** Not enough sockets available!"
 #endif
 
