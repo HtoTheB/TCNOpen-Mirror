@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2036 2019-08-20 07:55:31Z s-bender $
+* $Id: tlp_if.c 2040 2019-08-20 17:00:52Z bloehr $
 *
 *      SB 2018-08-20: Fixed lint errors and warnings
 *      BL 2019-07-09: Ticket #270 Bug in handling of PD telegrams with new topocounters
@@ -222,7 +222,7 @@ EXT_DECL TRDP_ERR_T tlp_processSend (
     TRDP_APP_SESSION_T appHandle)
 {
     TRDP_ERR_T  result = TRDP_NO_ERR;
-    TRDP_ERR_T  err;
+    TRDP_ERR_T  err = TRDP_NO_ERR;
 
     if (!trdp_isValidSession(appHandle))
     {

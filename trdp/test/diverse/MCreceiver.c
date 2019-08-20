@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: MCreceiver.c 1763 2018-09-21 16:03:13Z ahweiss $
+ * $Id: MCreceiver.c 2040 2019-08-20 17:00:52Z bloehr $
  *
  *
  */
@@ -154,7 +154,7 @@ int main(int argc, char * *argv)
      */
     while (gKeepOnRunning)
     {
-       vos_threadDelay(1000000);
+       (void) vos_threadDelay(1000000);
 
     }
     vos_sockTerm();

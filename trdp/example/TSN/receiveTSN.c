@@ -11,7 +11,7 @@
  *
  * @remarks         Copyright NewTec GmbH, 2018. All rights reserved.
  *
- * $Id: receiveTSN.c 1940 2019-07-10 14:49:41Z bloehr $
+ * $Id: receiveTSN.c 2040 2019-08-20 17:00:52Z bloehr $
  *
  */
 
@@ -479,7 +479,7 @@ int main (int argc, char *argv[])
     while (sComThreadRunning)
     {
         /* Just idle... */
-        vos_threadDelay(1000000u);
+        (void) vos_threadDelay(1000000u);
     }
 
     /*

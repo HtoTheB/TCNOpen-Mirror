@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2019. All rights reserved.
  *
- * $Id: echoCallback.c 2034 2019-08-19 09:22:26Z bloehr $
+ * $Id: echoCallback.c 2040 2019-08-20 17:00:52Z bloehr $
  *
  *      BL 2019-07-30: Ticket #162 Independent handling of PD and MD to reduce jitter
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -495,7 +495,7 @@ int main (int argc, char * *argv)
     {
         /* sleep a while, then produce some data ... */
 
-        vos_threadDelay(100000u);
+        (void) vos_threadDelay(100000u);
 
         /* Update the information, that is sent */
         sprintf((char *)gBuffer, "Ping for the %dth. time.", hugeCounter++);

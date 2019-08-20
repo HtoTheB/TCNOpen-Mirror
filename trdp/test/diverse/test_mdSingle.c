@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 1890 2019-06-13 08:41:58Z bloehr $
+ * $Id: test_mdSingle.c 2040 2019-08-20 17:00:52Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -610,7 +610,7 @@ int main (int argc, char *argv[])
         }
         else
         {
-            vos_threadDelay((UINT32)(tv.tv_sec * 1000000) + (UINT32) tv.tv_usec);
+            (void) vos_threadDelay((UINT32)(tv.tv_sec * 1000000) + (UINT32) tv.tv_usec);
             rv = 0;
 
             /*
