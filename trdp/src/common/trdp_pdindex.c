@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 2036 2019-08-20 07:55:31Z s-bender $
+ * $Id: trdp_pdindex.c 2039 2019-08-20 14:42:17Z s-bender $
  *
  *      SB 2018-08-20: Fixed lint errors and warnings
  *      BL 2019-08-16: Better distribution of packets; starting table index = interval time, was starting at 0.
@@ -1112,7 +1112,7 @@ PD_ELE_T *trdp_indexedFindSubAddr (
 
     if (pFirstMatchedPD)
     {
-        while ((pFirstMatchedPD != (PD_ELE_T**)*(appHandle->pSlot->pRcvTableComId)) &&
+        while ((pFirstMatchedPD != appHandle->pSlot->pRcvTableComId) &&
                ((*(pFirstMatchedPD - 1))->addr.comId == pAddr->comId))
         {
             pFirstMatchedPD--;
