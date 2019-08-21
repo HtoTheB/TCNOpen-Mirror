@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 2004 2019-08-15 14:42:00Z s-bender $
+ * $Id: tau_dnr.c 2042 2019-08-21 08:35:10Z s-bender $
  *
 *       SB 2019-08-15: Moved TAU_MAX_NO_CACHE_ENTRY to header file
  *      SB 2019-08-13: Ticket #268 Handling Redundancy Switchover of DNS/ECSP server
@@ -214,11 +214,11 @@ static CHAR8 *readName (UINT8 *pReader, UINT8 *pBuffer, UINT32 *pCount, CHAR8 *p
  */
 static void changetoDnsNameFormat (UINT8 *pDns, CHAR8 *pHost)
 {
-    int lock = 0, i;
+    UINT8 lock = 0, i;
 
     vos_strncat(pHost, TRDP_MAX_URI_HOST_LEN, ".");
 
-    for (i = 0; i < (int)strlen((char *)pHost); i++)
+    for (i = 0; i < (UINT8)strlen((char *)pHost); i++)
     {
         if (pHost[i] == '.')
         {

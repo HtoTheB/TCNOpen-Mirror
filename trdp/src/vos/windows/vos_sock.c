@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 1975 2019-08-13 12:49:37Z bloehr $*
+* $Id: vos_sock.c 2042 2019-08-21 08:35:10Z s-bender $*
 *
 *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
 *      BL 2018-11-26: Ticket #208: Mapping corrected after complaint (Bit 2 was set for prio 2 & 4)
@@ -1613,7 +1613,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
         if (rcvSize > 0)
         {
             bufferSize  -= rcvSize;
-            pBuffer     += rcvSize;
+            pBuffer     += rcvSize; /*lint !e662 pointer should only be out of bounds, when loop ends */
             *pSize      += rcvSize;
         }
 
