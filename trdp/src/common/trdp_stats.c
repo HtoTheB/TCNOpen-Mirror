@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 1948 2019-07-17 12:58:29Z bloehr $
+ * $Id: trdp_stats.c 2045 2019-08-21 16:08:04Z bloehr $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
@@ -78,7 +78,8 @@ void trdp_initStats (
         return;
     }
 
-    memset(&appHandle->stats, 0, sizeof(TRDP_STATISTICS_T));
+    /* memset(&appHandle->stats, 0, sizeof(TRDP_STATISTICS_T)); #272: we should not do this, it is cleared already and
+                                                                    has the some configuration properties already! */  
 
     pVersion = tlc_getVersion();
     appHandle->stats.version = (UINT32) pVersion->ver << 24 | (UINT32) pVersion->rel << 16 |
