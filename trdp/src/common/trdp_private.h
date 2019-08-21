@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2037 2019-08-20 09:44:25Z bloehr $
+ * $Id: trdp_private.h 2043 2019-08-21 14:02:10Z bloehr $
  *
  *      SB 2019-08-15: Ticket #269: tau_initTTI: leave standard MC fails
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -134,7 +134,7 @@ typedef enum
 #define TRDP_TIMED_OUT      0x2u            /**< if set, inform the user                                */
 #define TRDP_INVALID_DATA   0x4u            /**< if set, inform the user                                */
 #define TRDP_REQ_2B_SENT    0x8u            /**< if set, the request needs to be sent                   */
-#define TRDP_PULL_SUB       0x10u           /**< if set, its a PULL subscription                        */
+                                            /* TRDP_PULL_SUB removed, was unused */
 #define TRDP_REDUNDANT      0x20u           /**< if set, packet should not be sent (redundant)          */
 #define TRDP_CHECK_COMID    0x40u           /**< if set, do filter comId (addListener)                  */
 #define TRDP_IS_TSN         0x80u           /**< if set, PD will be sent on trdp_put() only             */
