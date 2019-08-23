@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 2047 2019-08-23 15:03:29Z bloehr $
+ * $Id: trdp_pdindex.c 2048 2019-08-23 16:08:26Z bloehr $
  *
+ *      BL 2019-08-23: pSlot must be NULL after freeing memory
  *      BL 2019-08-23: Possible crash on unsubscribing or unpublishing in High Performance mode
  *      SB 2019-08-21: Removed compiler warning and redundand code
  *      SB 2019-08-20: Fixed lint errors and warnings
@@ -1007,6 +1008,7 @@ void    trdp_indexClearTables (TRDP_SESSION_PT appHandle)
             vos_memFree(appHandle->pSlot->highCat.ppIdxCat);
         }
         vos_memFree(appHandle->pSlot);
+        appHandle->pSlot = NULL;    /* Upps, that was missing, thanx Chirag! */
     }
 }
 
