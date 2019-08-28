@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2007 2019-08-15 15:49:16Z bloehr $
+* $Id: vos_private.h 2053 2019-08-28 11:02:21Z bloehr $
 *
 *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
 */
@@ -47,7 +47,7 @@ extern "C" {
 #define VOS_VERSION     2u
 #define VOS_RELEASE     0u
 #define VOS_UPDATE      0u
-#define VOS_EVOLUTION   1u
+#define VOS_EVOLUTION   2u
 
 #if (defined (WIN32) || defined (WIN64))
 
