@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: taulApp_PD_sample.c 1491 2015-12-21 15:46:13Z bloehr $
+ * $Id: taulApp_PD_sample.c 2054 2019-08-28 11:03:37Z bloehr $
  *
  */
 
@@ -896,7 +896,7 @@ TAUL_APP_ERR_TYPE PublisherApplication (PUBLISHER_THREAD_PARAMETER_T *pPublisher
 			vos_printLog(VOS_LOG_ERROR, "Get Traffic Store accessibility Failed\n");
 		}
 		/* Waits for a next creation cycle */
-		vos_threadDelay(pPublisherThreadParameter->pPdAppParameter->pdAppCycleTime);
+		(void) vos_threadDelay(pPublisherThreadParameter->pPdAppParameter->pdAppCycleTime);
 	}   /*	Bottom of while-loop	*/
 
 	/*
@@ -1050,7 +1050,7 @@ TAUL_APP_ERR_TYPE SubscriberApplication (SUBSCRIBER_THREAD_PARAMETER_T *pSubscri
     	}
 
 		/* Waits for a next to Traffic Store put/get cycle */
-		vos_threadDelay(pSubscriberThreadParameter->pPdAppParameter->pdAppCycleTime);
+		(void) vos_threadDelay(pSubscriberThreadParameter->pPdAppParameter->pdAppCycleTime);
 
 		/* PD Return Loop Counter Count Up */
 		if (pSubscriberThreadParameter->pPdAppParameter->pdReceiveCycleNumber != 0)
@@ -1228,7 +1228,7 @@ TAUL_APP_ERR_TYPE PdRequesterApplication (PD_REQUESTER_THREAD_PARAMETER_T *pPdRe
     	}
 
     	/* Waits for a next creation cycle */
-		vos_threadDelay(pPdRequesterThreadParameter->pPdAppParameter->pdAppCycleTime);
+		(void) vos_threadDelay(pPdRequesterThreadParameter->pPdAppParameter->pdAppCycleTime);
 
     }   /*	Bottom of while-loop	*/
 
@@ -1339,7 +1339,7 @@ TAUL_APP_ERR_TYPE command_main_proc(void)
 			else if(err == TAUL_APP_REBOOT_ERR)
 			{
 		        /* Wait 1s */
-		        vos_threadDelay(1000000);
+		        (void) vos_threadDelay(1000000);
 				/* Application Restart */
 		        initTaulApp();
 			}
@@ -1460,7 +1460,7 @@ TAUL_APP_ERR_TYPE taulApplicationTerminate(
 			while (applicationThreadHandleList[i].taulAppThreadState != TAUL_APP_THREAD_TERMINATE)
 			{
 				/* Wait Application Terminate */
-				vos_threadDelay(100000);
+				(void) vos_threadDelay(100000);
 			}
 			vos_printLog(VOS_LOG_INFO, "Application Thread#%d Terminate\n", i+1);
 		}
