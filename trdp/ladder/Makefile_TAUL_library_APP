@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile_TAUL 1633 2017-05-31 13:36:28Z bloehr $
+#// $Id: Makefile_TAUL_library_APP 2060 2019-08-29 15:57:02Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -21,11 +21,12 @@ endif
 
 VOS_PATH = src/vos/$(TARGET_VOS)
 
-vpath %.c src/common src/example src/vos/common test/udpmdcom $(VOS_PATH) test
-vpath %.h src/api src/vos/api src/common src/vos/common
+vpath %.c ladder src/common src/example src/vos/common test/udpmdcom $(VOS_PATH) test
+vpath %.h src/api src/vos/api ladder src/common src/vos/common
 
 INCPATH = src/api
-VOS_INCPATH = src/vos/api -I src/common -I example/ladder -I example/TAUL
+#VOS_INCPATH = src/vos/api -I src/common -I example/ladder -I example/TAUL
+VOS_INCPATH = src/vos/api -I ladder -I src/common
 BUILD_PATH = bld/$(TARGET_VOS)
 
 ifdef TARGET
@@ -51,8 +52,8 @@ MV = mv
 
 DEBUG=1
 TRDP_OPTION_LADDER=1
-MD_SUPPORT=1
-#XML_CONFIG_ENABLE=1
+MD_SUPPORT=0
+XML_CONFIG_ENABLE=1
 
 LIBXMLLIB = /usr/lib/libxml2
 LIBXMLINC = /usr/include/libxml2
@@ -75,8 +76,12 @@ SUBDIRS	= src
 LADDER_PDTEST_DIRS = test/ladderpdtest
 INCLUDES = -I $(INCPATH) -I $(VOS_INCPATH) -I $(VOS_PATH) -I $(LIBXMLINC)
 OUTDIR = $(BUILD_PATH)
-LADDER_DIR = example/TAUL
-TAUL_DIR = example/TAUL
+#LADDER_DIR = example/TAUL
+#TAUL_DIR = example/TAUL
+LADDER_DIR = ladder
+TAUL_DIR = src/common
+TAUL_APP_DIR = example/TAUL_PD
+
 
 ifeq ($(TRDP_OPTION_LADDER),1)
 LDFLAGS = -lpthread -lrt -ltrdp -lladder -L $(OUTDIR) -lxml2
@@ -99,7 +104,8 @@ endif
 VOS_OBJS = vos_utils.o vos_sock.o vos_mem.o vos_thread.o vos_shared_mem.o
 TRDP_OBJS = trdp_pdcom.o trdp_utils.o trdp_if.o trdp_stats.o tau_marshall.o tau_xml.o $(VOS_OBJS)
 #TRDP_OBJS = trdp_pdcom.o trdp_utils.o trdp_if.o trdp_stats.o tau_marshall.o $(VOS_OBJS)
-LADDER_OBJS = tau_pdcom_ladder.o tau_ladder.o tau_ldLadder.o $(TRDP_OBJS)
+#LADDER_OBJS = tau_pdcom_ladder.o tau_ladder.o tau_ldLadder.o $(TRDP_OBJS)
+LADDER_OBJS = tau_ladder.o tau_ldLadder_config.o tau_ldLadder.o $(TRDP_OBJS)
 
 ifeq ($(MD_SUPPORT),1)
 TRDP_OBJS += trdp_mdcom.o
@@ -107,8 +113,9 @@ endif
 
 #all:		outdir libtrdp demo
 #all:		outdir libtrdp libladder example laddertest
+#all:		outdir libtrdp libladder taul
+#all:		outdir libtrdp libladder
 all:		outdir libtrdp libladder taul
-
 
 libtrdp:	outdir $(OUTDIR)/libtrdp.a
 libladder:	outdir $(OUTDIR)/libladder.a
@@ -118,7 +125,8 @@ demo:		outdir $(OUTDIR)/receiveSelect $(OUTDIR)/cmdlineSelect $(OUTDIR)/receiveP
 example:	outdir $(OUTDIR)/ladderApplication
 test:		outdir $(OUTDIR)/getstats
 laddertest:	outdir $(OUTDIR)/ladderApplication_publisher $(OUTDIR)/ladderApplication_subscriber $(OUTDIR)/ladderApplication_multiPD
-taul:		outdir $(OUTDIR)/taulApp
+#taul:		outdir $(OUTDIR)/taulApp
+taul:		outdir $(OUTDIR)/taulApp_PD_sample
 
 mdtest:		outdir $(OUTDIR)/mdTest0001		$(OUTDIR)/mdTest0002
 
@@ -148,11 +156,14 @@ $(OUTDIR)/libtrdp.a:	$(addprefix $(OUTDIR)/,$(notdir $(TRDP_OBJS)))
 $(OUTDIR)/tau_ladder.o:	$(LADDER_DIR)/tau_ladder.c
 			$(CC) $(CFLAGS) $(INCLUDES) -c $(LADDER_DIR)/tau_ladder.c -o $(OUTDIR)/tau_ladder.o
 
-$(OUTDIR)/tau_pdcom_ladder.o:	$(LADDER_DIR)/tau_pdcom_ladder.c
-			$(CC) $(CFLAGS) $(INCLUDES) -c $(LADDER_DIR)/tau_pdcom_ladder.c -o $(OUTDIR)/tau_pdcom_ladder.o
+#$(OUTDIR)/tau_pdcom_ladder.o:	$(LADDER_DIR)/tau_pdcom_ladder.c
+#			$(CC) $(CFLAGS) $(INCLUDES) -c $(LADDER_DIR)/tau_pdcom_ladder.c -o $(OUTDIR)/tau_pdcom_ladder.o
 
-$(OUTDIR)/tau_ldLadder.o:	$(TAUL_DIR)/tau_ldLadder.c
-			$(CC) $(CFLAGS) $(INCLUDES) -c $(TAUL_DIR)/tau_ldLadder.c -o $(OUTDIR)/tau_ldLadder.o
+$(OUTDIR)/tau_ldLadder_config.o:	$(LADDER_DIR)/tau_ldLadder_config.c
+			$(CC) $(CFLAGS) $(INCLUDES) -c $(LADDER_DIR)/tau_ldLadder_config.c -o $(OUTDIR)/tau_ldLadder_config.o
+
+$(OUTDIR)/tau_ldLadder.o:	$(LADDER_DIR)/tau_ldLadder.c
+			$(CC) $(CFLAGS) $(INCLUDES) -c $(LADDER_DIR)/tau_ldLadder.c -o $(OUTDIR)/tau_ldLadder.o
 
 $(OUTDIR)/libladder.a:	$(addprefix $(OUTDIR)/,$(notdir $(LADDER_OBJS)))
 			@$(ECHO) ' ### Building the lib $(@F)'
@@ -175,22 +186,24 @@ $(OUTDIR)/ladderApplication:   $(LADDER_DIR)/ladderApplication.c  $(OUTDIR)/libt
 endif
 
 ifeq ($(DEBUG),0)
-$(OUTDIR)/taulApp:   $(TAUL_DIR)/taulApp.c  $(OUTDIR)/libtrdp.a $(OUTDIR)/libladder.a 
+#$(OUTDIR)/taulApp_PD_sample:   $(TAUL_APP_DIR)/taulApp_PD_sample.c  $(OUTDIR)/libtrdp.a $(OUTDIR)/libladder.a 
+$(OUTDIR)/taulApp_PD_sample:   $(TAUL_APP_DIR)/taulApp_PD_sample.c  $(OUTDIR)/libladder.a 
 #$(OUTDIR)/taulApp:   $(TAUL_DIR)/taulApp.c  $(OUTDIR)/libladder.a 
-			@$(ECHO) ' ### Building application $(@F)'
-			$(CC) $(TAUL_DIR)/taulApp.c \
+			@$(ECHO) ' ### Building application (release) $(@F)'
+			$(CC) $(TAUL_APP_DIR)/taulApp_PD_sample.c \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
 			$(STRIP) $@
-			$(CP) $(TAUL_DIR)/xmlconfig.xml $(OUTDIR)
+			$(CP) $(TAUL_APP_DIR)/xmlconfig.xml $(OUTDIR)
 else
-$(OUTDIR)/taulApp:   $(TAUL_DIR)/taulApp.c  $(OUTDIR)/libtrdp.a $(OUTDIR)/libladder.a
+$(OUTDIR)/taulApp_PD_sample:   $(TAUL_APP_DIR)/taulApp_PD_sample.c  $(OUTDIR)/libtrdp.a $(OUTDIR)/libladder.a
+#$(OUTDIR)/taulApp_PD_sample:   $(TAUL_APP_DIR)/taulApp_PD_sample.c  $(OUTDIR)/libladder.a
 #$(OUTDIR)/taulApp:   $(TAUL_DIR)/taulApp.c	$(OUTDIR)/libladder.a  
-			@$(ECHO) ' ### Building application $(@F)'
-			$(CC) $(TAUL_DIR)/taulApp.c \
+			@$(ECHO) ' ### Building application (debug) $(@F)'
+			$(CC) $(TAUL_APP_DIR)/taulApp_PD_sample.c \
 			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 			    -o $@
-			    $(CP) $(TAUL_DIR)/xmlconfig.xml $(OUTDIR)
+			    $(CP) $(TAUL_APP_DIR)/xmlconfig.xml $(OUTDIR)
 endif
 
 ifeq ($(DEBUG),0)
