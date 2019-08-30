@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_types.h 1842 2019-02-15 14:46:14Z s-bender $
+ * $Id: vos_types.h 2062 2019-08-30 07:39:23Z s-bender $
  *
+ *      SB 2019-08-30: Added precompiler warning macro for windows
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
  *      BL 2018-05-03: no inline if < C99
  *      BL 2017-11-17: Undone: Ticket #169 Encapsulate declaration of packed structures within a macro
@@ -178,6 +179,13 @@ typedef double REAL64;
    #endif
 #endif
 
+/* Precompiler warnings */
+#if (defined WIN32 || defined WIN64)
+#define STRING2(x) #x
+#define STRING(x) STRING2(x)
+
+#define WARNING(s) message (__FILE__ "(" STRING(__LINE__) "):warning: "  s)
+#endif
 
 /***********************************************************************************************************************
  * TYPEDEFS

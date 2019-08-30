@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 1945 2019-07-12 14:44:32Z bloehr $
+ * $Id: tau_xml.h 2062 2019-08-30 07:39:23Z s-bender $
  *
  *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
  *      BL 2019-06-14: Ticket #250: additional parameter lmi-max SDTv2
@@ -204,7 +204,7 @@ typedef struct
 /** Control for debug output format on application level.
  */
     
-#define TRDP_DBG_DEFAULT    0,      /**< Printout default  */
+#define TRDP_DBG_DEFAULT    0       /**< Printout default  */
 #define TRDP_DBG_OFF        0x01    /**< Printout off  */
 #define TRDP_DBG_ERR        0x02    /**< Printout error */
 #define TRDP_DBG_WARN       0x04    /**< Printout warning and error */

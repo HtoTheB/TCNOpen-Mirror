@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2050 2019-08-27 09:12:21Z bloehr $*
+* $Id: vos_sock.c 2062 2019-08-30 07:39:23Z s-bender $*
 *
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
 *      BL 2019-01-29: Ticket #233: DSCP Values not standard conform
@@ -35,9 +35,10 @@
     "You are trying to compile the Windows implementation of vos_sock.c - either define WIN32 or WIN64 or exclude this file!"
 #endif
 
+#include "vos_types.h"
+
 #ifdef TSN_SUPPORT
-#warning \
-    "*** To build a TSN capable TRDP library the vos_sock implementation has to be extended! ***"
+#pragma WARNING("*** To build a TSN capable TRDP library the vos_sock implementation has to be extended! ***")
 #endif
 
 /***********************************************************************************************************************
