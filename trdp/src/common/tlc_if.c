@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2047 2019-08-23 15:03:29Z bloehr $
+* $Id: tlc_if.c 2074 2019-09-02 16:30:44Z bloehr $
 *
 *      BL 2019-08-23: Ticket #162 Mutex handling in tlc_process corrected
 *      SB 2018-08-20: Fixed lint errors and warnings
@@ -386,8 +386,8 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
 {
     TRDP_ERR_T      ret         = TRDP_NO_ERR;
     TRDP_SESSION_PT pSession    = NULL;
-    TRDP_PUB_T      dummyPubHndl;
-    TRDP_SUB_T      dummySubHandle;
+    TRDP_PUB_T      dummyPubHndl    = NULL;
+    TRDP_SUB_T      dummySubHandle  = NULL;
 
     if (pAppHandle == NULL)
     {
