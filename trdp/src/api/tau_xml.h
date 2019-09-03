@@ -17,8 +17,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 2062 2019-08-30 07:39:23Z s-bender $
+ * $Id: tau_xml.h 2075 2019-09-03 13:05:55Z s-bender $
  *
+ *      SB 2019-09-03: Added parsing for service time to live
  *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
  *      BL 2019-06-14: Ticket #250: additional parameter lmi-max SDTv2
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
@@ -189,6 +190,7 @@ typedef struct
 {
     TRDP_URI_USER_T         serviceName;    /**< Service Type/Name */
     UINT32                  serviceId;      /**< Service Id (24 bits) */
+    UINT32                  serviceTTL;     /**< Service's time to live in seconds */
     UINT32                  eventCnt;       /**< Number of Events in Service */
     TRDP_EVENT_T            *pEvent;        /**< Pointer to the Service's Events */
     UINT32                  fieldCnt;       /**< Number of Fields in Service */

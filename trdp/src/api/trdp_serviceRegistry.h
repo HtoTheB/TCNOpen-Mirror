@@ -14,7 +14,7 @@
  *
  */
 /*
-* $Id: trdp_serviceRegistry.h 2059 2019-08-29 15:47:01Z bloehr $
+* $Id: trdp_serviceRegistry.h 2075 2019-09-03 13:05:55Z s-bender $
 *
 *      BL 2019-08-15: Ticket #273 Units for certain standard timeout values inconsistent
 */
@@ -150,7 +150,7 @@ typedef struct service_info
                                                         Defined in IEC 61375-2-3.                           */
     UINT8   cstVehNo;                       /**<    -- sequence number of the vehicle
                                                         within the consist (1..32)                          */
-    UINT8   reserved02;                     /**<    -- reserved for future use (= 0)                        */
+    UINT8   cstNo;                          /**<    -- sequence number of the consist (1..63)               */
     UINT16  reserved03;                     /**<    -- reserved for future use (= 0)                        */
     UINT32  addInfo[3];                     /**<    -- service specific information                         */
 } GNU_PACKED SRM_SERVICE_INFO_T;

@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.13.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 2002 2019-08-15 13:51:54Z bloehr $
+#  SVN           : $Id: trdp-config.xsd 2075 2019-09-03 13:05:55Z s-bender $
 #
 #  HISTORY       :
 #                            1.13.0.0  Ticket #264: Added definitions for service oriented interface
@@ -228,9 +228,14 @@
           <xs:documentation>Service type</xs:documentation>
         </xs:annotation>
       </xs:attribute>
-            <xs:attribute name="id" type="uint32" use="required">
+      <xs:attribute name="id" type="uint32" use="required">
         <xs:annotation>
           <xs:documentation>Service identifier (24 bit)</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="ttl" type="uint32" use="optional">
+        <xs:annotation>
+          <xs:documentation>Service's time to live</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
