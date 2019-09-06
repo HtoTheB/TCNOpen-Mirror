@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 2041 2019-08-21 08:21:52Z bloehr $
+#// $Id: Makefile 2078 2019-09-06 09:47:44Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -157,6 +157,11 @@ ifeq ($(HIGH_PERF_INDEXED),1)
 	TRDP_OBJS += trdp_pdindex.o
 	CFLAGS += -DHIGH_PERF_INDEXED -DPD_SPEED
 #	Option: Building high performance stack
+endif
+
+# Do a full build
+ifeq ($(FULL_BUILD), 1)
+	TRDP_OBJS += $(TRDP_OPT_OBJS)
 endif
 
 all:	$(TARGETS)
