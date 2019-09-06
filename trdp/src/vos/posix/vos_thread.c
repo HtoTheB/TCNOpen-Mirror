@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2019.
  *
- * $Id: vos_thread.c 2035 2019-08-19 09:46:34Z bloehr $
+ * $Id: vos_thread.c 2079 2019-09-06 16:02:29Z bloehr $
  *
  *      BL 2019-08-19: LINT warnings
  *      BL 2019-08-12: Ticket #274 Cyclic thread parameters must not use stack
@@ -725,6 +725,10 @@ EXT_DECL VOS_ERR_T vos_threadIsActive (
     int policy;
     struct sched_param param;
 
+    if (thread == NULL)    /* Calling pthread_getschedparam with a zero threadID can crash a system */
+    {
+        return VOS_PARAM_ERR;
+    }
     retValue = pthread_getschedparam((pthread_t)thread, &policy, &param);
 
     return (retValue == 0 ? VOS_NO_ERR : VOS_PARAM_ERR);
