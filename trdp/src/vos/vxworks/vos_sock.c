@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2050 2019-08-27 09:12:21Z bloehr $*
+ * $Id: vos_sock.c 2083 2019-09-12 14:50:17Z ahweiss $*
  *
  *      BL 2019-08-27: Changed send failure from ERROR to WARNING
  *      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
@@ -683,7 +683,8 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
             }
 #endif
         }
-        if (ioctl(sock, FIONBIO, &(pOptions->nonBlocking)) == -1)
+        sockOptValue = (pOptions->nonBlocking == TRUE) ? TRUE : FALSE;
+        if (ioctl(sock, FIONBIO, &sockOptValue) == -1)
         {
             char buff[VOS_MAX_ERR_STR_SIZE];
             STRING_ERR(buff);
