@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2019.
  *
- * $Id: vos_thread.c 2079 2019-09-06 16:02:29Z bloehr $
+ * $Id: vos_thread.c 2081 2019-09-12 13:19:42Z bloehr $
  *
  *      BL 2019-08-19: LINT warnings
  *      BL 2019-08-12: Ticket #274 Cyclic thread parameters must not use stack
@@ -52,8 +52,8 @@
 #include <semaphore.h>
 #include <sched.h>
 
-#ifdef __APPLE__
-#include <uuid/uuid.h>
+#ifdef HAS_UUID
+#include <uuid.h>
 #else
 #include "vos_sock.h"
 #endif
@@ -1099,7 +1099,7 @@ EXT_DECL INT32 vos_cmpTime (
 EXT_DECL void vos_getUuid (
     VOS_UUID_T pUuID)
 {
-#ifdef __APPLE__
+#ifdef HAS_UUID
     uuid_generate_time(pUuID);
 #else
     /*  Manually creating a UUID from time stamp and MAC address  */

@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: vtest.c 2081 2019-09-12 13:19:42Z bloehr $
  *
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
@@ -52,10 +52,13 @@ void dbgOut(
          catStr[category],
          pMsgStr);
 
-      fprintf(pLogFile, "%s %s %s",
-         strrchr(pTime, '-') + 1,
-         catStr[category],
-         pMsgStr);
+       if (pLogFile != NULL)
+       {
+           fprintf(pLogFile, "%s %s %s",
+                   strrchr(pTime, '-') + 1,
+                   catStr[category],
+                   pMsgStr);
+       }
    }
 }
 
@@ -2849,9 +2852,9 @@ int main(int argc, char *argv[])
 
    printf("TRDP VOS test program, version 0\n");
 
-   if (argc < 5)
+   if (argc < 4)
    {
-      printf("usage: %s <mode> <localip> <remoteip> <mcast>\n", argv[0]);
+      printf("usage: %s <localip> <remoteip> <mcast>\n", argv[0]);
       printf("  <localip>  .. own IP address (ie. 10.2.24.1)\n");
       printf("  <remoteip> .. remote IP address (ie. 10.2.24.2)\n");
       printf("  <mcast>    .. multicast group address (ie. 239.2.24.1)\n");
@@ -2872,7 +2875,7 @@ int main(int argc, char *argv[])
       return 1;
    }
 
-   if (argc >= 5)
+   if (argc >= 4)
    {
       pLogFile = fopen(argv[4], "w");
       gPDebugFunction = dbgOut;
