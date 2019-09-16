@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.14.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 2076 2019-09-06 07:27:22Z ahweiss $
+#  SVN           : $Id: trdp-config.xsd 2085 2019-09-16 06:35:37Z s-bender $
 #
 #  HISTORY       :
 #                            1.14.0.0  IPTCom references removed
@@ -255,6 +255,11 @@
       <xs:attribute name="dst-uri" type="xs:string" use="optional">
         <xs:annotation>
           <xs:documentation>Destination URI for the specific end device.</xs:documentation>
+        </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="red-uri" type="xs:string" use="optional">
+        <xs:annotation>
+          <xs:documentation>Redundancy multicast URI for the specific end device.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>

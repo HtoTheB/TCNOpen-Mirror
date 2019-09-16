@@ -15,7 +15,7 @@
  *          Copyright NewTec GmbH, 2016. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 2075 2019-09-03 13:05:55Z s-bender $
+ * $Id: tau_xml.c 2085 2019-09-16 06:35:37Z s-bender $
  *
  *      SB 2019-09-03: Added parsing for service time to live
  *      SB 2019-08-29: Added parsing of debug info
@@ -2033,6 +2033,10 @@ EXT_DECL TRDP_ERR_T tau_readXmlServiceConfig (
                                     else if (vos_strnicmp(attribute, "dst-uri", MAX_TOK_LEN) == 0)
                                     {
                                         vos_strncpy(pServiceDevice->dstUri, value, TRDP_MAX_URI_HOST_LEN);
+                                    }
+                                    else if (vos_strnicmp(attribute, "red-uri", MAX_TOK_LEN) == 0)
+                                    {
+                                        vos_strncpy(pServiceDevice->redUri, value, TRDP_MAX_URI_HOST_LEN);
                                     }
                                     trdp_XMLEnter(pDocHnd->pXmlDocument);
 

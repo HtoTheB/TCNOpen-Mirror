@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 2075 2019-09-03 13:05:55Z s-bender $
+ * $Id: tau_xml.h 2085 2019-09-16 06:35:37Z s-bender $
  *
  *      SB 2019-09-03: Added parsing for service time to live
  *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
@@ -174,6 +174,7 @@ typedef struct
 {
     TRDP_URI_HOST_T     dstUri;         /**< Destination URI of the device */
     TRDP_URI_HOST_T     hostUri;        /**< Host URI of the device */
+    TRDP_URI_HOST_T     redUri;         /**< Redundancy URI of the device */
     UINT32              instanceCnt;    /**< Number of instances of a specific service on the device */
     TRDP_INSTANCE_T     *pInstance;     /**< Pointer to the Device's instances */
 }TRDP_SERVICE_DEVICE_T;
