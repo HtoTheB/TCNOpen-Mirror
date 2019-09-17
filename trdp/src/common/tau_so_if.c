@@ -18,8 +18,9 @@
  *          Copyright NewTec GmbH 2019. All rights reserved.
  */
 /*
-* $Id: tau_so_if.c 2075 2019-09-03 13:05:55Z s-bender $
+* $Id: tau_so_if.c 2086 2019-09-17 13:38:04Z s-bender $
 *
+*      SB 2019-09-17: Fixed bug, with semaphores not valid during callback (including MR retries triggering cb).
 *      SB 2019-09-03: Removed unused selector element (SRM_UPD)
 *      BL 2019-09-02: Ticket #277 Bug in tau_so_if.c when not waiting for completion
 *      SB 2019-08-30: Fixed precompiler warnings for windows
@@ -148,6 +149,11 @@ static void soMDCallback (
         vos_printLog(VOS_LOG_WARNING, "ME received (comId %u)!\n", pMsg->comId);
         return;
     }
+    if (pMsg->msgType == TRDP_MSG_MR)
+    {
+        vos_printLog(VOS_LOG_WARNING, "Request timed out (comId %u)!\n", pMsg->comId);
+        return;
+    }
     if (pContext == NULL)
     {
         vos_printLog(VOS_LOG_ERROR, "Callback called without context pointer (comId %u)!\n", pMsg->comId);
@@ -270,7 +276,7 @@ static TRDP_ERR_T requestServices (
     /* if we should wait for the reply, create a semaphore and pass it to the callback routine */
     if (waitForCompletion)
     {
-        VOS_ERR_T vos_err = vos_semaCreate(&context.waitForResponse, VOS_SEMA_FULL);
+        VOS_ERR_T vos_err = vos_semaCreate(&context.waitForResponse, VOS_SEMA_EMPTY);
         if (vos_err != VOS_NO_ERR)
         {
             err = TRDP_SEMA_ERR;
@@ -440,7 +446,7 @@ EXT_DECL TRDP_ERR_T tau_getServicesList (
         return TRDP_PARAM_ERR;
     }
 
-    VOS_ERR_T vos_err = vos_semaCreate(&context.waitForResponse, VOS_SEMA_FULL);
+    VOS_ERR_T vos_err = vos_semaCreate(&context.waitForResponse, VOS_SEMA_EMPTY);
     if (vos_err != VOS_NO_ERR)
     {
         err = TRDP_SEMA_ERR;
