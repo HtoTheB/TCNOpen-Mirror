@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2050 2019-08-27 09:12:21Z bloehr $
+* $Id: trdp_pdcom.c 2088 2019-10-10 14:36:13Z bloehr $
 *
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
 *      BL 2019-08-23: Use legacy reception if no index table
@@ -1463,7 +1463,7 @@ TRDP_ERR_T  trdp_pdSend (
 
     if (err != VOS_NO_ERR)
     {
-        vos_printLogStr(VOS_LOG_WARNING, "trdp_pdSend failed\n");
+        vos_printLogStr(VOS_LOG_DBG, "trdp_pdSend failed\n");
         return TRDP_IO_ERR;
     }
 
