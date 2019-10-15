@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: tau_so_if.h 2059 2019-08-29 15:47:01Z bloehr $
+ * $Id: tau_so_if.h 2091 2019-10-15 08:48:18Z s-bender $
  *
  */
 
@@ -51,7 +51,8 @@ EXT_DECL TRDP_ERR_T tau_updService (
 EXT_DECL TRDP_ERR_T tau_getServicesList (
     TRDP_APP_SESSION_T      appHandle,
     SRM_SERVICE_ENTRIES_T   * *ppServicesToAdd,
-    UINT32                  *noOfServices);
+    UINT32                  *pNoOfServices,
+    SRM_SERVICE_ENTRIES_T   *pFilterEntry);
 
 EXT_DECL void tau_freeServicesList (
     SRM_SERVICE_ENTRIES_T *pServicesListBuffer);
