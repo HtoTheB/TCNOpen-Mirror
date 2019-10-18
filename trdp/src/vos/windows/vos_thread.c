@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2062 2019-08-30 07:39:23Z s-bender $
+* $Id: vos_thread.c 2095 2019-10-18 15:58:13Z bloehr $
 *
 *      SB 2019-08-30: Added vos_getRealTime and vos_getNanoTime
 *      SB 2019-08-26: Added sub millisecond precision to vos_runCyclicThread
@@ -537,7 +537,11 @@ EXT_DECL void vos_getNanoTime(
     else
     {
         FILETIME fileTime;
+#if defined(NTDDI_WIN8) && NTDDI_VERSION >= NTDDI_WIN8
         GetSystemTimePreciseAsFileTime(&fileTime);
+#else
+        GetSystemTimeAsFileTime(&fileTime);
+#endif
         *pTime = (((UINT64)fileTime.dwHighDateTime) << 32u) + (UINT64)fileTime.dwLowDateTime;
         /* 11644473600 is the difference between 1601 and 1970 in sec */
         *pTime = (*pTime * 100u) - (11644473600ull * NSECS_PER_USEC * USECS_PER_MSEC * MSECS_PER_SEC);
