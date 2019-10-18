@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2019.
  *
- * $Id: vos_thread.c 2081 2019-09-12 13:19:42Z bloehr $
+ * $Id: vos_thread.c 2092 2019-10-18 13:00:03Z bloehr $
  *
  *      BL 2019-08-19: LINT warnings
  *      BL 2019-08-12: Ticket #274 Cyclic thread parameters must not use stack
@@ -53,7 +53,11 @@
 #include <sched.h>
 
 #ifdef HAS_UUID
+#ifdef __APPLE__
+#include <uuid/uuid.h>
+#else
 #include <uuid.h>
+#endif
 #else
 #include "vos_sock.h"
 #endif

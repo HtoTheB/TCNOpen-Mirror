@@ -18,7 +18,7 @@
  *          Copyright NewTec GmbH 2019. All rights reserved.
  */
 /*
-* $Id: tau_so_if.c 2091 2019-10-15 08:48:18Z s-bender $
+* $Id: tau_so_if.c 2092 2019-10-18 13:00:03Z bloehr $
 *
 *      SB 2019-10-15: Added option for filtering requested services.
 *      SB 2019-10-02: Fixed bug with reply callback triggered after timeout with now invalid context.
@@ -431,6 +431,7 @@ EXT_DECL TRDP_ERR_T tau_updService (
  *  @param[in]          appHandle               Handle returned by tlc_openSession().
  *  @param[out]         ppServicesListBuffer    Pointer to pointer containing the list. Has to be vos_memfree'd by user
  *  @param[out]         pNoOfServices           Pointer to no. of services in returned list
+ *  @param[in]          pFilterEntry            Pointer to entry for filtering
  *
  *  @retval             TRDP_NO_ERR         no error
  *  @retval             TRDP_PARAM_ERR      Parameter error

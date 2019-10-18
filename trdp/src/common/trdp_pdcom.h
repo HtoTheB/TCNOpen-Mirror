@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.h 1980 2019-08-13 16:27:31Z bloehr $
+* $Id: trdp_pdcom.h 2092 2019-10-18 13:00:03Z bloehr $
 *
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -115,6 +115,10 @@ void        trdp_pdCheckPending (
     TRDP_FDS_T          *pFileDesc,
     INT32               *pNoDesc,
     int                 checkSending);
+
+void        trdp_handleTimeout (
+    TRDP_SESSION_PT appHandle,
+    PD_ELE_T        *pIterPD);
 
 void        trdp_pdHandleTimeOuts (
     TRDP_SESSION_PT appHandle);

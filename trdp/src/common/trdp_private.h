@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2065 2019-08-30 08:59:44Z bloehr $
+ * $Id: trdp_private.h 2092 2019-10-18 13:00:03Z bloehr $
  *
  *      SB 2019-08-15: Ticket #269: tau_initTTI: leave standard MC fails
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -59,8 +59,8 @@
 #ifndef TRDP_VERSION
 #define TRDP_VERSION    2u
 #define TRDP_RELEASE    0u
-#define TRDP_UPDATE     1u
-#define TRDP_EVOLUTION  0u
+#define TRDP_UPDATE     2u
+#define TRDP_EVOLUTION  1u
 #endif
 
 #ifdef HIGH_PERF_INDEXED

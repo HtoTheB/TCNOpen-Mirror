@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019.
  *                  All rights reserved.
  *
- * $Id: api_test_3.c 2059 2019-08-29 15:47:01Z bloehr $
+ * $Id: api_test_3.c 2092 2019-10-18 13:00:03Z bloehr $
  *
  */
 
@@ -527,7 +527,7 @@ static int test1 ()
 
 
         /* add the service */
-        err = tau_addService(appHandle1, pServicesToAdd, TRUE);
+        err = tau_addService(appHandle1, pServicesToAdd, FALSE);
         IF_ERROR("tau_addServices1");
 
         /* add another service instance */
@@ -542,7 +542,7 @@ static int test1 ()
         vos_strncpy(pServicesToAdd->srvName, "testFakeBackSrv", TRDP_MAX_LABEL_LEN);
         vos_strncpy(pServicesToAdd->fctDev, vos_ipDotted(gSession1.ifaceIP), TRDP_MAX_LABEL_LEN);
 
-        err = tau_addService(appHandle1, pServicesToAdd, TRUE);
+        err = tau_addService(appHandle1, pServicesToAdd, FALSE);
         IF_ERROR("tau_addServices2");
 
         /* Wait a bit */
