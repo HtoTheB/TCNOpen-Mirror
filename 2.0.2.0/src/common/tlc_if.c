@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2092 2019-10-18 13:00:03Z bloehr $
+* $Id: tlc_if.c 2103 2019-10-25 08:35:40Z bloehr $
 *
+*      BL 2019-10-25: Ticket #288 Why is not tlm_reply() exported from the DLL
 *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
 *      BL 2019-08-23: Ticket #162 Mutex handling in tlc_process corrected
 *      SB 2018-08-20: Fixed lint errors and warnings
@@ -1441,7 +1442,7 @@ EXT_DECL TRDP_ERR_T tlc_process (
  *
  *  @retval            const string
  */
-const char *tlc_getVersionString (void)
+EXT_DECL const char *tlc_getVersionString (void)
 {
     static CHAR8 version[16];
 
