@@ -14,7 +14,7 @@
  *
  */
 /*
-* $Id: trdp_serviceRegistry.h 2075 2019-09-03 13:05:55Z s-bender $
+* $Id: trdp_serviceRegistry.h 2105 2019-10-31 18:04:43Z bloehr $
 *
 *      BL 2019-08-15: Ticket #273 Units for certain standard timeout values inconsistent
 */
@@ -231,6 +231,32 @@ typedef struct
 
 /* -------------------------------------------------------------------------------- */
 
+/* -------------------------------------------------------------------------------- */
+/* Preliminary list of predefined static services
+ */
+
+#define SRM_DEFAULT_INST_ID         1
+/*
+    TTDB_OP_TRAIN_DIRECTORY_STATUS_INFO (PD ComId 100),
+    TTDB_OP_TRAIN_DIRECTORY_INFO (Mn 101)
+ */
+#define SRM_OP_TRN_DIR_INF_NAME     "TTDB-OpTrnInf"
+#define SRM_OP_TRN_DIR_INF_SRV_ID   100u
+/*
+    TTDB_TRAIN_DIRECTORY_INFO (Mr 102, Mp 103)
+    TTDB_STATIC_CONSIST_INFO (Mr 104, Mp 105)
+    TTDB_TRAIN_NETWORK_DIRECTORY_INFO (Mr 106, Mp 107)
+    TTDB_OP_TRAIN_DIRECTORY_INFO (Mr 108, Mp 109)
+    TTDB_READ_COMPLETE (Mr 110, Mp 111)
+*/
+#define SRM_TRN_DIR_INF_NAME        "TTDB-TrnInf"
+#define SRM_TRN_DIR_INF_SRV_ID      102u
+
+/*
+    TCN-DNS
+ */
+#define SRM_TCN_DNS_NAME            "TCN-DNS"
+#define SRM_TCN_DNS_SRV_ID          140u
 
 #ifdef __cplusplus
 }

@@ -18,7 +18,7 @@
  *          Copyright NewTec GmbH 2019. All rights reserved.
  */
 /*
-* $Id: tau_so_if.c 2092 2019-10-18 13:00:03Z bloehr $
+* $Id: tau_so_if.c 2105 2019-10-31 18:04:43Z bloehr $
 *
 *      SB 2019-10-15: Added option for filtering requested services.
 *      SB 2019-10-02: Fixed bug with reply callback triggered after timeout with now invalid context.
@@ -448,6 +448,9 @@ EXT_DECL TRDP_ERR_T tau_getServicesList (
     TRDP_ERR_T      err;
     TAU_CB_BLOCK_T  context = {0, NULL, 0u, TRDP_NO_ERR};
     TRDP_UUID_T     sessionId;
+    TRDP_IP_ADDR_T  serviceIp;
+    int             count   = 10;
+    UINT32          dataSize = sizeof(SRM_SERVICE_ENTRIES_T);
 
     if ((appHandle == NULL) ||
         (ppServicesListBuffer == NULL))
@@ -464,11 +467,25 @@ EXT_DECL TRDP_ERR_T tau_getServicesList (
         goto cleanup;
     }
 
+    /* wait at least 1 second before giving up! */
+    do {
+        serviceIp = tau_ipFromURI(appHandle, SRM_SERVICE_READ_REQ_URI);
+        if (serviceIp != VOS_INADDR_ANY)
+        {
+            break;
+        }
+        vos_threadDelay(100000);
+    } while (count--) ;
+
+    if (pFilterEntry == NULL)
+    {
+        dataSize = 0;
+    }
     /* request the data now */
     err = tlm_request(appHandle, &context, soMDCallback, &sessionId,
                       SRM_SERVICE_READ_REQ_COMID, 0u,
-                      0u, 0u, tau_ipFromURI(appHandle, SRM_SERVICE_READ_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
-                      SRM_SERVICE_READ_REQ_TO, NULL, (UINT8*) pFilterEntry, sizeof(SRM_SERVICE_ENTRIES_T), NULL, NULL);
+                      0u, 0u, serviceIp, TRDP_FLAGS_CALLBACK, 1,
+                      SRM_SERVICE_READ_REQ_TO, NULL, (UINT8*) pFilterEntry, dataSize, NULL, NULL);
 
     if (err == TRDP_NO_ERR)
     {
