@@ -18,7 +18,7 @@
  *          Copyright NewTec GmbH 2019. All rights reserved.
  */
 /*
-* $Id: tau_so_if.c 2105 2019-10-31 18:04:43Z bloehr $
+* $Id: tau_so_if.c 2109 2019-11-01 17:43:14Z bloehr $
 *
 *      SB 2019-10-15: Added option for filtering requested services.
 *      SB 2019-10-02: Fixed bug with reply callback triggered after timeout with now invalid context.
@@ -477,6 +477,11 @@ EXT_DECL TRDP_ERR_T tau_getServicesList (
         vos_threadDelay(100000);
     } while (count--) ;
 
+    if (serviceIp == VOS_INADDR_ANY)
+    {
+        err = TRDP_UNRESOLVED_ERR;
+        goto cleanup;
+    }
     if (pFilterEntry == NULL)
     {
         dataSize = 0;
