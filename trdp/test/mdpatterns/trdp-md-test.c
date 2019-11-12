@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 1797 2018-11-09 13:43:57Z ahweiss $
+ * $Id: trdp-md-test.c 2118 2019-11-12 16:27:16Z andersoberg $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
@@ -373,7 +373,7 @@ void _set_color_default ()
 
 void _sleep_msec (int msec)
 {
-    Sleep(msec);
+    vos_threadDelay(msec * 1000);
 }
 
 #if (!defined (WIN32) && !defined (WIN64))
@@ -751,6 +751,11 @@ int main (int argc, char *argv[])
         return 1;
     }
 
+#ifdef SIM
+	SimSetHostIp(argv[2]);
+	vos_threadRegister(argv[1]);
+#endif
+
     /* prepare default md configuration */
     /* prepare default md configuration */
     /* prepare default md configuration */
@@ -763,8 +768,12 @@ int main (int argc, char *argv[])
     mdcfg.replyTimeout      = 1000 * opts.tmo;
     mdcfg.confirmTimeout    = 1000 * opts.tmo;
     mdcfg.connectTimeout    = 1000 * opts.tmo;
-    mdcfg.udpPort           = 17225;
-    mdcfg.tcpPort           = 17225;
+	mdcfg.udpPort = 17225;
+#ifdef SIM
+	mdcfg.tcpPort = 17226;
+#else
+    mdcfg.tcpPort = 17225;
+#endif
     mdcfg.maxNumSessions    = 64;
 
     /* open session */
