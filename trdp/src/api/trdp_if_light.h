@@ -15,9 +15,10 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 2092 2019-10-18 13:00:03Z bloehr $
+* $Id: trdp_if_light.h 2111 2019-11-12 13:12:00Z bloehr $
 *
 *
+*      BL 2019-11-12: Ticket #288 Added EXT_DECL to reply functions
 *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -353,7 +354,7 @@ EXT_DECL TRDP_ERR_T tlm_delListener (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_LIS_T          listenHandle);
 
-TRDP_ERR_T          tlm_reply (
+EXT_DECL TRDP_ERR_T tlm_reply (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
     UINT32                  comId,
@@ -362,7 +363,7 @@ TRDP_ERR_T          tlm_reply (
     const UINT8             *pData,
     UINT32                  dataSize);
 
-TRDP_ERR_T tlm_replyQuery (
+EXT_DECL TRDP_ERR_T tlm_replyQuery (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
     UINT32                  comId,
