@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2053 2019-08-28 11:02:21Z bloehr $
+* $Id: vos_private.h 2115 2019-11-12 14:38:40Z andersoberg $
 *
 *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows, copy from windows VOS
 */
