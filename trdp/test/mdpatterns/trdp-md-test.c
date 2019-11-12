@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 2118 2019-11-12 16:27:16Z andersoberg $
+ * $Id: trdp-md-test.c 2119 2019-11-12 16:28:49Z andersoberg $
  *
+ *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2017-11-28: Ticket #180 Filtering rules for DestinationURI does not follow the standard
  *      BL 2017-06-30: Compiler warnings, local prototypes added
