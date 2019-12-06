@@ -15,7 +15,7 @@
  *          Copyright NewTec GmbH, 2016-2019. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 2090 2019-10-11 14:18:35Z bloehr $
+ * $Id: tau_xml.c 2137 2019-12-06 17:40:07Z bloehr $
  *
  *     CKH 2019-10-11: Ticket #2: TRDPXML: Support of mapped devices missing (XLS #64)
  *      SB 2019-09-03: Added parsing for service time to live
@@ -827,7 +827,7 @@ static TRDP_ERR_T readMappedTelegramDef(
                     vos_strncpy((char *)pSrc->pUriHost2, p, (UINT32)strlen(p) + 1u);
                 }
             }
-            //if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE)
+            /*if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE)*/
             if (token == TOK_CLOSE_EMPTY)
             {
             }
@@ -921,7 +921,7 @@ static TRDP_ERR_T readMappedTelegramDef(
                     vos_strncpy((char *)pDest->pUriHost, p, (UINT32)strlen(p) + 1u);
                 }
             }
-            //if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE)
+            /*if (token == TOK_CLOSE_EMPTY || token == TOK_CLOSE) */
             if (token == TOK_CLOSE_EMPTY)
             {
             }

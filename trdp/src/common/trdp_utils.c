@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2036 2019-08-20 07:55:31Z s-bender $
+* $Id: trdp_utils.c 2137 2019-12-06 17:40:07Z bloehr $
 *
 *      SB 2018-08-20: Fixed lint errors and warnings
 *      SB 2019-08-15: Ticket #269: tau_initTTI: leave standard MC fails
@@ -516,8 +516,8 @@ PD_ELE_T *trdp_findSubAddr (
             break;
         }
         /*  We match if src/dst/mc address is zero or matches */
-       // if ((iterPD->addr.comId == addr->comId)
-       //     && SOA_SAME_SERVICEID_OR0(addr->serviceId, iterPD->addr.serviceId))
+       /* if ((iterPD->addr.comId == addr->comId)
+              && SOA_SAME_SERVICEID_OR0(addr->serviceId, iterPD->addr.serviceId)) */
         if (SAME_SERVICE_COM_ID(iterPD->addr, *addr)) /*lint !e506 meant to be true, if service support is off */
         {
             /* if srcIP filter matches AND destIP matches THEN this is a direct hit */

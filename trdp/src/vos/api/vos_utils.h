@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2018. All rights reserved.
  */
  /*
- * $Id: vos_utils.h 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: vos_utils.h 2137 2019-12-06 17:40:07Z bloehr $
  *
  *      BL 2019-01-23: Ticket #231: XML config from stream buffer
  *     AHW 2018-11-28: Doxygen comment errors
@@ -35,6 +35,7 @@
 
 #include <stdio.h>
 #include <stddef.h> /*lint !e451 standard include guard missing */
+#include <errno.h>
 #include "vos_types.h"
 
 #ifdef __cplusplus

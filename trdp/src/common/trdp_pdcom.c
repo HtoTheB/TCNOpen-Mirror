@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2092 2019-10-18 13:00:03Z bloehr $
+* $Id: trdp_pdcom.c 2137 2019-12-06 17:40:07Z bloehr $
 *
 *      BL 2019-10-18: Ticket #287 Enhancement performance while receiving (HIGH_PERF_INDEXED mode)
 *      BL 2019-10-10: Ticket #283 Automatic PD sequence counter reset after timeout
@@ -1582,7 +1582,7 @@ TRDP_ERR_T  trdp_pdDistribute (
                  (unsigned int)tNull.tv_usec);
     vos_printLog(VOS_LOG_INFO, "trdp_pdDistribute: noOfPackets = %d\n", noOfPackets);
 
-    for (packetIndex = 0, pPacket = pSndQueue; packetIndex < noOfPackets && pPacket != NULL; )
+    for ((void)(packetIndex = 0), pPacket = pSndQueue; packetIndex < noOfPackets && pPacket != NULL; )
     {
         /*  Ignore PULL-only packets!  */
         if ((pPacket->interval.tv_sec != 0u) ||

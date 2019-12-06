@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2019. All rights reserved.
  *
- * $Id: echoCallback.c 2040 2019-08-20 17:00:52Z bloehr $
+ * $Id: echoCallback.c 2137 2019-12-06 17:40:07Z bloehr $
  *
  *      BL 2019-07-30: Ticket #162 Independent handling of PD and MD to reduce jitter
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -41,6 +41,7 @@
 #include "trdp_if_light.h"
 #include "vos_thread.h"
 #include "vos_utils.h"
+#include "vos_sock.h"
 
 /* Some sample comId definitions    */
 

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2050 2019-08-27 09:12:21Z bloehr $
+* $Id: vos_sock.c 2137 2019-12-06 17:40:07Z bloehr $
 *
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
 *      SB 2019-07-11: Added includes linux/if_vlan.h and linux/sockios.h
@@ -585,16 +585,16 @@ EXT_DECL void vos_sockTerm (void)
 EXT_DECL VOS_ERR_T vos_sockGetMAC (
     UINT8 pMAC[VOS_MAC_SIZE])
 {
+    UINT32          i;
+    UINT32          AddrCount = VOS_MAX_NUM_IF;
+    VOS_IF_REC_T    ifAddrs[VOS_MAX_NUM_IF];
+    VOS_ERR_T       err;
+
     if (pMAC == NULL)
     {
         vos_printLogStr(VOS_LOG_ERROR, "Parameter error\n");
         return VOS_PARAM_ERR;
     }
-
-    UINT32          i;
-    UINT32          AddrCount = VOS_MAX_NUM_IF;
-    VOS_IF_REC_T    ifAddrs[VOS_MAX_NUM_IF];
-    VOS_ERR_T       err;
 
     err = vos_getInterfaces(&AddrCount, ifAddrs);
 

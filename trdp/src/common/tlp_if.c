@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2102 2019-10-25 08:23:26Z bloehr $
+* $Id: tlp_if.c 2137 2019-12-06 17:40:07Z bloehr $
 *
+*      BL 2019-12-06: Ticket #300 Can error message in tlp_setRedundant() be changed to warning?
 *      BL 2019-10-25: Ticket #288 Why is not tlm_reply() exported from the DLL
 *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
 *      BL 2019-08-23: Possible crash on unsubscribing or unpublishing in High Performance mode
@@ -342,7 +343,7 @@ EXT_DECL TRDP_ERR_T tlp_setRedundant (
              redId, it would never be set... */
             if ((FALSE == found) && (0u != redId))
             {
-                vos_printLogStr(VOS_LOG_ERROR, "Redundant ID not found\n");
+                vos_printLogStr(VOS_LOG_WARNING, "Redundant ID not found\n");
                 ret = TRDP_PARAM_ERR;
             }
 

@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.c 2117 2019-11-12 16:20:31Z andersoberg $
+ * $Id: vtest.c 2137 2019-12-06 17:40:07Z bloehr $
  *
  *      AÖ 2019-11-12: Ticket #290: Add support for Virtualization on Windows, changed thread names to unique ones
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -2155,6 +2155,9 @@ VOS_THREAD_FUNC_T L3_test_sharedMem_write(void* arguments)
    {
       retVal = VOS_UNKNOWN_ERR;
       vos_printLogStr(VOS_LOG_ERROR, "[SHMEM Write] vos_sharedOpen() ERROR\n");
+       vos_terminate();
+       return 0;
+
    }
    vos_printLog(VOS_LOG_USR, "handle = %llx\n", *(long long *)handle);
    vos_printLog(VOS_LOG_USR, "pMemArea = %llx\n", (long long)pMemArea);
