@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tau_ctrl.c 1916 2019-06-19 14:37:27Z bloehr $
+* $Id: tau_ctrl.c 2134 2019-12-06 17:07:06Z bloehr $
 *
+*      AÖ 2019-11-14: Ticket #294 tau_requestEcspConfirm invalid call to tlm_request
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
 *      BL 2019-06-17: Ticket #161 Increase performance
@@ -263,7 +264,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
                             1,                              /* numReplies */
                             ECSP_CONF_REPLY_TIMEOUT,        /* replyTimeout */
                             NULL,                           /* pSendParam */
-                            (const UINT8 *) &pEcspConfRequest,
+                            (const UINT8 *) pEcspConfRequest,
                             sizeof(TRDP_ECSP_CONF_REQUEST_T),
                             NULL,                           /* srcUri */
                             NULL);                          /* destUri */
