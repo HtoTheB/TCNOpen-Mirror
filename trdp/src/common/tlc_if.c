@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2110 2019-11-06 16:19:19Z bloehr $
+* $Id: tlc_if.c 2145 2020-01-09 16:12:17Z bloehr $
 *
 *      BL 2019-11-06: Ticket #289: Changed the max. returnedwait time of tlc_getInterval to 1s (instead of 1000s)
 *      BL 2019-10-25: Ticket #288 Why is not tlm_reply() exported from the DLL
@@ -901,7 +901,8 @@ EXT_DECL TRDP_ERR_T tlc_presetIndexSession (
     }
 #else
 
-    appHandle = appHandle;  /* lint !e550 return value not used */
+    appHandle = appHandle;  /* lint !e550 parameter not used */
+    pIndexTableSizes = pIndexTableSizes;  /* lint !e550 parameter not used */
 
 #endif
 
@@ -1445,11 +1446,11 @@ EXT_DECL TRDP_ERR_T tlc_process (
  */
 EXT_DECL const char *tlc_getVersionString (void)
 {
-    static CHAR8 version[16];
+    static CHAR8 version[32];
 
     (void) vos_snprintf(version,
                         sizeof(version),
-                        "%d.%d.%d.%d",
+                        "%d.%d.%d.%d $Rev: 2145 $",
                         TRDP_VERSION,
                         TRDP_RELEASE,
                         TRDP_UPDATE,
