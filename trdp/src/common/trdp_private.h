@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2147 2020-01-10 09:07:04Z bloehr $
+ * $Id: trdp_private.h 2148 2020-01-10 10:30:56Z andersoberg $
  *
+ *      AÖ 2020-01-10: Ticket #293 Minor fix in the macro, added spaces to avoid " to be part of the final string.
  *      BL 2020-01-10: Ticket #293 Avoid having version numbering in different places! Makro for version string (DLL) changed.
  *      AÖ 2019-11-14: Ticket #293 Add version to TCNOpen dll <-- !!! should be rejected! Use the function in tlc_if.c !!!
  *      SB 2019-08-15: Ticket #269: tau_initTTI: leave standard MC fails
@@ -70,8 +71,8 @@
 #define STR_EXP(vers) #vers
 #define STR_EXPAND(vers) STR_EXP(vers)
 
-#define TRDP_VERSION_STR    STR_EXPAND(TRDP_VERSION)"."STR_EXPAND(TRDP_RELEASE)"." \
-                            STR_EXPAND(TRDP_UPDATE)"."STR_EXPAND(TRDP_EVOLUTION)
+#define TRDP_VERSION_STR    STR_EXPAND(TRDP_VERSION) "." STR_EXPAND(TRDP_RELEASE) "." \
+                            STR_EXPAND(TRDP_UPDATE) "." STR_EXPAND(TRDP_EVOLUTION)
 
 #ifdef HIGH_PERF_INDEXED
 #   define TRDP_TIMER_GRANULARITY          500u                     /**< granularity in us - we allow 0.5ms now!      */
