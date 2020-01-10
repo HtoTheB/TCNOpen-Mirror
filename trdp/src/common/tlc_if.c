@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2145 2020-01-09 16:12:17Z bloehr $
+* $Id: tlc_if.c 2147 2020-01-10 09:07:04Z bloehr $
 *
 *      BL 2019-11-06: Ticket #289: Changed the max. returnedwait time of tlc_getInterval to 1s (instead of 1000s)
 *      BL 2019-10-25: Ticket #288 Why is not tlm_reply() exported from the DLL
@@ -1450,7 +1450,7 @@ EXT_DECL const char *tlc_getVersionString (void)
 
     (void) vos_snprintf(version,
                         sizeof(version),
-                        "%d.%d.%d.%d $Rev: 2145 $",
+                        "%d.%d.%d.%d",
                         TRDP_VERSION,
                         TRDP_RELEASE,
                         TRDP_UPDATE,
