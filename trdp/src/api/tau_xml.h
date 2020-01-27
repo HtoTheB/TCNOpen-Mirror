@@ -17,9 +17,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 2152 2020-01-27 08:07:40Z s-bender $
+ * $Id: tau_xml.h 2153 2020-01-27 14:28:38Z s-bender $
  *
- *      SB 2020-01-27: Added parsing for dummyService flag to Service definitions
+ *      SB 2020-01-27: Added parsing for dummyService flag to Service definitions and MD option for events
  *     CKH 2019-10-11: Ticket #2: TRDPXML: Support of mapped devices missing (XLS #64)
  *      SB 2019-09-03: Added parsing for service time to live
  *      SB 2018-07-10: Ticket #264: Added structures for parsing of service definitions for service oriented interface
@@ -150,6 +150,7 @@ typedef struct
 {
     UINT32  comId;      /**< ComId of telegram used for event */
     UINT16  eventId;    /**< Event identifier */
+    BOOL8   usesPd;     /**< TRUE: Uses PD, FALSE: uses MD. default: PD */
 }TRDP_EVENT_T;
 
 typedef struct

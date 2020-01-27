@@ -17,7 +17,7 @@
 #
 #  VERSION       : 1.14.0.0
 #
-#  SVN           : $Id: trdp-config.xsd 2151 2020-01-24 15:04:00Z s-bender $
+#  SVN           : $Id: trdp-config.xsd 2153 2020-01-27 14:28:38Z s-bender $
 #
 #  HISTORY       :
 #                            1.14.0.0  IPTCom references removed
@@ -288,6 +288,17 @@
           <xs:documentation>ComId of telegram used for Event</xs:documentation>
         </xs:annotation>
       </xs:attribute>
+      <xs:attribute name="type" default="PD" use="optional">
+         <xs:annotation>
+            <xs:documentation>Defines whether the Event uses Process Data or Message Data.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PD"/>
+            <xs:enumeration value="MD"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>        
     </xs:complexType>
   </xs:element>
   
