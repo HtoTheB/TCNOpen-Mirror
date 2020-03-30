@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2137 2019-12-06 17:40:07Z bloehr $
+* $Id: tlp_if.c 2161 2020-03-30 15:11:54Z s-bender $
 *
+*      SB 2020-03-30: Ticket #311: replaced call to trdp_getSeqCnt() with -1 because redundant publisher should not run on the same interface
 *      BL 2019-12-06: Ticket #300 Can error message in tlp_setRedundant() be changed to warning?
 *      BL 2019-10-25: Ticket #288 Why is not tlm_reply() exported from the DLL
 *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
@@ -644,13 +645,11 @@ EXT_DECL TRDP_ERR_T tlp_publish (
              curSeqCnt holds the last sent sequence counter, therefore set the value initially to -1,
              it will be incremented when sending...    */
 
-            pNewElement->curSeqCnt = trdp_getSeqCnt(pNewElement->addr.comId, msgType,
-                                                    pNewElement->addr.srcIpAddr) - 1;
+            pNewElement->curSeqCnt = 0xFFFFFFFFu;
 
             /*  Get a second sequence counter in case this packet is requested as PULL. This way we will not
              disturb the monotonic sequence for PDs  */
-            pNewElement->curSeqCnt4Pull = trdp_getSeqCnt(pNewElement->addr.comId, TRDP_MSG_PP,
-                                                         pNewElement->addr.srcIpAddr) - 1;
+            pNewElement->curSeqCnt4Pull = 0xFFFFFFFFu;
 
             /*    Check if the redundancy group is already set as follower; if set, we need to mark this one also!
              This will only happen, if publish() is called while we are in redundant mode */

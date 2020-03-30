@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2156 2020-03-20 11:50:57Z s-bender $
+ * $Id: trdp_mdcom.c 2161 2020-03-30 15:11:54Z s-bender $
  *
+ *      SB 2020-03-30: Ticket #309 Added pointer to a Session's Listener
  *      SB 2020-03-20: Ticket #324 mutexMD added to reply and confirm functions
  *      BL 2019-09-10: Ticket #278 Don't check if a socket is < 0
  *      BL 2019-08-16: Ticket #267 Incorrect values for fields WireError, CRCError and Topo...
@@ -1719,6 +1720,7 @@ static TRDP_ERR_T trdp_mdHandleRequest (TRDP_SESSION_PT     appHandle,
             iterMD->addr.etbTopoCnt     = iterListener->addr.etbTopoCnt;
             iterMD->addr.opTrnTopoCnt   = iterListener->addr.opTrnTopoCnt;
             iterMD->pktFlags            = iterListener->pktFlags;           /* BL: This was missing! */
+            iterMD->pListener           = iterListener;
 
 
             /* Count this Request/Notification as new session */
