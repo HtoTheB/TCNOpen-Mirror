@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2161 2020-03-30 15:11:54Z s-bender $
+* $Id: trdp_utils.c 2165 2020-05-04 07:36:32Z andersoberg $
 *
 *      SB 2020-03-30: Ticket #311: removed trdp_getSeqCnt() because redundant publisher should not run on the same interface
 *      SB 2019-08-20: Fixed lint errors and warnings
@@ -51,6 +51,7 @@
 *      BL 2016-03-01: Setting correct multicast TTL for PDs
 *      BL 2014-08-25: Ticket #57+58: Padding / zero bytes trailing MD & PD packets fixed
 *      BL 2014-06-02: Ticket #41: Sequence counter handling fixed
+*      AÖ 2020-05-04: Ticket #331: Add VLAN support for Sim
 */
 
 /***********************************************************************************************************************
@@ -1106,7 +1107,7 @@ TRDP_ERR_T  trdp_requestSocket (
                 {
                     iface[lIndex].usage = 1;
                     *pIndex = lIndex;
-
+#ifndef SIM
                     /* This socket should bind to the (virtual) interface with the VLAN ID supplied by 'pOptions',
                      the way how to do that depends on the network implementation of the target system!
                      We will first construct the possible name according to the targets conventions:
@@ -1157,7 +1158,7 @@ TRDP_ERR_T  trdp_requestSocket (
 
                         iface[lIndex].bindAddr = tempIF.ipAddr;
                     }
-
+#endif
                     /* In case we didn't bind, we force it again */
                     if (rcvMostly)
                     {

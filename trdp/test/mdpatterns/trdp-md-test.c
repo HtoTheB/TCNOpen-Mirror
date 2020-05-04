@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 2142 2019-12-17 13:06:05Z andersoberg $
+ * $Id: trdp-md-test.c 2165 2020-05-04 07:36:32Z andersoberg $
  *
  *      AÖ 2019-12-17: Ticket #308: Add vos Sim function to API
  *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
@@ -771,11 +771,7 @@ int main (int argc, char *argv[])
     mdcfg.confirmTimeout    = 1000 * opts.tmo;
     mdcfg.connectTimeout    = 1000 * opts.tmo;
 	mdcfg.udpPort = 17225;
-#ifdef SIM
-	mdcfg.tcpPort = 17226;
-#else
-    mdcfg.tcpPort = 17225;
-#endif
+	mdcfg.tcpPort = 17225;
     mdcfg.maxNumSessions    = 64;
 
     /* open session */
