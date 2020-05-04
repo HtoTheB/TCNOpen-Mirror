@@ -18,12 +18,12 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2165 2020-05-04 07:36:32Z andersoberg $*
+* $Id: vos_sock.c 2167 2020-05-04 08:25:44Z andersoberg $*
 *
+*      AÖ 2020-05-04: Ticket #331: Add VLAN support for Sim, removed old SimTecc workarounds, Requiers SimTecc from 2020 or later
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
 *      AÖ 2019-12-18: Ticket #295: vos_sockSendUDP some times report err 183 in Windows Sim
 *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
-*      AÖ 2020-05-04: Ticket #331: Add VLAN support for Sim, removed old SimTecc workarounds, Requiers SimTecc from 2020 or later
 *
 */
 
