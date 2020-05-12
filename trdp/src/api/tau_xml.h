@@ -17,8 +17,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 2170 2020-05-08 14:03:24Z artem-rudskyy $
+ * $Id: tau_xml.h 2171 2020-05-12 06:20:31Z artem-rudskyy $
  *
+ *      AR 2020-05-08: Added attribute 'name' to event, method, field and instance structures used for service oriented interface
  *      SB 2020-01-27: Added parsing for dummyService flag to Service definitions and MD option for events
  *     CKH 2019-10-11: Ticket #2: TRDPXML: Support of mapped devices missing (XLS #64)
  *      SB 2019-09-03: Added parsing for service time to live

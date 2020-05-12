@@ -15,8 +15,9 @@
  *          Copyright NewTec GmbH, 2016-2020. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 2170 2020-05-08 14:03:24Z artem-rudskyy $
+ * $Id: tau_xml.c 2171 2020-05-12 06:20:31Z artem-rudskyy $
  *
+ *      AR 2020-05-08: Added parsing for attribute 'name' of event, method, field and instance elements used in service oriented interface
  *      SB 2020-01-27: Added parsing for dummyService flag to Service definitions and MD option for events
  *      BL 2020-01-08: Ticket #284: Parsing of UINT32 fixed
  *      SB 2019-12-19: Bugfix where ComIds from service definition were cast to 16 bit
