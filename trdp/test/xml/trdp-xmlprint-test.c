@@ -18,15 +18,18 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 2158 2020-03-27 16:59:49Z bloehr $
+ * $Id: trdp-xmlprint-test.c 2176 2020-07-16 14:12:59Z bloehr $
  *
+ *      BL 2020-07-16: Ticket #334 dirent.h not part of delivery
  */
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
+#if !(defined(WIN32) || defined(WIN64))
 #include <dirent.h>
+#endif
 
 #include "tau_xml.h"
 #include "vos_sock.h"
@@ -281,10 +284,13 @@ static void printTelegrams(
             }
         }
         else
+        {
             printf("    No sources\n");
-
+        }
     }
 }
+
+#if !(defined(WIN32) || defined(WIN64))
 
 int main2(int argc, char * argv[]);
 
@@ -344,6 +350,9 @@ int main(int argc, char * argv[])
     Test XML configuration file parsing
 ***********************************************************************************************************************/
 int main2(int argc, char * argv[])
+#else
+int main(int argc, char * argv[])
+#endif
 {
     const char * pFileName;
     TRDP_XML_DOC_HANDLE_T   docHandle;
