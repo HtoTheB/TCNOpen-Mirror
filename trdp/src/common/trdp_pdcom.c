@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2175 2020-07-15 14:10:58Z bloehr $
+* $Id: trdp_pdcom.c 2178 2020-07-27 12:24:16Z bloehr $
 *
+*      BL 2020-07-27: Ticket #304 ... stats count for no subscription added
 *      BL 2020-07-15: Ticket #337 PD request in multithread application, concurrency problems with msg/sockets
 *      BL 2020-05-04: Ticket #329 dataSize is taken from wrong header type for received TSN messages
 *      BL 2019-10-18: Ticket #287 Enhancement performance while receiving (HIGH_PERF_INDEXED mode)
@@ -837,6 +838,7 @@ TRDP_ERR_T  trdp_pdReceive (
          vos_ntohl(pNewFrame->frameHead.comId));
          */
         err = TRDP_NOSUB_ERR;
+        appHandle->stats.pd.numNoSubs++;
     }
     else
     {
