@@ -1,5 +1,5 @@
 #//
-#// $Id: CENTOS_X86_64_config 2084 2019-09-12 15:24:45Z bloehr $
+#// $Id: CENTOS_X86_64_config 2183 2020-07-29 15:51:09Z bloehr $
 #//
 #// DESCRIPTION    Config file to make TRDP for CentOS target
 #//
@@ -21,9 +21,9 @@ DOXYPATH = /usr/local/bin/
 
 CFLAGS += -Wall -m64 -fstrength-reduce -fno-builtin -fsigned-char -pthread -fPIC -D_GNU_SOURCE -DPOSIX -DL_ENDIAN
 CFLAGS += -Wno-unknown-pragmas -Wno-format -Wno-unused-label -Wno-unused-function -Wno-int-to-void-pointer-cast -Wno-self-assign
-CFLAGS += -DHAS_UUID
+LDFLAGS += -lrt
 
-INCPATH += -I /usr/include/uuid
-LDFLAGS += -lrt -luuid
+CFLAGS +=  -DHAS_UUID
+LDFLAGS += -luuid
 
 LINT_SYSINCLUDE_DIRECTIVES = -i ./src/vos/posix -wlib 0 -DL_ENDIAN

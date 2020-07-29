@@ -1,6 +1,6 @@
 /**********************************************************************************************************************/
 /**
- * @file            pd_md_responder.c
+ * @file            pd_responder.c
  *
  * @brief           Test application for TRDP
  *
@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pd_responder.c 2182 2020-07-29 08:51:55Z bloehr $
+ * $Id: pd_responder.c 2183 2020-07-29 15:51:09Z bloehr $
  *
+ *      BL 2020-07-29: Renamed (no MD support)
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
 
