@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2173 2020-07-10 11:45:21Z bloehr $
+ * $Id: trdp_private.h 2184 2020-07-30 10:22:47Z bloehr $
  *
  *      BL 2020-07-10: Ticket #321 Move TRDP_TIMER_GRANULARITY to public API
  *      CK 2020-04-06: Ticket #318 Added pointer to list of seqCnt used per comId for PD Requests in TRDP_SESSION_T
@@ -240,8 +240,7 @@ typedef struct
     UINT32  etbTopoCnt;                         /**< set by user: ETB to use, '0' for consist local traffic */
     UINT32  opTrnTopoCnt;                       /**< set by user: direction/side critical, '0' if ignored   */
     UINT32  datasetLength;                      /**< length of the data to transmit 0...1432                */
-    UINT32  reserved;                           /**< reserved for ServiceID/InstanceID support
-                                                                          */
+    UINT32  reserved;                           /**< reserved for ServiceID/InstanceID support              */
     UINT32  replyComId;                         /**< used in PD request                                     */
     UINT32  replyIpAddress;                     /**< used for PD request                                    */
     UINT32  frameCheckSum;                      /**< CRC32 of header                                        */
