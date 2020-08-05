@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2189 2020-07-31 15:17:14Z bloehr $
+ * $Id: vos_private.h 2192 2020-08-05 07:55:37Z bloehr $
  *
  *      BL 2020-07-27: Ticket #333: Insufficient memory allocation in posix vos_semaCreate
  *
@@ -70,6 +70,7 @@ struct VOS_MUTEX
 struct VOS_SEMA
 {
     sem_t   sem;
+    sem_t   *pSem;
     int     number;
 };
 #else
