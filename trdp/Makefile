@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 2190 2020-07-31 15:19:06Z bloehr $
+#// $Id: Makefile 2193 2020-08-06 15:28:00Z bloehr $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -155,7 +155,7 @@ endif
 ifeq ($(HIGH_PERF_INDEXED),1)
 	TARGETS += highperf
 	TRDP_OBJS += trdp_pdindex.o
-	CFLAGS += -DHIGH_PERF_INDEXED -DPD_SPEED
+	CFLAGS += -DHIGH_PERF_INDEXED
 #	Option: Building high performance stack
 endif
 
@@ -563,6 +563,7 @@ help:
 	@$(ECHO) "  * LINUX_X86_config             - Native build for Linux (Little Endian, uses host gcc 32Bit)" >&2
 	@$(ECHO) "  * LINUX_X86_64_config          - Native build for Linux (Little Endian, uses host gcc 64Bit)" >&2
 	@$(ECHO) "  * LINUX_X86_64_HP_config       - Native build for Linux as high performance library" >&2
+	@$(ECHO) "  * LINUX_X86_64_HP_conform_config - Native build for Linux for Conformance Testing (2.1 API)" >&2
 	@$(ECHO) "  * LINUX_PPC_config             - (experimental) Building for Linux on PowerPC using eglibc compiler (603 core)" >&2
 	@$(ECHO) "  * LINUX_imx7_config            - Building for Linux ARM7/imx7 using YOCTO toolchain" >&2
 	@$(ECHO) "  * LINUX_sama5d27_config        - Native build on NTSecureGateway HelmsDeep96" >&2
