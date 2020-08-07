@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017.
  *                  All rights reserved.
  *
- * $Id: api_test.c 2183 2020-07-29 15:51:09Z bloehr $
+ * $Id: api_test.c 2194 2020-08-07 14:58:59Z bloehr $
  *
  *      BL 2019-08-27: Interval timing in test 9 changed
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -1269,7 +1269,7 @@ static int test8 ()
 
             usleep(100000u);
 
-            err = tlp_get(gSession2.appHandle, subHandle, &pdInfo, (UINT8 *) data2, &dataSize2);
+            err = tlp_get(gSession1.appHandle, subHandle, &pdInfo, (UINT8 *) data2, &dataSize2);
             if (err == TRDP_NODATA_ERR)
             {
                 fprintf(gFp, ".");
@@ -2267,24 +2267,24 @@ static int test18 ()
 test_func_t *testArray[] =
 {
     NULL,
-//    test1,  /* PD publish and subscribe */
-//    test2,  /* Publish & Subscribe, Callback */
-//    test3,  /* Ticket #140: tlp_get reports immediately TRDP_TIMEOUT_ERR */
-//    test4,  /* Ticket #153 (two PDs on one pull request */
-//    test5,  /* TCP MD Request - Reply - Confirm, #149, #160 */
-//    test6,  /* UDP MD Request - Reply - Confirm, #149 */
-//    test7,  /* UDP MD Notify no sessionID #127 */
-//    test8,  /* #153 (two PDs on one pull request? Receiver only */
-//    test9,  /* Send and receive many telegrams, to check time optimisations */
+    test1,  /* PD publish and subscribe */
+    test2,  /* Publish & Subscribe, Callback */
+    test3,  /* Ticket #140: tlp_get reports immediately TRDP_TIMEOUT_ERR */
+    test4,  /* Ticket #153 (two PDs on one pull request */
+    test5,  /* TCP MD Request - Reply - Confirm, #149, #160 */
+    test6,  /* UDP MD Request - Reply - Confirm, #149 */
+    test7,  /* UDP MD Notify no sessionID #127 */
+    test8,  /* #153 (two PDs on one pull request? Receiver only */
+    test9,  /* Send and receive many telegrams, to check time optimisations */
     test10,  /* tlc_getVersionString */
-//    test11,  /* babbling idiot :-) */
-//    test12,  /* testing unsubscribe and unjoin */
-//    test13,  /* PD publish and subscribe, auto increment using new 1.4 callback function */
-//    test14,  /* Publish & Subscribe, Callback */
-//    test15,     /* MD Request - Reply / Reuse of TCP connection */
-//    test16,     /* MD Request - Reply / UDP */
-//    test17,     /* CRC */
-//    test18,     /* XML stream */
+    test11,  /* babbling idiot :-) */
+    test12,  /* testing unsubscribe and unjoin */
+    test13,  /* PD publish and subscribe, auto increment using new 1.4 callback function */
+    test14,  /* Publish & Subscribe, Callback */
+    test15,     /* MD Request - Reply / Reuse of TCP connection */
+    test16,     /* MD Request - Reply / UDP */
+    test17,     /* CRC */
+    test18,     /* XML stream */
     NULL
 };
 
