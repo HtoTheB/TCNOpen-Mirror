@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 2195 2020-08-10 13:05:51Z bloehr $
+* $Id: tlm_if.c 2196 2020-08-10 15:49:37Z bloehr $
 *
 *      BL 2020-08-10: Ticket #309 revisited: tlm_abortSession shall return noError if morituri is not set
 *      BL 2020-07-29: Ticket #286 tlm_reply() is missing a sourceURI parameter as defined in the standard
@@ -717,9 +717,8 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
 
         pListener = (MD_LIS_ELE_T *) listenHandle;
 
-        if (((pListener->pktFlags & TRDP_FLAGS_TCP) == 0) &&        /* We don't need to handle TCP listeners */
-            vos_isMulticast(mcDestIpAddr) &&                        /* nor non-multicast listeners */
-            pListener->addr.mcGroup != mcDestIpAddr)                /* nor if there's no change in group */
+        /* Ticket #309, resetting listener must be done on all UDP listeners (why not TCP?) */
+        if ((pListener->pktFlags & TRDP_FLAGS_TCP) == 0)            /* We don't need to handle TCP listeners */
         {
             /* deletes listener sessions */
             for (pIterMD = appHandle->pMDRcvQueue; pIterMD != NULL; pIterMD = pIterMD->pNext)
