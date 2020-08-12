@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2196 2020-08-10 15:49:37Z bloehr $
+ * $Id: trdp_mdcom.c 2197 2020-08-12 14:07:33Z bloehr $
  *
  *      BL 2020-08-10: Ticket #335 MD UDP notifications sometimes dropped
  *      BL 2020-07-30: Ticket #336 MD structures handling in multithread application
@@ -1559,7 +1559,7 @@ static TRDP_ERR_T trdp_mdHandleRequest (TRDP_SESSION_PT     appHandle,
     *pIterMD = NULL;
 
     /* Only if no Notification */
-    if (state != TRDP_ST_TX_NOTIFY_ARM)
+    if (state != TRDP_ST_RX_NOTIFY_RECEIVED)
     {
         /* Search for existing session (in case it is a repeated request)  */
         /* This is kind of error detection/comm issue remedy functionality */

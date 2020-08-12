@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_marshall.c 2004 2019-08-15 14:42:00Z s-bender $
+ * $Id: tau_marshall.c 2197 2020-08-12 14:07:33Z bloehr $
  *
+ *      BL 2020-08-12: Warning output moved (to before aligning source pointer on return from possible recursion)
  *      SB 2019-08-15: Compiler warning (pointer compared to integer)
  *      SB 2019-08-14: Ticket #265: Incorrect alignment in nested datasets
  *      SB 2019-05-24: Ticket #252 Bug in unmarshalling/marshalling of TIMEDATE48 and TIMEDATE64
@@ -86,10 +87,10 @@ typedef struct
  */
 
 static TRDP_COMID_DSID_MAP_T    *sComIdDsIdMap = NULL;
-static UINT32 sNumComId = 0u;
+static UINT32                   sNumComId = 0u;
 
 static TRDP_DATASET_T           * *sDataSets = NULL;
-static UINT32       sNumEntries = 0u;
+static UINT32                   sNumEntries = 0u;
 
 /***********************************************************************************************************************
  * LOCAL FUNCTIONS
@@ -659,12 +660,13 @@ static TRDP_ERR_T marshallDs (
         }
     }
 
-    pInfo->pSrc = alignePtr(pInfo->pSrc, maxAlignOfDSMember(pDataset));
-
     if (pInfo->pSrc > pInfo->pSrcEnd ) /* Maybe one alignement bejond - do not erratically issue error! */
     {
         vos_printLogStr(VOS_LOG_WARNING, "Marshalling read beyond source area. Wrong Dataset size provided?\n");
     }
+
+    /* Align to possible next dataset. Needed when returning from recursion! */
+    pInfo->pSrc = alignePtr(pInfo->pSrc, maxAlignOfDSMember(pDataset));
 
     /* Decrement recursion counter. Note: Recursion counter will not decrement in case of error */
     pInfo->level--;
