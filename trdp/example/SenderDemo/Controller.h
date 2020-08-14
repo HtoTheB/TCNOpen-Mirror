@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: Controller.h 1732 2018-05-14 08:05:07Z bloehr $
+ * $Id: Controller.h 2198 2020-08-14 15:35:22Z bloehr $
  *
  */
 
@@ -65,8 +65,9 @@
     IBOutlet    id    MRcomID;
     IBOutlet    id    MDrecColor;
     
-    IBOutlet    id    MsgView;
-    
+ //   IBOutlet    id    logOut;
+    IBOutlet    NSTextView*         logOut;
+
     Boolean    isActive;
     
     NSTimer *timer;
