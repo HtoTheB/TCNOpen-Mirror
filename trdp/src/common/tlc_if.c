@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2183 2020-07-29 15:51:09Z bloehr $
+* $Id: tlc_if.c 2202 2020-08-18 13:12:43Z bloehr $
 *
 *      BL 2020-07-29: tlc_init() marks version info with 'trunk' (if vers.evo != 0)
 *      BL 2020-01-10: Undoing svn revision output, would reflect file revision, only.
@@ -215,7 +215,7 @@ TRDP_ERR_T  trdp_getAccess (TRDP_APP_SESSION_T appHandle, int force)
 
     if (appHandle != NULL)
     {
-        ret = (TRDP_ERR_T) vos_mutexLock(appHandle->mutex);
+        ret = (TRDP_ERR_T) mutexLock(appHandle->mutex);
         if (ret == TRDP_NO_ERR)
         {
             /*  Wait for any ongoing communications by getting the other mutexes as well */

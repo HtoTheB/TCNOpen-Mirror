@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2020. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 2194 2020-08-07 14:58:59Z bloehr $
+ * $Id: trdp_pdindex.c 2202 2020-08-18 13:12:43Z bloehr $
  *
  *      BL 2020-08-07: Ticket #317 Bug in trdp_indexedFindSubAddr() (HIGH_PERFORMANCE)
  *      BL 2020-08-06: Ticket #314 Timeout supervision does not restart after PD request
@@ -1336,7 +1336,7 @@ PD_ELE_T *trdp_indexedFindSubAddr (
         /* the first match might not be the best! Look further, but stop on comId change */
         /* was: return trdp_findSubAddr(*pFirstMatchedPD, pAddr, pAddr->comId);  Ticket #317*/
         startIdx = (UINT32)(pFirstMatchedPD - appHandle->pSlot->pRcvTableComId);
-        //startIdx /= sizeof(PD_ELE_T *);
+        /*startIdx /= sizeof(PD_ELE_T *); */
         return trdp_idxfindSubAddr(appHandle->pSlot->pRcvTableComId,
                                    startIdx, appHandle->pSlot->noOfRxEntries,
                                    pAddr, pAddr->comId);
