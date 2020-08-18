@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2020.
  *
- * $Id: vos_thread.c 2192 2020-08-05 07:55:37Z bloehr $
+ * $Id: vos_thread.c 2204 2020-08-18 15:25:32Z bloehr $
  *
  *      BL 2020-07-29: Ticket #303: UUID creation... #warning if uuid not used
  *      BL 2020-07-27: Ticket #333: Insufficient memory allocation in posix vos_semaCreate
@@ -681,7 +681,7 @@ EXT_DECL VOS_ERR_T vos_threadCreate (
  *  This call will terminate the thread with the given threadId and release all resources. Depending on the
  *  underlying architectures, it may just block until the thread ran out.
  *
- *  @param[in]      thread          Thread handle (or NULL if current thread)
+ *  @param[in]      thread          Thread handle
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_THREAD_ERR  cancel failed
  */
@@ -694,8 +694,10 @@ EXT_DECL VOS_ERR_T vos_threadTerminate (
         2. the only error returned is error code 3 (ESRCH) - no such thread
             which means the thread already terminated!
      */
-    (void) pthread_cancel((pthread_t)thread);
-
+    if (thread != NULL) /* On CentOS 8 (Linux), calling with 0x0 will lead to SIGSEGV */
+    {
+        (void) pthread_cancel((pthread_t)thread);
+    }
     return VOS_NO_ERR;
 }
 
