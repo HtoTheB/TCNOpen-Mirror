@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017-2020.
  *                  All rights reserved.
  *
- * $Id: api_test.c 2205 2020-08-20 12:20:43Z bloehr $
+ * $Id: api_test.c 2206 2020-08-20 13:49:34Z bloehr $
  *
  *      BL 2019-08-27: Interval timing in test 9 changed
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -1911,11 +1911,11 @@ static int test14 ()
         /*
          Enter the main processing loop.
          */
-        int counter = 0;
+        unsigned int counter = 0;
         while (counter < 5)         /* 0.5 seconds */
         {
 
-            sprintf(data1, "Just a Counter: %08d", counter++);
+            sprintf(data1, "Just a Counter: %08u", counter++);
 
             err = tlp_put(gSession1.appHandle, pubHandle, (UINT8 *) data1, (UINT32) strlen(data1));
             IF_ERROR("tap_put");
@@ -2190,7 +2190,7 @@ static int test17 ()
 
         {
             UINT8   str[] = "123456789";
-            UINT32 result, seed, len = strlen((char*) str);
+            UINT32 result, seed, len = (UINT32) strlen((char*) str);
             /* CRC of the string "123456789" is 0x1697d06a ??? */
             seed = 0;
             result = vos_sc32(seed, str, len);
@@ -2198,7 +2198,7 @@ static int test17 ()
         }
         {
             UINT8   str[] = "123456789";
-            UINT32 result, seed, len = strlen((char*) str);
+            UINT32 result, seed, len = (UINT32) strlen((char*) str);
             /* CRC of the string "123456789" is 0x1697d06a ??? */
             seed = 0xFFFFFFFF;
             result = vos_sc32(seed, str, len);
@@ -2236,7 +2236,7 @@ static int test18 ()
         TRDP_COM_PAR_T          *pComPar;
         UINT32                  numIfConfig;
         TRDP_IF_CONFIG_T        *pIfConfig;
-        int i;
+        unsigned int i;
 
         err = tau_prepareXmlMem (xmlBuffer, strlen(xmlBuffer), &docHnd);
         IF_ERROR("tau_prepareXmlMem");

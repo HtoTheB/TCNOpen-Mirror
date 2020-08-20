@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019-2020. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.h 2193 2020-08-06 15:28:00Z bloehr $
+ * $Id: trdp_pdindex.h 2206 2020-08-20 13:49:34Z bloehr $
  *
  *      BL 2020-08-06: Ticket #314 Timeout supervision does not restart after PD request
  *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
@@ -84,7 +84,7 @@ typedef struct hp_slot
     UINT32          slotCycle;                          /**< cycle time with which each slot will be called (us)    */
     UINT8           noOfTxEntries;                      /**< no of slots == first array dimension                   */
     UINT8           depthOfTxEntries;                   /**< depth of slots == second array dimension               */
-    const PD_ELE_T  * *ppIdxCat;                        /**< pointer to an array of PD_ELE_T* (dim[depth][slot])    */
+    PD_ELE_T        * *ppIdxCat;                        /**< pointer to an array of PD_ELE_T* (dim[depth][slot])    */
     UINT32          allocatedTableSize;                 /**< real allocated size                                    */
 } TRDP_HP_CAT_SLOT_T;
 
