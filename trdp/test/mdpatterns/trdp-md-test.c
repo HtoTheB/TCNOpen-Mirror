@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 2165 2020-05-04 07:36:32Z andersoberg $
+ * $Id: trdp-md-test.c 2205 2020-08-20 12:20:43Z bloehr $
  *
  *      AÖ 2019-12-17: Ticket #308: Add vos Sim function to API
  *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows

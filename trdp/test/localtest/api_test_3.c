@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2020.
  *                  All rights reserved.
  *
- * $Id: api_test_3.c 2203 2020-08-18 15:04:28Z bloehr $
+ * $Id: api_test_3.c 2205 2020-08-20 12:20:43Z bloehr $
  *
  */
 
@@ -458,13 +458,13 @@ static void test_deinit (
     {
         vos_threadTerminate(pSession2->threadIdTxPD);
         vos_threadDelay(100000);
-        pSession1->threadIdTxPD = 0;
+        pSession2->threadIdTxPD = 0;
         vos_threadTerminate(pSession2->threadIdRxPD);
         vos_threadDelay(100000);
-        pSession1->threadIdRxPD = 0;
+        pSession2->threadIdRxPD = 0;
         vos_threadTerminate(pSession2->threadIdMD);
         vos_threadDelay(100000);
-        pSession1->threadIdMD = 0;
+        pSession2->threadIdMD = 0;
         tlc_closeSession(pSession2->appHandle);
     }
     tlc_terminate();
@@ -491,7 +491,7 @@ static void test_deinit (
 
 static int test1 ()
 {
-    PREPARE1("SRM offer"); /* allocates appHandle1, failed = 0, err */
+    PREPARE1("SRM offer ### obsolete! ###"); /* allocates appHandle1, failed = 0, err */
 
     /* ------------------------- test code starts here --------------------------- */
 

@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017-2020.
  *                  All rights reserved.
  *
- * $Id: api_test.c 2203 2020-08-18 15:04:28Z bloehr $
+ * $Id: api_test.c 2205 2020-08-20 12:20:43Z bloehr $
  *
  *      BL 2019-08-27: Interval timing in test 9 changed
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
