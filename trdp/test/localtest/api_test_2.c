@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019-2020.
  *                  All rights reserved.
  *
- * $Id: api_test_2.c 2205 2020-08-20 12:20:43Z bloehr $
+ * $Id: api_test_2.c 2207 2020-08-20 15:00:18Z bloehr $
  *
  *      BL 2020-08-18: Output changed, Version info...
  *      BL 2019-08-23: Init macro changed for High Performance mode, cycle time is 3rd parm
@@ -3589,7 +3589,7 @@ int main (int argc, char *argv[])
             case 'v':   /*  version */
                 printf("%s: Version %s\t(%s - %s)\n",
                        argv[0], APP_VERSION, __DATE__, __TIME__);
-                printf("No. of tests: %lu\n", sizeof(testArray) / sizeof(void *) - 2);
+                printf("No. of tests: %lu\n", (unsigned long) (sizeof(testArray) / sizeof(void *) - 2));
                 exit(0);
                 break;
             case 'h':

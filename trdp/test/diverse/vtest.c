@@ -15,7 +15,7 @@
  *                  to third parties without express authority is forbidden,
  *                  Copyright Bombardier Transportation GmbH, Germany, 2013.
  *
- * $Id: vtest.c 2137 2019-12-06 17:40:07Z bloehr $
+ * $Id: vtest.c 2207 2020-08-20 15:00:18Z bloehr $
  *
  *      AÖ 2019-11-12: Ticket #290: Add support for Virtualization on Windows, changed thread names to unique ones
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -384,14 +384,14 @@ VOS_THREAD_FUNC_T testThread1(void* arguments)
    VOS_THREAD_T threadID = 0;
 
    (void)vos_threadSelf(&threadID);
-   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %x start\n", (int)threadID);
+   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %p start\n", (void*) threadID);
 
    if (arg->delay.tv_sec || arg->delay.tv_usec)
    {
       res = vos_threadDelay((UINT32)((arg->delay.tv_sec * 1000000) + (arg->delay.tv_usec)));
    }
 
-   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %x end\n", (int)threadID);
+   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %p end\n", (void*) threadID);
 
    arg->result = retVal;
    return arguments;
@@ -406,13 +406,13 @@ VOS_THREAD_FUNC_T testThread2(void* arguments)
    VOS_THREAD_T threadID = 0;
 
    (void)vos_threadSelf(&threadID);
-   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %x start\n", (int)threadID);
+   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %p start\n", (void*) threadID);
 
    if (arg->delay.tv_sec || arg->delay.tv_usec)
    {
       res = vos_threadDelay((UINT32)((arg->delay.tv_sec * 1000000) + (arg->delay.tv_usec)));
    }
-   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %x end\n", (int)threadID);
+   vos_printLog(VOS_LOG_USR, "[TEST THREAD] Thread %p end\n", (void*) threadID);
 
    arg->result = retVal;
    return arguments;
