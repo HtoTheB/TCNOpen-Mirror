@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 2183 2020-07-29 15:51:09Z bloehr $
+ * $Id: test_mdSingle.c 2218 2020-08-24 13:17:45Z bloehr $
  *
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -192,14 +192,12 @@ void mdCallback (void                   *pRefCon,
                       err = tlm_replyQuery(myGlobals->appHandle,
                                            &pMsg->sessionId,
                                            pMsg->comId,
-                                           0,
-                                           10000000,
+                                           0u,
+                                           10000000u,
                                            NULL,
                                            (UINT8 *) "I'm fine, how are you?",
-                                           23
-#ifdef CONFORMANCE_API
-                                           , "test_mdSingle"
-#endif
+                                           23u, 
+                                           "test_mdSingle"
                                            );
                   }
                   else
@@ -211,10 +209,8 @@ void mdCallback (void                   *pRefCon,
                                       0,
                                       NULL,
                                       (UINT8 *) "I'm fine, thanx!",
-                                      17
-#ifdef CONFORMANCE_API
-                                      , "test_mdSingle"
-#endif
+                                      17,
+                                      "test_mdSingle"
                                       );
                   }
                   if (err != TRDP_NO_ERR)

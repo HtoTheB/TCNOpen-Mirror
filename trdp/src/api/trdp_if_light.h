@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 2193 2020-08-06 15:28:00Z bloehr $
+* $Id: trdp_if_light.h 2218 2020-08-24 13:17:45Z bloehr $
 *
 *
 *      BL 2020-08-05: tlc_freeBuffer() declaration removed, it was never defined!
@@ -352,7 +352,6 @@ EXT_DECL TRDP_ERR_T tlm_delListener (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_LIS_T          listenHandle);
 
-#ifdef CONFORMANCE_API
 EXT_DECL TRDP_ERR_T tlm_reply (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
@@ -373,28 +372,6 @@ EXT_DECL TRDP_ERR_T tlm_replyQuery (
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI);
-
-#else
-
-EXT_DECL TRDP_ERR_T tlm_reply (
-    TRDP_APP_SESSION_T      appHandle,
-    const TRDP_UUID_T       *pSessionId,
-    UINT32                  comId,
-    UINT16                  userStatus,
-    const TRDP_SEND_PARAM_T *pSendParam,
-    const UINT8             *pData,
-    UINT32                  dataSize);
-
-EXT_DECL TRDP_ERR_T tlm_replyQuery (
-    TRDP_APP_SESSION_T      appHandle,
-    const TRDP_UUID_T       *pSessionId,
-    UINT32                  comId,
-    UINT16                  userStatus,
-    UINT32                  confirmTimeout,
-    const TRDP_SEND_PARAM_T *pSendParam,
-    const UINT8             *pData,
-    UINT32                  dataSize);
-#endif /* CONFORMANCE_API */
 
 #endif /* MD_SUPPORT    */
 

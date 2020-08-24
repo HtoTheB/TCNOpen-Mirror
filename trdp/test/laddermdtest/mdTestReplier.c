@@ -14,8 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id$
- *
+ * $Id: mdTestReplier.c 2218 2020-08-24 13:17:45Z bloehr $
+ *          ### NOTE: This code is not supported, nor updated or tested!
+ *          ###       It is left here for reference, only, and might be removed from the next major
+ *          ###       release.
  */
 
 #include <stdio.h>

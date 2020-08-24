@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 2198 2020-08-14 15:35:22Z bloehr $
+ * $Id: pdsend.c 2218 2020-08-24 13:17:45Z bloehr $
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */
@@ -587,7 +587,7 @@ void pdCallBack (
             if (pMsg->msgType == TRDP_MSG_MR)
             {
                 /* Send reply    */
-                err = tlm_reply(appHandle, &pMsg->sessionId, gMessageData.comID, 0, NULL, (UINT8*)"Maleikum Salam", 16);
+                err = tlm_reply(appHandle, &pMsg->sessionId, gMessageData.comID, 0, NULL, (UINT8*)"Maleikum Salam", 16, NULL);
                 //err = tlm_reply (appHandle, pRefCon, &pMsg->sessionId, 0, 0, gMessageData.comID, pMsg->srcIpAddr, pMsg->srcIpAddr,
                 //            TRDP_FLAGS_CALLBACK, 0, NULL, (UINT8*)"Maleikum Salam", 16, NULL, NULL);
                 if (err != TRDP_NO_ERR)

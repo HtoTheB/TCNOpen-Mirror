@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-md-test.c 2205 2020-08-20 12:20:43Z bloehr $
+ * $Id: trdp-md-test.c 2218 2020-08-24 13:17:45Z bloehr $
  *
  *      AÖ 2019-12-17: Ticket #308: Add vos Sim function to API
  *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
@@ -1250,7 +1250,8 @@ void send_msg (TRDP_MD_INFO_T *msg, TRDP_FLAGS_T flags)
                    0,                               /* user status */
                    NULL,                            /* send parameters */
                    (UINT8 *) buf,                   /* dataset buffer */
-                   opts.msgsz);                     /* dataset size */
+                   opts.msgsz,                      /* dataset size */
+                   NULL);                           /* srcURI */
            /* check for errors */
            if (err != TRDP_NO_ERR)
            {
@@ -1274,8 +1275,8 @@ void send_msg (TRDP_MD_INFO_T *msg, TRDP_FLAGS_T flags)
                    opts.tmo * 1000,                 /* confirm timeout */
                    NULL,                            /* send parameters */
                    (UINT8 *) buf,                   /* dataset buffer */
-                   opts.msgsz);                     /* dataset size */
-
+                   opts.msgsz,                      /* dataset size */
+                   NULL);                           /* srcURI */
            /* check for errors */
            if (err != TRDP_NO_ERR)
            {

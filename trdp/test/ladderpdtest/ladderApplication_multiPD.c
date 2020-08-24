@@ -14,7 +14,11 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: ladderApplication_multiPD.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: ladderApplication_multiPD.c 2218 2020-08-24 13:17:45Z bloehr $
+ *
+ *          ### NOTE: This code is not supported, nor updated or tested!
+ *          ###       It is left here for reference, only, and might be removed from the next major
+ *          ###       release.
  *
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  */

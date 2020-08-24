@@ -13,7 +13,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: inaugTest.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: inaugTest.c 2218 2020-08-24 13:17:45Z bloehr $
  *
  */
 
@@ -354,7 +354,7 @@ static void myMDcallBack (
             printf("> ComID %d received, URef: %p\n", pMsg->comId, pMsg->pUserRef);
             if (pMsg->msgType == TRDP_MSG_MR)
             {
-                tlm_reply(appHandle, &pMsg->sessionId, 0, 0, NULL, NULL, 0);
+                tlm_reply(appHandle, &pMsg->sessionId, 0u, 0u, NULL, NULL, 0u, NULL);
                 printf("Replying %d\n", pMsg->comId);
             }
             break;

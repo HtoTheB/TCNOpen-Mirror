@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2017-2020.
  *                  All rights reserved.
  *
- * $Id: api_test.c 2206 2020-08-20 13:49:34Z bloehr $
+ * $Id: api_test.c 2218 2020-08-24 13:17:45Z bloehr $
  *
  *      BL 2019-08-27: Interval timing in test 9 changed
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -1018,7 +1018,7 @@ static void  test5CBFunction (
             }
             fprintf(gFp, "->> Sending reply\n");
             err = tlm_replyQuery(appHandle, &pMsg->sessionId, TEST5_STRING_COMID, 0u, 500000u, NULL,
-                                 (UINT8 *)TEST5_STRING_REPLY, 63 * 1024 /*strlen(TEST5_STRING_REPLY)*/);
+                                 (UINT8 *)TEST5_STRING_REPLY, 63 * 1024 /*strlen(TEST5_STRING_REPLY)*/, NULL);
 
             IF_ERROR("tlm_reply");
         }
@@ -1987,7 +1987,7 @@ static void  test15CBFunction (
 //            }
             fprintf(gFp, "->> Sending reply with query (%.16s)\n", (UINT8 *)TEST15_STRING_REPLY);
             err = tlm_replyQuery(appHandle, &pMsg->sessionId, TEST15_STRING_COMID, 0u, 0u, NULL,
-                                 (UINT8 *)TEST15_STRING_REPLY, TEST15_STRING_REPLY_LEN);
+                                 (UINT8 *)TEST15_STRING_REPLY, TEST15_STRING_REPLY_LEN, NULL);
 
             IF_ERROR("tlm_reply");
         }
