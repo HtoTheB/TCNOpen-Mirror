@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: trdp_pdcom.c 1865 2019-05-15 07:29:42Z matthiasmossner $
+ * $Id: trdp_pdcom.c 2222 2020-10-21 14:51:37Z matthiasmossner $
  *
  *      BL 2016-03-04: Ticket #112: Marshalling sets wrong datasetLength (PD)
  *     IBO 2016-02-03: Ticket #109: vos_ntohs -> vos_ntohl for datasetlength when unmarshalling
@@ -129,7 +129,7 @@ TRDP_ERR_T trdp_pdPut (
     {
         /* set data valid */
         pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~TRDP_INVALID_DATA);
-        
+
         /*  Update some statistics  */
         pPacket->updPkts++;
     }
@@ -139,7 +139,7 @@ TRDP_ERR_T trdp_pdPut (
         {
             /* late data, enlarge packet buffer and copy existing header info */
             PD_PACKET_T     *pTemp;
-            
+
             pPacket->dataSize   = dataSize;
             pPacket->grossSize  = trdp_packetSizePD(dataSize);
             pTemp = (PD_PACKET_T*) vos_memAlloc(pPacket->grossSize);
@@ -503,7 +503,8 @@ TRDP_ERR_T  trdp_pdReceive (
         /* Save the real destination of the received packet (own IP or MC group) */
         pExistingElement->addr.destIpAddr = subAddresses.destIpAddr;
 
-        if (newSeqCnt == 0)  /* restarted or new sender */
+        if ((newSeqCnt == 0u) ||                                /* restarted or new sender  */
+                (pExistingElement->privFlags & TRDP_TIMED_OUT))     /* or timed out before      */
         {
             trdp_resetSequenceCounter(pExistingElement, subAddresses.srcIpAddr, (TRDP_MSG_T) vos_ntohs(pNewFrameHead->msgType));
         }
