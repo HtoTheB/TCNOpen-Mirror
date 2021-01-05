@@ -16,7 +16,7 @@
  * @copyright       Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  * @copyright       Copyright Universität Rostock, 2019 (substantial changes leading to GLib-only version and update to v2.0, Wirshark 3.)
  *
- * $Id: packet-trdp_spy.h 1930 2019-06-28 14:05:00Z ahweiss $
+ * $Id: packet-trdp_spy.h 2227 2021-01-05 13:43:12Z ahweiss $
  *
  */
 
@@ -71,8 +71,8 @@
  *
  * @section TRDP_devLinux Development Environment for Linux
  * Following specifications are used for development of the TRDP PD and TRDP MD plug-in for Wireshark.
- * @li Operating System: Debian 10
- * @li Tool : Wireshark v2.6.8, v3.0.1
+ * @li Operating System: GNU/Linux Debian 10
+ * @li Tool : Wireshark v2.6.8, v3.0.1, v3.2
  * @li Programming Language: C
  *
  * @subsection TRDP_compLinux Steps to compile and install Wireshark on Linux:
