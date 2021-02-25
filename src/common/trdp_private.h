@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *      
- * $Id: trdp_private.h 1560 2016-03-22 16:58:13Z bloehr $
+ * $Id: trdp_private.h 2230 2021-02-25 06:51:01Z matthiasmossner $
  *
  *      BL 2015-08-31: Ticket #94: "beQuiet" removed
  *      BL 2015-08-05: Ticket #81: Counts for packet loss
@@ -47,7 +47,7 @@
 #define TRDP_EVOLUTION          0
 #endif
 
-#define TRDP_TIMER_GRANULARITY  10000                                   /**< granularity in us                      */
+#define TRDP_TIMER_GRANULARITY  1000                                   /**< granularity in us                      */
 #define TRDP_TIMER_FOREVER      0xffffffff                              /**< granularity in us                      */
 
 /*  Default MD communication parameters   */
@@ -67,7 +67,8 @@
 #define TRDP_PD_DEFAULT_SEND_PARAM  {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0}
 
 /*  Default TRDP process options    */
-#define TRDP_PROCESS_DEFAULT_CYCLE_TIME     10000                       /**< Default cycle time for TRDP process    */
+#define TRDP_PROCESS_DEFAULT_CYCLE_TIME     1000                       /**< Default cycle time for TRDP process    */
+
 #define TRDP_PROCESS_DEFAULT_PRIORITY       64                          /**< Default priority of TRDP process       */
 #define TRDP_PROCESS_DEFAULT_OPTIONS        TRDP_OPTION_TRAFFIC_SHAPING /**< Default options for TRDP process       */
 
