@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2083 2019-09-12 14:50:17Z ahweiss $*
+ * $Id: vos_sock.c 2232 2021-03-05 14:58:47Z matthiasmossner $*
  *
+ *      MM 2021-03-05: Ticket #360 Adaption for VxWorks7
  *      BL 2019-08-27: Changed send failure from ERROR to WARNING
  *      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
  *      SB 2019-02-18: Ticket #227: vos_sockGetMAC() not name dependant anymore
@@ -186,7 +187,7 @@ VOS_ERR_T vos_sockSetBuffer (SOCKET sock)
     return VOS_NO_ERR;
 }
 
-#ifdef htonll
+#ifndef htonll
 /**********************************************************************************************************************/
 /** Swap 64 bit value if necessary.
  *
