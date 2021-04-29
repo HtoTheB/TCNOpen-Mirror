@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_ctrl.h 2001 2019-08-15 13:28:59Z bloehr $
+ * $Id: tau_ctrl.h 2250 2021-04-29 09:52:23Z ahweiss $
  *
  */
 
@@ -141,6 +141,23 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
                                              TRDP_MD_CALLBACK_T         pfCbFunction,
                                              TRDP_ECSP_CONF_REQUEST_T  *pEcspConfRequest);
 
+
+/**********************************************************************************************************************/
+/**    Function to retrieve ECSP confirmation/correction reply
+ *
+ *  @param[in]      appHandle           Application Handle
+ *  @param[in]      pUserRef            user reference returned with reply
+ *  @param[in/out]  pMsg                Pointer to message info data
+ *  @param[in/out]  pEcspConfReply      Pointer to confirmation reply data
+ *
+ *  @retval         TRDP_NO_ERR     no error
+ *  @retval         TRDP_NOINIT_ERR module not initialised
+ *
+ */
+EXT_DECL TRDP_ERR_T tau_requestEcspConfirmReply(TRDP_APP_SESSION_T      appHandle,
+                                                const void* pUserRef,
+                                                TRDP_MD_INFO_T* pMsg,
+                                                TRDP_ECSP_CONF_REPLY_T* pEcspConfReply);
 
 #ifdef __cplusplus
 }

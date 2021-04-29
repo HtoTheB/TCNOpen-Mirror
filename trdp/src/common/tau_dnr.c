@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 2244 2021-04-26 14:18:47Z andersoberg $
+ * $Id: tau_dnr.c 2250 2021-04-29 09:52:23Z ahweiss $
  *
  *      AÖ 2021-04-26: Ticket #296: updateTCNDNSentry: vos_threadDelay() used instead of vos_semaTake() if we run single threaded
  *     AHW 2021-04-13: Ticket #367: tau_uri2Addr: Cashed DNS ooly invalid if both etbTopoCnt and opTrnTopoCnt are changed 
@@ -893,7 +893,6 @@ static void updateTCNDNSentry (
     UINT32          querySize;
     TAU_DNR_DATA_T  *pDNR   = (TAU_DNR_DATA_T *) appHandle->pUser;
     VOS_SEMA_T      dnsSema;
-    unsigned int    i;
 
     static UINT8 sTCN_DNS_Buffer[sizeof(TRDP_DNS_REQUEST_T)];
 
