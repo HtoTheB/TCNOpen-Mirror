@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2256 2021-05-10 15:20:23Z ahweiss $
+* $Id: vos_sock.c 2258 2021-05-19 11:11:23Z newtecbosse $
 *
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
@@ -135,7 +135,7 @@ UINT32 vos_getInterfaceIP (UINT32 index)
 
     for (i = 0; i < ifCount; i++)
     {
-        if (ifIndexs[i] == index)
+        if (ifAddrs[i].ifIndex == index)
         {
             return ifAddrs[i].ipAddr;
         }
