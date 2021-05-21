@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2256 2021-05-10 15:20:23Z ahweiss $
+ * $Id: trdp_mdcom.c 2259 2021-05-21 09:48:16Z bloehr $
  *
  *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
  *      BL 2020-11-03: Ticket #346 UDP MD: In case of wrong data length (too big) in the header the package won't be released
@@ -3268,7 +3268,7 @@ TRDP_ERR_T trdp_mdReply (const TRDP_MSG_T           msgType,
     TRDP_IP_ADDR_T  destIpAddr;
     TRDP_URI_USER_T *destURI    = NULL;
     UINT32          sequenceCounter;
-    TRDP_ERR_T      errv = TRDP_NOLIST_ERR;
+    TRDP_ERR_T      errv = TRDP_NOSESSION_ERR;  /* Ticket #281 */
     MD_ELE_T        *pSenderElement = NULL;
     BOOL8 newSession = FALSE;
 
