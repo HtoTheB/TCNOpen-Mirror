@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2258 2021-05-19 11:11:23Z newtecbosse $
+* $Id: vos_sock.c 2261 2021-05-26 10:51:12Z ahweiss $
 *
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
@@ -1299,7 +1299,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
                         struct in_addr *pia = (struct in_addr *)CMSG_DATA(cmsg);
                         *pDstIPAddr = (UINT32)vos_ntohl(pia->s_addr);
                         /* vos_printLog(VOS_LOG_DBG, "udp message dest IP: %s\n", vos_ipDotted(*pDstIPAddr)); */
-						
+
                         if (pSrcIFAddr != NULL)
                         {
                             *pSrcIFAddr = vos_getInterfaceIP(pia->ipi_ifindex);  /* #322 */
@@ -1310,10 +1310,10 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
                     {
                         struct in_pktinfo *pia = (struct in_pktinfo *)CMSG_DATA(cmsg);
                         *pDstIPAddr = (UINT32)vos_ntohl(pia->ipi_addr.s_addr);
-						
+
                         /* vos_printLog(VOS_LOG_DBG, "udp message dest IP: %s\n", vos_ipDotted(*pDstIPAddr)); */
-						
-						if (pSrcIFAddr != NULL)
+
+                        if (pSrcIFAddr != NULL)
                         {
                             *pSrcIFAddr = vos_getInterfaceIP(pia->ipi_ifindex);  /* #322 */
                         }
