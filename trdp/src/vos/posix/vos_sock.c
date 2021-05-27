@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2261 2021-05-26 10:51:12Z ahweiss $
+* $Id: vos_sock.c 2262 2021-05-27 13:06:17Z ahweiss $
 *
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *      BL 2019-08-27: Changed send failure from ERROR to WARNING
@@ -123,14 +123,14 @@ UINT32 vos_getInterfaceIP (UINT32 index)
 
     if (ifCount == 0u)
     {
-		ifCount = VOS_MAX_NUM_IF;
-		err = vos_getInterfaces(&ifCount, ifAddrs);
+        ifCount = VOS_MAX_NUM_IF;
+        err = vos_getInterfaces(&ifCount, ifAddrs);
 
-		if (err != VOS_NO_ERR)
-		{
-			ifCount = 0u;
-			return 0u;
-		}
+        if (err != VOS_NO_ERR)
+        {
+            ifCount = 0u;
+            return 0u;
+        }
     }
 
     for (i = 0; i < ifCount; i++)
@@ -596,9 +596,8 @@ EXT_DECL BOOL8 vos_netIfUp (
 EXT_DECL VOS_ERR_T vos_sockInit (void)
 {
     memset(&gIfr, 0, sizeof(gIfr));
-	vos_getInterfaceIP(0);
+    (void) vos_getInterfaceIP(0);
     vosSockInitialised = TRUE;
-	
     return VOS_NO_ERR;
 }
 
@@ -1245,7 +1244,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     UINT32  *pSrcIPAddr,
     UINT16  *pSrcIPPort,
     UINT32  *pDstIPAddr,
-	UINT32  *pSrcIFAddr,
+    UINT32  *pSrcIFAddr,
     BOOL8   peek)
 {
     union
@@ -1302,7 +1301,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
 
                         if (pSrcIFAddr != NULL)
                         {
-                            *pSrcIFAddr = vos_getInterfaceIP(pia->ipi_ifindex);  /* #322 */
+                            *pSrcIFAddr = (UINT32)vos_ntohl(pia->s_addr);  /* #322 */
                         }
                     }
 #elif defined(IP_PKTINFO)

@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2261 2021-05-26 10:51:12Z ahweiss $*
+* $Id: vos_sock.c 2262 2021-05-27 13:06:17Z ahweiss $*
 *
 *     AHW 2021-05-06: Ticket #322: Subscriber multicast message routing in multi-home device
 *      BL 2019-09-10: Ticket #278: Don't check if a socket is < 0
@@ -535,7 +535,7 @@ UINT32 vos_getInterfaceIP(UINT32 index)
     VOS_ERR_T           err = VOS_NO_ERR;
     UINT32              i = 0u;
 
-   if (ifCount == 0u)
+    if (ifCount == 0u)
     {
         ifCount = VOS_MAX_NUM_IF;
         err = vos_getInterfaces(&ifCount, ifAddrs);
@@ -580,7 +580,7 @@ EXT_DECL VOS_ERR_T vos_sockInit (void)
     }
 
     memset(mac, 0, sizeof(mac));
-    vos_getInterfaceIP(0);
+    (void) vos_getInterfaceIP(0);
     vosSockInitialised = TRUE;
 
     return VOS_NO_ERR;
