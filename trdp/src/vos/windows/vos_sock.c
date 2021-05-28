@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2262 2021-05-27 13:06:17Z ahweiss $*
+* $Id: vos_sock.c 2263 2021-05-28 14:40:08Z ahweiss $*
 *
 *     AHW 2021-05-06: Ticket #322: Subscriber multicast message routing in multi-home device
 *      BL 2019-09-10: Ticket #278: Don't check if a socket is < 0
@@ -1245,6 +1245,11 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     if (sock == (SOCKET)INVALID_SOCKET || pBuffer == NULL || pSize == NULL)
     {
         return VOS_PARAM_ERR;
+    }
+
+    if (pSrcIFAddr != NULL)
+    {
+       *pSrcIFAddr = 0;  /* #322  */
     }
 
     memset(&srcAddr, 0, sizeof (struct sockaddr_in));

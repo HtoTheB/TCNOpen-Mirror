@@ -15,7 +15,7 @@
  *          Copyright 2018. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2256 2021-05-10 15:20:23Z ahweiss $
+ * $Id: vos_sock.c 2263 2021-05-28 14:40:08Z ahweiss $
  *
  *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
  *      BL 2019-08-27: Changed send failure from ERROR to WARNING
@@ -615,19 +615,19 @@ EXT_DECL VOS_ERR_T vos_sockSetOptions (
     /*  Include struct in_pktinfo in the message "ancilliary" control data.
      This way we can get the destination IP address for received UDP packets */
     sockOptValue = 1;
-#if defined(IP_RECVDSTADDR)
-    if (setsockopt(sock, IPPROTO_IP, IP_RECVDSTADDR, &sockOptValue, sizeof(sockOptValue)) == -1)
-    {
-        char buff[VOS_MAX_ERR_STR_SIZE];
-        STRING_ERR(buff);
-        vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_RECVDSTADDR failed (Err: %s)\n", buff);
-    }
-#elif defined(IP_PKTINFO)
+#if defined(IP_PKTINFO)
     if (setsockopt(sock, IPPROTO_IP, IP_PKTINFO, &sockOptValue, sizeof(sockOptValue)) == -1)
     {
         char buff[VOS_MAX_ERR_STR_SIZE];
         STRING_ERR(buff);
         vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_PKTINFO failed (Err: %s)\n", buff);
+    }
+#elif defined(IP_RECVDSTADDR)
+    if (setsockopt(sock, IPPROTO_IP, IP_RECVDSTADDR, &sockOptValue, sizeof(sockOptValue)) == -1)
+    {
+        char buff[VOS_MAX_ERR_STR_SIZE];
+        STRING_ERR(buff);
+        vos_printLog(VOS_LOG_ERROR, "setsockopt() IP_RECVDSTADDR failed (Err: %s)\n", buff);
     }
 #endif
 
@@ -903,6 +903,11 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     if (sock == -1 || pBuffer == NULL || pSize == NULL)
     {
         return VOS_PARAM_ERR;
+    }
+
+    if (pSrcIFAddr != NULL)
+    {
+       *pSrcIFAddr = 0;  /* #322  */
     }
 
     do

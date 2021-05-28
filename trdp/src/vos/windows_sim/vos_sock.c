@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2256 2021-05-10 15:20:23Z ahweiss $*
+* $Id: vos_sock.c 2263 2021-05-28 14:40:08Z ahweiss $*
 *
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *      AÖ 2020-05-04: Ticket #331: Add VLAN support for Sim, removed old SimTecc workarounds, Requires SimTecc from 2020 or later
@@ -1120,6 +1120,11 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
     if (sock == (SOCKET)INVALID_SOCKET || pBuffer == NULL || pSize == NULL)
     {
         return VOS_PARAM_ERR;
+    }
+
+    if (pSrcIFAddr != NULL)
+    {
+       *pSrcIFAddr = 0;  /* #322  */
     }
 
     memset(&srcAddr, 0, sizeof(struct sockaddr_in));
