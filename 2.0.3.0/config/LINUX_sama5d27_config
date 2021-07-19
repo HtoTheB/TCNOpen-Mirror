@@ -1,5 +1,5 @@
 #//
-#// $Id: LINUX_sama5d27_config 2081 2019-09-12 13:19:42Z bloehr $
+#// $Id: LINUX_sama5d27_config 2266 2021-07-19 08:42:56Z newtecbosse $
 #//
 #// DESCRIPTION     Config file to make TRDP on the NTSecureGateway HelmsDeep96
 #//                 Development board based on the Microchip® ATSAMA5D27 embedded platform
@@ -26,5 +26,7 @@ DOXYPATH = /usr/local/bin/
 
 CFLAGS += -Wall -Wno-unknown-pragmas -Wno-format -fstrength-reduce -fno-builtin -fsigned-char
 CFLAGS += -pthread -fPIC -D_GNU_SOURCE -DPOSIX -mfloat-abi=hard
+CFLAGS +=  -DHAS_UUID
 
 LDFLAGS += -lrt -mfloat-abi=hard
+LDFLAGS += -luuid
