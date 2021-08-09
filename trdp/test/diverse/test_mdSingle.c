@@ -11,8 +11,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 2218 2020-08-24 13:17:45Z bloehr $
+ * $Id: test_mdSingle.c 2280 2021-08-09 08:50:18Z s-bender $
  *
+ *      SB 2021-08-09: Compiler warnings
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
 
@@ -348,7 +349,7 @@ int main (int argc, char *argv[])
     {mdCallback, &sSessionData,
      {0u, 64u, 0u, 0, 0u}, TRDP_FLAGS_CALLBACK, 1000000u, 1000000u, 1000000u, 1000000u, 17225u, 17225u, 10};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK};
     VOS_IF_REC_T            interfaces[MAX_IF];
     BOOL8           lastRun = FALSE;
     TRDP_ERR_T      err     = TRDP_NO_ERR;
