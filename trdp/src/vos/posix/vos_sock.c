@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2278 2021-08-09 08:37:49Z s-bender $
+* $Id: vos_sock.c 2282 2021-08-10 07:13:15Z s-bender $
 *
 *      SB 2021-08-09: Lint warnings
 *      BL 2021-06-11: Enhanced error handling on empty getifaddrs() returned list (segfault on Raspberry Pi)
@@ -65,8 +65,7 @@
 #endif
 
 #ifdef __linux
-//#   include <linux/if.h>
-#   include <net/if.h> // needed for if_nametoindex
+#   include <net/if.h> // Lint warnings
 #   include <byteswap.h>
 #   include <linux/if_vlan.h>
 #   include <linux/sockios.h>

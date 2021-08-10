@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2274 2021-08-05 12:17:21Z s-bender $
+ * $Id: trdp_mdcom.c 2282 2021-08-10 07:13:15Z s-bender $
  *
+ *      SB 2021-08.09: Compiler warning
  *      SB 2021-08-05: Ticket #281 TRDP_NOSESSION_ERR should be returned from tlm_reply() and tlm_replyQuery() in case of incorrect session (id)
  *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
  *      BL 2020-11-03: Ticket #346 UDP MD: In case of wrong data length (too big) in the header the package won't be released
@@ -968,15 +969,13 @@ static void    trdp_mdUpdatePacket (MD_ELE_T *pElement)
     /* Initialize CRC calculation */
     UINT32  myCRC;
 
-    /* Get header and packet check sum values */
-    UINT32  *hFCS = &pElement->pPacket->frameHead.frameCheckSum;
-
     /* Calculate CRC for message head */
     myCRC = vos_crc32(INITFCS,
                       (UINT8 *)&pElement->pPacket->frameHead,
                       sizeof(MD_HEADER_T) - SIZE_OF_FCS);
+                      
     /* Convert to Little Endian */
-    *hFCS = MAKE_LE(myCRC);
+    pElement->pPacket->frameHead.frameCheckSum = MAKE_LE(myCRC);
 }
 
 /**********************************************************************************************************************/
