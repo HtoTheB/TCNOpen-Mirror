@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2261 2021-05-26 10:51:12Z ahweiss $
+* $Id: vos_private.h 2286 2021-08-11 14:37:29Z ahweiss $
 *
 *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
 *      BL 2020-07-30: pthread includes removed
@@ -49,7 +49,7 @@ extern "C" {
 #define VOS_VERSION     2u
 #define VOS_RELEASE     1u /* 322: interface change in vos_sockReceiveUDP() */
 #define VOS_UPDATE      0u
-#define VOS_EVOLUTION   2u
+#define VOS_EVOLUTION   0u
 
 #define MAX_SEM_COUNT  10
 

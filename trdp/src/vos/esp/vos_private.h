@@ -15,7 +15,7 @@
  *          Copyright 2018. All rights reserved.
  */
  /*
- * $Id: vos_private.h 1927 2019-06-25 15:23:26Z bloehr $
+ * $Id: vos_private.h 2286 2021-08-11 14:37:29Z ahweiss $
  *
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *
@@ -45,7 +45,7 @@ extern "C" {
 /* The VOS version can be predefined as CFLAG   */
 #ifndef VOS_VERSION
 #define VOS_VERSION            2u
-#define VOS_RELEASE            0u
+#define VOS_RELEASE            1u /* 322: interface change in vos_sockReceiveUDP() */
 #define VOS_UPDATE             0u
 #define VOS_EVOLUTION          0u
 #endif
