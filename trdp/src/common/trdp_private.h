@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2283 2021-08-10 09:35:45Z ahweiss $
+ * $Id: trdp_private.h 2297 2021-08-12 11:02:52Z ahweiss $
  *
  *      BL 2020-07-10: Ticket #321 Move TRDP_TIMER_GRANULARITY to public API
  *      CK 2020-04-06: Ticket #318 Added pointer to list of seqCnt used per comId for PD Requests in TRDP_SESSION_T
@@ -65,9 +65,9 @@
 /* The TRDP version can be predefined as CFLAG   */
 #ifndef TRDP_VERSION
 #define TRDP_VERSION    2
-#define TRDP_RELEASE    1
+#define TRDP_RELEASE    2
 #define TRDP_UPDATE     22
-#define TRDP_EVOLUTION  82              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  97              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
