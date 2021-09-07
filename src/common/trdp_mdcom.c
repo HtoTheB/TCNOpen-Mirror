@@ -18,8 +18,10 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2259 2021-05-21 09:48:16Z bloehr $
+ * $Id: trdp_mdcom.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
+ *      SB 2021-08.09: Compiler warning
+ *      SB 2021-08-05: Ticket #281 TRDP_NOSESSION_ERR should be returned from tlm_reply() and tlm_replyQuery() in case of incorrect session (id)
  *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
  *      BL 2020-11-03: Ticket #346 UDP MD: In case of wrong data length (too big) in the header the package won't be released
  *      BL 2020-08-10: Ticket #335 MD UDP notifications sometimes dropped
@@ -269,14 +271,14 @@ static void trdp_mdManageSessionId (TRDP_UUID_T pSessionId, MD_ELE_T *pMdElement
  *  @param[out]     pretrievedMdElement pointer to looked up element
  *
  *  @retval         TRDP_NO_ERR           no error
- *  @retval         TRDP_NOLIST_ERR       no match found error
+ *  @retval         TRDP_NOSESSION_ERR    no match found error
  */
 static TRDP_ERR_T trdp_mdLookupElement (MD_ELE_T                *pinitialMdElement,
                                         const TRDP_MD_ELE_ST_T  elementState,
                                         const TRDP_UUID_T       pSessionId,
                                         MD_ELE_T                * *pretrievedMdElement)
 {
-    TRDP_ERR_T errv = TRDP_NOLIST_ERR; /* init error code indicating no matching MD_ELE_T in list */
+    TRDP_ERR_T errv = TRDP_NOSESSION_ERR; /* init error code indicating no matching MD_ELE_T in list */ /* Ticket #281 */
     if ((pinitialMdElement != NULL)
         &&
         (pSessionId != NULL))
@@ -967,15 +969,13 @@ static void    trdp_mdUpdatePacket (MD_ELE_T *pElement)
     /* Initialize CRC calculation */
     UINT32  myCRC;
 
-    /* Get header and packet check sum values */
-    UINT32  *hFCS = &pElement->pPacket->frameHead.frameCheckSum;
-
     /* Calculate CRC for message head */
     myCRC = vos_crc32(INITFCS,
                       (UINT8 *)&pElement->pPacket->frameHead,
                       sizeof(MD_HEADER_T) - SIZE_OF_FCS);
+                      
     /* Convert to Little Endian */
-    *hFCS = MAKE_LE(myCRC);
+    pElement->pPacket->frameHead.frameCheckSum = MAKE_LE(myCRC);
 }
 
 /**********************************************************************************************************************/

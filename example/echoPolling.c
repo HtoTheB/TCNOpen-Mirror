@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: echoPolling.c 2040 2019-08-20 17:00:52Z bloehr $*
+ * $Id: echoPolling.c 2309 2021-09-07 11:56:44Z mohamedyoussef $*
  *
+ *      SB 2021-08-09: Compiler warnings
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
@@ -113,7 +114,7 @@ int main (int argc, char * *argv)
     TRDP_PD_CONFIG_T        pdConfiguration = {NULL, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_NONE,
                                                10000000u, TRDP_TO_SET_TO_ZERO, 0u};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0u}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_NONE};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_NONE};
 
     TRDP_PD_INFO_T          myPDInfo;
     UINT32  receivedSize;

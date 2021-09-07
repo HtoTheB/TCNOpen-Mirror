@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2256 2021-05-10 15:20:23Z ahweiss $
+* $Id: trdp_pdcom.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
 *
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *     AHW 2021-04-30: Ticket #369 Variable sized arrays are not supported if marshall is active
@@ -84,6 +84,10 @@
 #include <string.h>
 
 #include "trdp_types.h"
+#ifdef TRDPSEC
+#include "trdp_sec_types.h"
+#include "trdp_sec_utils.h"
+#endif
 #include "trdp_utils.h"
 #include "trdp_pdcom.h"
 #include "tlc_if.h"
@@ -600,13 +604,23 @@ TRDP_ERR_T  trdp_pdSendQueued (
             /* send only if there is valid data */
             if (!(iterPD->privFlags & TRDP_INVALID_DATA))
             {
-                if ((iterPD->privFlags & TRDP_REQ_2B_SENT) &&
-                    (iterPD->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PD)))       /*  PULL packet?  */
-                {
-                    iterPD->pFrame->frameHead.msgType = vos_htons(TRDP_MSG_PP);
-                }
-                /*  Update the sequence counter and re-compute CRC    */
-                trdp_pdUpdate(iterPD);
+#ifdef TRDPSEC
+//				iterPD->pSecElem->isIdentified == FALSE ||
+				/* if the PD packet must be secure packet but the secure session is not valid yet */
+				if (iterPD->mustBeSecure == TRUE && (iterPD->pSecSession == NULL || iterPD->pSecSession->sessionStatus == TRDPSEC_INVALID_SESSION))
+				{
+					iterPD = iterPD->pNext;
+					continue;
+				}
+#endif
+				/* TODO: here must come the new MsgTypw */
+				if ((iterPD->privFlags & TRDP_REQ_2B_SENT) &&
+						(iterPD->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PD)))       /*  PULL packet?  */
+				{
+					iterPD->pFrame->frameHead.msgType = vos_htons(TRDP_MSG_PP);
+				}
+				/*  Update the sequence counter and re-compute CRC    */
+				trdp_pdUpdate(iterPD);
 
                 /* Publisher check from Table A.5:
                    Actual topography counter values <-> Locally stored with publish */
@@ -767,31 +781,84 @@ TRDP_ERR_T  trdp_pdReceive (
     }
 
     /* #322 */
+    /* This part shall be commented if virtual interfaces and IP addresses are used for the TRDP sessions */
     if ((appHandle->realIP != 0u) && (srcIfAddr != 0) && (appHandle->realIP != srcIfAddr))
     {
         /* Packet does not belong to this session, ignore packet */
         return TRDP_NO_ERR;
     }
 
-    /*  Is packet sane?    */
-    err = trdp_pdCheck(pNewFrameHead, recSize, &isTSN);
+#ifdef TRDPSEC
+	/*  Compute the subscription handle */
+	subAddresses.comId          = vos_ntohl(pNewFrameHead->comId);
+	subAddresses.etbTopoCnt     = vos_ntohl(pNewFrameHead->etbTopoCnt);
+	subAddresses.opTrnTopoCnt   = vos_ntohl(pNewFrameHead->opTrnTopoCnt);
+	subAddresses.serviceId      = vos_ntohl(pNewFrameHead->reserved);
+	msgType = vos_ntohs(pNewFrameHead->msgType);
+#ifdef HIGH_PERF_INDEXED
+	if ((appHandle->pSlot == NULL) ||
+			(appHandle->pSlot->noOfRxEntries == 0))
+	{
+		/*  If not set up until now, we issue a warning, but handle the data...   */
+		vos_printLogStr(VOS_LOG_WARNING, "Receiving PD while tlc_updateSession() not yet called or rcvIdx empty.\n");
+		pExistingElement = trdp_queueFindSubAddr(appHandle->pRcvQueue, &subAddresses);
+	}
+	else
+	{
+		/*  This is the fast, indexed access to our subscriptions!   */
+		pExistingElement = trdp_indexedFindSubAddr(appHandle, &subAddresses);
+	}
+#else
+	pExistingElement = trdp_queueFindSubAddr(appHandle->pRcvQueue, &subAddresses);
+#endif /* HIGH_PERF_INDEXED */
+	if (pExistingElement == NULL)
+	{
+		/*
+         vos_printLog(VOS_LOG_INFO, "No subscription (SrcIp: %s comId %u)\n", vos_ipDotted(subAddresses.srcIpAddr),
+         vos_ntohl(pNewFrame->frameHead.comId));
+		 */
+		err = TRDP_NOSUB_ERR;
+		appHandle->stats.pd.numNoSubs++;
+		return err;
+	}
 
-    /*  Update statistics   */
-    switch (err)
-    {
-        case TRDP_NO_ERR:
-            appHandle->stats.pd.numRcv++;
-            break;
-        case TRDP_CRC_ERR:
-            appHandle->stats.pd.numCrcErr++;
-            return err;
-        case TRDP_WIRE_ERR:
-            appHandle->stats.pd.numProtErr++;
-            return err;
-        default:
-            return err;
-    }
+	if (err == TRDP_NO_ERR && pExistingElement->mustBeSecure == TRUE &&
+			pExistingElement->pSecSession != NULL && pExistingElement->pSecSession->sessionStatus == TRDPSEC_INVALID_SESSION)
+	{
+		printf("#### packet has been discarded: packet has to be secure but there is no secure session yet!");
+		return TRDP_NOSESSION_ERR;
+	}
+	/* TODO: add TRDPSEC stats */
+#endif /* TRDPSEC */
 
+	/*  Is packet sane?    */
+#ifdef TRDPSEC
+	if (pExistingElement->mustBeSecure == TRUE)
+	{
+		err = trdp_sec_pdCheck(pNewFrameHead, recSize, pExistingElement,	&isTSN);
+	}
+	else
+		/* if in secure mode but must not be secure */
+#endif
+	{
+		err = trdp_pdCheck(pNewFrameHead, recSize, &isTSN);
+	}
+
+	/*  Update statistics   */
+	switch (err)
+	{
+	case TRDP_NO_ERR:
+		appHandle->stats.pd.numRcv++;
+		break;
+	case TRDP_CRC_ERR:
+		appHandle->stats.pd.numCrcErr++;
+		return err;
+	case TRDP_WIRE_ERR:
+		appHandle->stats.pd.numProtErr++;
+		return err;
+	default:
+		return err;
+	}
 #ifdef TSN_SUPPORT
     if (TRUE == isTSN)
     {
@@ -828,6 +895,7 @@ TRDP_ERR_T  trdp_pdReceive (
     }
 
     /*  Examine subscription queue, are we interested in this PD?   */
+#ifndef TRDPSEC
 #ifdef HIGH_PERF_INDEXED
     if ((appHandle->pSlot == NULL) ||
         (appHandle->pSlot->noOfRxEntries == 0))
@@ -843,8 +911,10 @@ TRDP_ERR_T  trdp_pdReceive (
     }
 #else
     pExistingElement = trdp_queueFindSubAddr(appHandle->pRcvQueue, &subAddresses);
-#endif
+#endif /* HIGH_PERF_INDEXED */
+#endif /*TRDPSEC */
 
+#ifndef TRDPSEC /* in case of TRDPSEC this part comes at the begin of this function */
     if (pExistingElement == NULL)
     {
         /*
@@ -855,6 +925,7 @@ TRDP_ERR_T  trdp_pdReceive (
         appHandle->stats.pd.numNoSubs++;
     }
     else
+#endif
     {
         /*  We check for local communication
          or if etbTopoCnt and opTrnTopoCnt of the subscription are zero or match */
@@ -1337,6 +1408,10 @@ void    trdp_pdUpdate (
     PD_ELE_T *pPacket)
 {
     UINT32 myCRC;
+#ifdef TRDPSEC
+	UINT32 	myHMAC = 0;
+	TRDPSEC_SECURE_SESSION_T *pSecHandle = pPacket->pSecSession;
+#endif
 
 #ifdef TSN_SUPPORT
     /* If TSN is set, use the smaller header */
@@ -1348,29 +1423,59 @@ void    trdp_pdUpdate (
         pPacket->curSeqCnt++;
         pFrameHead->sequenceCounter = vos_htonl(pPacket->curSeqCnt);
 
-        /* Compute CRC32   */
-        myCRC = vos_crc32(INITFCS, (UINT8 *)pFrameHead, sizeof(PD2_HEADER_T) - SIZE_OF_FCS);
-        pFrameHead->frameCheckSum = MAKE_LE(myCRC);
-    }
-    else
+#ifdef TRDPSEC
+		if (pPacket->mustBeSecure == TRUE)
+		{
+			if (pSecHandle != NULL && pSecHandle->sessionStatus == TRDPSEC_VALID_SESSION && pSecHandle->sharedSecret != NULL)
+			{
+				myHMAC = trdp_sec_hmac(pSecHandle->sharedSecret, TRDPSEC_SECRET_LENGTH,
+						(UINT8 *)&pPacket->pFrame->frameHead, (UINT16)(pPacket->grossSize));
+				/* printf("the HMAC value is: %08x \n", myHMAC); */
+				pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myHMAC);
+			}
+		}
+		else
 #endif
-    {
-        /* increment counter with each telegram */
-        if (pPacket->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PP))
-        {
-            pPacket->curSeqCnt4Pull++;
-            pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt4Pull);
-        }
-        else
-        {
-            pPacket->curSeqCnt++;
-            pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt);
-        }
+		{
+			/* Compute CRC32   */
+			myCRC = vos_crc32(INITFCS, (UINT8 *)pFrameHead, sizeof(PD2_HEADER_T) - SIZE_OF_FCS);
+			pFrameHead->frameCheckSum = MAKE_LE(myCRC);
+		}
+	}
+	else
+#endif
+	{
+		/* increment counter with each telegram */
+		if (pPacket->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PP))
+		{
+			pPacket->curSeqCnt4Pull++;
+			pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt4Pull);
+		}
+		else
+		{
+			pPacket->curSeqCnt++;
+			pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt);
+		}
 
-        /* Compute CRC32   */
-        myCRC = vos_crc32(INITFCS, (UINT8 *)&pPacket->pFrame->frameHead, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
-        pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myCRC);
-    }
+#ifdef TRDPSEC
+		if (pPacket->mustBeSecure == TRUE)
+		{
+			if (pSecHandle != NULL && pSecHandle->sessionStatus == TRDPSEC_VALID_SESSION && pSecHandle->sharedSecret != NULL)
+			{
+				myHMAC = trdp_sec_hmac(pSecHandle->sharedSecret, TRDPSEC_SECRET_LENGTH,
+						(UINT8 *)&pPacket->pFrame->frameHead, (UINT16)(pPacket->grossSize));
+				/* printf("the HMAC value is: %08x \n", myHMAC); */
+				pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myHMAC);
+			}
+		}
+		else
+#endif
+		{
+			/* Compute CRC32   */
+			myCRC = vos_crc32(INITFCS, (UINT8 *)&pPacket->pFrame->frameHead, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
+			pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myCRC);
+		}
+	}
 }
 
 

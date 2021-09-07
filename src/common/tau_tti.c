@@ -24,8 +24,10 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2241 2021-04-14 10:41:32Z ahweiss $
+* $Id: tau_tti.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
 *
+       SB 2021-08-09: Lint warnings
+*      SB 2021-08-05: Ticket #365 etbCnt, vehCnt and fctCnt already rotated when retrieved from appHandle->pTTDB->cstInfo in tau_getCstInfo
 *     AHW 2021-04-14: Ticket #368 tau_tti: tau getOwnIds: error in index handling in vehInfoList
 *     AHW 2021-04-13: Ticket #362: ttiStoreTrnNetDir: trnNetDir read from wrong address
 *     AHW 2021-04-13: Ticket #363: tau_getOwnIds: noOfCachedCst never assigned to actual value, never set to 0
@@ -215,7 +217,7 @@ static void ttiPDCallback (
     VOS_SEMA_T  waitForInaug    = (VOS_SEMA_T) pMsg->pUserRef;
     static      TRDP_IP_ADDR_T  sDestMC = VOS_INADDR_ANY;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if (pMsg->comId == TTDB_STATUS_COMID)
     {
@@ -998,8 +1000,8 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
         return TRDP_INIT_ERR;
     }
 
-    ecspIpAddr      = ecspIpAddr;
-    hostsFileName   = hostsFileName;
+    (void)ecspIpAddr;
+    (void)hostsFileName;
 
     appHandle->pTTDB = (TAU_TTDB_T *) vos_memAlloc(sizeof(TAU_TTDB_T));
     if (appHandle->pTTDB == NULL)
@@ -1682,9 +1684,6 @@ EXT_DECL TRDP_ERR_T tau_getCstInfo (
     if (l_index < TTI_CACHED_CONSISTS)
     {
         *pCstInfo           = *appHandle->pTTDB->cstInfo[l_index];
-        pCstInfo->etbCnt    = vos_ntohs(pCstInfo->etbCnt);
-        pCstInfo->vehCnt    = vos_ntohs(pCstInfo->vehCnt);
-        pCstInfo->fctCnt    = vos_ntohs(pCstInfo->fctCnt);
     }
     else    /* not found, get it and return directly */
     {
@@ -1736,7 +1735,7 @@ EXT_DECL TRDP_ERR_T tau_getVehOrient (
         return TRDP_PARAM_ERR;
     }
 
-    pVehLabel = pVehLabel;
+    (void)pVehLabel;
 
     *pVehOrient = 0;
     *pCstOrient = 0;
@@ -1837,27 +1836,27 @@ EXT_DECL TRDP_ERR_T tau_getOwnIds (
 
     if (pDevId != NULL)
     {
-        unsigned int    index;
+        unsigned int    idx;
         /* deduct our device / function ID from our IP address */
         UINT16          ownIP = (UINT16) (appHandle->realIP & 0x00000FFF);
         /* Problem: What if it is not set? Default interface is 0! */
 
         /* we traverse the consist info's functions */
-        for (index = 0; index < appHandle->pTTDB->cstInfo[0]->fctCnt; index++)
+        for (idx = 0; idx < appHandle->pTTDB->cstInfo[0]->fctCnt; idx++)
         {
-            if ((ownIP == appHandle->pTTDB->cstInfo[0]->pFctInfoList[index].fctId) &&
-               (appHandle->pTTDB->cstInfo[0]->pFctInfoList[index].grp == 0) )      /* #366 check that it isn't a group address */
+            if ((ownIP == appHandle->pTTDB->cstInfo[0]->pFctInfoList[idx].fctId) &&
+               (appHandle->pTTDB->cstInfo[0]->pFctInfoList[idx].grp == 0) )      /* #366 check that it isn't a group address */
             {
                 /* Get the name */
                 if (pDevId != NULL)
                 {
-                    memcpy(pDevId, appHandle->pTTDB->cstInfo[0]->pFctInfoList[index].fctName, TRDP_MAX_LABEL_LEN);
+                    memcpy(pDevId, appHandle->pTTDB->cstInfo[0]->pFctInfoList[idx].fctName, TRDP_MAX_LABEL_LEN);
                 }
 
                 /* Get the vehicle name this device is in */
                 if (pVehId != NULL)
                 {
-                    UINT8 vehNo = appHandle->pTTDB->cstInfo[0]->pFctInfoList[index].cstVehNo;
+                    UINT8 vehNo = appHandle->pTTDB->cstInfo[0]->pFctInfoList[idx].cstVehNo;
                     memcpy(pVehId, appHandle->pTTDB->cstInfo[0]->pVehInfoList[vehNo-1].vehId, TRDP_MAX_LABEL_LEN);  /* #368 */
                 }
                 break;

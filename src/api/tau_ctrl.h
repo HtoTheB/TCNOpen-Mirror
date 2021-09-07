@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_ctrl.h 2250 2021-04-29 09:52:23Z ahweiss $
+ * $Id: tau_ctrl.h 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
  */
 
@@ -128,7 +128,7 @@ EXT_DECL TRDP_ERR_T tau_getEcspStat ( TRDP_APP_SESSION_T   appHandle,
  *
  *  @param[in]      appHandle           Application Handle
  *  @param[in]      pUserRef            user reference returned with reply
- *  @param[in]      pfCbFunction        Pointer to callback function, NULL for default
+ *  @param[in]      pfCbFunction        Optional pointer to callback function, NULL for default
  *  @param[in]      pEcspConfRequest    Pointer to confirmation data       
  *
  *  @retval         TRDP_NO_ERR     no error

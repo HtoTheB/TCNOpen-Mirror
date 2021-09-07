@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2261 2021-05-26 10:51:12Z ahweiss $
+ * $Id: vos_private.h 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
  *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
  *      BL 2020-07-27: Ticket #333: Insufficient memory allocation in posix vos_semaCreate
@@ -49,7 +49,7 @@ extern "C" {
 #ifndef VOS_VERSION
 #define VOS_VERSION            2u
 #define VOS_RELEASE            1u    /* 322: interface change in vos_sockReceiveUDP() */
-#define VOS_UPDATE             1u
+#define VOS_UPDATE             0u
 #define VOS_EVOLUTION          0u
 #endif
 

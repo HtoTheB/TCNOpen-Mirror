@@ -16,8 +16,10 @@
  * @remarks         Copyright NewTec GmbH, 2020.
  *                  All rights reserved.
  *
- * $Id: api_test_3.c 2225 2020-11-03 17:00:45Z bloehr $
+ * $Id: api_test_3.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
+ *      SB 2021-08-09: Compiler warnings
+ * 
  */
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -370,7 +372,7 @@ static TRDP_APP_SESSION_T test_init (
     pSession->threadIdRxPD  = 0;
     pSession->threadIdTxPD  = 0;
     pSession->threadIdMD    = 0;
-    TRDP_PROCESS_CONFIG_T procConf = {"Test", "me", cycleTime, 0, TRDP_OPTION_NONE};
+    TRDP_PROCESS_CONFIG_T procConf = {"Test", "me", "", cycleTime, 0, TRDP_OPTION_NONE};
 
     /* Initialise only once! */
     if (dbgout != NULL)

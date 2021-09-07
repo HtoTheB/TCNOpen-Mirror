@@ -1,5 +1,5 @@
 #//
-#// $Id: Makefile 2193 2020-08-06 15:28:00Z bloehr $
+#// $Id: Makefile 2309 2021-09-07 11:56:44Z mohamedyoussef $
 #//
 #// DESCRIPTION    trdp Makefile
 #//
@@ -42,7 +42,7 @@ VOS_PATH += -I src/vos/$(TARGET_VOS)
 VOS_INCPATH += -I src/vos/api -I src/common
 
 vpath %.c src/common src/vos/common test/udpmdcom src/vos/$(TARGET_VOS) test example example/TSN test/diverse test/xml $(ADD_SRC)
-vpath %.h src/api src/vos/api src/common src/vos/common $(ADD_INC)
+vpath %.h src/api src/vos/api src/common src/vos/common $(ADD_INC) example
 
 INCLUDES = $(INCPATH) $(VOS_INCPATH) $(VOS_PATH)
 
@@ -164,6 +164,14 @@ ifeq ($(FULL_BUILD), 1)
 	TRDP_OBJS += $(TRDP_OPT_OBJS)
 endif
 
+# Enable TRDPSEC
+ifeq ($(TRDPSEC), 1)
+	CFLAGS += -DTRDPSEC
+	LDFLAGS += -lssl -lcrypto
+	TRDP_OBJS += trdp_sec_utils.o tau_sec.o trdpsec_test_if.o
+	TARGETS += trdpsec_test
+endif
+
 all:	$(TARGETS)
 
 outdir:
@@ -175,9 +183,11 @@ libtrdpap: outdir $(OUTDIR)/libtrdpap.a
 
 example:	$(OUTDIR)/echoCallback $(OUTDIR)/receivePolling $(OUTDIR)/sendHello $(OUTDIR)/receiveHello $(OUTDIR)/sendData $(OUTDIR)/sourceFiltering
 
+trdpsec_test:	outdir $(OUTDIR)/send_trdpsec_data $(OUTDIR)/receive_trdpsec_data $(OUTDIR)/send_trdp_data
+
 tsn:		$(OUTDIR)/sendTSN $(OUTDIR)/receiveTSN
 
-test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/MCreceiver $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest $(OUTDIR)/localtest $(OUTDIR)/pdPull $(OUTDIR)/localtest2 $(OUTDIR)/localtest3  
+test:		outdir $(OUTDIR)/getStats $(OUTDIR)/vostest $(OUTDIR)/MCreceiver $(OUTDIR)/test_mdSingle $(OUTDIR)/inaugTest $(OUTDIR)/localtest $(OUTDIR)/pdPull $(OUTDIR)/localtest2 $(OUTDIR)/localtest3 $(OUTDIR)/localtest4 $(OUTDIR)/pdMcRouting $(OUTDIR)/mdDataLength
 
 pdtest:		outdir $(OUTDIR)/trdp-pd-test $(OUTDIR)/pd_responder $(OUTDIR)/testSub
 
@@ -464,6 +474,14 @@ $(OUTDIR)/localtest3:   localtest/api_test_3.c  $(OUTDIR)/libtrdp.a $(addprefix 
 			$(LDFLAGS)
 			@$(STRIP) $@
 
+$(OUTDIR)/localtest4:   localtest/api_test_4.c  $(OUTDIR)/libtrdp.a $(addprefix $(OUTDIR)/,$(notdir $(TRDP_OPT_OBJS)))
+			@$(ECHO) ' ### Building local loop test tool $(@F)'
+			$(CC) $^  \
+				$(CFLAGS)  -Wno-unused-variable $(INCLUDES) -o $@\
+				-ltrdp \
+			$(LDFLAGS)
+			@$(STRIP) $@
+			
 $(OUTDIR)/test_marshalling:   marshalling/test_marshalling.c  $(OUTDIR)/libtrdp.a $(addprefix $(OUTDIR)/,$(notdir $(TRDP_OPT_OBJS)))
 			@$(ECHO) ' ### Building local loop test tool $(@F)'
 			$(CC) $^  \
@@ -478,6 +496,51 @@ $(OUTDIR)/MCreceiver: $(OUTDIR)/libtrdp.a
 				-ltrdp \
 				$(LDFLAGS) $(CFLAGS) $(INCLUDES) \
 				-o $@
+			@$(STRIP) $@
+			
+$(OUTDIR)/pdMcRouting: $(OUTDIR)/libtrdp.a pdMcRoutingTest.c
+			@$(ECHO) ' ### Building PD MC routing test receiver application $(@F)'
+			$(CC) test/diverse/pdMcRoutingTest.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			@$(STRIP) $@
+			
+$(OUTDIR)/mdDataLength: $(OUTDIR)/libtrdp.a mdDataLengthTest.c
+			@$(ECHO) ' ### Building PD MC routing test receiver application $(@F)'
+			$(CC) test/diverse/mdDataLengthTest.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			@$(STRIP) $@		
+			
+###############################################################################
+#
+# rule for the various trdp secure tests
+#
+###############################################################################
+$(OUTDIR)/send_trdpsec_data: send_trdpsec_data.c  $(OUTDIR)/libtrdp.a
+			@$(ECHO) ' ### Building TRDPSec sender application $(@F)'
+			$(CC) example/send_trdpsec_data.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			@$(STRIP) $@
+			
+$(OUTDIR)/receive_trdpsec_data:   receive_trdpsec_data.c  $(OUTDIR)/libtrdp.a
+			@$(ECHO) ' ### Building TRDPSec receiver application $(@F)'
+			$(CC) example/receive_trdpsec_data.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
+			@$(STRIP) $@
+			
+$(OUTDIR)/send_trdp_data: send_trdp_data.c  $(OUTDIR)/libtrdp.a
+			@$(ECHO) ' ### Building application $(@F)'
+			$(CC) example/send_trdp_data.c \
+			    -ltrdp \
+			    $(LDFLAGS) $(CFLAGS) $(INCLUDES) \
+			    -o $@
 			@$(STRIP) $@
 
 ###############################################################################
@@ -585,19 +648,21 @@ help:
 	@$(ECHO) "Then call 'make' or 'make all' to build everything. Contents of target all marked below" >&2
 	@$(ECHO) "in the 'Other builds:' list with #" >&2
 	@$(ECHO) "To build debug binaries, append 'DEBUG=TRUE' to the make command " >&2
+	@$(ECHO) "To build TRDPSec binaries, append 'TRDPSEC=1' to the make command " >&2
 	@$(ECHO) "To exclude message data support, append 'MD_SUPPORT=0' to the make command " >&2
 	@$(ECHO) "To include realtime scheduling support, append 'RT_THREADS=1' to the make command " >&2
 	@$(ECHO) " " >&2
 	@$(ECHO) "Other builds:" >&2
-	@$(ECHO) "  * make test      # build the test server application" >&2
-	@$(ECHO) "  * make pdtest    # build the PDCom test applications" >&2
-	@$(ECHO) "  * make mdtest    # build the UDPMDcom test application" >&2
-	@$(ECHO) "  * make example   # build the example for MD communication, needs libuuid!" >&2
-	@$(ECHO) "  * make libtrdp   # build the static library, only" >&2
-	@$(ECHO) "  * make libtrdpap # build the static library including xml parsing, marshalling, dnr and tti" >&2
-	@$(ECHO) "  * make xml       # build the xml test applications" >&2
-	@$(ECHO) "  * make highperf  # build test applications for high performance (separate PD/MD threads)" >&2
-	@$(ECHO) "  * make install   # requires INSTALLDIR to be set and copies the libtrdpap.a lib there" >&2
+	@$(ECHO) "  * make test      	# build the test server application" >&2
+	@$(ECHO) "  * make trdpsec_test # build the TRDPSec send and receive applications" >&2
+	@$(ECHO) "  * make pdtest    	# build the PDCom test applications" >&2
+	@$(ECHO) "  * make mdtest    	# build the UDPMDcom test application" >&2
+	@$(ECHO) "  * make example   	# build the example for MD communication, needs libuuid!" >&2
+	@$(ECHO) "  * make libtrdp   	# build the static library, only" >&2
+	@$(ECHO) "  * make libtrdpap 	# build the static library including xml parsing, marshalling, dnr and tti" >&2
+	@$(ECHO) "  * make xml       	# build the xml test applications" >&2
+	@$(ECHO) "  * make highperf  	# build test applications for high performance (separate PD/MD threads)" >&2
+	@$(ECHO) "  * make install   	# requires INSTALLDIR to be set and copies the libtrdpap.a lib there" >&2
 	@$(ECHO) " " >&2
 	@$(ECHO) "Static analysis (currently in prototype state) " >&2
 	@$(ECHO) "  * make lint      - build LINT analysis files using the LINT binary under $FLINT" >&2

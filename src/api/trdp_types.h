@@ -15,6 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  */
 /*
+ *      SB 2021-08.09: Ticket #375 Replaced parameters of vos_memCount to prevent alignment issues
  *     AHW 2021-04-30: Ticket #349 support for parsing "dataset name" and "device type"
  *      BL 2020-07-10: Ticket #321 Move TRDP_TIMER_GRANULARITY to public API
  *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
@@ -168,7 +169,11 @@ typedef enum
     TRDP_XML_PARSER_ERR     = -48,  /**< Returned by the tau_xml subsystem              */
     TRDP_INUSE_ERR          = -49,  /**< Resource is still in use                       */
     TRDP_MARSHALLING_ERR    = -50,  /**< Source size exceeded, dataset mismatch         */
-    TRDP_UNKNOWN_ERR        = -99   /**< Unspecified error                              */
+	TRDP_SEC_KEY_ERR		= -51,	/**< Key generation error					        */
+	TRDP_SEC_NOSESSION_ERR	= -52,	/**< No such secure session					        */
+	TRDP_SEC_KEY_SEND_ERR   = -53,  /**< Generated public key could not be sent	        */
+	TRDP_SEC_HANDSHAKE_ERR  = -54,	/**< Handshake could not be proceeded properly		*/
+    TRDP_UNKNOWN_ERR        = -99   /**< Unspecified error								*/
 } TRDP_ERR_T;
 
 
@@ -412,17 +417,7 @@ typedef struct
 
 
 /** Structure containing all general memory statistics information. */
-typedef struct
-{
-    UINT32  total;                                      /**< total memory size */
-    UINT32  free;                                       /**< free memory size */
-    UINT32  minFree;                                    /**< minimal free memory size in statistics interval */
-    UINT32  numAllocBlocks;                             /**< allocated memory blocks */
-    UINT32  numAllocErr;                                /**< allocation errors */
-    UINT32  numFreeErr;                                 /**< free errors */
-    UINT32  blockSize[VOS_MEM_NBLOCKSIZES];             /**< preallocated memory blocks */
-    UINT32  usedBlockSize[VOS_MEM_NBLOCKSIZES];         /**< used memory blocks */
-} GNU_PACKED TRDP_MEM_STATISTICS_T;
+typedef VOS_MEM_STATISTICS_T TRDP_MEM_STATISTICS_T;
 
 
 /** Structure containing all general PD statistics information. */
@@ -543,6 +538,7 @@ typedef struct TRDP_SESSION *TRDP_APP_SESSION_T;
 typedef struct PD_ELE *TRDP_PUB_T;
 typedef struct PD_ELE *TRDP_SUB_T;
 typedef struct MD_LIS_ELE *TRDP_LIS_T;
+typedef struct TRDPSEC_SESSION_ELE *TRDPSEC_H;
 
 
 

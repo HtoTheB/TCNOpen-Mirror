@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: LibraryTests.c 2260 2021-05-21 17:19:24Z newtecbosse $
+ * $Id: LibraryTests.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
+ *      SB 2021-08-09: Compiler warnings
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
  */
 
@@ -296,7 +297,7 @@ int testInterfaces()
 {
     VOS_IF_REC_T    ifAddrs[VOS_MAX_NUM_IF];
     UINT32          ifCnt = sizeof(ifAddrs)/sizeof(VOS_IF_REC_T);
-    UINT32          i;
+//    UINT32          i;
 
     vos_sockInit();
 

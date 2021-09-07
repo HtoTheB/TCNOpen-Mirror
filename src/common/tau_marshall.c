@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_marshall.c 2197 2020-08-12 14:07:33Z bloehr $
+ * $Id: tau_marshall.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
  *
+ *      SB 2021-08-09: Lint warnings
  *      BL 2020-08-12: Warning output moved (to before aligning source pointer on return from possible recursion)
  *      SB 2019-08-15: Compiler warning (pointer compared to integer)
  *      SB 2019-08-14: Ticket #265: Incorrect alignment in nested datasets
@@ -1121,7 +1122,7 @@ EXT_DECL TRDP_ERR_T tau_initMarshall (
 {
     UINT32 i, j;
 
-    ppRefCon = ppRefCon;
+    (void)ppRefCon;
 
     if ((pDataset == NULL) || (numDataSet == 0u) || (numComId == 0u) || (pComIdDsIdMap == NULL))
     {
@@ -1186,7 +1187,7 @@ EXT_DECL TRDP_ERR_T tau_marshall (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == comId) || (NULL == pSrc) || (NULL == pDest) || (NULL == pDestSize) || (0u == *pDestSize))
     {
@@ -1261,7 +1262,7 @@ EXT_DECL TRDP_ERR_T tau_unmarshall (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == comId) || (NULL == pSrc) || (NULL == pDest) || (NULL == pDestSize) || (0u == *pDestSize))
     {
@@ -1337,7 +1338,7 @@ EXT_DECL TRDP_ERR_T tau_marshallDs (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == dsId) || (NULL == pSrc) || (NULL == pDest) || (NULL == pDestSize) || (0u == *pDestSize))
     {
@@ -1412,7 +1413,7 @@ EXT_DECL TRDP_ERR_T tau_unmarshallDs (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == dsId) || (NULL == pSrc) || (NULL == pDest) || (NULL == pDestSize) || (0u == *pDestSize))
     {
@@ -1486,7 +1487,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSize (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == dsId) || (NULL == pSrc) || (NULL == pDestSize))
     {
@@ -1558,7 +1559,7 @@ EXT_DECL TRDP_ERR_T tau_calcDatasetSizeByComId (
     TRDP_DATASET_T      *pDataset;
     TAU_MARSHALL_INFO_T info;
 
-    pRefCon = pRefCon;
+    (void)pRefCon;
 
     if ((0u == comId) || (NULL == pSrc) || (NULL == pDestSize))
     {

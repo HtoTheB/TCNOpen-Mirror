@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2202 2020-08-18 13:12:43Z bloehr $
+* $Id: tlc_if.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
 *
+*      SB 2021-08-09: Lint warnings
 *      BL 2020-07-29: tlc_init() marks version info with 'trunk' (if vers.evo != 0)
 *      BL 2020-01-10: Undoing svn revision output, would reflect file revision, only.
 *      BL 2019-11-06: Ticket #289: Changed the max. returnedwait time of tlc_getInterval to 1s (instead of 1000s)
@@ -468,6 +469,9 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
     ret = (TRDP_ERR_T) vos_mutexCreate(&pSession->mutex);
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexTxPD); /*lint !e656 Only checking for error code TRDP_NO_ERR, which is 0 */
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexRxPD); /*lint !e656 Only checking for error code TRDP_NO_ERR, which is 0 */
+#ifdef TRDPSEC
+    ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexSecSessQueue);
+#endif
 #if MD_SUPPORT
     ret += (TRDP_ERR_T) vos_mutexCreate(&pSession->mutexMD); /*lint !e656 Only checking for error code TRDP_NO_ERR, which is 0 */
 #endif
@@ -846,7 +850,7 @@ EXT_DECL TRDP_ERR_T tlc_updateSession (
 
 #else
 
-    appHandle = appHandle;  /* lint !e550 return value not used */
+    (void)appHandle;  /* lint !e550 return value not used */
 
 #endif
 
@@ -906,8 +910,8 @@ EXT_DECL TRDP_ERR_T tlc_presetIndexSession (
     }
 #else
 
-    appHandle = appHandle;  /* lint !e550 parameter not used */
-    pIndexTableSizes = pIndexTableSizes;  /* lint !e550 parameter not used */
+    (void)appHandle;  /* lint !e550 parameter not used */
+    (void)pIndexTableSizes;  /* lint !e550 parameter not used */
 
 #endif
 
@@ -1033,6 +1037,16 @@ EXT_DECL TRDP_ERR_T tlc_closeSession (
                     vos_memFree(pSession->pRcvQueue);
                     pSession->pRcvQueue = pNext;
                 }
+#ifdef TRDPSEC
+                while (pSession->pSecQueue != NULL)
+                {
+                	TRDPSEC_SECURE_SESSION_T *pNext = pSession->pSecQueue->pNext;
+
+                    vos_memFree(pSession->pSecQueue);
+
+                    pSession->pSecQueue = pNext;
+                }
+# endif
 
 #if MD_SUPPORT
                 if (pSession->pMDRcvEle != NULL)
