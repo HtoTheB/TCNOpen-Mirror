@@ -10,7 +10,7 @@
  *
  * @author          Mohamed Youssef, NewTec GmbH
  *
- * $Id: trdp_sec_utils.c 2309 2021-09-07 11:56:44Z mohamedyoussef $
+ * $Id: trdp_sec_utils.c 2310 2021-09-13 11:07:39Z mohamedyoussef $
  */
 
 /***********************************************************************************************************************
@@ -285,6 +285,109 @@ EXT_DECL UINT32 trdp_sec_hmac (
 
 	retVal = ((UINT32*)hmacVal)[0];
 	return retVal;
+}
+
+/**********************************************************************************************************************/
+/** decripts a given ciphertext and generates a the original plaintext with the aes-256 blockcipher in CBC mode
+ *
+ *  @param[in]      pCiphertext				pointer to the ciphertext
+ *  @param[in]      ciphertextLen         	length of the ciphertext
+ *  @param[in]     	pKey					decryption key
+ *  @param[in]     	pIV						pointer to the initial vector for the CBC mode
+ *  @param[in]     	pPlaintext				pointer to the plaintext
+ *
+ *  @retval         ciphertextLen			the length of the generated ciphertext
+ **/
+EXT_DECL INT32 trdp_sec_decryptAes256CBC(UINT8 *pCiphertext, INT32 ciphertextLen, UINT8 *pKey,
+            UINT8 *pIV, UINT8 *pPlaintext)
+{
+    EVP_CIPHER_CTX *pCtx;
+
+    INT32 tmpLen;
+
+    INT32 plaintextLen;
+
+    /* Create and initialise the context */
+    if((pCtx = EVP_CIPHER_CTX_new()) == NULL)
+    {
+    	/* TODO: handling e.g. return error */
+    	return 0;
+    }
+
+    /*
+     * Initialise the encryption operation. IMPORTANT - ensure the use of a key and IV size appropriate for the cipher
+     * In this function:
+     * 		- 256 bit AES (i.e. a 256 bit key). The
+     * 		- IV size for *most* modes is the same as the block size. For AES it is 128 bits
+     */
+    if(EVP_DecryptInit_ex(pCtx, EVP_aes_256_cbc(), NULL, (unsigned char*) pKey, (unsigned char*) pIV) != TRUE)
+    {
+    	/* TODO: handling e.g. return error */
+    	return 0;
+    }
+
+    /*
+     * Provide the message to be decrypted, and obtain the plaintext output.
+     * EVP_DecryptUpdate can be called multiple times if necessary.
+     */
+    if(EVP_DecryptUpdate(pCtx, (unsigned char*) pPlaintext, &tmpLen, (unsigned char*) pCiphertext, (int) ciphertextLen) != TRUE)
+    {
+    	/* TODO: handling e.g. return error */
+    	return 0;
+    }
+    plaintextLen = tmpLen;
+
+    /*
+     * Finalise the decryption. Further plaintext bytes may be written at
+     * this stage.
+     */
+    if(EVP_DecryptFinal_ex(pCtx, (unsigned char*) pPlaintext + tmpLen, &tmpLen) != TRUE)
+    {
+    	/* TODO: handling e.g. return error */
+        return 0;
+    }
+    plaintextLen += tmpLen;
+
+    /* Clean up */
+    EVP_CIPHER_CTX_free(pCtx);
+
+    return plaintextLen;
+}
+
+/**********************************************************************************************************************/
+/** calculates a hash value based on the SHA3-256 function
+ *
+ *  @param[in]    	sessionSeqCnt  		handle returned also by tlc_init
+ *  @param[in]    	pData       	    pointer to user context
+ *  @param[in]    	pSecretDataSize		pointer to received message information
+ *  @param[in]    	pHash         		pointer to received data
+ *  @param[in]    	dataSize      		size of received data pointer to received data
+ *
+ *  @retval         digestLength		the length of the generated ciphertext
+ **/
+UINT32 trdp_sec_sha256(UINT32 sessionSeqCnt, UINT8 *pData, INT32 pSecretDataSize, UINT8* pHash)
+{
+	SHA256_CTX *pCtx;
+	UINT32 digestLen = 0;
+
+	if (SHA256_Init(pCtx) == NULL)
+	{
+		return digestLen;
+	}
+
+	if (SHA256_Update(pCtx, (void*) pSecretData, (int) pSecretDataSize) != TRUE)
+	{
+		return digestLen;
+	}
+
+	if (SHA256_Final((unsigned char*) pHash, pCtx) != TRUE)
+	{
+		return digestLen;
+	}
+	
+	digestLen = SHA256_DIGEST_LENGTH;
+
+	return digestLen;
 }
 
 /**********************************************************************************************************************/
