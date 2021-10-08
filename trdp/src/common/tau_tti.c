@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2311 2021-10-08 07:08:06Z ahweiss $
+* $Id: tau_tti.c 2312 2021-10-08 08:39:31Z ahweiss $
 *
 *     AHW 2021-10-07: Ticket #379 tau_tti: tau getOwnIds returns TRDP_NO_ERR even if nothing found in cst info
 *     AHW 2021-10-07: Ticket #378 tau_tti: ttiConsistInfoEntry writes static vehicle properties out of memory
@@ -664,7 +664,32 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
 
                 if (pDest->pVehInfoList[idx].pVehProp == NULL)
                 {
-                   return TRDP_MEM_ERR;
+                    UINT8 i;
+
+                    for (i = idx; i > 0; i--)
+                    {
+                        if (pDest->pVehInfoList[i-1].pVehProp == NULL)
+                        {
+                            vos_memFree(pDest->pVehInfoList[i-1].pVehProp);
+                            pDest->pVehInfoList[i-1].pVehProp = NULL;
+                        }
+                    }
+
+                    if (pDest->pVehInfoList != NULL)
+                    {
+                        vos_memFree(pDest->pVehInfoList);
+                        pDest->pVehInfoList = NULL;
+                    }
+
+                    if (pDest->pCstProp != NULL)
+                    {
+                        vos_memFree(pDest->pCstProp);
+                        pDest->pCstProp = NULL;
+                    }
+
+                    vos_memFree(pDest->pEtbInfoList);
+                    pDest->pEtbInfoList = NULL;
+                    return TRDP_MEM_ERR;
                 }
             }
             else
