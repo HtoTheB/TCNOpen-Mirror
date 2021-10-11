@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2315 2021-10-11 10:54:33Z andersoberg $
+* $Id: tau_tti.c 2316 2021-10-11 10:59:31Z andersoberg $
 *
 *      AO 2021-10-11: Ticket #378 tau_tti: bug fig
 *     AHW 2021-10-07: Ticket #379 tau_tti: tau getOwnIds returns TRDP_NO_ERR even if nothing found in cst info
@@ -677,6 +677,12 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
                 {
                     err = TRDP_MEM_ERR;
                 }
+
+                pDest->pVehInfoList[idx].pVehProp->ver.ver = ver.ver;
+                pDest->pVehInfoList[idx].pVehProp->ver.rel = ver.rel;
+                pDest->pVehInfoList[idx].pVehProp->len = len;
+                memcpy(pDest->pVehInfoList[idx].pVehProp->prop, pData, len);
+                pData += len;
             }
             else
             {
@@ -714,11 +720,6 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
                 return err;
             }
 
-            pDest->pVehInfoList[idx].pVehProp->ver.ver = ver.ver;
-            pDest->pVehInfoList[idx].pVehProp->ver.rel = ver.rel;
-            pDest->pVehInfoList[idx].pVehProp->len = len;
-            memcpy(pDest->pVehInfoList[idx].pVehProp->prop, pData, len);
-            pData += len;
         }
     }
 
