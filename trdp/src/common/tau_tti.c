@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2314 2021-10-11 08:46:04Z andersoberg $
+* $Id: tau_tti.c 2315 2021-10-11 10:54:33Z andersoberg $
 *
 *      AO 2021-10-11: Ticket #378 tau_tti: bug fig
 *     AHW 2021-10-07: Ticket #379 tau_tti: tau getOwnIds returns TRDP_NO_ERR even if nothing found in cst info
@@ -560,17 +560,25 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
            return TRDP_PACKET_ERR;
        }
 
-       pDest->pCstProp = (TRDP_PROP_T *) vos_memAlloc(len + sizeof(TRDP_PROP_T));
-       if (pDest->pCstProp == NULL)
+       if (len > 0)
        {
-           return TRDP_MEM_ERR;
+           pDest->pCstProp = (TRDP_PROP_T*)vos_memAlloc(len + sizeof(TRDP_PROP_T));
+           if (pDest->pCstProp == NULL)
+           {
+               return TRDP_MEM_ERR;
+           }
+
+           pDest->pCstProp->ver.ver = ver.ver;
+           pDest->pCstProp->ver.rel = ver.rel;
+           pDest->pCstProp->len = len;
+           memcpy(pDest->pCstProp->prop, pData, len);
+           pData += len;
+       }
+       else
+       {
+           pDest->pCstProp = NULL;
        }
 
-       pDest->pCstProp->ver.ver = ver.ver;
-       pDest->pCstProp->ver.rel = ver.rel;
-       pDest->pCstProp->len = len;
-       memcpy(pDest->pCstProp->prop, pData, len);
-       pData += len;
     }
     pDest->reserved03   = vos_ntohs(*(UINT16 *)pData);
     pData += sizeof(UINT16);
@@ -662,13 +670,17 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
                 err = TRDP_PACKET_ERR;
             }
 
-            if (err == TRDP_NO_ERR)
+            if (err == TRDP_NO_ERR && len >  0)
             {
                 pDest->pVehInfoList[idx].pVehProp = (TRDP_PROP_T*)vos_memAlloc(len + sizeof(TRDP_PROP_T));
                 if (pDest->pVehInfoList[idx].pVehProp == NULL)
                 {
                     err = TRDP_MEM_ERR;
                 }
+            }
+            else
+            {
+                pDest->pVehInfoList[idx].pVehProp = NULL;
             }
 
             if (err != TRDP_NO_ERR)
