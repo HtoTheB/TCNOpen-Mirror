@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2140 2019-12-17 12:30:35Z andersoberg $
+* $Id: vos_thread.c 2319 2021-12-17 08:01:24Z andersoberg $
 *
+*      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
 *      AÖ 2019-12-17: Ticket #306: Improve TerminateThread in SIM 
 *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
@@ -45,6 +46,7 @@
 #include "vos_mem.h"
 #include "vos_utils.h"
 #include "vos_private.h"
+#include <windows.h>
 #include "TimeSync.h"
 
 /*  Load TimeSync library

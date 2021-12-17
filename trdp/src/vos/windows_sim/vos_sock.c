@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2263 2021-05-28 14:40:08Z ahweiss $*
+* $Id: vos_sock.c 2319 2021-12-17 08:01:24Z andersoberg $*
 *
+*      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
 *      AÖ 2020-05-04: Ticket #331: Add VLAN support for Sim, removed old SimTecc workarounds, Requires SimTecc from 2020 or later
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
@@ -50,6 +51,7 @@
 #include "vos_thread.h"
 #include "vos_mem.h"
 #include "vos_private.h"
+#include <windows.h>
 #include "SimSocket.h"
 
 #pragma comment(lib, "Ws2_32.lib")
