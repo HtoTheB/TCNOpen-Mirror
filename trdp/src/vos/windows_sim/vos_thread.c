@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2319 2021-12-17 08:01:24Z andersoberg $
+* $Id: vos_thread.c 2320 2022-01-26 10:13:58Z andersoberg $
 *
+*      AÖ 2021-12-17: Ticket #385: Increase MAX_TIMESYNC_PREFIX_STRING from 20 to 64
 *      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
 *      AÖ 2019-12-17: Ticket #306: Improve TerminateThread in SIM 
@@ -64,7 +65,7 @@ const UINT32    cMutextMagic        = 0x1234FEDC;
 #define USECS_PER_MSEC  1000u
 #define MSECS_PER_SEC   1000u
 
-#define MAX_TIMESYNC_PREFIX_STRING 20
+#define MAX_TIMESYNC_PREFIX_STRING 64
 
 #define TS_MAX_DELAY_TIME_US 1000000
 
