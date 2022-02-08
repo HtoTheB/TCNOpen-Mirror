@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2320 2022-01-26 10:13:58Z andersoberg $
+* $Id: vos_thread.c 2321 2022-02-08 12:02:25Z andersoberg $
 *
+*      AÖ 2021-12-17: Ticket #386: Support for TimeSync multicore
 *      AÖ 2021-12-17: Ticket #385: Increase MAX_TIMESYNC_PREFIX_STRING from 20 to 64
 *      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
@@ -212,7 +213,7 @@ EXT_DECL VOS_ERR_T vos_threadRegisterLocal(BOOL bStart)
                 strcat_s(timeSyncName, UNITMAXNAME, listOfThreads[i].threadName);
 
                 /* Time sync register */
-                tsHandel = TSregister(timeSyncName, 1);
+                tsHandel = TimeSyncRegisterUnitEx(timeSyncName, 1, -1, 10000 * TIMESYNC_OFFSET_US);
 
                 if (tsHandel == -1)
                 {
