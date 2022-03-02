@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
 /*
-* $Id: vos_thread.h 2323 2022-03-02 13:32:33Z andersoberg $
+* $Id: vos_thread.h 2324 2022-03-02 13:36:05Z andersoberg $
 *
+*      AÖ 2022-03-02: Ticket #389: Add vos Sim function vos_threadRegisterExisting
 *      AÖ 2019-12-17: Ticket #308: Add vos Sim function to API 
 *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows
 *      BL 2019-06-12: Ticket #238 VOS: Public API headers include private header file
