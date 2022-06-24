@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2335 2022-06-03 11:44:03Z matthiasmossner $*
+ * $Id: vos_sock.c 2338 2022-06-24 06:51:29Z matthiasmossner $*
  *
  *      MM 2022-05-30: Ticket #326: fixed handling of destination (own) address on UDP receive
  *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
@@ -1211,7 +1211,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveUDP (
             STRING_ERR(buff);
             vos_printLog(VOS_LOG_ERROR, "recvmsg() failed (Err: %s)\n", buff);
             return VOS_IO_ERR;
-         }
+        }
     }
     else if (rcvSize == 0)
     {
