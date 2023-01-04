@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, 2013-2020. All rights reserved.
  *
- * $Id: trdp-pd-test-fast.c 2205 2020-08-20 12:20:43Z bloehr $
+ * $Id: trdp-pd-test-fast.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      IB 2019-08-15: separate sender and receiver thread added
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -31,7 +32,6 @@
 #if defined (POSIX)
 #include <unistd.h>
 #include <sys/time.h>
-#include <sys/select.h>
 #include <sys/ioctl.h>
 #include <time.h>
 #endif
@@ -817,12 +817,12 @@ static void *receiverThread (void * pArg)
     while (vos_threadDelay(0u) == VOS_NO_ERR)   /* this is a cancelation point! */
     {
         FD_ZERO(&fileDesc);
-        result = tlp_getInterval(apphandle, &interval, &fileDesc, &noDesc);
+        result = tlp_getInterval(apphandle, &interval, &fileDesc, (TRDP_SOCK_T *) &noDesc);
         if (result != TRDP_NO_ERR)
         {
             printf("tlp_getInterval failed: %d\n", result);
         }
-        noDesc = vos_select(noDesc + 1, &fileDesc, NULL, NULL, &interval);
+        noDesc = vos_select(noDesc, &fileDesc, NULL, NULL, &interval);
         result = tlp_processReceive(apphandle
             , &fileDesc, &noDesc);
         if ((result != TRDP_NO_ERR) && (result != TRDP_BLOCK_ERR))
@@ -879,7 +879,7 @@ int main(int argc, char * argv[])
     TRDP_ERR_T err;
     unsigned tick = 0;
 
-    printf("TRDP process data test program, version SVN $Rev: 2205 $\n");
+    printf("TRDP process data test program, version SVN $Rev: 2345 $\n");
 
     if (argc < 4)
     {

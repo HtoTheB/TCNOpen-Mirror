@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017-2018. All rights reserved.
  *
- * $Id: test_tau_dnr.c 1927 2019-06-25 15:23:26Z bloehr $
+ * $Id: test_tau_dnr.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
  *      BL 2018-11-09: Testing TCN-DNS for LINT findings in tau_dnr.c
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
@@ -31,7 +31,6 @@
 // stuff needed for posix
 #include <unistd.h>
 #include <sys/time.h>
-#include <sys/select.h>
 #endif
 
 // needed imports

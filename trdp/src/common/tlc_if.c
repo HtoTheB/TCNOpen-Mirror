@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2278 2021-08-09 08:37:49Z s-bender $
+* $Id: tlc_if.c 2345 2023-01-04 13:00:23Z chris-wetzler $
 *
+*      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      SB 2021-08-09: Lint warnings
 *      BL 2020-07-29: tlc_init() marks version info with 'trunk' (if vers.evo != 0)
 *      BL 2020-01-10: Undoing svn revision output, would reflect file revision, only.
@@ -1246,7 +1247,7 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_TIME_T         *pInterval,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc)
+    TRDP_SOCK_T         *pNoDesc)
 {
 #ifdef HIGH_PERF_INDEXED
     vos_printLogStr(VOS_LOG_ERROR, "####   tlc_getInterval() is not supported when using HIGH_PERF_INDEXED!  ####\n");

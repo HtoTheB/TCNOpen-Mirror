@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2020. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 2206 2020-08-20 13:49:34Z bloehr $
+ * $Id: trdp_pdindex.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2020-08-07: Ticket #317 Bug in trdp_indexedFindSubAddr() (HIGH_PERFORMANCE)
  *      BL 2020-08-06: Ticket #314 Timeout supervision does not restart after PD request
  *      BL 2020-07-15: Formatting (indenting)
@@ -1355,7 +1356,7 @@ void trdp_indexCheckPending (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_TIME_T         *pInterval,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc)
+    TRDP_SOCK_T         *pNoDesc)    /* #399 */
 {
     PD_ELE_T    * *iterPD;
     UINT32      idx;
@@ -1391,7 +1392,7 @@ void trdp_indexCheckPending (
         if ((appHandle->ifacePD[idx].sock != -1) &&
             (appHandle->ifacePD[idx].rcvMostly == TRUE))
         {
-            FD_SET(appHandle->ifacePD[idx].sock, (fd_set *)pFileDesc);       /*lint !e573 !e505
+            VOS_FD_SET(appHandle->ifacePD[idx].sock, (fd_set *)pFileDesc);       /*lint !e573 !e505
                                                                               signed/unsigned division in macro /
                                                                               Redundant left argument to comma */
             if (appHandle->ifacePD[idx].sock > *pNoDesc)

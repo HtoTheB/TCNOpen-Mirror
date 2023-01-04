@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
  *
- * $Id: test_tau_tti.c 1933 2019-07-05 15:40:19Z bloehr $
+ * $Id: test_tau_tti.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
  */
 
@@ -29,7 +29,6 @@
 // stuff needed for posix
 #include <unistd.h>
 #include <sys/time.h>
-#include <sys/select.h>
 #endif
 
 // needed imports

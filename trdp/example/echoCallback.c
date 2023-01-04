@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2019. All rights reserved.
  *
- * $Id: echoCallback.c 2280 2021-08-09 08:50:18Z s-bender $
+ * $Id: echoCallback.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
  *      BL 2019-07-30: Ticket #162 Independent handling of PD and MD to reduce jitter
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -34,7 +35,6 @@
 
 #if defined (POSIX)
 #include <unistd.h>
-#include <sys/select.h>
 #elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
@@ -129,7 +129,7 @@ static void *receiverThread (void * arg)
         {
             vos_printLog(VOS_LOG_WARNING, "tlp_getInterval failed: %s\n", vos_getErrorString((VOS_ERR_T) result));
         }
-        noDesc = vos_select(noDesc + 1, &fileDesc, NULL, NULL, &interval);
+        noDesc = vos_select(noDesc, &fileDesc, NULL, NULL, &interval);
         result = tlp_processReceive(sessionhandle, &fileDesc, &noDesc);
         if ((result != TRDP_NO_ERR) && (result != TRDP_BLOCK_ERR))
         {
@@ -158,7 +158,7 @@ static void *transceiverMDThread (void * arg)
         {
             vos_printLog(VOS_LOG_WARNING, "tlm_getInterval failed: %s\n", vos_getErrorString((VOS_ERR_T) result));
         }
-        noDesc = vos_select(noDesc + 1, &fileDesc, NULL, NULL, &interval);
+        noDesc = vos_select(noDesc, &fileDesc, NULL, NULL, &interval);
         result = tlm_process(sessionhandle, &fileDesc, &noDesc);
         if ((result != TRDP_NO_ERR) && (result != TRDP_BLOCK_ERR))
         {

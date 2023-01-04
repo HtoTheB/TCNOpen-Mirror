@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: mdTestApp.h 2218 2020-08-24 13:17:45Z bloehr $
+ * $Id: mdTestApp.h 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
  *          ### NOTE: This code is not supported, nor updated or tested!
  *          ###       It is left here for reference, only, and might be removed from the next major
@@ -35,7 +35,6 @@ extern "C" {
 #include <errno.h>
 #include <memory.h>
 #include <unistd.h>
-#include <sys/select.h>
 #include <mqueue.h>
 #include <time.h>
 
@@ -46,7 +45,6 @@ extern "C" {
 #include <ifaddrs.h>
 
 #include <sys/types.h>
-#include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netdb.h>
 

@@ -15,7 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: tau_ldLadder.c 1998 2019-08-15 13:05:01Z bloehr $
+ * $Id: tau_ldLadder.c 2345 2023-01-04 13:00:23Z chris-wetzler $*
+ *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *
  */
 
@@ -2403,7 +2405,7 @@ VOS_THREAD_FUNC_T TAULpdMainThread (
         {
             tv = tv2;
         }
-        rv = vos_select((int)noOfDesc + 1, &rfds, NULL, NULL, (VOS_TIME_T *)&tv);
+        rv = vos_select((int)noOfDesc, &rfds, NULL, NULL, (VOS_TIME_T *)&tv);
 
         vos_mutexLock(appHandle->mutex);
 

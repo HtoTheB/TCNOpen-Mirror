@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019-2020. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.h 2206 2020-08-20 13:49:34Z bloehr $
+ * $Id: trdp_pdindex.h 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2020-08-06: Ticket #314 Timeout supervision does not restart after PD request
  *      BL 2019-10-15: Ticket #282 Preset index table size and depth to prevent memory fragmentation
  *      BL 2019-07-10: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -143,7 +144,7 @@ TRDP_ERR_T  trdp_indexCreateSubTables (TRDP_SESSION_PT appHandle);
 void        trdp_indexCheckPending (TRDP_APP_SESSION_T  appHandle,
                                     TRDP_TIME_T         *pInterval,
                                     TRDP_FDS_T          *pFileDesc,
-                                    INT32               *pNoDesc);
+                                    TRDP_SOCK_T         *pNoDesc);  /* #399 */
 void        trdp_indexRemovePub (TRDP_SESSION_PT    appHandle,
                                  PD_ELE_T           *pElement);
 void        trdp_indexRemoveSub (TRDP_SESSION_PT    appHandle,

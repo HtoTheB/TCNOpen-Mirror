@@ -15,9 +15,10 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 2221 2020-09-08 12:51:21Z bloehr $
+* $Id: trdp_if_light.h 2345 2023-01-04 13:00:23Z chris-wetzler $
 *
 *
+*      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
 *      BL 2020-09-08: Ticket #343 userStatus parameter size in tlm_reply and tlm_replyQuery
 *      BL 2020-08-05: tlc_freeBuffer() declaration removed, it was never defined!
 *      BL 2020-07-29: Ticket #286 tlm_reply() is missing a sourceURI parameter as defined in the standard
@@ -123,7 +124,7 @@ EXT_DECL TRDP_ERR_T tlc_getInterval (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_TIME_T         *pInterval,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc);
+    TRDP_SOCK_T         *pNoDesc);
 
 EXT_DECL TRDP_ERR_T tlc_process (
     TRDP_APP_SESSION_T  appHandle,
@@ -137,7 +138,7 @@ EXT_DECL TRDP_ERR_T     tlp_getInterval (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_TIME_T         *pInterval,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc);
+    TRDP_SOCK_T         *pNoDesc);
 
 EXT_DECL TRDP_ERR_T tlp_processSend (
     TRDP_APP_SESSION_T appHandle);
@@ -272,7 +273,7 @@ EXT_DECL TRDP_ERR_T tlm_getInterval (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_TIME_T         *pInterval,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc);
+    TRDP_SOCK_T         *pNoDesc);
 
 EXT_DECL TRDP_ERR_T tlm_notify (
     TRDP_APP_SESSION_T      appHandle,

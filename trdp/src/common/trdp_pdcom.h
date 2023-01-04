@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.h 2092 2019-10-18 13:00:03Z bloehr $
+* $Id: trdp_pdcom.h 2345 2023-01-04 13:00:23Z chris-wetzler $
 *
+*      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
 *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
 *      BL 2019-06-17: Ticket #161 Increase performance
@@ -77,7 +78,7 @@ TRDP_ERR_T trdp_pdCheck (
     int         *pIsTSN);
 
 TRDP_ERR_T trdp_pdSend (
-    SOCKET      pdSock,
+    VOS_SOCK_T  pdSock,
     PD_ELE_T    *pPacket,
     UINT16      port);
 
@@ -108,12 +109,12 @@ TRDP_ERR_T  trdp_pdSendImmediate (
 
 TRDP_ERR_T  trdp_pdReceive (
     TRDP_SESSION_PT pSessionHandle,
-    SOCKET          sock);
+    VOS_SOCK_T      sock);
 
 void        trdp_pdCheckPending (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_FDS_T          *pFileDesc,
-    INT32               *pNoDesc,
+    TRDP_SOCK_T         *pNoDesc,
     int                 checkSending);
 
 void        trdp_handleTimeout (

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: MCreceiver.c 2040 2019-08-20 17:00:52Z bloehr $
+ * $Id: MCreceiver.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
  *
  */
 
@@ -112,7 +113,7 @@ void dbgOut(
  */
 int main(int argc, char * *argv)
 {
-    SOCKET                  sock;
+    VOS_SOCK_T              sock;
     UINT32                  ownAddress = VOS_INADDR_ANY;
     UINT32                  mcAddress;
     unsigned int            ip[4];

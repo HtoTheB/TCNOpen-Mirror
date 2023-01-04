@@ -14,9 +14,10 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  * 
- * $Id: sourceFiltering.c 2280 2021-08-09 08:50:18Z s-bender $
- * 
-  *      SB 2021-08-09: Compiler warnings
+ * $Id: sourceFiltering.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
+ *      SB 2021-08-09: Compiler warnings
  *
  */
 
@@ -30,7 +31,6 @@
 
 #if defined (POSIX)
 #include <unistd.h>
-#include <sys/select.h>
 #include <getopt.h>
 #elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
@@ -362,7 +362,7 @@ int main (int argc, char * *argv)
          Select() will wait for ready descriptors or time out,
          what ever comes first.
          */
-        rv = vos_select(noDesc + 1, &rfds, NULL, NULL, &tv);
+        rv = vos_select(noDesc, &rfds, NULL, NULL, &tv);
 
         /*
          Check for overdue PDs (sending and receiving)

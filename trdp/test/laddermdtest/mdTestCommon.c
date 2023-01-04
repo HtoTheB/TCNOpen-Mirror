@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: mdTestCommon.c 2218 2020-08-24 13:17:45Z bloehr $
+ * $Id: mdTestCommon.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
  *          ### NOTE: This code is not supported, nor updated or tested!
  *          ###       It is left here for reference, only, and might be removed from the next major
@@ -27,7 +27,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/select.h>
 
 #include <mqueue.h>
 #include <errno.h>

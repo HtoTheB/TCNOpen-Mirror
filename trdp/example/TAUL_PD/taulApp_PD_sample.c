@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: taulApp_PD_sample.c 2054 2019-08-28 11:03:37Z bloehr $
+ * $Id: taulApp_PD_sample.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
  */
 
@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/select.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>

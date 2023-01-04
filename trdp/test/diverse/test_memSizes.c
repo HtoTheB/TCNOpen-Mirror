@@ -12,8 +12,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: test_memSizes.c 1916 2019-06-19 14:37:27Z bloehr $
+ * $Id: test_memSizes.c 2345 2023-01-04 13:00:23Z chris-wetzler $
  *
+ *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2017-06-30: Compiler warnings, local prototypes added
  */
 
@@ -25,7 +26,6 @@
 #include <string.h>
 #if defined (POSIX)
 #include <unistd.h>
-#include <sys/select.h>
 #elif (defined (WIN32) || defined (WIN64))
 #include "getopt.h"
 #endif
@@ -392,7 +392,7 @@ int main (int argc, char * *argv)
          what ever comes first.
          */
 
-        rv = vos_select(noOfDesc + 1, &rfds, NULL, NULL, &tv);
+        rv = vos_select(noOfDesc, &rfds, NULL, NULL, &tv);
 
         /* printf("Pending events: %d\n", rv); */
         /*
