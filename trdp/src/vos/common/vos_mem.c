@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_mem.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: vos_mem.c 2346 2023-01-05 14:24:27Z ahweiss $
  *
  * Changes:
  * 
@@ -182,6 +182,8 @@ EXT_DECL VOS_ERR_T vos_memInit (
     UINT32  minSize = 0;
     UINT32  blockSize[VOS_MEM_NBLOCKSIZES] = VOS_MEM_BLOCKSIZES;        /* Different block sizes */
     UINT8   *p[VOS_MEM_MAX_PREALLOCATE];
+    struct VOS_MUTEX mutex = {0, PTHREAD_MUTEX_INITIALIZER};            /* bugfix from #2345 */
+    UINT32  preAlloc[VOS_MEM_NBLOCKSIZES] = VOS_MEM_PREALLOCATE;        /* bugfix from #2345 */
 
     /* Initialize memory */
     memset(&gMem, 0, sizeof(gMem));         /* everything defaults to 0, but ... */
@@ -189,10 +191,8 @@ EXT_DECL VOS_ERR_T vos_memInit (
     gMem.memCnt.freeSize    = size;
     gMem.memCnt.minFreeSize = size;
 
-    pthread_mutex_t mutexId = PTHREAD_MUTEX_INITIALIZER;
-    memcpy(&gMem.mutex.mutexId, &mutexId, sizeof(mutexId));
+    memcpy(&gMem.mutex, &mutex, sizeof(mutex));                          /* bugfix from #2345 */
 
-    UINT32  preAlloc[VOS_MEM_NBLOCKSIZES] = VOS_MEM_PREALLOCATE;
     memcpy(&gMem.memCnt.preAlloc, &preAlloc, sizeof(preAlloc));
 
     /*  Create the memory mutex   */
