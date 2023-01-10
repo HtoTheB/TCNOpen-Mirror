@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2354 2023-01-10 09:03:03Z ahweiss $
+* $Id: vos_sock.c 2356 2023-01-10 11:24:38Z chris-wetzler $
 *
 *     AHW 2023-01-10: Ticket #406 Socket handling: check for EAGAIN missing for Linux/Posix
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -1523,7 +1523,9 @@ EXT_DECL VOS_ERR_T vos_sockAccept (
                 /*Accept return -1 and errno = EWOULDBLOCK,
                 when there is no more connection requests.*/
                 case EWOULDBLOCK:
+#if EWOULDBLOCK != EAGAIN
                 case EAGAIN:
+#endif              
                 {
                     *pSock = connFd;
                     return VOS_NO_ERR;
