@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 /*
-* $Id: trdp_xml.c 2144 2020-01-08 17:09:16Z bloehr $
+* $Id: trdp_xml.c 2358 2023-01-11 14:57:35Z ahweiss $
 *
 *      BL 2020-01-07: Ticket #284: Parsing Unsigned Values from Config XML
 *      BL 2019-01-29: Ticket #232: Write access to XML file
@@ -572,7 +572,7 @@ XML_TOKEN_T trdp_XMLGetAttribute (
             {
                 unsigned long   uIntValue;
                 vos_strncpy(value, pXML->tokenValue, MAX_TOK_LEN - 1u);
-                errno = 0;
+                VOS_SET_ERRNO(0);
                 uIntValue  = (UINT32) strtoul(value, NULL, 10); /* we expect unsigned values mostly */
                 if ((value[0] == '-') || (uIntValue == ULONG_MAX ) || (errno == EINVAL) || (errno == ERANGE))
                 {

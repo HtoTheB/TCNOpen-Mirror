@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+* $Id: tlc_if.c 2358 2023-01-11 14:57:35Z ahweiss $
 *
+*     AHW 2023-01-11: Lint warnigs
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      SB 2021-08-09: Lint warnings
 *      BL 2020-07-29: tlc_init() marks version info with 'trunk' (if vers.evo != 0)
