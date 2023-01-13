@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+* $Id: vos_sock.c 2360 2023-01-13 09:23:34Z andersoberg $
 *
+*      AÖ 2023-01-13: Ticket #410 Don't perform a delay after SimSelect if any socket is signaled
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
 *     AHW 2021-05-06: Ticket #322 Subscriber multicast message routing in multi-home device
@@ -559,6 +560,10 @@ EXT_DECL INT32 vos_select(
             ret = SimSelect((int)(highDesc + 1), pReadFds, pWriteFds,
                 pErrorFds, (struct timeval*) &delyNull);
 
+            if (ret != 0) {
+                break;
+            }
+
             if (vos_cmpTime(&remTime, &delyTime) == -1)
             {
                 //remTime < delyTime
@@ -570,7 +575,7 @@ EXT_DECL INT32 vos_select(
                 vos_threadDelay(delyTime.tv_usec);
                 vos_subTime(&remTime, &delyTime);
             }
-        } while (ret == 0 && (remTime.tv_sec != 0 || remTime.tv_usec != 0));
+        } while (remTime.tv_sec != 0 || remTime.tv_usec != 0);
     }
 
     if (ret == -1)
