@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2361 2023-01-13 09:29:46Z andersoberg $
+* $Id: vos_thread.c 2364 2023-01-16 08:59:12Z andersoberg $
 *
+*      AÖ 2023-01-16: Ticket #414: Fix compiler warnings in VOS Windows_sim
 *      AÖ 2023-01-13: Ticket #411: vos_mutexLock, in TimeSync multi core mode try 1ms timeout in WaitForSingleObject before doing threadDelay
 *     CWE 2023-01-05: Code cleanup for function vos_getTime
 *      AÖ 2022-11-23: Ticket #396: vos/windows_sim/vos_thread.c has a faulty code path in vos_threadRegisterLocal
@@ -863,7 +864,7 @@ EXT_DECL VOS_ERR_T vos_setTimeSyncPrefix(const CHAR* pPrefix)
 *  @retval         VOS_INIT_ERR    failed to init
 */
 EXT_DECL VOS_ERR_T vos_threadRegisterExisting(const CHAR* pName, long timeSyncHandle) {
-    vos_threadRegisterMain(pName, FALSE, timeSyncHandle);
+    return vos_threadRegisterMain(pName, FALSE, timeSyncHandle);
 }
 
 /**********************************************************************************************************************/
@@ -877,7 +878,7 @@ EXT_DECL VOS_ERR_T vos_threadRegisterExisting(const CHAR* pName, long timeSyncHa
 *  @retval         VOS_INIT_ERR    failed to init
 */
 EXT_DECL VOS_ERR_T vos_threadRegister(const CHAR* pName, BOOL bStart) {
-    vos_threadRegisterMain(pName, bStart, -1);
+    return vos_threadRegisterMain(pName, bStart, -1);
 }
 
 /**********************************************************************************************************************/
