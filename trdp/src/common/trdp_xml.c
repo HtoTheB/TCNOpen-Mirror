@@ -15,13 +15,14 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 /*
-* $Id: trdp_xml.c 2358 2023-01-11 14:57:35Z ahweiss $
+* $Id: trdp_xml.c 2365 2023-01-20 14:26:11Z ahweiss $
 *
+*     AHW 2023-01-20: Ticket #415: trdp_XMLGet Attribute: ULONG_MAX should be an allowed value
 *      BL 2020-01-07: Ticket #284: Parsing Unsigned Values from Config XML
 *      BL 2019-01-29: Ticket #232: Write access to XML file
 *      BL 2019-01-23: Ticket #231: XML config from stream buffer
-*      SB 2018-11-07: Ticket #221 readXmlDatasets failed
-*      BL 2016-07-06: Ticket #122 64Bit compatibility (+ compiler warnings)
+*      SB 2018-11-07: Ticket #221: readXmlDatasets failed
+*      BL 2016-07-06: Ticket #122: 64Bit compatibility (+ compiler warnings)
 *      BL 2016-02-24: missing include (thanks to Robert)
 *      BL 2016-02-11: Ticket #102: Replacing libxml2
 */
@@ -574,7 +575,7 @@ XML_TOKEN_T trdp_XMLGetAttribute (
                 vos_strncpy(value, pXML->tokenValue, MAX_TOK_LEN - 1u);
                 VOS_SET_ERRNO(0);
                 uIntValue  = (UINT32) strtoul(value, NULL, 10); /* we expect unsigned values mostly */
-                if ((value[0] == '-') || (uIntValue == ULONG_MAX ) || (errno == EINVAL) || (errno == ERANGE))
+                if ((value[0] == '-') || (errno == EINVAL) || (errno == ERANGE))    /* #415 */
                 {
                     *pValueInt  = 0u;       /* Return zero if out of range or negative */
                 }
