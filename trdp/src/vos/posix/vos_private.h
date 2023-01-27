@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: vos_private.h 2368 2023-01-27 16:32:19Z chris-wetzler $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
  *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
@@ -49,7 +49,7 @@ extern "C" {
 /* The VOS version can be predefined as CFLAG   */
 #ifndef VOS_VERSION
 #define VOS_VERSION            2u
-#define VOS_RELEASE            1u    /* 322: interface change in vos_sockReceiveUDP() */
+#define VOS_RELEASE            2u /* 399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
 #define VOS_UPDATE             0u
 #define VOS_EVOLUTION          0u
 #endif
