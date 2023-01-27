@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2366 2023-01-25 15:09:27Z ahweiss $
+* $Id: tau_tti.c 2367 2023-01-27 09:29:13Z chris-wetzler $
 *
 *     AHW 2023-01-24: Ticket #416: Interface change for tau_getCstInfo(), tau_getStaticCstInfo(), tau_getVehInfo()
 *     AHW 2023-01-24: Naming #416: unified tau_getTrDir()/tau_getOpTrDir() -> tau_getTrnDir()/tau_getOpTrnDir()
@@ -1401,7 +1401,6 @@ EXT_DECL TRDP_ERR_T tau_copyCstInfo(
     TRDP_CONSIST_INFO_T   *pSrcCstInfo
     )
 {
-    size_t tst = sizeof(TRDP_PROP_T);
     size_t sizeEtbInfo = pSrcCstInfo->etbCnt * sizeof(TRDP_ETB_INFO_T);
     size_t sizeFctInfo = pSrcCstInfo->fctCnt * sizeof(TRDP_FUNCTION_INFO_T);
     size_t sizeClTrnInfo = pSrcCstInfo->cltrCstCnt * sizeof(TRDP_CLTR_CST_INFO_T);
