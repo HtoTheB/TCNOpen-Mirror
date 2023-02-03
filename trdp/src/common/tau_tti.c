@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2371 2023-02-03 10:15:27Z ahweiss $
+* $Id: tau_tti.c 2373 2023-02-03 14:13:58Z chris-wetzler $
 *
 *  AO/AHW 2023-02-03: Ticket #416: Bug fixing and code refactoring
 *     AHW 2023-01-24: Ticket #416: Interface change for tau_getCstInfo(), tau_getStaticCstInfo(), tau_getVehInfo()
@@ -360,7 +360,7 @@ static TRDP_ERR_T ttiGetOwnCstUUID(
     TRDP_UUID_T cstUUID)
 {
     int i;
-    static savedIndex = -1;
+    static int savedIndex = -1;
 
     memset(cstUUID, 0, sizeof(TRDP_UUID_T));
 
@@ -1130,7 +1130,7 @@ static void ttiMDCallback (
 static TRDP_ERR_T ttiRequestTTDBdataByLable(
         TRDP_APP_SESSION_T  appHandle,
         UINT32              comID,
-        const TRDP_UUID_T   pCstLabel)
+        const TRDP_LABEL_T  pCstLabel)
 {
     TRDP_UUID_T  cstUUID;
 
