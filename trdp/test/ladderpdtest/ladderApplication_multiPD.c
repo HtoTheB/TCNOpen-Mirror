@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: ladderApplication_multiPD.c 2218 2020-08-24 13:17:45Z bloehr $
+ * $Id: ladderApplication_multiPD.c 2376 2023-02-16 14:48:01Z chris-wetzler $
  *
  *          ### NOTE: This code is not supported, nor updated or tested!
  *          ###       It is left here for reference, only, and might be removed from the next major
@@ -68,7 +68,7 @@ TRDP_ERR_T          err;
 TRDP_PD_CONFIG_T    pdConfiguration = {&tau_recvPdDs, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};
 TRDP_MEM_CONFIG_T   dynamicConfig = {NULL, RESERVED_MEMORY, {}};
-TRDP_PROCESS_CONFIG_T	processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
+TRDP_PROCESS_CONFIG_T	processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK};
 
 INT32     rv = 0;
 
@@ -80,7 +80,7 @@ TRDP_ERR_T          err2;
 TRDP_PD_CONFIG_T    pdConfiguration2 = {&tau_recvPdDs, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                        10000000, TRDP_TO_SET_TO_ZERO, 0};	    /* Sub-network Id2 PDconfiguration */
 TRDP_MEM_CONFIG_T   dynamicConfig2 = {NULL, RESERVED_MEMORY, {}};					/* Sub-network Id2 Structure describing memory */
-TRDP_PROCESS_CONFIG_T   processConfig2   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
+TRDP_PROCESS_CONFIG_T   processConfig2   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK};
 TRDP_MARSHALL_CONFIG_T	marshallConfig = {&tau_marshall, &tau_unmarshall, NULL};	/** Marshaling/unMarshalling configuration	*/
 
 TRDP_IP_ADDR_T subnetId1Address = 0;

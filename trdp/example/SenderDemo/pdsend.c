@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH System-Entwicklung und Beratung, 2013. All rights reserved.
  *
- * $Id: pdsend.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: pdsend.c 2376 2023-02-16 14:48:01Z chris-wetzler $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send
@@ -200,7 +200,7 @@ int pd_init (
     TRDP_MD_CONFIG_T        mdConfiguration = {mdCallback, NULL, TRDP_MD_DEFAULT_SEND_PARAM,
                                                 TRDP_FLAGS_CALLBACK, 5000000, 5000000, 5000000, 0, 0, 2, 10};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, 1000000, {}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", 0, 0, TRDP_OPTION_BLOCK};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK};
 
 
     printf("pd_init\n");

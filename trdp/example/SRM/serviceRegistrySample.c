@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2019. All rights reserved.
  *
- * $Id: serviceRegistrySample.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: serviceRegistrySample.c 2376 2023-02-16 14:48:01Z chris-wetzler $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  * 
@@ -233,7 +233,7 @@ TRDP_ERR_T  createSession (
     TRDP_MD_CONFIG_T    mdConfiguration = {myMDcallBack, NULL, TRDP_MD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
         0u, 0u, 0u, 0u, 0u, 0u, 0u};
 
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_BLOCK};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_BLOCK};
 
     /*    Open a session for callback operation    (PD only) */
     if (tlc_openSession(pAppHandle,

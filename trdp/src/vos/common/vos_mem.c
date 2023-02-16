@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_mem.c 2346 2023-01-05 14:24:27Z ahweiss $
+ * $Id: vos_mem.c 2376 2023-02-16 14:48:01Z chris-wetzler $
  *
  * Changes:
  * 
@@ -342,6 +342,7 @@ EXT_DECL void vos_memDelete (
 
 /**********************************************************************************************************************/
 /** Allocate a block of memory (from memory area above).
+ *  Always clears returned memory area
  *
  *  @param[in]      size            Size of requested block
  *

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: mdTestMain.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: mdTestMain.c 2376 2023-02-16 14:48:01Z chris-wetzler $
  *
  *          ### NOTE: This code is not supported, nor updated or tested!
  *          ###       It is left here for reference, only, and might be removed from the next major
@@ -85,14 +85,14 @@ UINT32 *pFirstCreateMdDataSize = NULL;								/* pointer to First of Create MD D
 TRDP_APP_SESSION_T		appHandle;					/*	Sub-network Id1 identifier to the library instance	*/
 TRDP_MD_CONFIG_T			md_config;
 TRDP_MEM_CONFIG_T			mem_config;
-TRDP_PROCESS_CONFIG_T	processConfig = {"Subnet1", "", 0, 0, TRDP_OPTION_BLOCK};
+TRDP_PROCESS_CONFIG_T	processConfig = {"Subnet1", "", "", 0, 0, TRDP_OPTION_BLOCK};
 TRDP_MARSHALL_CONFIG_T	marshallConfig = {&tau_marshall, &tau_unmarshall, NULL};	/** Marshaling/unMarshalling configuration	*/
 
 /* Subnet2 */
 TRDP_APP_SESSION_T		appHandle2;				/*	Sub-network Id2 identifier to the library instance	*/
 TRDP_MD_CONFIG_T			md_config2;
 TRDP_MEM_CONFIG_T			mem_config2;
-TRDP_PROCESS_CONFIG_T	processConfig2 = {"Subnet2", "", 0, 0, TRDP_OPTION_BLOCK};
+TRDP_PROCESS_CONFIG_T	processConfig2 = {"Subnet2", "", "", 0, 0, TRDP_OPTION_BLOCK};
 
 /* URI */
 TRDP_URI_USER_T subnetId1URI = "Subnet1URI";		/* Subnet1 Network I/F URI */

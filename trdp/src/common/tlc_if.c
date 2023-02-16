@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2368 2023-01-27 16:32:19Z chris-wetzler $
+* $Id: tlc_if.c 2376 2023-02-16 14:48:01Z chris-wetzler $
 *
 *     CWE 2023-01-27: Log compile-options and vos-version upon tlc_init()
 *     AHW 2023-01-11: Lint warnigs
@@ -376,9 +376,9 @@ EXT_DECL TRDP_ERR_T tlc_init (
 #endif
 
 #if (defined(L_ENDIAN) && !defined(B_ENDIAN))
-            vos_printLogStr(VOS_LOG_INFO, "ENDIANNESS: Little Endian (x86)\n");
+            vos_printLogStr(VOS_LOG_INFO, "ENDIANNESS:  Little Endian (x86)\n");
 #else
-            vos_printLogStr(VOS_LOG_INFO, "ENDIANNESS: Big Endian (Network, PPC, ARM, ...)\n");
+            vos_printLogStr(VOS_LOG_INFO, "ENDIANNESS:  Big Endian (Network, PPC, ARM, ...)\n");
 #endif
 
 #if defined(MD_SUPPORT)
