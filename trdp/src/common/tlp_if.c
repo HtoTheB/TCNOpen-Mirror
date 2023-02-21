@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2377 2023-02-20 14:38:28Z ahweiss $*
+* $Id: tlp_if.c 2378 2023-02-21 16:38:07Z ahweiss $*
 *
+*     AHW 2023-02-21: Lint warnings
 *     AHW 2023-02-20: Ticket #420 Infinite loop in tlp_get() on unrecoverable errors
 *      AÖ 2023-01-13: Ticket #412 Added tlp_republishService
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -1250,6 +1251,20 @@ EXT_DECL TRDP_ERR_T tlp_request (
                     if (!pListElement)
                     {
                         pListElement = (TRDP_PR_SEQ_CNT_LIST_T *)vos_memAlloc(sizeof(TRDP_PR_SEQ_CNT_LIST_T));
+                       
+                        if (pListElement == NULL)
+                        {
+                            trdp_releaseSocket(appHandle->ifacePD,
+                                pReqElement->socketIdx,
+                                0u,
+                                FALSE,
+                                0u);
+
+                            vos_memFree(pReqElement->pFrame);
+                            vos_memFree(pReqElement);
+                            pReqElement = NULL;
+                            return TRDP_MEM_ERR;
+                        }
                         pListElement->comId = comId;
                         pListElement->lastSeqCnt = 0xFFFFFFFFu;
                         pListElement->pNext = appHandle->pSeqCntList4PDReq;

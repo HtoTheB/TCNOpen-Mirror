@@ -15,9 +15,9 @@
  *          Copyright NewTec GmbH, 2016-2020. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 2358 2023-01-11 14:57:35Z ahweiss $
+ * $Id: tau_xml.c 2378 2023-02-21 16:38:07Z ahweiss $
  *
- *     AHW 2023-01-11: Lint warnigs
+ *     AHW 2023-01-11: Lint warnings
  *     AHW 2021-04-30: Ticket #349 support for parsing "dataset name" and "device type"
  *      SB 2021-02-04: Ticket #359: fixed parsing of 'service-device' elements
  *      SB 2020-06-29: Ticket #338: Attribute Callback always does not work
@@ -2044,7 +2044,7 @@ EXT_DECL TRDP_ERR_T tau_readXmlMappedDevices(
                         {
                             if (vos_strnicmp(attribute, "host-name", MAX_TOK_LEN) == 0)
                             {
-                                vos_strncpy((*ppProcessConfig)[i].hostName, value, 50);
+                                vos_strncpy((*ppProcessConfig)[i].hostName, value, TRDP_MAX_LABEL_LEN);
                             }
                             else if (vos_strnicmp(attribute, "leader-name", MAX_TOK_LEN) == 0)
                             {
