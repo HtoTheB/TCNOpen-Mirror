@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: tau_tti.h 2366 2023-01-25 15:09:27Z ahweiss $
+ * $Id: tau_tti.h 2380 2023-02-27 13:11:51Z ahweiss $
  *
  *     AHW 2023-01-24: Ticket #416: Interface change for tau_getCstInfo(), tau_getStaticCstInfo(), tau_getVehInfo()
  *     AHW 2023-01-24: Naming #416: unified tau_getTrDir()/tau_getOpTrDir() -> tau_getTrnDir()/tau_getOpTrnDir()
@@ -281,21 +281,20 @@ EXT_DECL TRDP_ERR_T tau_getCstFctCnt (
  *
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
- *  @param[out]     pFctInfo        Pointer to function info list to be returned.
- *                                  Memory needs to be provided by application. Set NULL if not used.
+ *  @param[out]   **ppFctInfo       Pointer to pointer to function info list to be returned.
+ *                                  Memory needs to be freed by application.
+ *  @param[out]    *pFctCnt         Pointer to number of functions returned in provided buffer.
  *  @param[in]      pCstLabel       Pointer to a consist label. NULL means own consist.
- *  @param[in]      maxFctCnt       Maximal number of functions to be returned in provided buffer.
- *
+  *
  *  @retval         TRDP_NO_ERR     no error
  *  @retval         TRDP_PARAM_ERR  Parameter error
  *
  */
-EXT_DECL TRDP_ERR_T tau_getCstFctInfo (
+EXT_DECL TRDP_ERR_T tau_getCstFctInfo(
     TRDP_APP_SESSION_T      appHandle,
-    TRDP_FUNCTION_INFO_T   *pFctInfo,
-    const TRDP_LABEL_T      pCstLabel,
-    UINT16                  maxFctCnt);
-
+    TRDP_FUNCTION_INFO_T**  ppFctInfo,
+    UINT16*                 pFctCnt,
+    const TRDP_LABEL_T      pCstLabel);
 
 /**********************************************************************************************************************/
 /**    Function to allocate memory and  to retrieve the vehicle information of a consist's vehicle.
