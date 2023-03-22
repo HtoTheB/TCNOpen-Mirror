@@ -16,7 +16,7 @@
  * @copyright       Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  * @copyright       Copyright Universität Rostock, 2019 (substantial changes leading to GLib-only version and update to v2.0, Wirshark 3.)
  *
- * $Id: packet-trdp_spy.h 2227 2021-01-05 13:43:12Z ahweiss $
+ * $Id: packet-trdp_spy.h 2383 2023-03-22 14:28:15Z ahweiss $
  *
  */
 
@@ -150,6 +150,15 @@ void proto_reg_handoff_trdp(void);
  */
 void dissect_trdp(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree);
 
+#endif
+
+/* Work-around for vanished config.h in Debian dev-packages */
+
+#ifndef VERSION_MAJOR
+#include <ws_version.h>
+#define VERSION_MAJOR WIRESHARK_VERSION_MAJOR
+#define VERSION_MINOR WIRESHARK_VERSION_MINOR
+#define VERSION_MICRO WIRESHARK_VERSION_MICRO
 #endif
 
 /** @} */
