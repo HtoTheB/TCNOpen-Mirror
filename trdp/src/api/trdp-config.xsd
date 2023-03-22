@@ -17,10 +17,10 @@
        #
        #  VERSION       : 1.17.0.0
        #
-       #  SVN           : $Id: trdp-config.xsd 2381 2023-03-21 12:53:15Z andersoberg $
+       #  SVN           : $Id: trdp-config.xsd 2382 2023-03-22 11:04:43Z andersoberg $
        #
        #  HISTORY       :
-	   #                            1.17.0.0  Ticket #423 and #424 Splited sdtv2 and sdtv4 parameters, added sdtv4-parameters to service instance
+	   #                            1.17.0.0  Ticket #423 and #424 Splitted sdtv2 and sdtv4 parameters, added sdtv4-parameters to service instance
        #                            1.16.0.0  Ticket #349 support for parsing "dataset name" and "device type"
        #                            1.15.0.0  Added optional attributes for SDTv4 support
        #                            1.15.0.0  Added optional attribute 'name' to event, method, field and instance for service oriented interface
