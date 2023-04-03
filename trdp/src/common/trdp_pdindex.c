@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2020. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: trdp_pdindex.c 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed when send-cycles were set to 256ms
  *     CWE 2023-02-02: Ticket #380 Added base 2 cycle time support for high performance PD: set HIGH_PERF_BASE2=1 in make config file (see LINUX_HP2_config)
@@ -1214,7 +1214,7 @@ TRDP_ERR_T trdp_pdSendIndexed (TRDP_SESSION_PT appHandle)
             timeDiff = clockTimeStamp;
             vos_subTime(&timeDiff, &pSlot->latestCycleStartTimeStamp);
             clockTimeSpentInCycle = timeDiff.tv_sec * 1000000 + timeDiff.tv_usec;
-            percentClockUsed = 100.0 * clockTimeSpentInCycle / pSlot->currentCycle;  /* optimal: 100%, on slow hardware > 100% */
+            percentClockUsed = (REAL32)100.0 * (REAL32)(clockTimeSpentInCycle / pSlot->currentCycle);  /* optimal: 100%, on slow hardware > 100% */
 
             if (percentClockUsed > CLOCK_PERCENT_ERROR_LIMIT) {            /* consider to improve setup */
                 logLevel = VOS_LOG_ERROR;

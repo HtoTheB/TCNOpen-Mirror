@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, 2013-2020. All rights reserved.
  *
- * $Id: trdp-pd-test-fast.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: trdp-pd-test-fast.c 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - use even cycle factors depending on the index table base + write timestamps to log
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -886,7 +886,7 @@ int main(int argc, char * argv[])
     TRDP_ERR_T err;
     unsigned tick = 0;
 
-    printf("TRDP process data test program, version SVN $Rev: 2376 $\n");
+    printf("TRDP process data test program, version SVN $Rev: 2384 $\n");
 
     if (argc < 4)
     {
@@ -913,7 +913,7 @@ int main(int argc, char * argv[])
     memset(&proccfg, 0, sizeof(proccfg));
 
     /* Set in-test-cycle-time */
-    proccfg.cycleTime = 5000u;          // CHRIS: ECHTE Zeit gegenchecken und bei mehr als 10% Versagen Warnings ausgeben ggf. bei mehr als 30% Errors
+    proccfg.cycleTime = 5000u;
     proccfg.options = TRDP_OPTION_TRAFFIC_SHAPING;      // by now: there is no traffic shaping option for HIGH_PERF_INDEXED
 
     if (argc >= 5)

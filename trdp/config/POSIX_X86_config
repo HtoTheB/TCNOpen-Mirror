@@ -1,5 +1,5 @@
 #//
-#// $Id: POSIX_X86_config 2264 2021-06-07 18:17:01Z bloehr $
+#// $Id: POSIX_X86_config 2384 2023-04-03 14:44:47Z chris-wetzler $
 #//
 #// DESCRIPTION    Config file to make TRDP for POSIX_X86 target
 #//
@@ -20,5 +20,6 @@ DOXYPATH = /usr/local/bin/
 CFLAGS += -O2 -Wall -fstrength-reduce -fno-builtin -fsigned-char -pthread -fPIC -DL_ENDIAN
 LDFLAGS += -lrt
 
+INCPATH += -I/usr/include/uuid
 CFLAGS +=  -DHAS_UUID
 LDFLAGS += -luuid

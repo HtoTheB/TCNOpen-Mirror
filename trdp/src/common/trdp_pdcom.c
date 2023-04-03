@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+* $Id: trdp_pdcom.c 2384 2023-04-03 14:44:47Z chris-wetzler $
 *
 *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - prepared debug code for logging pdReceive and pdSend packets
 *     AHW 2023-01-11: Lint warnigs and Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
@@ -772,10 +772,12 @@ TRDP_ERR_T  trdp_pdReceive (
         return err;
     }
 
-    /* #322 */
+    /* Ticket #322 Subscriber multicast message routing in multi-home device */
     if ((appHandle->realIP != 0u) && (srcIfAddr != 0) && (appHandle->realIP != srcIfAddr))
     {
         /* Packet does not belong to this session, ignore packet */
+        /* If you want to work with more than one local IP, you need to start a separate session for each IP */
+        vos_printLog(VOS_LOG_DBG, "Ignore PD received for IP %s which is not this sessions realIP (0x%08x)\n", vos_ipDotted(srcIfAddr), appHandle->realIP);
         return TRDP_NO_ERR;
     }
 

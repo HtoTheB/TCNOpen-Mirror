@@ -1,5 +1,5 @@
 #//
-#// $Id: CENTOS_X86_64_config 2205 2020-08-20 12:20:43Z bloehr $
+#// $Id: CENTOS_X86_64_config 2384 2023-04-03 14:44:47Z chris-wetzler $
 #//
 #// DESCRIPTION    Config file to make TRDP for CentOS target
 #//
@@ -24,6 +24,7 @@ CFLAGS += -Wall -m64 -fstrength-reduce -fno-builtin -fsigned-char -pthread -fPIC
 CFLAGS += -Wno-unknown-pragmas -Wno-format -Wno-unused-label -Wno-unused-function -Wno-int-to-void-pointer-cast -Wno-self-assign
 LDFLAGS += -lrt
 
+INCPATH += -I/usr/include/uuid
 CFLAGS +=  -DHAS_UUID
 LDFLAGS += -luuid
 

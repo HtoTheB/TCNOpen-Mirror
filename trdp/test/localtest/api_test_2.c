@@ -16,7 +16,7 @@
  * @remarks         Copyright NewTec GmbH, 2019-2020.
  *                  All rights reserved.
  *
- * $Id: api_test_2.c 2374 2023-02-06 11:05:18Z chris-wetzler $
+ * $Id: api_test_2.c 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *     CWE 2023-02-02: Analyzed parameters of main() echoed to screen output
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -612,7 +612,7 @@ static TRDP_APP_SESSION_T test_init (
     pSession->threadIdRxPD  = 0;
     pSession->threadIdTxPD  = 0;
     pSession->threadIdMD    = 0;
-    TRDP_PROCESS_CONFIG_T procConf = {"Test", "me", "", cycleTime, 0, TRDP_OPTION_NONE};
+    TRDP_PROCESS_CONFIG_T procConf = {"Test", "me", "", cycleTime, 0, TRDP_OPTION_NONE, 0u, 0u};
 
     /* Initialise only once! */
     if (dbgout != NULL)
@@ -2778,7 +2778,7 @@ static int test19 ()
         TRDP_PUB_T pubHandle[sizeof(lArray) / sizeof(struct telegram_array)];
         UINT32 i;
 
-        TRDP_PROCESS_CONFIG_T procConf = {"TestHost", "me", "", TEST19_CYCLE_TIME, 0, TRDP_OPTION_NONE};
+        TRDP_PROCESS_CONFIG_T procConf = {"TestHost", "me", "", TEST19_CYCLE_TIME, 0, TRDP_OPTION_NONE, 0u, 0u};
 
         FULL_LOG(TRUE);
 
@@ -3140,7 +3140,7 @@ static int test20 ()
 
         UINT32 i;
 
-        TRDP_PROCESS_CONFIG_T procConf  = {"TestHost", "me", "", TEST20_CYCLE_TIME, 0, TRDP_OPTION_NONE};
+        TRDP_PROCESS_CONFIG_T procConf  = {"TestHost", "me", "", TEST20_CYCLE_TIME, 0, TRDP_OPTION_NONE, 0u, 0u};
         TRDP_PD_CONFIG_T pdConfig       = {test20CBFunction, NULL,
                                             TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB,
                                             100000u, TRDP_TO_SET_TO_ZERO, 0};
@@ -3394,7 +3394,7 @@ static int test21 ()
 
         UINT32 i;
 
-        TRDP_PROCESS_CONFIG_T procConf  = {"TestHost", "me", "", TEST21_CYCLE_TIME, 0, TRDP_OPTION_NONE};
+        TRDP_PROCESS_CONFIG_T procConf  = {"TestHost", "me", "", TEST21_CYCLE_TIME, 0, TRDP_OPTION_NONE, 0u, 0u};
         TRDP_PD_CONFIG_T pdConfig       =
         {test21CBFunction, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB,
             100000u, TRDP_TO_SET_TO_ZERO, 0};

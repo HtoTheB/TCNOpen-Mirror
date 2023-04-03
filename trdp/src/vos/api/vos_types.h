@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_types.h 2062 2019-08-30 07:39:23Z s-bender $
+ * $Id: vos_types.h 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *      SB 2019-08-30: Added precompiler warning macro for windows
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value
@@ -185,6 +185,30 @@ typedef double REAL64;
 #define STRING(x) STRING2(x)
 
 #define WARNING(s) message (__FILE__ "(" STRING(__LINE__) "):warning: "  s)
+#endif
+
+#ifndef __unused
+#if defined( __GNUC__ ) || defined ( __clang__ )
+#define __unused __attribute__ ((__unused__))
+#else
+#define __unused
+#endif
+#endif
+
+#if MD_SUPPORT
+#define __mdused
+#else
+#define __mdused __unused
+#endif
+
+#ifndef __fallthrough
+#if defined( __GNUC__ ) && __GNUC__ >= 7
+#define __fallthrough __attribute__ ((fallthrough));
+#elif defined( __clang__ )
+#define __fallthrough [[clang::fallthrough]]
+#else
+#define __fallthrough /* fallthrough */
+#endif
 #endif
 
 /***********************************************************************************************************************

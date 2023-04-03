@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2017-2018. All rights reserved.
  *
- * $Id: test_tau_dnr.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: test_tau_dnr.c 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *      BL 2018-11-09: Testing TCN-DNS for LINT findings in tau_dnr.c
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing
@@ -148,7 +148,7 @@ static int test_tau_init(
     TRDP_APP_SESSION_T      appHandle; /*    Our identifier to the library instance    */
     TRDP_ERR_T              err;
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, 0, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK, 0u, 0u};
     int ret = 1;
     
     /*    Init the TRDP library */

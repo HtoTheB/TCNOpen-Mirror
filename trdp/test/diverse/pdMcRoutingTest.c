@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdMcRoutingTest.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: pdMcRoutingTest.c 2384 2023-04-03 14:44:47Z chris-wetzler $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *
@@ -236,7 +236,7 @@ static TRDP_APP_SESSION_T test_init(
 void usage(const char *appName)
 {
     printf("Usage of %s\n", appName);
-    printf("This tool receives PD MC messages from an ED on to interfaces using the same MC address.\n"
+    printf("This tool receives PD MC messages from an ED on two interfaces using the same MC address.\n"
            "Arguments are:\n"
            "-f <first IP address> (default INADDR_ANY)\n"
            "-s <second IP address> (default INADDR_ANY)\n"

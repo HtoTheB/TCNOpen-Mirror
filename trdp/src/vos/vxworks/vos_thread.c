@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 2379 2023-02-22 10:50:27Z ahweiss $*
+ * $Id: vos_thread.c 2384 2023-04-03 14:44:47Z chris-wetzler $*
  *
  *     AHW 2023-02-21: Lint warnings
  *     CEW 2023-01-09: Ticket #408: thread-safe localtime - but be aware of static pTimeString
@@ -452,7 +452,9 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
 
 
 /**********************************************************************************************************************/
-/** Return the current time in sec and us
+/** Return the current time in sec and µs
+ ** Be aware, that MONOTONIC time is returned, if available!
+ ** Fallback is REALTIME, with additional consideration of time zones and daylight saving time
  *
  *
  *  @param[out]     pTime           Pointer to time value
