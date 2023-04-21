@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2387 2023-04-21 10:02:40Z peter-liesner $
+* $Id: vos_sock.c 2388 2023-04-21 16:03:30Z peter-liesner $
 *
 *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
 *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
@@ -181,7 +181,7 @@ void vos_collectIpInterfaces ()
 UINT32 vos_getInterfaceList (
     VOS_IF_REC_T   *ipInterfaceList[])
 {
-    if (NULL == *ipInterfaceList)
+    if (NULL == ipInterfaceList)
     {
         return 0;
     }
