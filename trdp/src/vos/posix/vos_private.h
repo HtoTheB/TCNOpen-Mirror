@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2368 2023-01-27 16:32:19Z chris-wetzler $
+ * $Id: vos_private.h 2387 2023-04-21 10:02:40Z peter-liesner $
  *
+ *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
  *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
  *      BL 2020-07-27: Ticket #333: Insufficient memory allocation in posix vos_semaCreate
@@ -89,8 +90,16 @@ struct VOS_SHRD
     CHAR8   *sharedMemoryName;      /* shared memory Name */
 };
 
+
+/**********************************************************************************************************************/
+
+UINT32      vos_getInterfaceList (VOS_IF_REC_T *ipInterfaceList[]);
+
 VOS_ERR_T   vos_mutexLocalCreate (struct VOS_MUTEX *pMutex);
+
 void        vos_mutexLocalDelete (struct VOS_MUTEX *pMutex);
+
+/**********************************************************************************************************************/
 
 #if (((_POSIX_C_SOURCE >= 200112L || _XOPEN_SOURCE >= 600) && !_GNU_SOURCE) || __APPLE__)
 #   define STRING_ERR(pStrBuf)  (void)strerror_r(errno, pStrBuf, VOS_MAX_ERR_STR_SIZE);
