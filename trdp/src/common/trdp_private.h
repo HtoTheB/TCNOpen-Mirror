@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2388 2023-04-21 16:03:30Z peter-liesner $
+ * $Id: trdp_private.h 2389 2023-04-26 12:44:31Z ahweiss $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2020-07-10: Ticket #321 Move TRDP_TIMER_GRANULARITY to public API
@@ -68,7 +68,7 @@
 #define TRDP_VERSION    2
 #define TRDP_RELEASE    2
 #define TRDP_UPDATE     23
-#define TRDP_EVOLUTION  88              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  89              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
