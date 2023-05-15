@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2390 2023-05-15 09:38:50Z ahweiss $
+* $Id: tlc_if.c 2391 2023-05-15 09:45:50Z ahweiss $
 *
+*     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
 *     AHW 2023-04-25: Ticket #431 MC sending on multihoming interface
 *     CWE 2023-01-27: Log compile-options and vos-version upon tlc_init()
 *     AHW 2023-01-11: Lint warnigs
