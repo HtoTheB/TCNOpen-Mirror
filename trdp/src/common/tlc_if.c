@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2389 2023-04-26 12:44:31Z ahweiss $
+* $Id: tlc_if.c 2390 2023-05-15 09:38:50Z ahweiss $
 *
 *     AHW 2023-04-25: Ticket #431 MC sending on multihoming interface
 *     CWE 2023-01-27: Log compile-options and vos-version upon tlc_init()
@@ -601,7 +601,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                               &dummyPubHndl,            /*    our pulication identifier     */
                               NULL, NULL,
                               0u,
-                              TRDP_GLOBAL_STATS_REPLY_COMID, /*    ComID to send                 */
+                              TRDP_GLOB_STATS_COMID,    /*    ComID to send                 */
                               0u,                       /*    local consist only            */
                               0u,                       /*    no orient/direction info      */
                               0u,                       /*    default source IP             */
@@ -637,7 +637,7 @@ EXT_DECL TRDP_ERR_T tlc_openSession (
                                     NULL,
                                     NULL,
                                     0u,
-                                    TRDP_STATISTICS_PULL_COMID, /*    ComID                         */
+                                    TRDP_GLOB_STATS_REQUEST_COMID, /*    ComID                         */
                                     0u,                     /*    etbtopocount: local consist only  */
                                     0u,                     /*    optrntopocount                    */
                                     0u, 0u,                 /*    Source IP filters                  */

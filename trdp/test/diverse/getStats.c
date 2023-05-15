@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: getStats.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: getStats.c 2390 2023-05-15 09:38:50Z ahweiss $
  *
+ *     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08.09: Ticket #375 Replaced parameters of vos_memCount to prevent alignment issues
  *      SB 2021-08-09: Compiler warnings
@@ -221,7 +222,7 @@ void myPDcallBack (
                memcpy(&gBuffer, pData,
                       ((sizeof(gBuffer) <
                         dataSize) ? sizeof(gBuffer) : dataSize));
-               if (pMsg->comId == TRDP_STATISTICS_PULL_COMID)
+               if (pMsg->comId == TRDP_GLOB_STATS_REQUEST_COMID)
                {
                    print_stats(&gBuffer);
                    gKeepOnRunning = FALSE;
@@ -357,7 +358,7 @@ int main (int argc, char * *argv)
                          NULL,                          /*    user reference                         */
                          myPDcallBack,                  /*    callback function                      */
                          0u,
-                         TRDP_STATISTICS_PULL_COMID,    /*    ComID                                  */
+                         TRDP_GLOB_STATS_REQUEST_COMID, /*    ComID                                  */
                          0, 0,                          /*    topocount: local consist only          */
                          VOS_INADDR_ANY,                /*    source IP 1                           */
                          VOS_INADDR_ANY,                /*    Source IP filter                       */
@@ -378,7 +379,7 @@ int main (int argc, char * *argv)
     err = tlp_request(appHandle,
                       subHandle,
                       0u,
-                      TRDP_STATISTICS_PULL_COMID,
+                      TRDP_GLOB_STATS_REQUEST_COMID,
                       0,
                       0,
                       0,
@@ -388,7 +389,7 @@ int main (int argc, char * *argv)
                       0,
                       NULL,
                       0,
-                      TRDP_GLOBAL_STATS_REPLY_COMID,
+                      TRDP_GLOB_STATS_COMID,
                       replyIP);
 
     if (err != TRDP_NO_ERR)

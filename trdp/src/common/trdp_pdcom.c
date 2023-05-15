@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+* $Id: trdp_pdcom.c 2390 2023-05-15 09:38:50Z ahweiss $
 *
 *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - prepared debug code for logging pdReceive and pdSend packets
 *     AHW 2023-01-11: Lint warnigs and Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
@@ -983,9 +983,9 @@ TRDP_ERR_T  trdp_pdReceive (
                 }
 
                 /*  Handle statistics request  */
-                if (vos_ntohl(pNewFrameHead->comId) == TRDP_STATISTICS_PULL_COMID)
+                if (vos_ntohl(pNewFrameHead->comId) == TRDP_GLOB_STATS_REQUEST_COMID)
                 {
-                    pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, TRDP_GLOBAL_STATS_REPLY_COMID);
+                    pPulledElement = trdp_queueFindComId(appHandle->pSndQueue, TRDP_GLOB_STATS_COMID);
                     if (pPulledElement != NULL)
                     {
                         pPulledElement->addr.destIpAddr = vos_ntohl(pNewFrameHead->replyIpAddress);
@@ -1215,7 +1215,7 @@ void trdp_handleTimeout (
         timerisset(&pPacket->timeToGo) &&                        /*  Prevent timing out of PULLed data too early */
         !timercmp(&pPacket->timeToGo, &now, >) &&                /*  late?   */
         !(pPacket->privFlags & TRDP_TIMED_OUT) &&                /*  and not already flagged ?   */
-        !(pPacket->addr.comId == TRDP_STATISTICS_PULL_COMID)) /*  Do not bother user with statistics timeout */
+        !(pPacket->addr.comId == TRDP_GLOB_STATS_REQUEST_COMID)) /*  Do not bother user with statistics timeout */
     {
         /*  Update some statistics  */
         appHandle->stats.pd.numTimeout++;
