@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.h 2345 2023-01-04 13:00:23Z chris-wetzler $
+* $Id: trdp_utils.h 2392 2023-05-16 11:46:23Z ahweiss $
 *
+*     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      BL 2020-08-07: Ticket #317 Bug in trdp_indeedFindSubAddr() (HIGH_PERFORMANCE)
 *      SB 2020-03-30: Ticket #311: removed trdp_getSeqCnt() because redundant publisher should not run on the same interface
@@ -184,9 +185,6 @@ void trdp_releaseSocket(
 
 
 UINT32  trdp_packetSizePD (
-    UINT32 dataSize);
-
-UINT32  trdp_packetSizePD2 (
     UINT32 dataSize);
 
 UINT32  trdp_packetSizeMD (

@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 1932 2019-07-03 15:31:16Z bloehr $
+ * $Id: trdp_tsn_def.h 2392 2023-05-16 11:46:23Z ahweiss $
  *
  */
 
@@ -46,11 +46,6 @@ extern "C" {
 #undef TRDP_PD_DEFAULT_SEND_PARAM
 #define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL,\
                                                 0u, TRDP_PD_DEFAULT_TSN, 0u}
-
-/**  PD packet properties    */
-#define TRDP_MIN_PD2_HEADER_SIZE            sizeof(PD2_HEADER_T)        /**< TSN header size with FCS               */
-#define TRDP_MAX_PD2_DATA_SIZE              1458u                       /**< PD2 data                               */
-#define TRDP_MAX_PD2_PACKET_SIZE             (TRDP_MAX_PD2_DATA_SIZE + TRDP_MIN_PD2_HEADER_SIZE)
 
 /** New Message Types for TRDP Version 2 TSN-PDU (preliminary)    */
 #define TRDP_MSG_TSN_PD                     0x01u                   /**< TSN non safe PD Data                       */
