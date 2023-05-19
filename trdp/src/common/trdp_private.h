@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2394 2023-05-16 15:28:58Z ahweiss $
+ * $Id: trdp_private.h 2395 2023-05-19 15:53:55Z peter-liesner $
  *
  *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -69,7 +69,7 @@
 #define TRDP_VERSION    2
 #define TRDP_RELEASE    2
 #define TRDP_UPDATE     23
-#define TRDP_EVOLUTION  94              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  95              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
