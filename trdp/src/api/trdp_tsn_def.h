@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 2395 2023-05-19 15:53:55Z peter-liesner $
+ * $Id: trdp_tsn_def.h 2396 2023-05-24 08:36:53Z peter-liesner $
  * 
  *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
  *
@@ -50,10 +50,7 @@ extern "C" {
                                                 0u, TRDP_PD_DEFAULT_TSN, 0u}
 
 /** New Message Types for TRDP TSN-PDU (preliminary)    */
-#define TRDP_MSG_TSN_PD                     0x5464u                   /**< TSN Td non safe PD Data                       */
-#define TRDP_MSG_TSN_PD_SDT                 0x5473u                   /**< TSN Ts safe PD Data                           */
-#define TRDP_MSG_TSN_PD_MSDT                0x546du                   /**< TSN Tm multiple SDT PD Data                   */
-#define TRDP_MSG_TSN_PD_RES                 0x5472u                   /**< TSN Tr reserved                               */
+#define TRDP_MSG_PT                     0x5074u                   /**< TSN PD Data "Pt"                      */
 
 #ifdef __cplusplus
 }

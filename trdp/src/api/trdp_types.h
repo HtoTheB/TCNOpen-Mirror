@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: trdp_types.h 2396 2023-05-24 08:36:53Z peter-liesner $
  *
  *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - Comments adapted for base 2 cycle time support
@@ -226,8 +226,6 @@ typedef enum
 #define TRDP_FLAGS_FORCE_CB         0x10u /**< Force a callback for every received packet                 */
 
 #define TRDP_FLAGS_TSN              0x20u /**< Hard Real Time PD                                          */
-#define TRDP_FLAGS_TSN_SDT          0x40u /**< SDT PD                                                     */
-#define TRDP_FLAGS_TSN_MSDT         0x80u /**< Multi SDT PD                                               */
 
 #define TRDP_INFINITE_TIMEOUT       0xffffffffu /**< Infinite reply timeout                               */
 #define TRDP_DEFAULT_PD_TIMEOUT     100000u /**< Default PD timeout 100ms from 61375-2-3 Table C.7        */

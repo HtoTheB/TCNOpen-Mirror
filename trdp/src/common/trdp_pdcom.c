@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2395 2023-05-19 15:53:55Z peter-liesner $
+* $Id: trdp_pdcom.c 2396 2023-05-24 08:36:53Z peter-liesner $
 *
 *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
@@ -810,7 +810,7 @@ TRDP_ERR_T  trdp_pdReceive (
         subAddresses.etbTopoCnt     = 0u;    /* Not used for TSN PD */
         subAddresses.opTrnTopoCnt   = 0u;    /* Not used for TSN PD */
         subAddresses.serviceId      = vos_ntohl(pNewFrameHead->reserved);
-        msgType                     = pNewFrameHead->msgType;
+        msgType                     = vos_ntohs(pNewFrameHead->msgType);
     }
     else    /* no PULL on TSN */
 #endif
@@ -1455,10 +1455,7 @@ TRDP_ERR_T trdp_pdCheck (
                     (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PE))
         {
 #ifdef TSN_SUPPORT
-            if ((vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_TSN_PD) &&
-            (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_TSN_PD_SDT) &&
-            (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_TSN_PD_MSDT) &&
-            (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_TSN_PD_RES))
+            if (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PT)
             {
                 vos_printLog(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
                 err = TRDP_WIRE_ERR;

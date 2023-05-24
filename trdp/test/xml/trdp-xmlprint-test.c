@@ -19,7 +19,7 @@
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: trdp-xmlprint-test.c 2396 2023-05-24 08:36:53Z peter-liesner $
  *
  *      A� 2023-03-22: Ticket #423 and #424 Spitted sdtv2 and sdtv4 parameters, added sdtv4-srv-inst-parameter for service instances
  *     AHW 2021-04-30: Ticket #349 support for parsing "dataset name" and "device type"
@@ -200,8 +200,8 @@ static void printTelegrams(
     TRDP_EXCHG_PAR_T    *pExchgPar
     )
 {
-    UINT32  trdpFlags[9] = {TRDP_FLAGS_DEFAULT, TRDP_FLAGS_NONE, TRDP_FLAGS_MARSHALL, TRDP_FLAGS_CALLBACK, TRDP_FLAGS_TCP, TRDP_FLAGS_FORCE_CB, TRDP_FLAGS_TSN, TRDP_FLAGS_TSN_SDT, TRDP_FLAGS_TSN_MSDT };
-    const char * strtrdpFlags[9] = {"TRDP_FLAGS_DEFAULT", "TRDP_FLAGS_NONE", "TRDP_FLAGS_MARSHALL", "TRDP_FLAGS_CALLBACK", "TRDP_FLAGS_TCP", "TRDP_FLAGS_FORCE_CB", "TRDP_FLAGS_TSN", "TRDP_FLAGS_TSN_SDT", "TRDP_FLAGS_TSN_MSDT" };
+    UINT32  trdpFlags[9] = {TRDP_FLAGS_DEFAULT, TRDP_FLAGS_NONE, TRDP_FLAGS_MARSHALL, TRDP_FLAGS_CALLBACK, TRDP_FLAGS_TCP, TRDP_FLAGS_FORCE_CB, TRDP_FLAGS_TSN};
+    const char * strtrdpFlags[9] = {"TRDP_FLAGS_DEFAULT", "TRDP_FLAGS_NONE", "TRDP_FLAGS_MARSHALL", "TRDP_FLAGS_CALLBACK", "TRDP_FLAGS_TCP", "TRDP_FLAGS_FORCE_CB", "TRDP_FLAGS_TSN" };
     UINT32  idxExPar, i;
 
     /*  Iterate over all telegrams  */
