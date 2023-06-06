@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2391 2023-05-15 09:45:50Z ahweiss $
+* $Id: tlc_if.c 2397 2023-06-06 11:52:26Z ahweiss $
 *
 *     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
 *     AHW 2023-04-25: Ticket #431 MC sending on multihoming interface
@@ -743,7 +743,7 @@ EXT_DECL TRDP_ERR_T tlc_configSession (
             pSession->pdDefault.timeout = pPdDefault->timeout;
         }
 
-        if ((pSession->pdDefault.toBehavior == TRDP_TO_DEFAULT) &&
+        if ((pSession->pdDefault.toBehavior == TRDP_TO_SET_TO_ZERO) &&
             (pPdDefault->toBehavior != TRDP_TO_DEFAULT))
         {
             pSession->pdDefault.toBehavior = pPdDefault->toBehavior;
