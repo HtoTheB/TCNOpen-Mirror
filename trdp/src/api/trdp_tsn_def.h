@@ -15,8 +15,9 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 2396 2023-05-24 08:36:53Z peter-liesner $
+ * $Id: trdp_tsn_def.h 2398 2023-06-12 08:24:39Z ahweiss $
  * 
+ *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
  *
  */
@@ -34,23 +35,8 @@ extern "C" {
  */
 
 
-#undef TRDP_MD_DEFAULT_QOS
-#define TRDP_MD_DEFAULT_QOS                 2u                          /**< matching new proposed priority classes */
-#undef TRDP_MD_DEFAULT_SEND_PARAM
-#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL,\
-                                                TRDP_MD_DEFAULT_RETRIES, FALSE, 0u}
-
 /**  Default PD communication parameters   */
-#undef TRDP_PD_DEFAULT_QOS
-#define TRDP_PD_DEFAULT_QOS                 2u                          /**< matching new proposed priority classes */
 #define TRDP_PD_DEFAULT_TSN_PRIORITY        3u                          /**< matching new proposed priority classes */
-#define TRDP_PD_DEFAULT_TSN                 FALSE                       /**< matching new proposed priority classes */
-#undef TRDP_PD_DEFAULT_SEND_PARAM
-#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL,\
-                                                0u, TRDP_PD_DEFAULT_TSN, 0u}
-
-/** New Message Types for TRDP TSN-PDU (preliminary)    */
-#define TRDP_MSG_PT                     0x5074u                   /**< TSN PD Data "Pt"                      */
 
 #ifdef __cplusplus
 }
