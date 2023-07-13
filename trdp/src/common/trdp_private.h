@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp_private.h 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      BL 2020-07-10: Ticket #321 Move TRDP_TIMER_GRANULARITY to public API

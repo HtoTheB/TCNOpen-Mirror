@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: vos_sock.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      AÖ 2023-01-16: Ticket #414: Fix compiler warnings in VOS Windows_sim
 *      AÖ 2023-01-13: Ticket #410 Don't perform a delay after SimSelect if any socket is signaled
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'

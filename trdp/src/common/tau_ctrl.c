@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tau_ctrl.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: tau_ctrl.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      CK 2023-04-12: Ticket #422 Include redundancy support in ECSP control
 *      SB 2021-08-05: Ticket #356 copying safetyTrail in tau_requestEcspConfirm from proper position in struct
 *     AHW 2021-08-03: Ticket #373 tau_requestEcspConfirm callback not working

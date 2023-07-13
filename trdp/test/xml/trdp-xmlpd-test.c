@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *
- * $Id: trdp-xmlpd-test.c 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp-xmlpd-test.c 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      BL 2019-06-13: 'quiet' parameter to supress screen output (for performance measurements)
  *      BL 2019-06-12: Ticket #228 TRDP_XMLPDTest.exe multicast issuer (use type (source/sink) if available)
  *      BL 2018-03-06: Ticket #101 Optional callback function on PD send

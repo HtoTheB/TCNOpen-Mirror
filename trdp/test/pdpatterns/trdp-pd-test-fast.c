@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, 2013-2020. All rights reserved.
  *
- * $Id: trdp-pd-test-fast.c 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp-pd-test-fast.c 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - use even cycle factors depending on the index table base + write timestamps to log
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      IB 2019-08-15: separate sender and receiver thread added
@@ -883,7 +884,7 @@ int main(int argc, char * argv[])
     TRDP_ERR_T err;
     unsigned tick = 0;
 
-    printf("TRDP process data test program, version SVN $Rev: 2399 $\n");
+    printf("TRDP process data test program, version SVN $Rev: 2400 $\n");
 
     if (argc < 4)
     {

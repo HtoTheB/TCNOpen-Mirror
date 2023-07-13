@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp_mdcom.c 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-02-21: Lint warnigs
  *     AHW 2023-01-11: Lint warnigs and Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
  *     CWE 2023-01-09: Ticket #393 Incorrect behaviour if MD timeout occurs

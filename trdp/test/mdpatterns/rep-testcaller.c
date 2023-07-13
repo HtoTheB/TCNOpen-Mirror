@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: rep-testcaller.c 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: rep-testcaller.c 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
  *      BL 2018-01-29: Ticket #188 Typo in the TRDP_VAR_SIZE definition

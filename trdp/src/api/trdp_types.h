@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp_types.h 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - Comments adapted for base 2 cycle time support

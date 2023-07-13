@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: trdp_utils.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
 *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code

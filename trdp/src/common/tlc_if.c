@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: tlc_if.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
 *     AHW 2023-04-25: Ticket #431 MC sending on multihoming interface
 *     CWE 2023-01-27: Log compile-options and vos-version upon tlc_init()

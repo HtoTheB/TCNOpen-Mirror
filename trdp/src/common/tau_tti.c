@@ -24,8 +24,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: tau_tti.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-02-27: tau_getCstFctInfo interface change to fit to tau_getVehInfo() and tau_getCstInfo() 
 *     AHW 2023-02-21: Lint warnings
 *  AO/AHW 2023-02-03: Ticket #416: Bug fixing and code refactoring

@@ -15,8 +15,9 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: trdp_tsn_def.h 2400 2023-07-13 16:30:12Z peter-liesner $
  * 
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
  *

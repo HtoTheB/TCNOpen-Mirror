@@ -15,8 +15,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: tau_ldLadder.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: tau_ldLadder.h 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  */
 
 #ifndef TAU_LDLADDER_H_

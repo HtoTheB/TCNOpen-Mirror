@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: vos_sock.c 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
 *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
 *     AHW 2023-01-10: Ticket #406 Socket handling: check for EAGAIN missing for Linux/Posix

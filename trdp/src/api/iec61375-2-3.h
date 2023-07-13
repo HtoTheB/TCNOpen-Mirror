@@ -13,8 +13,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  */
  /*
- * $Id: iec61375-2-3.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: iec61375-2-3.h 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
  *     AHW 2021-04-30: Ticket #349 support for parsing "dataset name" and "device type"

@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
 /*
-* $Id: trdp_if_light.h 2399 2023-07-13 14:28:30Z peter-liesner $
+* $Id: trdp_if_light.h 2400 2023-07-13 16:30:12Z peter-liesner $
 *
+*      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      A� 2023-01-13: Ticket #412 Added tlp_republishService
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
 *      BL 2020-09-08: Ticket #343 userStatus parameter size in tlm_reply and tlm_replyQuery

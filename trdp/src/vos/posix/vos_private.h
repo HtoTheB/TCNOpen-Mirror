@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2399 2023-07-13 14:28:30Z peter-liesner $
+ * $Id: vos_private.h 2400 2023-07-13 16:30:12Z peter-liesner $
  *
+ *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
  *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
