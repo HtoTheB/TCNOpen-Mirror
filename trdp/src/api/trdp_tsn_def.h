@@ -15,7 +15,7 @@
  * @remarks         Copyright 2019, NewTec GmbH
  *
  *
- * $Id: trdp_tsn_def.h 2398 2023-06-12 08:24:39Z ahweiss $
+ * $Id: trdp_tsn_def.h 2399 2023-07-13 14:28:30Z peter-liesner $
  * 
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
@@ -36,7 +36,7 @@ extern "C" {
 
 
 /**  Default PD communication parameters   */
-#define TRDP_PD_DEFAULT_TSN_PRIORITY        3u                          /**< matching new proposed priority classes */
+#define TRDP_PD_DEFAULT_TSN_PRIORITY        7u       /* #435*/                   /**< matching new proposed priority classes */
 
 #ifdef __cplusplus
 }

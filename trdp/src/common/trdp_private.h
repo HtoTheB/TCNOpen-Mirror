@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2398 2023-06-12 08:24:39Z ahweiss $
+ * $Id: trdp_private.h 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -69,7 +69,7 @@
 #define TRDP_VERSION    2
 #define TRDP_RELEASE    2
 #define TRDP_UPDATE     23
-#define TRDP_EVOLUTION  98              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  99              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
@@ -220,7 +220,7 @@ typedef struct TRDP_SOCKETS
     VOS_SOCK_T          sock;                            /**< vos socket descriptor to use                */
     TRDP_IP_ADDR_T      bindAddr;                        /**< Defines the interface to use                */
     TRDP_IP_ADDR_T      srcAddr;                         /**< Defines the source interface to use         */
-    TRDP_SEND_PARAM_T   sendParam;                       /**< Send parameters                             */
+    TRDP_COM_PARAM_T   sendParam;                       /**< Send parameters                              */
     TRDP_SOCK_TYPE_T    type;                            /**< Usage of this socket                        */
     BOOL8               rcvMostly;                       /**< Used for receiving                          */
     INT16               usage;                           /**< No. of current users of this socket         */

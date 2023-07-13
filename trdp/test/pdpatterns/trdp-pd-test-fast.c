@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, 2013-2020. All rights reserved.
  *
- * $Id: trdp-pd-test-fast.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: trdp-pd-test-fast.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - use even cycle factors depending on the index table base + write timestamps to log
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -341,7 +341,6 @@ static void setup_ports()
                 p->cycle,           /* cycle period   */
                 0,                  /* redundancy     */
                 TRDP_FLAGS_NONE,    /* flags          */
-                NULL,               /* default send parameters */
                 p->data,            /* data           */
                 p->size);           /* data size      */
 
@@ -363,7 +362,6 @@ static void setup_ports()
                 p->dst,             /* destination address */
                 0,                  /* redundancy     */
                 TRDP_FLAGS_NONE,    /* flags          */
-                NULL,               /* default send parameters */
                 p->data,            /* data           */
                 p->size,            /* data size      */
                 p->repid,           /* reply comid    */
@@ -389,7 +387,6 @@ static void setup_ports()
                 VOS_INADDR_ANY,
                 p->dst,             /* destination address    */
                 TRDP_FLAGS_NONE,    /* No flags set     */
-                NULL,                   /*    default interface */
                 p->timeout,             /* timeout [usec]   */
                 TRDP_TO_SET_TO_ZERO);   /* timeout behavior */
 
@@ -760,7 +757,7 @@ static void process_data()
             }
 
             p->err = tlp_request(apph, ports[p->link].sh, 0u, p->comid, 0u, 0u,
-                p->src, p->dst, 0, TRDP_FLAGS_NONE, NULL, p->data, p->size,
+                p->src, p->dst, 0, TRDP_FLAGS_NONE, p->data, p->size,
                 p->repid, p->rep);
         }
 
@@ -886,7 +883,7 @@ int main(int argc, char * argv[])
     TRDP_ERR_T err;
     unsigned tick = 0;
 
-    printf("TRDP process data test program, version SVN $Rev: 2384 $\n");
+    printf("TRDP process data test program, version SVN $Rev: 2399 $\n");
 
     if (argc < 4)
     {

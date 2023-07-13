@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: pdMcRoutingTest.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: pdMcRoutingTest.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *
@@ -436,7 +436,6 @@ int main(int argc, char *argv[])
                             VOS_INADDR_ANY,
                             mcIpAddress, /*    Default destination    (or MC Group) */
                             0,
-                            NULL,                 /*    default interface                    */
                             PD_CYCLE * 3,         /*    Time out in us                       */
                             TRDP_TO_SET_TO_ZERO); /*  delete invalid data    on timeout      */
 
@@ -458,7 +457,6 @@ int main(int argc, char *argv[])
                             VOS_INADDR_ANY,
                             mcIpAddress, /*    Default destination    (or MC Group) */
                             0,
-                            NULL,                 /*    default interface                    */
                             PD_CYCLE * 3,         /*    Time out in us                       */
                             TRDP_TO_SET_TO_ZERO); /*  delete invalid data    on timeout      */
 
@@ -517,7 +515,6 @@ int main(int argc, char *argv[])
             PD_CYCLE,
             0u,
             TRDP_FLAGS_DEFAULT,
-            NULL,
             (UINT8 *)session1.expectedData.buffer,
             session1.expectedData.size);
         if (err != TRDP_NO_ERR)
@@ -538,7 +535,6 @@ int main(int argc, char *argv[])
             PD_CYCLE,
             0u,
             TRDP_FLAGS_DEFAULT,
-            NULL,
             (UINT8 *)session2.expectedData.buffer,
             session2.expectedData.size);
         if (err != TRDP_NO_ERR)

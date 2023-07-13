@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Toshiba Corporation, Japan, 2013. All rights reserved.
  *
- * $Id: mdTestCaller.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: mdTestCaller.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *          ### NOTE: This code is not supported, nor updated or tested!
  *          ###       It is left here for reference, only, and might be removed from the next major
@@ -290,7 +290,7 @@ VOS_THREAD_FUNC_T MDCaller (
 	TRDP_FLAGS_T mdOptionFlag = 0;
 	UINT32 mdNoOfRepliers = 0;
 	UINT32 mdReplyTimeout = 0;
-	TRDP_SEND_PARAM_T *pMdSendParam = NULL;
+	TRDP_COM_PARAM_T *pMdSendParam = NULL;
 	TRDP_URI_USER_T mdSourceURI = {0};
 	TRDP_URI_USER_T mdDestURI = {0};
 	UINT32 mdIncrementMessageSize = 0;

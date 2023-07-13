@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2018. All rights reserved.
  * 
- * $Id: sourceFiltering.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: sourceFiltering.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -232,7 +232,7 @@ int main (int argc, char * *argv)
     TRDP_ERR_T              err             = TRDP_NO_ERR;
     TRDP_PD_CONFIG_T        pdConfiguration = {pdCallBack, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_CALLBACK,
                                                         10000000, TRDP_TO_SET_TO_ZERO, 0};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"subscriber", "", "", 0, 0, TRDP_OPTION_NONE, 0u, 0u};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"subscriber", "", "", 0, 0, TRDP_OPTION_NONE, 0u};
     TRDP_IP_ADDR_T          ownIP           = VOS_INADDR_ANY;
 
     int     rv      = 0;
@@ -303,7 +303,6 @@ int main (int argc, char * *argv)
                          VOS_INADDR_ANY, VOS_INADDR_ANY,    /*    Source to expect packets from                 */
                          vos_dottedIP(STATUS_IP_DEST),      /*   Default destination (or MC Group)              */
                          TRDP_FLAGS_DEFAULT,
-                         NULL,                      /*    default interface                    */
                          NTTS_STATUS_TIMEOUT,       /*    Time out in us                                        */
                          TRDP_TO_SET_TO_ZERO);      /*  delete invalid data    on timeout                       */
 

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.h 2392 2023-05-16 11:46:23Z ahweiss $
+* $Id: trdp_utils.h 2399 2023-07-13 14:28:30Z peter-liesner $
 *
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -166,7 +166,7 @@ TRDP_IP_ADDR_T  trdp_findMCjoins (
 TRDP_ERR_T      trdp_requestSocket(
     TRDP_SOCKETS_T iface[],
     UINT16 port,
-    const TRDP_SEND_PARAM_T * params,
+    const TRDP_COM_PARAM_T * params,
     TRDP_IP_ADDR_T srcIP,
     TRDP_IP_ADDR_T mcGroup,
     TRDP_SOCK_TYPE_T type,

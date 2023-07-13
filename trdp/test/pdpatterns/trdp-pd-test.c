@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, 2013. All rights reserved.
  *
- * $Id: trdp-pd-test.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: trdp-pd-test.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - write timestamps to log
  *      AÖ 2020-05-04: Ticket #330 Extend TRDP_PDTest with TSN support
@@ -320,12 +320,6 @@ static void setup_ports()
     for (i = 0; i < nports; ++i)
     {
         Port * p = &ports[i];
-        TRDP_COM_PARAM_T comPrams = TRDP_PD_DEFAULT_SEND_PARAM;
-#if PORT_FLAGS == TRDP_FLAGS_TSN
-        comPrams.vlan = 1;
-        comPrams.tsn = TRUE;
-#endif
-
         printf("  %3d: <%d> / %s / %4d / %3d ... ",
             i, p->comid, types[p->type], p->size, p->cycle / 1000);
 
@@ -346,7 +340,6 @@ static void setup_ports()
                 p->cycle,           /* cycle period   */
                 0,                  /* redundancy     */
                 PORT_FLAGS,         /* flags          */
-                &comPrams,          /* default send parameters */
                 p->data,            /* data           */
                 p->size);           /* data size      */
 
@@ -369,7 +362,6 @@ static void setup_ports()
                 p->cycle,           /* cycle period   */
                 0,                  /* redundancy     */
                 TRDP_FLAGS_NONE,    /* flags          */
-                NULL,               /* default send parameters */
                 p->data,            /* data           */
                 p->size);           /* data size      */
 
@@ -391,7 +383,6 @@ static void setup_ports()
                 p->dst,             /* destination address */
                 0,                  /* redundancy     */
                 TRDP_FLAGS_NONE,    /* flags          */
-                NULL,               /* default send parameters */
                 p->data,            /* data           */
                 p->size,            /* data size      */
                 p->repid,           /* reply comid    */
@@ -417,7 +408,6 @@ static void setup_ports()
                 VOS_INADDR_ANY,
                 p->dst,             /* destination address    */
                 TRDP_FLAGS_NONE,    /* No flags set     */
-                NULL,               /*    Receive params */
                 p->timeout,             /* timeout [usec]   */
                 TRDP_TO_SET_TO_ZERO);   /* timeout behavior */
 
@@ -440,7 +430,6 @@ static void setup_ports()
                 VOS_INADDR_ANY,
                 p->dst,             /* destination address    */
                 PORT_FLAGS,         /* No flags set     */
-                &comPrams,              /*    Receive params */
                 p->timeout,             /* timeout [usec]   */
                 TRDP_TO_SET_TO_ZERO);   /* timeout behavior */
 
@@ -727,11 +716,6 @@ static void process_data()
     int _w, _h;
     int i;
     unsigned n;
-    TRDP_COM_PARAM_T comPrams = TRDP_PD_DEFAULT_SEND_PARAM;
-#if PORT_FLAGS == TRDP_FLAGS_TSN
-    comPrams.vlan = 1;
-    comPrams.tsn = TRUE;
-#endif
 
     /* get terminal size */
     if (_get_term_size(&_w, &_h) == 0)
@@ -809,7 +793,7 @@ static void process_data()
             }
 
             p->err = tlp_request(apph, ports[p->link].sh, 0u, p->comid, 0u, 0u,
-                p->src, p->dst, 0, PORT_FLAGS, &comPrams, p->data, p->size,
+                p->src, p->dst, 0, PORT_FLAGS, p->data, p->size,
                 p->repid, p->rep);
         }
 
@@ -961,12 +945,18 @@ int main(int argc, char * argv[])
 #endif
     pdcfg.pfCbFunction = NULL;
     pdcfg.pRefCon = NULL;
-    pdcfg.sendParam.qos = 5;
     pdcfg.sendParam.ttl = 64;
     pdcfg.flags = TRDP_FLAGS_NONE;
     pdcfg.timeout = 10000000;
     pdcfg.toBehavior = TRDP_TO_SET_TO_ZERO;
     pdcfg.port = 17224;
+
+#if PORT_FLAGS == TRDP_FLAGS_TSN
+    proccfg.vlanId = 1;
+    pdcfg.sendParam.qos = TRDP_PD_DEFAULT_TSN_PRIORITY;
+#else
+    pdcfg.sendParam.qos = 5;
+#endif
 
     /* open session */
     err = tlc_openSession(&apph, srcip, 0, NULL, &pdcfg, NULL, &proccfg);

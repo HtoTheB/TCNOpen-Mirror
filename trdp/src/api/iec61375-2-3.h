@@ -13,7 +13,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
  */
  /*
- * $Id: iec61375-2-3.h 2398 2023-06-12 08:24:39Z ahweiss $
+ * $Id: iec61375-2-3.h 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
  *     AHW 2023-05-15: Ticket #432 Update reserved statistics ComIds
@@ -117,14 +117,14 @@
 #define TRDP_MD_DEFAULT_QOS                 3u
 #define TRDP_MD_DEFAULT_TTL                 64u
 #define TRDP_MD_DEFAULT_RETRIES             2u
-#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES, 0u, 0u}
+#define TRDP_MD_DEFAULT_SEND_PARAM          {TRDP_MD_DEFAULT_QOS, TRDP_MD_DEFAULT_TTL, TRDP_MD_DEFAULT_RETRIES} /* #435 */
 #define TRDP_MD_MAX_NUM_SESSIONS            1000u
 
 /**  Default PD communication parameters   */
 #define TRDP_PD_DEFAULT_QOS                 5u
 #define TRDP_PD_DEFAULT_TTL                 64u
 #define TRDP_PD_DEFAULT_TIMEOUT             100000u                     /**< [us] 100ms default PD timeout          */
-#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0u, 0u}
+#define TRDP_PD_DEFAULT_SEND_PARAM          {TRDP_PD_DEFAULT_QOS, TRDP_PD_DEFAULT_TTL, 0u}
 
 /**  Default TRDP process options    */
 #define TRDP_PROCESS_DEFAULT_CYCLE_TIME     10000u                      /**< [us] 10ms cycle time for TRDP process  */

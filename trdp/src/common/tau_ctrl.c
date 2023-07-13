@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tau_ctrl.c 2385 2023-04-12 07:06:17Z ckhangani $
+* $Id: tau_ctrl.c 2399 2023-07-13 14:28:30Z peter-liesner $
 *
 *      CK 2023-04-12: Ticket #422 Include redundancy support in ECSP control
 *      SB 2021-08-05: Ticket #356 copying safetyTrail in tau_requestEcspConfirm from proper position in struct
@@ -172,7 +172,6 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                         redId,                      /*    redundancy Id if redundnacy needed  */
                                                     /*    #356 switched to manual marshalling */
                         0u,                         /*    packet flags - UDP, no call back  */
-                        NULL,                       /*    default qos and ttl               */
                         (UINT8 *)NULL,              /*    no initial data                   */
                         sizeof(TRDP_ECSP_CTRL_T)    /*    data size                         */
                         );
@@ -194,7 +193,6 @@ EXT_DECL TRDP_ERR_T tau_initEcspCtrl ( TRDP_APP_SESSION_T   appHandle,
                          appHandle->realIP,         /*    Default destination    (or MC Group)  */
                                                     /*    #356 switched to manual unmarshalling */
                          0,                         /*    packet flags - UDP, no call back      */
-                         NULL,                      /*    default interface                     */
                          ECSP_STAT_TIMEOUT,         /*    Time out in us                        */
                          TRDP_TO_SET_TO_ZERO);      /*    delete invalid data on timeout        */
 

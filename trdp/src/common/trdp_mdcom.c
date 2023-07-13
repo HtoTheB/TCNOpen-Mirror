@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2378 2023-02-21 16:38:07Z ahweiss $
+ * $Id: trdp_mdcom.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *     AHW 2023-02-21: Lint warnigs
  *     AHW 2023-01-11: Lint warnigs and Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
@@ -177,7 +177,7 @@ static TRDP_ERR_T   trdp_mdSendME (TRDP_SESSION_PT  appHandle,
                                    INT32            replyStatus);
 
 static TRDP_ERR_T   trdp_mdConnectSocket (TRDP_APP_SESSION_T        appHandle,
-                                          const TRDP_SEND_PARAM_T   *pSendParam,
+                                          const TRDP_COM_PARAM_T   *pSendParam,
                                           TRDP_IP_ADDR_T            srcIpAddr,
                                           TRDP_IP_ADDR_T            destIpAddr,
                                           BOOL8                     newSession,
@@ -3089,7 +3089,7 @@ void  trdp_mdCheckTimeouts (
 /**********************************************************************************************************************/
 /*reply side functions*/
 static TRDP_ERR_T trdp_mdConnectSocket (TRDP_APP_SESSION_T      appHandle,
-                                        const TRDP_SEND_PARAM_T *pSendParam,
+                                        const TRDP_COM_PARAM_T *pSendParam,
                                         TRDP_IP_ADDR_T          srcIpAddr,
                                         TRDP_IP_ADDR_T          destIpAddr,
                                         BOOL8                   newSession,
@@ -3284,7 +3284,7 @@ TRDP_ERR_T trdp_mdReply (const TRDP_MSG_T           msgType,
                          UINT32                     comId,
                          UINT32                     timeout,
                          INT32                      replyStatus,
-                         const TRDP_SEND_PARAM_T    *pSendParam,
+                         const TRDP_COM_PARAM_T    *pSendParam,
                          const UINT8                *pData,
                          UINT32                     dataSize,
                          const TRDP_URI_USER_T      *pSrcURI)
@@ -3464,7 +3464,7 @@ TRDP_ERR_T trdp_mdCall (
     UINT32                  numExpReplies,
     UINT32                  replyTimeout,
     INT32                   replyStatus,
-    const TRDP_SEND_PARAM_T *pSendParam,
+    const TRDP_COM_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI,
@@ -3660,7 +3660,7 @@ TRDP_ERR_T trdp_mdConfirm (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
     UINT16                  userStatus,
-    const TRDP_SEND_PARAM_T *pSendParam)
+    const TRDP_COM_PARAM_T *pSendParam)
 {
     TRDP_IP_ADDR_T  srcIpAddr;
     TRDP_IP_ADDR_T  destIpAddr;

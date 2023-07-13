@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2380 2023-02-27 13:11:51Z ahweiss $
+* $Id: tau_tti.c 2399 2023-07-13 14:28:30Z peter-liesner $
 *
 *     AHW 2023-02-27: tau_getCstFctInfo interface change to fit to tau_getVehInfo() and tau_getCstInfo() 
 *     AHW 2023-02-21: Lint warnings
@@ -1514,7 +1514,6 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
                       VOS_INADDR_ANY, VOS_INADDR_ANY,
                       vos_dottedIP(TTDB_STATUS_DEST_IP),
                       (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB),
-                      NULL,                      /*    default interface                    */
                       TTDB_STATUS_TO_US,
                       TRDP_TO_SET_TO_ZERO) != TRDP_NO_ERR)
     {
@@ -1531,7 +1530,6 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
                       VOS_INADDR_ANY, VOS_INADDR_ANY,
                       vos_dottedIP(TTDB_STATUS_DEST_IP_ETB0),
                       (TRDP_FLAGS_T) (TRDP_FLAGS_CALLBACK | TRDP_FLAGS_FORCE_CB),
-                      NULL,                      /*    default interface                    */
                       TTDB_STATUS_TO_US,
                       TRDP_TO_SET_TO_ZERO) != TRDP_NO_ERR)
     {

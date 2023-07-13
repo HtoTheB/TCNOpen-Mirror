@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+* $Id: tlm_if.c 2399 2023-07-13 14:28:30Z peter-liesner $
 *
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *     AHW 2021-05-26: Ticket #370 Number of Listeners in MD statistics not counted correctly
@@ -229,7 +229,7 @@ EXT_DECL TRDP_ERR_T tlm_notify (
     TRDP_IP_ADDR_T          srcIpAddr,
     TRDP_IP_ADDR_T          destIpAddr,
     TRDP_FLAGS_T            pktFlags,
-    const TRDP_SEND_PARAM_T *pSendParam,
+    const TRDP_COM_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI,
@@ -315,7 +315,7 @@ EXT_DECL TRDP_ERR_T tlm_request (
     TRDP_FLAGS_T            pktFlags,
     UINT32                  numReplies,
     UINT32                  replyTimeout,
-    const TRDP_SEND_PARAM_T *pSendParam,
+    const TRDP_COM_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI,
@@ -800,7 +800,7 @@ EXT_DECL TRDP_ERR_T tlm_reply (
     const TRDP_UUID_T       *pSessionId,
     UINT32                  comId,
     UINT32                  userStatus,
-    const TRDP_SEND_PARAM_T *pSendParam,
+    const TRDP_COM_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI)
@@ -857,7 +857,7 @@ EXT_DECL TRDP_ERR_T tlm_replyQuery (
     UINT32                  comId,
     UINT32                  userStatus,
     UINT32                  confirmTimeout,
-    const TRDP_SEND_PARAM_T *pSendParam,
+    const TRDP_COM_PARAM_T *pSendParam,
     const UINT8             *pData,
     UINT32                  dataSize,
     const TRDP_URI_USER_T   srcURI)
@@ -921,7 +921,7 @@ EXT_DECL TRDP_ERR_T tlm_confirm (
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
     UINT16                  userStatus,
-    const TRDP_SEND_PARAM_T *pSendParam)
+    const TRDP_COM_PARAM_T *pSendParam)
 {
     if ( !trdp_isValidSession(appHandle))
     {

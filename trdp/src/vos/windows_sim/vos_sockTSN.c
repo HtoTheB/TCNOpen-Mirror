@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019-2021. All rights reserved.
  */
 /*
-* $Id: vos_sockTSN.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+* $Id: vos_sockTSN.c 2399 2023-07-13 14:28:30Z peter-liesner $
 *
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      AÖ 2021-12-17: Ticket #384: Added #include <windows.h>
@@ -87,34 +87,6 @@ EXT_DECL VOS_ERR_T vos_sockOpenTSN (
 {
     VOS_ERR_T res = vos_sockOpenUDP(pSock, pOptions);
     SIM_SOCKET simSock;
-
-    if (res != VOS_NO_ERR)
-    {
-        return res;
-    }
-
-    simSock = socketToSimSocket(*pSock);
-
-    if (pOptions)
-    {
-        if (pOptions->vlanId > 0)
-        {
-            //If SimTecc support VLANs as string
-            char optValue[MAX_NAME_LEN];
-            sprintf(optValue, "%s.%d", cVlanPrefix, pOptions->vlanId);
-
-            if (SimSetSockOpt(simSock, SOL_SOCKET, SO_BINDTODEVICE, optValue, sizeof(optValue)) == SOCKET_ERROR)
-            {
-                int err = GetLastError();
-
-                err = err;
-                vos_printLog(VOS_LOG_ERROR, "setsockopt() SO_BINDTODEVICE  failed on %s  (Err: %d)\n", optValue, err);
-                res = VOS_SOCK_ERR;
-
-                (void)SimCloseSocket(simSock);
-            }
-        }
-    }
 
     return res;
 }

@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  *
- * $Id: rep-testcaller.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: rep-testcaller.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -314,7 +314,7 @@ int main(int argc, char** argv)
                                         0, 
                                         5};
 
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"MD_CALLER", "", "", 0, 0, TRDP_OPTION_BLOCK, 0u, 0u};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"MD_CALLER", "", "", 0, 0, TRDP_OPTION_BLOCK, 0u};
 
     printf("TRDP message data repetition test program CALLER, version 0\n");
 

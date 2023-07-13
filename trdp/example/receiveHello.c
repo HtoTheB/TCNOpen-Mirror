@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *
- * $Id: receiveHello.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: receiveHello.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -125,7 +125,7 @@ int main (int argc, char *argv[])
     TRDP_PD_CONFIG_T        pdConfiguration =
     {NULL, NULL, TRDP_PD_DEFAULT_SEND_PARAM, TRDP_FLAGS_NONE, 1000000u, TRDP_TO_SET_TO_ZERO, 0u};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0, TRDP_OPTION_NONE, 0u, 0u};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0, TRDP_OPTION_NONE, 0u};
     UINT32  ownIP   = 0u;
     UINT32  dstIP   = 0u;
     int     rv      = 0;
@@ -218,7 +218,6 @@ int main (int argc, char *argv[])
                          VOS_INADDR_ANY, VOS_INADDR_ANY,    /*    Source IP filter              */
                          dstIP,                     /*    Default destination    (or MC Group)  */
                          TRDP_FLAGS_DEFAULT,        /*    TRDP flags                            */
-                         NULL,                      /*    default interface                    */
                          PD_COMID_CYCLE * 3,        /*    Time out in us                        */
                          TRDP_TO_SET_TO_ZERO        /*    delete invalid data on timeout        */
                          );

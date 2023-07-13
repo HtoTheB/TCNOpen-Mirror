@@ -15,7 +15,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright NewTec GmbH, 2019. All rights reserved.
  *
- * $Id: echoCallback.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: echoCallback.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -278,7 +278,7 @@ int main (int argc, char * *argv)
                                                 0u, 0u, 0u, 0u, 0u, 0u, 0u};
 
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_BLOCK, 0u, 0u};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", TRDP_PROCESS_DEFAULT_CYCLE_TIME, 0u, TRDP_OPTION_BLOCK, 0u};
     int                     rv = 0;
     unsigned int            ip[4];
     UINT32                  destIP = 0;
@@ -435,7 +435,6 @@ int main (int argc, char * *argv)
                          VOS_INADDR_ANY,            /*     */
                          destIP,                    /*    Default destination IP (or MC Group) */
                          TRDP_FLAGS_DEFAULT,        /*   */
-                         NULL,                      /*    default interface                    */
                          PD_COMID1_TIMEOUT,         /*    Time out in us                       */
                          TRDP_TO_SET_TO_ZERO);      /*    delete invalid data    on timeout    */
 
@@ -460,7 +459,6 @@ int main (int argc, char * *argv)
                         PD_COMID1_CYCLE,            /*    Cycle time in ms              */
                         0u,                         /*    not redundant                 */
                         TRDP_FLAGS_CALLBACK,        /*    Use callback for errors       */
-                        NULL,                       /*    default qos and ttl           */
                         (UINT8 *)gBuffer,           /*    initial data                  */
                         GBUFFER_SIZE                /*    data size                     */
                         );                          /*    no ladder                     */

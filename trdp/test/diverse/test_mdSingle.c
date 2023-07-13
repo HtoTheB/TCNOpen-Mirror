@@ -11,7 +11,7 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
- * $Id: test_mdSingle.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: test_mdSingle.c 2399 2023-07-13 14:28:30Z peter-liesner $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -347,9 +347,9 @@ int main (int argc, char *argv[])
     unsigned int ip[4];
     TRDP_MD_CONFIG_T        mdConfiguration =
     {mdCallback, &sSessionData,
-     {0u, 64u, 0u, 0, 0u}, TRDP_FLAGS_CALLBACK, 1000000u, 1000000u, 1000000u, 1000000u, 17225u, 17225u, 10};
+     {0u, 64u, 0u}, TRDP_FLAGS_CALLBACK, 1000000u, 1000000u, 1000000u, 1000000u, 17225u, 17225u, 10};
     TRDP_MEM_CONFIG_T       dynamicConfig   = {NULL, RESERVED_MEMORY, {0}};
-    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK, 0u, 0u};
+    TRDP_PROCESS_CONFIG_T   processConfig   = {"Me", "", "", 0, 0, TRDP_OPTION_BLOCK, 0u};
     VOS_IF_REC_T            interfaces[MAX_IF];
     BOOL8           lastRun = FALSE;
     TRDP_ERR_T      err     = TRDP_NO_ERR;
