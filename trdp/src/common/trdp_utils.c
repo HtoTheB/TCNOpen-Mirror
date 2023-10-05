@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2401 2023-10-05 11:27:47Z peter-liesner $
+* $Id: trdp_utils.c 2403 2023-10-05 13:00:31Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -1026,7 +1026,7 @@ TRDP_ERR_T  trdp_requestSocket (
                  && ((bindAddr == 0) || (iface[lIndex].bindAddr == bindAddr))
                  && (iface[lIndex].type == type)
 #ifdef PD_UNICAST_SUPPORT                 
-                 && ((dstIP == 0) || (!vos_isMulticast(dstIP) && (iface[lIndex].dstAddr == dstIP)))
+                 && ((dstIP == 0) || vos_isMulticast(dstIP) || (iface[lIndex].dstAddr == dstIP))
 #endif                 
                  && ((rcvMostly) || (iface[lIndex].sendParam.qos == params->qos))
                  && ((rcvMostly) || (iface[lIndex].sendParam.ttl == params->ttl))
