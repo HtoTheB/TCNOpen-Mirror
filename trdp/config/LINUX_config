@@ -1,5 +1,5 @@
 #//
-#// $Id: LINUX_config 2384 2023-04-03 14:44:47Z chris-wetzler $
+#// $Id: LINUX_config 2401 2023-10-05 11:27:47Z peter-liesner $
 #//
 #// DESCRIPTION    Config file to make TRDP for native Linux
 #//
@@ -28,3 +28,6 @@ CFLAGS +=  -DHAS_UUID
 LDFLAGS += -luuid
 
 LINT_SYSINCLUDE_DIRECTIVES = -i ./src/vos/posix -wlib 0 -DL_ENDIAN
+
+MD_SUPPORT = 1
+#PD_UNICAST_SUPPORT = 1

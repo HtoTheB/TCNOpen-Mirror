@@ -1,5 +1,5 @@
 #//
-#// $Id: VXWORKS_PPC_config 2081 2019-09-12 13:19:42Z bloehr $
+#// $Id: VXWORKS_PPC_config 2401 2023-10-05 11:27:47Z peter-liesner $
 #//
 #// DESCRIPTION    Config file to make TRDP for VXWORKS_PPC target
 #//
@@ -17,3 +17,6 @@ TCPOSTFIX = ppc
 DOXYPATH = /usr/local/bin/
 
 CFLAGS += -O2 -Wall -DO_DC -fstrength-reduce -fno-builtin -mlongcall -fsigned-char -D$(TARGET_FLAG)  -lpthread -DB_ENDIAN
+
+MD_SUPPORT = 1
+#PD_UNICAST_SUPPORT = 1

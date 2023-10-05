@@ -1,5 +1,5 @@
 #//
-#// $Id: LINUX_X86_64_config 2384 2023-04-03 14:44:47Z chris-wetzler $
+#// $Id: LINUX_X86_64_config 2401 2023-10-05 11:27:47Z peter-liesner $
 #//
 #// DESCRIPTION    Config file to make TRDP for POSIX_X86 target
 #//
@@ -30,5 +30,7 @@ LDFLAGS += -luuid
 LINT_SYSINCLUDE_DIRECTIVES = -i ./src/vos/posix -wlib 0 -DL_ENDIAN
 
 # Additional sources for TSN support
+MD_SUPPORT = 1
+#PD_UNICAST_SUPPORT = 1
 #TSN_SUPPORT = 1
 #SOA_SUPPORT = 1

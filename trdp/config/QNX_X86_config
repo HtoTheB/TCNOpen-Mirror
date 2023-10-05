@@ -1,5 +1,5 @@
 #//
-#// $Id: QNX_X86_config 2081 2019-09-12 13:19:42Z bloehr $
+#// $Id: QNX_X86_config 2401 2023-10-05 11:27:47Z peter-liesner $
 #//
 #// DESCRIPTION    Config file to make TRDP for QNX_X86 target
 #//
@@ -19,3 +19,6 @@ DOXYPATH = /usr/local/bin/
 
 CFLAGS += -Wall -fstrength-reduce -fno-builtin -fsigned-char -pthread -fPIC -D__USE_BSD -D_DARWIN_C_SOURCE -DPOSIX -DL_ENDIAN
 LDFLAGS += -lrt
+
+MD_SUPPORT = 1
+#PD_UNICAST_SUPPORT = 1

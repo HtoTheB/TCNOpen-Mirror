@@ -1,5 +1,5 @@
 #//
-#// $Id: OSX_64_TSN_config 2384 2023-04-03 14:44:47Z chris-wetzler $
+#// $Id: OSX_64_TSN_config 2401 2023-10-05 11:27:47Z peter-liesner $
 #//
 #// DESCRIPTION    Config file to make TRDP for OSX_X86_64 target
 #//
@@ -19,6 +19,9 @@ CFLAGS += -Wall -m64 -fno-builtin -fsigned-char -pthread -fPIC -D__USE_BSD -D_DA
 CFLAGS += -Wno-unused-label -Wno-unused-function -Wno-int-to-void-pointer-cast -Wno-self-assign
 
 CFLAGS +=  -DHAS_UUID
+
+MD_SUPPORT = 1
+#PD_UNICAST_SUPPORT = 1
 
 # TSN depends on RT_THREADS (already set in Makefile)
 # no longer required: VOS_USE_RAW_IP_SOCKET = 1
