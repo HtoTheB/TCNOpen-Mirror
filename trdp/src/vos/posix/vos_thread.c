@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  *          Copyright NewTec GmbH, 2020.
  *
- * $Id: vos_thread.c 2401 2023-10-05 11:27:47Z peter-liesner $
+ * $Id: vos_thread.c 2405 2023-10-06 08:38:13Z ahweiss $
  *
  *      PL 2023-10-05: Ticket #439 Date Time dependency of publishing PD telegrams Multicast.
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
@@ -965,7 +965,7 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
 
 
 /**********************************************************************************************************************/
-/** Return the current time in sec and µs
+/** Return the current monotonic time in sec and µs
  ** Be aware, that MONOTONIC time is returned, if available!
  ** Fallback is REALTIME, with additional consideration of time zones and daylight saving time
  *
