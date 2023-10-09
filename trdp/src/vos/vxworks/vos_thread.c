@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 2408 2023-10-09 09:02:32Z matthiasmossner $*
+ * $Id: vos_thread.c 2409 2023-10-09 09:13:43Z matthiasmossner $*
  *
+ *		MM 2023-10-09: Ticket #442: Adaption for VxWorks 23.03
  *     AHW 2023-02-21: Lint warnings
  *     CEW 2023-01-09: Ticket #408: thread-safe localtime - but be aware of static pTimeString
  *      MM 2022-05-30: Ticket #326: Implementation of missing thread functionality

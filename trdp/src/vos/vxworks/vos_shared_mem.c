@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: vos_shared_mem.c 2408 2023-10-09 09:02:32Z matthiasmossner $
+ * $Id: vos_shared_mem.c 2409 2023-10-09 09:13:43Z matthiasmossner $
  *
+ *		MM 2023-10-09: Ticket #442: Adaption for VxWorks 23.03
  *      MM 2021-03-05: Ticket #360 Adaption for VxWorks7
  *      BL 2018-03-22: Ticket #192: Compiler warnings on Windows (minGW)
  */
