@@ -15,8 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2406 2023-10-09 08:46:33Z matthiasmossner $*
+* $Id: tlp_if.c 2407 2023-10-09 08:49:22Z matthiasmossner $*
 *
+*	   MM 2023-10-09: Ticket #441 added needed packet header handling to tlp_putImmediate
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
