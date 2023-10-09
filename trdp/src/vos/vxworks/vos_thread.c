@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 2384 2023-04-03 14:44:47Z chris-wetzler $*
+ * $Id: vos_thread.c 2408 2023-10-09 09:02:32Z matthiasmossner $*
  *
  *     AHW 2023-02-21: Lint warnings
  *     CEW 2023-01-09: Ticket #408: thread-safe localtime - but be aware of static pTimeString
@@ -46,7 +46,8 @@
 #include "vos_mem.h"
 #include "vos_utils.h"
 #include "vos_private.h"
-
+#include <pthread.h>
+#include <sysLib.h>
  /***********************************************************************************************************************
  * DEFINITIONS
  */
