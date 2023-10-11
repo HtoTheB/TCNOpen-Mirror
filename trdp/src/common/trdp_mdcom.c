@@ -18,8 +18,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2401 2023-10-05 11:27:47Z peter-liesner $
+ * $Id: trdp_mdcom.c 2412 2023-10-11 08:29:15Z peter-liesner $
  *
+ *      PL 2023-10-11: Lint warnings
  *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-02-21: Lint warnigs
@@ -3246,7 +3247,9 @@ static void trdp_mdDetailSenderPacket (const TRDP_MSG_T         msgType,
         }
         else
         {
-            memcpy(pSenderElement->pPacket->data, pData, dataSize);
+            memcpy(pSenderElement->pPacket->data, pData,
+				dataSize < sizeof(*pData) ? dataSize : sizeof(*pData)
+			);
         }
     }
 
