@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2415 2023-10-13 14:14:22Z peter-liesner $
+* $Id: tlc_if.c 2416 2023-10-13 14:26:04Z peter-liesner $
 *
 *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -1353,7 +1353,7 @@ EXT_DECL TRDP_ERR_T tlc_reinitSession (
             }
             {
                 MD_ELE_T* iterMD;
-                for (iterMD = appHandle->pSndQueue; iterMD != NULL; iterMD = iterMD->pNext)
+                for (iterMD = appHandle->pMDSndQueue; iterMD != NULL; iterMD = iterMD->pNext)
                 {
                     /* Multicast sender shall be bound to an interface */
                     if ((iterMD->socketIdx < TRDP_MAX_MD_SOCKET_CNT)     /* to make the VC compiler happy */
