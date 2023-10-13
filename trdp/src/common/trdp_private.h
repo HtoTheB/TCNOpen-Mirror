@@ -15,9 +15,9 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2414 2023-10-13 14:00:51Z peter-liesner $
+ * $Id: trdp_private.h 2415 2023-10-13 14:14:22Z peter-liesner $
  *
- *      PL 2023-10-13: Ticket #431 MC sending on multihoming interface
+ *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
  *      PL 2023-10-13: Ticket #444 Lint
  *      PL 2023-10-11: Lint warnings
  *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
@@ -74,7 +74,7 @@
 #define TRDP_VERSION    2
 #define TRDP_RELEASE    2
 #define TRDP_UPDATE     24
-#define TRDP_EVOLUTION  14              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  15              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
