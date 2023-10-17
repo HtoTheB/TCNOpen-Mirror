@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2405 2023-10-06 08:38:13Z ahweiss $
+* $Id: vos_thread.c 2418 2023-10-17 11:56:51Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #439 Date Time dependency of publishing PD telegrams Multicast.
 *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
@@ -513,8 +513,8 @@ EXT_DECL void vos_getTime (
         if(QueryPerformanceCounter(&curTime) && QueryPerformanceFrequency(&timeFreq))
 #endif /*__GNUC__*/
         {
-            pTime->tv_sec = curTime.QuadPart / timeFreq.QuadPart;
-            pTime->tv_usec = (curTime.QuadPart % timeFreq.QuadPart) / (timeFreq.QuadPart / (USECS_PER_MSEC * MSECS_PER_SEC));
+            pTime->tv_sec = (long) (curTime.QuadPart / timeFreq.QuadPart);
+            pTime->tv_usec = (long) ((curTime.QuadPart % timeFreq.QuadPart) / (timeFreq.QuadPart / (USECS_PER_MSEC * MSECS_PER_SEC)));
         }
         else
         {
