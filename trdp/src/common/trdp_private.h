@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2418 2023-10-17 11:56:51Z ahweiss $
+ * $Id: trdp_private.h 2419 2023-10-18 09:59:05Z ahweiss $
  *
  *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
  *      PL 2023-10-13: Ticket #444 Lint
@@ -74,7 +74,7 @@
 #define TRDP_VERSION    2
 #define TRDP_RELEASE    2
 #define TRDP_UPDATE     24
-#define TRDP_EVOLUTION  18              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  19              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */

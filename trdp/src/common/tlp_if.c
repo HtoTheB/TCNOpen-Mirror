@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2418 2023-10-17 11:56:51Z ahweiss $*
+* $Id: tlp_if.c 2419 2023-10-18 09:59:05Z ahweiss $*
 *
 *      CK 2023-10-17: Ticket #437 Loss of UDP messages if a distant equipment is not available - tlp_republish updated
 *      PL 2023-10-13: Ticket #444 Lint
@@ -856,7 +856,7 @@ EXT_DECL TRDP_ERR_T tlp_republish (
                 TRDP_SOCK_PD,
                 appHandle->option,
                 FALSE,
-                -1,
+                VOS_INVALID_SOCKET,
                 &pubHandle->socketIdx,
                 0u);
             
