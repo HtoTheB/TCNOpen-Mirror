@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_marshall.c 2387 2023-04-21 10:02:40Z peter-liesner $
+ * $Id: tau_marshall.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
  *      SB 2021-08-09: Lint warnings

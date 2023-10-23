@@ -15,10 +15,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_thread.c 2364 2023-01-16 08:59:12Z andersoberg $
+* $Id: vos_thread.c 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *      AÖ 2023-01-16: Ticket #414: Fix compiler warnings in VOS Windows_sim
 *      AÖ 2023-01-13: Ticket #411: vos_mutexLock, in TimeSync multi core mode try 1ms timeout in WaitForSingleObject before doing threadDelay

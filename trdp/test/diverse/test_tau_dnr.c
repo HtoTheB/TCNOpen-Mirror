@@ -10,9 +10,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright NewTec GmbH, 2017-2018. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: test_tau_dnr.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: test_tau_dnr.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      BL 2018-11-09: Testing TCN-DNS for LINT findings in tau_dnr.c
  *      BL 2017-07-25: Testing TCN-DNS for Ticket #125: tau_dnr: TCN DNS support missing

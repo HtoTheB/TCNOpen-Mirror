@@ -17,9 +17,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015-2021. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 2400 2023-07-13 16:30:12Z peter-liesner $
+ * $Id: trdp-xmlprint-test.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      A� 2023-03-22: Ticket #423 and #424 Spitted sdtv2 and sdtv4 parameters, added sdtv4-srv-inst-parameter for service instances

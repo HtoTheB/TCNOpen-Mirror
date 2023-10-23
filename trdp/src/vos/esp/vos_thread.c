@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright 2018. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 2384 2023-04-03 14:44:47Z chris-wetzler $
+ * $Id: vos_thread.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *     CEW 2023-01-09: Ticket #408: thread-safe localtime - but be aware of static pTimeString
  *      BL 2018-06-25: Ticket #202: vos_mutexTrylock return value

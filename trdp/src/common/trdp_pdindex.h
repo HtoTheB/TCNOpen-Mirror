@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2019-2020. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_pdindex.h 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: trdp_pdindex.h 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - clarified comments
  *     CWE 2023-02-02: Ticket #380 Added base 2 cycle time support for high performance PD: set HIGH_PERF_BASE2=1 in make config file (see LINUX_HP2_config)

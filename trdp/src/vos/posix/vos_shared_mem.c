@@ -12,10 +12,11 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright TOSHIBA, Japan, 2013.
+ *          Copyright TOSHIBA, Japan, and others 2013.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_shared_mem.c 2278 2021-08-09 08:37:49Z s-bender $
+ * $Id: vos_shared_mem.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      SB 2021-08-09: Lint warnings
  *      BL 2019-06-11: Ticket #259: Shared memory name fixed

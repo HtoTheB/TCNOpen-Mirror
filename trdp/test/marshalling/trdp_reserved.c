@@ -12,9 +12,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp_reserved.c 1836 2019-02-05 16:11:47Z bloehr $
+ * $Id: trdp_reserved.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds
  *      BL 2018-09-05: Ticket #211 XML handling: Dataset Name should be stored in TRDP_DATASET_ELEMENT_T

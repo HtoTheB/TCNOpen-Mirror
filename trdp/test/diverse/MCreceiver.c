@@ -12,9 +12,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: MCreceiver.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: MCreceiver.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced
  *

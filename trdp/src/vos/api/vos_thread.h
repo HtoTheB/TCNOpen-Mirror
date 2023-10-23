@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_thread.h 2324 2022-03-02 13:36:05Z andersoberg $
+* $Id: vos_thread.h 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *      AÖ 2022-03-02: Ticket #389: Add vos Sim function vos_threadRegisterExisting
 *      AÖ 2019-12-17: Ticket #308: Add vos Sim function to API 

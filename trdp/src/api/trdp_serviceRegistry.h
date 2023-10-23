@@ -10,11 +10,12 @@
  *
  * @author          Bernd Loehr, NewTec GmbH, 2019-04-08
  *
- * @remarks         Copyright 2019 Bombardier Transportation & NewTec GmbH
- *
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
-/*
-* $Id: trdp_serviceRegistry.h 2105 2019-10-31 18:04:43Z bloehr $
+ /*
+* $Id: trdp_serviceRegistry.h 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *      BL 2019-08-15: Ticket #273 Units for certain standard timeout values inconsistent
 */

@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2419 2023-10-18 09:59:05Z ahweiss $*
+* $Id: tlp_if.c 2422 2023-10-23 15:57:53Z ahweiss $*
 *
 *      CK 2023-10-17: Ticket #437 Loss of UDP messages if a distant equipment is not available - tlp_republish updated
 *      PL 2023-10-13: Ticket #444 Lint

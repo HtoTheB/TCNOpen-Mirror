@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2358 2023-01-11 14:57:35Z ahweiss $
+* $Id: vos_private.h 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
 *      BL 2020-07-30: pthread includes removed

@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2015. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_cstinfo.c 2336 2022-06-03 11:50:54Z matthiasmossner $
+ * $Id: tau_cstinfo.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      MM 2021-03-11: Ticket #361: add tau_cstinfo header file - needed for alternative make/build
  *      BL 2017-05-08: Compiler warnings, doxygen comment errors

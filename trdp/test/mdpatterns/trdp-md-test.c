@@ -13,8 +13,9 @@
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright UniControls, a.s., 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-md-test.c 2376 2023-02-16 14:48:01Z chris-wetzler $
+ * $Id: trdp-md-test.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *     CWE 2023-02-14: Ticket #419 PDTestFastBase2 failed - write timestamps to log
  *     CWE 2023-01-27: Ticket #417 Multicast-N tests always failed due to unknown number of expected multicast repliers. Expected number can now be set as param

@@ -21,10 +21,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2421 2023-10-23 07:24:41Z ahweiss $
+* $Id: tau_tti.c 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-02-27: tau_getCstFctInfo interface change to fit to tau_getVehInfo() and tau_getCstInfo() 

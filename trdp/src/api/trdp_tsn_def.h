@@ -12,10 +12,12 @@
  *
  * @author          Bernd Loehr, NewTec GmbH, 2019-02-19
  *
- * @remarks         Copyright 2019, NewTec GmbH
- *
- *
- * $Id: trdp_tsn_def.h 2400 2023-07-13 16:30:12Z peter-liesner $
+ * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
+ *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
+ */
+/*
+ * $Id: trdp_tsn_def.h 2422 2023-10-23 15:57:53Z ahweiss $
  * 
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places

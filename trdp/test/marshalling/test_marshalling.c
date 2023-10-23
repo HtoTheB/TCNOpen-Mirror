@@ -12,9 +12,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: test_marshalling.c 2277 2021-08-09 07:54:04Z newtecbosse $
+ * $Id: test_marshalling.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      IB 2021-08-09: Ticket #374 'init added for TRDP_EXTRA_LABEL_T name' in datasets using TRDP_DATASET_T
  *      SB 2019-05-24: Ticket #252 Bug in unmarshalling/marshalling of TIMEDATE48 and TIMEDATE64

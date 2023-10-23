@@ -13,10 +13,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_mem.c 2420 2023-10-18 11:57:30Z ahweiss $
+ * $Id: vos_mem.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  * Changes:
  * 
@@ -729,7 +729,7 @@ EXT_DECL void vos_strncpy (
 {
 #if (defined (WIN32) || defined (WIN64))
     CHAR8 character = pStrDst[count];
-    (void) strncpy_s((char *)pStrDst, (size_t)(count) + 1, (const char *)pStrSrc, (size_t) count); /*lint -e670 -e415 count is set by strlen */
+    (void) strncpy_s((char *)pStrDst, (size_t)(count) + 1, (const char *)pStrSrc, (size_t) count); /*lint -e670 count is set by strlen */
     pStrDst[count] = character;
 #else
     (void) strncpy((char *)pStrDst, (const char *)pStrSrc, (size_t) count); /*lint !e920: return value not used */

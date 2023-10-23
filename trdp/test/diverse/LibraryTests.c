@@ -10,9 +10,9 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: LibraryTests.c 2345 2023-01-04 13:00:23Z chris-wetzler $
+ * $Id: LibraryTests.c 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      SB 2021-08-09: Compiler warnings
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)

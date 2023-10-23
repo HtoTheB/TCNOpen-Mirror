@@ -14,10 +14,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. 
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_tti_types.h 2314 2021-10-11 08:46:04Z andersoberg $
+ * $Id: tau_tti_types.h 2422 2023-10-23 15:57:53Z ahweiss $
  *
  *      AO 2021-10-10: Ticket #378 tau_tti: in TRDP_PROP_T changed prop[1] to prop[]
  *     AHW 2021-10-07: Ticket #378 tau_tti: ttiConsistInfoEntry writes static vehicle properties out of memory

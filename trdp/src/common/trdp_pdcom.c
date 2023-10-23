@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2396 2023-05-24 08:36:53Z peter-liesner $
+* $Id: trdp_pdcom.c 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD

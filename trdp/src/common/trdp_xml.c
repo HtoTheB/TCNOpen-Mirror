@@ -13,9 +13,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- */
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
+*/
 /*
-* $Id: trdp_xml.c 2365 2023-01-20 14:26:11Z ahweiss $
+* $Id: trdp_xml.c 2422 2023-10-23 15:57:53Z ahweiss $
 *
 *     AHW 2023-01-20: Ticket #415: trdp_XMLGet Attribute: ULONG_MAX should be an allowed value
 *      BL 2020-01-07: Ticket #284: Parsing Unsigned Values from Config XML
