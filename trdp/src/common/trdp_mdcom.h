@@ -1,3 +1,4 @@
+
 /******************************************************************************/
 /**
  * @file            trdp_mdcom.h
@@ -15,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2020. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.h 2400 2023-07-13 16:30:12Z peter-liesner $
+ * $Id: trdp_mdcom.h 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -29,15 +30,22 @@
 #ifndef TRDP_MDCOM_H
 #define TRDP_MDCOM_H
 
+
 /*******************************************************************************
  * INCLUDES
  */
 
 #include "trdp_private.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if MD_SUPPORT
 /*******************************************************************************
  * DEFINES
  */
+
 
 
 /*******************************************************************************
@@ -128,4 +136,10 @@ TRDP_ERR_T trdp_mdCall (const TRDP_MSG_T        msgType,
                         UINT32                  dataSize,
                         const TRDP_URI_USER_T   srcURI,
                         const TRDP_URI_USER_T   destURI);
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif

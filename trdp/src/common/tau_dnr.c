@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 2358 2023-01-11 14:57:35Z ahweiss $
+ * $Id: tau_dnr.c 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *     AHW 2023-01-11: Lint warnigs and Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
  *     AHW 2023-01-10: Ticket #409 In updateTCNDNSentry(), the parameter noDesc of vos_select() is uninitialized if tlc_getInterval() fails
@@ -56,6 +56,11 @@
 #include "vos_mem.h"
 #include "vos_sock.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if MD_SUPPORT
 
 /***********************************************************************************************************************
  * DEFINES
@@ -1361,3 +1366,8 @@ EXT_DECL TRDP_ERR_T tau_addr2Uri (
 }
 
 /* ---------------------------------------------------------------------------- */
+#endif 
+
+#ifdef __cplusplus
+}
+#endif

@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 2282 2021-08-10 07:13:15Z s-bender $
+ * $Id: trdp_stats.c 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *      SB 2021-08.09: Ticket #375 Replaced parameters of vos_memCount to prevent alignment issues
  *      BL 2019-02-01: Ticket #234 Correcting Statistics ComIds & defines
@@ -44,6 +44,10 @@
 #include "trdp_utils.h"
 #include "vos_mem.h"
 #include "vos_thread.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*******************************************************************************
  * DEFINES
@@ -519,6 +523,8 @@ void    trdp_UpdateStats (
             }
         }
     }
+
+#if MD_SUPPORT
     /* Count the joins on MD sockets, as well */
     for (lIndex = 0u; lIndex < trdp_getCurrentMaxSocketCnt(TRDP_SOCK_MD_UDP); lIndex++)
     {
@@ -530,6 +536,7 @@ void    trdp_UpdateStats (
             }
         }
     }
+#endif
 
 }
 
@@ -632,3 +639,8 @@ void    trdp_pdPrepareStats (
     /* mark the data as valid */
     pPacket->privFlags = (TRDP_PRIV_FLAGS_T) (pPacket->privFlags & ~(TRDP_PRIV_FLAGS_T)TRDP_INVALID_DATA);
 }
+
+
+#ifdef __cplusplus
+}
+#endif

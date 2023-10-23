@@ -18,7 +18,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
  /*
- * $Id: trdp_mdcom.c 2413 2023-10-13 13:57:18Z peter-liesner $
+ * $Id: trdp_mdcom.c 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *      PL 2023-10-13: Ticket #444 Lint
  *      PL 2023-10-11: Lint warnings
@@ -79,6 +79,7 @@
  *
  */
 
+
 /***********************************************************************************************************************
  * INCLUDES
  */
@@ -90,7 +91,11 @@
 #include "trdp_utils.h"
 #include "trdp_mdcom.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+#if MD_SUPPORT
 /***********************************************************************************************************************
  * DEFINES
  */
@@ -3786,3 +3791,8 @@ TRDP_ERR_T trdp_mdConfirm (
     }
     return errv;    /*lint !e438 unused pSenderElement */
 }
+#endif
+
+#ifdef __cplusplus
+}
+#endif

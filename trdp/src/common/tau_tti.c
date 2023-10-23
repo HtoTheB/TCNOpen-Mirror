@@ -24,7 +24,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2016-2020. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2400 2023-07-13 16:30:12Z peter-liesner $
+* $Id: tau_tti.c 2421 2023-10-23 07:24:41Z ahweiss $
 *
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-02-27: tau_getCstFctInfo interface change to fit to tau_getVehInfo() and tau_getCstInfo() 
@@ -97,9 +97,16 @@
 
 #include "tau_cstinfo.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if MD_SUPPORT
 /***********************************************************************************************************************
  * DEFINES
  */
+
+
 
 /***********************************************************************************************************************
  * TYPEDEFS
@@ -2605,3 +2612,9 @@ EXT_DECL UINT8 tau_getOwnTrnCstNo (
     }
     return 0u;
 }
+
+#endif
+
+#ifdef __cplusplus
+}
+#endif

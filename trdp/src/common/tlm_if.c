@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 2401 2023-10-05 11:27:47Z peter-liesner $
+* $Id: tlm_if.c 2421 2023-10-23 07:24:41Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -56,6 +56,7 @@
 extern "C" {
 #endif
 
+#if MD_SUPPORT
 /***********************************************************************************************************************
  * TYPEDEFS
  */
@@ -1005,6 +1006,8 @@ EXT_DECL TRDP_ERR_T tlm_abortSession (
 
     return err;
 }
+
+#endif
 
 #ifdef __cplusplus
 }

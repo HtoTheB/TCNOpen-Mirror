@@ -16,7 +16,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_dnr.h 1977 2019-08-13 14:06:25Z s-bender $
+ * $Id: tau_dnr.h 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *      SB 2019-08-13: Ticket #268 Handling Redundancy Switchover of DNS/ECSP server
  *      SB 2019-02-11: Ticket #237: tau_initDnr: Parameter waitForDnr to reduce wait times added
@@ -37,6 +37,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#if MD_SUPPORT
 
 /***********************************************************************************************************************
  * DEFINES
@@ -527,6 +529,8 @@ EXT_DECL TRDP_ERR_T tau_addr2OpCstNo (
 /* ---------------------------------------------------------------------------- */
 
 #endif /* if 0 */
+
+#endif
 
 #ifdef __cplusplus
 }

@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013. All rights reserved.
  */
  /*
- * $Id: tau_ctrl.h 2385 2023-04-12 07:06:17Z ckhangani $
+ * $Id: tau_ctrl.h 2421 2023-10-23 07:24:41Z ahweiss $
  *
  */
 
@@ -35,6 +35,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#if MD_SUPPORT
 
 /***********************************************************************************************************************
  * DEFINES
@@ -163,6 +165,8 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirmReply(TRDP_APP_SESSION_T      appHandl
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif
 
 #endif /* TAU_CTRL_H */

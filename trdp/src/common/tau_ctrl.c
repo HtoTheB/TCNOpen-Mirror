@@ -15,7 +15,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
  */
 /*
-* $Id: tau_ctrl.c 2400 2023-07-13 16:30:12Z peter-liesner $
+* $Id: tau_ctrl.c 2421 2023-10-23 07:24:41Z ahweiss $
 *
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      CK 2023-04-12: Ticket #422 Include redundancy support in ECSP control
@@ -47,6 +47,12 @@
 #include "trdp_utils.h"
 #include "trdp_if_light.h"
 #include "tau_ctrl.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if MD_SUPPORT
 
 /**********************************************************************************************************************
  * DEFINES
@@ -478,3 +484,9 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirmReply(TRDP_APP_SESSION_T      appHandl
 
    return (TRDP_NOINIT_ERR);
 }
+
+#endif
+
+#ifdef __cplusplus
+}
+#endif

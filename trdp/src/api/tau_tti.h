@@ -17,7 +17,7 @@
  *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2014. All rights reserved.
  */
  /*
- * $Id: tau_tti.h 2380 2023-02-27 13:11:51Z ahweiss $
+ * $Id: tau_tti.h 2421 2023-10-23 07:24:41Z ahweiss $
  *
  *     AHW 2023-01-24: Ticket #416: Interface change for tau_getCstInfo(), tau_getStaticCstInfo(), tau_getVehInfo()
  *     AHW 2023-01-24: Naming #416: unified tau_getTrDir()/tau_getOpTrDir() -> tau_getTrnDir()/tau_getOpTrnDir()
@@ -39,6 +39,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#if MD_SUPPORT
 
 /***********************************************************************************************************************
  * DEFINES
@@ -84,6 +86,8 @@ extern "C" {
 
 */
 
+
+#if MD_SUPPORT
 
 /**********************************************************************************************************************/
 /**    Function to init TTI access
@@ -408,6 +412,9 @@ EXT_DECL UINT8 tau_getOwnOpCstNo (
 EXT_DECL UINT8 tau_getOwnTrnCstNo (
     TRDP_APP_SESSION_T appHandle);
 
+#endif
+
+#endif 
 
 #ifdef __cplusplus
 }
