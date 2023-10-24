@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_sock.c 2423 2023-10-24 07:36:03Z ahweiss $
  *
  *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -354,6 +354,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
     return VOS_NO_ERR;
 }
 
+#if MD_SUPPORT
 /**********************************************************************************************************************/
 /** Create a TCP socket.
  *  Return a socket descriptor for further calls. The socket options are optional and can be
@@ -395,6 +396,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
     vos_printLog(VOS_LOG_INFO, "vos_sockOpenTCP: socket()=%d success\n", sock);
     return VOS_NO_ERR;
 }
+#endif
 
 /**********************************************************************************************************************/
 /** Close a socket.
@@ -963,12 +965,13 @@ EXT_DECL VOS_ERR_T vos_sockBind (
     return VOS_NO_ERR;
 }
 
+#if MD_SUPPORT
 /**********************************************************************************************************************/
 /** Listen for incoming connections.
  *
  *
  *  @param[in]      sock            socket descriptor
- *  @param[in]      backlog            maximum connection attempts if system is busy
+ *  @param[in]      backlog         maximum connection attempts if system is busy
  *
  *  @retval         VOS_NO_ERR      no error
  *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
@@ -1082,6 +1085,7 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
 {
     return VOS_NO_ERR;
 }
+#endif
 
 /**********************************************************************************************************************/
 /** Set Using Multicast I/F

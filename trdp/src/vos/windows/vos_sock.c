@@ -16,7 +16,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2422 2023-10-23 15:57:53Z ahweiss $
+* $Id: vos_sock.c 2423 2023-10-24 07:36:03Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -891,6 +891,7 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
     return VOS_NO_ERR;
 }
 
+#if MD_SUPPORT
 /**********************************************************************************************************************/
 /** Create a TCP socket.
  *  Return a socket descriptor for further calls. The socket options are optional and can be
@@ -940,6 +941,8 @@ EXT_DECL VOS_ERR_T vos_sockOpenTCP (
     *pSock = (VOS_SOCK_T) sock;
     return VOS_NO_ERR;
 }
+
+#endif
 
 /**********************************************************************************************************************/
 /** Close a socket.
@@ -1539,6 +1542,7 @@ EXT_DECL VOS_ERR_T vos_sockBind (
     return VOS_NO_ERR;
 }
 
+#if MD_SUPPORT
 /**********************************************************************************************************************/
 /** Listen for incoming connections.
  *
@@ -1901,7 +1905,7 @@ EXT_DECL VOS_ERR_T vos_sockSetMulticastIf (
     }
     return result;
 }
-
+#endif
 
 /**********************************************************************************************************************/
 /** Determines the address to bind to since the behaviour in the different OS is different

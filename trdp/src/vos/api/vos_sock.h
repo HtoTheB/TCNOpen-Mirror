@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_sock.h 2423 2023-10-24 07:36:03Z ahweiss $
  *
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -414,6 +414,8 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
     VOS_SOCK_T              *pSock,
     const VOS_SOCK_OPT_T    *pOptions);
 
+#if MD_SUPPORT
+
 /**********************************************************************************************************************/
 /** Create a TCP socket.
  *  Return a socket descriptor for further calls. The socket options are optional and can be
@@ -430,6 +432,8 @@ EXT_DECL VOS_ERR_T vos_sockOpenUDP (
 EXT_DECL VOS_ERR_T vos_sockOpenTCP (
     VOS_SOCK_T              *pSock,
     const VOS_SOCK_OPT_T    *pOptions);
+
+#endif
 
 /**********************************************************************************************************************/
 /** Close a socket.
@@ -574,6 +578,7 @@ EXT_DECL VOS_ERR_T vos_sockBind (
     UINT32      ipAddress,
     UINT16      port);
 
+#if MD_SUPPORT
 /**********************************************************************************************************************/
 /** Listen for incoming TCP connections.
  *
@@ -673,6 +678,8 @@ EXT_DECL VOS_ERR_T vos_sockReceiveTCP (
     VOS_SOCK_T  sock,
     UINT8       *pBuffer,
     UINT32      *pSize);
+
+#endif
 
 /**********************************************************************************************************************/
 /** Set Using Multicast I/F
