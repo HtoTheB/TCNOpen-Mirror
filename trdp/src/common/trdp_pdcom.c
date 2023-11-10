@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2424 2023-11-10 07:39:45Z ckhangani $
+* $Id: trdp_pdcom.c 2425 2023-11-10 08:11:56Z ckhangani $
 *
 *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
@@ -775,8 +775,7 @@ TRDP_ERR_T  trdp_pdReceive (
     }
 
     /* Ticket #322 Subscriber multicast message routing in multi-home device */
-    /* Note that if communication is done within the same device, the srcIfAddr can be localhost address */
-    if ((appHandle->realIP != 0u) && (srcIfAddr != 0) && (appHandle->realIP != srcIfAddr) && (srcIfAddr != 0x7f000001))
+    if ((appHandle->realIP != 0u) && (srcIfAddr != 0) && (appHandle->realIP != srcIfAddr))
     {
         /* Packet does not belong to this session, ignore packet */
         /* If you want to work with more than one local IP, you need to start a separate session for each IP */
