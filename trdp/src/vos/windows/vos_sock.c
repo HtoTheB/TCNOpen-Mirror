@@ -16,7 +16,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2423 2023-10-24 07:36:03Z ahweiss $
+* $Id: vos_sock.c 2426 2023-12-08 14:01:17Z peter-liesner $
 *
 *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -670,7 +670,7 @@ EXT_DECL VOS_ERR_T vos_ifnameFromVlanId(
             {
                 if (isdigit(*p))
                 {
-                    val = (UINT16) strtol(p, &p, 4);
+                    val = (UINT16) strtol(p, &p, 10);
                 }
                 else
                 {

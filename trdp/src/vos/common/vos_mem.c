@@ -16,7 +16,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_mem.c 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_mem.c 2426 2023-12-08 14:01:17Z peter-liesner $
  *
  * Changes:
  * 
@@ -729,7 +729,7 @@ EXT_DECL void vos_strncpy (
 {
 #if (defined (WIN32) || defined (WIN64))
     CHAR8 character = pStrDst[count];
-    (void) strncpy_s((char *)pStrDst, (size_t)(count) + 1, (const char *)pStrSrc, (size_t) count); /*lint -e670 count is set by strlen */
+    (void) strncpy_s((char *)pStrDst, (size_t)(count) + 1, (const char *)pStrSrc, (size_t) count); /*lint -e415 -e670 count is set by strlen */
     pStrDst[count] = character;
 #else
     (void) strncpy((char *)pStrDst, (const char *)pStrSrc, (size_t) count); /*lint !e920: return value not used */

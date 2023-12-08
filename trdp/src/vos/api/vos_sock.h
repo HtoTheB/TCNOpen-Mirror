@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 2423 2023-10-24 07:36:03Z ahweiss $
+ * $Id: vos_sock.h 2426 2023-12-08 14:01:17Z peter-liesner $
  *
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -133,7 +133,7 @@ extern "C" {
 #if defined(SOCKET) || defined (WIN32) || defined (WIN64)
 #define VOS_SOCK_T          SOCKET
 #else
-#define VOS_SOCK_T          INT32
+    typedef INT32 VOS_SOCK_T;
 #endif
 
 #ifdef INVALID_SOCKET                           /* In Windows SOCKET is unsigned int */
