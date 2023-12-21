@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_private.h 2430 2023-12-21 13:55:22Z ahweiss $
  *
+ *     AHW 2023-12-21: TRDP version 3.0.0.0 generated based on trunk 2427
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced

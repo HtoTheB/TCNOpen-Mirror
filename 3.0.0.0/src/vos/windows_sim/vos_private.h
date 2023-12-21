@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2422 2023-10-23 15:57:53Z ahweiss $
+* $Id: vos_private.h 2430 2023-12-21 13:55:22Z ahweiss $
 *
+*     AHW 2023-12-21: TRDP version 3.0.0.0 generated based on trunk 2427
 *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
 *      AÖ 2019-12-18: Ticket #307: Avoid vos functions to block TimeSync
 *      AÖ 2019-11-11: Ticket #290: Add support for Virtualization on Windows, copy from windows VOS
@@ -46,8 +47,8 @@ extern "C" {
  * DEFINES
  */
 
-#define VOS_VERSION     1u
-#define VOS_RELEASE     1u  /* 322: interface change in vos_sockReceiveUDP() */
+#define VOS_VERSION     3u  /* #399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
+#define VOS_RELEASE     0u  /* #322: interface change in vos_sockReceiveUDP() */
 #define VOS_UPDATE      0u
 #define VOS_EVOLUTION   0u
 
