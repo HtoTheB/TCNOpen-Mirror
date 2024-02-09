@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: vos_thread.c 2432 2024-02-09 09:52:49Z ahweiss $
+ * $Id: vos_thread.c 2434 2024-02-09 11:34:44Z ahweiss $
  *
  *     AHW 2024-02-07: Ticket #447 Wrong errno handling in vos_threadDelay() function
  *      PL 2023-10-05: Ticket #439 Date Time dependency of publishing PD telegrams Multicast.
@@ -404,15 +404,22 @@ static void vos_runCyclicThread (
         }
 
         /* Sleep until deadline */
-        while (clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, NULL) != 0)
+        do
         {
-            if (errno != EINTR)
-            {
-                vos_printLog(VOS_LOG_ERROR,
-                             "cyclic thread %s sleep error.\n",
-                             name);
-            }
+            pthread_testcancel();
+
+            /* In contrast to nanosleep, clock_nanosleep does not set errno
+               but encodes error conditions in the return value.              */
+            retCode = clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, NULL);
+        } while (retCode == EINTR);
+
+        if (retCode != 0)
+        {
+            vos_printLog(VOS_LOG_ERROR,
+                "cyclic thread %s sleep error.\n",
+                name);
         }
+
         pFunction(pArguments);
 
         /* calculate next deadline */
@@ -433,9 +440,7 @@ static void vos_runCyclicThread (
         }
         deadline.tv_nsec  = nowMono.tv_nsec;
         deadline.tv_sec   = nowMono.tv_sec;
-
-        pthread_testcancel();
-    }
+     }
 
 #else
     for (;; )

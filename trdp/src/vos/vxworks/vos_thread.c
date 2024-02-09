@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_thread.c 2432 2024-02-09 09:52:49Z ahweiss $*
+ * $Id: vos_thread.c 2434 2024-02-09 11:34:44Z ahweiss $*
  *
  *     AHW 2024-02-07: Ticket #447 Wrong errno handling in vos_threadDelay() function
  *		MM 2023-10-09: Ticket #442: Adaption for VxWorks 23.03
@@ -473,6 +473,7 @@ EXT_DECL VOS_ERR_T vos_threadDelay (
         target_time.tv_nsec -= 1000000000;
     }
 
+    pthread_testcancel();
     ret = clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &target_time, NULL);
 
     if (ret != 0)
