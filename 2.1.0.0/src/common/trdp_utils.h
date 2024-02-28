@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2019. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_utils.h 2194 2020-08-07 14:58:59Z bloehr $
+* $Id: trdp_utils.h 2437 2024-02-28 13:44:45Z ahweiss $
 *
 *      BL 2020-08-07: Ticket #317 Bug in trdp_indeedFindSubAddr() (HIGH_PERFORMANCE)
 *      SB 2020-03-30: Ticket #311: removed trdp_getSeqCnt() because redundant publisher should not run on the same interface

@@ -12,10 +12,10 @@
  *
  * @remarks This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0.
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
- *          Copyright Bombardier Transportation Inc. or its subsidiaries and others, 2013-2021. All rights reserved.
+ *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2296 2021-08-12 09:10:10Z ahweiss $
+* $Id: tlp_if.c 2437 2024-02-28 13:44:45Z ahweiss $
 *
 *     IBO 2021-08-12: Ticket #355 Redundant PD default state should be follower
 *     AHW 2021-05-04: Ticket #354 Sequence counter synchronization error working in redundancy mode
