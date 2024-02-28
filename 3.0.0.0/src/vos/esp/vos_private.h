@@ -15,9 +15,8 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2430 2023-12-21 13:55:22Z ahweiss $
+ * $Id: vos_private.h 2436 2024-02-28 13:40:17Z ahweiss $
  *
- *     AHW 2023-12-21: TRDP version 3.0.0.0 generated based on trunk 2427
  *      BL 2018-06-20: Ticket #184: Building with VS 2015: WIN64 and Windows threads (SOCKET instead of INT32)
  *
  */
@@ -45,8 +44,8 @@ extern "C" {
 
 /* The VOS version can be predefined as CFLAG   */
 #ifndef VOS_VERSION
-#define VOS_VERSION            3u /* #399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
-#define VOS_RELEASE            0u
+#define VOS_VERSION            3u
+#define VOS_RELEASE            0u /* 399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
 #define VOS_UPDATE             0u
 #define VOS_EVOLUTION          0u
 #endif
