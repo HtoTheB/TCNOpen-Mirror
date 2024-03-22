@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: vos_thread.c 2434 2024-02-09 11:34:44Z ahweiss $
+ * $Id: vos_thread.c 2439 2024-03-22 13:57:45Z ahweiss $
  *
+ *     AHW 2024-03-22: Ticket #445 Fix and improve QNX support 
  *     AHW 2024-02-07: Ticket #447 Wrong errno handling in vos_threadDelay() function
  *      PL 2023-10-05: Ticket #439 Date Time dependency of publishing PD telegrams Multicast.
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
@@ -66,7 +67,11 @@
 #include <sched.h>
 
 #ifdef HAS_UUID
+#ifdef __QNXNTO__
+#include <uuid.h>
+#else
 #include <uuid/uuid.h>
+#endif
 #else
 #warning "Using internal uuid-generation does not conform to standard!"
 #include "vos_sock.h"
