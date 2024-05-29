@@ -17,7 +17,7 @@
        #
        #  VERSION       : 1.19.0.0
        #
-       #  SVN           : $Id: trdp-config.xsd 2422 2023-10-23 15:57:53Z ahweiss $
+       #  SVN           : $Id: trdp-config.xsd 2442 2024-05-29 14:16:36Z ahweiss $
        #
        #  HISTORY       :
        #                            1.19.0.0  Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -1108,7 +1108,7 @@
       </xs:attribute>
       <xs:attribute name="data-set-id" type="uint32" use="optional">
         <xs:annotation>
-          <xs:documentation>ID for dataset to bve exchanged.</xs:documentation>
+          <xs:documentation>ID for dataset to be exchanged.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
       <xs:attribute name="com-parameter-id" type="uint32" use="optional">
