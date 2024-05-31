@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: rep-testreplier.c 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: rep-testreplier.c 2445 2024-05-31 09:12:34Z ahweiss $
  * 
+ *     AHW 2024-05-31: Ticket #456 Example crashes with memory fault
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
  *      SB 2021-08-09: Compiler warnings
@@ -242,7 +243,7 @@ int main(int argc, char** argv)
     UINT32           replierIP=0; 
     TRDP_FDS_T       rfds;
     TRDP_TIME_T      tv;
-    TRDP_SOCK_T      noOfDesc;   /* #399 */
+    TRDP_SOCK_T      noOfDesc=TRDP_INVALID_SOCKET;   /* #399 #456 */
     struct timeval   tv_null = { 0, 0 };
     int              rv;
     TRDP_MD_CONFIG_T mdConfiguration = {mdCallback, 
@@ -366,7 +367,6 @@ int main(int argc, char** argv)
     while (1)
     {   
         FD_ZERO(&rfds);
-        noOfDesc = 0;
         tlc_getInterval(appSessionReplier, &tv, &rfds, &noOfDesc);
         rv = vos_select(noOfDesc, &rfds, NULL, NULL, &tv_null);  /* #399 */
         tlc_process(appSessionReplier, &rfds, &rv);
