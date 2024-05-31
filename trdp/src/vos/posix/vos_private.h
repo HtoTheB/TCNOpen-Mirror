@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_private.h 2442 2024-05-29 14:16:36Z ahweiss $
+ * $Id: vos_private.h 2444 2024-05-31 07:52:47Z ahweiss $
  *
  *      RD 2024-05-29: Ticket #454 #455 QNX compiler warnings on strerror_r
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -54,7 +54,7 @@ extern "C" {
 #define VOS_VERSION            3u
 #define VOS_RELEASE            0u /* 399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
 #define VOS_UPDATE             0u
-#define VOS_EVOLUTION          2u
+#define VOS_EVOLUTION          3u
 #endif
 
 /* Defines for Linux TSN ready sockets (see socket.h) */

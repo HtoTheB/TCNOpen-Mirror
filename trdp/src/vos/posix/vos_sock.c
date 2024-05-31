@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2024. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2440 2024-05-29 13:52:36Z ahweiss $
+* $Id: vos_sock.c 2444 2024-05-31 07:52:47Z ahweiss $
 *
 *      RD 2024-05-29: Ticket #454 QNX vos_getMacAddress implementation
 *     AHW 2024-03-22: Ticket #445 Fix and improve QNX support
@@ -81,6 +81,7 @@
 #   include <net/if.h>
 #   include <net/if_types.h>
 #ifdef __QNXNTO__
+#   include <net/if_dl.h>  /* #454 */
 #   include <gulliver.h>
 #   define bswap_16(x) ENDIAN_RET16(x)
 #   define bswap_32(x) ENDIAN_RET32(x)
