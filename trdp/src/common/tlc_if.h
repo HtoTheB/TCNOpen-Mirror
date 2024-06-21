@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: tlc_if.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: tlc_if.h 2447 2024-06-21 14:56:11Z ahweiss $
  *
  *      BL 2019-06-17: Ticket #264 Provide service oriented interface
  *      BL 2019-06-17: Ticket #162 Independent handling of PD and MD to reduce jitter
@@ -59,4 +59,4 @@ TRDP_APP_SESSION_T *trdp_sessionQueue (void);
 }
 #endif
 
-#endif  /* TRDP_IF_LIGHT_H    */
+#endif  /* TLC_IF_H    */
