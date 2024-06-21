@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: test_trafficShaping.c 2445 2024-05-31 09:12:34Z ahweiss $
+ * $Id: test_trafficShaping.c 2446 2024-06-21 14:38:55Z ahweiss $
  *
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -38,7 +38,7 @@
  * DEFINITIONS
  */
 #define APP_VERSION     "1.0"
-
+#define APP_USE         "This tool sends PD messages to an ED."
 #define DATA_MAX        1000
 
 #define PD_COMID1          1001
@@ -100,7 +100,7 @@ void usage (const char *appName)
 {
     printf("%s: Version %s\t(%s - %s)\n", appName, APP_VERSION, __DATE__, __TIME__);
     printf("Usage of %s\n", appName);
-    printf("This tool sends PD messages to an ED.\n"
+    printf(APP_USE"\n"
            "Arguments are:\n"
            "-o own IP address in dotted decimal\n"
            "-t target IP address in dotted decimal\n"
