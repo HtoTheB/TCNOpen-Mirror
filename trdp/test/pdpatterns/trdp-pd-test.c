@@ -15,7 +15,7 @@
  *          Copyright UniControls, 2013. All rights reserved.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-pd-test.c 2446 2024-06-21 14:38:55Z ahweiss $
+ * $Id: trdp-pd-test.c 2450 2024-06-24 09:41:34Z ahweiss $
  *
  *     AHW 2024-06-19: Ticket #458 Unify cmd line interfaces of tests
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -849,6 +849,15 @@ static void process_data()
         _set_color_default();
     }
 
+    if (printDetailedStatistics)
+    {
+        printOwnStatistics(apph, TRUE);
+    }
+    else
+    {
+        printOwnStatistics(apph, FALSE);
+    }
+
     /* increment cycle counter  */
     ++cycle;
 }
@@ -1016,7 +1025,7 @@ int main(int argc, char* argv[])
         strcpy(sourcip, vos_ipDotted(srcip));
         strcpy(destip, vos_ipDotted(dstip));
         strcpy(mcgroup, vos_ipDotted(mcast));
-        printf("\nParameters:\n  localip  = %s\n  remoteip = %s\n  mcast    = %s\n  logfile  = %s\n  mode     = %s\n\n",
+        printf("\nParameters:\n  localip    = %s\n  remoteip   = %s\n  mcast      = %s\n  logfile    = %s\n  statistics = %s\n\n",
             sourcip, destip, mcgroup,
             (pLogFile == NULL ? "" : filename),
             (printDetailedStatistics == TRUE) ? "detailed statistics" : "statistics overview");
