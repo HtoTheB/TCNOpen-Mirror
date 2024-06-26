@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2451 2024-06-26 08:05:27Z ahweiss $
+ * $Id: trdp_private.h 2452 2024-06-26 15:34:32Z ahweiss $
  *
  *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
  *      PL 2023-10-13: Ticket #444 Lint
@@ -74,7 +74,7 @@
 #define TRDP_VERSION    3
 #define TRDP_RELEASE    0
 #define TRDP_UPDATE     24
-#define TRDP_EVOLUTION  51              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  52              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */

@@ -14,8 +14,9 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: rep-testcaller.c 2446 2024-06-21 14:38:55Z ahweiss $
+ * $Id: rep-testcaller.c 2452 2024-06-26 15:34:32Z ahweiss $
  *
+ *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
  *     AHW 2024-06-19: Ticket #458 Unify cmd line interfaces of tests
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -151,7 +152,7 @@ static void manageMDCall(TRDP_APP_SESSION_T appSession,
                               TRDP_FLAGS_DEFAULT,
                               1,
                               timeOut,
-                              NULL,
+                              TRDP_MD_DEFAULT_RETRIES,       /* #261 send params replaced by retries */
                               pData,
                               datasize,
                               NULL,
@@ -191,10 +192,9 @@ static  void mdCallback(
                     /* sending confirm for 99 times */
                     /* recvd. MQ from our replier */
                     /* send confirm */ 
-                    tlm_confirm(appSessionCaller,
+                    tlm_confirm(appSessionCaller,                                  /* #261 send params removed */
                                 (const TRDP_UUID_T*)pMsg->sessionId,
-                                0,
-                                NULL);
+                                0);
                 }
                 switchConfirmOnOff++; /* wrap around shall be allowed */
                 /* enable next call */
@@ -229,11 +229,8 @@ static  void mdCallback(
                     {
                         TRDP_ERR_T errCode;
                         
-                        errCode = tlm_confirm(appSessionCaller,
-                            (const TRDP_UUID_T*)pMsg->sessionId,
-                            0,
-                            NULL);
-                        
+                        errCode = tlm_confirm(appSessionCaller,                  /* #261 send params removed */
+                                              (const TRDP_UUID_T*)pMsg->sessionId, 0);
                         if (errCode != TRDP_NO_ERR)
                         {
                             printf("unable to send confirm(% d)\n", errCode);

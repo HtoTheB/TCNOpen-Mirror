@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tau_ctrl.c 2422 2023-10-23 15:57:53Z ahweiss $
+* $Id: tau_ctrl.c 2452 2024-06-26 15:34:32Z ahweiss $
 *
+*     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *      CK 2023-04-12: Ticket #422 Include redundancy support in ECSP control
 *      SB 2021-08-05: Ticket #356 copying safetyTrail in tau_requestEcspConfirm from proper position in struct
@@ -447,7 +448,7 @@ EXT_DECL TRDP_ERR_T tau_requestEcspConfirm ( TRDP_APP_SESSION_T         appHandl
                               TRDP_FLAGS_NONE,                /* pktFlags */
                               1,                              /* numReplies */
                               ECSP_CONF_REPLY_TIMEOUT,        /* replyTimeout */
-                              NULL,                           /* pSendParam */
+                              TRDP_MAX_MD_RETRIES,            /* retries */      /* #261 send param replaced by retries */
                               (const UINT8 *) &telegram,
                               sizeof(TRDP_ECSP_CONF_REQUEST_T),
                               NULL,                           /* srcUri */
