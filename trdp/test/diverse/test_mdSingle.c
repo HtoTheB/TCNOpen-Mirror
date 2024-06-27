@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: test_mdSingle.c 2452 2024-06-26 15:34:32Z ahweiss $
+ * $Id: test_mdSingle.c 2453 2024-06-27 10:18:34Z ahweiss $
  *
  *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
  *     AHW 2024-06-25: Ticket #440 etbTopoCnt and opTrnTopoCnt values in TRDP_MSG_MP/TRDP_MSG_MQ
@@ -55,6 +55,9 @@
 #define PREALLOCATE         {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
 #define MAX_IF              10
 
+#define ETB_TOPO_COUNT      1
+#define OP_TOPO_COUNT       2
+
 typedef struct testData
 {
     UINT32  comID;
@@ -82,7 +85,7 @@ typedef struct sSessionData
     UINT32              sDataSize;
 } SESSION_DATA_T;
 
-SESSION_DATA_T  sSessionData = {FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, MD_COMID1, FALSE, 1, 2, NULL, NULL, NULL, TRUE, 0u};
+SESSION_DATA_T  sSessionData = {FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, MD_COMID1, FALSE, ETB_TOPO_COUNT, OP_TOPO_COUNT, NULL, NULL, NULL, TRUE, 0u};
 
 UINT32          ownIP = 0u;
 
