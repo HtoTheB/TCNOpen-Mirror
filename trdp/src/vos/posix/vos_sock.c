@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2024. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2444 2024-05-31 07:52:47Z ahweiss $
+* $Id: vos_sock.c 2454 2024-06-27 11:22:28Z ahweiss $
 *
 *      RD 2024-05-29: Ticket #454 QNX vos_getMacAddress implementation
 *     AHW 2024-03-22: Ticket #445 Fix and improve QNX support
@@ -511,11 +511,11 @@ EXT_DECL UINT64 vos_ntohll (
 }
 
 /**********************************************************************************************************************/
-/** Convert IP address from dotted dec. to !host! endianess
+/** Convert IP address from dotted dec. to !host! endianness
  *
  *  @param[in]          pDottedIP     IP address as dotted decimal.
  *
- *  @retval             address in UINT32 in host endianess
+ *  @retval             address in UINT32 in host endianness
  *                      0 (Zero) if error
  */
 EXT_DECL UINT32 vos_dottedIP (
@@ -533,9 +533,9 @@ EXT_DECL UINT32 vos_dottedIP (
 }
 
 /**********************************************************************************************************************/
-/** Convert IP address to dotted dec. from !host! endianess.
+/** Convert IP address to dotted dec. from !host! endianness.
  *
- *  @param[in]          ipAddress   address in UINT32 in host endianess
+ *  @param[in]          ipAddress   address in UINT32 in host endianness
  *
  *  @retval             IP address as dotted decimal.
  */

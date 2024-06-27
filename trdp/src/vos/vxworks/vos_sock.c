@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_sock.c 2454 2024-06-27 11:22:28Z ahweiss $
  *
  *		MM 2023-10-09: Ticket #442: Adaption for VxWorks 23.03
  *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
@@ -408,11 +408,11 @@ EXT_DECL UINT64 vos_ntohll (
 }
 
 /**********************************************************************************************************************/
-/** Convert IP address from dotted dec. to !host! endianess
+/** Convert IP address from dotted dec. to !host! endianness
  *
  *  @param[in]          pDottedIP   IP address as dotted decimal.
  *
- *  @retval             IP address in UINT32 in host endianess
+ *  @retval             IP address in UINT32 in host endianness
  */
 EXT_DECL UINT32 vos_dottedIP (
     const CHAR8 *pDottedIP)
@@ -435,9 +435,9 @@ EXT_DECL UINT32 vos_dottedIP (
 }
 
 /**********************************************************************************************************************/
-/** Convert IP address to dotted dec. from !host! endianess
+/** Convert IP address to dotted dec. from !host! endianness
  *
- *  @param[in]          ipAddress   IP address in UINT32 in host endianess
+ *  @param[in]          ipAddress   IP address in UINT32 in host endianness
  *
  *  @retval             IP address as dotted decimal
  */

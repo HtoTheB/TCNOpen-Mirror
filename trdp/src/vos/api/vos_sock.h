@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 2426 2023-12-08 14:01:17Z peter-liesner $
+ * $Id: vos_sock.h 2454 2024-06-27 11:22:28Z ahweiss $
  *
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -279,20 +279,20 @@ EXT_DECL UINT64 vos_ntohll (
     UINT64 val);
 
 /**********************************************************************************************************************/
-/** Convert IP address from dotted dec. to !host! endianess
+/** Convert IP address from dotted dec. to !host! endianness
  *
  *  @param[in]          pDottedIP     IP address as dotted decimal.
  *
- *  @retval             address in UINT32 in host endianess
+ *  @retval             address in UINT32 in host endianness
  */
 
 EXT_DECL UINT32 vos_dottedIP (
     const CHAR8 *pDottedIP);
 
 /**********************************************************************************************************************/
-/** Convert IP address to dotted dec. from !host! endianess
+/** Convert IP address to dotted dec. from !host! endianness
  *
- *  @param[in]          ipAddress   address in UINT32 in host endianess
+ *  @param[in]          ipAddress   address in UINT32 in host endianness
  *
  *  @retval             IP address as dotted decimal.
  */

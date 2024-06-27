@@ -15,7 +15,7 @@
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-md-test-fast.c 2452 2024-06-26 15:34:32Z ahweiss $
+ * $Id: trdp-md-test-fast.c 2454 2024-06-27 11:22:28Z ahweiss $
  *
  *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
  *     AHW 2023-06-19  Ticket #458 Unify cmd line interfaces of tests
@@ -258,7 +258,7 @@ const char *get_result_string (TRDP_ERR_T err)
        case TRDP_BLOCK_ERR:
            return "TRDP_BLOCK_ERR (system call would have blocked in blocking mode)";
        case TRDP_INTEGRATION_ERR:
-           return "TRDP_INTEGRATION_ERR (alignment or endianess for selected target wrong)";
+           return "TRDP_INTEGRATION_ERR (alignment or endianness for selected target wrong)";
        case TRDP_NOCONN_ERR:
            return "TRDP_NOCONN:ERR (No TCP connection)";
        case TRDP_NOSESSION_ERR:

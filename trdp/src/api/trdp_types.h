@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2442 2024-05-29 14:16:36Z ahweiss $
+ * $Id: trdp_types.h 2454 2024-06-27 11:22:28Z ahweiss $
  *
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
@@ -151,8 +151,8 @@ typedef enum
     TRDP_QUEUE_FULL_ERR     = -11,  /**< Queue full                                     */
     TRDP_MUTEX_ERR          = -12,  /**< Mutex not available                            */
     TRDP_THREAD_ERR         = -13,  /**< Thread error                                   */
-    TRDP_BLOCK_ERR          = -14,  /**< System call would have blocked in blocking mode  */
-    TRDP_INTEGRATION_ERR    = -15,  /**< Alignment or endianess for selected target wrong */
+    TRDP_BLOCK_ERR          = -14,  /**< System call would have blocked in blocking mode   */
+    TRDP_INTEGRATION_ERR    = -15,  /**< Alignment or endianness for selected target wrong */
     TRDP_NOCONN_ERR         = -16,  /**< No TCP connection                              */
     TRDP_NOSESSION_ERR      = -30,  /**< No such session                                */
     TRDP_SESSION_ABORT_ERR  = -31,  /**< Session aborted                                */

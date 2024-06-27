@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_utils.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vos_utils.h 2454 2024-06-27 11:22:28Z ahweiss $
  *
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      AÖ 2023-01-13: Ticket #413 In Windows export gPDebugFunction and gRefCon
@@ -137,7 +137,7 @@ extern EXT_DECL void *gRefCon; /* #413 */
 #define INITFCS         0xffffffffu      /**< Initial FCS value */
 #define SIZE_OF_FCS     4u               /**< for better understanding of address calculations */
 
-/** Define endianess if not already done by compiler */
+/** Define endianness if not already done by compiler */
 #if (!defined(L_ENDIAN) && !defined(B_ENDIAN))
 #if defined(__BIG_ENDIAN__) || defined(__ARMEB__) || defined(__THUMBEB__) || defined(__AARCH64EB__) || defined(__MIPSEB)  || defined(__MIPSEB)  || defined(__MIPSEB__)
     #define B_ENDIAN
@@ -152,7 +152,7 @@ extern EXT_DECL void *gRefCon; /* #413 */
 #elif defined(O_LE)
     #define L_ENDIAN
 #else
-    #error "Endianess undefined!"
+    #error "endianness undefined!"
 #endif
 #endif
 
@@ -168,7 +168,7 @@ extern EXT_DECL void *gRefCon; /* #413 */
 #ifdef L_ENDIAN
 #define MAKE_LE(a)  (a)
 #else
-#error "Endianess undefined!"
+#error "endianness undefined!"
 #endif
 #endif
 
