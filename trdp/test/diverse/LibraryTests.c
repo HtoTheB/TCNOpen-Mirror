@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: LibraryTests.c 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: LibraryTests.c 2458 2024-07-11 08:04:08Z ahweiss $
  *
  *      SB 2021-08-09: Compiler warnings
  *      BL 2017-05-22: Ticket #122: Addendum for 64Bit compatibility (VOS_TIME_T -> VOS_TIMEVAL_T)
@@ -67,20 +67,19 @@ void dbgOut (
     TRDP_LOG_T  category,
     const CHAR8 *pTime,
     const CHAR8 *pFile,
-    UINT16      LineNumber,
+    UINT16      line,
     const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
-    CHAR8       *pF = strrchr(pFile, VOS_DIR_SEP);
+    static const char *cat[] = { "ERR", "WAR", "INF", "DBG", "USR" };
 
-    if (category != VOS_LOG_DBG)
+    if ((category != VOS_LOG_INFO) && (category != VOS_LOG_DBG))
     {
-        printf("%s %s %s:%d %s",
-               pTime,
-               catStr[category],
-               (pF == NULL)? "" : pF + 1,
-               LineNumber,
-               pMsgStr);
+        printf("%s%s %16s@%-4d: %s\n",
+            pTime,
+            cat[category],
+            (strrchr(pFile, '/') == NULL) ? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
+            (int)line,
+            pMsgStr);
     }
 }
 

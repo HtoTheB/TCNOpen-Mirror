@@ -15,7 +15,7 @@
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-md-test-fast.c 2454 2024-06-27 11:22:28Z ahweiss $
+ * $Id: trdp-md-test-fast.c 2458 2024-07-11 08:04:08Z ahweiss $
  *
  *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
  *     AHW 2023-06-19  Ticket #458 Unify cmd line interfaces of tests
@@ -332,35 +332,40 @@ static FILE *pLogFile;
 void print_log (void *pRefCon, VOS_LOG_T category, const CHAR8 *pTime,   // timestamp string "yyyymmdd-hh:mm:ss.µs"
                 const CHAR8 *pFile, UINT16 line, const CHAR8 *pMsgStr)
 {
-    static const char *cat[] = { "ERR", "WAR", "INF", "DBG" };
-
-    if (category == VOS_LOG_DBG)
-    {
-        /* return; */
-    }
+    static const char* cat[] = { "ERR", "WAR", "INF", "DBG", "USR" };
 
 #if (defined (WIN32) || defined (WIN64))
-    if (pLogFile == NULL)
+
+    if ((category != VOS_LOG_INFO) && (category != VOS_LOG_DBG))
     {
-        char        buf[1024] = { 0 };
-        const char  *file = strrchr(pFile, '\\');
-        _snprintf(buf, sizeof(buf), "%s%s %s@%d: %s",
-                  pTime, cat[category], file ? file + 1 : pFile, line, pMsgStr);
-        OutputDebugString((LPCWSTR)buf);
+        printf("%s%s %16s@%-4d: %s\n",
+            pTime,
+            cat[category],
+            (strrchr(pFile, '/') == NULL) ? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
+            (int)line,
+            pMsgStr);
     }
-    else
+
+    if (pLogFile != NULL)
     {
-        fprintf(pLogFile, "%s%s %s@%d: %s\n", pTime, cat[category], pFile, (int) line, pMsgStr);
+        fprintf(pLogFile, "%s%s %s@%-4d: %s\n", pTime, cat[category], pFile, (int)line, pMsgStr);
+
         fflush(pLogFile);
     }
 #else
-    const char *file = strrchr(pFile, '/');
-    fprintf(stderr, "%s%s %s@%d: %s",
-            pTime, cat[category], file ? file + 1 : pFile, line, pMsgStr);
+    if ((category != VOS_LOG_INFO) && (category != VOS_LOG_DBG))
+    {
+        fprintf(stderr, "%s%s %16s@%-4d: %s",
+            pTime,
+            cat[category],
+            (strrchr(pFile, '/') == NULL) ? strrchr(pFile, '\\') + 1 : strrchr(pFile, '/') + 1,
+            (int)line,
+            pMsgStr);
+    }
+
     if (pLogFile != NULL)
     {
-        fprintf(pLogFile, "%s%s %s@%d: %s",
-                pTime, cat[category], file ? file + 1 : pFile, line, pMsgStr);
+        fprintf(pLogFile, "%s%s %s@%-4d: %s", pTime, cat[category], pFile, (int)line, pMsgStr);
     }
 #endif
 }

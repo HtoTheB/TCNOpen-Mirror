@@ -12,7 +12,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: pd_responder.c 2446 2024-06-21 14:38:55Z ahweiss $
+ * $Id: pd_responder.c 2458 2024-07-11 08:04:08Z ahweiss $
  *
  *     AHW 2024-05-31: Ticket #456 Example crashes with memory fault
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -159,9 +159,11 @@ void dbgOut (
              UINT16      line,
              const CHAR8 *pMsgStr)
 {
+    static const char* cat[] = { "ERR", "WAR", "INF", "DBG", "USR" };
+
     if (pLogFile != NULL)
     {
-        fprintf(pLogFile, "%s%s %s@%d: %s", pTime, category == VOS_LOG_ERROR ? "ERR " : (category == VOS_LOG_WARNING ? "WAR " : (category == VOS_LOG_INFO ? "INFO" : "DBG ")), pFile, (int)line, pMsgStr);
+        fprintf(pLogFile, "%s%s %s@%-4d: %s", pTime, cat[category], pFile, (int)line, pMsgStr);
         fflush(pLogFile);
     }
 }

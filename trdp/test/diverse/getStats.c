@@ -14,7 +14,7 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: getStats.c 2446 2024-06-21 14:38:55Z ahweiss $
+ * $Id: getStats.c 2458 2024-07-11 08:04:08Z ahweiss $
  *
  *     AHW 2024-05-31: Ticket #456 Example crashes with memory fault
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
@@ -230,7 +230,7 @@ void dbgOut (
     UINT16      LineNumber,
     const CHAR8 *pMsgStr)
 {
-    const char *catStr[] = {"**Error:", "Warning:", "   Info:", "  Debug:", "   User:"};
+    const char *catStr[] = { "ERR", "WAR", "INF", "DBG", "USR" };
     if (category != VOS_LOG_DBG)
     {
         printf("%s %s %s:%d %s",

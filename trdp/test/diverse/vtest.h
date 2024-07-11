@@ -14,13 +14,14 @@
  *          If a copy of the MPL was not distributed with this file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: vtest.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: vtest.h 2458 2024-07-11 08:04:08Z ahweiss $
  */
 /**************************/
 /* error flags definition */
 /**************************/
 /* We use dynamic memory    */
-#define RESERVED_MEMORY  200000
+#define RESERVED_MEMORY     240000
+#define PREALLOCATE         {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0}
 #define MAXKEYSIZE 25
 #define cBufSize 1
 /* define output detail level */
