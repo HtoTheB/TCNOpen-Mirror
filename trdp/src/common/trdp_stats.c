@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: trdp_stats.c 2449 2024-06-24 09:35:47Z ahweiss $
+ * $Id: trdp_stats.c 2459 2024-07-11 08:24:25Z ahweiss $
  *
  *     AHW 2024-06-21: Ticket #461 statistics retrieval of joined mc addresses flags TRDP_ERR_MEN too early
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
@@ -445,7 +445,17 @@ EXT_DECL TRDP_ERR_T tlc_getJoinStatistics (
         return TRDP_NOINIT_ERR;
     }
 
-    if (pNumJoin == NULL || pIpAddr == NULL || *pNumJoin == 0)
+    if (pNumJoin == NULL)
+    {
+        return TRDP_PARAM_ERR;
+    }
+
+    if (*pNumJoin == 0)
+    {
+        return TRDP_PARAM_ERR;
+    }
+
+    if (pIpAddr == NULL)
     {
         *pNumJoin = 0;
         return TRDP_PARAM_ERR;
