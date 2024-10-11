@@ -19,7 +19,7 @@
  *          Copyright UniControls, a.s., 2013. All rights reserved.
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  *
- * $Id: trdp-xmlprint-test.c 2457 2024-07-03 14:07:35Z ahweiss $
+ * $Id: trdp-xmlprint-test.c 2461 2024-10-11 10:01:28Z ahweiss $
  *
  *     AHW 2024-07-03: Ticket #261 MD reply/​add listener does not use send parameters
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -104,7 +104,7 @@ static void printDefaultPDandMD(
     printf("    UDP port: %u, TCP port: %u\n", 
         pMdConfig->udpPort, pMdConfig->tcpPort);
     printf("    Flags:");
-    for (i=0; i < 4; i++)
+    for (i=0; i < 5; i++)
         if (pMdConfig->flags & trdpFlags[i])
             printf(" %s", strtrdpFlags[i]);
     printf("\n");
@@ -225,7 +225,7 @@ static void printTelegrams(
                 pExchgPar[idxExPar].pPdPar->redundant);
             printf("      Behavior: %s, Flags:", 
                 pExchgPar[idxExPar].pPdPar->toBehav==1 ? "TRDP_TO_SET_TO_ZERO" : "TRDP_TO_KEEP_LAST_VALUE");
-            for (i=0; i < 4; i++)
+            for (i=0; i < 5; i++)
                 if (pExchgPar[idxExPar].pPdPar->flags & trdpFlags[i])
                     printf(" %s", strtrdpFlags[i]);
             printf("\n");
