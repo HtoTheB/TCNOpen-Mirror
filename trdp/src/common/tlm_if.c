@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tlm_if.c 2452 2024-06-26 15:34:32Z ahweiss $
+* $Id: tlm_if.c 2470 2025-03-25 10:10:29Z ahweiss $
 *
 *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
@@ -799,7 +799,7 @@ EXT_DECL TRDP_ERR_T tlm_readdListener (
  *  @retval         TRDP_NO_SESSION_ERR no such session
  *  @retval         TRDP_NOINIT_ERR     handle invalid
  */
-EXT_DECL TRDP_ERR_T tlm_reply (                    /* 261 send params removed */
+EXT_DECL TRDP_ERR_T tlm_reply (                    /* #261 send params removed */
     TRDP_APP_SESSION_T      appHandle,
     const TRDP_UUID_T       *pSessionId,
     UINT32                  comId,
@@ -820,7 +820,7 @@ EXT_DECL TRDP_ERR_T tlm_reply (                    /* 261 send params removed */
     {
         return TRDP_PARAM_ERR;
     }
-    return trdp_mdReply(TRDP_MSG_MP,                              /* 261 send params removed */
+    return trdp_mdReply(TRDP_MSG_MP,                              /* #261 send params removed */
                         appHandle,
                         (UINT8 *)pSessionId,
                         comId,

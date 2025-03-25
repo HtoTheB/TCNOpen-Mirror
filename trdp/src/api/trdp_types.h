@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2454 2024-06-27 11:22:28Z ahweiss $
+ * $Id: trdp_types.h 2470 2025-03-25 10:10:29Z ahweiss $
  *
+ *     AHW 2025-03-25: Ticket #471 Add TRDP option to forbid reusing ports/sockets for MD only 
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -720,23 +721,25 @@ typedef struct
  */
 
 #define TRDP_OPTION_NONE                0u
-#define TRDP_OPTION_BLOCK               0x01u   /**< Default: Use nonblocking I/O calls, polling necessary
+#define TRDP_OPTION_BLOCK               0x0001u   /**< Default: Use nonblocking I/O calls, polling necessary
                                                   Set: Read calls will block, use select()                  */
-#define TRDP_OPTION_TRAFFIC_SHAPING     0x02u   /**< Use traffic shaping - distribute packet sending
+#define TRDP_OPTION_TRAFFIC_SHAPING     0x0002u   /**< Use traffic shaping - distribute packet sending
                                                   Default: OFF                                              */
-#define TRDP_OPTION_NO_REUSE_ADDR       0x04u   /**< Do not allow re-use of address/port (-> no multihoming)
+#define TRDP_OPTION_NO_REUSE_ADDR       0x0004u   /**< Do not allow re-use of address/port (-> no multihoming)
                                                   Default: Allow                                            */
-#define TRDP_OPTION_NO_MC_LOOP_BACK     0x08u   /**< Do not allow loop back of multicast traffic
+#define TRDP_OPTION_NO_MC_LOOP_BACK     0x0008u   /**< Do not allow loop back of multicast traffic
                                                   Default: Allow                                            */
-#define TRDP_OPTION_NO_UDP_CHK          0x10u   /**< Suppress UDP CRC generation
+#define TRDP_OPTION_NO_UDP_CHK          0x0010u   /**< Suppress UDP CRC generation
                                                   Default: Compute UDP CRC                                  */
-#define TRDP_OPTION_WAIT_FOR_DNR        0x20u   /**< Wait for DNR
+#define TRDP_OPTION_WAIT_FOR_DNR        0x0020u   /**< Wait for DNR
                                                   Default: Don't wait                                       */
-#define TRDP_OPTION_NO_PD_STATS         0x40u   /**< Suppress PD statistics \
+#define TRDP_OPTION_NO_PD_STATS         0x0040u   /**< Suppress PD statistics \
                                                   Default: Don't suppress                                   */
-#define TRDP_OPTION_DEFAULT_CONFIG      0x80u   /**< no XML process config, defaults were used              */
+#define TRDP_OPTION_DEFAULT_CONFIG      0x0080u   /**< no XML process config, defaults were used              */
+#define TRDP_OPTION_NO_REUSE_MD_ADDR    0x0100u   /**< Do not allow re-use of MD address/port (-> no multihoming) #471
+                                                  Default: Allow                                            */
 
-typedef UINT8 TRDP_OPTION_T;
+typedef UINT16 TRDP_OPTION_T;            /* #471 */
 
 /**********************************************************************************************************************/
 /** Various flags/general TRDP options for library initialization

@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2423 2023-10-24 07:36:03Z ahweiss $
+* $Id: trdp_utils.c 2470 2025-03-25 10:10:29Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -1134,22 +1134,22 @@ TRDP_ERR_T  trdp_requestSocket (
             trdp_setCurrentMaxSocketCnt(type, lIndex + 1);
         }
 
-        iface[lIndex].sock      = VOS_INVALID_SOCKET;
-        iface[lIndex].bindAddr  = bindAddr /* was srcIP (ID #125) */;
-        iface[lIndex].srcAddr   = srcIP;
-        iface[lIndex].dstAddr   = dstIP;
-        iface[lIndex].type      = type;
+        iface[lIndex].sock = VOS_INVALID_SOCKET;
+        iface[lIndex].bindAddr = bindAddr /* was srcIP (ID #125) */;
+        iface[lIndex].srcAddr = srcIP;
+        iface[lIndex].dstAddr = dstIP;
+        iface[lIndex].type = type;
         iface[lIndex].sendParam = *params;
         iface[lIndex].rcvMostly = rcvMostly;
-        iface[lIndex].tcpParams.connectionTimeout.tv_sec    = 0;
-        iface[lIndex].tcpParams.connectionTimeout.tv_usec   = 0;
-        iface[lIndex].tcpParams.cornerIp    = cornerIp;
-        iface[lIndex].tcpParams.sendNotOk   = FALSE;
+        iface[lIndex].tcpParams.connectionTimeout.tv_sec = 0;
+        iface[lIndex].tcpParams.connectionTimeout.tv_usec = 0;
+        iface[lIndex].tcpParams.cornerIp = cornerIp;
+        iface[lIndex].tcpParams.sendNotOk = FALSE;
         iface[lIndex].usage = 0;
-        iface[lIndex].tcpParams.notSend     = FALSE;
-        iface[lIndex].tcpParams.morituri    = FALSE;
-        iface[lIndex].tcpParams.sendingTimeout.tv_sec   = 0;
-        iface[lIndex].tcpParams.sendingTimeout.tv_usec  = 0;
+        iface[lIndex].tcpParams.notSend = FALSE;
+        iface[lIndex].tcpParams.morituri = FALSE;
+        iface[lIndex].tcpParams.sendingTimeout.tv_sec = 0;
+        iface[lIndex].tcpParams.sendingTimeout.tv_usec = 0;
 
 
         /* Add to the file desc only if it's an accepted socket */
@@ -1167,15 +1167,22 @@ TRDP_ERR_T  trdp_requestSocket (
         /* if a socket descriptor was supplied, take that one (for the TCP connection)   */
         if (useSocket != VOS_INVALID_SOCKET)
         {
-            iface[lIndex].sock  = useSocket;
+            iface[lIndex].sock = useSocket;
             iface[lIndex].usage = 1;         /* Mark as used */
             *pIndex = lIndex;
             goto err_exit;
         }
 
-        sock_options.qos    = params->qos;
-        sock_options.ttl    = params->ttl;
+        sock_options.qos = params->qos;
+        sock_options.ttl = params->ttl;
         sock_options.reuseAddrPort  = (options & TRDP_OPTION_NO_REUSE_ADDR) ? FALSE : TRUE;
+        if ((type == TRDP_SOCK_MD_UDP) || (type == TRDP_SOCK_MD_TCP))
+        {
+            if ((options & TRDP_OPTION_NO_REUSE_MD_ADDR) == TRUE)
+            {
+                sock_options.reuseAddrPort = FALSE;
+            }
+        }
         sock_options.nonBlocking    = (options & TRDP_OPTION_BLOCK) ? FALSE : TRUE;
         sock_options.ttl_multicast  = (type != TRDP_SOCK_MD_TCP) ? params->ttl : 0;
         sock_options.no_mc_loop     = ((type != TRDP_SOCK_MD_TCP) && (options & TRDP_OPTION_NO_MC_LOOP_BACK)) ? 1 : 0;
