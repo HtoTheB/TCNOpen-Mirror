@@ -24,8 +24,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2454 2024-06-27 11:22:28Z ahweiss $
+* $Id: tau_tti.c 2472 2025-04-03 11:03:03Z ahweiss $
 *
+*     AHW 2025-03-28: Ticket #472 Add option for a preconfigured ECSP address
 *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
 *     AHW 2023-02-27: tau_getCstFctInfo interface change to fit to tau_getVehInfo() and tau_getCstInfo() 
@@ -240,7 +241,6 @@ static void ttiPDCallback (
         {
             TRDP_OP_TRAIN_DIR_STATUS_INFO_T *pTelegram = (TRDP_OP_TRAIN_DIR_STATUS_INFO_T *) pData;
             UINT32 crc;
-            TAU_DNR_ENTRY_T  *pDNRIp   = (TAU_DNR_ENTRY_T *) appHandle->pUser;
 
             /* check the crc:   */
             crc = vos_sc32(0xFFFFFFFFu, (const UINT8 *) &pTelegram->state, sizeof(TRDP_OP_TRAIN_DIR_STATE_T) - 4);
@@ -254,12 +254,13 @@ static void ttiPDCallback (
 
             /* This is an addition purely done for TRDP to handle DNS/ECSP Redundancy switchover.
                PD 100 is always sent from the original IP address of switch and not the virtual one.
-               Everytime a PD 100 is received, we store its source IP address in the appHandle->pUser.
+               Everytime a PD 100 is received, we store its source IP address in the appHandle->ecspIpAddrUpd
+               if not a preconfigured ecspIpAddr was given in tau_initTTIaccess()
                This will change the (server) IP to which the DNS requests will be sent. */
 
-            if ((pDNRIp != NULL) && (pMsg->srcIpAddr != VOS_INADDR_ANY))
+            if ((appHandle->ecspIpAddrConf == VOS_INADDR_ANY) && (pMsg->srcIpAddr != VOS_INADDR_ANY))   /* #472 */
             {
-                pDNRIp->ipAddr = pMsg->srcIpAddr;
+                appHandle->ecspIpAddrUpd = pMsg->srcIpAddr; /* #472 */
             }
 
             /* Store the state locally */
@@ -1156,6 +1157,39 @@ static TRDP_ERR_T ttiRequestTTDBdataByLable(
 }
 
 /**********************************************************************************************************************/
+/**    Function to get ECSP IP address
+ *
+ *  Request update of our data store
+ *
+ *  @param[in]      appHandle       Handle returned by tlc_openSession().
+ *  @param[in]      uri             Pointer to the uri
+ *
+ *  @retval         ECSP IP address
+ *
+ */
+static TRDP_IP_ADDR_T ttiGetECSPip (TRDP_APP_SESSION_T  appHandle,             /* #472 */
+                                    TRDP_URI_HOST_T     uri)
+{
+    TRDP_IP_ADDR_T ipAddr = VOS_INADDR_ANY;
+
+    if (appHandle->ecspIpAddrConf != 0)
+    {
+        ipAddr = appHandle->ecspIpAddrConf;
+    }
+    else
+    {
+        ipAddr = tau_ipFromURI(appHandle, uri);
+        if (ipAddr == VOS_INADDR_ANY)
+        {
+            ipAddr = appHandle->ecspIpAddrUpd;
+        }
+    }
+
+    return ipAddr;
+}
+
+
+/**********************************************************************************************************************/
 /**    Function to request TTDB data from ECSP
  *
  *  Request update of our data store
@@ -1178,7 +1212,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_OP_DIR_INFO_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, ttiGetECSPip(appHandle,
                                                                      TTDB_OP_DIR_INFO_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_OP_DIR_INFO_REQ_TO_US, TRDP_MD_DEFAULT_RETRIES, &param, sizeof(param), NULL, NULL);     /* #261 */
             /* Make sure the request is sent: */
@@ -1188,7 +1222,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_TRN_DIR_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, ttiGetECSPip(appHandle,
                                                                      TTDB_TRN_DIR_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_TRN_DIR_REQ_TO_US, TRDP_MD_DEFAULT_RETRIES, &param, sizeof(param), NULL, NULL);        /* #261 */
         }
@@ -1197,7 +1231,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_NET_DIR_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, ttiGetECSPip(appHandle,
                                                                      TTDB_NET_DIR_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_NET_DIR_REQ_TO_US, TRDP_MD_DEFAULT_RETRIES, &param, sizeof(param), NULL, NULL);        /* #261 */
         }
@@ -1206,7 +1240,7 @@ static void ttiRequestTTDBdata (
         {
             UINT8 param = 0;        /* ETB0 */
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_READ_CMPLT_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, ttiGetECSPip(appHandle,
                                                                      TTDB_READ_CMPLT_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_READ_CMPLT_REQ_TO_US, TRDP_MD_DEFAULT_RETRIES, &param, sizeof(param), NULL, NULL);       /* #261 */
         }
@@ -1214,7 +1248,7 @@ static void ttiRequestTTDBdata (
         case TTDB_STAT_CST_REQ_COMID:
         {
             (void) tlm_request(appHandle, NULL, ttiMDCallback, NULL, TTDB_STAT_CST_REQ_COMID, appHandle->etbTopoCnt,
-                               appHandle->opTrnTopoCnt, 0, tau_ipFromURI(appHandle,
+                               appHandle->opTrnTopoCnt, 0, ttiGetECSPip(appHandle,
                                                                      TTDB_STAT_CST_REQ_URI), TRDP_FLAGS_CALLBACK, 1,
                                TTDB_STAT_CST_REQ_TO_US, TRDP_MD_DEFAULT_RETRIES, cstUUID, sizeof(TRDP_UUID_T), NULL, NULL);   /* #261 */
         }
@@ -1485,7 +1519,7 @@ static TRDP_ERR_T ttiGetCstInfoByLable(
  *
  *  @param[in]      appHandle       Handle returned by tlc_openSession().
  *  @param[in]      userAction      Semaphore to fire if inauguration took place.
- *  @param[in]      ecspIpAddr      ECSP IP address. Currently not used.
+ *  @param[in]      ecspIpAddr      ECSP IP address.
  *  @param[in]      hostsFileName   Optional host file name as ECSP replacement. Currently not implemented.
  *
  *  @retval         TRDP_NO_ERR     no error
@@ -1503,7 +1537,7 @@ EXT_DECL TRDP_ERR_T tau_initTTIaccess (
         return TRDP_INIT_ERR;
     }
 
-    (void)ecspIpAddr;
+    appHandle->ecspIpAddrConf = ecspIpAddr;  /* #472 */
     (void)hostsFileName;
 
     appHandle->pTTDB = (TAU_TTDB_T *) vos_memAlloc(sizeof(TAU_TTDB_T));

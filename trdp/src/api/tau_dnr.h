@@ -16,7 +16,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_dnr.h 2422 2023-10-23 15:57:53Z ahweiss $
+ * $Id: tau_dnr.h 2472 2025-04-03 11:03:03Z ahweiss $
  *
  *      SB 2019-08-13: Ticket #268 Handling Redundancy Switchover of DNS/ECSP server
  *      SB 2019-02-11: Ticket #237: tau_initDnr: Parameter waitForDnr to reduce wait times added
@@ -49,6 +49,8 @@ extern "C" {
 #endif
 
 #define TAU_MAX_NO_CACHE_ENTRY      50u
+
+#define TRDP_DNR_STANDARD_DNS_PORT  53u
 
 /***********************************************************************************************************************
  * TYPEDEFS

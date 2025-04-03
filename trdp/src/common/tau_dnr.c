@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_dnr.c 2452 2024-06-26 15:34:32Z ahweiss $
+ * $Id: tau_dnr.c 2472 2025-04-03 11:03:03Z ahweiss $
  *
  *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
  *     AHW 2024-05-31: Ticket #456 Example crashes with memory fault
@@ -1090,11 +1090,11 @@ EXT_DECL TRDP_ERR_T tau_initDnr (
     /* Set default ports */
     if (dnsOptions == TRDP_DNR_STANDARD_DNS)
     {
-        pDNR->dnsPort   = (dnsPort == 0u) ? 53u : dnsPort;
+        pDNR->dnsPort   = (dnsPort == 0u) ? TRDP_DNR_STANDARD_DNS_PORT : dnsPort;
     }
     else
     {
-        pDNR->dnsPort   = (dnsPort == 0u) ? 17225u : dnsPort;
+        pDNR->dnsPort   = (dnsPort == 0u) ? TRDP_MD_UDP_PORT : dnsPort;
     }
 
     pDNR->useTCN_DNS = dnsOptions;

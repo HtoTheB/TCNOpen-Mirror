@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_private.h 2471 2025-03-25 10:13:26Z ahweiss $
+ * $Id: trdp_private.h 2472 2025-04-03 11:03:03Z ahweiss $
  *
+ *     AHW 2025-03-28: Ticket #472 Add option for a preconfigured ECSP address
  *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
  *      PL 2023-10-13: Ticket #444 Lint
  *      PL 2023-10-11: Lint warnings
@@ -74,7 +75,7 @@
 #define TRDP_VERSION    3
 #define TRDP_RELEASE    0
 #define TRDP_UPDATE     24
-#define TRDP_EVOLUTION  71              /* Evolution > 0 denotes trunk! */
+#define TRDP_EVOLUTION  72              /* Evolution > 0 denotes trunk! */
 #endif
 
 /* Version as a string, this can also be for example 1.2.3.4.RC1 */
@@ -418,7 +419,7 @@ typedef struct TRDP_SESSION
     TRDP_PD_CONFIG_T        pdDefault;          /**< Default configuration for process data                 */
     TRDP_MEM_CONFIG_T       memConfig;          /**< Internal memory handling configuration                 */
     TRDP_OPTION_T           option;             /**< Stack behavior options                                 */
-    TRDP_SOCKETS_T          ifacePD[TRDP_MAX_PD_SOCKET_CNT];  /**< Collection of sockets to use               */
+    TRDP_SOCKETS_T          ifacePD[TRDP_MAX_PD_SOCKET_CNT];  /**< Collection of sockets to use             */
     PD_ELE_T                *pSndQueue;         /**< pointer to first element of send queue                 */
     PD_ELE_T                *pRcvQueue;         /**< pointer to first element of rcv queue                  */
     PD_PACKET_T             *pNewFrame;         /**< pointer to received PD frame                           */
@@ -433,6 +434,8 @@ typedef struct TRDP_SESSION
 #if MD_SUPPORT
     VOS_MUTEX_T             mutexMD;            /**< protect the message data handling                      */
     TRDP_SOCKETS_T          ifaceMD[TRDP_MAX_MD_SOCKET_CNT];  /**< Collection of sockets to use             */
+    TRDP_IP_ADDR_T          ecspIpAddrConf;     /**< preconfigured ECSP addr set in tau_initTTIaccess  #472 */
+    TRDP_IP_ADDR_T          ecspIpAddrUpd;      /**< updated ECSP addr set by received PD100 telegram  #472 */
     struct TAU_TTDB         *pTTDB;             /**< session related TTDB data                              */
     void                    *pUser;             /**< space for higher layer data                            */
     TRDP_TCP_FD_T           tcpFd;              /**< TCP file descriptor parameters                         */
