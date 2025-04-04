@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 2454 2024-06-27 11:22:28Z ahweiss $
+ * $Id: vos_sock.h 2473 2025-04-04 08:16:28Z ahweiss $
  *
+ *     AHW 2025-04-04: Ticket #470 Size mismatch of VOS_IF_REC_T between source and header on Linux
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      PL 2023-04-19: Ticket #430 PC Lint Analysis and Fix
@@ -61,6 +62,7 @@
 #elif defined(POSIX)
 #include <sys/select.h>
 #include <netinet/in.h>
+#include <net/if.h>    /* Used to get IFNAMSIZ for consistent size of VOS_IF_REC_T between header and source file  #470 */
 #elif defined(ESP32)
 #include "lwip/sockets.h"
 #endif
