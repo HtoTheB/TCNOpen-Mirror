@@ -15,9 +15,10 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2470 2025-03-25 10:10:29Z ahweiss $
+ * $Id: trdp_types.h 2475 2025-04-08 14:19:49Z ahweiss $
  *
- *     AHW 2025-03-25: Ticket #471 Add TRDP option to forbid reusing ports/sockets for MD only 
+ *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
+ *     AHW 2025-03-25: Ticket #471 Add TRDP option to forbid reusing ports/sockets for MD only
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -120,12 +121,11 @@ extern "C" {
 /* for example: IP-Addr 10.0.8.35 translated to (10 * << 24) + (0 * << 16) + (8 << 8) + 35 */
 typedef VOS_IP4_ADDR_T TRDP_IP_ADDR_T;
 
-typedef CHAR8 TRDP_LABEL_T[TRDP_MAX_LABEL_LEN + 1];
+typedef CHAR8 TTRDP_LABEL_T[TRDP_MAX_LABEL_LEN + 1];
 
 typedef CHAR8 TRDP_EXTRA_LABEL_T[TRDP_EXTRA_LABEL_LEN + 1];
 
-typedef CHAR8 TRDP_NET_LABEL_T[TRDP_MAX_LABEL_LEN];         /**< Definition for usage in network packets,
-                                                                not necessarily \0 terminated! */
+typedef CHAR8 TRDP_LABEL_T[TRDP_MAX_LABEL_LEN];         /* #474 all labels are \0 terminated! */
 typedef CHAR8 TRDP_URI_T[TRDP_MAX_URI_LEN + 1];
 typedef CHAR8 TRDP_URI_HOST_T[TRDP_MAX_URI_HOST_LEN + 1];
 typedef CHAR8 TRDP_URI_USER_T[TRDP_MAX_URI_USER_LEN + 1];
@@ -471,9 +471,9 @@ typedef struct
     UINT64                  timeStamp;    /**< actual time stamp */
     UINT32                  upTime;       /**< time in sec since last initialisation */
     UINT32                  statisticTime; /**< time in sec since last reset of statistics */
-    TRDP_NET_LABEL_T        hostName;     /**< host name */
-    TRDP_NET_LABEL_T        leaderName;   /**< leader host name */
-    TRDP_NET_LABEL_T        type;         /**< device type #451 */
+    TRDP_LABEL_T            hostName;     /**< host name  #474 */
+    TRDP_LABEL_T            leaderName;   /**< leader host name  #474 */
+    TRDP_LABEL_T            type;         /**< device type #451,  #474 */
     TRDP_IP_ADDR_T          ownIpAddr;    /**< own IP address */
     TRDP_IP_ADDR_T          leaderIpAddr; /**< leader IP address */
     UINT32                  vlanId;       /**< Vlan id # 451 */
@@ -746,9 +746,9 @@ typedef UINT16 TRDP_OPTION_T;            /* #471 */
  */
 typedef struct
 {
-    TRDP_LABEL_T        hostName;       /**< Host name  */
-    TRDP_LABEL_T        leaderName;     /**< Leader name dependant on redundancy concept   */
-    TRDP_LABEL_T        type;           /**< type #349 */
+    TRDP_LABEL_T        hostName;       /**< Host name     #474 */
+    TRDP_LABEL_T        leaderName;     /**< Leader name dependant on redundancy concept   #474   */
+    TRDP_LABEL_T        type;           /**< type #349   #474  */
     UINT32              cycleTime;      /**< TRDP main process cycle time in us  */
     UINT32              priority;       /**< TRDP main process priority (0-255, 0=default, 255=highest)   */
     TRDP_OPTION_T       options;        /**< TRDP options */

@@ -24,8 +24,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tau_tti.c 2472 2025-04-03 11:03:03Z ahweiss $
+* $Id: tau_tti.c 2475 2025-04-08 14:19:49Z ahweiss $
 *
+*     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
 *     AHW 2025-03-28: Ticket #472 Add option for a preconfigured ECSP address
 *     AHW 2024-06-26: Ticket #261 MD reply/add listener does not use send parameters
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -139,7 +140,7 @@ static void ttiRequestTTDBdata (TRDP_APP_SESSION_T  appHandle,
 static TRDP_ERR_T ttiGetUUIDfromLabel (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_UUID_T         cstUUID,
-    const TRDP_LABEL_T  cstLabel);
+    const TRDP_LABEL_T  cstLabel);    /* #474 */
 
 static TRDP_ERR_T ttiGetOwnCstUUID(
     TRDP_APP_SESSION_T  appHandle,
@@ -166,7 +167,7 @@ static void ttiFreeCstInfoEntry(
 static TRDP_ERR_T ttiGetUUIDfromLabel (
     TRDP_APP_SESSION_T  appHandle,
     TRDP_UUID_T         cstUUID,
-    const TRDP_LABEL_T  cstLabel)
+    const TRDP_LABEL_T  cstLabel)    /* #474 */
 {
     UINT32  i;
     UINT32  j;
@@ -187,7 +188,7 @@ static TRDP_ERR_T ttiGetUUIDfromLabel (
 
     for (i = 0u; i < appHandle->pTTDB->opTrnDir.opVehCnt; i++)
     {
-        if (vos_strnicmp(appHandle->pTTDB->opTrnDir.opVehList[i].vehId, cstLabel, sizeof(TRDP_NET_LABEL_T)) == 0)
+        if (vos_strnicmp(appHandle->pTTDB->opTrnDir.opVehList[i].vehId, cstLabel, sizeof(TRDP_LABEL_T)) == 0)
         {
             /* vehicle found, is it the first in the consist?   */
             UINT8 opCstNo = appHandle->pTTDB->opTrnDir.opVehList[i].ownOpCstNo;
@@ -738,10 +739,10 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
     for (idx = 0u; idx < pDest->vehCnt; idx++)
     {
        /* #364 use idx */
-        memcpy(pDest->pVehInfoList[idx].vehId, pData, sizeof(TRDP_NET_LABEL_T));
-        pData += sizeof(TRDP_NET_LABEL_T);
-        memcpy(pDest->pVehInfoList[idx].vehType, pData, sizeof(TRDP_NET_LABEL_T));
-        pData += sizeof(TRDP_NET_LABEL_T);
+        memcpy(pDest->pVehInfoList[idx].vehId, pData, sizeof(TRDP_LABEL_T));
+        pData += sizeof(TRDP_LABEL_T);
+        memcpy(pDest->pVehInfoList[idx].vehType, pData, sizeof(TRDP_LABEL_T));
+        pData += sizeof(TRDP_LABEL_T);
         pDest->pVehInfoList[idx].vehOrient          = *pData++;
         pDest->pVehInfoList[idx].cstVehNo           = *pData++;
         pDest->pVehInfoList[idx].tractVeh           = *pData++;
@@ -863,11 +864,11 @@ static TRDP_ERR_T ttiCreateCstInfoEntry (
         for (idx = 0u; idx < pDest->fctCnt; idx++)
         {
            /* #365 Use idx  */
-            memcpy(pDest->pFctInfoList[idx].fctName, pData, sizeof(TRDP_NET_LABEL_T));
-            pData += sizeof(TRDP_NET_LABEL_T);
+            memcpy(pDest->pFctInfoList[idx].fctName, pData, sizeof(TRDP_LABEL_T));
+            pData += sizeof(TRDP_LABEL_T);
             pDest->pFctInfoList[idx].fctId = vos_ntohs(*(UINT16 *)pData);
             pData += sizeof(UINT16);
-            pDest->pFctInfoList[idx].grp       = *pData++;
+            pDest->pFctInfoList[idx].grp        = *pData++;
             pDest->pFctInfoList[idx].reserved01 = *pData++;
             pDest->pFctInfoList[idx].cstVehNo   = *pData++;
             pDest->pFctInfoList[idx].etbId      = *pData++;
@@ -1142,7 +1143,7 @@ static void ttiMDCallback (
 static TRDP_ERR_T ttiRequestTTDBdataByLable(
         TRDP_APP_SESSION_T  appHandle,
         UINT32              comID,
-        const TRDP_LABEL_T  pCstLabel)
+        const TRDP_LABEL_T  pCstLabel)   /* #474 */
 {
     TRDP_UUID_T  cstUUID;
 
@@ -1474,7 +1475,7 @@ static TRDP_ERR_T ttiGetCstInfoByUUID(
 static TRDP_ERR_T ttiGetCstInfoByLable(
     TRDP_APP_SESSION_T  appHandle,
     TRDP_CONSIST_INFO_T** ppCstInfo,
-    const TRDP_LABEL_T  pCstLabel
+    const TRDP_LABEL_T  pCstLabel    /* #474 */
 )
 {
     UINT32 l_index;
@@ -1496,7 +1497,7 @@ static TRDP_ERR_T ttiGetCstInfoByLable(
         }
 
         if (appHandle->pTTDB->cstInfo[l_index] != NULL &&
-            vos_strnicmp(appHandle->pTTDB->cstInfo[l_index]->cstId, pCstLabel, sizeof(TRDP_NET_LABEL_T)) == 0)
+            vos_strnicmp(appHandle->pTTDB->cstInfo[l_index]->cstId, pCstLabel, sizeof(TRDP_LABEL_T)) == 0)
         {
             *ppCstInfo = appHandle->pTTDB->cstInfo[l_index];
             break;
@@ -2159,7 +2160,7 @@ EXT_DECL TRDP_ERR_T tau_getTrnVehCnt (
 EXT_DECL TRDP_ERR_T tau_getCstVehCnt (
     TRDP_APP_SESSION_T  appHandle,
     UINT16              *pCstVehCnt,
-    const TRDP_LABEL_T  pCstLabel)
+    const TRDP_LABEL_T  pCstLabel)    /* #474 */
 {
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
     TRDP_ERR_T ret;
@@ -2204,7 +2205,7 @@ EXT_DECL TRDP_ERR_T tau_getCstVehCnt (
 EXT_DECL TRDP_ERR_T tau_getCstFctCnt (
     TRDP_APP_SESSION_T  appHandle,
     UINT16             *pCstFctCnt,
-    const TRDP_LABEL_T  pCstLabel)
+    const TRDP_LABEL_T  pCstLabel)    /* #474 */
 {
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
     TRDP_ERR_T ret;
@@ -2254,7 +2255,7 @@ EXT_DECL TRDP_ERR_T tau_getCstFctInfo (
     TRDP_APP_SESSION_T      appHandle,
     TRDP_FUNCTION_INFO_T  **ppFctInfo,
     UINT16                 *pFctCnt,
-    const TRDP_LABEL_T      pCstLabel)
+    const TRDP_LABEL_T      pCstLabel)    /* #474 */
 {
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
     TRDP_ERR_T ret;
@@ -2317,8 +2318,8 @@ EXT_DECL TRDP_ERR_T tau_getCstFctInfo (
 EXT_DECL TRDP_ERR_T tau_getVehInfo (
     TRDP_APP_SESSION_T    appHandle,
     TRDP_VEHICLE_INFO_T **ppVehInfo,
-    const TRDP_LABEL_T    pVehLabel,
-    const TRDP_LABEL_T    pCstLabel)
+    const TRDP_LABEL_T    pVehLabel,    /* #474 */
+    const TRDP_LABEL_T    pCstLabel)    /* #474 */
 {
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
     UINT32 l_index;
@@ -2343,7 +2344,7 @@ EXT_DECL TRDP_ERR_T tau_getVehInfo (
         {
             if (pVehLabel == NULL ||
                 vos_strnicmp(pVehLabel, pFoundCstInfo->pVehInfoList[l_index].vehId,
-                             sizeof(TRDP_NET_LABEL_T)) == 0)
+                             sizeof(TRDP_LABEL_T)) == 0)
             {
                 UINT8 *pData;
                 UINT32 size = sizeof(TRDP_VEHICLE_INFO_T);
@@ -2402,7 +2403,7 @@ EXT_DECL TRDP_ERR_T tau_getVehInfo (
 EXT_DECL TRDP_ERR_T tau_getCstInfo (
     TRDP_APP_SESSION_T    appHandle,
     TRDP_CONSIST_INFO_T **ppCstInfo,
-    const TRDP_LABEL_T    pCstLabel)
+    const TRDP_LABEL_T    pCstLabel)    /* #474 */
 {
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
     TRDP_ERR_T ret;
@@ -2458,8 +2459,8 @@ EXT_DECL TRDP_ERR_T tau_getVehOrient (
     TRDP_APP_SESSION_T  appHandle,
     UINT8               *pVehOrient,
     UINT8               *pCstOrient,
-    TRDP_LABEL_T        pVehLabel,
-    TRDP_LABEL_T        pCstLabel)
+    TRDP_LABEL_T        pVehLabel,   /* #474 */
+    TRDP_LABEL_T        pCstLabel)   /* #474 */
 {
     UINT32 l_index2, l_index3;
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;
@@ -2538,9 +2539,9 @@ EXT_DECL TRDP_ERR_T tau_getVehOrient (
  */
 EXT_DECL TRDP_ERR_T tau_getOwnIds (
     TRDP_APP_SESSION_T  appHandle,
-    TRDP_LABEL_T        *pDevId,
-    TRDP_LABEL_T        *pVehId,
-    TRDP_LABEL_T        *pCstId)
+    TRDP_LABEL_T        *pDevId,    /* #474 */
+    TRDP_LABEL_T        *pVehId,    /* #474 */
+    TRDP_LABEL_T        *pCstId)    /* #474 */
 {
     TRDP_ERR_T retVal = TRDP_NODATA_ERR;     /* 379 */
     TRDP_CONSIST_INFO_T* pFoundCstInfo = NULL;

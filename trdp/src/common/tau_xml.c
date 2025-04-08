@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_xml.c 2457 2024-07-03 14:07:35Z ahweiss $
+ * $Id: tau_xml.c 2475 2025-04-08 14:19:49Z ahweiss $
  *
+ *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
  *     AHW 2024-07-03: Ticket #261 MD reply/​add listener does not use send parameters
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *     AHW 2023-06-08: Ticket #435 Cleanup VLAN and TSN options at different places
@@ -194,9 +195,9 @@ static void setDefaultInterfaceValues (
     /*  Process configuration   */
     if (pProcessConfig)
     {
-        memset(pProcessConfig->hostName, 0, sizeof(TRDP_LABEL_T));
-        memset(pProcessConfig->leaderName, 0, sizeof(TRDP_LABEL_T));
-        memset(pProcessConfig->type, 0, sizeof(TRDP_LABEL_T));          /* #349 */
+        memset(pProcessConfig->hostName, 0, sizeof(TRDP_LABEL_T));      /* #474 */
+        memset(pProcessConfig->leaderName, 0, sizeof(TRDP_LABEL_T));    /* #474 */
+        memset(pProcessConfig->type, 0, sizeof(TRDP_LABEL_T));          /* #349, #474 */
         pProcessConfig->cycleTime   = TRDP_PROCESS_DEFAULT_CYCLE_TIME;
         pProcessConfig->options     = TRDP_PROCESS_DEFAULT_OPTIONS | TRDP_OPTION_DEFAULT_CONFIG;
         pProcessConfig->priority    = TRDP_PROCESS_DEFAULT_PRIORITY;

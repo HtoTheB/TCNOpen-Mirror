@@ -17,8 +17,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_tti.h 2454 2024-06-27 11:22:28Z ahweiss $
+ * $Id: tau_tti.h 2475 2025-04-08 14:19:49Z ahweiss $
  *
+ *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
  *     AHW 2023-01-24: Ticket #416: Interface change for tau_getCstInfo(), tau_getStaticCstInfo(), tau_getVehInfo()
  *     AHW 2023-01-24: Naming #416: unified tau_getTrDir()/tau_getOpTrDir() -> tau_getTrnDir()/tau_getOpTrnDir()
  *      BL 2019-05-15: Ticket #254 API of TTI to get OwnOpCstNo and OwnTrnCstNo
@@ -257,7 +258,7 @@ EXT_DECL TRDP_ERR_T tau_getTrnVehCnt (
 EXT_DECL TRDP_ERR_T tau_getCstVehCnt (
     TRDP_APP_SESSION_T   appHandle,
     UINT16              *pCstVehCnt,
-    const TRDP_LABEL_T   pCstLabel);
+    const TRDP_LABEL_T   pCstLabel);    /* #474 */
 
 
 /**********************************************************************************************************************/
@@ -275,7 +276,7 @@ EXT_DECL TRDP_ERR_T tau_getCstVehCnt (
 EXT_DECL TRDP_ERR_T tau_getCstFctCnt (
     TRDP_APP_SESSION_T   appHandle,
     UINT16              *pCstFctCnt,
-    const TRDP_LABEL_T   pCstLabel);
+    const TRDP_LABEL_T   pCstLabel);    /* #474 */
 
 
 /* ---------------------------------------------------------------------------- */
@@ -298,7 +299,7 @@ EXT_DECL TRDP_ERR_T tau_getCstFctInfo(
     TRDP_APP_SESSION_T      appHandle,
     TRDP_FUNCTION_INFO_T**  ppFctInfo,
     UINT16*                 pFctCnt,
-    const TRDP_LABEL_T      pCstLabel);
+    const TRDP_LABEL_T      pCstLabel);    /* #474 */
 
 /**********************************************************************************************************************/
 /**    Function to allocate memory and  to retrieve the vehicle information of a consist's vehicle.
@@ -317,8 +318,8 @@ EXT_DECL TRDP_ERR_T tau_getCstFctInfo(
 EXT_DECL TRDP_ERR_T tau_getVehInfo (
     TRDP_APP_SESSION_T      appHandle,
     TRDP_VEHICLE_INFO_T   **ppVehInfo,
-    const TRDP_LABEL_T      pVehLabel,
-    const TRDP_LABEL_T      pCstLabel);
+    const TRDP_LABEL_T      pVehLabel,    /* #474 */
+    const TRDP_LABEL_T      pCstLabel);   /* #474 */
 
 
 /**********************************************************************************************************************/
@@ -337,7 +338,7 @@ EXT_DECL TRDP_ERR_T tau_getVehInfo (
 EXT_DECL TRDP_ERR_T tau_getCstInfo (
     TRDP_APP_SESSION_T      appHandle,
     TRDP_CONSIST_INFO_T   **ppCstInfo,
-    const TRDP_LABEL_T      pCstLabel);
+    const TRDP_LABEL_T      pCstLabel);    /* #474 */
 
 
 /* ---------------------------------------------------------------------------- */
@@ -366,8 +367,8 @@ EXT_DECL TRDP_ERR_T tau_getVehOrient (
     TRDP_APP_SESSION_T   appHandle,
     UINT8               *pVehOrient,
     UINT8               *pCstOrient,
-    TRDP_LABEL_T         pVehLabel,
-    TRDP_LABEL_T         pCstLabel);
+    TRDP_LABEL_T         pVehLabel,    /* #474 */
+    TRDP_LABEL_T         pCstLabel);   /* #474 */
 
 /**********************************************************************************************************************/
 /**    Who am I ?.

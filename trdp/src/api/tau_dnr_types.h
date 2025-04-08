@@ -16,9 +16,10 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tau_dnr_types.h 2422 2023-10-23 15:57:53Z ahweiss $
+* $Id: tau_dnr_types.h 2475 2025-04-08 14:19:49Z ahweiss $
 *
 *
+*     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
 *      BL 2017-11-13: Ticket #176 TRDP_LABEL_T breaks field alignment -> TRDP_NET_LABEL_T
 *      BL 2017-07-25: Ticket #125: TCN-DNR client
 */
@@ -67,7 +68,7 @@ typedef struct TRDP_DNS_REQUEST
 {
     TRDP_SHORT_VERSION_T    version;        /**< 1.0 */
     INT16                   reserved01;
-    TRDP_NET_LABEL_T        deviceName;     /**< function device of ED which sends the telegram */
+    TRDP_LABEL_T            deviceName;     /**< function device of ED which sends the telegram */
     UINT32                  etbTopoCnt;     /**< ETB topography counter */
     UINT32                  opTrnTopoCnt;   /**< operational train topography counter
                                              needed for TCN-URIs related to the operational train view
@@ -92,7 +93,7 @@ typedef struct TRDP_DNS_REPLY
 {
     TRDP_SHORT_VERSION_T    version;        /**< 1.0 */
     INT16                   reserved01;
-    TRDP_NET_LABEL_T        deviceName;     /**< function device of ED which sends the telegram */
+    TRDP_LABEL_T            deviceName;     /**< function device of ED which sends the telegram */
     UINT32                  etbTopoCnt;     /**< ETB topography counter */
     UINT32                  opTrnTopoCnt;   /**< operational train topography counter
                                              needed for TCN-URIs related to the operational train view

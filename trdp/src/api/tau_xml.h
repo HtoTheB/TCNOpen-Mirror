@@ -17,8 +17,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: tau_xml.h 2457 2024-07-03 14:07:35Z ahweiss $
+ * $Id: tau_xml.h 2475 2025-04-08 14:19:49Z ahweiss $
  *
+ *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
  *     AHW 2024-07-03: Ticket #261 MD reply/​add listener does not use send parameters
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
  *      A� 2023-03-22: Ticket #423 and #424 Spitted sdtv2 and sdtv4 parameters, added sdtv4-srv-inst-parameter for service instances
@@ -178,7 +179,7 @@ typedef struct   /* #261 com parameter id removed */
 
 typedef struct
 {
-    TRDP_LABEL_T    ifName;       /**< interface name   */
+    TRDP_LABEL_T    ifName;       /**< interface name    #474 */
     UINT8           networkId;    /**< used network on the device (1...4)   */
     TRDP_IP_ADDR_T  hostIp;       /**< host IP address   */
     TRDP_IP_ADDR_T  leaderIp;     /**< Leader IP address dependant on redundancy concept   */
