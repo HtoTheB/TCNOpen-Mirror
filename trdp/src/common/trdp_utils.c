@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_utils.c 2470 2025-03-25 10:10:29Z ahweiss $
+* $Id: trdp_utils.c 2476 2025-04-09 15:36:19Z ahweiss $
 *
 *      PL 2023-10-05: Ticket #437 Loss of UDP messages if a distant equipment is not available
 *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -1190,74 +1190,6 @@ TRDP_ERR_T  trdp_requestSocket (
 
         switch (type)
         {
-#ifdef TSN_SUPPORT
-            case TRDP_SOCK_PD_TSN:
-                sock_options.no_udp_crc = 1;    /* To speed up UDP header generation */
-                sock_options.txTime     = 1;
-
-#ifdef VOS_USE_RAW_IP_SOCKET
-                sock_options.raw        = !rcvMostly; /* Raw sockets can send only!   */
-#endif
-#if __linux
-                sock_options.reuseAddrPort = FALSE;
-#endif
-                err = (TRDP_ERR_T) vos_sockOpenTSN(&iface[lIndex].sock, &sock_options);
-                if (err != TRDP_NO_ERR)
-                {
-                    vos_printLog(VOS_LOG_ERROR, "vos_sockOpenTSN failed! (Err: %d)\n", err);
-                    *pIndex = TRDP_INVALID_SOCKET_INDEX;
-                }
-                else
-                {
-                    iface[lIndex].usage = 1;
-                    *pIndex = lIndex;
-
-
-                    iface[lIndex].bindAddr = bindAddr;
-                    /* In case we didn't bind, we force it again */
-                    if (rcvMostly)
-                    {
-                        /* iface[lIndex].bindAddr = bindAddr; */
-                        /*  Only bind to local IP if we are not a multicast listener  */
-                        if (0u == mcGroup)
-                        {
-                            err = (TRDP_ERR_T) vos_sockBind(iface[lIndex].sock, iface[lIndex].bindAddr, port);
-                        }
-                        else
-                        {
-                            err = (TRDP_ERR_T) vos_sockBind(iface[lIndex].sock, 0u /*mcGroup*/, port);
-                        }
-                        if (err != TRDP_NO_ERR)
-                        {
-                            vos_printLog(VOS_LOG_ERROR, "vos_sockBind() for UDP rcv failed! (Err: %d)\n", err);
-                            *pIndex = TRDP_INVALID_SOCKET_INDEX;
-                            break;
-                        }
-                        if (0u != mcGroup)
-                        {
-                            err = (TRDP_ERR_T) vos_sockJoinMC(iface[lIndex].sock, mcGroup, iface[lIndex].bindAddr);
-                            if (err != TRDP_NO_ERR)
-                            {
-                                vos_printLog(VOS_LOG_ERROR, "vos_sockJoinMC() for TSN rcv failed! (Err: %d)\n", err);
-                                *pIndex = TRDP_INVALID_SOCKET_INDEX;
-                                break;
-                            }
-                            else
-                            {
-                                if (trdp_SockAddJoin(iface[lIndex].mcGroups, mcGroup) == FALSE)
-                                {
-                                    vos_printLogStr(VOS_LOG_ERROR, "trdp_SockAddJoin() failed!\n");
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        ;
-                    }
-                }
-                break;
-#endif /* TSN */
             case TRDP_SOCK_MD_UDP:
                 sock_options.nonBlocking = TRUE;  /* MD UDP sockets are always non blocking because they are polled */
             /* fall thru! */

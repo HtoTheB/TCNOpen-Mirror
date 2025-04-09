@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.c 2463 2024-12-14 05:32:10Z ckhangani $
+* $Id: trdp_pdcom.c 2476 2025-04-09 15:36:19Z ahweiss $
 *
+*     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
 *      CK 2024-12-13: Ticket #468 Fix regarding KEEP behaviour after PD Timeout
 *      PL 2023-05-19: Ticket #434 Code adaption due to TSN header version 2 removal.
 *     AHW 2023-05-15: Ticket #433 TSN PD shall use the same header like non-TSN PD
@@ -147,33 +148,17 @@ void    trdp_pdInit (
     {
         return;
     }
-#ifdef TSN_SUPPORT
-    if (pPacket->privFlags & TRDP_IS_TSN)
-    {
-        pPacket->pFrame->frameHead.sequenceCounter = 0u;
-        pPacket->pFrame->frameHead.protocolVersion = vos_htons(TRDP_PROTO_VER);
-        pPacket->pFrame->frameHead.msgType         = vos_htons((UINT16)type);
-        pPacket->pFrame->frameHead.comId           = vos_htonl(pPacket->addr.comId);
-        pPacket->pFrame->frameHead.datasetLength   = vos_htonl(pPacket->dataSize);
-        pPacket->pFrame->frameHead.reserved        = vos_htonl(serviceId);
-        pPacket->pFrame->frameHead.etbTopoCnt      = 0; /* not used for TSN */
-        pPacket->pFrame->frameHead.opTrnTopoCnt    = 0; /* not used for TSN */
-        pPacket->pFrame->frameHead.replyComId      = 0; /* not used for TSN */
-        pPacket->pFrame->frameHead.replyIpAddress  = 0; /* not used for TSN */
-    }
-    else
-#endif
-    {   /* This is the standard header */
-        pPacket->pFrame->frameHead.protocolVersion  = vos_htons(TRDP_PROTO_VER);
-        pPacket->pFrame->frameHead.etbTopoCnt       = vos_htonl(etbTopoCnt);
-        pPacket->pFrame->frameHead.opTrnTopoCnt     = vos_htonl(opTrnTopoCnt);
-        pPacket->pFrame->frameHead.comId            = vos_htonl(pPacket->addr.comId);
-        pPacket->pFrame->frameHead.msgType          = vos_htons((UINT16)type);
-        pPacket->pFrame->frameHead.datasetLength    = vos_htonl(pPacket->dataSize);
-        pPacket->pFrame->frameHead.reserved         = vos_htonl(serviceId);
-        pPacket->pFrame->frameHead.replyComId       = vos_htonl(replyComId);
-        pPacket->pFrame->frameHead.replyIpAddress   = vos_htonl(replyIpAddress);
-    }
+
+    /* This is the standard header */
+    pPacket->pFrame->frameHead.protocolVersion  = vos_htons(TRDP_PROTO_VER);
+    pPacket->pFrame->frameHead.etbTopoCnt       = vos_htonl(etbTopoCnt);
+    pPacket->pFrame->frameHead.opTrnTopoCnt     = vos_htonl(opTrnTopoCnt);
+    pPacket->pFrame->frameHead.comId            = vos_htonl(pPacket->addr.comId);
+    pPacket->pFrame->frameHead.msgType          = vos_htons((UINT16)type);
+    pPacket->pFrame->frameHead.datasetLength    = vos_htonl(pPacket->dataSize);
+    pPacket->pFrame->frameHead.reserved         = vos_htonl(serviceId);
+    pPacket->pFrame->frameHead.replyComId       = vos_htonl(replyComId);
+    pPacket->pFrame->frameHead.replyIpAddress   = vos_htonl(replyIpAddress);
 }
 
 /******************************************************************************/
@@ -279,47 +264,6 @@ TRDP_ERR_T trdp_pdPut (
     return ret;
 }
 
-#ifdef TSN_SUPPORT
-/******************************************************************************/
-/** Send TSN PD message immediately
- *
- *  @param[in]      appHandle           session pointer
- *  @param[in]      pSendPD             pointer to element to be sent
- *  @param[in]      pTxTime             time to send
- *
- *  @retval         TRDP_NO_ERR         no error
- *  @retval         TRDP_IO_ERR         socket I/O error
- */
-TRDP_ERR_T  trdp_pdSendImmediateTSN (
-    TRDP_SESSION_PT appHandle,
-    PD_ELE_T        *pSendPD,
-    VOS_TIMEVAL_T   *pTxTime)
-{
-    VOS_ERR_T       err;
-    PD_PACKET_T    *pFrame = (PD_PACKET_T *) pSendPD->pFrame;
-
-    /*  Update the sequence counter and re-compute CRC    */
-    trdp_pdUpdate(pSendPD);
-
-    /* We pass the error to the application, but we keep on going    */
-    pSendPD->sendSize = pSendPD->grossSize;
-
-    err = vos_sockSendTSN(appHandle->ifacePD[pSendPD->socketIdx].sock,
-                          (UINT8 *)&pFrame->frameHead,
-                          &pSendPD->sendSize,
-                          pSendPD->addr.srcIpAddr,
-                          pSendPD->addr.destIpAddr,
-                          appHandle->pdDefault.port,
-                          pTxTime);
-
-    if (err == VOS_NO_ERR)
-    {
-        appHandle->stats.pd.numSend++;
-        pSendPD->numRxTx++;
-    }
-    return (TRDP_ERR_T) err;
-}
-#endif
 
 /******************************************************************************/
 /** Send PD message immediately
@@ -806,46 +750,33 @@ TRDP_ERR_T  trdp_pdReceive (
             return err;
     }
 
-#ifdef TSN_SUPPORT
-    if (TRUE == isTSN)
-    {
-        /*  Compute the subscription handle */
-        subAddresses.comId          = vos_ntohl(pNewFrameHead->comId);
-        subAddresses.etbTopoCnt     = 0u;    /* Not used for TSN PD */
-        subAddresses.opTrnTopoCnt   = 0u;    /* Not used for TSN PD */
-        subAddresses.serviceId      = vos_ntohl(pNewFrameHead->reserved);
-        msgType                     = vos_ntohs(pNewFrameHead->msgType);
-    }
-    else    /* no PULL on TSN */
-#endif
-    {
-        /* First check incoming packet's topoCounts against session topoCounts */
-        /* First subscriber check from Table A.5:
-         Actual topography counter values <-> Topography counters of received */
-        if ( !trdp_validTopoCounters( appHandle->etbTopoCnt,
-                                      appHandle->opTrnTopoCnt,
-                                      vos_ntohl(pNewFrameHead->etbTopoCnt),
-                                      vos_ntohl(pNewFrameHead->opTrnTopoCnt)))
-        {
-            appHandle->stats.pd.numTopoErr++;
-            return TRDP_TOPO_ERR;
-        }
 
-        /*  Compute the subscription handle */
-        subAddresses.comId          = vos_ntohl(pNewFrameHead->comId);
-        subAddresses.etbTopoCnt     = vos_ntohl(pNewFrameHead->etbTopoCnt);
-        subAddresses.opTrnTopoCnt   = vos_ntohl(pNewFrameHead->opTrnTopoCnt);
-        subAddresses.serviceId      = vos_ntohl(pNewFrameHead->reserved);
-        msgType = vos_ntohs(pNewFrameHead->msgType);
+    /* First check incoming packet's topoCounts against session topoCounts */
+    /* First subscriber check from Table A.5:
+       Actual topography counter values <-> Topography counters of received */
+    if ( !trdp_validTopoCounters( appHandle->etbTopoCnt,
+                                  appHandle->opTrnTopoCnt,
+                                  vos_ntohl(pNewFrameHead->etbTopoCnt),
+                                  vos_ntohl(pNewFrameHead->opTrnTopoCnt)))
+    {
+        appHandle->stats.pd.numTopoErr++;
+        return TRDP_TOPO_ERR;
+    }
+
+    /*  Compute the subscription handle */
+    subAddresses.comId          = vos_ntohl(pNewFrameHead->comId);
+    subAddresses.etbTopoCnt     = vos_ntohl(pNewFrameHead->etbTopoCnt);
+    subAddresses.opTrnTopoCnt   = vos_ntohl(pNewFrameHead->opTrnTopoCnt);
+    subAddresses.serviceId      = vos_ntohl(pNewFrameHead->reserved);
+    msgType = vos_ntohs(pNewFrameHead->msgType);
 
 /*
-        if (subAddresses.comId > 0) {
-            vos_printLog(VOS_LOG_DBG, "Received PD with ComID %d (size %d) from IP %s\n",
-                subAddresses.comId, recSize, vos_ipDotted(subAddresses.srcIpAddr));
-        }
+    if (subAddresses.comId > 0) {
+        vos_printLog(VOS_LOG_DBG, "Received PD with ComID %d (size %d) from IP %s\n",
+            subAddresses.comId, recSize, vos_ipDotted(subAddresses.srcIpAddr));
+    }
 */
 
-    }
 
     /*  Examine subscription queue, are we interested in this PD?   */
 #ifdef HIGH_PERF_INDEXED
@@ -925,15 +856,6 @@ TRDP_ERR_T  trdp_pdReceive (
             }
 
             /*  This might have not been set!   */
-#ifdef TSN_SUPPORT
-            if (TRUE == isTSN)
-            {
-                pExistingElement->dataSize = vos_ntohl(pNewFrameHead->datasetLength);
-                pExistingElement->grossSize = trdp_packetSizePD(pExistingElement->dataSize);
-                informUser = TRUE;
-            }
-            else
-#endif
             {
                 pExistingElement->dataSize = vos_ntohl(pNewFrameHead->datasetLength);
                 pExistingElement->grossSize = trdp_packetSizePD(pExistingElement->dataSize);
@@ -1082,23 +1004,6 @@ TRDP_ERR_T  trdp_pdReceive (
             theMessage.pUserRef     = pExistingElement->pUserRef; /* User reference given with the local subscribe? */
             theMessage.resultCode   = err;
 
-#ifdef TSN_SUPPORT
-            if (TRUE == isTSN)
-            {
-                theMessage.etbTopoCnt   = 0u;
-                theMessage.opTrnTopoCnt = 0u;
-                theMessage.replyComId   = 0u;
-                theMessage.replyIpAddr  = VOS_INADDR_ANY;
-                theMessage.protVersion  = pNewFrameHead->protocolVersion;
-                theMessage.serviceId    = pNewFrameHead->reserved;
-                pExistingElement->pfCbFunction(appHandle->pdDefault.pRefCon,
-                                               appHandle,
-                                               &theMessage,
-                                               pExistingElement->pFrame->data,
-                                               vos_ntohl(pExistingElement->pFrame->frameHead.datasetLength));
-            }
-            else
-#endif
             {
                 theMessage.etbTopoCnt   = vos_ntohl(pExistingElement->pFrame->frameHead.etbTopoCnt);
                 theMessage.opTrnTopoCnt = vos_ntohl(pExistingElement->pFrame->frameHead.opTrnTopoCnt);
@@ -1236,30 +1141,17 @@ void trdp_handleTimeout (
             theMessage.destIpAddr   = pPacket->addr.destIpAddr;
             theMessage.pUserRef     = pPacket->pUserRef;
             theMessage.resultCode   = TRDP_TIMEOUT_ERR;
+
             if (pPacket->pFrame != NULL)
             {
-#ifdef TSN_SUPPORT
-                if (pPacket->privFlags & TRDP_IS_TSN)
-                {
-                    theMessage.msgType      = (TRDP_MSG_T) vos_ntohs(pPacket->pFrame->frameHead.msgType);
-                    theMessage.seqCount     = vos_ntohl(pPacket->pFrame->frameHead.sequenceCounter);
-                    theMessage.protVersion  = vos_ntohs(pPacket->pFrame->frameHead.protocolVersion);
-                    theMessage.replyComId   = 0;  /* not used for TSN */
-                    theMessage.replyIpAddr  = 0;  /* not used for TSN */
-                    theMessage.etbTopoCnt   = 0;  /* not used for TSN */
-                    theMessage.opTrnTopoCnt = 0;  /* not used for TSN */
-                }
-                else
-#endif
-                {
-                    theMessage.etbTopoCnt   = vos_ntohl(pPacket->pFrame->frameHead.etbTopoCnt);
-                    theMessage.opTrnTopoCnt = vos_ntohl(pPacket->pFrame->frameHead.opTrnTopoCnt);
-                    theMessage.msgType      = (TRDP_MSG_T) vos_ntohs(pPacket->pFrame->frameHead.msgType);
-                    theMessage.seqCount     = vos_ntohl(pPacket->pFrame->frameHead.sequenceCounter);
-                    theMessage.protVersion  = vos_ntohs(pPacket->pFrame->frameHead.protocolVersion);
-                    theMessage.replyComId   = vos_ntohl(pPacket->pFrame->frameHead.replyComId);
-                    theMessage.replyIpAddr  = vos_ntohl(pPacket->pFrame->frameHead.replyIpAddress);
-                }
+                theMessage.etbTopoCnt   = vos_ntohl(pPacket->pFrame->frameHead.etbTopoCnt);
+                theMessage.opTrnTopoCnt = vos_ntohl(pPacket->pFrame->frameHead.opTrnTopoCnt);
+                theMessage.msgType      = (TRDP_MSG_T) vos_ntohs(pPacket->pFrame->frameHead.msgType);
+                theMessage.seqCount     = vos_ntohl(pPacket->pFrame->frameHead.sequenceCounter);
+                theMessage.protVersion  = vos_ntohs(pPacket->pFrame->frameHead.protocolVersion);
+                theMessage.replyComId   = vos_ntohl(pPacket->pFrame->frameHead.replyComId);
+                theMessage.replyIpAddr  = vos_ntohl(pPacket->pFrame->frameHead.replyIpAddress);
+
                 pPacket->pfCbFunction(appHandle->pdDefault.pRefCon,
                                       appHandle,
                                       &theMessage,
@@ -1369,39 +1261,21 @@ void    trdp_pdUpdate (
 {
     UINT32 myCRC;
 
-#ifdef TSN_SUPPORT
-    /* If TSN is set, use the smaller header */
-    if (pPacket->privFlags & TRDP_IS_TSN)
+    /* increment counter with each telegram */
+    if (pPacket->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PP))
     {
-        PD_HEADER_T *pFrameHead = &pPacket->pFrame->frameHead;
-
-        /* increment counter with each telegram */
-        pPacket->curSeqCnt++;
-        pFrameHead->sequenceCounter = vos_htonl(pPacket->curSeqCnt);
-
-        /* Compute CRC32   */
-        myCRC = vos_crc32(INITFCS, (UINT8 *)pFrameHead, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
-        pFrameHead->frameCheckSum = MAKE_LE(myCRC);
+        pPacket->curSeqCnt4Pull++;
+        pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt4Pull);
     }
     else
-#endif
     {
-        /* increment counter with each telegram */
-        if (pPacket->pFrame->frameHead.msgType == vos_htons(TRDP_MSG_PP))
-        {
-            pPacket->curSeqCnt4Pull++;
-            pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt4Pull);
-        }
-        else
-        {
-            pPacket->curSeqCnt++;
-            pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt);
-        }
-
-        /* Compute CRC32   */
-        myCRC = vos_crc32(INITFCS, (UINT8 *)&pPacket->pFrame->frameHead, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
-        pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myCRC);
+        pPacket->curSeqCnt++;
+        pPacket->pFrame->frameHead.sequenceCounter = vos_htonl(pPacket->curSeqCnt);
     }
+
+    /* Compute CRC32   */
+    myCRC = vos_crc32(INITFCS, (UINT8 *)&pPacket->pFrame->frameHead, sizeof(PD_HEADER_T) - SIZE_OF_FCS);
+    pPacket->pFrame->frameHead.frameCheckSum = MAKE_LE(myCRC);
 }
 
 
@@ -1458,21 +1332,10 @@ TRDP_ERR_T trdp_pdCheck (
                     (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PR) &&
                     (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PE))
         {
-#ifdef TSN_SUPPORT
-            if (vos_ntohs(pPacket->msgType) != (UINT16) TRDP_MSG_PT)
-            {
-                vos_printLog(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
-                err = TRDP_WIRE_ERR;
-            }
-            else
-            {
-                *pIsTSN = TRUE;
-            }
-#else
             vos_printLog(VOS_LOG_INFO, "PDframe type error, received %04x\n", vos_ntohs(pPacket->msgType));
             err = TRDP_WIRE_ERR;
-#endif
         }
+
         /*  Check size  */
         else if (vos_ntohl(pPacket->datasetLength) > TRDP_MAX_PD_DATA_SIZE)
         {

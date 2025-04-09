@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tlp_if.c 2463 2024-12-14 05:32:10Z ckhangani $*
+* $Id: tlp_if.c 2476 2025-04-09 15:36:19Z ahweiss $*
 *
+*     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
 *      CK 2024-12-13: Ticket #468 Fix regarding KEEP behaviour after PD Timeout
 *      CK 2023-10-17: Ticket #437 Loss of UDP messages if a distant equipment is not available - tlp_republish updated
 *      PL 2023-10-13: Ticket #444 Lint
@@ -537,16 +538,6 @@ EXT_DECL TRDP_ERR_T tlp_publish (
                 pNewElement->privFlags  |= TRDP_INVALID_DATA;
                 pNewElement->dataSize   = dataSize;
 
-#ifdef TSN_SUPPORT
-                /* check for TSN and select the right message type and socket type #435 */
-                if (pNewElement->pktFlags & TRDP_FLAGS_TSN)
-                {
-                    msgType     = TRDP_MSG_PT;
-                    interval    = 0u;       /* force zero interval */
-                    sockType    = TRDP_SOCK_PD_TSN;
-                    pNewElement->privFlags  |= TRDP_IS_TSN;
-                }
-#endif
                 /*
                  Compute the overal packet size
                  */
@@ -665,26 +656,16 @@ EXT_DECL TRDP_ERR_T tlp_publish (
 
             *pPubHandle = (TRDP_PUB_T) pNewElement;
 
-#ifdef TSN_SUPPORT
-            if (pNewElement->privFlags & TRDP_IS_TSN)
+            if (dataSize != 0u)
             {
-                /* We set the vlan IP as we bound the socket to */
-                pNewElement->addr.srcIpAddr = appHandle->ifacePD[pNewElement->socketIdx].bindAddr;
+                ret = tlp_put(appHandle, *pPubHandle, pData, dataSize);
             }
-            else
-#endif
-            {   /* We do not prepare data for TSN, skip this and also no need for distributing the schedules */
-                if (dataSize != 0u)
-                {
-                    ret = tlp_put(appHandle, *pPubHandle, pData, dataSize);
-                }
 #ifndef HIGH_PERF_INDEXED
-                if ((ret == TRDP_NO_ERR) && (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING))
-                {
-                    ret = trdp_pdDistribute(appHandle->pSndQueue);
-                }
-#endif
+            if ((ret == TRDP_NO_ERR) && (appHandle->option & TRDP_OPTION_TRAFFIC_SHAPING))
+            {
+                ret = trdp_pdDistribute(appHandle->pSndQueue);
             }
+#endif
         }
 
         if (vos_mutexUnlock(appHandle->mutexTxPD) != VOS_NO_ERR)
@@ -994,15 +975,6 @@ EXT_DECL TRDP_ERR_T tlp_put (
         return TRDP_NOINIT_ERR;
     }
 
-#ifdef TSN_SUPPORT
-    if (pElement->pktFlags & TRDP_FLAGS_TSN)
-    {
-        /* For TSN telegrams, use tlp_putImmediate! */
-        vos_printLogStr(VOS_LOG_ERROR, "For TSN telegrams, use tlp_putImmediate()!\n");
-        return TRDP_PARAM_ERR;
-    }
-#endif
-
     /*    Reserve mutual access    */
     ret = (TRDP_ERR_T) vos_mutexLock(appHandle->mutexTxPD);
     if ( ret == TRDP_NO_ERR )
@@ -1111,32 +1083,20 @@ EXT_DECL TRDP_ERR_T tlp_putImmediate (
         return TRDP_NOINIT_ERR;
     }
 
-#ifdef TSN_SUPPORT
-    if (pElement->pktFlags & TRDP_FLAGS_TSN)
+    /*    Reserve mutual access    */
+    TRDP_ERR_T err = (TRDP_ERR_T) vos_mutexLock(appHandle->mutexTxPD);
+    if ( err == TRDP_NO_ERR )
     {
-        /* For TSN telegrams, we do not take the mutex but send directly! */
         PD_PACKET_T *pPacket = (PD_PACKET_T *)(pElement->pFrame);
+        pTxTime = pTxTime;  /* Unused parameter */
         memcpy(pPacket->data, pData, dataSize);
-        return trdp_pdSendImmediateTSN(appHandle, pElement, pTxTime);
-    }
-    else
-#endif
-    {
-        /*    Reserve mutual access    */
-        TRDP_ERR_T err = (TRDP_ERR_T) vos_mutexLock(appHandle->mutexTxPD);
-        if ( err == TRDP_NO_ERR )
+        err = trdp_pdSendImmediate(appHandle, pElement);
+        if ( vos_mutexUnlock(appHandle->mutexTxPD) != VOS_NO_ERR )
         {
-            PD_PACKET_T *pPacket = (PD_PACKET_T *)(pElement->pFrame);
-            pTxTime = pTxTime;  /* Unused parameter */
-            memcpy(pPacket->data, pData, dataSize);
-            err = trdp_pdSendImmediate(appHandle, pElement);
-            if ( vos_mutexUnlock(appHandle->mutexTxPD) != VOS_NO_ERR )
-            {
-                vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
-            }
+            vos_printLogStr(VOS_LOG_INFO, "vos_mutexUnlock() failed\n");
         }
-        return err; /*lint !e438 pTxTime only used with TSN */
     }
+    return err; /*lint !e438 pTxTime only used with TSN */
 }
 
 

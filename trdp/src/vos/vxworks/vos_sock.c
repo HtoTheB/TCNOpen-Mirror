@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
  /*
- * $Id: vos_sock.c 2454 2024-06-27 11:22:28Z ahweiss $
+ * $Id: vos_sock.c 2476 2025-04-09 15:36:19Z ahweiss $
  *
+ *     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
  *		MM 2023-10-09: Ticket #442: Adaption for VxWorks 23.03
  *     CWE 2023-03-28: Ticket #342 Updating TSN / VLAN / RT-thread code
  *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
@@ -40,10 +41,6 @@
     "You are trying to compile the VXWORKS implementation of vos_sock.c - either define VXWORKS or exclude this file!"
 #endif
 
-#ifdef TSN_SUPPORT
-#warning \
-    "*** To build a TSN capable TRDP library the vos_sock implementation has to be extended! ***"
-#endif
 
 /***********************************************************************************************************************
  * INCLUDES

@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: tlc_if.c 2454 2024-06-27 11:22:28Z ahweiss $
+* $Id: tlc_if.c 2476 2025-04-09 15:36:19Z ahweiss $
 *
 *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
 *      PL 2023-10-13: Ticket #443 tlc_if: tlc_reinitSession doesn't perform multicast socket join for MD sockets listed in MDListenQueue
@@ -391,11 +391,7 @@ EXT_DECL TRDP_ERR_T tlc_init (
 #else
             vos_printLogStr(VOS_LOG_INFO, "MD_SUPPORT:  disabled\n");
 #endif
-#if defined(TSN_SUPPORT)
-            vos_printLogStr(VOS_LOG_INFO, "TSN_SUPPORT: enabled\n");
-#else
-            vos_printLogStr(VOS_LOG_INFO, "TSN_SUPPORT: disabled\n");
-#endif
+
 #if defined(SOA_SUPPORT)
             vos_printLogStr(VOS_LOG_INFO, "SOA_SUPPORT: enabled\n");
 #else

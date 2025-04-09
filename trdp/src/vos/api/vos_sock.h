@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: vos_sock.h 2473 2025-04-04 08:16:28Z ahweiss $
+ * $Id: vos_sock.h 2476 2025-04-09 15:36:19Z ahweiss $
  *
+ *     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
  *     AHW 2025-04-04: Ticket #470 Size mismatch of VOS_IF_REC_T between source and header on Linux
  *      PL 2023-10-05: Ticket #435 Cleanup VLAN and TSN options at different places
  *      PL 2023-07-13: Ticket #435 Cleanup VLAN and TSN for options for Linux systems
@@ -107,11 +108,7 @@ extern "C" {
 #endif
 
 #ifndef VOS_MAX_NUM_IF              /**< The maximum number of IP interface adapters that can be handled by VOS */
-#ifdef TSN_SUPPORT
-#define VOS_MAX_NUM_IF  64          /**< TSN uses VLAN and each VLAN creates its own IP interface */
-#else
 #define VOS_MAX_NUM_IF  8
-#endif
 #endif
 
 #ifndef VOS_MAX_NUM_UNICAST         /**< The maximum number of unicast addresses that can be handled by VOS    */
@@ -727,105 +724,7 @@ EXT_DECL VOS_ERR_T vos_ifnameFromVlanId(
 /**********************************************************************************************************************/
 /**********************************************************************************************************************/
 
-#ifdef TSN_SUPPORT
 
-/*
-    Extension for TSN & VLAN support
-*/
-
-/**********************************************************************************************************************/
-/** Create a TSN socket.
- *  Return a socket descriptor for further calls. The socket options are optional and can be
- *  applied later.
- *
- *  @param[out]     pSock           pointer to socket descriptor returned
- *  @param[in]      pOptions        pointer to socket options (optional)
- *
- *  @retval         VOS_NO_ERR      no error
- *  @retval         VOS_PARAM_ERR   pSock == NULL
- *  @retval         VOS_SOCK_ERR    socket not available or option not supported
- */
-
-EXT_DECL VOS_ERR_T vos_sockOpenTSN (
-    VOS_SOCK_T              *pSock,
-    const VOS_SOCK_OPT_T    *pOptions);
-
-/**********************************************************************************************************************/
-/** Send TSN over UDP data.
- *  Send data to the supplied address and port.
- *
- *  @param[in]      sock            socket descriptor
- *  @param[in]      pBuffer         pointer to data to send
- *  @param[in,out]  pSize           In: size of the data to send, Out: no of bytes sent
- *  @param[in]      srcIpAddress    source IP
- *  @param[in]      dstIpAddress    destination IP
- *  @param[in]      port            destination port
- *  @param[in]      pTxTime         absolute time when to send this packet
- *
- *  @retval         VOS_NO_ERR      no error
- *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
- *  @retval         VOS_IO_ERR      data could not be sent
- *  @retval         VOS_BLOCK_ERR   Call would have blocked in blocking mode
- */
-
-EXT_DECL VOS_ERR_T vos_sockSendTSN (
-    VOS_SOCK_T      sock,
-    const UINT8     *pBuffer,
-    UINT32          *pSize,
-    VOS_IP4_ADDR_T  srcIpAddress,
-    VOS_IP4_ADDR_T  dstIpAddress,
-    UINT16          port,
-    VOS_TIMEVAL_T   *pTxTime);
-
-/**********************************************************************************************************************/
-/** Receive TSN (UDP) data.
- *  The caller must provide a sufficient sized buffer. If the supplied buffer is smaller than the bytes received, *pSize
- *  will reflect the number of copied bytes and the call should be repeated until *pSize is 0 (zero).
- *  If the socket was created in blocking-mode (default), then this call will block and will only return if data has
- *  been received or the socket was closed or an error occured.
- *  If called in non-blocking mode, and no data is available, VOS_NODATA_ERR will be returned.
- *  If pointers are provided, source IP, source port and destination IP will be reported on return.
- *
- *  @param[in]      sock            socket descriptor
- *  @param[out]     pBuffer         pointer to applications data buffer
- *  @param[in,out]  pSize           pointer to the received data size
- *  @param[out]     pSrcIPAddr      pointer to source IP
- *  @param[out]     pSrcIPPort      pointer to source port
- *  @param[out]     pDstIPAddr      pointer to dest IP
- *  @param[in]      peek            if true, leave data in queue
- *
- *  @retval         VOS_NO_ERR      no error
- *  @retval         VOS_PARAM_ERR   sock descriptor unknown, parameter error
- *  @retval         VOS_IO_ERR      data could not be read
- *  @retval         VOS_NODATA_ERR  no data
- *  @retval         VOS_BLOCK_ERR   Call would have blocked in blocking mode
- */
-
-EXT_DECL VOS_ERR_T vos_sockReceiveTSN (
-    VOS_SOCK_T sock,
-    UINT8      *pBuffer,
-    UINT32     *pSize,
-    UINT32     *pSrcIPAddr,
-    UINT16     *pSrcIPPort,
-    UINT32     *pDstIPAddr,
-    BOOL8      peek);
-
-/**********************************************************************************************************************/
-/** Debug output main socket options
- *
- *  @param[in]      sock            socket
- */
-
-EXT_DECL void vos_sockPrintOptions (
-    VOS_SOCK_T sock);
-
-/**********************************************************************************************************************/
-
-/*
-    Extension for TSN & VLAN support
-*/
-
-#endif
 
 /**********************************************************************************************************************/
 /**********************************************************************************************************************/

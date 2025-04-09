@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2475 2025-04-08 14:19:49Z ahweiss $
+ * $Id: trdp_types.h 2476 2025-04-09 15:36:19Z ahweiss $
  *
+ *     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
  *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
  *     AHW 2025-03-25: Ticket #471 Add TRDP option to forbid reusing ports/sockets for MD only
  *     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
@@ -72,10 +73,6 @@
 #include "vos_mem.h"
 #include "vos_sock.h"
 #include "iec61375-2-3.h"
-
-#ifdef TSN_SUPPORT
-#include "trdp_tsn_def.h"   /**< Real time extensions (preliminary)    */
-#endif
 
 #ifdef __cplusplus
 extern "C" {
@@ -231,7 +228,7 @@ typedef enum
 #define TRDP_INFINITE_TIMEOUT       0xffffffffu /**< Infinite reply timeout                               */
 #define TRDP_DEFAULT_PD_TIMEOUT     100000u /**< Default PD timeout 100ms from 61375-2-3 Table C.7        */
 
-#if defined(HIGH_PERF_INDEXED) || defined(TSN_SUPPORT)
+#if defined(HIGH_PERF_INDEXED)
 #   define TRDP_TIMER_GRANULARITY   500u                /**< granularity in us - we allow 0.5ms now!      */
 #else
 #   define TRDP_TIMER_GRANULARITY   5000u               /**< granularity in us - we allow 5ms now!        */

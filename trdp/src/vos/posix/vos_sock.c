@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2024. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2454 2024-06-27 11:22:28Z ahweiss $
+* $Id: vos_sock.c 2476 2025-04-09 15:36:19Z ahweiss $
 *
+*     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
 *      RD 2024-05-29: Ticket #454 QNX vos_getMacAddress implementation
 *     AHW 2024-03-22: Ticket #445 Fix and improve QNX support
 *      PL 2023-10-11: Lint warnings

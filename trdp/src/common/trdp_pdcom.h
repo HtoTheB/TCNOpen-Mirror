@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: trdp_pdcom.h 2463 2024-12-14 05:32:10Z ckhangani $
+* $Id: trdp_pdcom.h 2476 2025-04-09 15:36:19Z ahweiss $
 *
+*     AHW 2024-05-08: Ticket #451 Missing nullpointer check in tlc_openSession/vlanId and type missing in statistics
 *      CK 2024-12-13: Ticket #468 Fix regarding KEEP behaviour after PD Timeout
 *      AM 2022-12-01: Ticket #399 Abstract socket type (VOS_SOCK_T, TRDP_SOCK_T) introduced, vos_select function is not anymore called with '+1'
 *      BL 2019-06-17: Ticket #264 Provide service oriented interface
@@ -97,13 +98,6 @@ TRDP_ERR_T  trdp_pdSendElement (
 
 TRDP_ERR_T  trdp_pdSendQueued (
     TRDP_SESSION_PT appHandle);
-
-#ifdef TSN_SUPPORT
-TRDP_ERR_T  trdp_pdSendImmediateTSN (
-    TRDP_SESSION_PT appHandle,
-    PD_ELE_T        *pSendPD,
-    VOS_TIMEVAL_T   *pTxTime);
-#endif
 
 TRDP_ERR_T  trdp_pdSendImmediate (
     TRDP_SESSION_PT appHandle,
