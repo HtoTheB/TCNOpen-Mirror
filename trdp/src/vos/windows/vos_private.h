@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
-* $Id: vos_private.h 2433 2024-02-09 10:00:30Z ahweiss $
+* $Id: vos_private.h 2478 2025-04-10 16:00:42Z ahweiss $
 *
 *     AHW 2021-05-26: Ticket #322: Subscriber multicast message routing in multi-home device
 *      BL 2020-07-30: pthread includes removed
@@ -47,9 +47,9 @@ extern "C" {
  */
 
 #define VOS_VERSION     3u
-#define VOS_RELEASE     0u /* 399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
-#define VOS_UPDATE      0u
-#define VOS_EVOLUTION   1u
+#define VOS_RELEASE     0u  /* 399: Socket abstraction added, vos_select(), highDesc is NOT anymore incremented in call */
+#define VOS_UPDATE      24u
+#define VOS_EVOLUTION   78u /* Evolution > 0 denotes trunk! */
 
 #define MAX_SEM_COUNT  10
 

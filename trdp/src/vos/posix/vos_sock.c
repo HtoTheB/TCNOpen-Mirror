@@ -15,8 +15,9 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2024. All rights reserved.
  */
 /*
-* $Id: vos_sock.c 2476 2025-04-09 15:36:19Z ahweiss $
+* $Id: vos_sock.c 2478 2025-04-10 16:00:42Z ahweiss $
 *
+*     AHW 2025-04-10: Ticket #462 Incomplete check in vos_netIfUp for DSA switch attached interfaces
 *     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
 *      RD 2024-05-29: Ticket #454 QNX vos_getMacAddress implementation
 *     AHW 2024-03-22: Ticket #445 Fix and improve QNX support
@@ -74,7 +75,8 @@
 #endif
 
 #ifdef __linux
-#   include <net/if.h> // Lint warnings
+#   include <net/if.h>   // Lint warnings
+#   include <linux/if.h> // Required for IFF_LOWER_UP flag
 #   include <byteswap.h>
 #   include <linux/if_vlan.h>
 #   include <linux/sockios.h>
@@ -733,7 +735,11 @@ EXT_DECL BOOL8 vos_netIfUp (
                 {
                     if (pCursor->ifa_flags & IFF_UP)
                     {
-                        linkState = TRUE;
+                        #ifdef IFF_LOWER_UP
+                            linkState = ((pCursor->ifa_flags & IFF_LOWER_UP) != FALSE);
+                        #else
+                            linkState = TRUE;
+                        #endif
                     }
                     /* vos_printLog(VOS_LOG_INFO, "pCursor->ifa_flags = 0x%x\n", pCursor->ifa_flags); */
                     break;
