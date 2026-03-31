@@ -15,7 +15,7 @@
  *          Copyright Alstom SA or its subsidiaries and others, 2013-2023. All rights reserved.
  */
 /*
- * $Id: trdp_types.h 2476 2025-04-09 15:36:19Z ahweiss $
+ * $Id: trdp_types.h 2479 2026-03-31 08:31:39Z b-scherer $
  *
  *     AHW 2025-04-09: Ticket #464 Remove compiler switch TSN_SUPPORT and related dead code
  *     AHW 2025-04-08: Ticket #474 Error in the implementation of 'LABEL' data type
@@ -117,8 +117,6 @@ extern "C" {
 
 /* for example: IP-Addr 10.0.8.35 translated to (10 * << 24) + (0 * << 16) + (8 << 8) + 35 */
 typedef VOS_IP4_ADDR_T TRDP_IP_ADDR_T;
-
-typedef CHAR8 TTRDP_LABEL_T[TRDP_MAX_LABEL_LEN + 1];
 
 typedef CHAR8 TRDP_EXTRA_LABEL_T[TRDP_EXTRA_LABEL_LEN + 1];
 
