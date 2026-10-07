@@ -8,12 +8,11 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
                 "LINUX_config"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
@@ -25,12 +24,11 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
                 "LINUX_HP10_config"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
@@ -42,12 +40,11 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
                 "LINUX_HP2_config"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
@@ -59,43 +56,14 @@
             "type": "shell",
             "command": "make",
             "args": [
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
                 "LINUX_TSN_config"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "Setup Kontron TSN: TRANSMITTER Qbv VLAN configuration",
-            "type": "shell",
-            "command": "${userHome}/sourceforge/trdp/.vscode/kontron_transmitter_qbv_configuration.sh",
-            "args":[],
-			"sudo": true,
-            "group":  {
-                "kind": "none"
-            },
-            "presentation": {
-                "reveal":"always"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "Setup Kontron TSN: RECEIVER Qbv VLAN configuration",
-            "type": "shell",
-            "command": "${userHome}/sourceforge/trdp/.vscode/kontron_receiver_qbv_configuration.sh",
-            "args":[],
-			"sudo": true,
-            "group":  {
-                "kind": "none"
-            },
-            "presentation": {
-                "reveal":"always"
             },
             "problemMatcher": "$msCompile"
         },
@@ -105,12 +73,11 @@
             "command": "make",
             "args": [
                 "all",
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
                 "DEBUG=TRUE"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
@@ -123,11 +90,10 @@
             "command": "make",
             "args": [
                 "all",
-                "--directory=${userHome}/sourceforge/trdp"
+                "--directory=${workspaceFolder}"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "presentation": {
                 "reveal": "always"
@@ -140,7 +106,24 @@
             "command": "make",
             "args": [
                 "clean",
-                "--directory=${userHome}/sourceforge/trdp",
+                "--directory=${workspaceFolder}",
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "reveal": "always"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build Windows TRDP (Debug x64)",
+            "type": "shell",
+            "command": "msbuild",
+            "args": [
+                "${workspaceFolder}/VSExpress2019/Win_TRDP_VS2019.sln",
+                "/p:Configuration=Debug",
+                "/p:Platform=x64"
             ],
             "group": {
                 "kind": "build",
@@ -151,7 +134,5 @@
             },
             "problemMatcher": "$msCompile"
         }
-
-
     ]
 }
