@@ -1,5 +1,8 @@
 TCNOpen TRDP prototype stack
 
+This project is licensed under the Mozilla Public License Version 2.0.
+See the file LICENSE for the complete license text.
+
 *******************************************************************************************************
 * Please see:
         'TCN-TRDP2-D-BOM-019-10 TRDP SYSTEM ARCHITECTURE & DESIGN SPECIFICATION'
